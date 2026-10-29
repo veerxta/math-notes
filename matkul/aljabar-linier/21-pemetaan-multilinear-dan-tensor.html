@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Pemetaan Multilinear dan Tensor · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Pemetaan Multilinear dan Tensor</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Pemetaan $k$-linear $\mu \colon V^k \to W$ linier di tiap argumen. Pangkat tensor $V^{\otimes k}$ dicirikan oleh sifat universal: setiap $\mu$ seperti itu sama dengan $\tilde{\mu} \circ \otimes$ untuk tepat satu $\tilde{\mu}$ linier.</li>
+        <li>Jika $\set{\mathbf{b}_i}$ basis $V$, maka semua $\mathbf{b}_{i_1} \otimes \dots \otimes \mathbf{b}_{i_k}$ basis $V^{\otimes k}$, dan $\dim V^{\otimes k} = n^k$.</li>
+        <li>Di $V \otimes V$, tensor dengan matriks koefisien $[c_{ij}]$ murni (berbentuk $\mathbf{u} \otimes \mathbf{v}$) jika dan hanya jika rank matriks itu $1$; ini juga kriteria keadaan kuantum terpisah versus terjerat.</li>
+        <li>Produk Kronecker $A \otimes B = [a_{ij}B]$ memenuhi $(A \otimes B)(C \otimes D) = AC \otimes BD$ dan $\operatorname{vec}(AXB) = (B^T \otimes A)\operatorname{vec}(X)$.</li>
+        <li>Dekomposisi Schmidt (rank Schmidt $=$ banyak nilai singular tak nol matriks koefisien) mengukur keterjeratan; operasi lokal $U_A \otimes U_B$ tidak mengubahnya.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Pemetaan $k$-linear</h3>
+      <p>Untuk ruang vektor $V$, $V^k = V \times \dots \times V$ ($k$ faktor) adalah himpunan $k$-tupel terurut. Sebagai himpunan, $V^k$ sama dengan $V^{\oplus k}$, tetapi $V^{\oplus k}$ ruang vektor sedangkan $V^k$ hanya himpunan; pemetaan multilinear didefinisikan pada $V^k$.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Pemetaan $k$-linear (Modul, §4.2.1 dan §4.2.11)</div>
+        <p>Pemetaan $\mu \colon V^k \to W$ <strong>$k$-linear</strong> jika linier di setiap argumen saat argumen lain tetap: untuk setiap $i$,</p>
+        <p>$$\mu(\mathbf{v}_1, \dots, c\mathbf{v}_i + \mathbf{x}_i, \dots, \mathbf{v}_k) = c\,\mu(\mathbf{v}_1, \dots, \mathbf{v}_i, \dots, \mathbf{v}_k) + \mu(\mathbf{v}_1, \dots, \mathbf{x}_i, \dots, \mathbf{v}_k).$$</p>
+        <p><strong>$k$-bentuk linier</strong> adalah pemetaan $k$-linear ke $F$. Pemetaan $1$-linear adalah pemetaan linier, $2$-linear bilinear, $3$-linear trilinear. Himpunannya ditulis $\mathcal{L}^k(V, W)$. Contoh: hasil kali titik $B(\mathbf{x}, \mathbf{y}) = x_1y_1 + x_2y_2$ bentuk bilinear simetris pada $\R^2$.</p>
+      </div>
+
+      <h3>Hasil kali tensor</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Sifat universal (Modul, Definisi 4.2.1b)</div>
+        <p>Pasangan $(V^{\otimes k}, \otimes)$, dengan $\otimes \colon V^k \to V^{\otimes k}$, $(\mathbf{v}_1, \dots, \mathbf{v}_k) \mapsto \mathbf{v}_1 \otimes \dots \otimes \mathbf{v}_k$ pemetaan $k$-linear, disebut <strong>pangkat tensor ke-$k$</strong> dari $V$ jika: untuk setiap ruang $W$ dan setiap pemetaan $k$-linear $\mu \colon V^k \to W$, ada <em>tepat satu</em> pemetaan linier $\tilde{\mu} \colon V^{\otimes k} \to W$ dengan</p>
+        <p>$$\mu = \tilde{\mu} \circ \otimes.$$</p>
+        <p>Akibatnya $\mathcal{L}^k(V, W) \cong \mathcal{L}(V^{\otimes k}, W)$ dan $\mathcal{L}^k(V, F) \cong (V^{\otimes k})^*$; sifat ini juga membuat $V^{\otimes k}$ tunggal sampai isomorfisma.</p>
+      </div>
+
+      <p>Elemen $V^{\otimes k}$ adalah kombinasi linier dari tensor murni $\mathbf{v}_1 \otimes \dots \otimes \mathbf{v}_k$, yang berhitung secara multilinear:</p>
+      <p>$$\mathbf{v}_1 \otimes \dots \otimes (c\mathbf{v}_i + \mathbf{x}_i) \otimes \dots \otimes \mathbf{v}_k = c(\mathbf{v}_1 \otimes \dots \otimes \mathbf{v}_i \otimes \dots \otimes \mathbf{v}_k) + \mathbf{v}_1 \otimes \dots \otimes \mathbf{x}_i \otimes \dots \otimes \mathbf{v}_k.$$</p>
+      <p>Mirip perkalian tak komutatif di suatu aljabar: $\mathbf{a} \otimes (2\mathbf{b} + \mathbf{c}) \otimes \mathbf{d} = 2(\mathbf{a} \otimes \mathbf{b} \otimes \mathbf{d}) + \mathbf{a} \otimes \mathbf{c} \otimes \mathbf{d}$, tetapi $\mathbf{a} \otimes \mathbf{b} + \mathbf{b} \otimes \mathbf{a}$ umumnya tidak bisa disederhanakan. Keberadaan dan ketunggalan $V^{\otimes k}$ dijamin oleh teori yang lebih abstrak (konstruksi lewat ruang hasil bagi), yang tidak dibahas di sumber.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Tensor murni dan tidak murni (Modul, Definisi 4.2.2 dan 4.2.3)</div>
+        <p>Tensor di $V^{\otimes k}$ <strong>murni</strong> (pure, sederhana) jika bisa ditulis sebagai satu $\mathbf{v}_1 \otimes \mathbf{v}_2 \otimes \dots \otimes \mathbf{v}_k$ dengan $\mathbf{v}_j \in V$, dan <strong>tidak murni</strong> jika tidak; tensor tidak murni hanya bisa ditulis sebagai kombinasi linier beberapa tensor murni.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Murni dan tidak murni di $\R^2 \otimes \R^2$ (Modul, Contoh 4.2.4–4.2.9)</div>
+        <p>Dengan basis $\set{\mathbf{e}_1, \mathbf{e}_2}$ dan urutan basis $\mathbf{e}_1 \otimes \mathbf{e}_1, \mathbf{e}_1 \otimes \mathbf{e}_2, \mathbf{e}_2 \otimes \mathbf{e}_1, \mathbf{e}_2 \otimes \mathbf{e}_2$ (dalam notasi ket: $|e_1e_1\rangle, |e_1e_2\rangle, |e_2e_1\rangle, |e_2e_2\rangle$, yaitu $\mathbf{e}_1, \dots, \mathbf{e}_4$ di $\R^4$):</p>
+        <ul>
+          <li>Murni: $\mathbf{e}_1 \otimes \mathbf{e}_2 = (0, 1, 0, 0)^T$; $(3\mathbf{e}_1 - \mathbf{e}_2) \otimes (\mathbf{e}_1 + 5\mathbf{e}_2)$; $(\mathbf{e}_1 + \mathbf{e}_2) \otimes (\mathbf{e}_1 - \mathbf{e}_2) = (1, -1, 1, -1)^T$.</li>
+          <li>Tidak murni: $\mathbf{e}_1 \otimes \mathbf{e}_1 + \mathbf{e}_2 \otimes \mathbf{e}_2 = (1, 0, 0, 1)^T$ dan $\mathbf{e}_1 \otimes \mathbf{e}_2 + \mathbf{e}_2 \otimes \mathbf{e}_1 = (0, 1, 1, 0)^T$ (yang kedua simetris, tetapi tidak murni).</li>
+        </ul>
+        <p>Bukti untuk $\mathbf{e}_1 \otimes \mathbf{e}_1 + \mathbf{e}_2 \otimes \mathbf{e}_2$: dengan $\mathbf{u} = a\mathbf{e}_1 + b\mathbf{e}_2$ dan $\mathbf{v} = c\mathbf{e}_1 + d\mathbf{e}_2$,</p>
+        <p>$$\mathbf{u} \otimes \mathbf{v} = ac\,\mathbf{e}_1 \otimes \mathbf{e}_1 + ad\,\mathbf{e}_1 \otimes \mathbf{e}_2 + bc\,\mathbf{e}_2 \otimes \mathbf{e}_1 + bd\,\mathbf{e}_2 \otimes \mathbf{e}_2,$$</p>
+        <p>dan $ac = bd = 1$ bersama $ad = bc = 0$ mustahil. Intuisinya: tensor murni $\mathbf{u} \otimes \mathbf{v}$ seperti matriks rank $1$ ($\mathbf{e}_1 \otimes \mathbf{e}_1 \leftrightarrow E_{11}$), sedangkan $\mathbf{e}_1 \otimes \mathbf{e}_1 + \mathbf{e}_2 \otimes \mathbf{e}_2 \leftrightarrow I_2$ ber-rank $2$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Basis dan dimensi $V^{\otimes k}$ (Modul, Teorema 4.2.12)</div>
+        <p>Jika $B = \set{\mathbf{b}_i}_{i \in I}$ basis $V$, maka semua tensor murni $\mathbf{b}_{i_1} \otimes \dots \otimes \mathbf{b}_{i_k}$ ($i_j \in I$, boleh berulang, urutan diperhatikan) membentuk basis $V^{\otimes k}$. Jika $\dim V = n$, maka $\dim V^{\otimes k} = n^k$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Fakta dasar.</strong> Jika $\set{\mathbf{e}_a}$ basis $U$ dan $\set{\mathbf{f}_b}$ basis $W$, maka $\set{\mathbf{e}_a \otimes \mathbf{f}_b}$ basis $U \otimes W$.</p>
+        <ol>
+          <li><em>Merentang:</em> setiap elemen kombinasi linier tensor sederhana $\mathbf{u} \otimes \mathbf{w}$, dan dengan $\mathbf{u} = \sum \alpha_a\mathbf{e}_a$, $\mathbf{w} = \sum \beta_b\mathbf{f}_b$, multilinearitas memberi $\mathbf{u} \otimes \mathbf{w} = \sum_{a,b} \alpha_a\beta_b\,\mathbf{e}_a \otimes \mathbf{f}_b$.</li>
+          <li><em>Bebas linier:</em> misalkan $\sum c_{ab}\,\mathbf{e}_a \otimes \mathbf{f}_b = 0$. Untuk $(a_0, b_0)$ tetap, bentuk bilinear $(\mathbf{u}, \mathbf{w}) \mapsto e^{a_0}(\mathbf{u})f^{b_0}(\mathbf{w})$ (dengan $e^a, f^b$ basis dual) menginduksi, lewat sifat universal, fungsional linier $\phi$ pada $U \otimes W$ dengan $\phi(\mathbf{e}_a \otimes \mathbf{f}_b) = \delta_{aa_0}\delta_{bb_0}$. Terapkan $\phi$: $0 = c_{a_0b_0}$.</li>
+        </ol>
+        <p><strong>Induksi pada $k$.</strong> Untuk $k = 1$ jelas. Jika $\mathcal{B}_k$ basis $V^{\otimes k}$, maka $V^{\otimes(k+1)} \cong V^{\otimes k} \otimes V$, dan fakta dasar dengan $U = V^{\otimes k}$, $W = V$ memberi basis $\set{(\mathbf{b}_{i_1} \otimes \dots \otimes \mathbf{b}_{i_k}) \otimes \mathbf{b}_{i_{k+1}}}$, yang diidentifikasi dengan tensor murni panjang $k + 1$. Banyak $k$-tupel indeks dari $n$ pilihan adalah $n^k$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Koordinat tensor dan matriks (Modul, §4.2.12)</div>
+        <p>Di $\R^2 \otimes \R^2$, $T = 3\,\mathbf{e}_1 \otimes \mathbf{e}_1 - 2\,\mathbf{e}_1 \otimes \mathbf{e}_2 + 0\,\mathbf{e}_2 \otimes \mathbf{e}_1 + 5\,\mathbf{e}_2 \otimes \mathbf{e}_2$ punya koordinat $(3, -2, 0, 5)^T$. Dengan identifikasi $\mathbf{e}_i \otimes \mathbf{e}_j \leftrightarrow E_{ij}$, $T \leftrightarrow \begin{pmatrix} 3 & -2 \\ 0 & 5 \end{pmatrix}$: tensor di $V^{\otimes 2}$ berkorespondensi satu-satu dengan matriks $n \times n$.</p>
+      </div>
+
+      <div class="box akibat">
+        <div class="box-title">Uji kemurnian lewat rank (Modul, Korolari 4.2.12b)</div>
+        <p>Untuk $T = \sum_{i,j} c_{ij}\,\mathbf{e}_i \otimes \mathbf{e}_j \in V \otimes V$ tak nol: $T$ murni $\iff \operatorname{rank}[c_{ij}] = 1$, dan $T$ tidak murni $\iff \operatorname{rank}[c_{ij}] \ge 2$. Khususnya di $\R^2 \otimes \R^2$, $T$ tak nol murni $\iff \det[c_{ij}] = 0$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Jika $T = \mathbf{u} \otimes \mathbf{v}$ dengan $\mathbf{u} = \sum a_i\mathbf{e}_i$, $\mathbf{v} = \sum b_j\mathbf{e}_j$ tak nol, maka $c_{ij} = a_ib_j$, yaitu $[c_{ij}] = \mathbf{a}\mathbf{b}^T$: setiap baris kelipatan $\mathbf{b}^T$, jadi rank $1$.</p>
+        <p><strong>(⇐)</strong> Jika rank $1$, semua baris kelipatan satu baris $\mathbf{b}^T$: baris ke-$i$ adalah $a_i\mathbf{b}^T$, jadi $c_{ij} = a_ib_j$ dan $T = \sum_{i,j} a_ib_j\,\mathbf{e}_i \otimes \mathbf{e}_j = \bigl(\sum_i a_i\mathbf{e}_i\bigr) \otimes \bigl(\sum_j b_j\mathbf{e}_j\bigr)$.</p>
+        <p>Rank matriks koefisien sama dengan banyak nilai singular tak nol (SVD), yang di konteks tensor disebut <strong>rank Schmidt</strong>.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Murni dan tidak murni (Modul, §4.2.12b, Contoh 1 dan 2)</div>
+        <p>$(1, 2)^T \otimes (3, 4)^T = (3, 4, 6, 8)^T$, matriks koefisien $\begin{pmatrix} 3 & 4 \\ 6 & 8 \end{pmatrix}$, $\det = 24 - 24 = 0$: murni. Sebaliknya $(1, 2, 3, 4)^T$ dengan matriks $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $\det = -2 \ne 0$: tidak murni. (Langsung: dari $ac = 1$, $ad = 2$ diperoleh $d/c = 2$, tetapi dari $bc = 3$, $bd = 4$ diperoleh $d/c = 4/3$.)</p>
+      </div>
+
+      <div class="tabel">
+        <table>
+          <caption>Jumlah langsung $V \oplus V$ versus hasil kali tensor $V \otimes V$ (Modul, Catatan §4.2.12b)</caption>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">$V \oplus V$</th><th scope="col">$V \otimes V$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Elemen</td><td>pasangan $(\mathbf{v}, \mathbf{x})$</td><td>$\mathbf{v} \otimes \mathbf{x}$ dan kombinasi liniernya</td></tr>
+            <tr><td>Skalar</td><td>$c(\mathbf{v}, \mathbf{x}) = (c\mathbf{v}, c\mathbf{x})$</td><td>$c(\mathbf{v} \otimes \mathbf{x}) = (c\mathbf{v}) \otimes \mathbf{x} = \mathbf{v} \otimes (c\mathbf{x})$</td></tr>
+            <tr><td>Nol</td><td>hanya $(\mathbf{0}, \mathbf{0})$</td><td>$\mathbf{0} \otimes \mathbf{x} = \mathbf{v} \otimes \mathbf{0} = 0$</td></tr>
+            <tr><td>Dimensi</td><td>$2n$</td><td>$n^2$</td></tr>
+            <tr><td>Intuisi</td><td>dua data terpisah dalam satu paket</td><td>satu objek gabungan ("outer product")</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Ruang pemetaan multilinear</h3>
+
+      <div class="box teorema">
+        <div class="box-title">$\mathcal{L}^k(V, W)$ ruang vektor (Modul, Teorema 4.2.13)</div>
+        <p>Dengan $(S + T)(\mathbf{v}_1, \dots, \mathbf{v}_k) := S(\dots) + T(\dots)$ dan $(\alpha T)(\dots) := \alpha T(\dots)$, $\mathcal{L}^k(V, W)$ ruang vektor atas $F$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Di argumen ke-$i$: $(S + T)(\dots, a\mathbf{x} + b\mathbf{y}, \dots) = aS(\dots, \mathbf{x}, \dots) + bS(\dots, \mathbf{y}, \dots) + aT(\dots, \mathbf{x}, \dots) + bT(\dots, \mathbf{y}, \dots) = a(S + T)(\dots, \mathbf{x}, \dots) + b(S + T)(\dots, \mathbf{y}, \dots)$; sama untuk $\alpha T$. Aksioma lain diwarisi dari $W$ karena operasinya titik demi titik; nolnya pemetaan nol dan inversnya $-T$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Bentuk bilinear pada $\R^2$ (Modul, §4.2.13 dan §4.2.13b)</div>
+        <p>$\mathcal{L}^2(\R^2, \R)$ adalah semua bentuk bilinear $B(\mathbf{x}, \mathbf{y}) = \mathbf{x}^TM\mathbf{y}$, jadi $\dim = 4$, dengan basis $B_{ij}(\mathbf{x}, \mathbf{y}) = \mathbf{x}^TE_{ij}\mathbf{y} = x_iy_j$. Misalnya $B_1 = x_1y_1$ dan $B_2 = x_2y_2$ berjumlah hasil kali titik (matriks $I_2$); untuk $\mathbf{x} = (1, 2)$, $\mathbf{y} = (3, 4)$: $B_1 = 3$, $B_2 = 8$, $B_1 + B_2 = 11$, dan $3B_1 = 9$.</p>
+        <p>Secara umum, untuk $f, g \in V^*$, $(f \otimes g)(\mathbf{u}, \mathbf{v}) := f(\mathbf{u})g(\mathbf{v})$ bentuk bilinear, $\set{e^i \otimes e^j}$ basis $\mathcal{L}^2(V, F)$ (dengan $e^i$ basis dual), dan $V^* \otimes V^* \cong \mathcal{L}^2(V, F)$. Begitu pula $V^* \otimes W \cong \mathcal{L}(V, W)$ lewat $(f \otimes \mathbf{w})(\mathbf{v}) = f(\mathbf{v})\mathbf{w}$. Untuk $k = 1$, $\mathcal{L}^1(V, W) = \mathcal{L}(V, W)$.</p>
+      </div>
+
+      <h3>Produk Kronecker</h3>
+      <p>Persamaan matriks seperti persamaan Sylvester $AX + XB = C$ (teori kendali, pengolahan sinyal, sistem dinamis) bisa diubah menjadi sistem linier biasa lewat produk Kronecker.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Produk Kronecker (Modul, Definisi 4.2.15)</div>
+        <p>Untuk $A$ berukuran $m \times n$ dan $B$ berukuran $p \times q$, <strong>produk Kronecker</strong> $A \otimes B$ adalah matriks blok $mp \times nq$</p>
+        <p>$$A \otimes B = \begin{pmatrix} a_{11}B & \cdots & a_{1n}B \\ \vdots & \ddots & \vdots \\ a_{m1}B & \cdots & a_{mn}B \end{pmatrix},$$</p>
+        <p>yaitu $(A \otimes B)_{(i-1)p + k,\ (j-1)q + l} = a_{ij}b_{kl}$. Untuk vektor kolom, $\mathbf{u} \otimes \mathbf{v}$ adalah koordinat tensor murni $\mathbf{u} \otimes \mathbf{v}$ di basis standar; jika $A, B$ matriks $T$ dan $S$, maka $A \otimes B$ matriks $T \otimes S$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Menghitung produk Kronecker (Modul, Contoh 4.2.16)</div>
+        <p>$$\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \otimes \begin{pmatrix} 0 & 5 \\ 6 & 7 \end{pmatrix} = \begin{pmatrix} 0 & 5 & 0 & 10 \\ 6 & 7 & 12 & 14 \\ 0 & 15 & 0 & 20 \\ 18 & 21 & 24 & 28 \end{pmatrix}, \qquad \begin{pmatrix} 1 \\ 2 \end{pmatrix} \otimes \begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \\ 6 \\ 8 \end{pmatrix}.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Aturan hitung Kronecker (Modul, Teorema 4.2.17)</div>
+        <p>Untuk matriks berukuran sesuai dan $\mu \in F$:</p>
+        <ol>
+          <li>$A \otimes (B \otimes C) = (A \otimes B) \otimes C$;</li>
+          <li>$(\mu A) \otimes B = A \otimes (\mu B) = \mu(A \otimes B)$;</li>
+          <li>$(A + B) \otimes C = A \otimes C + B \otimes C$;</li>
+          <li>$A \otimes (B + C) = A \otimes B + A \otimes C$;</li>
+          <li>$(A \otimes B)^T = A^T \otimes B^T$; jadi Kronecker dua matriks simetris simetris.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Bandingkan entri dengan rumus indeks. (1) Kedua ruas berukuran $mpr \times nqs$ dan entrinya $a_{ij}b_{kl}c_{uv}$ pada posisi yang bersesuaian. (2) Ketiga ruas memberi $\mu a_{ij}b_{kl}$. (3) $(a_{ij} + b_{ij})c_{kl} = a_{ij}c_{kl} + b_{ij}c_{kl}$. (4) $a_{ij}(b_{kl} + c_{kl}) = a_{ij}b_{kl} + a_{ij}c_{kl}$. (5) Entri $(A \otimes B)^T$ di baris $(j-1)q + l$, kolom $(i-1)p + k$ adalah $a_{ij}b_{kl} = (A^T)_{ji}(B^T)_{lk}$, entri $A^T \otimes B^T$ di posisi yang sama.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Distributif kiri (Modul, contoh setelah Teorema 4.2.17)</div>
+        <p>$A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$, $B = I_2$, $C = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Maka $A + B = \begin{pmatrix} 2 & 2 \\ 0 & 2 \end{pmatrix}$ dan</p>
+        <p>$$(A + B) \otimes C = \begin{pmatrix} 2C & 2C \\ 0 & 2C \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & 2 \\ 2 & 0 & 2 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & 2 & 0 \end{pmatrix},$$</p>
+        <p>sama dengan $A \otimes C + B \otimes C = \begin{pmatrix} C & 2C \\ 0 & C \end{pmatrix} + \begin{pmatrix} C & 0 \\ 0 & C \end{pmatrix}$. <span class="cek">[CEK: sumber menulis dua baris terakhir $(A + B) \otimes C$ sebagai nol, padahal blok kanan bawahnya $2C$.]</span></p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Kronecker dan perkalian (Modul, Teorema 4.2.18)</div>
+        <p>Untuk $A, C \in F^{m \times m}$ dan $B, D \in F^{n \times n}$:</p>
+        <p>$$(A \otimes B)(C \otimes D) = (AC) \otimes (BD).$$</p>
+        <p>Akibatnya $A \otimes B = (A \otimes I_n)(I_m \otimes B) = (I_m \otimes B)(A \otimes I_n)$, dan $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ jika $A, B$ invertibel.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Dengan perkalian matriks berblok, blok $(i, j)$ dari $(A \otimes B)(C \otimes D) = [a_{ij}B][c_{ij}D]$ adalah $\sum_k (a_{ik}B)(c_{kj}D) = \bigl(\sum_k a_{ik}c_{kj}\bigr)BD = (AC)_{ij}\,BD$, yaitu blok $(i, j)$ dari $(AC) \otimes (BD)$. Akibat pertama: $(A \otimes I)(I \otimes B) = A \otimes B = (I \otimes B)(A \otimes I)$. Akibat kedua: $(A \otimes B)(A^{-1} \otimes B^{-1}) = I \otimes I = I$.</p>
+        <p>Contoh di sumber: $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $B = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$, $C = I_2$, $D = 2I_2$ memberi $(A \otimes B)(C \otimes D) = (A \otimes B)(2I_4) = 2(A \otimes B) = A \otimes 2B$, cocok dengan ruas kanan.</p>
+      </details>
+
+      <div class="box proposisi">
+        <div class="box-title">Vektorisasi (Modul, §4.2.18b)</div>
+        <p>Jika $\operatorname{vec}(X)$ menumpuk <em>kolom-kolom</em> $X$ menjadi satu vektor kolom, maka</p>
+        <p>$$\operatorname{vec}(AXB) = (B^T \otimes A)\operatorname{vec}(X).$$</p>
+        <p>Jadi $AXB = C$ menjadi sistem linier $(B^T \otimes A)\operatorname{vec}(X) = \operatorname{vec}(C)$, dan persamaan Sylvester $AX + XB = C$ menjadi $(I \otimes A + B^T \otimes I)\operatorname{vec}(X) = \operatorname{vec}(C)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Memeriksa identitas vektorisasi (Modul, §4.2.18b)</div>
+        <p>$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}$, $X = \begin{pmatrix} x & y \\ z & w \end{pmatrix}$, sehingga $\operatorname{vec}(X) = (x, z, y, w)^T$. Perkalian langsung memberi kolom pertama $AXB$: $(5x + 10z + 7y + 14w,\ 15x + 20z + 21y + 28w)$, dan kolom kedua $(6x + 12z + 8y + 16w,\ 18x + 24z + 24y + 32w)$. Di lain pihak,</p>
+        <p>$$B^T \otimes A = \begin{pmatrix} 5A & 7A \\ 6A & 8A \end{pmatrix} = \begin{pmatrix} 5 & 10 & 7 & 14 \\ 15 & 20 & 21 & 28 \\ 6 & 12 & 8 & 16 \\ 18 & 24 & 24 & 32 \end{pmatrix},$$</p>
+        <p>dan $(B^T \otimes A)(x, z, y, w)^T$ memberi persis keempat entri itu.</p>
+        <p><span class="cek">[CEK: sumber menulis $\operatorname{vec}(X) = (x, y, z, w)^T$ (urutan baris) lalu menyatakan kedua hasil "sama setelah disusun ulang"; dengan urutan itu hasilnya justru berbeda (misalnya $5x + 10y + \dots$ versus $5x + 7y + \dots$). Identitasnya benar dengan $\operatorname{vec}(X) = (x, z, y, w)^T$, susunan kolom.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Persamaan Sylvester diagonal (Modul, §4.2.14)</div>
+        <p>Untuk $A = \operatorname{diag}(1, 2)$, $B = \operatorname{diag}(3, 4)$, $C = \operatorname{diag}(5, 6)$, persamaan $AX + XB = C$ berbentuk $(a_{ii} + b_{jj})x_{ij} = c_{ij}$, jadi $X = \operatorname{diag}\bigl(\tfrac{5}{1 + 3}, \tfrac{6}{2 + 4}\bigr) = \operatorname{diag}(\tfrac{5}{4}, 1)$. Cek: $AX + XB = \operatorname{diag}(\tfrac{5}{4}, 2) + \operatorname{diag}(\tfrac{15}{4}, 4) = \operatorname{diag}(5, 6)$.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Bentuk simetris dan alternating (Modul, §4.2.18b)</div>
+        <p>$k$-bentuk $T \in \mathcal{L}^k(V, F)$ <strong>simetris</strong> jika menukar dua argumen tidak mengubah nilainya, dan <strong>alternating</strong> jika menukar dua argumen membalik tanda (sehingga, bila $\operatorname{char} F \ne 2$, $T = 0$ jika dua argumen sama). Ruang bentuk alternating ditulis $\Lambda^k(V^*)$; untuk $k = n = \dim V$, $\dim \Lambda^n(V^*) = 1$, dan determinan adalah satu-satunya anggota dengan $\det(\mathbf{e}_1, \dots, \mathbf{e}_n) = 1$. Topik berikutnya membahas ini lebih lengkap.</p>
+      </div>
+
+      <h3>Keterjeratan dan dekomposisi Schmidt</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Terpisah dan terjerat (Modul, §4.2.19A)</div>
+        <p>Di ruang sistem gabungan $\mathcal{H} = \mathcal{H}_A \otimes \mathcal{H}_B$, keadaan $|\psi\rangle$ <strong>terpisah</strong> (separable) jika $|\psi\rangle = |\phi\rangle_A \otimes |\chi\rangle_B$ (tensor murni), dan <strong>terjerat</strong> (entangled) jika tidak (tensor tidak murni, $c_{ij}$ tidak bisa difaktorkan menjadi $a_ib_j$).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Basis Bell (Modul, §4.2.19B)</div>
+        <p>$|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ terjerat: dengan $|\phi\rangle = a|0\rangle + b|1\rangle$, $|\chi\rangle = c|0\rangle + d|1\rangle$, syarat $ac = bd = \tfrac{1}{\sqrt{2}}$ dan $ad = bc = 0$ kontradiktif (dari $ad = 0$, $a = 0$ bertentangan dengan $ac \ne 0$, dan $d = 0$ bertentangan dengan $bd \ne 0$). Bersama</p>
+        <p>$$|\Psi^\pm\rangle = \tfrac{1}{\sqrt{2}}(|01\rangle \pm |10\rangle), \qquad |\Phi^-\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle - |11\rangle),$$</p>
+        <p>keempatnya terjerat maksimum dan membentuk basis ortonormal $\C^2 \otimes \C^2$, yaitu <strong>basis Bell</strong>.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Operasi lokal dan gerbang CNOT (Modul, §4.2.19C)</div>
+        <p>Lewat $V \otimes W \cong \mathcal{L}(V^*, W)$, tensor murni berkorespondensi dengan pemetaan rank $1$, tensor tidak murni dengan rank $\gt 1$. Operasi lokal $U_A \otimes U_B$ tidak mengubah keterjeratan, karena matriks koefisien berubah menjadi $U_ACU_B^T$, dan rank tidak berubah oleh perkalian dengan matriks invertibel. Untuk membuat keterjeratan diperlukan gerbang non-lokal seperti</p>
+        <p>$$U_{\mathrm{CNOT}} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X,$$</p>
+        <p>jumlah dua produk tensor, dengan $X$ gerbang Pauli-X (NOT).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Dekomposisi Schmidt (Modul, §4.2.19D)</div>
+        <p>Untuk setiap $|\psi\rangle \in \mathcal{H}_A \otimes \mathcal{H}_B$ berdimensi hingga, ada basis ortonormal $\set{|u_i\rangle}$ dari $\mathcal{H}_A$ dan $\set{|v_i\rangle}$ dari $\mathcal{H}_B$ dengan</p>
+        <p>$$|\psi\rangle = \sum_{i=1}^{r} \lambda_i\,|u_i\rangle \otimes |v_i\rangle, \qquad \lambda_i \gt 0, \quad \sum_i \lambda_i^2 = 1 \ (\text{untuk } |\psi\rangle \text{ ternormalisasi}).$$</p>
+        <p>$r$ adalah <strong>rank Schmidt</strong>: $r = 1$ berarti terpisah, $r \gt 1$ berarti terjerat. Koefisien $\lambda_i$ adalah nilai singular matriks koefisien $C_{ij} = \langle i|_A\langle j|_B\,|\psi\rangle$, dan $|u_i\rangle, |v_i\rangle$ diperoleh dari SVD $C = U\Sigma V^\dagger$ (sumber tidak membuktikan teorema ini).</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Kontraksi dan trace (Modul, §4.2.20)</div>
+        <p>Untuk $V$ berdimensi hingga, $V^* \otimes V \cong \operatorname{End}(V)$. <strong>Kontraksi</strong> $c \colon V^* \otimes V \to F$, $c(f \otimes \mathbf{v}) = f(\mathbf{v})$, berkorespondensi dengan trace: jika $T = \sum c_{ij}\,\mathbf{e}^i \otimes \mathbf{e}_j \leftrightarrow [c_{ij}]$, maka $c(T) = \sum_i c_{ii} = \operatorname{tr}$. Di bahasa yang sama, $\operatorname{vec}$ adalah isomorfisma $V \otimes W \cong \mathcal{L}(V^*, W)$.</p>
+      </div>
+
+      <h3>Latar fisika: ruang Hilbert dan fenomena kuantum</h3>
+
+      <div class="box catatan">
+        <div class="box-title">Ruang Hilbert (Modul, §4.2)</div>
+        <p><strong>Ruang Hilbert</strong> adalah ruang vektor atas $\R$ atau $\C$ dengan hasil kali dalam $\langle \cdot, \cdot \rangle$ (konjugat simetris, linier di argumen <em>kedua</em> menurut konvensi sumber di sini, definit positif) yang lengkap terhadap norma $\norm{\mathbf{x}} = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}$ (setiap barisan Cauchy konvergen). Contoh: $\C^n$, ruang barisan $\ell^2$, ruang fungsi $L^2(\Omega)$. Hasil kali tensor ruang Hilbert juga ruang Hilbert, dengan $\langle \phi_1 \otimes \psi_1, \phi_2 \otimes \psi_2 \rangle = \langle \phi_1, \phi_2 \rangle\langle \psi_1, \psi_2 \rangle$. Setiap ruang berdimensi hingga atas $\R$ atau $\C$ dengan hasil kali dalam otomatis lengkap. (Hasil kali dalam dibahas lengkap di Bab 5.)</p>
+      </div>
+
+      <p>Sumber menyisipkan uraian panjang tentang tujuh fenomena kuantum dan kaitannya dengan tensor. Ringkasannya:</p>
+
+      <div class="tabel">
+        <table>
+          <caption>Tujuh fenomena kuantum dan matematika kuncinya (Modul, §4.2)</caption>
+          <thead>
+            <tr><th scope="col">Fenomena</th><th scope="col">Matematika kunci</th><th scope="col">Kaitan tensor / komputasi kuantum</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Dualitas gelombang–partikel</td><td>Rapat peluang $\abs{\psi}^2$; amplitudo dijumlahkan, $\abs{\psi_1 + \psi_2}^2$ memuat suku interferensi</td><td>Gerbang Hadamard: $H^2\lvert 0\rangle = \lvert 0\rangle$, interferensi amplitudo</td></tr>
+            <tr><td>Superposisi</td><td>$\lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle$, $\abs{\alpha}^2 + \abs{\beta}^2 = 1$</td><td>$n$ qubit: ruang $\mathcal{H}^{\otimes n}$ berdimensi $2^n$; $H^{\otimes n}$ memberi superposisi seragam</td></tr>
+            <tr><td>Keterjeratan</td><td>Keadaan Bell, rank matriks koefisien, dekomposisi Schmidt</td><td>Teleportasi, superdense coding, koreksi galat</td></tr>
+            <tr><td>Terowongan kuantum</td><td>Persamaan Schrödinger; $T \approx e^{-2\kappa L}$ dengan $\kappa = \sqrt{2m(V_0 - E)}/\hbar$</td><td>Quantum annealing $H(s) = (1 - s)H_0 + sH_P$</td></tr>
+            <tr><td>Kucing Schrödinger</td><td>Matriks kerapatan $\rho = \lvert\psi\rangle\langle\psi\rvert$; dekoherensi menghapus entri luar diagonal</td><td>Sistem dan lingkungan sebagai ruang tensor</td></tr>
+            <tr><td>Ketidakpastian Heisenberg</td><td>$\Delta x\,\Delta p \ge \hbar/2$; Robertson $\Delta A\,\Delta B \ge \tfrac{1}{2}\abs{\langle[A, B]\rangle}$</td><td>Observabel sebagai operator Hermitian</td></tr>
+            <tr><td>Masalah pengukuran</td><td>Aturan Born, pengukuran proyektif, keadaan setelah pengukuran</td><td>Sistem, alat ukur, dan lingkungan sebagai ruang tensor</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira setiap tensor murni.</strong> Elemen umum $V^{\otimes k}$ adalah <em>kombinasi</em> tensor murni.</li>
+        <li><strong>Menukar urutan faktor.</strong> $\mathbf{u} \otimes \mathbf{v} \ne \mathbf{v} \otimes \mathbf{u}$ umumnya; dalam koordinat, matriks koefisiennya saling transpos.</li>
+        <li><strong>Memperlakukan $\otimes$ seperti $\oplus$.</strong> Di $V \otimes V$, $(c\mathbf{v}) \otimes (c\mathbf{x}) = c^2(\mathbf{v} \otimes \mathbf{x})$, dan satu faktor nol membuat tensornya nol.</li>
+        <li><strong>Urutan $\operatorname{vec}$.</strong> $\operatorname{vec}$ menumpuk kolom, bukan baris; urutan yang salah merusak identitas $\operatorname{vec}(AXB) = (B^T \otimes A)\operatorname{vec}(X)$.</li>
+        <li><strong>Lupa menormalisasi keadaan kuantum</strong> sebelum membaca koefisien Schmidt; syarat $\sum\lambda_i^2 = 1$ hanya berlaku untuk keadaan ternormalisasi.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Apakah $B(\mathbf{x}, \mathbf{y}) = x_1y_1 + 2x_1y_2 + 3x_2y_1 + 4x_2y_2$ pada $\R^2$ bilinear? Tentukan matriksnya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Setiap suku adalah satu komponen $\mathbf{x}$ kali satu komponen $\mathbf{y}$, jadi linier di $\mathbf{x}$ saat $\mathbf{y}$ tetap dan sebaliknya; misalnya $B(c\mathbf{x} + \mathbf{x}', \mathbf{y}) = (cx_1 + x'_1)y_1 + \dots = cB(\mathbf{x}, \mathbf{y}) + B(\mathbf{x}', \mathbf{y})$.</li>
+            <li>$a_{ij} = B(\mathbf{e}_i, \mathbf{e}_j)$ memberi $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, dengan $B(\mathbf{x}, \mathbf{y}) = \mathbf{x}^TA\mathbf{y}$.</li>
+          </ol>
+          <p>Setiap bentuk bilinear berpadanan dengan satu matriks seperti ini, sehingga ruang bentuk bilinear pada $\R^2$ berdimensi $2 \times 2 = 4$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$T(\mathbf{v}, \mathbf{w}) = \mathbf{v} \otimes \mathbf{w}$ dari $\R^2 \times \R^2$ ke $\R^2 \otimes \R^2$. Buktikan $T$ bilinear dan jelaskan bagaimana produk tensor "melinierkan" bentuk $B(\mathbf{x}, \mathbf{y}) = \mathbf{x}^TA\mathbf{y}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Bilinear karena aturan hitung tensor: $(c\mathbf{v}_1 + \mathbf{v}_2) \otimes \mathbf{w} = c(\mathbf{v}_1 \otimes \mathbf{w}) + \mathbf{v}_2 \otimes \mathbf{w}$ dan begitu pula di faktor kedua.</li>
+            <li>Sifat universal: setiap bilinear $B \colon V \times W \to U$ difaktorkan secara tunggal sebagai $B(\mathbf{v}, \mathbf{w}) = \tilde{B}(\mathbf{v} \otimes \mathbf{w})$ dengan $\tilde{B}$ linier: $V \times W \xrightarrow{\otimes} V \otimes W \xrightarrow{\tilde{B}} U$.</li>
+            <li>Untuk $B(\mathbf{x}, \mathbf{y}) = \mathbf{x}^TA\mathbf{y}$, identifikasi $\mathbf{x} \otimes \mathbf{y} \leftrightarrow \mathbf{x}\mathbf{y}^T \in M_{2 \times 2}(\R)$; maka $\tilde{B}(X) = \operatorname{tr}(A^TX)$, karena $\operatorname{tr}(A^T\mathbf{x}\mathbf{y}^T) = \mathbf{y}^TA^T\mathbf{x} = \mathbf{x}^TA\mathbf{y}$.</li>
+          </ol>
+          <p>Jadi masalah bilinear menjadi masalah linier di ruang yang lebih besar, $\dim(V \otimes W) = 2 \cdot 2 = 4$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$V$ punya basis $\set{\mathbf{e}_1, \mathbf{e}_2}$ dan $W$ basis $\set{\mathbf{f}_1, \mathbf{f}_2}$. Tentukan basis $V \otimes W$ dan nyatakan $t = \mathbf{e}_1 \otimes \mathbf{f}_1 + 2\,\mathbf{e}_1 \otimes \mathbf{f}_2 + \mathbf{e}_2 \otimes \mathbf{f}_1$ sebagai matriks $2 \times 2$. Apakah $t$ murni?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Menurut Teorema 1 (fakta dasar di buktinya), basisnya $\set{\mathbf{e}_1 \otimes \mathbf{f}_1, \mathbf{e}_1 \otimes \mathbf{f}_2, \mathbf{e}_2 \otimes \mathbf{f}_1, \mathbf{e}_2 \otimes \mathbf{f}_2}$.</li>
+            <li>Dengan $\mathbf{e}_i \otimes \mathbf{f}_j \leftrightarrow E_{ij}$: $t \leftrightarrow \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}$.</li>
+            <li>$\det = 0 - 2 = -2 \ne 0$, jadi rank $2$.</li>
+          </ol>
+          <p>Menurut Akibat 1, $t$ <strong>tidak murni</strong>: tidak bisa ditulis sebagai satu $\mathbf{v} \otimes \mathbf{w}$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Di $\mathcal{H}_A \otimes \mathcal{H}_B$ dengan $\dim = 2$: $|\psi_1\rangle = \tfrac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle)$ dan $|\psi_2\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$. Mana yang tensor murni? Tuliskan faktorisasinya bila ada.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Untuk $|a\rangle = \alpha|0\rangle + \beta|1\rangle$ dan $|b\rangle = \gamma|0\rangle + \delta|1\rangle$, matriks koefisien $|a\rangle \otimes |b\rangle$ adalah $\begin{pmatrix} \alpha\gamma & \alpha\delta \\ \beta\gamma & \beta\delta \end{pmatrix} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}(\gamma\ \ \delta)$, rank $1$.</li>
+            <li>$|\psi_1\rangle$: $M_1 = \tfrac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, rank $1$, jadi murni:
+              $$|\psi_1\rangle = \Bigl(\tfrac{|0\rangle + |1\rangle}{\sqrt{2}}\Bigr)_A \otimes \Bigl(\tfrac{|0\rangle + |1\rangle}{\sqrt{2}}\Bigr)_B = |+\rangle_A|+\rangle_B.$$</li>
+            <li>$|\psi_2\rangle$: $M_2 = \tfrac{1}{\sqrt{2}}I_2$, rank $2$, jadi tidak murni. Langsung: $\alpha\gamma = \beta\delta = \tfrac{1}{\sqrt{2}}$ dengan $\alpha\delta = \beta\gamma = 0$ kontradiktif.</li>
+          </ol>
+          <p>$|\psi_2\rangle$ adalah keadaan Bell $|\Phi^+\rangle$, terjerat.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan terpisah atau terjerat, dengan rank Schmidt: (a) $\tfrac{3}{5}|00\rangle + \tfrac{4}{5}|11\rangle$; (b) $\tfrac{3}{5}|00\rangle + \tfrac{4}{5}|01\rangle$; (c) $\tfrac{1}{2}(|00\rangle + |01\rangle + |10\rangle - |11\rangle)$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $C = \operatorname{diag}(\tfrac{3}{5}, \tfrac{4}{5})$: nilai singular $\tfrac{3}{5}, \tfrac{4}{5}$ (cek $\tfrac{9}{25} + \tfrac{16}{25} = 1$), rank Schmidt $2$: <strong>terjerat</strong>.</li>
+            <li>(b) $C = \begin{pmatrix} 3/5 & 4/5 \\ 0 & 0 \end{pmatrix}$: nilai singular $\sqrt{(3/5)^2 + (4/5)^2} = 1$ dan $0$, rank $1$: <strong>terpisah</strong>, $|0\rangle \otimes (\tfrac{3}{5}|0\rangle + \tfrac{4}{5}|1\rangle)$.</li>
+            <li>(c) $C = \tfrac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \tfrac{1}{\sqrt{2}}H$ dengan $H = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ ortogonal. Jadi $C = H \cdot \tfrac{1}{\sqrt{2}}I \cdot I$ adalah SVD, nilai singular $\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}$, rank $2$: <strong>terjerat</strong> (maksimal). Dekomposisi Schmidt dengan kolom $H$ di $A$ dan basis standar di $B$:
+              $$|\psi\rangle = \tfrac{1}{\sqrt{2}}\bigl(|+\rangle|0\rangle + |-\rangle|1\rangle\bigr),$$
+              dan memang $\tfrac{1}{\sqrt{2}}\bigl(\tfrac{|00\rangle + |10\rangle}{\sqrt{2}} + \tfrac{|01\rangle - |11\rangle}{\sqrt{2}}\bigr) = \tfrac{1}{2}(|00\rangle + |01\rangle + |10\rangle - |11\rangle)$.</li>
+          </ol>
+          <p>Keterjeratan ditentukan rank matriks koefisien, bukan bentuk diagonalnya. <span class="cek">[CEK: sumber (Masalah 3) memakai koefisien $\tfrac{1}{\sqrt{2}}$ sehingga keadaannya berpanjang $\sqrt{2}$, tidak ternormalisasi (nilai singular $1, 1$, padahal $\sum\lambda_i^2$ seharusnya $1$), dan menuliskan dekomposisi Schmidt $\tfrac{1}{\sqrt{2}}(|{+}{+}\rangle + |{-}{-}\rangle)$, yang sebenarnya sama dengan $|\Phi^+\rangle$, bukan keadaan ini. Versi di atas memakai koefisien $\tfrac{1}{2}$ dan dekomposisi yang dihitung ulang oleh Claude; kesimpulan "terjerat, rank $2$" tetap sama.]</span></p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Terapkan operasi lokal $X \otimes Z$, dengan $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ dan $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, pada $|\Phi^+\rangle$. Apakah hasilnya tetap terjerat?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$X \otimes Z = \begin{pmatrix} 0 \cdot Z & 1 \cdot Z \\ 1 \cdot Z & 0 \cdot Z \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \\ 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}$.</li>
+            <li>$|\Phi^+\rangle \leftrightarrow \tfrac{1}{\sqrt{2}}(1, 0, 0, 1)^T$, sehingga $(X \otimes Z)|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(0, -1, 1, 0)^T = \tfrac{1}{\sqrt{2}}(-|01\rangle + |10\rangle) = -|\Psi^-\rangle$.</li>
+            <li>Matriks koefisien $C' = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$, $\det = \tfrac{1}{2} \ne 0$, rank $2$, nilai singular $\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}$.</li>
+          </ol>
+          <p>Tetap terjerat maksimal, sesuai sifat bahwa $U_A \otimes U_B$ mengubah $C$ menjadi $U_ACU_B^T$, yang rank-nya sama.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$|\psi_\theta\rangle = \cos\theta|00\rangle + \sin\theta|11\rangle$ untuk $0 \le \theta \le \pi/4$. (a) Tentukan koefisien dan rank Schmidt. (b) Hitung entropi keterjeratan $S = -\sum_i \lambda_i^2\log_2\lambda_i^2$. (c) Kapan $S$ maksimal dan kapan $S = 0$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $C_\theta = \operatorname{diag}(\cos\theta, \sin\theta)$, nilai singular $\lambda_1 = \cos\theta$, $\lambda_2 = \sin\theta$ (keduanya $\ge 0$ di selang ini). Untuk $0 \lt \theta \le \pi/4$ keduanya positif, rank $2$ (terjerat); untuk $\theta = 0$, $C = \operatorname{diag}(1, 0)$, rank $1$ (terpisah).</li>
+            <li>(b) $S(\theta) = -\cos^2\theta\log_2(\cos^2\theta) - \sin^2\theta\log_2(\sin^2\theta)$, entropi biner dari $\cos^2\theta$.</li>
+            <li>(c) $\theta = 0$: $|00\rangle$, $S = 0$, tensor murni. $\theta = \pi/4$: $\lambda_1 = \lambda_2 = \tfrac{1}{\sqrt{2}}$, $S = 1$ bit (maksimal), yaitu $|\Phi^+\rangle$. Untuk $\theta$ kecil, $S \approx 0$: keterjeratan lemah.</li>
+          </ol>
+          <p>Rank menentukan <em>apakah</em> terjerat; entropi menentukan <em>seberapa</em> terjerat.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mu = \tilde{\mu} \circ \otimes, \qquad \mathcal{L}^k(V, W) \cong \mathcal{L}(V^{\otimes k}, W), \qquad \dim V^{\otimes k} = n^k, \\
+        \textstyle\sum c_{ij}\,\mathbf{e}_i \otimes \mathbf{e}_j \text{ murni} \iff \operatorname{rank}[c_{ij}] = 1
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        (A \otimes B)(C \otimes D) = AC \otimes BD, \qquad (A \otimes B)^{-1} = A^{-1} \otimes B^{-1}, \qquad (A \otimes B)^T = A^T \otimes B^T, \\
+        \operatorname{vec}(AXB) = (B^T \otimes A)\operatorname{vec}(X), \qquad |\psi\rangle = \sum_{i=1}^{r}\lambda_i|u_i\rangle|v_i\rangle
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/04-Pemetaan-Multilinear.md</code>, Bab 4, §4.2: §4.2.1, uraian tujuh fenomena kuantum (diringkas dalam tabel), Definisi 4.2.1b, 4.2.2, 4.2.3, 4.2.15, ruang Hilbert, Contoh 4.2.4–4.2.10, §4.2.11, Teorema 4.2.12, 4.2.13, 4.2.17, 4.2.18, Korolari 4.2.12b, §4.2.13b, §4.2.14, Contoh 4.2.16, §4.2.18b (vektorisasi), §4.2.19 (keterjeratan, Schmidt, Masalah 1–8), §4.2.20 (kontraksi). Dua diagram SVG di sumber (jumlah langsung vs hasil kali tensor) diganti tabel. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.4.4, §8.4.5, §8.4.6, §8.4.11 (Latihan 1–4).</li>
+        <li>Latihan 5–7 dari Masalah 1–3, 5, dan 8 di §4.2.19–4.2.20. Bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

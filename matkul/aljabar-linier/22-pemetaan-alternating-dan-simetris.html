@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Pemetaan Alternating dan Simetris · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Pemetaan Alternating dan Simetris</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Pemetaan $k$-linear alternating membalik tanda saat dua argumen ditukar (jadi nol bila dua argumen sama); simetris tidak berubah.</li>
+        <li>Determinan adalah bentuk $n$-linear alternating ternormalisasi yang tunggal: $\mathbf{v}_1 \wedge \dots \wedge \mathbf{v}_n = \det[\mathbf{v}_1 \cdots \mathbf{v}_n]\,(\mathbf{e}_1 \wedge \dots \wedge \mathbf{e}_n)$.</li>
+        <li>Hasil kali wedge $\wedge$ bilinear, asosiatif, dan alternating ($\mathbf{v} \wedge \mathbf{w} = -\mathbf{w} \wedge \mathbf{v}$); bentuk diferensial seperti $dx \wedge dy$ dibangun darinya, dan faktor Jacobian (bertanda) muncul otomatis.</li>
+        <li>Operator simetrisasi $S$ dan alternatisasi $A$ merata-ratakan atas semua permutasi; untuk bentuk bilinear, $B = \tfrac{1}{2}(B + B^T) + \tfrac{1}{2}(B - B^T)$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Definisi</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Alternating dan simetris (Modul, §4.3.1)</div>
+        <p>Pemetaan $k$-linear $\mu$ <strong>alternating</strong> (bergantian tanda, antisimetris) jika untuk setiap $i \ne j$</p>
+        <p>$$\mu(\dots, \mathbf{v}_i, \dots, \mathbf{v}_j, \dots) = -\mu(\dots, \mathbf{v}_j, \dots, \mathbf{v}_i, \dots),$$</p>
+        <p>dan <strong>simetris</strong> jika $\mu(\dots, \mathbf{v}_i, \dots, \mathbf{v}_j, \dots) = \mu(\dots, \mathbf{v}_j, \dots, \mathbf{v}_i, \dots)$.</p>
+        <p>Jika dua argumen alternating sama, menukarnya memberi $\mu = -\mu$, jadi $2\mu = 0$ dan $\mu = 0$ (bila $\operatorname{char} F \ne 2$, misalnya atas $\R$ atau $\C$). Determinan contoh utama bentuk alternating; hasil kali titik contoh bentuk bilinear simetris.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Di mana keduanya muncul (Modul, §4.3.1 dan §4.3.3)</div>
+        <ul>
+          <li><strong>Alternating:</strong> determinan dan bentuk volume, hasil kali silang (dipasangkan dengan vektor tetap), $dx \wedge dy$, tensor Faraday di elektromagnetisme, vortisitas fluida, fungsi gelombang fermion.</li>
+          <li><strong>Simetris:</strong> hasil kali dalam, bentuk kuadrat $\mathbf{v}^TM\mathbf{v}$ ($M$ simetris), matriks Hessian, tensor tegangan dan regangan, tensor metrik, matriks kovarians, kernel pembelajaran mesin, fungsi gelombang boson.</li>
+        </ul>
+      </div>
+
+      <h3>Determinan sebagai bentuk alternating</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Tiga sifat penentu determinan (Modul, §4.3.2)</div>
+        <p>$\det \colon (F^n)^n \to F$ (pada kolom-kolom $\mathbf{a}_1, \dots, \mathbf{a}_n$) bersifat</p>
+        <ol>
+          <li>multilinear: linier di setiap kolom;</li>
+          <li>alternating: menukar dua kolom membalik tanda;</li>
+          <li>ternormalisasi: $\det I = 1$.</li>
+        </ol>
+        <p>Ketiga sifat ini menentukan $\det$ secara tunggal (topik Determinan sebagai Pemetaan Multilinear, Latihan 4).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Orientasi dan Wronskian (Modul, §4.3.2)</div>
+        <ul>
+          <li>Untuk $\mathbf{u}, \mathbf{v}, \mathbf{w} \in \R^3$: $\det[\mathbf{u}\ \mathbf{v}\ \mathbf{w}] \gt 0$ berarti sistem tangan kanan, $\lt 0$ tangan kiri; menukar dua vektor membalik orientasi.</li>
+          <li>Wronskian $W(y_1, \dots, y_n) = \det[y_i^{(j-1)}]$ menguji kebebasan linier solusi persamaan diferensial; jika dua solusi identik, Wronskian nol.</li>
+        </ul>
+      </div>
+
+      <h3>Aljabar eksterior dan bentuk diferensial</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Hasil kali wedge (Modul, §4.3.4)</div>
+        <p>Bentuk multilinear alternating pada $V$ membentuk ruang eksterior $\bigwedge^k V^*$. Hasil kali wedge (produk luar) $\wedge$ bilinear, asosiatif, dan alternating:</p>
+        <p>$$\mathbf{v} \wedge \mathbf{w} = -\mathbf{w} \wedge \mathbf{v}, \qquad \mathbf{v} \wedge \mathbf{v} = 0.$$</p>
+        <p>$\mathbf{v}_1 \wedge \dots \wedge \mathbf{v}_k$ mewakili paralelotop berdimensi $k$ yang direntang vektor-vektor itu, beserta orientasinya. Di $F^n$,</p>
+        <p>$$\mathbf{v}_1 \wedge \dots \wedge \mathbf{v}_n = \det[\mathbf{v}_1\ \cdots\ \mathbf{v}_n]\,(\mathbf{e}_1 \wedge \dots \wedge \mathbf{e}_n).$$</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Penerapan aljabar eksterior (Modul, §4.3.4–4.3.5)</div>
+        <ul>
+          <li>Bentuk diferensial ($f\,dx \wedge dy$ memberi luas berorientasi, $g\,dx \wedge dy \wedge dz$ volume berorientasi) dan teorema Stokes $\int_M d\omega = \int_{\partial M} \omega$.</li>
+          <li>Kohomologi de Rham, yang memakai $d^2 = 0$.</li>
+          <li>Determinan Slater untuk fermion (Latihan 5).</li>
+          <li>Rumus substitusi $\int_{T(U)} f = \int_U (f \circ T)\abs{\det J_T}$; untuk bentuk diferensial faktornya $\det J_T$ <em>bertanda</em>.</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Pullback bentuk diferensial (Modul, §4.3.5)</div>
+        <p>$\omega = x^2\,dx \wedge dy$ dan $T(u, v) = (u + v,\ u - v)$ pada $U = [0, 1]^2$. Dari $dx = du + dv$ dan $dy = du - dv$, dengan $du \wedge du = dv \wedge dv = 0$ dan $dv \wedge du = -du \wedge dv$:</p>
+        <p>$$dx \wedge dy = (du + dv) \wedge (du - dv) = -du \wedge dv - du \wedge dv = -2\,du \wedge dv,$$</p>
+        <p>jadi $T^*\omega = -2(u + v)^2\,du \wedge dv$. Faktor $-2$ tepat $\det J_T = \det\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$, muncul otomatis dari sifat alternating. Integralnya:</p>
+        <p>$$\int_U T^*\omega = -2\int_0^1\!\!\int_0^1 (u + v)^2\,du\,dv = -2\int_0^1\Bigl(\tfrac{1}{3} + v + v^2\Bigr)dv = -2 \cdot \tfrac{7}{6} = -\tfrac{7}{3}.$$</p>
+        <p>Tanda negatif menunjukkan $T$ membalik orientasi. <span class="cek">[CEK: sumber menyimpulkan "$\int_D \omega = -\tfrac{7}{3}$" lewat $\int_D \omega = \int_U T^*\omega$. Kesamaan itu hanya berlaku bila $T$ mempertahankan orientasi atau $D$ diberi orientasi dari $T$. Dengan orientasi standar bidang-$xy$ pada $D = T(U)$, $\int_D x^2\,dx\,dy = \int_U (u + v)^2 \abs{-2}\,du\,dv = +\tfrac{7}{3}$.]</span></p>
+      </div>
+
+      <h3>Simetrisasi dan alternatisasi</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Operator simetrisasi dan alternatisasi (Modul, §4.3.6)</div>
+        <p>Untuk $\mu \colon V^k \to W$ multilinear:</p>
+        <p>$$\begin{aligned}
+          S\mu(\mathbf{v}_1, \dots, \mathbf{v}_k) &= \frac{1}{k!}\sum_{\sigma \in S_k} \mu(\mathbf{v}_{\sigma(1)}, \dots, \mathbf{v}_{\sigma(k)}), \\
+          A\mu(\mathbf{v}_1, \dots, \mathbf{v}_k) &= \frac{1}{k!}\sum_{\sigma \in S_k} \operatorname{sgn}(\sigma)\,\mu(\mathbf{v}_{\sigma(1)}, \dots, \mathbf{v}_{\sigma(k)}).
+        \end{aligned}$$</p>
+        <p>$S\mu$ simetris dan $A\mu$ alternating. Keduanya proyektor pada $V^{\otimes k}$ ke komponen simetris dan antisimetris (dasar teori representasi grup simetris $S_k$, dan statistik Bose–Einstein versus Fermi–Dirac).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Simetrisasi bentuk bilinear (Modul, Contoh 4.3.7)</div>
+        <p>$\mu(\mathbf{v}, \mathbf{w}) = v_1w_2$ pada $\R^2$. Untuk $k = 2$, $S_2 = \set{\mathrm{id}, (12)}$:</p>
+        <p>$$S\mu(\mathbf{v}, \mathbf{w}) = \tfrac{1}{2}\bigl(\mu(\mathbf{v}, \mathbf{w}) + \mu(\mathbf{w}, \mathbf{v})\bigr) = \tfrac{1}{2}(v_1w_2 + w_1v_2).$$</p>
+        <p>Untuk $\mathbf{v} = (1, 2)$, $\mathbf{w} = (3, 4)$: $S\mu = \tfrac{1}{2}(4 + 6) = 5$, sedangkan $\mu(\mathbf{v}, \mathbf{w}) = 4 \ne 3 = \mu(\mathbf{w}, \mathbf{v})$. Dengan cara yang sama, kernel tak simetris disimetrisasi menjadi $K_{\mathrm{sym}}(\mathbf{x}, \mathbf{y}) = \tfrac{1}{2}(K(\mathbf{x}, \mathbf{y}) + K(\mathbf{y}, \mathbf{x}))$; untuk $K(\mathbf{x}, \mathbf{y}) = \mathbf{x}^TA\mathbf{y}$ ini $\mathbf{x}^T\tfrac{A + A^T}{2}\mathbf{y}$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Alternatisasi dan determinan (Modul, Contoh 4.3.8 dan 4.3.10)</div>
+        <p>$\mu(\mathbf{x}, \mathbf{y}, \mathbf{z}) = x_1y_2z_3$ pada $\R^3$ tidak alternating. Pada $(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3)$, $\mu(\mathbf{e}_{\sigma(1)}, \mathbf{e}_{\sigma(2)}, \mathbf{e}_{\sigma(3)}) = 1$ hanya untuk $\sigma = \mathrm{id}$, jadi $A\mu(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3) = \tfrac{1}{6}$. Secara umum $A\mu = \tfrac{1}{6}\det$, sehingga $6A\mu$ adalah bentuk volume standar. Misalnya untuk $\mathbf{x} = (1, 2, 0)$, $\mathbf{y} = (0, 1, 1)$, $\mathbf{z} = (2, 0, 1)$:</p>
+        <p>$$\det\begin{pmatrix} 1 & 0 & 2 \\ 2 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} = 1(1 - 0) - 0 + 2(2 - 0) = 5.$$</p>
+        <p>Di geometri komputasi, volume berorientasi tetrahedron dengan simpul $\mathbf{p}_0, \dots, \mathbf{p}_3$ adalah $\tfrac{1}{6}\det[\mathbf{p}_1 - \mathbf{p}_0,\ \mathbf{p}_2 - \mathbf{p}_0,\ \mathbf{p}_3 - \mathbf{p}_0]$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Tensor laju regangan dan vortisitas (Modul, Contoh 4.3.9)</div>
+        <p>Untuk gradien kecepatan $\nabla\mathbf{v} = \begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$:</p>
+        <p>$$S(\nabla\mathbf{v}) = \tfrac{1}{2}\bigl(\nabla\mathbf{v} + (\nabla\mathbf{v})^T\bigr) = \begin{pmatrix} 2 & 0{,}5 \\ 0{,}5 & 3 \end{pmatrix}, \qquad A(\nabla\mathbf{v}) = \tfrac{1}{2}\bigl(\nabla\mathbf{v} - (\nabla\mathbf{v})^T\bigr) = \begin{pmatrix} 0 & 0{,}5 \\ -0{,}5 & 0 \end{pmatrix}.$$</p>
+        <p>Bagian simetris (laju regangan) menggambarkan deformasi; bagian antisimetris berkaitan dengan rotasi lokal (vortisitas). Untuk fluida Newtonian, tegangan viskos $\tau = 2\mu S + \lambda(\nabla \cdot \mathbf{v})I$ hanya bergantung pada $S$, karena rotasi murni tidak menghasilkan disipasi.</p>
+      </div>
+
+      <h3>Penerapan di fisika</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Tensor Faraday (Modul, §4.3.11)</div>
+        <p>Medan elektromagnetik diwakili $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$, $2$-form alternating di ruang-waktu Minkowski: $F_{\mu\nu} = -F_{\nu\mu}$, jadi diagonalnya nol dan ada $6$ komponen bebas ($3$ untuk $\mathbf{E}$, $3$ untuk $\mathbf{B}$):</p>
+        <p>$$F_{\mu\nu} = \begin{pmatrix} 0 & -E_x/c & -E_y/c & -E_z/c \\ E_x/c & 0 & -B_z & B_y \\ E_y/c & B_z & 0 & -B_x \\ E_z/c & -B_y & B_x & 0 \end{pmatrix}.$$</p>
+        <p>Sifat alternating memungkinkan $F = dA$ (dasar teori gauge) dan persamaan Maxwell kovarian $\partial_\mu F^{\mu\nu} = \mu_0J^\nu$, $\partial_{[\mu}F_{\nu\rho]} = 0$, yang memberi kekekalan muatan $\partial_\mu J^\mu = 0$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Tensor metrik (Modul, §4.3.12)</div>
+        <p>Dalam relativitas umum, metrik $g_{\mu\nu}$ bentuk bilinear simetris tak terdegenerasi; elemen garis $ds^2 = g_{\mu\nu}\,dx^\mu dx^\nu$ adalah bentuk kuadrat. Simbol Christoffel dalam persamaan geodesik diturunkan dari metrik, dan tensor Einstein serta tensor energi–momentum di $G_{\mu\nu} = 8\pi GT_{\mu\nu}$ sama-sama simetris. Contoh lain: metrik FLRW di kosmologi dan tensor metrik kisi kristal.</p>
+      </div>
+
+      <div class="tabel">
+        <table>
+          <caption>Ringkasan alternating versus simetris (Modul, §4.3.13)</caption>
+          <thead>
+            <tr><th scope="col">Konsep</th><th scope="col">Sifat</th><th scope="col">Aplikasi utama</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Determinan</td><td>Alternating</td><td>Volume, orientasi, kebebasan linier</td></tr>
+            <tr><td>Tensor Faraday</td><td>Alternating</td><td>Elektromagnetisme, persamaan Maxwell</td></tr>
+            <tr><td>Fungsi gelombang fermion</td><td>Alternating (determinan Slater)</td><td>Prinsip eksklusi Pauli</td></tr>
+            <tr><td>Tensor metrik</td><td>Simetris</td><td>Relativitas umum, geometri Riemann</td></tr>
+            <tr><td>Tensor regangan</td><td>Simetris</td><td>Mekanika kontinum, elastisitas</td></tr>
+            <tr><td>Matriks kovarians</td><td>Simetris</td><td>PCA, statistika</td></tr>
+            <tr><td>Kernel SVM</td><td>Simetris</td><td>Pembelajaran mesin</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Memakai $\abs{\det J}$ untuk bentuk diferensial.</strong> Pullback memberi $\det J$ bertanda; nilai mutlak hanya untuk integral luas/volume tanpa orientasi.</li>
+        <li><strong>Mengira alternating berarti "semua komponen bertanda berlawanan".</strong> Alternating hanya mengatur pertukaran argumen; diagonal matriks bentuk alternating nol.</li>
+        <li><strong>Lupa faktor $\tfrac{1}{k!}$.</strong> Tanpa faktor itu $S$ dan $A$ bukan proyektor ($S^2 \ne S$).</li>
+        <li><strong>Menyamakan $dx\,dy$ dengan $dx \wedge dy$ tanpa memperhatikan urutan.</strong> $dy \wedge dx = -dx \wedge dy$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$\omega \colon \R^3 \times \R^3 \to \R$, $\omega(\mathbf{x}, \mathbf{y}) = x_1y_2 - x_2y_1$. Buktikan $\omega$ bentuk-$2$ alternating.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Bilinear: setiap suku hasil kali satu komponen $\mathbf{x}$ dan satu komponen $\mathbf{y}$.</li>
+            <li>Dua argumen sama: $\omega(\mathbf{x}, \mathbf{x}) = x_1x_2 - x_2x_1 = 0$.</li>
+            <li>Pertukaran: $\omega(\mathbf{y}, \mathbf{x}) = y_1x_2 - y_2x_1 = -(x_1y_2 - x_2y_1) = -\omega(\mathbf{x}, \mathbf{y})$.</li>
+          </ol>
+          <p>Secara geometris $\omega(\mathbf{x}, \mathbf{y})$ adalah luas berorientasi jajaran genjang dari proyeksi $\mathbf{x}, \mathbf{y}$ ke bidang-$xy$: vektor yang sama memberi luas nol, dan menukar urutan membalik orientasi.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$S(\mathbf{x}, \mathbf{y}) = 2x_1y_1 + x_1y_2 + x_2y_1 + 3x_2y_2$ pada $\R^2$. Buktikan $S$ simetris dan tentukan bentuk kuadrat $Q(\mathbf{x}) = S(\mathbf{x}, \mathbf{x})$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$S(\mathbf{y}, \mathbf{x}) = 2y_1x_1 + y_1x_2 + y_2x_1 + 3y_2x_2 = 2x_1y_1 + x_2y_1 + x_1y_2 + 3x_2y_2 = S(\mathbf{x}, \mathbf{y})$. Matriksnya $A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix} = A^T$.</li>
+            <li>$Q(\mathbf{x}) = 2x_1^2 + 2x_1x_2 + 3x_2^2$.</li>
+          </ol>
+          <p>Bentuk kuadrat menentukan bentuk simetrisnya secara tunggal lewat identitas polarisasi $S(\mathbf{x}, \mathbf{y}) = \tfrac{1}{2}[Q(\mathbf{x} + \mathbf{y}) - Q(\mathbf{x}) - Q(\mathbf{y})]$. Jika $Q$ definit positif, $S$ adalah hasil kali dalam.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan setiap bentuk bilinear $B$ (atas $\R$) terurai secara tunggal sebagai $B = S + A$ dengan $S$ simetris dan $A$ alternating. Uraikan $B(\mathbf{x}, \mathbf{y}) = x_1y_1 + 3x_1y_2 + x_2y_1$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Definisikan $S(\mathbf{x}, \mathbf{y}) = \tfrac{1}{2}(B(\mathbf{x}, \mathbf{y}) + B(\mathbf{y}, \mathbf{x}))$ dan $A(\mathbf{x}, \mathbf{y}) = \tfrac{1}{2}(B(\mathbf{x}, \mathbf{y}) - B(\mathbf{y}, \mathbf{x}))$. Maka $S$ simetris, $A$ alternating, dan $S + A = B$.</li>
+            <li>Tunggal: jika $B = S' + A'$ juga, maka $S - S' = A' - A$ sekaligus simetris dan alternating, sehingga $C(\mathbf{x}, \mathbf{y}) = C(\mathbf{y}, \mathbf{x}) = -C(\mathbf{x}, \mathbf{y})$, $2C = 0$, $C = 0$.</li>
+            <li>Untuk $[B] = \begin{pmatrix} 1 & 3 \\ 1 & 0 \end{pmatrix}$: $[S] = \tfrac{1}{2}([B] + [B]^T) = \begin{pmatrix} 1 & 2 \\ 2 & 0 \end{pmatrix}$ dan $[A] = \tfrac{1}{2}([B] - [B]^T) = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$.</li>
+          </ol>
+          <p>Jadi $S(\mathbf{x}, \mathbf{y}) = x_1y_1 + 2x_1y_2 + 2x_2y_1$ dan $A(\mathbf{x}, \mathbf{y}) = x_1y_2 - x_2y_1$; secara umum $M_{2 \times 2}(\R) = \mathrm{Sym}_2 \oplus \mathrm{Alt}_2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Hitung $(\mathbf{e}_1 + 2\mathbf{e}_2) \wedge (3\mathbf{e}_1 + 4\mathbf{e}_2)$ di $\R^2$ dalam bentuk $c\,(\mathbf{e}_1 \wedge \mathbf{e}_2)$ dan bandingkan $c$ dengan determinan.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Bilinear: $(\mathbf{e}_1 + 2\mathbf{e}_2) \wedge (3\mathbf{e}_1 + 4\mathbf{e}_2) = 3\,\mathbf{e}_1 \wedge \mathbf{e}_1 + 4\,\mathbf{e}_1 \wedge \mathbf{e}_2 + 6\,\mathbf{e}_2 \wedge \mathbf{e}_1 + 8\,\mathbf{e}_2 \wedge \mathbf{e}_2$.</li>
+            <li>Alternating: $\mathbf{e}_i \wedge \mathbf{e}_i = 0$ dan $\mathbf{e}_2 \wedge \mathbf{e}_1 = -\mathbf{e}_1 \wedge \mathbf{e}_2$.</li>
+            <li>Hasilnya $(4 - 6)\,\mathbf{e}_1 \wedge \mathbf{e}_2 = -2\,\mathbf{e}_1 \wedge \mathbf{e}_2$.</li>
+          </ol>
+          <p>Dan $\det\begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} = 4 - 6 = -2$, sesuai rumus $\mathbf{v}_1 \wedge \mathbf{v}_2 = \det[\mathbf{v}_1\ \mathbf{v}_2]\,\mathbf{e}_1 \wedge \mathbf{e}_2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Fungsi gelombang dua fermion dengan orbital $\psi_1, \psi_2$ adalah determinan Slater $\Psi(x_1, x_2) = \tfrac{1}{\sqrt{2}}\det\begin{pmatrix} \psi_1(x_1) & \psi_1(x_2) \\ \psi_2(x_1) & \psi_2(x_2) \end{pmatrix}$. Tunjukkan $\Psi$ antisimetris dan nol jika $\psi_1 = \psi_2$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Jabarkan: $\Psi(x_1, x_2) = \tfrac{1}{\sqrt{2}}\bigl(\psi_1(x_1)\psi_2(x_2) - \psi_1(x_2)\psi_2(x_1)\bigr)$.</li>
+            <li>Tukar $x_1, x_2$ (menukar dua kolom): $\Psi(x_2, x_1) = \tfrac{1}{\sqrt{2}}\bigl(\psi_1(x_2)\psi_2(x_1) - \psi_1(x_1)\psi_2(x_2)\bigr) = -\Psi(x_1, x_2)$.</li>
+            <li>Jika $\psi_1 = \psi_2$, kedua baris sama, jadi determinannya nol: $\Psi \equiv 0$.</li>
+          </ol>
+          <p>Ini prinsip eksklusi Pauli: dua fermion tidak bisa menempati orbital yang sama.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mathbf{v} \wedge \mathbf{w} = -\mathbf{w} \wedge \mathbf{v}, \qquad \mathbf{v}_1 \wedge \dots \wedge \mathbf{v}_n = \det[\mathbf{v}_1 \cdots \mathbf{v}_n]\,\mathbf{e}_1 \wedge \dots \wedge \mathbf{e}_n, \\
+        dx \wedge dy = \det J_T\,du \wedge dv
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        S\mu = \frac{1}{k!}\sum_\sigma \mu \circ \sigma, \qquad A\mu = \frac{1}{k!}\sum_\sigma \operatorname{sgn}(\sigma)\,\mu \circ \sigma, \\
+        B = \tfrac{1}{2}(B + B^T) + \tfrac{1}{2}(B - B^T), \qquad S(\mathbf{x}, \mathbf{y}) = \tfrac{1}{2}[Q(\mathbf{x} + \mathbf{y}) - Q(\mathbf{x}) - Q(\mathbf{y})]
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/04-Pemetaan-Multilinear.md</code>, Bab 4, §4.3: §4.3.1–4.3.6, Contoh 4.3.7–4.3.10, §4.3.11–4.3.13 beserta tabel ringkasan. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.4.7, §8.4.8, §8.4.9 (Latihan 1–3).</li>
+        <li>Latihan 4–5 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

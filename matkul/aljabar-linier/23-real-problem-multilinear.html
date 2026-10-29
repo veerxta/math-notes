@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Real Problem Multilinear · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Real Problem Multilinear</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Dekomposisi CP menulis tensor orde $3$ sebagai jumlah $R$ tensor rank $1$; rank matriks unfolding memberi batas bawah dan perkiraan praktis untuk $R$.</li>
+        <li>Persamaan Sylvester $AX + XB = C$ menjadi sistem linier $(I \otimes A + B^T \otimes I)\operatorname{vec}(X) = \operatorname{vec}(C)$.</li>
+        <li>Tensor Faraday alternating, dan $F_{\mu\nu}F^{\mu\nu} = 2(\abs{\mathbf{B}}^2 - \abs{\mathbf{E}}^2/c^2)$ serta $\mathbf{E} \cdot \mathbf{B}$ invarian Lorentz.</li>
+        <li>Kernel SVM harus simetris dan positif semidefinit; kernel polinomial $(\mathbf{x} \cdot \mathbf{y} + 1)^d$ memenuhi keduanya.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Sumber menutup Bab 4 dengan empat masalah lanjut. Di sumber, hasil numeriknya diperoleh dengan kode yang tidak disertakan; di sini gagasannya dirangkum, dan perhitungan lengkapnya ada di bagian Latihan.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Dekomposisi CP (Modul, §4.4.1)</div>
+        <p><strong>Dekomposisi CP</strong> (CANDECOMP/PARAFAC) dengan rank $R$ untuk tensor $\mathcal{T} \in \R^{I \times J \times K}$ adalah</p>
+        <p>$$\mathcal{T} \approx \sum_{r=1}^{R} \mathbf{a}_r \circ \mathbf{b}_r \circ \mathbf{c}_r, \qquad \mathbf{a}_r \in \R^I,\ \mathbf{b}_r \in \R^J,\ \mathbf{c}_r \in \R^K,$$</p>
+        <p>dengan $\circ$ hasil kali luar ($(\mathbf{a} \circ \mathbf{b} \circ \mathbf{c})_{ijk} = a_ib_jc_k$, tensor murni). Tensor rank terkecil $R$ yang memberi kesamaan.</p>
+        <p>Untuk memperkirakan $R$ tanpa algoritma CP (misalnya ALS, alternating least squares), sumber memakai SVD dari <strong>matriks unfolding</strong> (mode-$1$: baris indeks $i$, kolom pasangan $(j, k)$; mode-$2$ dan mode-$3$ serupa). Setiap unfolding tensor rank $R$ ber-rank paling banyak $R$, jadi banyak nilai singular yang signifikan memberi petunjuk. Pada tensor sintetik $3 \times 4 \times 2$ di sumber (jumlah dua tensor rank $1$), setiap unfolding punya tepat dua nilai singular yang jauh dari nol. <span class="cek">[CEK: data tensor sintetik dan nilai singularnya tidak dicantumkan di sumber; hanya kesimpulan "rank $= 2$". Rank unfolding hanya batas bawah rank CP secara umum.]</span></p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Persamaan Sylvester (Modul, §4.4.2)</div>
+        <p>$AX + XB = C$ muncul di teori kendali, stabilisasi, dan pengolahan sinyal. Dengan identitas $\operatorname{vec}(AXB) = (B^T \otimes A)\operatorname{vec}(X)$ (topik Pemetaan Multilinear dan Tensor), $\operatorname{vec}(AX) = (I \otimes A)\operatorname{vec}(X)$ dan $\operatorname{vec}(XB) = (B^T \otimes I)\operatorname{vec}(X)$, sehingga</p>
+        <p>$$(I \otimes A + B^T \otimes I)\operatorname{vec}(X) = \operatorname{vec}(C).$$</p>
+        <p>Sumber melaporkan bahwa solusi numeriknya memenuhi persamaan dengan galat orde $10^{-15}$ (Latihan 2 memberi solusi eksak).</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Invarian Lorentz tensor Faraday (Modul, §4.4.3)</div>
+        <p>Dua invarian Lorentz utama dari $2$-form alternating $F_{\mu\nu}$:</p>
+        <p>$$F_{\mu\nu}F^{\mu\nu} = 2\bigl(\abs{\mathbf{B}}^2 - \abs{\mathbf{E}}^2/c^2\bigr), \qquad \epsilon^{\mu\nu\rho\sigma}F_{\mu\nu}F_{\rho\sigma} = -8\,(\mathbf{E} \cdot \mathbf{B})/c.$$</p>
+        <p>Keduanya nol untuk gelombang elektromagnetik di vakum ($\mathbf{E} \perp \mathbf{B}$ dan $\abs{\mathbf{E}} = c\abs{\mathbf{B}}$). Konvensi tanda (misalnya $F^{0i} = -E_i$) berbeda-beda antarbuku.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Kernel simetris (Modul, §4.4.4)</div>
+        <p>Kernel $K(\mathbf{x}, \mathbf{y})$ untuk SVM harus simetris dan positif semidefinit. Kernel polinomial derajat $d$, $K(\mathbf{x}, \mathbf{y}) = (\mathbf{x} \cdot \mathbf{y} + 1)^d$, simetris karena hasil kali titik komutatif.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menganggap rank unfolding sama dengan rank CP.</strong> Rank unfolding hanya batas bawah; rank tensor bisa lebih besar.</li>
+        <li><strong>Salah urutan Kronecker di persamaan Sylvester.</strong> Suku $XB$ memberi $B^T \otimes I$, bukan $B \otimes I$ atau $I \otimes B$.</li>
+        <li><strong>Memeriksa positif semidefinit hanya dari entri positif.</strong> Matriks berentri positif bisa punya nilai eigen negatif; periksa nilai eigen atau minor utama.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$\mathcal{T} = \mathbf{e}_1 \circ \mathbf{e}_1 \circ \mathbf{e}_1 + \mathbf{e}_2 \circ \mathbf{e}_2 \circ \mathbf{e}_2 \in \R^{2 \times 2 \times 2}$. Tuliskan unfolding mode-$1$ dan rank-nya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Entri tak nol: $\mathcal{T}_{111} = 1$ dan $\mathcal{T}_{222} = 1$; lainnya nol.</li>
+            <li>Unfolding mode-$1$: baris indeks $i$, kolom pasangan $(j, k)$ berurutan $(1,1), (1,2), (2,1), (2,2)$:
+              $$T_{(1)} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}.$$</li>
+            <li>Kedua baris bebas linier, jadi rank $2$.</li>
+          </ol>
+          <p>Karena tensor ini jumlah dua tensor rank $1$, rank CP-nya paling banyak $2$; unfolding rank $2$ menunjukkan paling sedikit $2$. Jadi rank CP tepat $2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Selesaikan $AX + XB = C$ untuk $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}$, $C = \begin{pmatrix} 9 & 10 \\ 11 & 12 \end{pmatrix}$, dan verifikasi.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek (sumber hanya melaporkan galat numerik)</p>
+          <ol>
+            <li>Dengan $\operatorname{vec}(X) = (x_{11}, x_{21}, x_{12}, x_{22})^T$:
+              $$I \otimes A = \begin{pmatrix} 1 & 2 & 0 & 0 \\ 3 & 4 & 0 & 0 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 3 & 4 \end{pmatrix}, \quad B^T \otimes I = \begin{pmatrix} 5 & 0 & 7 & 0 \\ 0 & 5 & 0 & 7 \\ 6 & 0 & 8 & 0 \\ 0 & 6 & 0 & 8 \end{pmatrix}.$$</li>
+            <li>Sistemnya $M\operatorname{vec}(X) = (9, 11, 10, 12)^T$ dengan
+              $$M = I \otimes A + B^T \otimes I = \begin{pmatrix} 6 & 2 & 7 & 0 \\ 3 & 9 & 0 & 7 \\ 6 & 0 & 9 & 2 \\ 0 & 6 & 3 & 12 \end{pmatrix}.$$</li>
+            <li>Eliminasi Gauss memberi $\operatorname{vec}(X) = (\tfrac{1}{2}, \tfrac{2}{3}, \tfrac{2}{3}, \tfrac{1}{2})^T$, jadi
+              $$X = \begin{pmatrix} 1/2 & 2/3 \\ 2/3 & 1/2 \end{pmatrix}.$$</li>
+            <li>Cek: $AX = \begin{pmatrix} 11/6 & 5/3 \\ 25/6 & 4 \end{pmatrix}$, $XB = \begin{pmatrix} 43/6 & 25/3 \\ 41/6 & 8 \end{pmatrix}$, jumlahnya $\begin{pmatrix} 9 & 10 \\ 11 & 12 \end{pmatrix} = C$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Dengan $c = 1$, $\mathbf{E} = (1, 0, 0)$ dan $\mathbf{B} = (0, 1, 0)$. Bentuk tensor Faraday dan hitung kedua invarian Lorentz.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Dengan konvensi sumber, $F = \begin{pmatrix} 0 & -E_x & -E_y & -E_z \\ E_x & 0 & -B_z & B_y \\ E_y & B_z & 0 & -B_x \\ E_z & -B_y & B_x & 0 \end{pmatrix}$. Substitusi $E_x = 1$, $B_y = 1$, lainnya nol:
+              $$F = \begin{pmatrix} 0 & -1 & 0 & 0 \\ 1 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}.$$</li>
+            <li>$F_{\mu\nu}F^{\mu\nu} = 2(\abs{\mathbf{B}}^2 - \abs{\mathbf{E}}^2) = 2(1 - 1) = 0$.</li>
+            <li>$\mathbf{E} \cdot \mathbf{B} = 0$, jadi $\epsilon^{\mu\nu\rho\sigma}F_{\mu\nu}F_{\rho\sigma} = 0$.</li>
+          </ol>
+          <p>Medan saling tegak lurus dan sama besar, sesuai gelombang elektromagnetik di vakum. <span class="cek">[CEK: matriks $F$ di sumber, dengan entri $\mp 1$ di posisi $(3, 4)$ dan $(4, 3)$, berpadanan dengan $\mathbf{B} = (1, 0, 0)$, bukan $(0, 1, 0)$; untuk $\mathbf{B} = (1, 0, 0)$, $\mathbf{E} \cdot \mathbf{B} = 1 \ne 0$. Matriks di atas disusun ulang oleh Claude dari rumus umum sumber; nilai invarian yang dilaporkan sumber ($0$ dan $0$) sesuai dengan $\mathbf{B} = (0, 1, 0)$.]</span></p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk $\mathbf{x}_1 = (1, 2)$, $\mathbf{x}_2 = (3, 4)$, $\mathbf{x}_3 = (5, 6)$, hitung matriks kernel $K_{ij} = (\mathbf{x}_i \cdot \mathbf{x}_j + 1)^2$ dan periksa simetri serta positif semidefinit.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek (sumber hanya melaporkan kesimpulan)</p>
+          <ol>
+            <li>Hasil kali titik: $\mathbf{x}_1 \cdot \mathbf{x}_1 = 5$, $\mathbf{x}_1 \cdot \mathbf{x}_2 = 11$, $\mathbf{x}_1 \cdot \mathbf{x}_3 = 17$, $\mathbf{x}_2 \cdot \mathbf{x}_2 = 25$, $\mathbf{x}_2 \cdot \mathbf{x}_3 = 39$, $\mathbf{x}_3 \cdot \mathbf{x}_3 = 61$.</li>
+            <li>Tambah $1$ lalu kuadratkan:
+              $$K = \begin{pmatrix} 36 & 144 & 324 \\ 144 & 676 & 1600 \\ 324 & 1600 & 3844 \end{pmatrix},$$
+              simetris karena $\mathbf{x}_i \cdot \mathbf{x}_j = \mathbf{x}_j \cdot \mathbf{x}_i$.</li>
+            <li>Minor utama: $36 \gt 0$; $36 \cdot 676 - 144^2 = 24336 - 20736 = 3600 \gt 0$; $\det K = 13824 \gt 0$. Untuk matriks simetris, minor utama yang semuanya positif berarti definit positif (kriteria Sylvester; dibahas di Bab 6).</li>
+            <li>Secara numerik nilai eigennya sekitar $0{,}185$, $16{,}46$, dan $4539{,}36$, semuanya positif (jumlahnya $4556 = \operatorname{tr} K$).</li>
+          </ol>
+          <p>Jadi $K$ simetris dan bahkan definit positif, sehingga kernel ini valid.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mathcal{T} \approx \sum_{r=1}^{R} \mathbf{a}_r \circ \mathbf{b}_r \circ \mathbf{c}_r, \qquad (I \otimes A + B^T \otimes I)\operatorname{vec}(X) = \operatorname{vec}(C), \\
+        F_{\mu\nu}F^{\mu\nu} = 2(\abs{\mathbf{B}}^2 - \abs{\mathbf{E}}^2/c^2), \qquad K(\mathbf{x}, \mathbf{y}) = (\mathbf{x} \cdot \mathbf{y} + 1)^d
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/04-Pemetaan-Multilinear.md</code>, Bab 4, §4.4: §4.4.1–4.4.4 dan intisari §4.4. File Markdown, tanpa nomor halaman.</li>
+        <li>Latihan 1 dan bagian "Kesalahan umum" ditulis oleh Claude. Angka di Latihan 2 dan 4 dihitung oleh Claude, karena sumber hanya menyebut hasil kode.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

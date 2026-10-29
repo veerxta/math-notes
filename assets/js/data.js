@@ -39,6 +39,10 @@ window.MATH_NOTES = {
         { file: "17-grup-matriks.html", judul: "Grup Matriks" },
         { file: "18-matriks-swadjoin-dan-uniter.html", judul: "Matriks Swadjoin dan Uniter" },
         { file: "19-real-problem-ruang-dual.html", judul: "Real Problem Ruang Dual" },
+        { file: "20-determinan-pemetaan-multilinear.html", judul: "Determinan sebagai Pemetaan Multilinear", bab: "Bab 4 · Pemetaan Multilinear" },
+        { file: "21-pemetaan-multilinear-dan-tensor.html", judul: "Pemetaan Multilinear dan Tensor" },
+        { file: "22-pemetaan-alternating-dan-simetris.html", judul: "Pemetaan Alternating dan Simetris" },
+        { file: "23-real-problem-multilinear.html", judul: "Real Problem Multilinear" },
       ],
     },
     {

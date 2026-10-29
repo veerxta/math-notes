@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Determinan sebagai Pemetaan Multilinear · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Determinan sebagai Pemetaan Multilinear</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Fungsi multilinear linier di setiap argumen saat argumen lain tetap; tensor adalah objek yang mewakili fungsi seperti itu.</li>
+        <li>Determinan adalah bentuk $n$-linear bergantian tanda (alternating) pada kolom-kolom matriks $n \times n$: linier di tiap kolom, dan menukar dua kolom membalik tanda.</li>
+        <li>Akibatnya kolom yang bergantung linier memberi $\det = 0$, dan menambahkan kelipatan satu kolom ke kolom lain tidak mengubah determinan.</li>
+        <li>Secara geometris, $\det$ adalah volume berorientasi paralelotop yang dibentuk kolom-kolomnya; ia satu-satunya (sampai skalar) bentuk $n$-linear alternating pada $\R^n$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Fungsi multilinear dan tensor</h3>
+      <p>Aljabar multilinear mempelajari fungsi yang linier terhadap setiap argumennya bila argumen lain dianggap tetap. Bentuk bilinear $V \times W \to F$ adalah contoh dengan dua argumen; ada pula bentuk trilinear, $n$-linear, dan seterusnya.</p>
+
+      <div class="box catatan">
+        <div class="box-title">Tensor (Modul, §4.1.1)</div>
+        <ul>
+          <li><strong>Tensor murni</strong> $\mathbf{v}_1 \otimes \dots \otimes \mathbf{v}_k$ adalah hasil "penggabungan" $k$ vektor menjadi satu objek di $V^{\otimes k}$.</li>
+          <li><strong>Tensor umum</strong> adalah kombinasi linier tensor murni.</li>
+        </ul>
+        <p>Hubungan intinya: setiap fungsi multilinear $f \colon V_1 \times \dots \times V_k \to F$ sama dengan satu pemetaan <em>linier</em> $\tilde{f} \colon V_1 \otimes \dots \otimes V_k \to F$. Ini dirumuskan tepat sebagai sifat universal di topik berikutnya.</p>
+      </div>
+
+      <h3>Determinan</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Determinan sebagai bentuk $n$-linear (Modul, §4.1.2)</div>
+        <p>Determinan memetakan $n$ kolom $(\mathbf{v}_1, \dots, \mathbf{v}_n) \in F^n \times \dots \times F^n$ ke $F$, dan</p>
+        <ul>
+          <li><strong>$n$-linear</strong>: linier di setiap kolom;</li>
+          <li><strong>bergantian tanda</strong>: menukar dua kolom membalik tanda.</li>
+        </ul>
+        <p>Dengan pandangan tensor, determinan setara dengan pemetaan linier $(F^n)^{\otimes n} \to F$.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Makna geometris (Modul, §4.1.2)</div>
+        <p>$\det A$ adalah <strong>volume berorientasi</strong> (oriented volume) paralelotop yang dibentuk kolom-kolom $A$:</p>
+        <ul>
+          <li>$\det A = 0$ jika dan hanya jika kolom-kolomnya bergantung linier (paralelotopnya "pipih");</li>
+          <li>$\det A \ne 0$ jika dan hanya jika $A$ invertibel;</li>
+          <li>tanda $\det A$ menunjukkan orientasi.</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Determinan dalam penerapan (Modul, §4.1.2)</div>
+        <ul>
+          <li><strong>Grafika 3D:</strong> $\det \lt 0$ menandakan transformasi membalik orientasi (refleksi atau cermin).</li>
+          <li><strong>Perubahan koordinat:</strong> determinan Jacobian mengukur perubahan volume, $dV' = \abs{\det J}\,dV$, misalnya untuk menghitung massa atau energi di koordinat baru.</li>
+          <li><strong>Sistem $A\mathbf{x} = \mathbf{b}$:</strong> $\det A \ne 0$ memberi solusi tunggal; $\det A = 0$ memberi tidak ada atau tak hingga banyak solusi.</li>
+          <li><strong>Statistika:</strong> rapat normal multivariat sebanding dengan $1/\sqrt{\det\Sigma}$; $\det\Sigma$ mengukur sebaran data.</li>
+          <li><strong>Kriptografi:</strong> enkripsi berbasis matriks memerlukan $\det \ne 0$ agar dekripsi (invers) ada.</li>
+        </ul>
+      </div>
+
+      <h3>Kaitan dengan komputasi kuantum</h3>
+      <div class="box catatan">
+        <div class="box-title">Mengapa tensor muncul di komputasi kuantum (Modul, §4.1.3)</div>
+        <ol>
+          <li>Ruang Hilbert gabungan dua sistem dibentuk dengan produk tensor: sistem berdimensi $m$ dan $n$ memberi $A \otimes B$ berdimensi $mn$.</li>
+          <li>Satu qubit adalah vektor di $\C^2$; dua qubit hidup di $\C^2 \otimes \C^2 \cong \C^4$; $k$ qubit di ruang berdimensi $2^k$.</li>
+          <li>Keadaan terpisah (product state) adalah tensor murni; keadaan terjerat (entangled) adalah kombinasi linier yang tidak bisa difaktorkan menjadi satu produk tensor.</li>
+          <li>Gerbang kuantum bekerja pada subsistem tertentu tetapi tetap memperhitungkan struktur ruang tensor global.</li>
+        </ol>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira determinan linier pada matriks.</strong> $\det(A + B) \ne \det A + \det B$ umumnya; determinan linier per <em>kolom</em>, bukan pada matriks secara keseluruhan. Juga $\det(cA) = c^n\det A$, bukan $c\det A$.</li>
+        <li><strong>Lupa tanda saat menukar kolom.</strong> Satu pertukaran membalik tanda; dua pertukaran mengembalikannya.</li>
+        <li><strong>Menganggap alternating dan antisimetri selalu sama.</strong> Keduanya setara atas $\R$ (karakteristik $\ne 2$), tetapi definisi dasarnya "dua argumen sama ⇒ nol".</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$D \colon (\R^2)^2 \to \R$, $D(\mathbf{v}_1, \mathbf{v}_2) = \det[\mathbf{v}_1 \mid \mathbf{v}_2] = a_1b_2 - a_2b_1$ untuk $\mathbf{v}_1 = (a_1, a_2)^T$, $\mathbf{v}_2 = (b_1, b_2)^T$. Buktikan $D$ bilinear terhadap kolom-kolomnya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Kolom pertama, dengan $\mathbf{v}'_1 = (a'_1, a'_2)^T$ dan $c \in \R$:
+              $$\begin{aligned}
+                D(c\mathbf{v}_1 + \mathbf{v}'_1, \mathbf{v}_2) &= (ca_1 + a'_1)b_2 - (ca_2 + a'_2)b_1 \\
+                &= c(a_1b_2 - a_2b_1) + (a'_1b_2 - a'_2b_1) = cD(\mathbf{v}_1, \mathbf{v}_2) + D(\mathbf{v}'_1, \mathbf{v}_2).
+              \end{aligned}$$</li>
+            <li>Kolom kedua: $D(\mathbf{v}_1, c\mathbf{v}_2 + \mathbf{v}'_2) = a_1(cb_2 + b'_2) - a_2(cb_1 + b'_1) = cD(\mathbf{v}_1, \mathbf{v}_2) + D(\mathbf{v}_1, \mathbf{v}'_2)$.</li>
+          </ol>
+          <p>Jadi $D$ linier di tiap kolom saat kolom lain tetap: pemetaan bilinear. Secara umum determinan $n \times n$ adalah $n$-linear terhadap kolom-kolomnya.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Hitung $\det A$ untuk $A = \begin{pmatrix} 1 + 2 & 3 \\ 2 + 1 & 1 \end{pmatrix} = [\mathbf{v}_1 + \mathbf{v}'_1 \mid \mathbf{v}_2]$ dengan multilinearitas, untuk $\mathbf{v}_1 = (1, 2)^T$, $\mathbf{v}'_1 = (2, 1)^T$, $\mathbf{v}_2 = (3, 1)^T$. Jelaskan mengapa kolom yang merupakan kelipatan kolom lain memberi determinan nol.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Linier di kolom pertama:
+              $$\det[\mathbf{v}_1 + \mathbf{v}'_1 \mid \mathbf{v}_2] = \begin{vmatrix} 1 & 3 \\ 2 & 1 \end{vmatrix} + \begin{vmatrix} 2 & 3 \\ 1 & 1 \end{vmatrix} = (1 - 6) + (2 - 3) = -6.$$</li>
+            <li>Cek langsung: $\begin{vmatrix} 3 & 3 \\ 3 & 1 \end{vmatrix} = 3 - 9 = -6$.</li>
+            <li>Jika $\mathbf{v}_2 = c\mathbf{v}_1$, linier di kolom kedua memberi $\det[\mathbf{v}_1 \mid c\mathbf{v}_1] = c\det[\mathbf{v}_1 \mid \mathbf{v}_1]$, dan karena determinan alternating, dua kolom sama memberi $0$.</li>
+          </ol>
+          <p>Jadi kolom yang bergantung linier memberi $\det = 0$. (Atas $\R$, alternating setara dengan antisimetri: menukar dua kolom membalik tanda.)</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan dengan multilinearitas bahwa $\det[\mathbf{v}_1 \mid \mathbf{v}_2 + c\mathbf{v}_1] = \det[\mathbf{v}_1 \mid \mathbf{v}_2]$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Linier di kolom kedua: $\det[\mathbf{v}_1 \mid \mathbf{v}_2 + c\mathbf{v}_1] = \det[\mathbf{v}_1 \mid \mathbf{v}_2] + c\det[\mathbf{v}_1 \mid \mathbf{v}_1]$.</li>
+            <li>Alternating: $\det[\mathbf{v}_1 \mid \mathbf{v}_1] = 0$.</li>
+          </ol>
+          <p>Jadi operasi kolom $C_2 \to C_2 + cC_1$ mempertahankan determinan; sifat ini datang langsung dari multilinear ditambah alternating.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan bahwa ruang $\mathrm{Alt}^n(\R^n)$ bentuk $n$-linear alternating pada $\R^n$ berdimensi $1$ dan direntang determinan.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Misalkan $\omega \in \mathrm{Alt}^n(\R^n)$ dan $\mathbf{v}_j = \sum_i a_{ij}\mathbf{e}_i$. Dengan multilinearitas di tiap argumen:
+              $$\omega(\mathbf{v}_1, \dots, \mathbf{v}_n) = \sum_{i_1, \dots, i_n} a_{i_11}\cdots a_{i_nn}\,\omega(\mathbf{e}_{i_1}, \dots, \mathbf{e}_{i_n}).$$</li>
+            <li>Jika dua indeks sama, $\omega(\dots) = 0$ (alternating). Yang tersisa hanya indeks yang membentuk permutasi $\sigma \in S_n$, $i_j = \sigma(j)$.</li>
+            <li>Karena alternating, menyusun ulang argumen menjadi $\mathbf{e}_1, \dots, \mathbf{e}_n$ memberi faktor tanda: $\omega(\mathbf{e}_{\sigma(1)}, \dots, \mathbf{e}_{\sigma(n)}) = \operatorname{sgn}(\sigma)\,\omega(\mathbf{e}_1, \dots, \mathbf{e}_n)$.</li>
+            <li>Maka
+              $$\omega(\mathbf{v}_1, \dots, \mathbf{v}_n) = \omega(\mathbf{e}_1, \dots, \mathbf{e}_n)\sum_{\sigma \in S_n}\operatorname{sgn}(\sigma)\prod_j a_{\sigma(j)j} = \omega(\mathbf{e}_1, \dots, \mathbf{e}_n)\det[\mathbf{v}_1 \mid \cdots \mid \mathbf{v}_n].$$</li>
+          </ol>
+          <p>Jadi setiap $\omega$ kelipatan skalar $\det$, dan $\dim \mathrm{Alt}^n(\R^n) = 1$. Akibatnya determinan (sampai skalar) satu-satunya bentuk volume berorientasi di $\R^n$, inilah sebabnya Jacobian muncul dalam perubahan variabel integral lipat.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \det[\dots, c\mathbf{v} + \mathbf{v}', \dots] = c\det[\dots, \mathbf{v}, \dots] + \det[\dots, \mathbf{v}', \dots], \\
+        \det[\dots, \mathbf{v}, \dots, \mathbf{v}, \dots] = 0, \qquad \det[\mathbf{v}_1 \mid \mathbf{v}_2 + c\mathbf{v}_1] = \det[\mathbf{v}_1 \mid \mathbf{v}_2]
+      \end{gathered}$$</p>
+      <p>$$\det A = \sum_{\sigma \in S_n}\operatorname{sgn}(\sigma)\prod_{j=1}^{n} a_{\sigma(j)j}, \qquad dV' = \abs{\det J}\,dV$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/04-Pemetaan-Multilinear.md</code>, Bab 4, §4.1: §4.1.1 (pendahuluan dan tensor), §4.1.2 (determinan, makna geometris, contoh nyata), §4.1.3 (komputasi kuantum). File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.4.1, §8.4.2, §8.4.3, §8.4.10 (Latihan 1–4).</li>
+        <li>Bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>
