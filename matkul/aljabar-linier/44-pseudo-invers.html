@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Pseudo-Invers lewat SVD · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Pseudo-Invers lewat SVD</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Jika $A = U\Sigma V^T$ ber-rank $k$, <strong>pseudo-invers</strong> $A^p = V\Sigma^pU^T$, dengan $\Sigma^p$ ($n \times m$) berdiagonal $1/\sigma_1, \dots, 1/\sigma_k$ dan nol lainnya.</li>
+        <li>$\mathbf{x} = A^p\mathbf{b}$ adalah solusi kuadrat terkecil $A\mathbf{x} \approx \mathbf{b}$ (dengan norma terkecil bila solusinya tidak tunggal).</li>
+        <li>Jika kolom $A$ bebas linier, $A^p = (A^TA)^{-1}A^T$; jika $A$ invertibel, $A^p = A^{-1}$.</li>
+        <li>SVD memberi $A^p$ juga ketika $A^TA$ singular, saat rumus persamaan normal tidak dapat dipakai.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <div class="box definisi">
+        <div class="box-title">Pseudo-invers (Modul, §6.11)</div>
+        <p>Misalkan $A$ berukuran $m \times n$, ber-rank $k$, dengan SVD $A = U\Sigma V^T$ (topik Vektor Singular Kiri dan SVD). Misalkan $\Sigma^p$ matriks $n \times m$ dengan $(\Sigma^p)_{ii} = 1/\sigma_i$ untuk $i \le k$ dan entri lain nol. Matriks $n \times m$</p>
+        <p>$$A^p = V\,\Sigma^p\,U^T = \sum_{i=1}^{k}\frac{1}{\sigma_i}\mathbf{v}_i\mathbf{u}_i^T$$</p>
+        <p>disebut <strong>pseudo-invers</strong> (pseudo-inverse, invers Moore–Penrose) $A$, sering ditulis $A^+$. Sistem $A\mathbf{x} = \mathbf{b}$ "diselesaikan" dengan $\mathbf{x} = A^p\mathbf{b}$.</p>
+        <p><span class="cek">[CEK: sumber menulis bahwa diagonal $\Sigma^p$ berisi $\tfrac{1}{\sigma_i}$ tanpa batas indeks; untuk $\sigma_i = 0$ ($i \gt k$) entri itu harus $0$, bukan $1/0$. Sumber juga membuka bagian ini dengan "pseudo-invers didapat bila $A'A$ tidak mempunyai invers … dengan cara proyeksi", merujuk pembahasan yang tidak ada di file Bab 6; contoh di bawah justru ber-$A^TA$ invertibel.]</span></p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">Sifat pseudo-invers</div>
+        <ol>
+          <li>$AA^p = \sum_{i \le k}\mathbf{u}_i\mathbf{u}_i^T$ adalah proyeksi ortogonal pada $\operatorname{Col}A$, sehingga $\mathbf{x} = A^p\mathbf{b}$ memenuhi $A\mathbf{x} = \operatorname{proj}_{\operatorname{Col}A}\mathbf{b}$: solusi kuadrat terkecil.</li>
+          <li>$A^p\mathbf{b} \in \operatorname{Row}A = \operatorname{span}\set{\mathbf{v}_1, \dots, \mathbf{v}_k}$, jadi di antara semua solusi kuadrat terkecil ia bernorma terkecil.</li>
+          <li>$AA^pA = A$ dan $A^pAA^p = A^p$.</li>
+          <li>Jika $\operatorname{rank}A = n$ (kolom bebas linier), $A^p = (A^TA)^{-1}A^T$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>$AA^p = U\Sigma V^TV\Sigma^pU^T = U(\Sigma\Sigma^p)U^T$, dan $\Sigma\Sigma^p = \operatorname{diag}(1, \dots, 1, 0, \dots, 0)$ ($k$ angka satu). Jadi $AA^p = \sum_{i \le k}\mathbf{u}_i\mathbf{u}_i^T$, proyeksi ortogonal pada $\operatorname{span}\set{\mathbf{u}_1..\mathbf{u}_k} = \operatorname{Col}A$ (topik Teorema Spektral, dekomposisi spektral). Menurut topik Teorema Fundamental dan Kuadrat Terkecil, $A\mathbf{x} = \operatorname{proj}_{\operatorname{Col}A}\mathbf{b}$ tepat mendefinisikan solusi kuadrat terkecil.</li>
+          <li>Semua solusi kuadrat terkecil berbentuk $\mathbf{x}_0 + \mathbf{z}$ dengan $\mathbf{z} \in \operatorname{Nul}A = \operatorname{span}\set{\mathbf{v}_{k+1}..\mathbf{v}_n}$. Karena $\mathbf{x}_0 = A^p\mathbf{b} \perp \operatorname{Nul}A$, Pythagoras memberi $\norm{\mathbf{x}_0 + \mathbf{z}}^2 = \norm{\mathbf{x}_0}^2 + \norm{\mathbf{z}}^2 \ge \norm{\mathbf{x}_0}^2$.</li>
+          <li>$\Sigma\Sigma^p\Sigma = \Sigma$ dan $\Sigma^p\Sigma\Sigma^p = \Sigma^p$; kalikan dengan $U, V$ yang ortogonal.</li>
+          <li>Jika $k = n$, $\Sigma^p\Sigma = I_n$. Maka $A^TA = V\Sigma^T\Sigma V^T$ invertibel dan $(A^TA)^{-1}A^T = V(\Sigma^T\Sigma)^{-1}V^TV\Sigma^TU^T = V(\Sigma^T\Sigma)^{-1}\Sigma^TU^T = V\Sigma^pU^T$, karena $(\Sigma^T\Sigma)^{-1}\Sigma^T$ berdiagonal $\sigma_i^{-2}\sigma_i = 1/\sigma_i$.</li>
+        </ol>
+        <p>(Proposisi dan bukti ini ditulis oleh Claude untuk menjelaskan kalimat sumber "pseudo-invers dapat digunakan untuk menyelesaikan $A\mathbf{x} = \mathbf{b}$".)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Pseudo-invers numerik (Modul, Contoh 6.11.1)</div>
+        <p>$A = \begin{pmatrix} 2 &amp; 3 \\ 0 &amp; 4 \\ 0 &amp; 1 \end{pmatrix}$, $\mathbf{b} = (5000, 4000, 2000)$.</p>
+        <ol>
+          <li>$A^TA = \begin{pmatrix} 4 &amp; 6 \\ 6 &amp; 26 \end{pmatrix}$, $p(\delta) = \delta^2 - 30\delta + 68$, jadi $\delta_{1,2} = 15 \pm \sqrt{157} \approx 27{,}5300;\ 2{,}4700$ dan $\sigma_1 \approx 5{,}24690$, $\sigma_2 \approx 1{,}57163$.</li>
+          <li>Vektor singular kanan $\mathbf{v}_1 \approx (0{,}24709;\ 0{,}96899)$, $\mathbf{v}_2 \approx (0{,}96899;\ -0{,}24709)$.</li>
+          <li>Vektor singular kiri $\mathbf{u}_i = A\mathbf{v}_i/\sigma_i$: $\mathbf{u}_1 \approx (0{,}64822;\ 0{,}73872;\ 0{,}18468)$, $\mathbf{u}_2 \approx (0{,}76145;\ -0{,}62887;\ -0{,}15722)$; pelengkap $\mathbf{u}_3 = \tfrac{1}{\sqrt{17}}(0, 1, -4) \approx (0;\ 0{,}24254;\ -0{,}97014)$, basis $\operatorname{Nul}A^T$.</li>
+          <li>$\Sigma^p = \begin{pmatrix} 1/\sigma_1 &amp; 0 &amp; 0 \\ 0 &amp; 1/\sigma_2 &amp; 0 \end{pmatrix}$ dan $A^p = V\Sigma^pU^T \approx \begin{pmatrix} 0{,}5 &amp; -0{,}35294 &amp; -0{,}08824 \\ 0 &amp; 0{,}23529 &amp; 0{,}05882 \end{pmatrix}$.</li>
+          <li>$\mathbf{x} = A^p\mathbf{b} \approx (911{,}765;\ 1058{,}824)$.</li>
+        </ol>
+        <p><strong>Nilai eksak</strong> (dihitung oleh Claude): kolom $A$ bebas linier, jadi $A^p = (A^TA)^{-1}A^T = \tfrac{1}{68}\begin{pmatrix} 26 &amp; -6 \\ -6 &amp; 4 \end{pmatrix}\begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 3 &amp; 4 &amp; 1 \end{pmatrix} = \begin{pmatrix} \tfrac{1}{2} &amp; -\tfrac{6}{17} &amp; -\tfrac{3}{34} \\ 0 &amp; \tfrac{4}{17} &amp; \tfrac{1}{17} \end{pmatrix}$, dan $\mathbf{x} = \left(\tfrac{15500}{17}, \tfrac{18000}{17}\right)$. Entri $5{,}98 \times 10^{-15}$ di sumber adalah galat pembulatan dari $0$. Karena $\mathbf{b} \notin \operatorname{Col}A$ ($\mathbf{u}_3 \cdot \mathbf{b} \ne 0$), $\mathbf{x}$ ini solusi kuadrat terkecil, bukan solusi eksak.</p>
+        <p>Sumber menyebut hasilnya "sama dengan hasil Contoh sebelumnya" (contoh yang tidak ada di file Bab 6) dan menyarankan mengulang langkahnya di SageMath.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Ukuran $\Sigma^p$.</strong> $\Sigma^p$ berukuran $n \times m$ (transpos ukuran $\Sigma$), bukan $m \times n$.</li>
+        <li><strong>Membalik nilai singular nol.</strong> Hanya $\sigma_i \gt 0$ yang dibalik; sisanya tetap $0$.</li>
+        <li><strong>Mengira $AA^p = I$.</strong> Itu hanya benar jika $\operatorname{rank}A = m$; umumnya $AA^p$ proyeksi pada $\operatorname{Col}A$.</li>
+        <li><strong>Mengira $A^p\mathbf{b}$ memenuhi $A\mathbf{x} = \mathbf{b}$.</strong> Hanya jika $\mathbf{b} \in \operatorname{Col}A$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Dengan SVD $A = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 1 \end{pmatrix} = \sqrt{10}\,\mathbf{u}_1\mathbf{v}_1^T$ (topik sebelumnya, $\mathbf{u}_1 = \tfrac{1}{\sqrt{5}}(2, 1)$, $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, 1)$), hitung $A^p$ dan periksa $AA^pA = A$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Rank $1$, jadi $A^p = \tfrac{1}{\sigma_1}\mathbf{v}_1\mathbf{u}_1^T = \tfrac{1}{\sqrt{10}}\cdot\tfrac{1}{\sqrt{10}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}\begin{pmatrix} 2 &amp; 1 \end{pmatrix} = \tfrac{1}{10}\begin{pmatrix} 2 &amp; 1 \\ 2 &amp; 1 \end{pmatrix}$.</li>
+            <li>$A^pA = \tfrac{1}{10}\begin{pmatrix} 5 &amp; 5 \\ 5 &amp; 5 \end{pmatrix} = \tfrac{1}{2}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}$ (proyeksi pada $\operatorname{Row}A$).</li>
+            <li>$A(A^pA) = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 1 \end{pmatrix}\cdot\tfrac{1}{2}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix} = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 1 \end{pmatrix} = A$.</li>
+          </ol>
+          <p>Di sini $A^TA$ singular, jadi rumus $(A^TA)^{-1}A^T$ tidak dapat dipakai; SVD tetap memberi $A^p$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk $A$ pada Latihan 1 dan $\mathbf{b} = (5, 0)$, tentukan $\mathbf{x} = A^p\mathbf{b}$ dan tunjukkan bahwa ia solusi kuadrat terkecil bernorma terkecil.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\mathbf{x} = \tfrac{1}{10}\begin{pmatrix} 2 &amp; 1 \\ 2 &amp; 1 \end{pmatrix}\begin{pmatrix} 5 \\ 0 \end{pmatrix} = (1, 1)$.</li>
+            <li>$A\mathbf{x} = (4, 2) = \operatorname{proj}_{\operatorname{Col}A}\mathbf{b}$: memang $\operatorname{Col}A = \operatorname{span}\set{(2, 1)}$ dan $\tfrac{(5, 0)\cdot(2, 1)}{5}(2, 1) = (4, 2)$.</li>
+            <li>Semua solusi kuadrat terkecil: $x_1 + x_2 = 2$, yaitu $(1, 1) + t(1, -1)$. Normanya $\sqrt{2 + 2t^2}$, terkecil di $t = 0$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        A^p = V\Sigma^pU^T = \sum_{i=1}^{k}\tfrac{1}{\sigma_i}\mathbf{v}_i\mathbf{u}_i^T, \qquad AA^p = \operatorname{proj}_{\operatorname{Col}A}, \qquad AA^pA = A, \\
+        \operatorname{rank}A = n \Rightarrow A^p = (A^TA)^{-1}A^T, \qquad \mathbf{x} = A^p\mathbf{b}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.11: definisi pseudo-invers dan Contoh 6.11.1 (angka desimal di atas dibulatkan dari sumber). File Markdown, tanpa nomor halaman.</li>
+        <li>Tidak ada soal untuk subbab ini di <code>Pembahasan-Soal-soal.md</code>.</li>
+        <li>Proposisi 1 dan buktinya, nilai eksak Contoh 6.11.1, Latihan 1–2, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

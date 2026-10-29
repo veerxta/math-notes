@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Nilai Eigen · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Nilai Eigen</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>$\lambda$ nilai eigen $L$ jika $L\mathbf{v} = \lambda\mathbf{v}$ untuk suatu $\mathbf{v} \ne \mathbf{0}$; $\mathbf{v}$ vektor eigen. Vektor nol <em>bukan</em> vektor eigen.</li>
+        <li>$\lambda$ nilai eigen ⇔ $\ker(L - \lambda I) \ne \set{\mathbf{0}}$. Ruang eigen $V_\lambda = \ker(L - \lambda I)$; kerangkapan geometris $= \dim V_\lambda$.</li>
+        <li>Ruang eigen dan $\operatorname{Im}(L - \lambda I)$ invarian terhadap setiap $p(L)$.</li>
+        <li>Vektor eigen untuk nilai eigen berbeda bebas linier.</li>
+        <li>Operator similar punya nilai eigen sama dan ruang eigen isomorfik; di dimensi hingga, nilai eigen = akar polinomial minimal di $F$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Motivasi: sistem pegas–massa</h3>
+      <figure>
+        <svg viewBox="0 0 320 135" width="320" height="135" role="img" aria-labelledby="judul-svg-pegas">
+          <title id="judul-svg-pegas">Dua massa identik m di antara dua dinding, dihubungkan tiga pegas identik berkonstanta k; simpangan x1 dan x2 diukur ke kanan</title>
+          <g stroke="currentColor" fill="none" stroke-width="1.5">
+            <path d="M10 45V105M310 45V105M10 100H310" opacity="0.6"/>
+            <path d="M10 80h10l5-10l10 20l10-20l10 20l10-20l10 20l10-20l5 10h10" style="stroke: var(--c-definisi)"/>
+            <path d="M140 80h5l5-10l10 20l10-20l10 20l5-10h5" style="stroke: var(--c-definisi)"/>
+            <path d="M230 80h5l5-10l10 20l10-20l10 20l10-20l10 20l10-20l5 10h5" style="stroke: var(--c-definisi)"/>
+            <rect x="100" y="60" width="40" height="40"/>
+            <rect x="190" y="60" width="40" height="40"/>
+            <path d="M120 118H150M144 114l6 4l-6 4M210 118H240M234 114l6 4l-6 4"/>
+          </g>
+          <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12" text-anchor="middle">
+            <text x="120" y="85">m</text>
+            <text x="210" y="85">m</text>
+            <text x="55" y="60" style="fill: var(--c-definisi)">k</text>
+            <text x="165" y="60" style="fill: var(--c-definisi)">k</text>
+            <text x="270" y="60" style="fill: var(--c-definisi)">k</text>
+            <text x="112" y="122">x₁</text>
+            <text x="202" y="122">x₂</text>
+          </g>
+        </svg>
+        <figcaption>Dua massa identik dan tiga pegas identik; $x_1, x_2$ simpangan dari kesetimbangan (positif ke kanan).</figcaption>
+      </figure>
+      <p>Menurut hukum Hooke dan hukum kedua Newton,</p>
+      <p>$$m\ddot{x}_1 = -kx_1 + k(x_2 - x_1), \qquad m\ddot{x}_2 = -k(x_2 - x_1) - kx_2.$$</p>
+      <p>Coba $x_1 = ae^{pt}$, $x_2 = be^{pt}$ dan tulis $\lambda = mp^2/k$:</p>
+      <p>$$\begin{pmatrix} -2 &amp; 1 \\ 1 &amp; -2 \end{pmatrix}\begin{pmatrix} a \\ b \end{pmatrix} = \lambda\begin{pmatrix} a \\ b \end{pmatrix}.$$</p>
+      <p>Nilai $\lambda$ yang mungkin menentukan $p$, jadi frekuensi osilasi. Banyak masalah sains dan teknik bermuara pada <strong>masalah nilai eigen</strong> $A\mathbf{x} = \lambda\mathbf{x}$.</p>
+      <p><span class="cek">[CEK: sumber menulis bahwa simpangan "harus mengalami peluruhan eksponensial". Matriks di atas bernilai eigen $-1$ dan $-3$ (dihitung oleh Claude), sehingga $p^2 = -k/m$ atau $-3k/m$ dan $p = \pm i\sqrt{k/m}$ atau $\pm i\sqrt{3k/m}$: imajiner murni. Jadi $e^{pt}$ berosilasi (tanpa redaman), sesuai kalimat sumber berikutnya tentang "frekuensi osilasi"; bukan meluruh. Gambar pegas di sumber (eksternal) digambar ulang di atas.]</span></p>
+
+      <h3>Nilai eigen dan vektor eigen</h3>
+      <p>Subruang $L$-invarian (topik Operator Linier dan Jumlah Langsung) mengungkap banyak hal tentang $L$; yang paling sederhana direntang satu vektor eigen.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Nilai eigen dan vektor eigen (Modul, Definisi 6.3.1)</div>
+        <p>Untuk $L \in \mathcal{L}(V)$, <strong>nilai eigen</strong> (eigenvalue) $L$ adalah $\lambda \in F$ sehingga untuk suatu $\mathbf{v} \ne \mathbf{0}$,</p>
+        <p>$$L(\mathbf{v}) = \lambda\mathbf{v}.$$</p>
+        <p><strong>Vektor eigen</strong> (eigenvector) adalah vektor <em>tak nol</em> yang memenuhi persamaan itu untuk suatu nilai eigen $\lambda$; disebut juga $\lambda$-vektor eigen.</p>
+        <ul>
+          <li><strong>Proyeksi</strong> pada subruang tak trivial $W$ (sepanjang $\ker L$): vektor tak nol di $W$ bernilai eigen $1$, vektor tak nol di $\ker L$ bernilai eigen $0$.</li>
+          <li><strong>Refleksi</strong> melalui $W$ sepanjang $W^\perp$: vektor tak nol di $W$ bernilai eigen $1$, di $W^\perp$ bernilai eigen $-1$.</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Proyeksi pada garis (Modul, Contoh 6.3.2)</div>
+        <p>$L(x, y) = \left(\tfrac{-x - 4y}{3}, \tfrac{x + 4y}{3}\right)$, dengan matriks standar $A = \tfrac{1}{3}\begin{pmatrix} -1 &amp; -4 \\ 1 &amp; 4 \end{pmatrix}$.</p>
+        <ol>
+          <li>Dengan $B = \begin{pmatrix} -1 &amp; -4 \\ 1 &amp; 4 \end{pmatrix}$: $B^2 = \begin{pmatrix} -3 &amp; -12 \\ 3 &amp; 12 \end{pmatrix} = 3B$, jadi $A^2 = \tfrac{1}{9}B^2 = \tfrac{1}{3}B = A$. $L$ proyeksi.</li>
+          <li>$\lambda = 0$: $Av = \mathbf{0} \iff x + 4y = 0$, jadi $E_0 = \ker L = \operatorname{span}\set{(4, -1)}$.</li>
+          <li>$\lambda = 1$: $x = \tfrac{-x - 4y}{3}$ dan $y = \tfrac{x + 4y}{3}$ keduanya menjadi $x + y = 0$, jadi $E_1 = \operatorname{span}\set{(1, -1)}$. Memang kolom $A$ adalah $-\tfrac{1}{3}(1, -1)$ dan $-\tfrac{4}{3}(1, -1)$, jadi $\operatorname{Im}L = E_1$.</li>
+          <li>$\R^2 = E_1 \oplus E_0$, dan $L(\mathbf{u} + \mathbf{w}) = \mathbf{u}$ untuk $\mathbf{u} \in E_1$, $\mathbf{w} \in E_0$. Juga $\operatorname{rank}A = 1$, $\operatorname{tr}A = 1 = 0 + 1$, $\det A = 0$.</li>
+        </ol>
+        <figure>
+          <svg viewBox="0 0 260 190" width="260" height="190" role="img" aria-labelledby="judul-svg-proyeksi">
+            <title id="judul-svg-proyeksi">Garis x + y = 0 (citra L) dan garis x + 4y = 0 (kernel L). Vektor (2, 1) dipetakan ke (−2, 2) sepanjang arah kernel.</title>
+            <path d="M5 100H255M130 185V5" stroke="currentColor" stroke-width="1" opacity="0.3" fill="none"/>
+            <line x1="40" y1="10" x2="220" y2="190" stroke-width="2.5" style="stroke: var(--c-definisi)"/>
+            <line x1="10" y1="70" x2="250" y2="130" stroke-width="2.5" style="stroke: var(--c-contoh)"/>
+            <line x1="190" y1="70" x2="70" y2="40" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4"/>
+            <g fill="currentColor">
+              <circle cx="190" cy="70" r="3.5"/>
+              <circle cx="70" cy="40" r="3.5"/>
+            </g>
+            <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12">
+              <text x="196" y="66">v = (2, 1)</text>
+              <text x="76" y="34">Lv = (−2, 2)</text>
+              <text x="200" y="185" style="fill: var(--c-definisi)">x + y = 0</text>
+              <text x="12" y="62" style="fill: var(--c-contoh)">x + 4y = 0</text>
+            </g>
+          </svg>
+          <figcaption>$L$ memproyeksikan ke garis $x + y = 0$ sepanjang garis $x + 4y = 0$: misalnya $L(2, 1) = (-2, 2)$, dan $(2, 1) - (-2, 2) = (4, -1) \in \ker L$.</figcaption>
+        </figure>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Kelipatan vektor eigen (Modul, Lemma 6.3.3)</div>
+        <p>$\mathbf{v} \ne \mathbf{0}$ adalah $\lambda$-vektor eigen $L$ jika dan hanya jika setiap kelipatan tak nol $c\mathbf{v}$ juga $\lambda$-vektor eigen.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>(⇒) $L(c\mathbf{v}) = cL(\mathbf{v}) = c\lambda\mathbf{v} = \lambda(c\mathbf{v})$, dan $c\mathbf{v} \ne \mathbf{0}$. (⇐) Ambil $c = 1$.</p>
+        <p>Jadi satu vektor eigen selalu membawa seluruh garis (tanpa titik asal) vektor eigen bersamanya.</p>
+        <p><span class="cek">[CEK: catatan intuisi di sumber menyatakan bahwa himpunan semua $\lambda$-vektor eigen "membentuk sebuah garis (subruang 1-dimensi)". Lemma ini hanya menjamin bahwa garis yang memuat satu vektor eigen terdiri dari vektor eigen; ruang eigen bisa berdimensi lebih dari $1$ (misalnya operator skalar $cI$: semua vektor tak nol adalah $c$-vektor eigen), seperti diakui sumber sendiri sebelum Definisi 6.3.7.]</span></p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Geser (Modul, Contoh 6.3.4)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix}$ adalah <strong>geser</strong> (shear) arah sumbu-$x$: $A\mathbf{e}_1 = \mathbf{e}_1$ dan $A\mathbf{e}_2 = (2, 1)$. Jadi $c\mathbf{e}_1$ ($c \ne 0$) vektor eigen bernilai eigen $1$.</p>
+        <figure>
+          <svg viewBox="0 0 210 140" width="210" height="140" role="img" aria-labelledby="judul-svg-geser">
+            <title id="judul-svg-geser">Persegi satuan dipetakan geser menjadi jajargenjang dengan titik sudut (0,0), (1,0), (3,1), (2,1)</title>
+            <path d="M10 120H205M30 135V10" stroke="currentColor" stroke-width="1" opacity="0.3" fill="none"/>
+            <path d="M30 120H80V70H30Z" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+            <path d="M30 120H80L180 70H130Z" stroke-width="2" style="stroke: var(--c-definisi)" fill="none"/>
+            <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12">
+              <text x="70" y="134">e₁</text>
+              <text x="12" y="66">e₂</text>
+              <text x="122" y="62" style="fill: var(--c-definisi)">Ae₂ = (2, 1)</text>
+            </g>
+          </svg>
+          <figcaption>Geser mempertahankan $\mathbf{e}_1$ dan memetakan $\mathbf{e}_2$ ke $(2, 1)$; persegi satuan (putus-putus) menjadi jajargenjang.</figcaption>
+        </figure>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Turunan (Modul, Contoh 6.3.5)</div>
+        <p>Untuk $D$ pada $C^\infty(\R)$, $D(e^{\lambda t}) = \lambda e^{\lambda t}$: setiap $\lambda \in \R$ adalah nilai eigen $D$, dengan vektor eigen $e^{\lambda t}$.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Kriteria kernel (Modul, Lemma 6.3.6)</div>
+        <p>$\lambda$ nilai eigen $L$ jika dan hanya jika $\ker(L - \lambda I) \ne \set{\mathbf{0}}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$L\mathbf{v} = \lambda\mathbf{v} \iff (L - \lambda I)\mathbf{v} = \mathbf{0}$, jadi vektor eigen untuk $\lambda$ tepat anggota tak nol $\ker(L - \lambda I)$. Di dimensi hingga syarat ini setara $\det(L - \lambda I) = 0$.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Ruang eigen dan kerangkapan geometris (Modul, Definisi 6.3.7)</div>
+        <p>Untuk nilai eigen $\lambda$ dari $L$, <strong>ruang $\lambda$-eigen</strong> (eigenspace) adalah $V_\lambda = \ker(L - \lambda I)$: semua $\lambda$-vektor eigen ditambah $\mathbf{0}$. <strong>Kerangkapan geometris</strong> (geometric multiplicity) $\lambda$ adalah $\dim V_\lambda$. Untuk operator skalar $L = cI$, $V_c = V$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Refleksi melalui hiperruang (Modul, Contoh 6.3.8)</div>
+        <p>Misalkan $\operatorname{char}F \ne 2$, $W$ hiperruang di $V$ dan $W'$ komplemennya ($V = W \oplus W'$). Refleksi melalui $W$ sepanjang $W'$: $L\mathbf{w} = \mathbf{w}$ ($\mathbf{w} \in W$) dan $L\mathbf{w}' = -\mathbf{w}'$ ($\mathbf{w}' \in W'$). Polinomial minimalnya:</p>
+        <ol>
+          <li>$W = V_1$ dan $W' = V_{-1}$.</li>
+          <li>$(L - I)(L + I)$ nol pada $W$ (karena $L + I$ dan $L - I$ komutatif dan $(L - I)\mathbf{w} = \mathbf{0}$) dan nol pada $W'$ (karena $(L + I)\mathbf{w}' = \mathbf{0}$), jadi nol pada $V$. Maka $t^2 - 1$ meniadakan $L$.</li>
+          <li>$L - I \ne O$, karena $(L - I)\mathbf{w}' = -2\mathbf{w}' \ne \mathbf{0}$ (di sini $\operatorname{char}F \ne 2$ dipakai); $L + I \ne O$, karena $(L + I)\mathbf{w} = 2\mathbf{w} \ne \mathbf{0}$.</li>
+        </ol>
+        <p>Jadi $m_L(t) = t^2 - 1$. (Refleksi ini tidak perlu ortogonal; gambar refleksi non-ortogonal di sumber tidak dibuat ulang.)</p>
+      </div>
+
+      <h3>Ruang eigen sebagai subruang invarian</h3>
+      <p>Jika $W$ subruang $L$-invarian, maka $L^k(\mathbf{w}) \in W$ untuk setiap $k \ge 0$, sehingga $W$ juga $p(L)$-invarian untuk setiap $p(L) \in F[L]$.</p>
+
+      <div class="box lemma">
+        <div class="box-title">Invarian terhadap $F[L]$ (Modul, Lemma 6.3.9)</div>
+        <p>Jika $\lambda$ nilai eigen $L$, maka $\ker(L - \lambda I)$ dan $\operatorname{Im}(L - \lambda I)$ keduanya $p(L)$-invarian untuk setiap $p(t) \in F[t]$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$p(L)$ komutatif dengan $L - \lambda I$ (keduanya polinomial dalam $L$).</p>
+        <ol>
+          <li>Jika $(L - \lambda I)\mathbf{v} = \mathbf{0}$, maka $(L - \lambda I)p(L)\mathbf{v} = p(L)(L - \lambda I)\mathbf{v} = \mathbf{0}$.</li>
+          <li>Jika $\mathbf{w} = (L - \lambda I)\mathbf{u}$, maka $p(L)\mathbf{w} = (L - \lambda I)\bigl(p(L)\mathbf{u}\bigr) \in \operatorname{Im}(L - \lambda I)$.</li>
+        </ol>
+        <p>Argumen ini sebenarnya tidak memakai bahwa $\lambda$ nilai eigen.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Ruang eigen dan polinomial dalam $L$ (Modul, Contoh 6.3.10)</div>
+        <p>$L(x, y) = (3x - y,\ 2x)$. Maka $L(x, x) = (2x, 2x)$, jadi $(1, 1)$ vektor eigen bernilai eigen $2$. Dari $L\mathbf{v} = 2\mathbf{v}$: $3x - y = 2x$ dan $2x = 2y$, keduanya $x = y$. Jadi $V_2 = \operatorname{span}\set{(1, 1)}$.</p>
+        <p>Untuk $p(t) = t^2 + 3t - 5$: karena $L(1, 1) = 2(1, 1)$ dan $L^2(1, 1) = 4(1, 1)$,</p>
+        <p>$$p(L)(1, 1) = 4(1, 1) + 3 \cdot 2(1, 1) - 5(1, 1) = 5(1, 1) = (5, 5) \in V_2.$$</p>
+        <p>Umumnya, $p(L)\mathbf{v} = p(\lambda)\mathbf{v}$ untuk $\lambda$-vektor eigen $\mathbf{v}$; di sini $p(2) = 5$.</p>
+        <p><span class="cek">[CEK: sumber menulis $3L(1, 1) = 3(1, 1)$ dan memperoleh $p(L)(1, 1) = (2, 2)$. Karena $L(1, 1) = (2, 2)$, yang benar $3L(1, 1) = (6, 6)$ dan $p(L)(1, 1) = (5, 5)$. Kesimpulan "berada di $V_2$" tetap benar.]</span></p>
+      </div>
+
+      <h3>Nilai eigen berbeda</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Ruang eigen berpotongan trivial (Modul, Teorema 6.3.11)</div>
+        <p>Jika $\lambda \ne \mu$ nilai eigen $L$, maka $V_\lambda \cap V_\mu = \set{\mathbf{0}}$. Akibatnya, nilai eigen sebuah vektor eigen terdefinisi tunggal.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $\mathbf{w} \in V_\lambda \cap V_\mu$, maka $\lambda\mathbf{w} = L\mathbf{w} = \mu\mathbf{w}$, jadi $(\lambda - \mu)\mathbf{w} = \mathbf{0}$ dengan $\lambda - \mu \ne 0$, sehingga $\mathbf{w} = \mathbf{0}$.</p>
+        <p>Inilah alasan $\mathbf{0}$ tidak disebut vektor eigen: $L(\mathbf{0}) = \lambda\mathbf{0}$ untuk <em>semua</em> $\lambda$, jadi "nilai eigen $\mathbf{0}$" tidak terdefinisi.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Vektor eigen untuk nilai eigen berbeda bebas linier (Modul, Korolari 6.3.12)</div>
+        <p>Jika $\mathbf{v}_1, \dots, \mathbf{v}_k$ vektor eigen $L$ dengan nilai eigen $\lambda_1, \dots, \lambda_k$ yang berbeda, maka $\set{\mathbf{v}_1, \dots, \mathbf{v}_k}$ bebas linier. Akibatnya, jumlah $V_{\lambda_1} + \cdots + V_{\lambda_k}$ langsung.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Induksi pada $k$. Untuk $k = 1$, $\mathbf{v}_1 \ne \mathbf{0}$. Misalkan benar untuk $k - 1$ dan $\sum_{i=1}^{k}c_i\mathbf{v}_i = \mathbf{0}$.</p>
+        <ol>
+          <li>Terapkan $L - \lambda_kI$: karena $(L - \lambda_kI)\mathbf{v}_i = (\lambda_i - \lambda_k)\mathbf{v}_i$, diperoleh $\sum_{i=1}^{k-1}c_i(\lambda_i - \lambda_k)\mathbf{v}_i = \mathbf{0}$.</li>
+          <li>Menurut hipotesis induksi, $c_i(\lambda_i - \lambda_k) = 0$, dan karena $\lambda_i \ne \lambda_k$, $c_i = 0$ untuk $i \lt k$.</li>
+          <li>Tersisa $c_k\mathbf{v}_k = \mathbf{0}$ dengan $\mathbf{v}_k \ne \mathbf{0}$, jadi $c_k = 0$.</li>
+        </ol>
+        <p><span class="cek">[CEK: bukti di sumber berargumen bahwa jumlah ruang eigen langsung karena ruang-ruang eigen "berpotongan secara trivial" (Teorema 6.3.11). Irisan berpasangan yang trivial tidak cukup untuk jumlah langsung bila ada tiga subruang atau lebih (lihat juga topik Jumlah Langsung, Produk, dan Proyeksi). Bukti induksi di atas ditulis oleh Claude.]</span></p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Invarian similaritas (Modul, Teorema 6.3.13)</div>
+        <p>Operator yang similar di $\mathcal{L}(V)$ punya nilai eigen yang sama, dan ruang eigen yang bersesuaian isomorfik (jadi kerangkapan geometrisnya sama). Hasil ini tidak memerlukan dimensi hingga.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $M = T^{-1}LT$ dengan $T$ invertibel. Jika $M\mathbf{v} = \lambda\mathbf{v}$, $\mathbf{v} \ne \mathbf{0}$, maka $L(T\mathbf{v}) = TM\mathbf{v} = \lambda(T\mathbf{v})$ dengan $T\mathbf{v} \ne \mathbf{0}$. Sebaliknya, jika $L\mathbf{w} = \lambda\mathbf{w}$, maka $M(T^{-1}\mathbf{w}) = \lambda T^{-1}\mathbf{w}$. Jadi $T$ memetakan $V_\lambda(M)$ ke $V_\lambda(L)$ dan $T^{-1}$ sebaliknya; pembatasan $T$ adalah isomorfisma $V_\lambda(M) \to V_\lambda(L)$.</p>
+        <p>Ruang eigennya isomorfik, tetapi umumnya bukan subruang yang sama.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Nilai eigen = akar polinomial minimal (Modul, Teorema 6.3.14)</div>
+        <p>Jika $V \cong F^n$ dan $L \in \mathcal{L}(V)$, akar-akar polinomial minimal $L$ di $F$ tepat nilai-nilai eigen $L$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Akar ⇒ nilai eigen.</strong> Misalkan $q = m_L$ dan $q(c) = 0$, jadi $q(t) = (t - c)p(t)$ dengan $\deg p \lt \deg q$. Jika $\ker(L - cI) = \set{\mathbf{0}}$, maka $L - cI$ injektif, jadi (dimensi hingga) surjektif. Untuk setiap $\mathbf{u} \in V$ tulis $\mathbf{u} = (L - cI)\mathbf{v}$; maka $p(L)\mathbf{u} = p(L)(L - cI)\mathbf{v} = q(L)\mathbf{v} = \mathbf{0}$. Jadi $p(L) = O$ dengan $\deg p \lt \deg q$, kontradiksi.</p>
+        <p><strong>Nilai eigen ⇒ akar.</strong> Jika $L\mathbf{v} = \lambda\mathbf{v}$, $\mathbf{v} \ne \mathbf{0}$, maka $L^k\mathbf{v} = \lambda^k\mathbf{v}$, sehingga $\mathbf{0} = q(L)\mathbf{v} = q(\lambda)\mathbf{v}$. Jadi $q(\lambda) = 0$.</p>
+        <p>(Bagian kedua di sini ditulis lebih langsung daripada di sumber, yang memfaktorkan $q$ atas $F$ "jika perlu"; argumen $q(L)\mathbf{v} = q(\lambda)\mathbf{v}$ tidak memerlukan $q$ terurai.)</p>
+      </details>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menyebut $\mathbf{0}$ vektor eigen.</strong> Nilai eigen boleh $0$, tetapi vektor eigen harus tak nol.</li>
+        <li><strong>Mencari nilai eigen di luar lapangan.</strong> Rotasi $90^\circ$ di $\R^2$ tidak punya nilai eigen real (Latihan 2), walaupun di $\C^2$ punya.</li>
+        <li><strong>Menganggap ruang eigen selalu berdimensi $1$.</strong> Untuk $2I$, ruang eigennya seluruh ruang.</li>
+        <li><strong>Mengira nilai eigen sama berarti similar.</strong> $\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix}$ dan $I$ sama-sama hanya bernilai eigen $1$, tetapi kerangkapan geometrisnya $1$ dan $2$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Tentukan nilai eigen dan ruang eigen $A = \begin{pmatrix} 4 &amp; 2 \\ 1 &amp; 3 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$\det(A - \lambda I) = (4 - \lambda)(3 - \lambda) - 2 = \lambda^2 - 7\lambda + 10 = (\lambda - 5)(\lambda - 2)$, jadi $\lambda_1 = 5$, $\lambda_2 = 2$.</li>
+            <li>$\lambda = 5$: $A - 5I = \begin{pmatrix} -1 &amp; 2 \\ 1 &amp; -2 \end{pmatrix}$, persamaan $-x + 2y = 0$, jadi $E_5 = \operatorname{span}\set{(2, 1)}$.</li>
+            <li>$\lambda = 2$: $A - 2I = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 1 \end{pmatrix}$, persamaan $x + y = 0$, jadi $E_2 = \operatorname{span}\set{(1, -1)}$.</li>
+          </ol>
+          <p>Geometrisnya, $A$ meregangkan arah $(2, 1)$ dengan faktor $5$ dan arah $(1, -1)$ dengan faktor $2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa rotasi $R = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}$ tidak punya nilai eigen di $\R$, lalu tentukan nilai eigen dan vektor eigennya di $\C$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\det(R - \lambda I) = \lambda^2 + 1$, tanpa akar real, jadi $\ker(R - \lambda I) = \set{\mathbf{0}}$ untuk semua $\lambda \in \R$ (Lemma 2). Secara geometris: rotasi $90^\circ$ tidak mempertahankan arah garis mana pun.</li>
+            <li>Di $\C$: $\lambda = \pm i$. Untuk $\lambda = i$: $-ix - y = 0$, jadi $y = -ix$ dan $\mathbf{v} = (1, -i)$. Cek: $R(1, -i) = (i, 1) = i(1, -i)$.</li>
+            <li>Untuk $\lambda = -i$: $\mathbf{v} = (1, i)$, karena $R(1, i) = (-i, 1) = -i(1, i)$.</li>
+          </ol>
+          <p>Polinomial minimalnya $t^2 + 1$ (Teorema 3): tanpa akar di $\R$, dua akar di $\C$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Misalkan $\mathbf{v}$ vektor eigen $L$ dengan nilai eigen $\lambda$. Tunjukkan $\mathbf{v}$ vektor eigen $L^3 - 2L$ dan tentukan nilai eigennya. Jika $L$ invertibel, apa nilai eigen $L^{-1}$ untuk $\mathbf{v}$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$L^k\mathbf{v} = \lambda^k\mathbf{v}$ (induksi: $L^{k}\mathbf{v} = L(\lambda^{k-1}\mathbf{v}) = \lambda^k\mathbf{v}$).</li>
+            <li>$(L^3 - 2L)\mathbf{v} = (\lambda^3 - 2\lambda)\mathbf{v}$, dan $\mathbf{v} \ne \mathbf{0}$, jadi $\mathbf{v}$ vektor eigen dengan nilai eigen $\lambda^3 - 2\lambda$.</li>
+            <li>Jika $L$ invertibel, $\lambda \ne 0$ (sebab $L\mathbf{v} = \mathbf{0}$ dengan $\mathbf{v} \ne \mathbf{0}$ mustahil). Terapkan $L^{-1}$ pada $L\mathbf{v} = \lambda\mathbf{v}$: $\mathbf{v} = \lambda L^{-1}\mathbf{v}$, jadi $L^{-1}\mathbf{v} = \lambda^{-1}\mathbf{v}$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        L\mathbf{v} = \lambda\mathbf{v},\ \mathbf{v} \ne \mathbf{0}, \qquad V_\lambda = \ker(L - \lambda I), \qquad \dim V_\lambda = \text{kerangkapan geometris}, \\
+        p(L)\mathbf{v} = p(\lambda)\mathbf{v}, \qquad V_\lambda \cap V_\mu = \set{\mathbf{0}}\ (\lambda \ne \mu), \qquad m_L(\lambda) = 0 \iff \lambda \text{ nilai eigen}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.3: sistem pegas–massa, Definisi 6.3.1, Contoh 6.3.2, Lemma 6.3.3, Contoh 6.3.4–6.3.5, Lemma 6.3.6, Definisi 6.3.7, Contoh 6.3.8, Lemma 6.3.9, Contoh 6.3.10, Teorema 6.3.11, Korolari 6.3.12, Teorema 6.3.13–6.3.14. Gambar 6.3.1 (proyeksi), 6.3.2 (geser), dan gambar pegas (eksternal) digambar ulang sebagai SVG; Gambar 6.3.3 tidak. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.3 (Latihan 1).</li>
+        <li>Bukti Korolari 6.3.12, nilai eigen sistem pegas, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

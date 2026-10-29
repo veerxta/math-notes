@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Faktorisasi Polinomial · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Faktorisasi Polinomial</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Algoritma pembagian berlaku di $F[t]$ untuk sembarang lapangan $F$: sisa pembagian berderajat lebih kecil dari pembagi.</li>
+        <li>$c$ akar $p(t)$ ⇔ $t - c$ faktor $p(t)$. Kerangkapan akar adalah pangkat terbesar $(t - c)^k$ yang membagi $p$.</li>
+        <li>$F$ tertutup secara aljabar jika setiap polinomial tak konstan punya akar di $F$; ekuivalen, setiap polinomial berderajat $n$ terurai menjadi $n$ faktor linier.</li>
+        <li>$\C$ tertutup secara aljabar (Teorema Dasar Aljabar), $\R$ dan $\mathbb{F}_p$ tidak.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Bab 6 mengkaji operator linier sebagai objek individual. Paul Halmos menyebut transformasi linier "objek yang benar-benar membuat aljabar linier menarik". Koordinat memberi aritmetika (untuk $V \cong F^n$, $\mathcal{L}(V)$ dan $M_n(F)$ adalah $F$-aljabar yang isomorfik), tetapi angka-angka di matriks bisa mengaburkan sifat geometrisnya: dari matriksnya, apakah sebuah operator rotasi, refleksi, atau proyeksi? Alat utamanya adalah subaljabar $F[L] \subseteq \mathcal{L}(V)$, yaitu semua polinomial dalam $L$. Karena itu bab ini dimulai dengan faktorisasi polinomial.</p>
+
+      <h3>Akar dan pembagian</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Akar polinomial (Modul, Definisi 6.1.1)</div>
+        <p><strong>Akar</strong> (root) atau <strong>nol</strong> (zero) dari $p(t) \in F[t]$ adalah $c \in F$ dengan $p(c) = 0$.</p>
+      </div>
+
+      <p>Pembagian di $F[t]$ memakai <strong>derajat</strong>: derajat polinomial tak nol adalah bilangan bulat tak negatif dan bersifat aditif, $\deg(pq) = \deg p + \deg q$. <strong>Algoritma pembagian</strong>: untuk $q \ne 0$ ada $h, r$ dengan $p = qh + r$ dan $r = 0$ atau $\deg r \lt \deg q$. Caranya sama seperti di $\R[t]$; hanya aritmetika koefisiennya mengikuti lapangan $F$.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Pembagian di $\mathbb{F}_5[t]$ (Modul, Contoh 6.1.2)</div>
+        <p>Bagi $f(t) = 3t^2 + t - 2$ dengan $g(t) = 2t - 1$ di $\mathbb{F}_5[t]$.</p>
+        <ol>
+          <li>Invers $2$ di $\mathbb{F}_5$ adalah $3$ ($2 \cdot 3 = 6 \equiv 1$). Suku pertama hasil bagi: $\tfrac{3t^2}{2t} = 3 \cdot 3\,t = 9t \equiv 4t$.</li>
+          <li>$4t \cdot g(t) = 8t^2 - 4t \equiv 3t^2 + t$.</li>
+          <li>$f(t) - 4t\,g(t) = -2 \equiv 3$, berderajat $0 \lt 1$. Berhenti.</li>
+        </ol>
+        <p>Jadi di $\mathbb{F}_5[t]$: $3t^2 + t - 2 = (2t - 1)(4t) + 3$, yaitu hasil bagi $4t$ dan sisa $3$. (Cek: $(2t - 1)4t + 3 = 8t^2 - 4t + 3 \equiv 3t^2 + t + 3 \equiv 3t^2 + t - 2$.)</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Faktor dan kerangkapan (Modul, setelah Contoh 6.1.2)</div>
+        <p><strong>Faktor tak konstan</strong> $p(t)$ adalah $q(t)$ berderajat positif yang membagi $p(t)$ (sisa pembagiannya nol). $q$ faktor dengan <strong>kerangkapan</strong> (multiplicity) $k$ jika $k$ bilangan bulat positif terbesar dengan $q^k \mid p$. Jika $t - c$ faktor berkerangkapan $k$, maka $c$ <strong>akar berkerangkapan $k$</strong>: $p(t) = h(t)(t - c)^k$ dengan $h(c) \ne 0$. Akar dan faktor biasanya dihitung "dengan kerangkapan" (akar berkerangkapan $k$ dihitung $k$ kali).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Teorema faktor (Modul, §6.1)</div>
+        <p>Untuk sembarang lapangan $F$, $c \in F$ akar $p(t) \in F[t]$ jika dan hanya jika $t - c$ faktor $p(t)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Algoritma pembagian dengan pembagi $t - c$ memberi $p(t) = (t - c)h(t) + r$ dengan $r$ konstanta (derajatnya $\lt 1$). Substitusi $t = c$: $p(c) = r$. Jadi $p(c) = 0 \iff r = 0 \iff (t - c) \mid p(t)$. (Bukti ini ditulis oleh Claude; sumber menyebutnya sebagai akibat algoritma pembagian.)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Akar ganda (Modul, §6.1)</div>
+        <p>Atas $\R$, $p(t) = t^3 - t^2 - t + 1 = t^2(t - 1) - (t - 1) = (t - 1)^2(t + 1)$. Akar $1$ berkerangkapan $2$, akar $-1$ berkerangkapan $1$; dengan kerangkapan, ada tiga akar. Sebaliknya, $1 + t^2$ tidak punya akar real, jadi tidak punya faktor linier atas $\R$.</p>
+      </div>
+
+      <h3>Ketertutupan aljabar dan ketakteruraian</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Tertutup secara aljabar (Modul, Definisi 6.1.3)</div>
+        <p>Lapangan $F$ <strong>tertutup secara aljabar</strong> (algebraically closed) jika setiap polinomial berderajat $\ge 1$ di $F[t]$ punya akar di $F$. Ekuivalen: setiap polinomial berderajat $n \gt 0$ punya $n$ faktor linier di $F[t]$ (atau $n$ akar di $F$), dihitung dengan kerangkapan.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Tak tereduksi (Modul, Definisi 6.1.4)</div>
+        <p>Polinomial tak konstan $p(t) \in F[t]$ <strong>tak tereduksi</strong> (irreducible) atas $F$ jika tidak punya faktor tak konstan $q(t) \in F[t]$ dengan $\deg q \lt \deg p$. Yang tidak tak tereduksi disebut <strong>tereduksi</strong>.</p>
+        <ul>
+          <li>Polinomial berderajat $1$ selalu tak tereduksi.</li>
+          <li>Jika $F$ tertutup secara aljabar, polinomial tak tereduksi atas $F$ hanyalah yang berderajat $1$.</li>
+          <li>$t^2 + 1$ tak tereduksi di $\R[t]$, tetapi di $\C[t]$: $t^2 + 1 = (t - i)(t + i)$.</li>
+        </ul>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Penutupan aljabar</div>
+        <ul>
+          <li><strong>Teorema Dasar Aljabar</strong>: $\C$ tertutup secara aljabar; $\R$ tidak.</li>
+          <li>$\C$ adalah <strong>penutupan aljabar</strong> (algebraic closure) $\R$: $\R \subseteq \C$, $\C$ tertutup secara aljabar, dan tidak ada sublapangan sejati $\C$ yang memuat $\R$ dan tertutup secara aljabar. Ditulis $\C = \overline{\R}$.</li>
+          <li>Setiap lapangan $F$ punya penutupan aljabar $\overline{F}$, dan penutupan aljabar selalu tak hingga. Khususnya $\mathbb{F}_p$ ($p$ prima) tidak tertutup secara aljabar.</li>
+          <li>Memfaktorkan polinomial umumnya sulit; dengan memperluas lapangan, polinomial berderajat $n$ dijamin punya $n$ faktor linier. Bab ini membatasi diri pada polinomial berderajat rendah atau yang akarnya mudah dicari.</li>
+        </ul>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>"Tanpa akar berarti tak tereduksi" untuk derajat $\ge 4$.</strong> Ini hanya benar untuk derajat $2$ dan $3$. Contoh: $(t^2 + 1)^2$ tidak punya akar real tetapi tereduksi atas $\R$.</li>
+        <li><strong>Membagi koefisien seperti di $\Q$ ketika bekerja di $\mathbb{F}_p$.</strong> "$\tfrac{3}{2}$" di $\mathbb{F}_5$ berarti $3 \cdot 2^{-1} = 3 \cdot 3 = 4$.</li>
+        <li><strong>Ketakteruraian tidak bergantung lapangan.</strong> Salah: $t^2 + 1$ tak tereduksi atas $\R$ dan $\mathbb{F}_3$, tetapi tereduksi atas $\C$ dan $\mathbb{F}_5$ (Latihan 2).</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Faktorkan $p(x) = x^3 - 6x^2 + 11x - 6 \in \R[x]$ atas $\R$ dan $\C$, lalu kaitkan dengan faktorisasi operator $p(T)$ untuk operator linier $T$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Coba akar rasional: $p(1) = 1 - 6 + 11 - 6 = 0$, jadi $(x - 1)$ faktor (teorema faktor).</li>
+            <li>Bagi: $p(x) = (x - 1)(x^2 - 5x + 6) = (x - 1)(x - 2)(x - 3)$.</li>
+            <li>Semua akar real, jadi faktorisasi atas $\R$ dan $\C$ sama.</li>
+            <li>Untuk operator $T \colon V \to V$: $p(T) = (T - I)(T - 2I)(T - 3I)$, dan urutan faktornya bebas karena polinomial dalam $T$ saling komutatif.</li>
+          </ol>
+          <p>Jika $p(T) = 0$ dan faktor liniernya berbeda, maka $V = \ker(T - I) \oplus \ker(T - 2I) \oplus \ker(T - 3I)$ (dekomposisi primer, Bab 7). Inilah dasar diagonalisasi.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Apakah $t^2 + 1$ tak tereduksi atas $\mathbb{F}_3$? Atas $\mathbb{F}_5$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Polinomial berderajat $2$ tereduksi tepat jika punya faktor linier, yaitu punya akar (teorema faktor).</li>
+            <li>Di $\mathbb{F}_3$: $0^2 + 1 = 1$, $1^2 + 1 = 2$, $2^2 + 1 = 5 \equiv 2$. Tidak ada akar, jadi <strong>tak tereduksi</strong>.</li>
+            <li>Di $\mathbb{F}_5$: $2^2 + 1 = 5 \equiv 0$, jadi $t = 2$ akar. Pembagian memberi $t^2 + 1 = (t - 2)(t - 3)$, karena $(t - 2)(t - 3) = t^2 - 5t + 6 \equiv t^2 + 1$. <strong>Tereduksi</strong>.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan kerangkapan akar $1$ dari $p(t) = t^4 - 2t^3 + 2t - 1$ atas $\R$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$p(1) = 1 - 2 + 2 - 1 = 0$, jadi $p = (t - 1)q_1$ dengan $q_1 = t^3 - t^2 - t + 1$.</li>
+            <li>$q_1(1) = 0$; dari Contoh 2, $q_1 = (t - 1)^2(t + 1)$.</li>
+            <li>Jadi $p(t) = (t - 1)^3(t + 1)$, dan $t + 1$ tidak bernilai nol di $t = 1$.</li>
+          </ol>
+          <p>Kerangkapan akar $1$ adalah $3$. (Cek: $(t^3 - 3t^2 + 3t - 1)(t + 1) = t^4 - 2t^3 + 2t - 1$.)</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \deg(pq) = \deg p + \deg q, \qquad p = qh + r,\ \deg r \lt \deg q, \\
+        p(c) = 0 \iff (t - c) \mid p(t), \qquad p(t) = h(t)(t - c)^k,\ h(c) \ne 0, \qquad t^2 + 1 = (t - i)(t + i)
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, pengantar dan §6.1: Definisi 6.1.1, Contoh 6.1.2, faktor dan kerangkapan, teorema faktor, Definisi 6.1.3–6.1.4, penutupan aljabar. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.1 (Latihan 1).</li>
+        <li>Bukti teorema faktor, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

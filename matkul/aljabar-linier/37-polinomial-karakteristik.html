@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Polinomial Karakteristik · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Polinomial Karakteristik</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Untuk $\dim V = n$, $p(t) = \det(L - tI)$ polinomial berderajat $n$; akarnya di $F$ tepat nilai eigen $L$.</li>
+        <li><strong>Cayley–Hamilton</strong>: $p(L) = O$. Akibatnya polinomial minimal membagi polinomial karakteristik.</li>
+        <li>Untuk mencari $m_L$: faktorkan $p$, lalu uji pembagi monik yang memuat semua faktor prima $p$.</li>
+        <li>Kerangkapan aljabar (sebagai akar $p$) bisa lebih besar dari kerangkapan geometris ($\dim V_\lambda$).</li>
+        <li>Polinomial karakteristik invarian similaritas, tetapi tidak menentukan kelas similaritas.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Nilai eigen ada untuk operator apa pun, tetapi polinomial minimal hanya dijamin ada di dimensi hingga. Di dimensi hingga, determinan memberi jalan langsung ke keduanya.</p>
+
+      <h3>Definisi</h3>
+
+      <div class="box lemma">
+        <div class="box-title">Derajat $n$ (Modul, Lemma 6.4.1)</div>
+        <p>Jika $V \cong F^n$, $L \in \mathcal{L}(V)$, dan $t$ peubah, maka $\det(L - tI)$ polinomial berderajat $n$ di $F[t]$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk $A = [a_{ij}] = [L]_B$, $\det L = \det A$ dan $\det(A - tI_n) = \sum_{\sigma \in S_n}\operatorname{sgn}(\sigma)\prod_i (A - tI_n)_{i\sigma(i)}$. Suku untuk $\sigma = \mathrm{id}$ adalah $(a_{11} - t)\cdots(a_{nn} - t)$, berderajat tepat $n$ dengan koefisien utama $(-1)^n$. Setiap suku lain memuat paling banyak $n - 2$ entri diagonal (permutasi bukan identitas memindahkan sedikitnya dua indeks), jadi berderajat $\le n - 2$. Jadi derajatnya $n$.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Polinomial dan persamaan karakteristik (Modul, Definisi 6.4.2)</div>
+        <p>Untuk $V \cong F^n$ dan $L \in \mathcal{L}(V)$, <strong>polinomial karakteristik</strong> $L$ adalah $p(t) = \det(L - tI)$, dan <strong>persamaan karakteristik</strong>nya $p(t) = 0$.</p>
+        <p>Banyak buku memakai $\det(tI - L)$ (bentuk monik); keduanya berbeda faktor $(-1)^n$ dan punya akar yang sama. Peubahnya juga sering ditulis $\lambda$: $\det(L - \lambda I)$ atau $\det(\lambda I - L)$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Nilai eigen = akar (Modul, Teorema 6.4.3)</div>
+        <p>Jika $V \cong F^n$, nilai eigen $L$ tepat akar-akar polinomial karakteristiknya di $F$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\lambda$ nilai eigen ⇔ $\ker(L - \lambda I) \ne \set{\mathbf{0}}$ (topik Nilai Eigen) ⇔ $L - \lambda I$ tidak invertibel ⇔ $\det(L - \lambda I) = 0$ (dimensi hingga).</p>
+      </details>
+
+      <h3>Teorema Cayley–Hamilton</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Cayley–Hamilton (Modul, Teorema 6.4.4)</div>
+        <p>Jika $V$ berdimensi hingga, $L \in \mathcal{L}(V)$, dan $p(t) = \det(L - tI)$, maka $p(L) = O$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Cukup buktikan $p(A) = O$ untuk $A = [L]_B$, karena $[p(L)]_B = p(A)$ (topik Polinomial Minimal).</p>
+        <ol>
+          <li><strong>Identitas adjugat.</strong> Untuk setiap matriks persegi $M$ atas ring komutatif berlaku $\operatorname{adj}(M)\,M = \det(M)\,I_n$. Terapkan pada $M = A - tI_n$ (entri di $F[t]$): $\operatorname{adj}(A - tI_n)(A - tI_n) = p(t)I_n$.</li>
+          <li><strong>Uraikan menurut pangkat $t$.</strong> Entri adjugat berderajat $\le n - 1$, jadi $\operatorname{adj}(A - tI_n) = \sum_{k=0}^{n-1}B_kt^k$ dengan $B_k \in M_n(F)$. Tulis $p(t) = \sum_{k=0}^n c_kt^k$. Membandingkan koefisien $t^k$ di kedua ruas:
+            $$B_0A = c_0I, \qquad B_kA - B_{k-1} = c_kI \ (1 \le k \le n - 1), \qquad -B_{n-1} = c_nI.$$</li>
+          <li><strong>Teleskop.</strong> Kalikan persamaan ke-$k$ dari kanan dengan $A^k$ dan jumlahkan:
+            $$\sum_{k=0}^{n}c_kA^k = B_0A + \sum_{k=1}^{n-1}(B_kA^{k+1} - B_{k-1}A^k) - B_{n-1}A^n = O,$$
+            karena semua suku saling menghapus. Jadi $p(A) = O$.</li>
+        </ol>
+        <p><span class="cek">[CEK: sumber menyelesaikan bukti dengan "substitusi formal $t \mapsto A$" langsung ke $\operatorname{adj}(A - tI_n)(A - tI_n)$ dan menulis $\operatorname{adj}(A - AI_n)(A - AI_n) = p(A)I_n$. Ungkapan $\operatorname{adj}(A - AI_n)$ tidak bermakna, dan substitusi matriks ke dalam hasil kali polinomial bermatriks tidak otomatis sah karena koefisiennya tidak komutatif. Gagasannya benar, tetapi perlu dijalankan seperti di atas: uraikan adjugat menurut pangkat $t$, lalu bandingkan koefisien.]</span></p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Polinomial minimal membagi polinomial karakteristik (Modul, Korolari 6.4.5)</div>
+        <p>Jika $V \cong F^n$ dan $L \in \mathcal{L}(V)$, maka $m_L(t) \mid p(t)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$p(L) = O$ (Teorema 2), dan setiap polinomial yang meniadakan $L$ habis dibagi $m_L$ (topik Polinomial Minimal). Dalam bahasa ideal: annihilator $I = \set{f : f(L) = O}$ ideal tak nol di $F[t]$; karena $F[t]$ daerah ideal utama, $I = \langle m_L \rangle$, dan $p \in I$.</p>
+        <p>Karena $m_L$ dan $p$ punya akar yang sama di $F$ (keduanya tepat nilai eigen), $m_L$ memuat setiap faktor linier $p$ sedikitnya sekali.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Mencari polinomial minimal (Modul, Contoh 6.4.6)</div>
+        <p>$L(x, y, z) = (x,\ y + z,\ z)$ bermatriks $\begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$, jadi $p(t) = (1 - t)^3$.</p>
+        <ol>
+          <li>Calon $m_L$ (pembagi monik $p$): $t - 1$, $(t - 1)^2$, $(t - 1)^3$.</li>
+          <li>$(L - I)(x, y, z) = (0, z, 0) \ne \mathbf{0}$ (misalnya untuk $z = 1$), jadi $m_L \ne t - 1$.</li>
+          <li>$(L - I)^2(x, y, z) = (L - I)(0, z, 0) = (0, 0, 0)$.</li>
+        </ol>
+        <p>Jadi $m_L(t) = (t - 1)^2$. (Contoh ini tertulis dua kali di sumber.)</p>
+      </div>
+
+      <div class="box peringatan">
+        <div class="box-title">Polinomial karakteristik tidak menentukan kelas similaritas</div>
+        <p>Polinomial karakteristik invarian similaritas ($\det(P^{-1}AP - tI) = \det(P^{-1}(A - tI)P) = \det(A - tI)$), tetapi kelas berbeda bisa berbagi polinomial yang sama. $L_1(x, y) = (2x, 2y)$ dan $L_2(x, y) = (2x + y, 2y)$ sama-sama berpolinomial karakteristik $(2 - t)^2$, tetapi $m_{L_1} = t - 2$ sedangkan $m_{L_2} = (t - 2)^2$. Jadi keduanya tidak similar.</p>
+      </div>
+
+      <h3>Dua kerangkapan</h3>
+      <p>Untuk $L \in \mathcal{L}(V)$, $\mathcal{Z}(L)$ menyatakan himpunan akar polinomial karakteristik $L$. Misalnya, jika $L \in \mathcal{L}(\R^2)$ berpolinomial karakteristik $t^2 + 1$, sumber menulis $\mathcal{Z}(L) = \set{i, -i} \subseteq \C$.</p>
+      <p><span class="cek">[CEK: sumber mendefinisikan $\mathcal{Z}(L)$ sebagai himpunan akar "di $F$", tetapi contohnya ($F = \R$) memberi akar di $\C$. Dengan definisi harfiah, $\mathcal{Z}(L) = \varnothing$ untuk contoh itu. Tampaknya yang dimaksud akar di penutupan aljabar $\overline{F}$; perlu dipastikan konvensi mana yang dipakai.]</span></p>
+
+      <div class="box definisi">
+        <div class="box-title">Kerangkapan aljabar (Modul, Definisi 6.4.7)</div>
+        <p><strong>Kerangkapan aljabar</strong> (algebraic multiplicity) $\lambda \in \mathcal{Z}(L)$ adalah kerangkapan $\lambda$ sebagai akar polinomial karakteristik $L$. Jika $F$ tertutup secara aljabar, setiap $L$ pada $V \cong F^n$ punya tepat $n$ nilai eigen dihitung dengan kerangkapan aljabar (Lemma 1).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Kerangkapan berbeda (Modul, Contoh 6.4.8)</div>
+        <p>$L(x, y, z) = (x + y + z,\ y + z,\ z)$, matriks $\begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$. Matriks segitiga, jadi $p(t) = (1 - t)^3$: nilai eigen $1$ berkerangkapan aljabar $3$.</p>
+        <p>$L - I = \begin{pmatrix} 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$ memberi $y + z = 0$, $z = 0$, jadi $V_1 = \set{(x, 0, 0)}$ berdimensi $1$: kerangkapan geometris $1 \lt 3$.</p>
+      </div>
+
+      <h3>Menghitung nilai eigen matriks</h3>
+      <p>Untuk $A \in M_n(F)$: $A\mathbf{x} = \lambda\mathbf{x}$ dengan $\mathbf{x} \ne \mathbf{0}$ ⇔ sistem homogen $(\lambda I - A)\mathbf{x} = \mathbf{0}$ punya solusi tak trivial ⇔ $\det(\lambda I - A) = 0$. Jadi: (1) selesaikan persamaan karakteristik untuk $\lambda$; (2) untuk tiap $\lambda$, cari ruang nol $\lambda I - A$.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Nilai eigen matriks $2 \times 2$ (Modul, Contoh 6.4.9)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; -1 \\ 2 &amp; -2 \end{pmatrix}$: $\det(\lambda I - A) = (\lambda - 1)(\lambda + 2) + 2 = \lambda^2 + \lambda = \lambda(\lambda + 1)$.</p>
+        <ul>
+          <li>$\lambda = 0$: $A\mathbf{x} = \mathbf{0}$ memberi $x_1 = x_2$, vektor eigen $(1, 1)$.</li>
+          <li>$\lambda = -1$: $\begin{pmatrix} -2 &amp; 1 \\ -2 &amp; 1 \end{pmatrix}\mathbf{x} = \mathbf{0}$ memberi $x_2 = 2x_1$, vektor eigen $(1, 2)$.</li>
+        </ul>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Matriks kompanion</div>
+        <p><strong>Matriks kompanion</strong> (companion matrix) polinomial monik $p(x)$ berderajat $n$ adalah matriks $n \times n$ yang dibangun dari koefisien $p$ dan berpolinomial karakteristik $p$. Menurut sumber ada empat bentuk (kiri, kanan, atas, bawah), semuanya similar satu sama lain, sehingga polinomial karakteristik, trace, dan determinannya sama. Sumber meminta latihan untuk $p(x) = x^3 - 9x^2 + 26x - 24$ (lihat Latihan 2). Similaritas dibahas di topik Ekuivalensi dan Similaritas.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>"Bukti" Cayley–Hamilton $p(A) = \det(A - AI) = \det O = 0$.</strong> Salah: $p(A)$ adalah matriks, sedangkan $\det(\cdot)$ skalar; substitusi tidak boleh dilakukan di dalam determinan.</li>
+        <li><strong>Mengira $m_L = p$ selalu.</strong> $m_L$ hanya pembagi $p$ (Contoh 1: $p = (1 - t)^3$, $m_L = (t - 1)^2$).</li>
+        <li><strong>Membuang faktor saat mencari $m_L$.</strong> Setiap faktor linier $p$ muncul di $m_L$ sedikitnya sekali; yang mungkin berkurang hanya pangkatnya.</li>
+        <li><strong>Lupa tanda $(-1)^n$.</strong> $\det(L - tI)$ dan $\det(tI - L)$ berbeda tanda untuk $n$ ganjil; pakai bentuk monik $\det(tI - L)$ ketika membandingkan dengan $m_L$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Buktikan bahwa $A$ dan $A^T$ punya polinomial karakteristik yang sama. Apakah polinomial minimalnya juga sama?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Dengan $p_A(\lambda) = \det(\lambda I - A)$ dan $\det M = \det M^T$: $p_{A^T}(\lambda) = \det(\lambda I - A^T) = \det\bigl((\lambda I - A)^T\bigr) = \det(\lambda I - A) = p_A(\lambda)$. Jadi spektrumnya sama, termasuk kerangkapan aljabar.</li>
+            <li>Polinomial minimal: untuk setiap polinomial $p$, $p(A)^T = p(A^T)$, karena transpos linier dan $(A^k)^T = (A^T)^k$.</li>
+            <li>Maka $p(A) = O \iff p(A)^T = O \iff p(A^T) = O$: annihilator $A$ dan $A^T$ sama, sehingga generator moniknya sama, $m_A = m_{A^T}$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tulis sebuah matriks kompanion $C$ untuk $p(x) = x^3 - 9x^2 + 26x - 24$, lalu periksa polinomial karakteristik, trace, dan determinannya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Untuk $p(x) = x^3 + a_2x^2 + a_1x + a_0$, salah satu bentuk (baris bawah) adalah $C = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ -a_0 &amp; -a_1 &amp; -a_2 \end{pmatrix} = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 24 &amp; -26 &amp; 9 \end{pmatrix}$.</li>
+            <li>Ekspansi kofaktor baris pertama: $\det(xI - C) = \det\begin{pmatrix} x &amp; -1 &amp; 0 \\ 0 &amp; x &amp; -1 \\ -24 &amp; 26 &amp; x - 9 \end{pmatrix} = x\bigl(x(x - 9) + 26\bigr) + 1\bigl(0 \cdot (x - 9) - 24\bigr) = x^3 - 9x^2 + 26x - 24$.</li>
+            <li>$\operatorname{tr}C = 9$ dan $\det C = -1 \cdot (0 \cdot 9 - 1 \cdot 24) = 24$.</li>
+            <li>Cek dengan akar: $p(x) = (x - 2)(x - 3)(x - 4)$, jumlah akar $9 = \operatorname{tr}C$ dan hasil kali akar $24 = \det C$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Gunakan Cayley–Hamilton untuk menghitung $A^{-1}$ dengan $A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\det(tI - A) = (t - 2)(t - 3) - 1 = t^2 - 5t + 5$.</li>
+            <li>Cayley–Hamilton: $A^2 - 5A + 5I = O$, jadi $A(5I - A) = 5I$.</li>
+            <li>Maka $A^{-1} = \tfrac{1}{5}(5I - A) = \tfrac{1}{5}\begin{pmatrix} 3 &amp; -1 \\ -1 &amp; 2 \end{pmatrix}$.</li>
+            <li>Cek: $A \cdot \tfrac{1}{5}\begin{pmatrix} 3 &amp; -1 \\ -1 &amp; 2 \end{pmatrix} = \tfrac{1}{5}\begin{pmatrix} 5 &amp; 0 \\ 0 &amp; 5 \end{pmatrix} = I$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        p(t) = \det(L - tI), \ \deg p = n, \qquad p(\lambda) = 0 \iff \lambda \text{ nilai eigen}, \qquad p(L) = O, \qquad m_L \mid p, \\
+        1 \le \dim V_\lambda \le \text{kerangkapan aljabar } \lambda, \qquad \operatorname{tr}A = \textstyle\sum\lambda_i, \quad \det A = \prod\lambda_i \ (\text{atas } \overline{F})
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.4: Lemma 6.4.1, Definisi 6.4.2, Teorema 6.4.3–6.4.4, Korolari 6.4.5, Contoh 6.4.6, $L_1$ dan $L_2$, $\mathcal{Z}(L)$, Definisi 6.4.7, Contoh 6.4.8–6.4.9, matriks kompanion. Bukti Lemma 6.4.1 sedikit dipertajam: suku selain identitas memuat paling banyak $n - 2$ entri diagonal (sumber menulis $n - 1$, yang juga benar dan cukup). File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.4 (Latihan 1).</li>
+        <li>Bukti Cayley–Hamilton dengan perbandingan koefisien, Latihan 2–3, baris "$\dim V_\lambda \le$ kerangkapan aljabar" pada ringkasan (dibuktikan di topik Diagonalisasi), rumus trace/determinan (dari membandingkan koefisien $t^{n-1}$ dan konstanta $\det(tI - A) = \prod(t - \lambda_i)$ atas $\overline{F}$), serta bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

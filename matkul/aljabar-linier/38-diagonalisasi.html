@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Diagonalisasi · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Diagonalisasi</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>$L$ dapat didiagonalkan ⇔ ada basis vektor eigen ⇔ jumlah kerangkapan geometris $= n$ ⇔ $V = \bigoplus_\lambda V_\lambda$.</li>
+        <li>Selalu $\dim V_\lambda \le$ kerangkapan aljabar $\lambda$; diagonalisasi gagal bila ada nilai eigen yang "kekurangan" vektor eigen.</li>
+        <li>Jika semua nilai eigen di $F$: $L$ dapat didiagonalkan ⇔ polinomial minimal hasil kali faktor linier <strong>berbeda</strong> ⇔ $V = \ker(L - \lambda I) \oplus \operatorname{Im}(L - \lambda I)$ untuk setiap $\lambda$.</li>
+        <li>Untuk matriks: $Q^{-1}AQ = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ dengan kolom $Q$ vektor eigen.</li>
+        <li>$n$ nilai eigen berbeda di $F$ ⇒ dapat didiagonalkan (cukup, tidak perlu).</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Refleksi dan proyeksi punya basis vektor eigen, sehingga di dimensi hingga punya representasi diagonal. Operator yang dapat didiagonalkan hanya "mengalikan dengan skalar" sepanjang setiap vektor basis.</p>
+
+      <h3>Kriteria diagonalisasi</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Dapat didiagonalkan (Modul, Definisi 6.5.1)</div>
+        <p>Untuk $V \cong F^n$, $L \in \mathcal{L}(V)$ <strong>dapat didiagonalkan</strong> (atas $F$, atau $F$-dapat didiagonalkan) jika $L$ punya representasi matriks $\operatorname{diag}(a_1, \dots, a_n)$.</p>
+        <p>Contoh: $L(x, y) = (-y, x)$ tidak $\R$-dapat didiagonalkan (tidak punya nilai eigen real), tetapi aturan yang sama pada $\C^2$ $\C$-dapat didiagonalkan (nilai eigen $\pm i$). Sifat ini bergantung pada lapangan.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Empat kriteria setara (Modul, Teorema 6.5.2)</div>
+        <p>Untuk $V \cong F^n$ dan $L \in \mathcal{L}(V)$, pernyataan berikut ekuivalen:</p>
+        <ol>
+          <li>$L$ dapat didiagonalkan atas $F$;</li>
+          <li>$V$ punya basis vektor eigen $L$;</li>
+          <li>jumlah kerangkapan geometris semua nilai eigen $L$ adalah $n$;</li>
+          <li>$V$ jumlah langsung semua ruang eigen $L$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(1) ⇔ (2).</strong> $[L]_B = \operatorname{diag}(a_1, \dots, a_n)$ berarti tepat $L\mathbf{b}_i = a_i\mathbf{b}_i$ untuk setiap $\mathbf{b}_i \in B$.</p>
+        <p><strong>(2) ⇒ (3).</strong> Misalkan $B$ basis vektor eigen dan $B_\lambda = B \cap V_\lambda$.</p>
+        <ol>
+          <li>$B_\lambda$ basis $V_\lambda$: bebas linier sebagai subhimpunan $B$. Untuk merentang, tulis $\mathbf{v} \in V_\lambda$ sebagai $\sum_{\mathbf{b}}c_{\mathbf{b}}\mathbf{b}$ dengan $L\mathbf{b} = \mu_{\mathbf{b}}\mathbf{b}$. Dari $L\mathbf{v} = \lambda\mathbf{v}$: $\sum c_{\mathbf{b}}(\mu_{\mathbf{b}} - \lambda)\mathbf{b} = \mathbf{0}$, jadi $c_{\mathbf{b}} = 0$ bila $\mu_{\mathbf{b}} \ne \lambda$. Maka $\mathbf{v} \in \operatorname{span}B_\lambda$.</li>
+          <li>Himpunan $B_\lambda$ mempartisi $B$: setiap $\mathbf{b}$ punya tepat satu nilai eigen (topik Nilai Eigen).</li>
+          <li>Jadi $n = \abs{B} = \sum_\lambda\abs{B_\lambda} = \sum_\lambda\dim V_\lambda$.</li>
+        </ol>
+        <p><strong>(3) ⇒ (4).</strong> Jumlah ruang eigen selalu langsung, karena vektor eigen untuk nilai eigen berbeda bebas linier (topik Nilai Eigen), sehingga gabungan basis-basis $V_\lambda$ bebas linier. Gabungan itu berisi $n$ vektor, jadi basis $V$, dan $\bigoplus_\lambda V_\lambda = V$.</p>
+        <p><strong>(4) ⇒ (2).</strong> Gabungan basis-basis $V_\lambda$ adalah basis $V$ (karena jumlahnya langsung dan sama dengan $V$), dan semua anggotanya vektor eigen.</p>
+      </details>
+
+      <div class="box proposisi">
+        <div class="box-title">Kerangkapan geometris ≤ kerangkapan aljabar</div>
+        <p>Untuk nilai eigen $\lambda$ dari $L$ pada $V \cong F^n$: $1 \le \dim V_\lambda \le$ kerangkapan aljabar $\lambda$. Akibatnya, jika polinomial karakteristik terurai atas $F$, $L$ dapat didiagonalkan ⇔ kedua kerangkapan sama untuk setiap nilai eigen.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $k = \dim V_\lambda \ge 1$. Perluas basis $V_\lambda$ menjadi basis $B$ dari $V$. Karena $L$ mengalikan $k$ vektor pertama dengan $\lambda$, $[L]_B = \begin{pmatrix} \lambda I_k &amp; X \\ O &amp; C \end{pmatrix}$, sehingga $\det(L - tI) = (\lambda - t)^k\det(C - tI)$. Jadi $(t - \lambda)^k$ membagi polinomial karakteristik.</p>
+        <p>Jika polinomial karakteristik terurai, jumlah kerangkapan aljabar $n$; jumlah kerangkapan geometris $n$ (Teorema 1) tepat jika tiap pasangan sama. (Proposisi dan bukti ini ditulis oleh Claude; sumber memakainya tanpa menyatakannya, misalnya di Latihan 1.)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks semua-satu (Modul, Contoh 6.5.3)</div>
+        <p>$L = \begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 \end{pmatrix}$ ber-rank $1$, jadi $\dim\ker L = 2$: $\ker L$ adalah bidang $x + y + z = 0$ dengan basis $B_0 = \set{(1, 0, -1), (1, -1, 0)}$. Citra $L$ direntang $(1, 1, 1)$, dan $L(1, 1, 1) = (3, 3, 3)$, jadi $B_3 = \set{(1, 1, 1)}$. $B = B_0 \cup B_3$ basis vektor eigen, dan terhadap $B$:</p>
+        <p>$$[L]_B = \operatorname{diag}(0, 0, 3).$$</p>
+      </div>
+
+      <h3>Kriteria polinomial minimal</h3>
+      <p>Subruang $L$-invarian $W$ tidak mencegah vektor dari luar $W$ dipetakan ke dalam $W$. Misalnya untuk $L$ bermatriks $\begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$ (topik Polinomial Karakteristik), $V_1 = \operatorname{span}\set{(1, 0, 0)}$, tetapi $(L - I)(0, 1, 0) = (1, 0, 0) \in V_1$: $L - I$ memetakan vektor di luar ruang eigen <em>ke dalam</em> ruang eigen. Untuk operator yang dapat didiagonalkan hal ini mustahil.</p>
+
+      <div class="box lemma">
+        <div class="box-title">Kernel dan citra saling komplemen (Modul, Lemma 6.5.4)</div>
+        <p>Misalkan $V \cong F^n$ dan $\lambda \in F$ nilai eigen $L$. Maka</p>
+        <p>$$\ker(L - \lambda I) \oplus (L - \lambda I)[V] = V$$</p>
+        <p>jika dan hanya jika $\lambda$ berkerangkapan $1$ sebagai akar polinomial minimal $L$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Teorema rank: $\dim\ker(L - \lambda I) + \dim(L - \lambda I)[V] = n$. Jadi jumlahnya sama dengan $V$ tepat jika irisannya trivial (dan tepat jika jumlahnya merentang $V$). Tulis $m_L(t) = (t - \lambda)^rh(t)$ dengan $r \ge 1$ dan $h(\lambda) \ne 0$.</p>
+        <ol>
+          <li><strong>Jika $r = 1$.</strong> $t - \lambda$ dan $h$ tidak punya faktor bersama, jadi ada $a, b \in F[t]$ dengan $a(t)(t - \lambda) + b(t)h(t) = 1$. Untuk $\mathbf{v} \in V$: $\mathbf{v} = (L - \lambda I)a(L)\mathbf{v} + b(L)h(L)\mathbf{v}$. Suku pertama di citra; suku kedua di kernel karena $(L - \lambda I)b(L)h(L)\mathbf{v} = b(L)m_L(L)\mathbf{v} = \mathbf{0}$. Jadi kernel dan citra merentang $V$.</li>
+          <li><strong>Jika $r \ge 2$.</strong> $(t - \lambda)^{r-1}h$ berderajat lebih kecil dari $m_L$, jadi tidak meniadakan $L$: ada $\mathbf{u}$ dengan $\mathbf{x} = (L - \lambda I)^{r-1}h(L)\mathbf{u} \ne \mathbf{0}$. Karena $r - 1 \ge 1$, $\mathbf{x} \in (L - \lambda I)[V]$, dan $(L - \lambda I)\mathbf{x} = m_L(L)\mathbf{u} = \mathbf{0}$, jadi $\mathbf{x} \in \ker(L - \lambda I)$. Irisannya tak trivial.</li>
+        </ol>
+        <p><span class="cek">[CEK: bukti di sumber hanya memuat arah (2) dan mengklaim tanpa bukti bahwa $(t - \lambda)^r \mid m_L$ "jika dan hanya jika" ada $\mathbf{v}$ dengan $(L - \lambda I)^{r-1}\mathbf{v} \ne \mathbf{0}$ dan $(L - \lambda I)^r\mathbf{v} = \mathbf{0}$; arah (1) tidak dibuktikan. Bukti lengkap di atas ditulis oleh Claude.]</span></p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Faktor linier berbeda ⇔ dekomposisi (Modul, Teorema 6.5.5)</div>
+        <p>Misalkan $V \cong F^n$ dan $\mathcal{Z}(L) \subseteq F$. Polinomial minimal $L$ adalah $\prod_{\lambda \in \mathcal{Z}(L)}(t - \lambda)$ jika dan hanya jika $\ker(L - \lambda I) \oplus (L - \lambda I)[V] = V$ untuk setiap $\lambda \in \mathcal{Z}(L)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Karena semua akar polinomial karakteristik di $F$ dan $m_L$ membaginya, $m_L = \prod_\lambda(t - \lambda)^{r_\lambda}$ dengan $r_\lambda \ge 1$. Polinomial ini sama dengan $\prod(t - \lambda)$ ⇔ setiap $r_\lambda = 1$ ⇔ (Lemma 1) dekomposisi berlaku untuk setiap $\lambda$.</p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Nilai eigen pada citra (Modul, Lemma 6.5.6 dan Korolari 6.5.7)</div>
+        <p>Misalkan $\mathcal{Z}(L) \subseteq F$ dan $\lambda$ berkerangkapan $1$ di $m_L$. Untuk $W = (L - \lambda I)[V]$ ($L$-invarian, topik Nilai Eigen):</p>
+        <ol>
+          <li>$\ker(L - \mu I) \subseteq W$ untuk setiap $\mu \in \mathcal{Z}(L) \setminus \set{\lambda}$;</li>
+          <li>$\mathcal{Z}(L|_W) = \mathcal{Z}(L) \setminus \set{\lambda}$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Ambil $\mathbf{v}$ dengan $L\mathbf{v} = \mu\mathbf{v}$. Menurut Lemma 1, $\mathbf{v} = \mathbf{w} + \mathbf{v}_\lambda$ dengan $\mathbf{w} \in W$, $\mathbf{v}_\lambda \in V_\lambda$. Maka $L\mathbf{w} + \lambda\mathbf{v}_\lambda = \mu\mathbf{w} + \mu\mathbf{v}_\lambda$, jadi $(\lambda - \mu)\mathbf{v}_\lambda = \mu\mathbf{w} - L\mathbf{w} \in W$. Karena $V_\lambda \cap W = \set{\mathbf{0}}$ dan $\lambda \ne \mu$, $\mathbf{v}_\lambda = \mathbf{0}$ dan $\mathbf{v} = \mathbf{w} \in W$.</li>
+          <li>Dari (1), setiap $\mu \ne \lambda$ punya vektor eigen di $W$, jadi $\mu \in \mathcal{Z}(L|_W)$. Sebaliknya, vektor eigen $L|_W$ juga vektor eigen $L$, jadi nilai eigennya di $\mathcal{Z}(L)$, dan bukan $\lambda$ karena $W \cap V_\lambda = \set{\mathbf{0}}$.</li>
+        </ol>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Kriteria polinomial minimal (Modul, Teorema 6.5.8)</div>
+        <p>Misalkan $V \cong F^n$ dan $\mathcal{Z}(L) = \set{\lambda_1, \dots, \lambda_k} \subseteq F$. $L$ dapat didiagonalkan jika dan hanya jika</p>
+        <p>$$m_L(t) = \prod_{i=1}^{k}(t - \lambda_i).$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Jika $B$ basis vektor eigen, setiap $\mathbf{b} \in B$ ada di suatu $V_{\lambda_i}$, sehingga $\prod_i(L - \lambda_iI)\mathbf{b} = \mathbf{0}$ (faktor-faktornya komutatif, jadi faktor $L - \lambda_iI$ yang meniadakan $\mathbf{b}$ dapat dikerjakan lebih dulu). Jadi $\prod(t - \lambda_i)$ meniadakan $L$; $m_L$ membaginya dan memuat semua $\lambda_i$ sebagai akar, jadi sama.</p>
+        <p><strong>(⇐)</strong> Induksi pada $k$. Jika $k = 1$, $m_L = t - \lambda_1$, jadi $L = \lambda_1I$ dan setiap basis adalah basis vektor eigen. Jika $k \gt 1$, pilih $\mu \in \mathcal{Z}(L)$ dan $W = (L - \mu I)[V]$.</p>
+        <ol>
+          <li>Lemma 1: $V = V_\mu \oplus W$.</li>
+          <li>$m_L(L|_W) = O$, jadi polinomial minimal $L|_W$ membagi $m_L$; akarnya $\mathcal{Z}(L) \setminus \set{\mu}$ (Lemma 2). Jadi polinomial minimal $L|_W$ adalah $\prod_{\lambda_i \ne \mu}(t - \lambda_i)$, dengan $k - 1$ faktor linier berbeda.</li>
+          <li>Hipotesis induksi: $W$ punya basis vektor eigen $B_W$. Dengan basis $B_\mu$ untuk $V_\mu$, $B_W \cup B_\mu$ basis vektor eigen $V$ (karena jumlahnya langsung).</li>
+        </ol>
+        <p><span class="cek">[CEK: pada langkah induksi, sumber merujuk "Lema 6.5.4" untuk $\mathcal{Z}(L|_W) = \mathcal{Z}(L) \setminus \set{\mu}$; yang tepat Lema 6.5.6 (Lemma 2 di halaman ini), sedangkan Lema 6.5.4 dipakai untuk $V = V_\mu \oplus W$.]</span></p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Ringkasan</div>
+        <p>Untuk $V \cong F^n$ dengan $\mathcal{Z}(L) \subseteq F$, $L$ dapat didiagonalkan ⇔ $m_L$ hasil kali faktor linier berbeda ⇔ $V = \ker(L - \lambda I) \oplus (L - \lambda I)[V]$ untuk setiap nilai eigen $\lambda$. Lapangan skalar boleh diperluas agar memuat semua nilai eigen, tetapi kerangkapan akar $m_L$ tidak berubah (topik Polinomial Minimal).</p>
+      </div>
+
+      <h3>Diagonalisasi matriks</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Matriks similar dengan matriks diagonal (Modul, Teorema 6.5.9)</div>
+        <p>$A \in M_n(F)$ similar dengan matriks diagonal jika dan hanya jika vektor-vektor eigen $A$ merentang $F^n$. Tepatnya, jika $\mathbf{x}_1, \dots, \mathbf{x}_n$ basis vektor eigen dengan $A\mathbf{x}_i = \lambda_i\mathbf{x}_i$ dan $Q = [\mathbf{x}_1 \mid \cdots \mid \mathbf{x}_n]$, maka</p>
+        <p>$$Q^{-1}AQ = \operatorname{diag}(\lambda_1, \dots, \lambda_n).$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$Q$ invertibel karena kolomnya basis. Kolom per kolom, $AQ = [A\mathbf{x}_1 \mid \cdots \mid A\mathbf{x}_n] = [\lambda_1\mathbf{x}_1 \mid \cdots \mid \lambda_n\mathbf{x}_n] = Q\operatorname{diag}(\lambda_1, \dots, \lambda_n)$. Kalikan kiri dengan $Q^{-1}$. Sebaliknya, jika $Q^{-1}AQ = D$ diagonal, maka $AQ = QD$, jadi kolom $Q$ (basis) adalah vektor eigen. Ini Teorema 1 (1) ⇔ (2) dalam bahasa matriks.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Diagonalisasi $2 \times 2$ (Modul, Contoh 6.5.10)</div>
+        <p>$A = \begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix}$: $\det(\lambda I - A) = \lambda^2 - 3\lambda + 2 = (\lambda - 1)(\lambda - 2)$. Vektor eigen: $A(1, 2) = (2, 4) = 2(1, 2)$ dan $A(1, 1) = (1, 1)$. Dengan $Q = \begin{pmatrix} 1 &amp; 1 \\ 2 &amp; 1 \end{pmatrix}$, $Q^{-1} = \begin{pmatrix} -1 &amp; 1 \\ 2 &amp; -1 \end{pmatrix}$:</p>
+        <p>$$Q^{-1}AQ = \begin{pmatrix} -1 &amp; 1 \\ 2 &amp; -1 \end{pmatrix}\begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix}\begin{pmatrix} 1 &amp; 1 \\ 2 &amp; 1 \end{pmatrix} = \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Nilai eigen berbeda (Modul, Teorema 6.5.11 dan Kesimpulan 6.5.12)</div>
+        <p>Jika $A \in M_n(F)$ punya $n$ nilai eigen berbeda di $F$, maka vektor-vektor eigen yang bersesuaian bebas linier, sehingga $A$ dapat didiagonalkan.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Kebebasan linier adalah akibat "vektor eigen untuk nilai eigen berbeda bebas linier" di topik Nilai Eigen (sumber membuktikannya lagi dengan induksi: kalikan $\sum a_i\mathbf{X}_i = \mathbf{0}$ dengan $A$, kurangi $\lambda_{k+1}$ kali persamaan semula). $n$ vektor bebas linier di $F^n$ adalah basis, jadi Teorema 4 berlaku.</p>
+        <p>Syarat ini cukup tetapi tidak perlu: $I_n$ dapat didiagonalkan walaupun hanya punya satu nilai eigen.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks kompanion $3 \times 3$ (Modul, Contoh 6.5.13)</div>
+        <p>$A = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 6 &amp; -11 &amp; 6 \end{pmatrix}$. Ekspansi baris pertama $\lambda I - A$:</p>
+        <p>$$p(\lambda) = \lambda\bigl(\lambda(\lambda - 6) + 11\bigr) + 1\bigl(0 - 6\bigr) = \lambda^3 - 6\lambda^2 + 11\lambda - 6 = (\lambda - 1)(\lambda - 2)(\lambda - 3).$$</p>
+        <p>Tiga nilai eigen berbeda, jadi $A$ dapat didiagonalkan. Vektor eigen berbentuk $(1, \lambda, \lambda^2)$: $\mathbf{X}_1 = (1, 3, 9)$, $\mathbf{X}_2 = (1, 2, 4)$, $\mathbf{X}_3 = (1, 1, 1)$. Dengan</p>
+        <p>$$Q = \begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 3 &amp; 2 &amp; 1 \\ 9 &amp; 4 &amp; 1 \end{pmatrix}, \qquad Q^{-1} = \begin{pmatrix} 1 &amp; -\tfrac{3}{2} &amp; \tfrac{1}{2} \\ -3 &amp; 4 &amp; -1 \\ 3 &amp; -\tfrac{5}{2} &amp; \tfrac{1}{2} \end{pmatrix},$$</p>
+        <p>diperoleh $Q^{-1}AQ = \operatorname{diag}(3, 2, 1)$. ($Q$ adalah matriks Vandermonde.)</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menyimpulkan "dapat didiagonalkan" dari nilai eigen berulang yang tidak dicek.</strong> Nilai eigen berulang tidak otomatis menggagalkan maupun menjamin; periksa $\dim V_\lambda$ atau polinomial minimal.</li>
+        <li><strong>Urutan kolom $Q$ dan diagonal $D$ tidak cocok.</strong> Kolom ke-$i$ dari $Q$ harus vektor eigen untuk entri diagonal ke-$i$.</li>
+        <li><strong>Menulis $QAQ^{-1}$ alih-alih $Q^{-1}AQ$</strong> ketika kolom $Q$ adalah vektor eigen.</li>
+        <li><strong>Lupa lapangan.</strong> Rotasi $L(x, y) = (-y, x)$ tidak dapat didiagonalkan atas $\R$ tetapi dapat atas $\C$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Apakah $A = \begin{pmatrix} 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$ dapat didiagonalkan atas $\R$? Jelaskan kriterianya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Kriteria: $A$ ($n \times n$) dapat didiagonalkan ⇔ jumlah dimensi ruang eigen $= n$ ⇔ polinomial minimal terurai menjadi faktor linier berbeda (Teorema 1 dan 3).</li>
+            <li>$A$ segitiga atas, jadi $p_A(\lambda) = (1 - \lambda)^2(2 - \lambda)$: nilai eigen $1$ berkerangkapan aljabar $2$.</li>
+            <li>$A - I = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$; $(A - I)\mathbf{v} = \mathbf{0}$ memberi $y = 0$ (baris 1) dan $z = 0$ (baris 2 dan 3). Jadi $E_1 = \set{(x, 0, 0)}$, $\dim E_1 = 1 \lt 2$.</li>
+            <li>Kerangkapan geometris kurang dari kerangkapan aljabar, jadi <strong>tidak dapat didiagonalkan</strong>.</li>
+          </ol>
+          <p>Polinomial minimalnya $(x - 1)^2(x - 2)$, dengan faktor berulang, mengonfirmasi hal ini. Bentuk Jordan-nya terdiri dari blok $J_2(1)$ dan $J_1(2)$ (Bab 7).</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Gunakan diagonalisasi pada Contoh 2 untuk menghitung rumus umum $A^k$ dengan $A = \begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Dari $Q^{-1}AQ = D = \operatorname{diag}(2, 1)$: $A = QDQ^{-1}$, sehingga $A^k = QD^kQ^{-1}$ (suku tengah $Q^{-1}Q$ saling menghapus).</li>
+            <li>$QD^k = \begin{pmatrix} 1 &amp; 1 \\ 2 &amp; 1 \end{pmatrix}\begin{pmatrix} 2^k &amp; 0 \\ 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} 2^k &amp; 1 \\ 2^{k+1} &amp; 1 \end{pmatrix}$.</li>
+            <li>$A^k = \begin{pmatrix} 2^k &amp; 1 \\ 2^{k+1} &amp; 1 \end{pmatrix}\begin{pmatrix} -1 &amp; 1 \\ 2 &amp; -1 \end{pmatrix} = \begin{pmatrix} 2 - 2^k &amp; 2^k - 1 \\ 2 - 2^{k+1} &amp; 2^{k+1} - 1 \end{pmatrix}$.</li>
+          </ol>
+          <p>Cek $k = 1$: $\begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix} = A$; $k = 0$: $I$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa setiap proyeksi $P$ ($P^2 = P$) pada ruang berdimensi hingga dapat didiagonalkan.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$t^2 - t = t(t - 1)$ meniadakan $P$, jadi $m_P$ membaginya: $m_P \in \set{t,\ t - 1,\ t(t - 1)}$.</li>
+            <li>Ketiganya hasil kali faktor linier berbeda di $F$, dan akar-akarnya ($0$ dan/atau $1$) ada di $F$.</li>
+            <li>Teorema 3: $P$ dapat didiagonalkan, dengan diagonal berisi $1$ (sebanyak $\operatorname{rank}P$) dan $0$.</li>
+          </ol>
+          <p>Secara langsung: $V = \operatorname{Im}P \oplus \ker P$, dan $P$ bernilai $1$ pada $\operatorname{Im}P$, $0$ pada $\ker P$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \text{dapat didiagonalkan} \iff \sum_\lambda\dim V_\lambda = n \iff V = \bigoplus_\lambda V_\lambda \iff m_L = \prod_{\lambda}(t - \lambda), \\
+        Q^{-1}AQ = \operatorname{diag}(\lambda_1, \dots, \lambda_n), \qquad A^k = QD^kQ^{-1}, \qquad \dim V_\lambda \le \text{kerangkapan aljabar}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.5: Definisi 6.5.1, Teorema 6.5.2, Contoh 6.5.3, Lemma 6.5.4, Teorema 6.5.5, Lemma 6.5.6, Korolari 6.5.7, Teorema 6.5.8–6.5.9, Contoh 6.5.10, Teorema 6.5.11, Kesimpulan 6.5.12, Contoh 6.5.13. Pada Teorema 6.5.2, sumber menyimpulkan kebebasan linier dari "ruang eigen beririsan trivial"; di sini dipakai hasil "vektor eigen untuk nilai eigen berbeda bebas linier". File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.5 (Latihan 1).</li>
+        <li>Proposisi 1, bukti lengkap Lemma 6.5.4, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

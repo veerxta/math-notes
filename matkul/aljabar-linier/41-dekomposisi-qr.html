@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Dekomposisi QR · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Dekomposisi QR</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Jika kolom $A$ ($n \times k$, $n \ge k$) bebas linier, $A = QR$ dengan $Q$ berkolom ortonormal ($Q^TQ = I_k$) dan $R$ segitiga atas invertibel.</li>
+        <li>$Q$ dari Gram–Schmidt pada kolom $A$ (lalu dinormalkan); $R = Q^TA$.</li>
+        <li>$\mathbf{x} = R^{-1}Q^T\mathbf{b}$, dihitung lewat substitusi mundur $R\mathbf{x} = Q^T\mathbf{b}$, adalah solusi <strong>kuadrat terkecil</strong> $A\mathbf{x} \approx \mathbf{b}$; ia solusi eksak hanya jika sistemnya konsisten.</li>
+        <li>QR menghindari pembentukan $A^TA$, sehingga lebih stabil secara numerik.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Konstruksi</h3>
+
+      <div class="box proposisi">
+        <div class="box-title">Faktorisasi QR (Modul, §6.8)</div>
+        <p>Misalkan $A$ berukuran $n \times k$, $n \ge k$, dengan kolom $\mathbf{w}_1, \dots, \mathbf{w}_k$ bebas linier. Maka $A = QR$ dengan langkah:</p>
+        <ol>
+          <li>Gram–Schmidt (tanpa normalisasi) pada $\mathbf{w}_1, \dots, \mathbf{w}_k$ menghasilkan $\mathbf{v}_1, \dots, \mathbf{v}_k$ ortogonal.</li>
+          <li>Normalkan: $\mathbf{u}_i = \mathbf{v}_i/\norm{\mathbf{v}_i}$.</li>
+          <li>$Q = [\mathbf{u}_1\ \cdots\ \mathbf{u}_k]$ ($n \times k$, $Q^TQ = I_k$).</li>
+          <li>$R = Q^TA$ ($k \times k$).</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Mengapa $A = QR$ dan $R$ segitiga atas</summary>
+        <p>Gram–Schmidt mempertahankan rentang: $\mathbf{w}_j \in \operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_j}$ (topik Himpunan Ortonormal), jadi $\mathbf{w}_j = \sum_{i \le j}\langle \mathbf{u}_i, \mathbf{w}_j \rangle\mathbf{u}_i$. Dalam matriks: $A = QR$ dengan $r_{ij} = \langle \mathbf{u}_i, \mathbf{w}_j \rangle = (Q^TA)_{ij}$, dan $r_{ij} = 0$ untuk $i \gt j$. Diagonalnya $r_{jj} = \langle \mathbf{u}_j, \mathbf{w}_j \rangle = \norm{\mathbf{v}_j} \gt 0$, jadi $R$ invertibel. (Penjelasan ini ditulis oleh Claude; sumber hanya memberi langkahnya.)</p>
+        <p>Perhatikan: untuk $n \gt k$, $Q$ bukan matriks persegi, jadi $QQ^T \ne I_n$ (ia proyeksi ortogonal pada $\operatorname{Col}A$), walaupun $Q^TQ = I_k$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">QR matriks $4 \times 3$ (Modul, Contoh 6.8.1)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$, kolom $\mathbf{w}_1, \mathbf{w}_2, \mathbf{w}_3$.</p>
+        <ol>
+          <li>$\mathbf{v}_1 = \mathbf{w}_1 = (1, 0, 1, 0)$.</li>
+          <li>$\mathbf{v}_2 = \mathbf{w}_2 - \tfrac{\langle \mathbf{w}_2, \mathbf{v}_1 \rangle}{\langle \mathbf{v}_1, \mathbf{v}_1 \rangle}\mathbf{v}_1 = (0, 1, 1, 0) - \tfrac{1}{2}(1, 0, 1, 0) = \left(-\tfrac{1}{2}, 1, \tfrac{1}{2}, 0\right)$; kalikan $2$ (arah sama): $\mathbf{v}_2 = (-1, 2, 1, 0)$.</li>
+          <li>$\mathbf{v}_3 = \mathbf{w}_3 - \tfrac{0}{2}\mathbf{v}_1 - \tfrac{2}{6}\mathbf{v}_2 = (0, 1, 0, 1) - \tfrac{1}{3}(-1, 2, 1, 0) = \left(\tfrac{1}{3}, \tfrac{1}{3}, -\tfrac{1}{3}, 1\right)$; kalikan $3$: $\mathbf{v}_3 = (1, 1, -1, 3)$.</li>
+          <li>Normalkan ($\norm{\mathbf{v}_1} = \sqrt{2}$, $\norm{\mathbf{v}_2} = \sqrt{6}$, $\norm{\mathbf{v}_3} = 2\sqrt{3}$):
+            $$Q = \begin{pmatrix} \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{6}} &amp; \tfrac{1}{2\sqrt{3}} \\ 0 &amp; \tfrac{2}{\sqrt{6}} &amp; \tfrac{1}{2\sqrt{3}} \\ \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{6}} &amp; -\tfrac{1}{2\sqrt{3}} \\ 0 &amp; 0 &amp; \tfrac{\sqrt{3}}{2} \end{pmatrix}, \qquad R = Q^TA = \begin{pmatrix} \sqrt{2} &amp; \tfrac{1}{\sqrt{2}} &amp; 0 \\ 0 &amp; \sqrt{\tfrac{3}{2}} &amp; \sqrt{\tfrac{2}{3}} \\ 0 &amp; 0 &amp; \tfrac{2}{\sqrt{3}} \end{pmatrix}.$$</li>
+        </ol>
+        <p>Misalnya $r_{22} = \mathbf{u}_2 \cdot \mathbf{w}_2 = \tfrac{0 + 2 + 1}{\sqrt{6}} = \tfrac{3}{\sqrt{6}} = \sqrt{\tfrac{3}{2}}$ dan $r_{33} = \mathbf{u}_3 \cdot \mathbf{w}_3 = \tfrac{1 + 3}{2\sqrt{3}} = \tfrac{2}{\sqrt{3}}$. Perkalian $QR$ mengembalikan $A$. (Secara numerik, misalnya perintah <code>A.QR()</code> di SageMath; secara eksak dengan SymPy.)</p>
+      </div>
+
+      <h3>Menyelesaikan sistem dengan QR</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Solusi lewat QR (Modul, Teorema 6.8.2)</div>
+        <p>Misalkan $A$ ($n \times k$, $n \ge k$) berkolom bebas linier dan $A = QR$. Maka solusi kuadrat terkecil $A\mathbf{x} = \mathbf{b}$ adalah</p>
+        <p>$$\mathbf{x} = R^{-1}Q^T\mathbf{b}, \quad \text{yaitu solusi } R\mathbf{x} = Q^T\mathbf{b}.$$</p>
+        <p>Jika $A\mathbf{x} = \mathbf{b}$ konsisten, ini solusi (tunggal)-nya.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Solusi kuadrat terkecil memenuhi persamaan normal $A^TA\mathbf{x} = A^T\mathbf{b}$ (topik Teorema Fundamental dan Kuadrat Terkecil); jika sistemnya konsisten, solusi eksak juga memenuhinya.</li>
+          <li>Substitusi $A = QR$ dan $Q^TQ = I$: $R^TR\mathbf{x} = R^TQ^T\mathbf{b}$.</li>
+          <li>$R$ (jadi $R^T$) invertibel, jadi $R\mathbf{x} = Q^T\mathbf{b}$ dan $\mathbf{x} = R^{-1}Q^T\mathbf{b}$.</li>
+        </ol>
+        <p>Dalam praktik, $R\mathbf{x} = Q^T\mathbf{b}$ diselesaikan dengan <strong>substitusi mundur</strong> (karena $R$ segitiga atas), bukan dengan membalik $R$.</p>
+        <p><span class="cek">[CEK: sumber menyatakan $\mathbf{x} = R^{-1}Q^T\mathbf{b}$ sebagai "penyelesaian $A\mathbf{x} = \mathbf{b}$". Buktinya sendiri melewati persamaan normal, jadi yang diperoleh adalah solusi kuadrat terkecil; untuk sistem tak konsisten (seperti Contoh 2) $A\mathbf{x} \ne \mathbf{b}$. Pernyataan di atas sudah disesuaikan.]</span></p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Sistem $4 \times 3$ (Modul, Contoh 6.8.3)</div>
+        <p>Dengan $A$ dari Contoh 1 dan $\mathbf{b} = (3, 9, 7{,}5, 5)$:</p>
+        <ol>
+          <li>$Q^T\mathbf{b} = \left(\tfrac{3 + 7{,}5}{\sqrt{2}},\ \tfrac{-3 + 18 + 7{,}5}{\sqrt{6}},\ \tfrac{3 + 9 - 7{,}5 + 15}{2\sqrt{3}}\right) = \left(\tfrac{10{,}5}{\sqrt{2}}, \tfrac{22{,}5}{\sqrt{6}}, \tfrac{19{,}5}{2\sqrt{3}}\right) \approx (7{,}4246;\ 9{,}1856;\ 5{,}6292)$.</li>
+          <li>Substitusi mundur: $\tfrac{2}{\sqrt{3}}z = \tfrac{19{,}5}{2\sqrt{3}}$ memberi $z = 4{,}875$; $\tfrac{3}{\sqrt{6}}y + \tfrac{2}{\sqrt{6}}z = \tfrac{22{,}5}{\sqrt{6}}$ memberi $y = 4{,}25$; $\sqrt{2}x + \tfrac{1}{\sqrt{2}}y = \tfrac{10{,}5}{\sqrt{2}}$ memberi $x = 3{,}125$.</li>
+          <li>$A\mathbf{x} = (3{,}125;\ 9{,}125;\ 7{,}375;\ 4{,}875) \ne \mathbf{b}$.</li>
+        </ol>
+        <p>Nilai eksaknya $x = \tfrac{25}{8}$, $y = \tfrac{17}{4}$, $z = \tfrac{39}{8}$; angka desimal di sumber ($4{,}874999999999994$ dan seterusnya) hanya galat pembulatan. Residunya $\mathbf{b} - A\mathbf{x} = \tfrac{1}{8}(-1, -1, 1, 1)$, dan $A^T$ kali residu ini $\mathbf{0}$: residu tegak lurus $\operatorname{Col}A$, ciri solusi kuadrat terkecil.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira $\mathbf{x} = R^{-1}Q^T\mathbf{b}$ selalu memenuhi $A\mathbf{x} = \mathbf{b}$.</strong> Itu solusi kuadrat terkecil; sama dengan solusi eksak hanya jika $\mathbf{b} \in \operatorname{Col}A$.</li>
+        <li><strong>Memakai $\mathbf{v}_i$ yang belum dinormalkan di $Q$.</strong> Penskalaan $\mathbf{v}_i$ (misalnya dikali $2$ atau $3$ untuk menghindari pecahan) boleh, asalkan dinormalkan sebelum masuk ke $Q$.</li>
+        <li><strong>Menganggap $QQ^T = I$.</strong> Untuk $Q$ berukuran $n \times k$ dengan $n \gt k$, hanya $Q^TQ = I_k$.</li>
+        <li><strong>Mengira QR berlaku untuk kolom bergantung linier.</strong> Gram–Schmidt akan memberi $\mathbf{v}_j = \mathbf{0}$; $R$ tidak invertibel (ada varian dengan pivot, di luar cakupan).</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Jelaskan diagonalisasi ortogonal bentuk kuadrat $q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x}$ dengan $A = \begin{pmatrix} 3 &amp; 2 \\ 2 &amp; 3 \end{pmatrix}$, dan kaitannya dengan dekomposisi QR.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Dekomposisi QR $A = QR$ ($Q$ ortogonal, $R$ segitiga atas) berbeda dengan diagonalisasi spektral $A = QDQ^T$, yang $Q$-nya berisi vektor eigen ortonormal.</li>
+            <li>Nilai eigen $A$: $5$ dan $1$, dengan $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, 1)$ dan $\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(-1, 1)$. Jadi $Q = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$ dan $D = \operatorname{diag}(5, 1)$.</li>
+            <li>Substitusi ortogonal $\mathbf{x} = Q\mathbf{y}$ (rotasi $45^\circ$) menghapus suku silang: $q = \mathbf{y}^TD\mathbf{y} = 5y_1^2 + y_2^2$.</li>
+          </ol>
+          <p>Algoritma QR iteratif ($A_k = Q_kR_k$, $A_{k+1} = R_kQ_k$) adalah metode numerik stabil untuk menghampiri $D$; iterasinya konvergen ke bentuk Schur.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>(Latihan di sumber.) Dengan dekomposisi QR, selesaikan $3x + 10y = -8$, $4x - 4y = 30$, $12x + 27y = 10$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A = \begin{pmatrix} 3 &amp; 10 \\ 4 &amp; -4 \\ 12 &amp; 27 \end{pmatrix}$, $\mathbf{b} = (-8, 30, 10)$.</li>
+            <li>$\norm{\mathbf{w}_1} = \sqrt{9 + 16 + 144} = 13$, $\mathbf{u}_1 = \tfrac{1}{13}(3, 4, 12)$. $\mathbf{u}_1 \cdot \mathbf{w}_2 = \tfrac{30 - 16 + 324}{13} = 26$, jadi $\mathbf{v}_2 = \mathbf{w}_2 - 26\mathbf{u}_1 = (10, -4, 27) - (6, 8, 24) = (4, -12, 3)$, $\norm{\mathbf{v}_2} = 13$, $\mathbf{u}_2 = \tfrac{1}{13}(4, -12, 3)$.</li>
+            <li>$R = \begin{pmatrix} 13 &amp; 26 \\ 0 &amp; 13 \end{pmatrix}$, $Q^T\mathbf{b} = \left(\tfrac{-24 + 120 + 120}{13}, \tfrac{-32 - 360 + 30}{13}\right) = \left(\tfrac{216}{13}, -\tfrac{362}{13}\right)$.</li>
+            <li>Substitusi mundur: $13y = -\tfrac{362}{13}$, jadi $y = -\tfrac{362}{169} \approx -2{,}142$; $13x + 26y = \tfrac{216}{13}$, jadi $x = \tfrac{216}{169} - 2y = \tfrac{940}{169} \approx 5{,}562$.</li>
+            <li>Cek persamaan normal $A^TA\mathbf{x} = A^T\mathbf{b}$: $A^TA = \begin{pmatrix} 169 &amp; 338 \\ 338 &amp; 845 \end{pmatrix}$, $A^T\mathbf{b} = (216, 70)$; $940 - 724 = 216$ dan $1880 - 1810 = 70$.</li>
+          </ol>
+          <p>Sistemnya tak konsisten (dua persamaan pertama memberi $x \approx 5{,}154$, $y \approx -2{,}346$, yang tidak memenuhi persamaan ketiga), jadi $(x, y) = \left(\tfrac{940}{169}, -\tfrac{362}{169}\right)$ adalah solusi kuadrat terkecil, bukan solusi eksak.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>(Pertanyaan di sumber.) Untuk sistem Contoh 2 dengan $7{,}5$ diganti pecahan eksak $\tfrac{15}{2}$, komputasi <em>simbolik</em> tetap memberi $A\mathbf{x} \ne \mathbf{b}$. Mengapa?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Sistemnya $x = 3$, $y + z = 9$, $x + y = \tfrac{15}{2}$, $z = 5$. Dari persamaan 1 dan 3: $y = \tfrac{9}{2}$; dari 4: $z = 5$; tetapi $y + z = \tfrac{19}{2} \ne 9$. Jadi <strong>tidak ada</strong> solusi eksak: $\mathbf{b} \notin \operatorname{Col}A$.</li>
+            <li>Rumus $\mathbf{x} = R^{-1}Q^T\mathbf{b}$ memberi solusi kuadrat terkecil (Teorema 1), yaitu $\mathbf{x}$ dengan $A\mathbf{x} = \operatorname{proj}_{\operatorname{Col}A}\mathbf{b}$.</li>
+            <li>Karena itu $A\mathbf{x} \ne \mathbf{b}$, terlepas dari presisi aritmetika. Selisihnya $\tfrac{1}{8}(-1, -1, 1, 1)$ bukan galat pembulatan, melainkan residu minimum yang tegak lurus $\operatorname{Col}A$.</li>
+          </ol>
+          <p>Kesimpulan: pada sistem $4 \times 3$ yang tak konsisten, QR tidak "gagal"; ia memberi pendekatan terbaik dalam norma Euclid.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        A = QR, \quad Q^TQ = I_k, \quad R = Q^TA, \quad r_{ij} = \langle \mathbf{u}_i, \mathbf{w}_j \rangle\ (i \le j), \quad r_{jj} = \norm{\mathbf{v}_j}, \\
+        A^TA\mathbf{x} = A^T\mathbf{b} \iff R\mathbf{x} = Q^T\mathbf{b} \quad (\text{substitusi mundur})
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.8: langkah faktorisasi QR, Contoh 6.8.1, Teorema 6.8.2, Contoh 6.8.3, latihan sistem $3 \times 2$, dan pertanyaan tentang sistem (QR.1). Kode SageMath/SymPy di sumber tidak disalin. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.8 (Latihan 1).</li>
+        <li>Penjelasan mengapa $R$ segitiga atas, nilai eksak Contoh 6.8.3, pembahasan Latihan 2–3 (kunci tidak ada di sumber), dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Teorema Spektral · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Teorema Spektral</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Nilai eigen operator swadjoin selalu real, dan vektor eigen untuk nilai eigen berbeda saling ortogonal.</li>
+        <li>Jika $W$ invarian terhadap operator swadjoin $L$, maka $W^\perp$ juga invarian.</li>
+        <li><strong>Teorema spektral</strong>: operator swadjoin pada ruang hasil kali dalam berdimensi hingga punya basis <em>ortonormal</em> vektor eigen.</li>
+        <li>Dalam matriks: $A = A^\dagger$ ⇒ $A = PDP^\dagger$ dengan $P$ uniter, $D$ diagonal real; $A = A^T$ real ⇒ $A = QDQ^T$ dengan $Q$ ortogonal.</li>
+        <li>Dekomposisi spektral: $A = \sum_i \lambda_i\mathbf{u}_i\mathbf{u}_i^\dagger$, jumlah proyeksi ortogonal berbobot nilai eigen.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Umumnya butuh banyak kerja untuk memutuskan apakah ada basis vektor eigen. Di ruang hasil kali dalam berdimensi hingga, satu syarat sudah menjamin: <em>swadjoin</em>. Di halaman ini $F = \R$ atau $\C$. Ingat: $L$ swadjoin jika $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L\mathbf{w})$; di ruang real disebut simetris. Matriks swadjoin: $A = A^\dagger$ (kompleks, Hermitian) atau $A = A^T$ (real, simetris).</p>
+      <p><span class="cek">[CEK: sumber menulis "matriks swadjoin adalah matriks $A$ yang memenuhi $A = A^\dagger = A^T$". Untuk matriks kompleks syaratnya hanya $A = A^\dagger$ (misalnya $\begin{pmatrix} 1 &amp; i \\ -i &amp; 1 \end{pmatrix}$ Hermitian tetapi tidak simetris); $A = A^T$ adalah syaratnya untuk matriks real.]</span></p>
+
+      <h3>Sifat dasar operator swadjoin</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Nilai eigen real (Modul, Teorema 6.6.1)</div>
+        <p>Nilai eigen operator swadjoin selalu real.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $L\mathbf{v} = \lambda\mathbf{v}$, $\mathbf{v} \ne \mathbf{0}$: $\sigma(L\mathbf{v}, \mathbf{v}) = \sigma(\lambda\mathbf{v}, \mathbf{v}) = \bar{\lambda}\sigma(\mathbf{v}, \mathbf{v})$ (linier-konjugat di argumen pertama), sedangkan $\sigma(\mathbf{v}, L\mathbf{v}) = \lambda\sigma(\mathbf{v}, \mathbf{v})$. Keduanya sama karena swadjoin, dan $\sigma(\mathbf{v}, \mathbf{v}) \gt 0$, jadi $\bar{\lambda} = \lambda$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks Hermitian $2 \times 2$ (Modul, Contoh 6.6.2)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 1 - i \\ 1 + i &amp; 2 \end{pmatrix}$: polinomial karakteristik $(1 - t)(2 - t) - (1 - i)(1 + i) = t^2 - 3t = t(t - 3)$. Nilai eigen $0$ dan $3$ (real dan berbeda), jadi $A$ similar dengan $\operatorname{diag}(0, 3)$.</p>
+        <ul>
+          <li>$\operatorname{Nul}A = \operatorname{span}\set{(-2, 1 + i)}$: $A(-2, 1 + i) = (-2 + 2,\ -2 - 2i + 2 + 2i) = (0, 0)$.</li>
+          <li>$V_3 = \operatorname{span}\set{(1, 1 + i)}$: $(A - 3I)(1, 1 + i) = (-2 + 2,\ 1 + i - 1 - i) = (0, 0)$.</li>
+        </ul>
+        <p>Basis $B = \set{(-2, 1 + i), (1, 1 + i)}$ ini <strong>ortogonal</strong>: $\overline{(-2)} \cdot 1 + \overline{(1 + i)}(1 + i) = -2 + 2 = 0$. Ini bukan kebetulan (Lemma 1).</p>
+        <p><span class="cek">[CEK: sumber merujuk basis ini sebagai hasil "Contoh 6.6.3"; yang dimaksud Contoh 6.6.2.]</span></p>
+      </div>
+
+      <div class="box peringatan">
+        <div class="box-title">Di dimensi tak hingga, swadjoin tidak menjamin vektor eigen (Modul, Contoh 6.6.3)</div>
+        <p>Pada $C([a, b])$ ($a \lt b$) dengan $\sigma(f, g) = \int_a^b \bar{f}g$, misalkan $(T_nf)(t) = t^nf(t)$ dengan $n \ge 1$.</p>
+        <ol>
+          <li><strong>Linier</strong>: $T_n(\alpha f + \beta g) = \alpha T_nf + \beta T_ng$.</li>
+          <li><strong>Swadjoin</strong>: karena $t^n$ real, $\overline{t^nf(t)} = t^n\overline{f(t)}$, sehingga $\sigma(T_nf, g) = \int_a^b t^n\bar{f}g = \sigma(f, T_ng)$. (Setiap operator "perkalian dengan fungsi real" swadjoin.)</li>
+          <li><strong>Tanpa nilai eigen</strong>: jika $t^nf(t) = \lambda f(t)$ untuk semua $t$ dan $f \ne 0$, maka karena $f$ kontinu, $f \ne 0$ pada suatu selang berpanjang positif, dan di sana $t^n = \lambda$. Tetapi $t^n$ tidak konstan pada selang mana pun. Jadi $f \equiv 0$, bukan vektor eigen.</li>
+        </ol>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Vektor eigen ortogonal (Modul, Lemma 6.6.4)</div>
+        <p>Jika $L$ swadjoin, vektor-vektor eigen $L$ untuk nilai eigen berbeda saling ortogonal.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $L\mathbf{v} = \lambda_1\mathbf{v}$, $L\mathbf{x} = \lambda_2\mathbf{x}$, $\lambda_1 \ne \lambda_2$, keduanya real (Teorema 1). Maka $\lambda_1\sigma(\mathbf{v}, \mathbf{x}) = \sigma(L\mathbf{v}, \mathbf{x}) = \sigma(\mathbf{v}, L\mathbf{x}) = \lambda_2\sigma(\mathbf{v}, \mathbf{x})$, jadi $(\lambda_1 - \lambda_2)\sigma(\mathbf{v}, \mathbf{x}) = 0$ dan $\sigma(\mathbf{v}, \mathbf{x}) = 0$.</p>
+      </details>
+
+      <div class="box proposisi">
+        <div class="box-title">Komplemen ortogonal subruang invarian (Modul, sebelum Teorema 6.6.5)</div>
+        <p>Jika $L$ swadjoin dan $W$ subruang $L$-invarian, maka $W^\perp$ juga $L$-invarian.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk $\mathbf{v} \in W^\perp$ dan $\mathbf{w} \in W$: $\sigma(\mathbf{w}, L\mathbf{v}) = \sigma(L\mathbf{w}, \mathbf{v}) = 0$, karena $L\mathbf{w} \in W$. Jadi $L\mathbf{v} \in W^\perp$.</p>
+      </details>
+
+      <h3>Teorema spektral</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Teorema spektral dimensi hingga (Modul, Teorema 6.6.5)</div>
+        <p>Setiap operator swadjoin pada ruang hasil kali dalam berdimensi hingga punya <strong>basis ortonormal</strong> yang seluruhnya vektor eigen.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Induksi pada $n = \dim V$. Untuk $n = 1$, setiap vektor tak nol vektor eigen; normalkan. Misalkan benar untuk dimensi $\lt n$ dan $L$ swadjoin pada $V$ berdimensi $n$.</p>
+        <ol>
+          <li><strong>Ada vektor eigen.</strong> Ambil basis ortonormal $B$; $A = [L]_B$ memenuhi $A = A^\dagger$ (topik Adjoin Operator). Pandang $A$ di $M_n(\C)$: menurut Teorema Dasar Aljabar, polinomial karakteristiknya punya akar $\lambda \in \C$ dengan vektor eigen di $\C^n$, dan menurut Teorema 1 (untuk $A$ pada $\C^n$), $\lambda \in \R$. Jadi $\det(A - \lambda I) = 0$ dengan $A - \lambda I$ matriks atas $F$, sehingga ada $\mathbf{x} \in F^n$ tak nol dengan $A\mathbf{x} = \lambda\mathbf{x}$. Vektor $V$ berkoordinat $\mathbf{x}$ adalah vektor eigen $L$.</li>
+          <li>Normalkan: $\mathbf{e}_1 = \mathbf{v}/\norm{\mathbf{v}}$, dan $W = \operatorname{span}\set{\mathbf{e}_1}$ ($L$-invarian).</li>
+          <li>Menurut Proposisi 1, $W^\perp$ $L$-invarian; $\dim W^\perp = n - 1$; pembatasan hasil kali dalam ke $W^\perp$ tetap hasil kali dalam, dan $L|_{W^\perp}$ tetap swadjoin.</li>
+          <li>Hipotesis induksi: $W^\perp$ punya basis ortonormal $\set{\mathbf{e}_2, \dots, \mathbf{e}_n}$ vektor eigen $L|_{W^\perp}$, jadi juga vektor eigen $L$.</li>
+          <li>Setiap $\mathbf{e}_j$ ($j \ge 2$) ortogonal terhadap $\mathbf{e}_1$, jadi $\set{\mathbf{e}_1, \dots, \mathbf{e}_n}$ basis ortonormal vektor eigen.</li>
+        </ol>
+        <p><span class="cek">[CEK: sumber menyatakan "karena semua nilai eigen $L$ berada di $\R$, maka terdapat setidaknya satu vektor eigen", lalu dalam langkah induksi mengakui bahwa keberadaan satu vektor eigen "diasumsikan". Realnya nilai eigen tidak menjamin keberadaannya; langkah 1 di atas (melalui $\C$ dan Teorema Dasar Aljabar) ditulis oleh Claude untuk menutup celah itu.]</span></p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Ekuivalen uniter dan ortogonal (Modul, Definisi 6.6.6)</div>
+        <p>$A, B \in M_n(F)$ <strong>ekuivalen uniter</strong> (unitarily equivalent) jika $B = PAP^\dagger$ untuk suatu matriks uniter $P$. Untuk matriks real dengan $P$ ortogonal real, $B = PAP^T$, disebut <strong>ekuivalen ortogonal</strong>. Karena $P^\dagger = P^{-1}$, ekuivalen uniter adalah similaritas khusus.</p>
+      </div>
+
+      <div class="box akibat">
+        <div class="box-title">Bentuk matriks (Modul, Korolari 6.6.7 dan 6.6.8)</div>
+        <ol>
+          <li>Setiap matriks swadjoin di $M_n(\C)$ ekuivalen uniter dengan matriks diagonal berentri real: $A = P\,\operatorname{diag}(\lambda_1, \dots, \lambda_n)\,P^\dagger$.</li>
+          <li>Setiap matriks simetris di $M_n(\R)$ ekuivalen ortogonal dengan matriks diagonal: $A = Q\,\operatorname{diag}(\lambda_1, \dots, \lambda_n)\,Q^T$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$A = A^\dagger$ berarti $\mathbf{x} \mapsto A\mathbf{x}$ swadjoin pada $F^n$ (hasil kali titik). Teorema 2 memberi basis ortonormal vektor eigen $\mathbf{v}_1, \dots, \mathbf{v}_n$ dengan $A\mathbf{v}_j = \lambda_j\mathbf{v}_j$, $\lambda_j \in \R$. Matriks $P = [\mathbf{v}_1 \cdots \mathbf{v}_n]$ berkolom ortonormal, jadi uniter (ortogonal bila real), dan $AP = PD$ seperti di topik Diagonalisasi, sehingga $P^\dagger AP = D$ dan $A = PDP^\dagger$.</p>
+        <p>Kebalikan untuk kasus real: jika $A = QDQ^T$ dengan $Q$ ortogonal, maka $A^T = QD^TQ^T = A$. Jadi <strong>matriks real dapat didiagonalkan secara ortogonal ⇔ simetris</strong>; inilah bentuk teorema spektral yang biasa dikutip.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Dekomposisi spektral (Modul, persamaan 6.6.1)</div>
+        <p>Jika $P = [\mathbf{u}_1 \cdots \mathbf{u}_n]$ ortonormal dan $A = PDP^\dagger$, maka</p>
+        <p>$$A = \lambda_1\mathbf{u}_1\mathbf{u}_1^\dagger + \lambda_2\mathbf{u}_2\mathbf{u}_2^\dagger + \cdots + \lambda_n\mathbf{u}_n\mathbf{u}_n^\dagger.$$</p>
+        <p>Setiap $P_i = \mathbf{u}_i\mathbf{u}_i^\dagger$ adalah <strong>matriks proyeksi ortogonal</strong> pada $\operatorname{span}\set{\mathbf{u}_i}$: $P_i\mathbf{x} = \mathbf{u}_i(\mathbf{u}_i^\dagger\mathbf{x}) = \langle \mathbf{u}_i, \mathbf{x} \rangle\mathbf{u}_i$, $P_i^2 = P_i$, $P_iP_j = O$ ($i \ne j$), dan $\sum_iP_i = I$.</p>
+      </div>
+
+      <h3>Contoh perhitungan</h3>
+      <p>Langkah praktis: (1) cari nilai eigen; (2) cari basis ortonormal tiap ruang eigen (Gram–Schmidt bila ruang eigen berdimensi $\gt 1$); (3) susun kolom $P$; (4) $P^\dagger AP = D$.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Kasus kompleks (Modul, Contoh 6.6.9)</div>
+        <p>$A = \begin{pmatrix} 2 &amp; i \\ -i &amp; 3 \end{pmatrix}$, $A^\dagger = A$.</p>
+        <ol>
+          <li>$\det(A - \lambda I) = (2 - \lambda)(3 - \lambda) - i(-i) = \lambda^2 - 5\lambda + 5$, jadi $\lambda_{1,2} = \tfrac{5 \pm \sqrt{5}}{2}$, real.</li>
+          <li>Baris pertama $(A - \lambda I)\mathbf{x} = \mathbf{0}$: $(2 - \lambda)x_1 + ix_2 = 0$, jadi dengan $x_1 = 1$: $x_2 = \dfrac{\lambda - 2}{i} = -i(\lambda - 2)$.</li>
+          <li>Untuk $\lambda_1$: $\lambda_1 - 2 = \tfrac{1 + \sqrt{5}}{2} = \varphi$ (rasio emas), $\mathbf{v}_1 = (1, -i\varphi)$. Untuk $\lambda_2$: $\lambda_2 - 2 = \tfrac{1 - \sqrt{5}}{2} = -\tfrac{1}{\varphi}$, $\mathbf{v}_2 = (1, \tfrac{i}{\varphi})$.</li>
+          <li>Cek ortogonal: $\bar{1} \cdot 1 + \overline{(-i\varphi)}\cdot\tfrac{i}{\varphi} = 1 + i\varphi\cdot\tfrac{i}{\varphi} = 1 - 1 = 0$.</li>
+          <li>Normalkan $\hat{\mathbf{v}}_k = \mathbf{v}_k/\norm{\mathbf{v}_k}$ dan $P = [\hat{\mathbf{v}}_1\ \hat{\mathbf{v}}_2]$: $P^\dagger AP = \operatorname{diag}(\lambda_1, \lambda_2)$ dan $A = \lambda_1\hat{\mathbf{v}}_1\hat{\mathbf{v}}_1^\dagger + \lambda_2\hat{\mathbf{v}}_2\hat{\mathbf{v}}_2^\dagger$.</li>
+        </ol>
+        <p><span class="cek">[CEK: sumber menulis $x_2 = i(\lambda_1 - 2)$. Dari $(2 - \lambda_1)x_1 + ix_2 = 0$ diperoleh $x_2 = -i(\lambda_1 - 2)$; cek dengan baris kedua: $-i \cdot 1 + (3 - \lambda_1)(-i\varphi) = -i(1 + (3 - \lambda_1)\varphi) = -i(1 + \tfrac{1 - \sqrt{5}}{2}\cdot\tfrac{1 + \sqrt{5}}{2}) = -i(1 - 1) = 0$.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Kasus real $2 \times 2$ (Modul, Contoh 6.6.10)</div>
+        <p>$B = \begin{pmatrix} 4 &amp; 1 \\ 1 &amp; 4 \end{pmatrix}$: $\det(B - \lambda I) = (4 - \lambda)^2 - 1 = (\lambda - 3)(\lambda - 5)$.</p>
+        <ul>
+          <li>$\lambda_1 = 3$: $x_1 = -x_2$, $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, -1)$. $\lambda_2 = 5$: $x_1 = x_2$, $\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(1, 1)$.</li>
+          <li>$Q = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix}$, $Q^TQ = I$, $Q^TBQ = \operatorname{diag}(3, 5)$, dan $B = 3\mathbf{v}_1\mathbf{v}_1^T + 5\mathbf{v}_2\mathbf{v}_2^T$.</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Kasus real $3 \times 3$ dan proyeksi (Modul, Contoh 6.6.11)</div>
+        <p>$A = \begin{pmatrix} 6 &amp; -2 &amp; -1 \\ -2 &amp; 6 &amp; -1 \\ -1 &amp; -1 &amp; 5 \end{pmatrix}$: $p(\lambda) = \lambda^3 - 17\lambda^2 + 90\lambda - 144 = (\lambda - 8)(\lambda - 6)(\lambda - 3)$.</p>
+        <ol>
+          <li>Vektor eigen: $\mathbf{v}_1 = (-1, 1, 0)$ ($A\mathbf{v}_1 = (-8, 8, 0)$), $\mathbf{v}_2 = (-1, -1, 2)$ ($A\mathbf{v}_2 = (-6, -6, 12)$), $\mathbf{v}_3 = (1, 1, 1)$ ($A\mathbf{v}_3 = (3, 3, 3)$). Saling ortogonal, sesuai Lemma 1.</li>
+          <li>Normalkan: $\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}(-1, 1, 0)$, $\mathbf{u}_2 = \tfrac{1}{\sqrt{6}}(-1, -1, 2)$, $\mathbf{u}_3 = \tfrac{1}{\sqrt{3}}(1, 1, 1)$, dan $P = [\mathbf{u}_1\ \mathbf{u}_2\ \mathbf{u}_3]$ memberi $P^TAP = \operatorname{diag}(8, 6, 3)$.</li>
+          <li>Dekomposisi spektral: $A = 8\mathbf{u}_1\mathbf{u}_1^T + 6\mathbf{u}_2\mathbf{u}_2^T + 3\mathbf{u}_3\mathbf{u}_3^T$. Misalnya entri $(1, 1)$: $8 \cdot \tfrac{1}{2} + 6 \cdot \tfrac{1}{6} + 3 \cdot \tfrac{1}{3} = 6$.</li>
+          <li>Proyeksi $\mathbf{x} = (1, 2, 3)$ pada $\operatorname{span}\set{\mathbf{u}_1}$: $\mathbf{u}_1\mathbf{u}_1^T = \begin{pmatrix} \tfrac{1}{2} &amp; -\tfrac{1}{2} &amp; 0 \\ -\tfrac{1}{2} &amp; \tfrac{1}{2} &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, jadi $(\mathbf{u}_1\mathbf{u}_1^T)\mathbf{x} = \left(-\tfrac{1}{2}, \tfrac{1}{2}, 0\right)$, sama dengan $\langle \mathbf{x}, \mathbf{u}_1 \rangle\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}\mathbf{u}_1$.</li>
+          <li>Sisa $\mathbf{x} - (\mathbf{u}_1\mathbf{u}_1^T)\mathbf{x} = \left(\tfrac{3}{2}, \tfrac{3}{2}, 3\right)$ ortogonal terhadap $\mathbf{u}_1$.</li>
+        </ol>
+        <p><span class="cek">[CEK: di sumber, $\mathbf{u}_1$ dan $\mathbf{u}_2$ ditulis dengan tanda terbalik ($-\mathbf{v}_1/\norm{\mathbf{v}_1}$, $-\mathbf{v}_2/\norm{\mathbf{v}_2}$) dibanding langkah proyeksinya; ini tidak mengubah $\mathbf{u}_i\mathbf{u}_i^T$. Entri pertama $\mathbf{u}_2$ ditulis $\tfrac{1}{6}\sqrt{3}$; seharusnya $\pm\tfrac{1}{6}\sqrt{6}$, seperti di matriks $P$ sumber.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Lupa menormalkan vektor eigen.</strong> Tanpa normalisasi, $P$ tidak ortogonal/uniter dan $P^{-1} \ne P^\dagger$.</li>
+        <li><strong>Mengira semua matriks yang dapat didiagonalkan bisa didiagonalkan secara ortogonal.</strong> $\begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix}$ dapat didiagonalkan, tetapi vektor eigennya $(1, 2)$ dan $(1, 1)$ tidak ortogonal; ia tidak simetris.</li>
+        <li><strong>Ruang eigen berdimensi $\gt 1$.</strong> Vektor eigen dari nilai eigen yang <em>sama</em> tidak otomatis ortogonal; jalankan Gram–Schmidt di dalam ruang eigen itu.</li>
+        <li><strong>Menerapkan teorema spektral di dimensi tak hingga tanpa syarat tambahan</strong> (lihat kotak peringatan).</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}$ real simetris. Tunjukkan secara spektral bahwa $A$ dapat didiagonalkan secara ortogonal: $A = QDQ^T$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Teorema spektral real: matriks simetris punya nilai eigen real dan dapat didiagonalkan oleh matriks ortogonal.</li>
+            <li>$p_A(\lambda) = (2 - \lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda - 1)(\lambda - 3)$: nilai eigen real $1$ dan $3$.</li>
+            <li>$\lambda = 1$: $(A - I)\mathbf{v} = \mathbf{0}$ dengan $A - I = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}$, jadi $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, -1)$. $\lambda = 3$: $\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(1, 1)$.</li>
+            <li>$\langle \mathbf{v}_1, \mathbf{v}_2 \rangle = 0$, jadi $Q = [\mathbf{v}_1 \mid \mathbf{v}_2] = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix}$ ortogonal, $Q^TQ = I$.</li>
+            <li>$Q^TAQ = \operatorname{diag}(1, 3) = D$, jadi $A = QDQ^T$.</li>
+          </ol>
+          <p>Sifat swadjoin menjamin tidak ada blok Jordan dan bahwa vektor eigen dari nilai eigen berbeda ortogonal.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>(Latihan di sumber.) Untuk $A = \begin{pmatrix} 7 &amp; 2 \\ 2 &amp; 4 \end{pmatrix}$, susun dekomposisi spektral $A = \lambda_1\mathbf{u}_1\mathbf{u}_1^T + \lambda_2\mathbf{u}_2\mathbf{u}_2^T$ dengan $\mathbf{u}_1, \mathbf{u}_2$ ortonormal, lalu tunjukkan bahwa proyeksi $\mathbf{x} = (1, 2)$ pada $\mathbf{u}_2$ adalah $(\mathbf{u}_2\mathbf{u}_2^T)\mathbf{x}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\operatorname{tr}A = 11$, $\det A = 24$: $\lambda^2 - 11\lambda + 24 = (\lambda - 8)(\lambda - 3)$.</li>
+            <li>$\lambda_1 = 8$: $A - 8I = \begin{pmatrix} -1 &amp; 2 \\ 2 &amp; -4 \end{pmatrix}$ memberi $x = 2y$, $\mathbf{u}_1 = \tfrac{1}{\sqrt{5}}(2, 1)$. $\lambda_2 = 3$: $A - 3I = \begin{pmatrix} 4 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}$ memberi $y = -2x$, $\mathbf{u}_2 = \tfrac{1}{\sqrt{5}}(1, -2)$.</li>
+            <li>$\mathbf{u}_1\mathbf{u}_1^T = \tfrac{1}{5}\begin{pmatrix} 4 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}$, $\mathbf{u}_2\mathbf{u}_2^T = \tfrac{1}{5}\begin{pmatrix} 1 &amp; -2 \\ -2 &amp; 4 \end{pmatrix}$, dan $8 \cdot \tfrac{1}{5}\begin{pmatrix} 4 &amp; 2 \\ 2 &amp; 1 \end{pmatrix} + 3 \cdot \tfrac{1}{5}\begin{pmatrix} 1 &amp; -2 \\ -2 &amp; 4 \end{pmatrix} = \tfrac{1}{5}\begin{pmatrix} 35 &amp; 10 \\ 10 &amp; 20 \end{pmatrix} = A$. Dengan $P = [\mathbf{u}_1\ \mathbf{u}_2]$, $P^TAP = \operatorname{diag}(8, 3)$.</li>
+            <li>$(\mathbf{u}_2\mathbf{u}_2^T)\mathbf{x} = \tfrac{1}{5}(1 - 4,\ -2 + 8) = \left(-\tfrac{3}{5}, \tfrac{6}{5}\right)$, dan $\langle \mathbf{x}, \mathbf{u}_2 \rangle\mathbf{u}_2 = \tfrac{1 - 4}{\sqrt{5}}\cdot\tfrac{1}{\sqrt{5}}(1, -2) = \left(-\tfrac{3}{5}, \tfrac{6}{5}\right)$. Sama.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Diagonalkan secara ortogonal $A = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 0 &amp; 3 &amp; 1 \\ 0 &amp; 1 &amp; 3 \end{pmatrix}$, yang punya nilai eigen berulang.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Blok: nilai eigen $2$ (dari entri $(1, 1)$) dan nilai eigen blok $\begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}$, yaitu $2$ dan $4$. Jadi nilai eigen $2$ (kerangkapan $2$) dan $4$.</li>
+            <li>$\lambda = 2$: $A - 2I = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{pmatrix}$, syarat $y + z = 0$. Basis ortonormal ruang eigen: $(1, 0, 0)$ dan $\tfrac{1}{\sqrt{2}}(0, 1, -1)$ (sudah ortogonal).</li>
+            <li>$\lambda = 4$: $A - 4I = \begin{pmatrix} -2 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 \\ 0 &amp; 1 &amp; -1 \end{pmatrix}$, jadi $x = 0$, $y = z$: $\tfrac{1}{\sqrt{2}}(0, 1, 1)$.</li>
+            <li>$Q = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1/\sqrt{2} &amp; 1/\sqrt{2} \\ 0 &amp; -1/\sqrt{2} &amp; 1/\sqrt{2} \end{pmatrix}$, $Q^TAQ = \operatorname{diag}(2, 2, 4)$.</li>
+          </ol>
+          <p>Ruang eigen $V_2$ berdimensi $2$; di sana basis ortonormal <em>dipilih</em> (tidak tunggal), sedangkan ortogonalitas terhadap $V_4$ dijamin Lemma 1.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        L = L^\dagger \Rightarrow \lambda \in \R, \quad \lambda_1 \ne \lambda_2 \Rightarrow \mathbf{v}_1 \perp \mathbf{v}_2, \quad L[W] \subseteq W \Rightarrow L[W^\perp] \subseteq W^\perp, \\
+        A = A^\dagger \Rightarrow A = PDP^\dagger = \sum_i\lambda_i\mathbf{u}_i\mathbf{u}_i^\dagger, \qquad A = A^T \iff A = QDQ^T \ (\text{real})
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.6: Teorema 6.6.1, Contoh 6.6.2–6.6.3, Lemma 6.6.4, invariansi $W^\perp$, Teorema 6.6.5, Definisi 6.6.6, Korolari 6.6.7–6.6.8, Contoh 6.6.9–6.6.11, persamaan 6.6.1, latihan $\begin{pmatrix} 7 &amp; 2 \\ 2 &amp; 4 \end{pmatrix}$. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.6 (Latihan 1).</li>
+        <li>Langkah keberadaan vektor eigen pada bukti Teorema 6.6.5, vektor eigen eksplisit di Contoh 6.6.9, pembahasan Latihan 2 (kunci tidak ada di sumber), Latihan 3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

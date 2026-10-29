@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Vektor Singular Kiri dan SVD · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Vektor Singular Kiri dan SVD</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Vektor singular kiri: $\mathbf{u}_i = \tfrac{1}{\sigma_i}A\mathbf{v}_i$ untuk $\sigma_i \gt 0$, dilengkapi menjadi basis ortonormal $\R^m$.</li>
+        <li>$\operatorname{rank}A = k$ = banyak nilai singular positif.</li>
+        <li>Empat ruang fundamental dengan basis ortonormal: $\set{\mathbf{u}_1..\mathbf{u}_k}$ untuk $\operatorname{Col}A$, $\set{\mathbf{u}_{k+1}..\mathbf{u}_m}$ untuk $\operatorname{Nul}A^T$, $\set{\mathbf{v}_1..\mathbf{v}_k}$ untuk $\operatorname{Row}A$, $\set{\mathbf{v}_{k+1}..\mathbf{v}_n}$ untuk $\operatorname{Nul}A$.</li>
+        <li>$A = U\Sigma V^T = \sum_{i=1}^{k}\sigma_i\mathbf{u}_i\mathbf{v}_i^T$: perumuman dekomposisi spektral ke matriks sembarang.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Vektor singular kanan $\mathbf{v}_1, \dots, \mathbf{v}_n$ basis ortonormal $\R^n$, jadi $\set{A\mathbf{v}_1, \dots, A\mathbf{v}_n}$ merentang citra $L(\mathbf{x}) = A\mathbf{x}$. Jika $\delta_1 \ge \cdots \ge \delta_k \gt \delta_{k+1} = \cdots = \delta_n = 0$, maka $A\mathbf{v}_{k+1} = \cdots = A\mathbf{v}_n = \mathbf{0}$ (karena $\norm{A\mathbf{v}_i} = \sigma_i$), sedangkan $A\mathbf{v}_1, \dots, A\mathbf{v}_k$ saling ortogonal dan tak nol (topik sebelumnya). Jadi keduanya basis ortogonal citra $L$.</p>
+
+      <h3>Vektor singular kiri</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Vektor singular kiri (Modul, Definisi 6.10.1)</div>
+        <p>Misalkan $\sigma_1 \ge \cdots \ge \sigma_k \gt \sigma_{k+1} = \cdots = \sigma_n = 0$ nilai singular $A$ ($m \times n$) dengan vektor singular kanan $\mathbf{v}_1, \dots, \mathbf{v}_n$. Definisikan</p>
+        <p>$$\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i, \qquad 1 \le i \le k,$$</p>
+        <p>lalu pilih $\mathbf{u}_{k+1}, \dots, \mathbf{u}_m$ sehingga $\mathbf{u}_1, \dots, \mathbf{u}_m$ basis ortonormal $\R^m$. Vektor-vektor ini disebut <strong>vektor singular kiri</strong> (left singular vectors) $A$.</p>
+        <p><span class="cek">[CEK: di sumber, definisi ini dan Teorema 6.10.2 menulis "$\delta_1 \ge \cdots$ adalah nilai singular" (seharusnya $\sigma_i$; $\delta_i$ nilai eigen $A^TA$), "vektor singular kanan … bersesuaian dengan nilai eigen $\sigma_i$", Teorema 6.10.2 menyebut $\mathbf{v}_i$ "vektor singular kiri" (seharusnya kanan), butir (2) "basis ortonormal dari $L$" (seharusnya citra $L$), dan $V = [\mathbf{v}_1 \cdots \mathbf{v}_m]$ (seharusnya sampai $\mathbf{v}_n$). Di sini semuanya ditulis dengan notasi yang konsisten.]</span></p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">SVD dan empat ruang fundamental (Modul, Teorema 6.10.2)</div>
+        <p>Dengan notasi di atas, $L(\mathbf{x}) = A\mathbf{x}$ dan $L_T(\mathbf{y}) = A^T\mathbf{y}$:</p>
+        <ol>
+          <li>$\operatorname{rank}A = k$;</li>
+          <li>$\mathbf{u}_1, \dots, \mathbf{u}_k$ basis ortonormal citra $L$ ($= \operatorname{Col}A$);</li>
+          <li>$\mathbf{u}_{k+1}, \dots, \mathbf{u}_m$ basis ortonormal $\ker L_T$ ($= \operatorname{Nul}A^T$);</li>
+          <li>$\mathbf{v}_1, \dots, \mathbf{v}_k$ basis ortonormal citra $L_T$ ($= \operatorname{Row}A$), dan $\mathbf{v}_{k+1}, \dots, \mathbf{v}_n$ basis ortonormal $\ker L$ ($= \operatorname{Nul}A$);</li>
+          <li>dengan $U = [\mathbf{u}_1 \cdots \mathbf{u}_m]$, $V = [\mathbf{v}_1 \cdots \mathbf{v}_n]$, dan $\Sigma$ ($m \times n$) berentri $\Sigma_{ii} = \sigma_i$ dan nol lainnya, berlaku $A = U\Sigma V^T$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li><strong>$\mathbf{u}_1, \dots, \mathbf{u}_k$ ortonormal</strong>: $\langle \mathbf{u}_i, \mathbf{u}_j \rangle = \tfrac{1}{\sigma_i\sigma_j}\langle A\mathbf{v}_i, A\mathbf{v}_j \rangle = \tfrac{\delta_j}{\sigma_i\sigma_j}\delta_{ij} = \delta_{ij}$ (topik sebelumnya, Teorema 1). Jadi pelengkapan ke basis ortonormal $\R^m$ mungkin (Gram–Schmidt).</li>
+          <li><strong>(5)</strong>: $A\mathbf{v}_i = \sigma_i\mathbf{u}_i$ untuk $i \le k$ dan $A\mathbf{v}_i = \mathbf{0} = \sigma_i\mathbf{u}_i$ untuk $k \lt i \le n$ (jika $n \le m$; bila $n \gt m$, kolom $\Sigma$ ke-$i \gt m$ nol). Kolom per kolom: $AV = U\Sigma$. Karena $V$ ortogonal, $A = U\Sigma V^T$.</li>
+          <li><strong>(1)</strong>: $U, V$ invertibel, jadi $\operatorname{rank}A = \operatorname{rank}\Sigma = k$.</li>
+          <li><strong>(2)</strong>: citra $L$ direntang $A\mathbf{v}_1, \dots, A\mathbf{v}_n$, yaitu $\sigma_1\mathbf{u}_1, \dots, \sigma_k\mathbf{u}_k$ dan vektor nol. Jadi $\operatorname{Col}A = \operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$.</li>
+          <li><strong>(3)</strong>: $\operatorname{Nul}A^T = (\operatorname{Col}A)^\perp$ (topik Teorema Fundamental), yaitu komplemen ortogonal $\operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$ di $\R^m$, yang direntang $\mathbf{u}_{k+1}, \dots, \mathbf{u}_m$.</li>
+          <li><strong>(4)</strong>: $A\mathbf{v}_i = \mathbf{0}$ untuk $i \gt k$, dan $\dim\operatorname{Nul}A = n - k$ (teorema rank), jadi $\operatorname{Nul}A = \operatorname{span}\set{\mathbf{v}_{k+1}, \dots, \mathbf{v}_n}$. Lalu $\operatorname{Row}A = (\operatorname{Nul}A)^\perp = \operatorname{span}\set{\mathbf{v}_1, \dots, \mathbf{v}_k}$.</li>
+        </ol>
+        <p><span class="cek">[CEK: bukti di sumber dimulai dengan "berdasarkan teorema dekomposisi nilai singular, terdapat $U, \Sigma, V$ dengan $A = U\Sigma V'$", yaitu mengasumsikan butir (5) yang hendak dibuktikan, lalu menurunkan butir lain darinya. Bukti di atas (ditulis oleh Claude) membangun $A = U\Sigma V^T$ dari konstruksi $\mathbf{u}_i = A\mathbf{v}_i/\sigma_i$.]</span></p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">SVD matriks $3 \times 2$ (Modul, Contoh 6.10.3)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \\ -1 &amp; -1 \end{pmatrix}$. Dari topik sebelumnya: $A^TA = \begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}$, $\sigma_1 = 2$, $\sigma_2 = \sqrt{2}$, $V = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$.</p>
+        <ol>
+          <li>$\mathbf{u}_1 = \tfrac{1}{2}A\mathbf{v}_1 = \tfrac{1}{2}\cdot\tfrac{1}{\sqrt{2}}(0, 2, -2) = \left(0, \tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}\right)$.</li>
+          <li>$\mathbf{u}_2 = \tfrac{1}{\sqrt{2}}A\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}\cdot\tfrac{1}{\sqrt{2}}(-2, 0, 0) = (-1, 0, 0)$.</li>
+          <li>Lengkapi dengan $(0, 1, 0)$ lalu Gram–Schmidt: $(0, 1, 0) - \tfrac{1}{\sqrt{2}}\mathbf{u}_1 = \left(0, \tfrac{1}{2}, \tfrac{1}{2}\right)$, dinormalkan $\mathbf{u}_3 = \left(0, \tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\right)$.</li>
+        </ol>
+        <p>$$U = \begin{pmatrix} 0 &amp; -1 &amp; 0 \\ \tfrac{1}{\sqrt{2}} &amp; 0 &amp; \tfrac{1}{\sqrt{2}} \\ -\tfrac{1}{\sqrt{2}} &amp; 0 &amp; \tfrac{1}{\sqrt{2}} \end{pmatrix}, \qquad \Sigma = \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; \sqrt{2} \\ 0 &amp; 0 \end{pmatrix}, \qquad U\Sigma V^T = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \\ -1 &amp; 0 \end{pmatrix}\begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix} = A.$$</p>
+        <p>(Faktor $\sqrt{2}$ dari $\Sigma$ dan $\tfrac{1}{\sqrt{2}}$ dari $V^T$ saling menghapus.) Untuk matriks besar dipakai SVD numerik yang stabil; sumber menyarankan mengulang contoh ini di SageMath.</p>
+      </div>
+
+      <h3>SVD sebagai jumlah matriks rank satu</h3>
+
+      <div class="box akibat">
+        <div class="box-title">Ekspansi dyadik (Modul, §6.10)</div>
+        <p>Jika $\operatorname{rank}A = k$, maka</p>
+        <p>$$A = \sum_{i=1}^{k}\sigma_i\,\mathbf{u}_i\mathbf{v}_i^T.$$</p>
+        <p>Untuk $A$ simetris semidefinit positif ini sama dengan dekomposisi spektral $\sum\lambda_i\mathbf{u}_i\mathbf{u}_i^T$; untuk matriks sembarang (tak simetris, tak persegi) inilah penggantinya.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Kedua ruas linier, jadi cukup dibandingkan pada basis $\mathbf{v}_1, \dots, \mathbf{v}_n$. Karena $\mathbf{v}_i^T\mathbf{v}_j = \delta_{ij}$: untuk $j \le k$, $\bigl(\sum_i\sigma_i\mathbf{u}_i\mathbf{v}_i^T\bigr)\mathbf{v}_j = \sigma_j\mathbf{u}_j = A\mathbf{v}_j$; untuk $j \gt k$, keduanya $\mathbf{0}$. (Sumber hanya memeriksa $j \le k$.)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Memeriksa ekspansi pada Contoh 1</div>
+        <p>$$2\begin{pmatrix} 0 \\ \tfrac{1}{\sqrt{2}} \\ -\tfrac{1}{\sqrt{2}} \end{pmatrix}\begin{pmatrix} \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}} \end{pmatrix} + \sqrt{2}\begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} -\tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}} \end{pmatrix} = \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 1 \\ -1 &amp; -1 \end{pmatrix} + \begin{pmatrix} 1 &amp; -1 \\ 0 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} = A.$$</p>
+        <p>Membuang suku dengan $\sigma_i$ kecil memberi hampiran rank rendah; inilah dasar kompresi data dan PCA.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menghitung $U$ dan $V$ secara terpisah dari $AA^T$ dan $A^TA$ tanpa mencocokkan tanda.</strong> Vektor eigen hanya tunggal sampai tanda; pakai $\mathbf{u}_i = A\mathbf{v}_i/\sigma_i$ agar $A\mathbf{v}_i = \sigma_i\mathbf{u}_i$ konsisten.</li>
+        <li><strong>Melengkapi $U$ dengan vektor sembarang tanpa Gram–Schmidt.</strong> $(0, 1, 0)$ di Contoh 1 tidak ortogonal terhadap $\mathbf{u}_1$; harus dikoreksi dulu.</li>
+        <li><strong>Ukuran $\Sigma$ salah.</strong> $\Sigma$ berukuran sama dengan $A$ ($m \times n$), bukan persegi.</li>
+        <li><strong>Membagi dengan $\sigma_i = 0$.</strong> Rumus $\mathbf{u}_i = A\mathbf{v}_i/\sigma_i$ hanya untuk $i \le k$; sisanya dari pelengkapan.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Untuk $A = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}$, tentukan nilai singular $\sigma_i$, vektor singular kanan $\mathbf{v}_i$, dan vektor singular kiri $\mathbf{u}_i$. Periksa $A\mathbf{v}_i = \sigma_i\mathbf{u}_i$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$A^TA = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}$, nilai eigen $3$ dan $1$, jadi $\sigma_1 = \sqrt{3}$, $\sigma_2 = 1$. Vektor singular kanan: $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, 1)$, $\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(1, -1)$.</li>
+            <li>Kiri, $\mathbf{u}_i = \tfrac{1}{\sigma_i}A\mathbf{v}_i$: $A\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(2, 1, 1)$, jadi $\mathbf{u}_1 = \tfrac{1}{\sqrt{6}}(2, 1, 1)$; $A\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(0, 1, -1)$, jadi $\mathbf{u}_2 = \tfrac{1}{\sqrt{2}}(0, 1, -1)$.</li>
+            <li>Lengkapi: $\mathbf{u}_3 = \mathbf{u}_1 \times \mathbf{u}_2 = \tfrac{1}{\sqrt{3}}(-1, 1, 1)$ (atau dengan Gram–Schmidt). Cek: $\mathbf{u}_1 \cdot \mathbf{u}_2 = 0$ dan $\norm{\mathbf{u}_i} = 1$.</li>
+            <li>$A = U\Sigma V^T$ dengan $U = [\mathbf{u}_1 \mid \mathbf{u}_2 \mid \mathbf{u}_3]$ dan $\Sigma = \begin{pmatrix} \sqrt{3} &amp; 0 \\ 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}$.</li>
+          </ol>
+          <p>$\mathbf{u}_1, \mathbf{u}_2$ (untuk $\sigma_i \gt 0$) basis ortonormal $\operatorname{Im}A$, $\mathbf{u}_3$ basis $\ker A^T$, dan $\mathbf{v}_1, \mathbf{v}_2$ basis $\operatorname{Im}A^T$. Inilah inti SVD untuk kompresi data dan PCA.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan SVD dari $A = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 1 \end{pmatrix}$ dan tulis $A$ sebagai satu suku $\sigma_1\mathbf{u}_1\mathbf{v}_1^T$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A^TA = \begin{pmatrix} 5 &amp; 5 \\ 5 &amp; 5 \end{pmatrix}$, nilai eigen $10$ dan $0$: $\sigma_1 = \sqrt{10}$, $\sigma_2 = 0$, jadi $\operatorname{rank}A = 1$. $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, 1)$, $\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(1, -1)$ (basis $\operatorname{Nul}A$).</li>
+            <li>$\mathbf{u}_1 = \tfrac{1}{\sqrt{10}}A\mathbf{v}_1 = \tfrac{1}{\sqrt{10}}\cdot\tfrac{1}{\sqrt{2}}(4, 2) = \tfrac{1}{\sqrt{5}}(2, 1)$.</li>
+            <li>$\mathbf{u}_2 \perp \mathbf{u}_1$: $\mathbf{u}_2 = \tfrac{1}{\sqrt{5}}(1, -2)$, basis $\operatorname{Nul}A^T$ (memang $A^T(1, -2) = (0, 0)$).</li>
+            <li>$\sigma_1\mathbf{u}_1\mathbf{v}_1^T = \sqrt{10}\cdot\tfrac{1}{\sqrt{10}}\begin{pmatrix} 2 \\ 1 \end{pmatrix}\begin{pmatrix} 1 &amp; 1 \end{pmatrix} = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 1 \end{pmatrix} = A$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa vektor singular kiri $\mathbf{u}_1, \dots, \mathbf{u}_k$ adalah vektor eigen $AA^T$ dengan nilai eigen $\sigma_i^2$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$AA^T\mathbf{u}_i = \tfrac{1}{\sigma_i}AA^TA\mathbf{v}_i = \tfrac{1}{\sigma_i}A(\delta_i\mathbf{v}_i) = \sigma_i^2\cdot\tfrac{1}{\sigma_i}A\mathbf{v}_i = \sigma_i^2\mathbf{u}_i$.</li>
+            <li>Untuk $i \gt k$, $\mathbf{u}_i \in \operatorname{Nul}A^T$ (Teorema 1), jadi $AA^T\mathbf{u}_i = \mathbf{0}$.</li>
+          </ol>
+          <p>Jadi $A^TA$ dan $AA^T$ punya nilai eigen tak nol yang sama, yaitu $\sigma_1^2, \dots, \sigma_k^2$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mathbf{u}_i = \tfrac{1}{\sigma_i}A\mathbf{v}_i\ (i \le k), \qquad AV = U\Sigma, \qquad A = U\Sigma V^T = \sum_{i=1}^{k}\sigma_i\mathbf{u}_i\mathbf{v}_i^T, \\
+        \operatorname{Col}A = \langle \mathbf{u}_1..\mathbf{u}_k \rangle, \quad \operatorname{Nul}A^T = \langle \mathbf{u}_{k+1}..\mathbf{u}_m \rangle, \quad \operatorname{Row}A = \langle \mathbf{v}_1..\mathbf{v}_k \rangle, \quad \operatorname{Nul}A = \langle \mathbf{v}_{k+1}..\mathbf{v}_n \rangle
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.10: pengantar, Definisi 6.10.1, Teorema 6.10.2, Contoh 6.10.3, ekspansi $\sum\sigma_i\mathbf{u}_i\mathbf{v}_i^T$ beserta contohnya. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.10 (Latihan 1).</li>
+        <li>Bukti konstruktif Teorema 6.10.2, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

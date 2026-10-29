@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Rotasi dan Translasi · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Rotasi dan Translasi</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Rotasi di $\R^2$ sebesar $\varphi$: $R_\varphi = \begin{pmatrix} \cos\varphi &amp; -\sin\varphi \\ \sin\varphi &amp; \cos\varphi \end{pmatrix}$; $R_{\varphi_2}R_{\varphi_1} = R_{\varphi_1 + \varphi_2}$, dan rotasi membentuk $SO_2(\R)$ (ortogonal, determinan $1$).</li>
+        <li>Nilai eigen $R_\varphi$: $e^{\pm i\varphi}$, real hanya jika $\varphi = k\pi$.</li>
+        <li>Terhadap basis sembarang, matriks rotasi bisa tidak berbentuk $R_\xi$; terhadap basis <em>ortonormal</em> selalu berbentuk $R_\xi$.</li>
+        <li>Rotasi di $\R^3$ ditentukan oleh sumbu $\ell$ dan sudut $\phi$; dalam sistem tangan kanan $\set{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3}$ dengan $\mathbf{u}_3 \in \ell$, matriksnya $\begin{pmatrix} R_\phi &amp; 0 \\ 0 &amp; 1 \end{pmatrix}$.</li>
+        <li>Translasi tidak linier, tetapi dalam <strong>koordinat homogen</strong> $(\mathbf{x}; 1) \in F^{n+1}$ menjadi linier: $\begin{pmatrix} A &amp; \mathbf{w} \\ 0 &amp; 1 \end{pmatrix}$ merealisasikan $t_{\mathbf{w}} \circ T$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Di sini "rotasi" selalu berarti pemetaan <em>linier</em> (titik asal tetap), di $\R^2$ dan $\R^3$.</p>
+
+      <h3>Rotasi di $\R^2$</h3>
+      <p>Di topik Grup Matriks, $O_2(\R)$ terbagi dua kelas: determinan $-1$ (refleksi) dan determinan $1$, yaitu matriks $R_\varphi$ (Modul, persamaan 6.12.2).</p>
+
+      <div class="box proposisi">
+        <div class="box-title">$R_\varphi$ adalah rotasi sebesar $\varphi$ (Modul, §6.12)</div>
+        <p>Untuk $\mathbf{v} = r(\cos\theta, \sin\theta)$ (koordinat polar),</p>
+        <p>$$R_\varphi\mathbf{v} = r\begin{pmatrix} \cos\varphi\cos\theta - \sin\varphi\sin\theta \\ \sin\varphi\cos\theta + \cos\varphi\sin\theta \end{pmatrix} = r\begin{pmatrix} \cos(\theta + \varphi) \\ \sin(\theta + \varphi) \end{pmatrix}.$$</p>
+        <p>Jarak ke titik asal tetap $r$ dan sudut bertambah $\varphi$. Selain itu:</p>
+        <ul>
+          <li>$R_{\varphi_2}R_{\varphi_1} = R_{\varphi_1 + \varphi_2}$ (identitas penjumlahan sudut), jadi rotasi di $\R^2$ komutatif;</li>
+          <li>$R_\varphi = R_{\varphi + 2k\pi}$: pemetaan ditentukan oleh ke mana titik dipetakan, bukan oleh "jalurnya";</li>
+          <li>$\begin{pmatrix} \cos\varphi &amp; \sin\varphi \\ -\sin\varphi &amp; \cos\varphi \end{pmatrix} = R_{-\varphi}$ (matriks rotasi "menyamar").</li>
+        </ul>
+        <p>Dengan $I_2 = R_0$, rotasi tepat anggota $O_2(\R)$ berdeterminan $1$. Karena $\det(AB) = \det A\det B$ dan $\det A^{-1} = 1/\det A$, rotasi membentuk subgrup $SO_2(\R)$, <strong>grup ortogonal khusus</strong> (special orthogonal group).</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">Nilai eigen rotasi</div>
+        <p>$\det(R_\varphi - tI) = t^2 - (2\cos\varphi)t + 1$, jadi nilai eigennya $\lambda = \cos\varphi + i\sin\varphi = e^{i\varphi}$ dan $\bar{\lambda}$, dengan $\abs{\lambda} = 1$. Kecuali $\varphi = k\pi$, tidak ada nilai eigen real: rotasi tidak mempertahankan arah garis mana pun. Di $\C^2$ vektor eigennya ada.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Vektor eigen $R_{\pi/3}$ di $\C^2$ (Modul, Contoh 6.12.1)</div>
+        <p>$R_{\pi/3} = \begin{pmatrix} \tfrac{1}{2} &amp; -\tfrac{\sqrt{3}}{2} \\ \tfrac{\sqrt{3}}{2} &amp; \tfrac{1}{2} \end{pmatrix}$ bernilai eigen $\tfrac{1 \pm i\sqrt{3}}{2}$.</p>
+        <ul>
+          <li>Untuk $\lambda = \tfrac{1 + i\sqrt{3}}{2}$: $R_{\pi/3} - \lambda I = \begin{pmatrix} -i\tfrac{\sqrt{3}}{2} &amp; -\tfrac{\sqrt{3}}{2} \\ \tfrac{\sqrt{3}}{2} &amp; -i\tfrac{\sqrt{3}}{2} \end{pmatrix}$, ruang nolnya direntang $(i, 1)$.</li>
+          <li>Untuk $\bar{\lambda} = \tfrac{1 - i\sqrt{3}}{2}$: $R_{\pi/3}(-i, 1) = \left(-\tfrac{i}{2} - \tfrac{\sqrt{3}}{2},\ \tfrac{1}{2} - \tfrac{i\sqrt{3}}{2}\right) = \bar{\lambda}(-i, 1)$. Ruang eigennya $\operatorname{span}\set{(-i, 1)} = \operatorname{span}\set{(1, i)}$.</li>
+        </ul>
+      </div>
+
+      <div class="box peringatan">
+        <div class="box-title">Rotasi dengan matriks yang bukan matriks rotasi (Modul, §6.12)</div>
+        <p>Terhadap basis $B = \set{(1, 0), (1, -1)}$ dengan $P = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; -1 \end{pmatrix}$ ($P^{-1} = P$):</p>
+        <p>$$[R_\varphi]_B = P^{-1}R_\varphi P = \begin{pmatrix} \cos\varphi + \sin\varphi &amp; 2\sin\varphi \\ -\sin\varphi &amp; \cos\varphi - \sin\varphi \end{pmatrix},$$</p>
+        <p>yang untuk $\varphi \ne k\pi$ bukan matriks rotasi (entri luar diagonalnya bukan $\pm$ satu sama lain). Penjelasannya: $P^{-1}R_\varphi P$ adalah komposisi "keluar dari koordinat $B$ → rotasi → kembali ke koordinat $B$", dan peta koordinat terhadap basis tak ortonormal tidak mempertahankan panjang dan sudut.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Basis ortonormal mempertahankan bentuk rotasi (Modul, Teorema 6.12.2)</div>
+        <p>Jika $B$ basis ortonormal $\R^2$, maka $[R_\varphi]_B$ matriks rotasi. Tepatnya, $[R_\varphi]_B = R_\varphi$ jika $B$ berorientasi sama dengan basis standar, dan $R_{-\varphi}$ jika berorientasi terbalik.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Misalkan $P$ berkolom anggota $B$, jadi $[R_\varphi]_B = P^{-1}R_\varphi P$. Karena $B$ ortonormal, $P$ ortogonal, $P^{-1} = P^T$.</li>
+          <li>$(P^TR_\varphi P)^T(P^TR_\varphi P) = P^TR_\varphi^TPP^TR_\varphi P = P^TR_\varphi^TR_\varphi P = I$: ortogonal.</li>
+          <li>$\det(P^{-1}R_\varphi P) = \det R_\varphi = 1$.</li>
+          <li>Matriks ortogonal $2 \times 2$ berdeterminan $1$ berbentuk $\begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix}$ dengan $a^2 + b^2 = 1$ (kolom pertama $(\cos\xi, \sin\xi)$, kolom kedua harus $(-\sin\xi, \cos\xi)$ agar ortonormal dan determinannya $1$), yaitu $R_\xi$.</li>
+          <li>Karena $\operatorname{tr}$ invarian similaritas, $2\cos\xi = 2\cos\varphi$, jadi $\xi = \pm\varphi$. Jika $\det P = 1$, $P$ sendiri rotasi dan komutatif dengan $R_\varphi$, sehingga $\xi = \varphi$; jika $\det P = -1$ (misalnya $P = \operatorname{diag}(1, -1)$), $P^{-1}R_\varphi P = R_{-\varphi}$.</li>
+        </ol>
+        <p><span class="cek">[CEK: di akhir bukti, sumber menyimpulkan bahwa sudut $\theta$ pada $[R_\varphi]_B$ "sama dengan $\varphi$ modulo $2\pi$". Itu hanya benar untuk basis ortonormal berorientasi positif: untuk $B = \set{\mathbf{e}_1, -\mathbf{e}_2}$, $[R_\varphi]_B = R_{-\varphi}$ (Latihan 1). Pernyataan "$[R_\varphi]_B$ matriks rotasi" sendiri tetap benar.]</span></p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Bentuk kanonik rotasi (Modul, Korolari 6.12.3)</div>
+        <p>Setiap $A \in SO_2(\R)$ ortogonal-similar dengan suatu $R_\varphi$: ada $P$ ortogonal dengan $P^{-1}AP = R_\varphi$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti (konstruktif)</summary>
+        <p>Pilih vektor satuan $\mathbf{u}$ dan $a = \mathbf{u} \cdot A\mathbf{u} \in [-1, 1]$, $b = \sqrt{1 - a^2}$. Jika $b \gt 0$, $\mathbf{w} = (A\mathbf{u} - a\mathbf{u})/b$ satuan dan ortogonal terhadap $\mathbf{u}$ (Gram–Schmidt pada $A\mathbf{u}$), dan $A\mathbf{u} = a\mathbf{u} + b\mathbf{w}$. $A\mathbf{w}$ satuan dan ortogonal terhadap $A\mathbf{u}$, jadi $A\mathbf{w} = \pm(-b\mathbf{u} + a\mathbf{w})$; $\det A = 1$ memilih tanda $+$. Terhadap $B = \set{\mathbf{u}, \mathbf{w}}$, $[A]_B = \begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix} = R_\varphi$ dengan $a = \cos\varphi$, $b = \sin\varphi$. Jika $b = 0$, $A\mathbf{u} = \pm\mathbf{u}$, dan $A = \pm I = R_0$ atau $R_\pi$.</p>
+        <p><span class="cek">[CEK: sumber menyatakan bahwa kasus $a = -1$ "tidak mungkin untuk rotasi (itu akan menjadi refleksi + negasi)". Padahal $A = -I = R_\pi$ adalah rotasi berdeterminan $1$ dengan $\mathbf{u} \cdot A\mathbf{u} = -1$; kasus ini ditangani langsung di atas.]</span></p>
+      </details>
+
+      <h3>Rotasi di $\R^3$</h3>
+      <p><strong>Sistem koordinat tangan kanan</strong> (right-handed) untuk $\R^3$ adalah basis ortonormal $\set{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3}$ dengan $\mathbf{u}_i \times \mathbf{u}_{i+1} = \mathbf{u}_{i+2}$ (indeks modulo $3$). Di $\R^3$ rotasi butuh dua data: sudut $\phi$ dan <strong>sumbu</strong> $\ell = \operatorname{span}\set{\mathbf{v}}$, $\mathbf{v} = (a, b, c) \ne \mathbf{0}$. Pada bidang $\alpha = \ell^\perp \colon ax + by + cz = 0$, rotasi $R_{\mathbf{v}, \phi}$ berperilaku persis seperti $R_\phi$ di $\R^2$, dan pada $\ell$ ia identitas.</p>
+
+      <div class="box proposisi">
+        <div class="box-title">Matriks rotasi terhadap sumbu (Modul, §6.12)</div>
+        <p>Pilih $\mathbf{u}_1$ vektor satuan di $\alpha$, $\mathbf{u}_2 \in \alpha$ satuan dan ortogonal terhadap $\mathbf{u}_1$, dan $\mathbf{u}_3 = \mathbf{u}_1 \times \mathbf{u}_2$ (searah $\ell$). Untuk sistem tangan kanan ini,</p>
+        <p>$$[R_{\mathbf{v}, \phi}]_B = \begin{pmatrix} \cos\phi &amp; -\sin\phi &amp; 0 \\ \sin\phi &amp; \cos\phi &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix},$$</p>
+        <p>dan matriks standarnya $PAP^T$ dengan $P = [\mathbf{u}_1\ \mathbf{u}_2\ \mathbf{u}_3]$ ortogonal.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Rotasi $\pi/3$ terhadap sumbu $(1, -1, 1)$ (Modul, Contoh 6.12.4)</div>
+        <ol>
+          <li>$\alpha \colon x - y + z = 0$. Ambil $(1, 1, 0) \in \alpha$: $\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}(1, 1, 0)$.</li>
+          <li>Calon $\mathbf{u}_2 \in \alpha$, $\perp \mathbf{u}_1$: $\pm\tfrac{1}{\sqrt{6}}(1, -1, -2)$. Pilih $\mathbf{u}_2 = \tfrac{1}{\sqrt{6}}(-1, 1, 2)$ (putaran $\pi/2$ berlawanan arah jarum jam dari $\mathbf{u}_1$, dilihat dari ujung $(1, -1, 1)$).</li>
+          <li>$\mathbf{u}_3 = \mathbf{u}_1 \times \mathbf{u}_2 = \tfrac{1}{\sqrt{3}}(1, -1, 1)$, searah sumbu.</li>
+          <li>$A = [R]_B = \begin{pmatrix} \tfrac{1}{2} &amp; -\tfrac{\sqrt{3}}{2} &amp; 0 \\ \tfrac{\sqrt{3}}{2} &amp; \tfrac{1}{2} &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$, $P = \begin{pmatrix} \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{6}} &amp; \tfrac{1}{\sqrt{3}} \\ \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{6}} &amp; -\tfrac{1}{\sqrt{3}} \\ 0 &amp; \tfrac{2}{\sqrt{6}} &amp; \tfrac{1}{\sqrt{3}} \end{pmatrix}$.</li>
+          <li>$$R_{\mathbf{v}, \pi/3} = PAP^T = \begin{pmatrix} \tfrac{2}{3} &amp; -\tfrac{2}{3} &amp; -\tfrac{1}{3} \\ \tfrac{1}{3} &amp; \tfrac{2}{3} &amp; -\tfrac{2}{3} \\ \tfrac{2}{3} &amp; \tfrac{1}{3} &amp; \tfrac{2}{3} \end{pmatrix}, \qquad R(\mathbf{e}_1) = \left(\tfrac{2}{3}, \tfrac{1}{3}, \tfrac{2}{3}\right).$$</li>
+        </ol>
+        <p>Cek (oleh Claude, numerik): $R(1, -1, 1) = (1, -1, 1)$ (sumbu tetap) dan $\operatorname{tr}R = 2 = 1 + 2\cos\tfrac{\pi}{3}$.</p>
+      </div>
+
+      <h3>Translasi dan koordinat homogen</h3>
+      <p>Translasi $t_{\mathbf{w}}(\mathbf{x}) = \mathbf{x} + \mathbf{w}$ ($\mathbf{w} \ne \mathbf{0}$) tidak linier ($t_{\mathbf{w}}(\mathbf{0}) \ne \mathbf{0}$), tetapi penting di grafika komputer. Triknya: sisipkan $F^n$ sebagai hiperbidang yang <em>tidak</em> melalui titik asal di $F^{n+1}$, lewat injeksi $\mathbf{x} \mapsto (\mathbf{x}; 1) = (x_1, \dots, x_n, 1)$ (koordinat homogen). Translasi di hiperbidang itu menjadi pemetaan linier ruang sekelilingnya (bandingkan topik Himpunan dan Pemetaan Afin).</p>
+
+      <div class="box proposisi">
+        <div class="box-title">Matriks transformasi afin (Modul, persamaan 6.12.3)</div>
+        <p>Untuk $T(\mathbf{x}) = A\mathbf{x}$ pada $F^n$ dan $\mathbf{w} \in F^n$, definisikan $L$ pada $F^{n+1}$ dengan</p>
+        <p>$$[L]_{\mathcal{E}} = \begin{pmatrix} A &amp; \mathbf{w} \\ 0 \cdots 0 &amp; 1 \end{pmatrix}.$$</p>
+        <p>Maka $L(\mathbf{x}; 1) = (A\mathbf{x} + \mathbf{w}; 1)$: $L$ merealisasikan $t_{\mathbf{w}} \circ T$ (urutan penting: transformasi dulu, lalu translasi). Untuk $A = I_n$, $L(\mathbf{x}; 1) = (\mathbf{x} + \mathbf{w}; 1)$, translasi murni.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$L(\mathbf{e}_i) = (\mathbf{a}_i; 0)$ untuk $i \le n$ ($\mathbf{a}_i$ kolom $A$) dan $L(\mathbf{e}_{n+1}) = (\mathbf{w}; 1)$. Jadi $L(c_1, \dots, c_{n+1}) = c_1(\mathbf{a}_1; 0) + \cdots + c_n(\mathbf{a}_n; 0) + c_{n+1}(\mathbf{w}; 1)$; untuk $(\mathbf{x}; 1)$ hasilnya $(A\mathbf{x} + \mathbf{w}; 1)$.</p>
+      </details>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira setiap representasi rotasi berbentuk $R_\xi$.</strong> Hanya terhadap basis ortonormal (lihat kotak peringatan).</li>
+        <li><strong>Mengabaikan orientasi basis.</strong> Basis ortonormal yang orientasinya terbalik membalik arah sudut.</li>
+        <li><strong>Lupa urutan pada koordinat homogen.</strong> $\begin{pmatrix} A &amp; \mathbf{w} \\ 0 &amp; 1 \end{pmatrix}$ adalah "$T$ lalu translasi", bukan sebaliknya (Latihan 3).</li>
+        <li><strong>Memilih $\mathbf{u}_2$ dengan tanda salah di $\R^3$.</strong> Tanda $\mathbf{u}_2$ menentukan apakah $\mathbf{u}_1 \times \mathbf{u}_2$ searah atau berlawanan dengan sumbu, jadi arah putaran.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Hitung $[R_\varphi]_B$ untuk basis ortonormal $B = \set{\mathbf{e}_1, -\mathbf{e}_2}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$P = \operatorname{diag}(1, -1) = P^{-1}$.</li>
+            <li>$PR_\varphi P = \begin{pmatrix} \cos\varphi &amp; \sin\varphi \\ -\sin\varphi &amp; \cos\varphi \end{pmatrix} = R_{-\varphi}$ (baris dan kolom kedua berganti tanda; entri $(2, 2)$ berganti tanda dua kali).</li>
+          </ol>
+          <p>Hasilnya tetap matriks rotasi (Teorema 1), tetapi dengan sudut $-\varphi$: basis ini berorientasi terbalik ($\det P = -1$).</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa setiap rotasi $R$ di $\R^3$ dengan sudut $\phi$ memenuhi $\operatorname{tr}R = 1 + 2\cos\phi$, lalu tentukan sudut rotasi $R = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$R = PAP^T$ dengan $A$ bentuk blok $\begin{pmatrix} R_\phi &amp; 0 \\ 0 &amp; 1 \end{pmatrix}$, dan trace invarian similaritas: $\operatorname{tr}R = \operatorname{tr}A = 2\cos\phi + 1$.</li>
+            <li>Matriks yang diberikan ortogonal (permutasi) dengan $\det = 1$ (permutasi siklik genap), jadi rotasi. Sumbunya: $R(1, 1, 1) = (1, 1, 1)$.</li>
+            <li>$\operatorname{tr}R = 0 = 1 + 2\cos\phi$, jadi $\cos\phi = -\tfrac{1}{2}$ dan $\phi = \tfrac{2\pi}{3}$ (arahnya bergantung orientasi; $R$ memetakan $\mathbf{e}_1 \to \mathbf{e}_2 \to \mathbf{e}_3 \to \mathbf{e}_1$).</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>(Latihan di sumber.) Tentukan matriks di $F^{n+1}$ yang merealisasikan $T \circ t_{\mathbf{w}}$ (translasi dulu, lalu $T(\mathbf{x}) = A\mathbf{x}$).</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$(T \circ t_{\mathbf{w}})(\mathbf{x}) = A(\mathbf{x} + \mathbf{w}) = A\mathbf{x} + A\mathbf{w}$, jadi translasinya oleh $A\mathbf{w}$ setelah $T$.</li>
+            <li>Menurut Proposisi 4, matriksnya $\begin{pmatrix} A &amp; A\mathbf{w} \\ 0 &amp; 1 \end{pmatrix}$.</li>
+            <li>Cek dengan perkalian: $\begin{pmatrix} A &amp; \mathbf{0} \\ 0 &amp; 1 \end{pmatrix}\begin{pmatrix} I &amp; \mathbf{w} \\ 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} A &amp; A\mathbf{w} \\ 0 &amp; 1 \end{pmatrix}$ (matriks kanan bekerja lebih dulu).</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        R_\varphi\mathbf{v} = r(\cos(\theta + \varphi), \sin(\theta + \varphi)), \qquad R_{\varphi_2}R_{\varphi_1} = R_{\varphi_1 + \varphi_2}, \qquad \lambda = e^{\pm i\varphi}, \\
+        [R_{\mathbf{v}, \phi}]_B = \begin{pmatrix} R_\phi &amp; 0 \\ 0 &amp; 1 \end{pmatrix}, \quad \operatorname{tr} = 1 + 2\cos\phi, \qquad \begin{pmatrix} A &amp; \mathbf{w} \\ 0 &amp; 1 \end{pmatrix}\begin{pmatrix} \mathbf{x} \\ 1 \end{pmatrix} = \begin{pmatrix} A\mathbf{x} + \mathbf{w} \\ 1 \end{pmatrix}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.12: matriks rotasi, $SO_2(\R)$, nilai eigen rotasi, Contoh 6.12.1, representasi terhadap basis $\set{(1, 0), (1, -1)}$, Teorema 6.12.2, Korolari 6.12.3, rotasi di $\R^3$, Contoh 6.12.4, koordinat homogen dan persamaan 6.12.3, serta catatan kaki tentang $O_2(\R)$. File Markdown, tanpa nomor halaman.</li>
+        <li>Tidak ada soal untuk subbab ini di <code>Pembahasan-Soal-soal.md</code>.</li>
+        <li>Bagian orientasi pada Teorema 6.12.2, cek numerik Contoh 6.12.4, Latihan 1–3 (Latihan 3 berasal dari sumber tanpa kunci), dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

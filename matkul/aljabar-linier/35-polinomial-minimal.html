@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Polinomial Minimal · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Polinomial Minimal</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Untuk $a$ di $F$-aljabar $A$, $p(t) \mapsto p(a)$ homomorfisma aljabar; kernelnya <strong>annihilator</strong> $a$, yaitu semua $p$ dengan $p(a) = 0$.</li>
+        <li>Annihilator dipertahankan oleh similaritas: $p(TLT^{-1}) = T\,p(L)\,T^{-1}$.</li>
+        <li>Di dimensi hingga, <strong>polinomial minimal</strong> $m_L$ adalah polinomial monik berderajat terkecil yang meniadakan $L$; ia tunggal dan membagi setiap polinomial yang meniadakan $L$.</li>
+        <li>Operator similar (dan semua representasi matriks $L$) punya polinomial minimal yang sama, tetapi polinomial minimal sama tidak menjamin similar.</li>
+        <li>Memperluas lapangan skalar tidak mengubah polinomial atas $F$ yang meniadakan $L$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Polinomial dalam elemen aljabar</h3>
+      <p>Misalkan $A$ $F$-aljabar asosiatif dengan identitas $\iota$ dan $a \in A$. Perluasan linier dari $1 \mapsto \iota = a^0$, $t^k \mapsto a^k$ memberi pemetaan $F[t] \to A$, $p(t) \mapsto p(a)$. Pemetaan ini homomorfisma $F$-aljabar. Citranya $F[a]$ (polinomial dalam $a$), subaljabar <em>komutatif</em> karena pangkat-pangkat $a$ saling komutatif. Kernelnya disebut <strong>annihilator</strong> $a$ di $F[t]$; jika $p(a) = 0_A$, dikatakan $p$ <strong>meniadakan</strong> (annihilates) $a$. Contoh: proyeksi adalah operator $L$ dengan $L^2 = L$, yaitu operator yang ditiadakan $t^2 - t$.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Annihilator matriks nilpoten (Modul, Contoh 6.2.1)</div>
+        <p>$A = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \in M_2(\R)$. Untuk setiap $c$, $A - cI = \begin{pmatrix} -c &amp; 1 \\ 0 &amp; -c \end{pmatrix} \ne O$ (entri $(1, 2)$ bernilai $1$), tetapi $A^2 = O$. Annihilator $A$ adalah $\set{t^2q(t) : q(t) \in \R[t]}$.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Homomorfisma dan polinomial (Modul, Lemma 6.2.2)</div>
+        <p>Jika $f$ homomorfisma aljabar yang terdefinisi pada $A$ dan $p(t) \in F[t]$, maka $f(p(a)) = p(f(a))$ untuk semua $a \in A$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk $p = \sum c_kt^k$: $f\bigl(\sum c_ka^k\bigr) = \sum c_kf(a)^k$, karena $f$ mempertahankan penjumlahan, perkalian skalar, perkalian (jadi $f(a^k) = f(a)^k$), dan identitas.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Operator dan matriksnya (Modul, Contoh 6.2.3)</div>
+        <p>$L(x, y) = (y, 0)$ pada $\R^2$ bermatriks standar $A$ dari Contoh 1. Karena $L \mapsto [L]_B$ isomorfisma $F$-aljabar, Lemma 1 memberi $[p(L)]_B = p([L]_B)$. Jadi $p(L) = O \iff p(A) = O$: $L$ dan $A$ punya annihilator yang sama. Memang $L^2(x, y) = L(y, 0) = (0, 0)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Polinomial dalam operator diferensial (Modul, Contoh 6.2.4)</div>
+        <p>Pada $C^\infty(\R)$ (dimensi tak hingga), $D$ operator turunan dan $p(t) = t^2 - 5t + 6$, jadi $p(D) = D^2 - 5D + 6I$. Maka $p(D)(e^{-t}) = (1 + 5 + 6)e^{-t} = 12e^{-t}$ dan $p(D)(e^{2t}) = (4 - 10 + 6)e^{2t} = 0$.</p>
+      </div>
+
+      <h3>Invarian terhadap similaritas</h3>
+
+      <div class="box lemma">
+        <div class="box-title">Konjugasi (Modul, Lemma 6.2.5)</div>
+        <p>Jika $a \in A$ invertibel, maka $\varphi(x) = axa^{-1}$ automorfisma aljabar pada $A$, disebut <strong>konjugasi</strong> oleh $a$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li><strong>Linier:</strong> $a(x + y)a^{-1} = axa^{-1} + aya^{-1}$ dan $a(\lambda x)a^{-1} = \lambda\,axa^{-1}$.</li>
+          <li><strong>Mempertahankan perkalian:</strong> sisipkan $a^{-1}a = 1$: $\varphi(xy) = ax(a^{-1}a)ya^{-1} = \varphi(x)\varphi(y)$; dan $\varphi(1) = aa^{-1} = 1$.</li>
+          <li><strong>Bijektif:</strong> $\psi(y) = a^{-1}ya$ memenuhi $\psi\circ\varphi = \varphi\circ\psi = \mathrm{id}_A$.</li>
+        </ol>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Annihilator kelas similaritas (Modul, Teorema 6.2.6)</div>
+        <p>Jika $L \in \mathcal{L}(V)$, annihilator $L$ di $F[t]$ sama dengan annihilator setiap operator yang similar dengan $L$. Jika $V \cong F^n$, $L$ dan setiap representasi matriksnya punya annihilator yang sama.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $S = TLT^{-1}$, maka $(TLT^{-1})^j = TL^jT^{-1}$ (suku tengah $T^{-1}T$ hilang), sehingga untuk $p = \sum a_jt^j$,</p>
+        <p>$$p(S) = \sum_j a_jTL^jT^{-1} = T\,p(L)\,T^{-1}.$$</p>
+        <p>(Ini Lemma 1 untuk automorfisma Lemma 2.) Karena $T$ invertibel, $p(S) = O \iff p(L) = O$. Representasi matriks $L$ terhadap basis berbeda saling similar, $[L]_{B'} = P^{-1}[L]_BP$, dan dengan argumen yang sama punya annihilator yang sama; ditambah Contoh 2, annihilatornya sama dengan annihilator $L$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Polinomial yang meniadakan operator (Modul, Contoh 6.2.7)</div>
+        <p>$L(x, y, z) = (-x,\ x - y,\ -z)$ pada $\R^3$. Maka $L^2(x, y, z) = L(-x, x - y, -z) = (x,\ -2x + y,\ z)$, dan</p>
+        <p>$$(L^2 + 2L + I)(x, y, z) = (x - 2x + x,\ -2x + y + 2x - 2y + y,\ z - 2z + z) = (0, 0, 0).$$</p>
+        <p>Jadi $p(t) = t^2 + 2t + 1 = (t + 1)^2$ meniadakan $L$, setiap operator yang similar dengannya, dan matriks standarnya $A = \begin{pmatrix} -1 &amp; 0 &amp; 0 \\ 1 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; -1 \end{pmatrix}$ (memang $A^2 + 2A + I_3 = O$).</p>
+      </div>
+
+      <h3>Polinomial minimal</h3>
+      <p>Misalkan $\dim V = n$, jadi $\dim\mathcal{L}(V) = n^2$ dan $\dim F[L] \le n^2$. Maka ada $k$ positif dengan $\set{I, L, \dots, L^k}$ bergantung linier. Ambil $k$ <em>terkecil</em>; maka $L^k$ kombinasi linier pangkat yang lebih kecil:</p>
+      <p>$$a_0I + a_1L + \cdots + a_{k-1}L^{k-1} + L^k = O.$$</p>
+
+      <div class="box definisi">
+        <div class="box-title">Polinomial minimal (Modul, §6.2)</div>
+        <p><strong>Polinomial minimal</strong> (minimal polynomial) $L$ adalah polinomial <em>monik</em> $m_L(t) = a_0 + a_1t + \cdots + a_{k-1}t^{k-1} + t^k$ berderajat terkecil yang meniadakan $L$. Didefinisikan sama untuk matriks persegi.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Ketunggalan (Modul, Lemma 6.2.8)</div>
+        <p>Jika $V$ berdimensi hingga dan $L \in \mathcal{L}(V)$, polinomial minimal $L$ tunggal.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Dua polinomial minimal $q_1, q_2$ berderajat sama (keduanya derajat terkecil). Jika $q_1 \ne q_2$, maka $q_1 - q_2$ tak nol, berderajat lebih kecil (suku utama monik saling menghapus), dan tetap meniadakan $L$. Bagi dengan koefisien utamanya: diperoleh polinomial monik berderajat lebih kecil yang meniadakan $L$, kontradiksi.</p>
+      </details>
+
+      <div class="box proposisi">
+        <div class="box-title">Polinomial minimal membagi annihilator (dipakai di Modul, Korolari 6.2.9)</div>
+        <p>Jika $p(L) = O$, maka $m_L(t) \mid p(t)$. Jadi annihilator $L$ tepat $\set{m_L(t)q(t) : q \in F[t]}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Algoritma pembagian: $p = m_Lh + r$ dengan $r = 0$ atau $\deg r \lt \deg m_L$. Maka $r(L) = p(L) - m_L(L)h(L) = O$. Jika $r \ne 0$, membaginya dengan koefisien utama memberi polinomial monik berderajat lebih kecil dari $m_L$ yang meniadakan $L$, mustahil. Jadi $r = 0$. (Bukti ditulis oleh Claude; sumber menyebut fakta ini tanpa bukti.)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Polinomial minimal operator di Contoh 4</div>
+        <p>$(t + 1)^2$ meniadakan $L$, jadi $\deg m_L \le 2$. Polinomial monik berderajat $1$ berbentuk $t - c$, dan $L - cI = O$ berarti $L = cI$ (pemetaan skalar). $L$ bukan pemetaan skalar, jadi $\deg m_L = 2$, dan menurut ketunggalan $m_L(t) = t^2 + 2t + 1$.</p>
+      </div>
+
+      <div class="box akibat">
+        <div class="box-title">Invarian similaritas (Modul, Korolari 6.2.9)</div>
+        <p>Polinomial minimal $L$ sama dengan polinomial minimal setiap operator yang similar dengan $L$ dan, bila $V$ berdimensi hingga, setiap representasi matriks $L$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Menurut Teorema 1, $L$ dan $M = SLS^{-1}$ punya annihilator yang sama. Polinomial minimal adalah anggota monik berderajat terkecil dari annihilator itu, jadi sama (Lemma 3). Cara lain: $m_L(M) = O$ memberi $m_M \mid m_L$ (Proposisi 1), dan sebaliknya $m_L \mid m_M$; dua polinomial monik yang saling membagi sama. Representasi matriks terhadap basis berbeda saling similar.</p>
+      </details>
+
+      <div class="box peringatan">
+        <div class="box-title">Kebalikannya salah (Modul, Contoh 6.2.10)</div>
+        <p>$$A = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}, \qquad B = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}.$$</p>
+        <p>Keduanya tak nol dengan kuadrat nol, jadi polinomial minimalnya sama-sama $t^2$. Tetapi $\operatorname{rank}A = 1 \ne 2 = \operatorname{rank}B$, dan matriks similar punya rank sama. Jadi $A$ dan $B$ tidak similar.</p>
+      </div>
+
+      <h3>Perluasan lapangan skalar</h3>
+      <p>Akar polinomial minimal nanti berkaitan dengan subruang khusus $V$ (ruang eigen), tetapi $F$ belum tentu memuat akar-akar itu. Jika $\hat{F} \supseteq F$ lapangan, $\hat{V}$ adalah rentang $V$ atas $\hat{F}$ (basis $V$ atas $F$ menjadi basis $\hat{V}$ atas $\hat{F}$, jadi dimensinya sama), dan $\hat{L} \in \mathcal{L}(\hat{V})$ adalah perluasan linier $L$ atas $\hat{F}$. Proses ini disebut <strong>perluasan lapangan skalar</strong>. Misalnya $V = \Q^2$ dan $\hat{F} = \R$ memberi $\hat{V} = \R^2$; $(\sqrt{2}, 0) \in \hat{V}$ tetapi $\notin V$.</p>
+
+      <div class="box teorema">
+        <div class="box-title">Annihilator tidak berubah (Modul, Teorema 6.2.11)</div>
+        <p>Jika $p(t) \in F[t]$, maka $p(L) = O \iff p(\hat{L}) = O$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\hat{L}^j(\mathbf{v}) = L^j(\mathbf{v})$ untuk $\mathbf{v} \in V$, jadi $p(\hat{L})(\mathbf{v}) = p(L)(\mathbf{v})$. Jika $p(L) = O$, maka $p(\hat{L})$ nol pada $V$, dan karena $V$ merentang $\hat{V}$ atas $\hat{F}$ dan $p(\hat{L})$ linier, $p(\hat{L}) = O$. Sebaliknya, jika $p(\hat{L}) = O$, khususnya $p(L)(\mathbf{v}) = p(\hat{L})(\mathbf{v}) = \mathbf{0}$ untuk $\mathbf{v} \in V$.</p>
+        <p>Akibatnya, polinomial minimal tidak berubah saat lapangan diperluas. Contoh: $A = \begin{pmatrix} 1 &amp; -3 \\ 1 &amp; 1 \end{pmatrix}$ berpolinomial minimal $t^2 - 2t + 4$ baik atas $\Q$, $\R$, maupun $\C$.</p>
+      </details>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Lupa monik.</strong> $2t^2 + 4t + 2$ juga meniadakan $L$ di Contoh 4, tetapi bukan polinomial minimal; ketunggalan hanya berlaku dengan syarat monik.</li>
+        <li><strong>Menyimpulkan similar dari polinomial minimal yang sama</strong> (lihat kotak peringatan).</li>
+        <li><strong>Mengira polinomial minimal berubah ketika lapangan diperluas.</strong> Faktorisasinya bisa berubah (misalnya $t^2 - 2t + 4 = (t - 1 - i\sqrt{3})(t - 1 + i\sqrt{3})$ di $\C$), tetapi polinomialnya sama (Teorema 2).</li>
+        <li><strong>Menganggap $p(L)q(L) = q(L)p(L)$ gagal.</strong> Polinomial dalam satu operator selalu komutatif, walaupun $L$ dan operator lain tidak.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Untuk $A = \begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}$, tentukan polinomial minimal $m_A(x)$ dan bedakan dengan polinomial karakteristik.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Polinomial karakteristik (topik Polinomial Karakteristik): $p_A(x) = \det(xI - A) = (x - 2)^2(x - 3)$. $m_A$ membagi $p_A$ dan memuat semua faktor primanya.</li>
+            <li>Calon: $(x - 2)(x - 3)$. $A - 2I = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$, $A - 3I = \begin{pmatrix} -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, dan $(A - 2I)(A - 3I) = \begin{pmatrix} 0 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \ne O$.</li>
+            <li>$(A - 2I)^2 = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \ne O$, tetapi $(A - 2I)^2(A - 3I) = O$ (baris ketiga $A - 3I$ nol).</li>
+          </ol>
+          <p>Jadi $m_A(x) = (x - 2)^2(x - 3) = p_A(x)$. Pangkat $2$ diperlukan karena ada blok Jordan berukuran $2$ untuk nilai eigen $2$ (Bab 7). Jika $A$ dapat didiagonalkan, polinomial minimalnya hanya memuat faktor linier berbeda, di sini $(x - 2)(x - 3)$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Misalkan $P$ proyeksi ($P^2 = P$) dengan $P \ne O$ dan $P \ne I$. Tentukan polinomial minimalnya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$t^2 - t = t(t - 1)$ meniadakan $P$, jadi $m_P \mid t(t - 1)$ (Proposisi 1). Kemungkinan monik: $t$, $t - 1$, $t(t - 1)$.</li>
+            <li>$m_P = t$ berarti $P = O$, dan $m_P = t - 1$ berarti $P = I$; keduanya dikecualikan.</li>
+          </ol>
+          <p>Jadi $m_P(t) = t^2 - t$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa polinomial minimal $A = \begin{pmatrix} 1 &amp; -3 \\ 1 &amp; 1 \end{pmatrix}$ adalah $t^2 - 2t + 4$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A^2 = \begin{pmatrix} 1 - 3 &amp; -3 - 3 \\ 1 + 1 &amp; -3 + 1 \end{pmatrix} = \begin{pmatrix} -2 &amp; -6 \\ 2 &amp; -2 \end{pmatrix}$.</li>
+            <li>$A^2 - 2A + 4I = \begin{pmatrix} -2 - 2 + 4 &amp; -6 + 6 \\ 2 - 2 &amp; -2 - 2 + 4 \end{pmatrix} = O$.</li>
+            <li>$A$ bukan kelipatan skalar $I$ (entri luar diagonal tak nol), jadi tidak ada polinomial monik berderajat $1$ yang meniadakannya.</li>
+          </ol>
+          <p>Jadi $m_A(t) = t^2 - 2t + 4$. Diskriminannya $4 - 16 \lt 0$, jadi tak tereduksi atas $\R$ (dan $\Q$), tetapi terurai atas $\C$ dengan akar $1 \pm i\sqrt{3}$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        p(TLT^{-1}) = T\,p(L)\,T^{-1}, \qquad [p(L)]_B = p([L]_B), \\
+        m_L \text{ monik, derajat terkecil}, \quad p(L) = O \iff m_L \mid p, \quad m_L = m_{SLS^{-1}} = m_{[L]_B}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.2: annihilator, Contoh 6.2.1, Lemma 6.2.2, Contoh 6.2.3–6.2.4, Lemma 6.2.5, Teorema 6.2.6, Contoh 6.2.7, definisi polinomial minimal, Lemma 6.2.8, Korolari 6.2.9, Contoh 6.2.10, perluasan lapangan skalar, Teorema 6.2.11. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.2 (Latihan 1).</li>
+        <li>Proposisi 1 dan buktinya, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

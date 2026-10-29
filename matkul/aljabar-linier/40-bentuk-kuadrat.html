@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Bentuk Kuadrat · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Bentuk Kuadrat</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Bentuk kuadrat di $\R^n$: kombinasi linier suku $x_ix_j$, ditulis tunggal sebagai $q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x}$ dengan $A$ simetris.</li>
+        <li>Matriksnya: $a_{ii}$ = koefisien $x_i^2$, $a_{ij} = a_{ji} = \tfrac{1}{2}$ koefisien $x_ix_j$ ($i \ne j$).</li>
+        <li>Dalam koordinat basis-eigen ortonormal $A$, $q = \lambda_1c_1^2 + \cdots + \lambda_nc_n^2$: suku silang hilang.</li>
+        <li>$A$ definit positif ⇔ semua nilai eigen positif; semidefinit positif ⇔ semua $\ge 0$; tak definit ⇔ ada nilai eigen positif dan negatif.</li>
+        <li>$\mathbf{x} \mapsto A\mathbf{x}$ memetakan lingkaran satuan ke elips bersumbu $\sqrt{\lambda_i(A^TA)}$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Motivasi: minimum global</h3>
+      <p>Bentuk kuadrat penting dalam optimasi. Apakah $q(0, 0) = 0$ minimum global, maksimum global, atau bukan keduanya, untuk</p>
+      <p>$$q(x_1, x_2) = 8x_1^2 - 4x_1x_2 + 5x_2^2 = \begin{pmatrix} x_1 &amp; x_2 \end{pmatrix}\begin{pmatrix} 8 &amp; -2 \\ -2 &amp; 5 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \mathbf{x}^TA\mathbf{x}?$$</p>
+      <ol>
+        <li>$A$ simetris, jadi punya basis-eigen ortonormal (topik Teorema Spektral): $\operatorname{tr}A = 13$, $\det A = 36$, nilai eigen $\lambda_1 = 9$, $\lambda_2 = 4$, dengan $\mathbf{v}_1 = \tfrac{1}{\sqrt{5}}(2, -1)$ dan $\mathbf{v}_2 = \tfrac{1}{\sqrt{5}}(1, 2)$.</li>
+        <li>Tulis $\mathbf{x} = c_1\mathbf{v}_1 + c_2\mathbf{v}_2$. Karena $\mathbf{v}_i$ ortonormal,
+          $$q(\mathbf{x}) = (c_1\mathbf{v}_1 + c_2\mathbf{v}_2)^T(c_1\lambda_1\mathbf{v}_1 + c_2\lambda_2\mathbf{v}_2) = 9c_1^2 + 4c_2^2.$$</li>
+        <li>Untuk $\mathbf{x} \ne \mathbf{0}$, salah satu $c_i \ne 0$, jadi $q(\mathbf{x}) \gt 0 = q(\mathbf{0})$: <strong>minimum global</strong>.</li>
+      </ol>
+      <p>Dalam koordinat $c_1, c_2$ (basis-eigen), $9c_1^2 + 4c_2^2$ jauh lebih sederhana daripada bentuk aslinya.</p>
+
+      <h3>Bentuk kuadrat dan matriksnya</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Bentuk kuadrat (Modul, §6.7)</div>
+        <p>Fungsi $q \colon \R^n \to \R$ adalah <strong>bentuk kuadrat</strong> (quadratic form) jika ia kombinasi linier suku-suku $x_ix_j$ ($i = j$ boleh). Setiap bentuk kuadrat dapat ditulis</p>
+        <p>$$q(\mathbf{x}) = \langle \mathbf{x}, A\mathbf{x} \rangle = \mathbf{x}^TA\mathbf{x}$$</p>
+        <p>untuk tepat satu matriks <em>simetris</em> $A$, disebut <strong>matriks dari $q$</strong>: $a_{ii}$ koefisien $x_i^2$ dan $a_{ij} = a_{ji} = \tfrac{1}{2}(\text{koefisien } x_ix_j)$ untuk $i \ne j$. Himpunan $Q_n$ semua bentuk kuadrat adalah subruang dari ruang semua fungsi $\R^n \to \R$ (berdimensi $\tfrac{n(n+1)}{2}$).</p>
+        <p><span class="cek">[CEK: sumber menyebut $Q_n$ subruang dari "ruang linear dari semua pemetaan linear dari $\R^n$ ke $\R$". Bentuk kuadrat tidak linier ($q(2\mathbf{x}) = 4q(\mathbf{x})$), jadi yang dimaksud mestinya ruang semua <em>fungsi</em> $\R^n \to \R$.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks bentuk kuadrat (Modul, Contoh 6.7.1)</div>
+        <p>$q(x_1, x_2, x_3) = 9x_1^2 + 7x_2^2 + 3x_3^2 - 2x_1x_2 + 4x_1x_3 - 6x_2x_3$ bermatriks</p>
+        <p>$$A = \begin{pmatrix} 9 &amp; -1 &amp; 2 \\ -1 &amp; 7 &amp; -3 \\ 2 &amp; -3 &amp; 3 \end{pmatrix}.$$</p>
+        <p>(Koefisien $-2$ untuk $x_1x_2$ dibagi dua ke $a_{12}$ dan $a_{21}$, dan seterusnya.)</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">Sumbu utama (Modul, §6.7)</div>
+        <p>Jika $\mathcal{B}$ basis-eigen ortonormal $A$ dengan nilai eigen $\lambda_1, \dots, \lambda_n$ dan $c_i$ koordinat $\mathbf{x}$ terhadap $\mathcal{B}$, maka</p>
+        <p>$$q(\mathbf{x}) = \lambda_1c_1^2 + \lambda_2c_2^2 + \cdots + \lambda_nc_n^2.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\mathbf{x} = \sum c_i\mathbf{v}_i$, $A\mathbf{x} = \sum c_i\lambda_i\mathbf{v}_i$, dan $\mathbf{v}_i^T\mathbf{v}_j = \delta_{ij}$, jadi $\mathbf{x}^TA\mathbf{x} = \sum_{i,j}c_ic_j\lambda_j\delta_{ij} = \sum_i\lambda_ic_i^2$. Dalam matriks: dengan $Q = [\mathbf{v}_1 \cdots \mathbf{v}_n]$ dan $\mathbf{x} = Q\mathbf{c}$, $q = \mathbf{c}^TQ^TAQ\mathbf{c} = \mathbf{c}^TD\mathbf{c}$.</p>
+      </details>
+
+      <h3>Kedefinitan</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Definit, semidefinit, tak definit (Modul, §6.7)</div>
+        <p>Untuk $q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x}$ dengan $A$ simetris, $A$ (atau $q$) disebut:</p>
+        <ul>
+          <li><strong>definit positif</strong> jika $q(\mathbf{x}) \gt 0$ untuk semua $\mathbf{x} \ne \mathbf{0}$;</li>
+          <li><strong>semidefinit positif</strong> jika $q(\mathbf{x}) \ge 0$ untuk semua $\mathbf{x}$;</li>
+          <li><strong>definit negatif</strong> dan <strong>semidefinit negatif</strong> secara analog;</li>
+          <li><strong>tak definit</strong> (indefinite) jika $q$ mengambil nilai positif dan negatif.</li>
+        </ul>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Uji nilai eigen (Modul, Teorema 6.7.2)</div>
+        <p>Matriks simetris $A$ definit positif ⇔ semua nilai eigen $A$ positif; semidefinit positif ⇔ semua nilai eigen $A$ positif atau nol.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Dari Proposisi 1, $q = \sum_i\lambda_ic_i^2$, dan $\mathbf{x} \mapsto \mathbf{c}$ bijeksi dengan $\mathbf{x} = \mathbf{0} \iff \mathbf{c} = \mathbf{0}$. Jika semua $\lambda_i \gt 0$, $q \gt 0$ untuk $\mathbf{c} \ne \mathbf{0}$. Sebaliknya, memilih $\mathbf{x} = \mathbf{v}_i$ ($\mathbf{c} = \mathbf{e}_i$) memberi $q(\mathbf{v}_i) = \lambda_i$, jadi definit positif memaksa setiap $\lambda_i \gt 0$. Kasus semidefinit sama dengan $\ge$. Analog: tak definit ⇔ ada $\lambda_i \gt 0$ dan $\lambda_j \lt 0$.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Uji minor utama dan geometri kurva level</div>
+        <ul>
+          <li>Kriteria Sylvester (dipakai di Pembahasan sumber): $A$ simetris definit positif ⇔ semua minor utama terdepan $\Delta_1, \dots, \Delta_n$ positif (lihat juga topik Hasil Kali Dalam).</li>
+          <li>Di $\R^2$, kurva level $q = c \gt 0$ adalah elips jika $q$ definit positif, hiperbola jika tak definit, dan sepasang garis sejajar jika semidefinit tetapi tidak definit (dan $A \ne O$).</li>
+        </ul>
+      </div>
+
+      <h3>Citra lingkaran satuan</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Lingkaran menjadi elips (Modul, Contoh 6.7.3)</div>
+        <p>$L(\mathbf{x}) = A\mathbf{x}$ dengan $A = \begin{pmatrix} 6 &amp; 2 \\ -7 &amp; 6 \end{pmatrix}$. (a) Cari basis ortonormal $\mathbf{v}_1, \mathbf{v}_2$ dengan $L\mathbf{v}_1 \perp L\mathbf{v}_2$. (b) Tunjukkan citra lingkaran satuan adalah elips dan tentukan sumbunya.</p>
+        <ol>
+          <li>Kuncinya $A^TA$ (simetris): $\langle L\mathbf{v}_i, L\mathbf{v}_j \rangle = \mathbf{v}_i^T(A^TA)\mathbf{v}_j$. $A^TA = \begin{pmatrix} 6 &amp; -7 \\ 2 &amp; 6 \end{pmatrix}\begin{pmatrix} 6 &amp; 2 \\ -7 &amp; 6 \end{pmatrix} = \begin{pmatrix} 85 &amp; -30 \\ -30 &amp; 40 \end{pmatrix}$.</li>
+          <li>$p(\lambda) = \lambda^2 - 125\lambda + 2500 = (\lambda - 100)(\lambda - 25)$. Vektor eigen ortonormal: $\mathbf{v}_1 = \tfrac{1}{\sqrt{5}}(2, -1)$ untuk $100$, $\mathbf{v}_2 = \tfrac{1}{\sqrt{5}}(1, 2)$ untuk $25$.</li>
+          <li>(a) $\langle L\mathbf{v}_1, L\mathbf{v}_2 \rangle = \mathbf{v}_1^T(25\mathbf{v}_2) = 0$. Langsung: $L\mathbf{v}_1 = \tfrac{1}{\sqrt{5}}(10, -20)$, $L\mathbf{v}_2 = \tfrac{1}{\sqrt{5}}(10, 5)$, hasil kali titiknya $\tfrac{100 - 100}{5} = 0$.</li>
+          <li>(b) Lingkaran satuan: $\mathbf{x}(t) = \cos t\,\mathbf{v}_1 + \sin t\,\mathbf{v}_2$, jadi $L\mathbf{x}(t) = \cos t\,L\mathbf{v}_1 + \sin t\,L\mathbf{v}_2$: elips dengan sumbu tegak lurus $L\mathbf{v}_1$ dan $L\mathbf{v}_2$, berpanjang
+            $$\norm{L\mathbf{v}_1}^2 = \mathbf{v}_1^T(A^TA)\mathbf{v}_1 = \lambda_1 = 100, \qquad \norm{L\mathbf{v}_2}^2 = \lambda_2 = 25,$$
+            yaitu setengah sumbu $10$ dan $5$.</li>
+        </ol>
+        <figure>
+          <svg viewBox="0 0 220 220" width="220" height="220" role="img" aria-labelledby="judul-svg-elips">
+            <title id="judul-svg-elips">Lingkaran satuan kecil di titik asal dan citranya, elips dengan setengah sumbu 10 dan 5 sepanjang arah L v1 dan L v2</title>
+            <path d="M5 110H215M110 215V5" stroke="currentColor" stroke-width="1" opacity="0.3" fill="none"/>
+            <circle cx="110" cy="110" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <ellipse cx="110" cy="110" rx="90" ry="45" transform="rotate(63.43 110 110)" stroke-width="2" style="stroke: var(--c-definisi)" fill="none"/>
+            <line x1="110" y1="110" x2="150.2" y2="190.5" stroke-width="2" style="stroke: var(--c-contoh)"/>
+            <line x1="110" y1="110" x2="150.2" y2="89.9" stroke-width="2" style="stroke: var(--c-contoh)"/>
+            <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12">
+              <text x="156" y="196" style="fill: var(--c-contoh)">Lv₁</text>
+              <text x="156" y="88" style="fill: var(--c-contoh)">Lv₂</text>
+              <text x="122" y="104">‖x‖ = 1</text>
+            </g>
+          </svg>
+          <figcaption>Citra lingkaran satuan oleh $A$: elips dengan setengah sumbu $\norm{L\mathbf{v}_1} = 10$ dan $\norm{L\mathbf{v}_2} = 5$ (skala: lingkaran satuan berjari-jari 1 satuan gambar).</figcaption>
+        </figure>
+        <p>Ini cikal bakal dekomposisi nilai singular: $\sqrt{100} = 10$ dan $\sqrt{25} = 5$ adalah nilai singular $A$.</p>
+        <p><span class="cek">[CEK: sumber menulis $A^TA$ sebagai hasil kali $\begin{pmatrix} 6 &amp; -7 \\ 2 &amp; 6 \end{pmatrix}\begin{pmatrix} 6 &amp; -7 \\ 2 &amp; 6 \end{pmatrix}$ (faktor kedua seharusnya $A$, bukan $A^T$; hasil $\begin{pmatrix} 85 &amp; -30 \\ -30 &amp; 40 \end{pmatrix}$-nya benar), lalu menyebut $100$ dan $25$ "nilai eigen dari $A$"; itu nilai eigen $A^TA$.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Lupa membagi dua koefisien suku silang.</strong> $-4x_1x_2$ memberi $a_{12} = a_{21} = -2$, bukan $-4$.</li>
+        <li><strong>Memakai nilai eigen matriks tak simetris.</strong> $\mathbf{x}^TB\mathbf{x} = \mathbf{x}^T\tfrac{B + B^T}{2}\mathbf{x}$; uji kedefinitan harus pada bagian simetris.</li>
+        <li><strong>Menguji hanya diagonal.</strong> Diagonal positif tidak menjamin definit positif (Latihan 2).</li>
+        <li><strong>Menyamakan nilai eigen $A$ dengan setengah sumbu elips citra.</strong> Setengah sumbunya $\sqrt{\lambda_i(A^TA)}$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Klasifikasikan $Q(x, y) = 2x^2 + 4xy + 5y^2$: definit positif, negatif, atau tak definit?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Matriksnya $A = \begin{pmatrix} 2 &amp; 2 \\ 2 &amp; 5 \end{pmatrix}$ (karena $4xy = 2xy + 2yx$).</li>
+            <li>Minor utama (Sylvester): $\Delta_1 = 2 \gt 0$, $\Delta_2 = \det A = 10 - 4 = 6 \gt 0$. Jadi definit positif.</li>
+            <li>Melengkapkan kuadrat: $Q = 2(x^2 + 2xy) + 5y^2 = 2(x + y)^2 + 3y^2 \gt 0$ untuk $(x, y) \ne (0, 0)$.</li>
+            <li>Nilai eigen: $\lambda = \tfrac{7 \pm \sqrt{25}}{2}$, yaitu $6$ dan $1$, keduanya positif (Teorema 1).</li>
+          </ol>
+          <p>Secara geometris, kurva level $Q = c \gt 0$ adalah elips. Bentuk tak definit memberi hiperbola; semidefinit (tetapi tidak definit) memberi sepasang garis sejajar.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Klasifikasikan $q(x, y) = x^2 + 4xy + y^2$ dan tunjukkan arah di mana $q \lt 0$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A = \begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}$; nilai eigen $3$ (vektor $(1, 1)$) dan $-1$ (vektor $(1, -1)$).</li>
+            <li>Ada nilai eigen positif dan negatif: <strong>tak definit</strong>, walaupun diagonalnya positif.</li>
+            <li>Arah negatif: $q(1, -1) = 1 - 4 + 1 = -2 \lt 0$; arah positif: $q(1, 1) = 6 \gt 0$.</li>
+          </ol>
+          <p>Kurva level $q = 1$ adalah hiperbola $3c_1^2 - c_2^2 = 1$ dalam koordinat basis-eigen ortonormal.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa $q(x, y) = x^2 - 2xy + y^2$ semidefinit positif tetapi tidak definit positif.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$q = (x - y)^2 \ge 0$ untuk semua $(x, y)$: semidefinit positif.</li>
+            <li>$q(1, 1) = 0$ dengan $(1, 1) \ne \mathbf{0}$: tidak definit positif.</li>
+            <li>Cek nilai eigen $A = \begin{pmatrix} 1 &amp; -1 \\ -1 &amp; 1 \end{pmatrix}$: $\lambda = 0$ dan $2$, sesuai Teorema 1.</li>
+          </ol>
+          <p>Kurva level $q = c \gt 0$: $x - y = \pm\sqrt{c}$, sepasang garis sejajar.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x}, \quad A = A^T, \quad a_{ij} = \tfrac{1}{2}[x_ix_j]\ (i \ne j), \qquad q = \sum_i \lambda_ic_i^2, \\
+        \text{definit positif} \iff \lambda_i \gt 0\ \forall i, \qquad \norm{A\mathbf{v}_i} = \sqrt{\lambda_i(A^TA)}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.7: contoh motivasi $8x_1^2 - 4x_1x_2 + 5x_2^2$, definisi bentuk kuadrat, Contoh 6.7.1, definisi kedefinitan, Teorema 6.7.2, Contoh 6.7.3. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.7 (Latihan 1).</li>
+        <li>Bukti Proposisi 1 dan arah sebaliknya Teorema 6.7.2, gambar elips (SVG), Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

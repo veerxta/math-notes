@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Nilai Singular dan Vektor Singular Kanan · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Nilai Singular dan Vektor Singular Kanan</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Dekomposisi nilai singular (SVD): $A = U\Sigma V^T$ dengan $U, V$ ortogonal dan $\Sigma$ ($m \times n$) "diagonal" tak negatif. Berlaku untuk <em>setiap</em> matriks, persegi atau tidak.</li>
+        <li>$A^TA$ simetris semidefinit positif: nilai eigennya $\delta_i \ge 0$, karena $\delta_i = \norm{A\mathbf{v}_i}^2$.</li>
+        <li><strong>Nilai singular</strong> $\sigma_i = \sqrt{\delta_i}$ (urut menurun); <strong>vektor singular kanan</strong> $\mathbf{v}_i$ = vektor eigen ortonormal $A^TA$.</li>
+        <li>$A\mathbf{v}_i \perp A\mathbf{v}_j$ untuk $i \ne j$ dan $\norm{A\mathbf{v}_i} = \sigma_i$: $A$ memetakan basis ortonormal $\set{\mathbf{v}_i}$ ke vektor-vektor yang saling tegak lurus.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Untuk $A$ berukuran $m \times n$, <strong>dekomposisi nilai singular</strong> (singular value decomposition, SVD) mencari matriks ortogonal $U$ ($m \times m$) dan $V$ ($n \times n$) sehingga $A = U\Sigma V^T$, dengan $\Sigma$ berukuran $m \times n$ yang entri diagonal utamanya tak negatif dan entri lainnya nol. (Sumber menulisnya $A = QDP'$.) Halaman ini membangun $V$ dan $\Sigma$; topik berikutnya membangun $U$.</p>
+
+      <h3>Nilai eigen $A^TA$</h3>
+
+      <div class="box proposisi">
+        <div class="box-title">$A^TA$ semidefinit positif (Modul, §6.9)</div>
+        <p>Untuk $A \in M_{m,n}(\R)$, $A^TA$ simetris, jadi dapat didiagonalkan secara ortogonal: ada $V$ ortogonal dengan $V^T(A^TA)V$ diagonal. Jika $\delta$ nilai eigen $A^TA$ dengan vektor eigen satuan $\mathbf{v}$, maka</p>
+        <p>$$\norm{A\mathbf{v}}^2 = (A\mathbf{v})^T(A\mathbf{v}) = \mathbf{v}^T(A^TA)\mathbf{v} = \delta\,\mathbf{v}^T\mathbf{v} = \delta \ge 0.$$</p>
+        <p>Jadi semua nilai eigen $A^TA$ tak negatif.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Diagonalisasi $A^TA$ (Modul, Contoh 6.9.1)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \\ -1 &amp; -1 \end{pmatrix}$, jadi $A^TA = \begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}$ (misalnya entri $(1, 2)$: $-1 + 1 + 1 = 1$).</p>
+        <ol>
+          <li>$p(\delta) = \delta^2 - 6\delta + 8 = (\delta - 4)(\delta - 2)$: $\delta_1 = 4$, $\delta_2 = 2$.</li>
+          <li>Vektor eigen $(1, 1)$ dan $(-1, 1)$; dinormalkan: $P = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$.</li>
+          <li>$P^T(A^TA)P = \operatorname{diag}(4, 2)$.</li>
+        </ol>
+      </div>
+
+      <h3>Nilai singular dan vektor singular kanan</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Nilai singular dan vektor singular kanan (Modul, §6.9)</div>
+        <p>Misalkan $\delta_1 \ge \delta_2 \ge \cdots \ge \delta_k \gt \delta_{k+1} = \cdots = \delta_n = 0$ nilai eigen $A^TA$, urut menurun. Bilangan</p>
+        <p>$$\sigma_i = \sqrt{\delta_i}, \qquad \sigma_1 \ge \cdots \ge \sigma_k \gt \sigma_{k+1} = \cdots = \sigma_n = 0,$$</p>
+        <p>adalah <strong>nilai singular</strong> (singular values) $A$. Jika $\mathbf{v}_1, \dots, \mathbf{v}_n$ vektor eigen ortonormal $A^TA$ dengan $\mathbf{v}_i$ untuk $\delta_i$, maka $\mathbf{v}_1, \dots, \mathbf{v}_n$ disebut <strong>vektor singular kanan</strong> (right singular vectors) $A$.</p>
+        <p>Pada Contoh 1: $\sigma_1 = 2$, $\sigma_2 = \sqrt{2}$, $\mathbf{v}_1 = \tfrac{1}{\sqrt{2}}(1, 1)$, $\mathbf{v}_2 = \tfrac{1}{\sqrt{2}}(-1, 1)$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Sifat vektor singular kanan (Modul, Teorema 6.9.2)</div>
+        <p>Dengan notasi di atas:</p>
+        <ol>
+          <li>$\langle A\mathbf{x}, A\mathbf{v}_i \rangle = \delta_i\langle \mathbf{x}, \mathbf{v}_i \rangle$ untuk semua $\mathbf{x} \in \R^n$;</li>
+          <li>$A\mathbf{v}_i \perp A\mathbf{v}_j$ untuk $i \ne j$;</li>
+          <li>$\langle A\mathbf{v}_i, A\mathbf{v}_i \rangle = \sigma_i^2$;</li>
+          <li>jika $\mathbf{x} = a_1\mathbf{v}_1 + \cdots + a_n\mathbf{v}_n$, maka $\langle A\mathbf{x}, A\mathbf{v}_i \rangle = a_i\delta_i$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>$\langle A\mathbf{x}, A\mathbf{v}_i \rangle = \mathbf{x}^T(A^TA)\mathbf{v}_i = \delta_i\mathbf{x}^T\mathbf{v}_i$.</li>
+          <li>Dari (1) dengan $\mathbf{x} = \mathbf{v}_j$: $\langle A\mathbf{v}_j, A\mathbf{v}_i \rangle = \delta_i\langle \mathbf{v}_j, \mathbf{v}_i \rangle = 0$.</li>
+          <li>Dari (1) dengan $\mathbf{x} = \mathbf{v}_i$: $\delta_i \cdot 1 = \sigma_i^2$.</li>
+          <li>$\langle \mathbf{x}, \mathbf{v}_i \rangle = a_i$ karena $\set{\mathbf{v}_j}$ ortonormal (topik Himpunan Ortonormal); masukkan ke (1).</li>
+        </ol>
+        <p>Akibatnya, $A\mathbf{v}_i = \mathbf{0}$ tepat untuk $i \gt k$ (karena $\norm{A\mathbf{v}_i} = \sigma_i$), dan $A\mathbf{v}_1, \dots, A\mathbf{v}_k$ ortogonal tak nol. Inilah bahan untuk vektor singular kiri di topik berikutnya.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Hubungan dengan topik Bentuk Kuadrat</div>
+        <p>Teorema 1 menjelaskan Contoh 6.7.3 di topik Bentuk Kuadrat: $A$ memetakan lingkaran satuan ke elips dengan sumbu-sumbu $A\mathbf{v}_i$ (saling tegak lurus) dan setengah sumbu $\sigma_i$.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menyamakan nilai singular dengan nilai eigen $A$.</strong> Nilai singular adalah akar nilai eigen $A^TA$. Untuk $A$ simetris, $\sigma_i = \abs{\lambda_i}$ (Latihan 3); untuk matriks umum keduanya bisa sangat berbeda.</li>
+        <li><strong>Lupa urutan menurun.</strong> Konvensinya $\sigma_1 \ge \sigma_2 \ge \cdots$; kolom $V$ diurutkan mengikuti.</li>
+        <li><strong>Memakai $AA^T$ untuk vektor singular kanan.</strong> Vektor singular kanan berasal dari $A^TA$ ($n \times n$); $AA^T$ ($m \times m$) memberi vektor singular kiri.</li>
+        <li><strong>Nilai singular negatif.</strong> $\sigma_i = \sqrt{\delta_i} \ge 0$ selalu.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Tentukan SVD dari $A = \begin{pmatrix} 3 &amp; 0 \\ 0 &amp; 2 \\ 0 &amp; 0 \end{pmatrix}$ dan jelaskan $A = U\Sigma V^T$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>SVD: setiap $A_{m \times n}$ dapat ditulis $A = U\Sigma V^T$ dengan $U$ ($m \times m$) dan $V$ ($n \times n$) ortogonal, $\Sigma$ diagonal dengan $\sigma_i = \sqrt{\lambda_i(A^TA)} \ge 0$.</li>
+            <li>$A^TA = \begin{pmatrix} 9 &amp; 0 \\ 0 &amp; 4 \end{pmatrix}$: nilai eigen $9, 4$, jadi $\sigma_1 = 3$, $\sigma_2 = 2$.</li>
+            <li>$A^TA$ sudah diagonal, jadi $V = I_2$, dan $\Sigma = \begin{pmatrix} 3 &amp; 0 \\ 0 &amp; 2 \\ 0 &amp; 0 \end{pmatrix}$ (berukuran sama dengan $A$).</li>
+            <li>$U$ dari $AV = U\Sigma$: $U\mathbf{e}_1 = \tfrac{1}{3}A\mathbf{e}_1 = (1, 0, 0)$, $U\mathbf{e}_2 = \tfrac{1}{2}A\mathbf{e}_2 = (0, 1, 0)$, lengkapi $U\mathbf{e}_3 = (0, 0, 1)$. Jadi $U = I_3$.</li>
+          </ol>
+          <p>Jadi $A = I_3\Sigma I_2^T$. SVD memperumum diagonalisasi untuk matriks tak persegi dan tak simetris.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan nilai singular $A = \begin{pmatrix} 3 &amp; 0 \\ 4 &amp; 5 \end{pmatrix}$ dan periksa bahwa hasil kalinya $\abs{\det A}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A^TA = \begin{pmatrix} 3 &amp; 4 \\ 0 &amp; 5 \end{pmatrix}\begin{pmatrix} 3 &amp; 0 \\ 4 &amp; 5 \end{pmatrix} = \begin{pmatrix} 25 &amp; 20 \\ 20 &amp; 25 \end{pmatrix}$.</li>
+            <li>Nilai eigen: $25 \pm 20$, yaitu $45$ dan $5$ (vektor eigen $(1, 1)$ dan $(1, -1)$).</li>
+            <li>$\sigma_1 = \sqrt{45} = 3\sqrt{5}$, $\sigma_2 = \sqrt{5}$.</li>
+            <li>$\sigma_1\sigma_2 = 15$, dan $\det A = 15$. Umumnya $\sigma_1\sigma_2\cdots\sigma_n = \sqrt{\det(A^TA)} = \abs{\det A}$ untuk $A$ persegi.</li>
+          </ol>
+          <p>Bandingkan: nilai eigen $A$ (segitiga bawah) adalah $3$ dan $5$, berbeda dari nilai singularnya.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa untuk matriks simetris $A$, nilai singularnya adalah $\abs{\lambda_i}$ dengan $\lambda_i$ nilai eigen $A$. Periksa untuk $A = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Teorema spektral: $A = QDQ^T$, jadi $A^TA = A^2 = QD^2Q^T$, dengan nilai eigen $\lambda_i^2$.</li>
+            <li>$\sigma_i = \sqrt{\lambda_i^2} = \abs{\lambda_i}$, dan vektor eigen $A$ sekaligus vektor singular kanan.</li>
+            <li>Untuk $A$ yang diberikan: $\lambda = \pm 1$, dan $A^TA = I$, jadi $\sigma_1 = \sigma_2 = 1 = \abs{\pm 1}$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        A = U\Sigma V^T, \qquad A^TA\mathbf{v}_i = \delta_i\mathbf{v}_i, \qquad \sigma_i = \sqrt{\delta_i} = \norm{A\mathbf{v}_i}, \\
+        \langle A\mathbf{x}, A\mathbf{v}_i \rangle = \delta_i\langle \mathbf{x}, \mathbf{v}_i \rangle, \qquad A\mathbf{v}_i \perp A\mathbf{v}_j\ (i \ne j)
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/6-Riwayat-Operator-Linier.md</code>, Bab 6, §6.9: pengertian SVD, nilai eigen $A^TA$ tak negatif, Contoh 6.9.1, definisi nilai singular dan vektor singular kanan, Teorema 6.9.2. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.6.9 (Latihan 1).</li>
+        <li>Latihan 2–3, catatan hubungan dengan topik Bentuk Kuadrat, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>
