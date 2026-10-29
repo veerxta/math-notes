@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Perubahan Basis · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Perubahan Basis</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Matriks transisi $P_{C \leftarrow B}$ disusun dari kolom-kolom $[\mathbf{b}_j]_C$: vektor basis <em>lama</em> $B$ dalam koordinat basis <em>baru</em> $C$.</li>
+        <li>Rumus koordinat: $[\mathbf{v}]_C = P_{C \leftarrow B}[\mathbf{v}]_B$.</li>
+        <li>Arah sebaliknya memakai invers: $P_{B \leftarrow C} = (P_{C \leftarrow B})^{-1}$; transisi berantai mengalikan: $P_{A \leftarrow B} = P_{A \leftarrow C}P_{C \leftarrow B}$.</li>
+        <li>Di $\R^n$, $P_{E \leftarrow B}$ (ke basis standar $E$) cukup disusun dari vektor-vektor $\mathbf{b}_j$ sendiri.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Matriks transisi</h3>
+      <p>Satu vektor punya koordinat berbeda terhadap basis berbeda. Misalnya $(3, 4) \in \R^2$ adalah $3\mathbf{e}_1 + 4\mathbf{e}_2$ terhadap basis standar, tetapi $\tfrac{7}{2}\mathbf{b}_1 + \tfrac{1}{2}\mathbf{b}_2$ terhadap $\mathbf{b}_1 = (1, 1)$, $\mathbf{b}_2 = (-1, 1)$ (Contoh 1). Matriks transisi (change of basis matrix) mengubah koordinat satu ke yang lain dengan satu perkalian matriks.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Matriks transisi dari $B$ ke $C$ (Modul, Definisi 1.4.1)</div>
+        <p>Misalkan $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_n}$ dan $C = \set{\mathbf{c}_1, \dots, \mathbf{c}_n}$ basis terurut untuk $V$. <strong>Matriks transisi dari $B$ ke $C$</strong> adalah matriks $n \times n$ yang kolom ke-$j$-nya adalah $[\mathbf{b}_j]_C$:</p>
+        <p>$$P_{C \leftarrow B} = \begin{pmatrix} [\mathbf{b}_1]_C & [\mathbf{b}_2]_C & \cdots & [\mathbf{b}_n]_C \end{pmatrix}.$$</p>
+        <p>Notasi lain di sumber: ${}_CP_B$, $[I]_{C \leftarrow B}$, atau $[I]_B^C$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Rumus koordinat (Modul, Teorema 1.4.2)</div>
+        <p>Untuk setiap $\mathbf{v} \in V$,</p>
+        <p>$$[\mathbf{v}]_C = P_{C \leftarrow B}\,[\mathbf{v}]_B.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tulis $\mathbf{v} = \sum_{j=1}^{n} k_j\mathbf{b}_j$, jadi $[\mathbf{v}]_B = (k_1, \dots, k_n)^T$, dan tulis tiap vektor basis lama dalam basis baru: $\mathbf{b}_j = \sum_{i=1}^{n} p_{ij}\mathbf{c}_i$, jadi $[\mathbf{b}_j]_C = (p_{1j}, \dots, p_{nj})^T$ adalah kolom ke-$j$ dari $P_{C \leftarrow B}$. Substitusi dan tukar urutan penjumlahan:</p>
+        <p>$$\mathbf{v} = \sum_{j=1}^{n} k_j \sum_{i=1}^{n} p_{ij}\mathbf{c}_i = \sum_{i=1}^{n} \Bigl(\sum_{j=1}^{n} p_{ij}k_j\Bigr)\mathbf{c}_i.$$</p>
+        <p>Karena koordinat terhadap $C$ tunggal (Teorema 1.3.2), koordinat ke-$i$ dari $\mathbf{v}$ terhadap $C$ adalah $\sum_j p_{ij}k_j$, yaitu entri ke-$i$ dari $P_{C \leftarrow B}[\mathbf{v}]_B$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Perubahan basis di $\R^2$ (Modul, Contoh 1.4.3)</div>
+        <p>$E = \set{\mathbf{e}_1, \mathbf{e}_2}$ basis standar, $B = \set{\mathbf{b}_1, \mathbf{b}_2}$ dengan $\mathbf{b}_1 = (1, 1)$, $\mathbf{b}_2 = (-1, 1)$.</p>
+        <p><strong>$P_{E \leftarrow B}$.</strong> Koordinat terhadap basis standar adalah komponen vektor itu sendiri, jadi</p>
+        <p>$$P_{E \leftarrow B} = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}.$$</p>
+        <p><strong>$P_{B \leftarrow E}$.</strong> Tulis $\mathbf{e}_1 = c_1\mathbf{b}_1 + c_2\mathbf{b}_2$: $c_1 - c_2 = 1$ dan $c_1 + c_2 = 0$, jadi $c_1 = \tfrac{1}{2}$, $c_2 = -\tfrac{1}{2}$. Tulis $\mathbf{e}_2 = d_1\mathbf{b}_1 + d_2\mathbf{b}_2$: $d_1 - d_2 = 0$ dan $d_1 + d_2 = 1$, jadi $d_1 = d_2 = \tfrac{1}{2}$. Maka</p>
+        <p>$$P_{B \leftarrow E} = \begin{pmatrix} 1/2 & 1/2 \\ -1/2 & 1/2 \end{pmatrix}.$$</p>
+        <p><strong>Cek dengan $\mathbf{v} = (3, 4)$.</strong></p>
+        <p>$$[\mathbf{v}]_B = \begin{pmatrix} 1/2 & 1/2 \\ -1/2 & 1/2 \end{pmatrix}\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} 7/2 \\ 1/2 \end{pmatrix},$$</p>
+        <p>dan memang $\tfrac{7}{2}(1, 1) + \tfrac{1}{2}(-1, 1) = (3, 4)$.</p>
+        <p>Sumber memverifikasi contoh ini dengan SageMath (ringkas):</p>
+<pre><code>V  = QQ^2
+B  = matrix([[1, 0], [0, 1]])          # basis E
+B1 = matrix([[1, 1], [-1, 1]])         # basis B (vektor sebagai baris)
+VB, VB1 = V.subspace_with_basis(B), V.subspace_with_basis(B1)
+x, y = var('x, y')
+iden(x, y) = [x, y]
+S = linear_transformation(VB, VB1, iden)  # identitas, dari E ke B
+M = S.matrix(side='right')             # matriks transisi P_{B<-E}
+M * vector(QQ, [3, 4])                 # (7/2, 1/2)</code></pre>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Koordinat di kamera game (Modul, Real Problem 1.4.A)</div>
+        <p>Titik $\mathbf{v} = (3, 4)$ dalam koordinat dunia $E$, dan sumbu kamera $B = \set{(1, 1), (-1, 1)}$ (sumbu yang diputar $45^\circ$). Dari Contoh 1, $[\mathbf{v}]_B = (3{,}5;\ 0{,}5)$: titik itu berada $3{,}5$ satuan sepanjang $\mathbf{b}_1$ dan $0{,}5$ satuan sepanjang $\mathbf{b}_2$. Mesin grafis melakukan perubahan basis semacam ini (dunia → kamera) untuk setiap titik di setiap frame. Perhatikan bahwa $\mathbf{b}_1, \mathbf{b}_2$ panjangnya $\sqrt{2}$, jadi "satuan" di sini adalah panjang vektor basis itu.</p>
+      </div>
+
+      <h3>Sifat matriks transisi</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Hubungan invers (Modul, Teorema 1.4.4)</div>
+        <p>$P_{C \leftarrow B}$ invertibel, dan</p>
+        <p>$$P_{B \leftarrow C} = (P_{C \leftarrow B})^{-1}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk setiap $\mathbf{v}$, $[\mathbf{v}]_C = P_{C \leftarrow B}[\mathbf{v}]_B$ dan $[\mathbf{v}]_B = P_{B \leftarrow C}[\mathbf{v}]_C$. Substitusi:</p>
+        <p>$$[\mathbf{v}]_B = (P_{B \leftarrow C}P_{C \leftarrow B})[\mathbf{v}]_B.$$</p>
+        <p>Ketika $\mathbf{v}$ berjalan di seluruh $V$, $[\mathbf{v}]_B$ berjalan di seluruh $F^n$ (ambil $\mathbf{v} = \mathbf{b}_j$ untuk mendapat vektor satuan ke-$j$). Matriks yang memetakan setiap vektor satuan ke dirinya sendiri adalah $I$, jadi $P_{B \leftarrow C}P_{C \leftarrow B} = I$. Untuk matriks persegi, ini cukup untuk menyimpulkan bahwa keduanya saling invers.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Cek dengan rumus invers $2 \times 2$ (Modul, Contoh 1.4.5)</div>
+        <p>Untuk $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$ dengan $ad - bc \ne 0$, inversnya $\frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$. Untuk $P_{E \leftarrow B}$ di Contoh 1, determinannya $1 \cdot 1 - (-1) \cdot 1 = 2$, sehingga</p>
+        <p>$$(P_{E \leftarrow B})^{-1} = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix} = P_{B \leftarrow E}.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Transisi berantai (Modul, Teorema 1.4.6)</div>
+        <p>Untuk basis $A, B, C$ dari $V$,</p>
+        <p>$$P_{A \leftarrow B} = P_{A \leftarrow C}\,P_{C \leftarrow B}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk setiap $\mathbf{v}$: $[\mathbf{v}]_A = P_{A \leftarrow C}[\mathbf{v}]_C = P_{A \leftarrow C}P_{C \leftarrow B}[\mathbf{v}]_B$. Di lain pihak $[\mathbf{v}]_A = P_{A \leftarrow B}[\mathbf{v}]_B$. Dengan $\mathbf{v} = \mathbf{b}_j$, kedua matriks punya kolom ke-$j$ yang sama untuk setiap $j$, jadi keduanya sama.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Ke dan dari basis standar (Modul, Teorema 1.4.7)</div>
+        <p>Jika $E$ basis standar $\R^n$ dan $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_n}$ basis lain, maka</p>
+        <ol>
+          <li>$P_{E \leftarrow B} = \begin{pmatrix} \mathbf{b}_1 & \cdots & \mathbf{b}_n \end{pmatrix}$ (vektor basis sebagai kolom);</li>
+          <li>$P_{B \leftarrow E} = (P_{E \leftarrow B})^{-1}$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>(1) Terhadap basis standar, $[\mathbf{b}_j]_E = \mathbf{b}_j$, lalu pakai Definisi 1. (2) Kasus khusus Teorema 2. <span class="cek">[CEK: sumber merujuk "Teorema 1.3.12" untuk bagian 2; yang dimaksud tampaknya Teorema 1.4.4 (hubungan invers).]</span></p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Di $P_1(\R)$ (Modul, Contoh 1.4.8)</div>
+        <p>$E = \set{1, x}$ dan $B = \set{1 + x, 1 - x}$. Karena $1 + x = 1 \cdot 1 + 1 \cdot x$ dan $1 - x = 1 \cdot 1 + (-1) \cdot x$,</p>
+        <p>$$P_{E \leftarrow B} = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \qquad P_{B \leftarrow E} = \frac{1}{-2}\begin{pmatrix} -1 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix}.$$</p>
+        <p>Untuk $p(x) = 3 + 5x$, $[p]_E = (3, 5)^T$ dan</p>
+        <p>$$[p]_B = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix}\begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 4 \\ -1 \end{pmatrix}.$$</p>
+        <p>Cek: $4(1 + x) - (1 - x) = 3 + 5x$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Dua basis tak standar (Modul, Contoh 1.4.9)</div>
+        <p>Di $\R^2$: $B = \set{\mathbf{v}_1, \mathbf{v}_2}$ dengan $\mathbf{v}_1 = (1, 1)$, $\mathbf{v}_2 = (1, -1)$, dan $B' = \set{\mathbf{u}_1, \mathbf{u}_2}$ dengan $\mathbf{u}_1 = (2, -1)$, $\mathbf{u}_2 = (-1, 1)$. Kolom matriks transisi adalah $[\mathbf{v}_1]_{B'}$ dan $[\mathbf{v}_2]_{B'}$.</p>
+        <ul>
+          <li>$c_1(2, -1) + c_2(-1, 1) = (1, 1)$: $2c_1 - c_2 = 1$ dan $-c_1 + c_2 = 1$, jadi $c_1 = 2$, $c_2 = 3$.</li>
+          <li>$d_1(2, -1) + d_2(-1, 1) = (1, -1)$: $2d_1 - d_2 = 1$ dan $-d_1 + d_2 = -1$, jadi $d_1 = 0$, $d_2 = -1$.</li>
+        </ul>
+        <p>$$P_{B' \leftarrow B} = \begin{pmatrix} 2 & 0 \\ 3 & -1 \end{pmatrix}.$$</p>
+        <p>Untuk $[\mathbf{v}]_B = (3, -2)^T$: $[\mathbf{v}]_{B'} = P_{B' \leftarrow B}(3, -2)^T = (6, 11)^T$. Cek: $3(1, 1) - 2(1, -1) = (1, 5) = 6(2, -1) + 11(-1, 1)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Di $P_2$ (Modul, Contoh 1.4.10 dan Real Problem 1.4.B)</div>
+        <p>$B = \set{1, x, x^2}$ dan $B' = \set{1, 1 + x, 1 + x + x^2}$. Kolom matriks transisi adalah $[1]_{B'}$, $[x]_{B'}$, $[x^2]_{B'}$:</p>
+        <ul>
+          <li>$1 = 1 \cdot 1$, jadi $[1]_{B'} = (1, 0, 0)^T$.</li>
+          <li>$x = -1 \cdot 1 + 1 \cdot (1 + x)$, jadi $[x]_{B'} = (-1, 1, 0)^T$.</li>
+          <li>$x^2 = -1 \cdot (1 + x) + 1 \cdot (1 + x + x^2)$, jadi $[x^2]_{B'} = (0, -1, 1)^T$.</li>
+        </ul>
+        <p>$$P_{B' \leftarrow B} = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}.$$</p>
+        <p>Untuk $p(x) = 3 - x + 2x^2$, $[p]_B = (3, -1, 2)^T$ dan $[p]_{B'} = P_{B' \leftarrow B}[p]_B = (4, -3, 2)^T$. Cek: $4 - 3(1 + x) + 2(1 + x + x^2) = 3 - x + 2x^2$.</p>
+        <p>Sumber memakai contoh ini sebagai ilustrasi pengiriman data sensor dalam "basis Newton". <span class="cek">[CEK: sumber mengklaim koefisien di $B'$ "lebih kecil variance" sehingga cocok untuk thresholding dan "compressed sensing"; klaim ini tidak didukung contoh itu sendiri, karena koefisien $(4, -3, 2)$ tidak lebih kecil daripada $(3, -1, 2)$.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Membalik arah.</strong> Kolom $P_{C \leftarrow B}$ adalah vektor $B$ dalam koordinat $C$, bukan sebaliknya. Cek cepat: dalam $P_{C \leftarrow B}[\mathbf{v}]_B$, huruf $B$ "bertemu" dengan $B$.</li>
+        <li><strong>Menulis koordinat sebagai baris.</strong> $[\mathbf{b}_j]_C$ masuk sebagai <em>kolom</em>; menyusunnya sebagai baris memberi transpos, yang umumnya salah.</li>
+        <li><strong>Lupa urutan dalam transisi berantai.</strong> $P_{A \leftarrow B} = P_{A \leftarrow C}P_{C \leftarrow B}$, bukan $P_{C \leftarrow B}P_{A \leftarrow C}$; perkalian matriks tidak komutatif.</li>
+        <li><strong>Memakai $P_{E \leftarrow B} = (\mathbf{b}_1 \cdots \mathbf{b}_n)$ untuk basis tujuan yang tidak standar.</strong> Jalan pintas itu hanya berlaku bila basis tujuan adalah basis standar. Untuk dua basis tak standar, pakai $P_{C \leftarrow B} = (P_{E \leftarrow C})^{-1}P_{E \leftarrow B}$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Di $\R^2$, $B = \set{\mathbf{u}_1, \mathbf{u}_2}$ basis standar dan $B' = \set{\mathbf{u}'_1, \mathbf{u}'_2}$ dengan $\mathbf{u}'_1 = (1, 1)$, $\mathbf{u}'_2 = (2, 1)$. (a) Tentukan $P_{B \leftarrow B'}$. (b) Jika $[\mathbf{v}]_{B'} = (3, -1)^T$, tentukan $[\mathbf{v}]_B$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) Kolom $P_{B \leftarrow B'}$ adalah $[\mathbf{u}'_1]_B$ dan $[\mathbf{u}'_2]_B$. Karena $B$ basis standar, koordinatnya adalah komponen vektor itu sendiri (Teorema 4):
+              $$P_{B \leftarrow B'} = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}.$$</li>
+            <li>(b) Dengan rumus koordinat (Teorema 1):
+              $$[\mathbf{v}]_B = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 3 \\ -1 \end{pmatrix} = \begin{pmatrix} 3 - 2 \\ 3 - 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Cek: $3(1, 1) - (2, 1) = (1, 2)$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Di $\R^2$, $B$ basis standar dan $C = \set{(1, 2), (2, 1)}$. (a) Tentukan $P_{B \leftarrow C}$. (b) Jika $[\mathbf{v}]_B = (5, 4)^T$, tentukan $[\mathbf{v}]_C$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $B$ standar, jadi kolom-kolomnya adalah vektor $C$ sendiri:
+              $$P_{B \leftarrow C} = \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}.$$</li>
+            <li>(b) Kita butuh $P_{C \leftarrow B} = (P_{B \leftarrow C})^{-1}$ (Teorema 2). Determinannya $1 \cdot 1 - 2 \cdot 2 = -3$, jadi
+              $$P_{C \leftarrow B} = \frac{1}{-3}\begin{pmatrix} 1 & -2 \\ -2 & 1 \end{pmatrix} = \begin{pmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{pmatrix}.$$</li>
+            <li>Maka
+              $$[\mathbf{v}]_C = \begin{pmatrix} -1/3 & 2/3 \\ 2/3 & -1/3 \end{pmatrix}\begin{pmatrix} 5 \\ 4 \end{pmatrix} = \begin{pmatrix} -5/3 + 8/3 \\ 10/3 - 4/3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Cek: $1 \cdot (1, 2) + 2 \cdot (2, 1) = (5, 4)$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$B = \set{(1, 1), (1, -1)}$ dan $C = \set{(2, 0), (0, 2)}$ basis $\R^2$. Tentukan $P_{C \leftarrow B}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Kolom-kolomnya adalah $[\mathbf{b}_1]_C$ dan $[\mathbf{b}_2]_C$.</li>
+            <li>$(1, 1) = \alpha_1(2, 0) + \beta_1(0, 2) = (2\alpha_1, 2\beta_1)$, jadi $\alpha_1 = \beta_1 = \tfrac{1}{2}$ dan $[\mathbf{b}_1]_C = (\tfrac{1}{2}, \tfrac{1}{2})^T$.</li>
+            <li>$(1, -1) = (2\alpha_2, 2\beta_2)$, jadi $\alpha_2 = \tfrac{1}{2}$, $\beta_2 = -\tfrac{1}{2}$ dan $[\mathbf{b}_2]_C = (\tfrac{1}{2}, -\tfrac{1}{2})^T$.</li>
+          </ol>
+          <p>$$P_{C \leftarrow B} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix}.$$</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Dengan $B$ dan $C$ dari Latihan 3 dan $E$ basis standar $\R^2$, periksa Teorema 3 (transisi berantai): hitung $P_{C \leftarrow E}P_{E \leftarrow B}$ dan bandingkan dengan jawaban Latihan 3.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Menurut Teorema 4, $P_{E \leftarrow B} = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ dan $P_{E \leftarrow C} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}$.</li>
+            <li>$P_{C \leftarrow E} = (P_{E \leftarrow C})^{-1} = \begin{pmatrix} 1/2 & 0 \\ 0 & 1/2 \end{pmatrix}$ (invers matriks diagonal: balik tiap entri diagonal).</li>
+            <li>Kalikan:
+              $$P_{C \leftarrow E}P_{E \leftarrow B} = \begin{pmatrix} 1/2 & 0 \\ 0 & 1/2 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Hasilnya sama dengan $P_{C \leftarrow B}$ di Latihan 3, sesuai Teorema 3 dengan basis perantara $E$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        P_{C \leftarrow B} = \begin{pmatrix} [\mathbf{b}_1]_C & \cdots & [\mathbf{b}_n]_C \end{pmatrix}, \qquad [\mathbf{v}]_C = P_{C \leftarrow B}[\mathbf{v}]_B, \\
+        P_{B \leftarrow C} = (P_{C \leftarrow B})^{-1}, \qquad P_{A \leftarrow B} = P_{A \leftarrow C}P_{C \leftarrow B}
+      \end{gathered}$$</p>
+      <p>Di $\R^n$, dengan $E$ basis standar:</p>
+      <p>$$\begin{gathered}
+        P_{E \leftarrow B} = \begin{pmatrix} \mathbf{b}_1 & \cdots & \mathbf{b}_n \end{pmatrix}, \\
+        P_{C \leftarrow B} = (P_{E \leftarrow C})^{-1}P_{E \leftarrow B}
+      \end{gathered}$$</p>
+      <p>Invers $2 \times 2$:</p>
+      <p>$$\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/01-Ruang-Vektor.md</code>, Bab 1, §1.4: Definisi 1.4.1, Teorema 1.4.2, 1.4.4, 1.4.6, 1.4.7, Contoh 1.4.3, 1.4.5, 1.4.8–1.4.10, Real Problem 1.4.A–B, sel SageMath. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.1.4, §8.1.9, §8.1.10 (Latihan 1–3).</li>
+        <li>Latihan 4 dan bagian "Kesalahan umum" ditulis oleh Claude. Kode SageMath diringkas dari sel di sumber.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

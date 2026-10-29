@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Kombinasi Linier, Rentang, dan Kebebasan Linier · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Kombinasi Linier, Rentang, dan Kebebasan Linier</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Kombinasi linier $c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k$ adalah satu-satunya cara "mencampur" vektor dengan dua operasi ruang vektor.</li>
+        <li>Subset tak kosong $W \subseteq V$ adalah subruang jika dan hanya jika tertutup terhadap penjumlahan dan perkalian skalar (uji subruang).</li>
+        <li>$\operatorname{span}(S)$, himpunan semua kombinasi linier dari $S$, selalu merupakan subruang.</li>
+        <li>$S$ bebas linier jika $c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k = \mathbf{0}$ hanya dipenuhi oleh $c_1 = \dots = c_k = 0$.</li>
+        <li>$S$ bergantung linier jika dan hanya jika ada vektor di $S$ yang merupakan kombinasi linier vektor-vektor lainnya.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Kombinasi linier</h3>
+      <p>Di ruang vektor hanya ada dua operasi: menjumlahkan vektor dan mengalikan vektor dengan skalar. Apa pun yang bisa dibentuk dari sekumpulan vektor dengan dua operasi itu disebut kombinasi linier (linear combination).</p>
+
+      <div class="box definisi">
+        <div class="box-title">Kombinasi linier (Modul, Definisi 1.2.1)</div>
+        <p>Misalkan $V$ ruang vektor atas lapangan $F$ dan $S = \set{\mathbf{v}_1, \dots, \mathbf{v}_k} \subseteq V$. Vektor $\mathbf{w} \in V$ adalah <strong>kombinasi linier</strong> dari vektor-vektor di $S$ jika ada skalar $c_1, \dots, c_k \in F$ sehingga</p>
+        <p>$$\mathbf{w} = c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \dots + c_k\mathbf{v}_k.$$</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Di $P_2(\R)$ (Modul, Contoh 1.2.2)</div>
+        <p>Apakah $p(x) = 3x^2 - 2x + 5$ kombinasi linier dari $S = \set{x^2, x, 1}$? Kita cari $c_1, c_2, c_3$ dengan $3x^2 - 2x + 5 = c_1x^2 + c_2x + c_3$. Dua polinomial sama jika koefisiennya sama, jadi $c_1 = 3$, $c_2 = -2$, $c_3 = 5$. Karena skalarnya ada, jawabannya ya.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Di $M_{2 \times 2}(\R)$ (Modul, Contoh 1.2.3)</div>
+        <p>Misalkan $E_{11}, E_{12}, E_{21}, E_{22}$ matriks $2 \times 2$ yang tepat satu entrinya $1$ (di posisi sesuai indeks) dan sisanya $0$. Untuk $A = \begin{pmatrix} 2 & -1 \\ 3 & 4 \end{pmatrix}$,</p>
+        <p>$$c_1E_{11} + c_2E_{12} + c_3E_{21} + c_4E_{22} = \begin{pmatrix} c_1 & c_2 \\ c_3 & c_4 \end{pmatrix},$$</p>
+        <p>sehingga $A$ adalah kombinasi linier dengan $c_1 = 2$, $c_2 = -1$, $c_3 = 3$, $c_4 = 4$.</p>
+      </div>
+
+      <h3>Subruang</h3>
+      <p>Subruang (subspace) adalah "ruang vektor kecil" di dalam ruang vektor yang lebih besar, dengan operasi yang sama. Untungnya, kita tidak perlu memeriksa kesembilan aksioma: cukup dua syarat ketertutupan.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Subruang (Modul, Definisi 1.2.4)</div>
+        <p>Misalkan $V$ ruang vektor atas $F$. Himpunan bagian tak kosong $W \subseteq V$ disebut <strong>subruang</strong> dari $V$ jika $W$ sendiri merupakan ruang vektor atas $F$ terhadap penjumlahan dan perkalian skalar yang sama dengan di $V$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Uji subruang (subspace test) (Modul, Teorema 1.2.5)</div>
+        <p>Himpunan bagian tak kosong $W$ dari ruang vektor $V$ atas $F$ adalah subruang dari $V$ jika dan hanya jika</p>
+        <ol>
+          <li>$\mathbf{u} + \mathbf{v} \in W$ untuk setiap $\mathbf{u}, \mathbf{v} \in W$, dan</li>
+          <li>$c\mathbf{u} \in W$ untuk setiap $c \in F$ dan $\mathbf{u} \in W$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Jika $W$ subruang, $W$ adalah ruang vektor, sehingga memenuhi aksioma ketertutupan terhadap penjumlahan dan perkalian skalar (aksioma 1 dan 6 di topik Ruang Vektor). Itulah syarat 1 dan 2.</p>
+        <p><strong>(⇐)</strong> Misalkan $W$ tak kosong dan memenuhi syarat 1 dan 2. Kita periksa aksioma-aksioma ruang vektor untuk $W$.</p>
+        <ul>
+          <li>Ketertutupan (aksioma 1 dan 6): itulah syarat 1 dan 2.</li>
+          <li>Asosiatif, komutatif, distributif, identitas skalar, dan asosiatif perkalian skalar: semua persamaan ini berlaku untuk semua vektor di $V$, jadi juga untuk vektor di $W \subseteq V$ ("diwarisi" dari $V$).</li>
+          <li>Vektor nol (aksioma 3): karena $W \ne \emptyset$, ada $\mathbf{u} \in W$. Dengan syarat 2 untuk $c = 0$, $0\mathbf{u} \in W$, dan $0\mathbf{u} = \mathbf{0}$ menurut sifat dasar ruang vektor. Jadi $\mathbf{0} \in W$.</li>
+          <li>Invers penjumlahan (aksioma 4): untuk $\mathbf{u} \in W$, syarat 2 dengan $c = -1$ memberi $(-1)\mathbf{u} \in W$, dan $(-1)\mathbf{u} = -\mathbf{u}$. Jadi $-\mathbf{u} \in W$.</li>
+        </ul>
+        <p>Semua aksioma terpenuhi, jadi $W$ subruang.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Syarat "$\mathbf{0} \in W$"</div>
+        <p>Beberapa buku menulis $\mathbf{0} \in W$ sebagai syarat ketiga. Syarat itu sudah tersirat dari "tak kosong" dan syarat 2. Dalam praktik, memeriksa $\mathbf{0} \in W$ adalah cara tercepat untuk menunjukkan bahwa sesuatu <em>bukan</em> subruang (Contoh 4).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks diagonal (Modul, Contoh 1.2.6)</div>
+        <p>$W = \set{\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} : a, b \in \R}$ di $M_{2 \times 2}(\R)$.</p>
+        <ol>
+          <li>Tak kosong: matriks nol ($a = b = 0$) ada di $W$.</li>
+          <li>Penjumlahan: $\begin{pmatrix} a_1 & 0 \\ 0 & b_1 \end{pmatrix} + \begin{pmatrix} a_2 & 0 \\ 0 & b_2 \end{pmatrix} = \begin{pmatrix} a_1 + a_2 & 0 \\ 0 & b_1 + b_2 \end{pmatrix} \in W$.</li>
+          <li>Perkalian skalar: $c\begin{pmatrix} a_1 & 0 \\ 0 & b_1 \end{pmatrix} = \begin{pmatrix} ca_1 & 0 \\ 0 & cb_1 \end{pmatrix} \in W$.</li>
+        </ol>
+        <p>Jadi $W$ subruang dari $M_{2 \times 2}(\R)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Bukan subruang (Modul, Contoh 1.2.7)</div>
+        <p>$W = \set{p \in P_2(\R) : p(0) = 1}$ tidak kosong, misalnya $x^2 + 1 \in W$. Tetapi vektor nol di $P_2(\R)$ adalah polinomial nol $q$, dan $q(0) = 0 \ne 1$, jadi $\mathbf{0} \notin W$. Maka $W$ bukan subruang, tanpa perlu memeriksa syarat lain.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Citra grayscale di ruang RGB (Modul, Real Problem 1.2.A)</div>
+        <p>Warna RGB dipandang sebagai vektor di $\R^3$, dan warna abu-abu adalah $W = \set{(r, g, b) \in \R^3 : r = g = b}$. Vektor $(0, 0, 0) \in W$; untuk $\mathbf{u} = (a, a, a)$ dan $\mathbf{v} = (b, b, b)$, $\mathbf{u} + \mathbf{v} = (a + b, a + b, a + b) \in W$ dan $c\mathbf{u} = (ca, ca, ca) \in W$. Jadi $W$ subruang, dengan basis $\set{(1, 1, 1)}$ dan dimensi $1$: satu angka per piksel sudah cukup untuk menyimpan citra abu-abu.</p>
+      </div>
+
+      <h3>Rentang (span)</h3>
+      <p>Rentang menjawab pertanyaan: jika kita boleh memakai <em>semua</em> kombinasi linier dari $S$, himpunan apa yang terbentuk?</p>
+
+      <div class="box definisi">
+        <div class="box-title">Rentang (Modul, Definisi 1.2.8)</div>
+        <p><strong>Rentang</strong> (span) dari $S = \set{\mathbf{v}_1, \dots, \mathbf{v}_k} \subseteq V$ adalah himpunan semua kombinasi linier dari vektor-vektor di $S$:</p>
+        <p>$$\operatorname{span}(S) = \set{c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k : c_1, \dots, c_k \in F}.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Rentang adalah subruang (Modul, Teorema 1.2.9)</div>
+        <p>Untuk setiap himpunan vektor $S$ di ruang vektor $V$, $\operatorname{span}(S)$ adalah subruang dari $V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Pakai uji subruang (Teorema 1). Misalkan $S = \set{\mathbf{v}_1, \dots, \mathbf{v}_k}$.</p>
+        <ol>
+          <li>Tak kosong: dengan semua $c_i = 0$, $0\mathbf{v}_1 + \dots + 0\mathbf{v}_k = \mathbf{0}$, jadi $\mathbf{0} \in \operatorname{span}(S)$.</li>
+          <li>Penjumlahan: jika $\mathbf{u} = \sum_i a_i\mathbf{v}_i$ dan $\mathbf{w} = \sum_i b_i\mathbf{v}_i$, maka dengan sifat komutatif, asosiatif, dan distributif,
+            $$\mathbf{u} + \mathbf{w} = \sum_{i=1}^{k} (a_i + b_i)\mathbf{v}_i,$$
+            dan $a_i + b_i \in F$. Jadi $\mathbf{u} + \mathbf{w} \in \operatorname{span}(S)$.</li>
+          <li>Perkalian skalar: untuk $c \in F$, dengan distributif dan asosiatif perkalian skalar,
+            $$c\mathbf{u} = c\sum_{i=1}^{k} a_i\mathbf{v}_i = \sum_{i=1}^{k} (ca_i)\mathbf{v}_i \in \operatorname{span}(S).$$</li>
+        </ol>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Rentang $\sin$ dan $\cos$ (Modul, Contoh 1.2.10)</div>
+        <p>Di ruang fungsi kontinu $C(\R)$, $\operatorname{span}\set{\sin x, \cos x}$ adalah himpunan semua fungsi $f(x) = c_1\sin x + c_2\cos x$ dengan $c_1, c_2 \in \R$. Misalnya $2\sin x - 5\cos x$ termasuk di dalamnya, tetapi $x^2$ dan $e^x$ tidak.</p>
+      </div>
+
+      <h3>Kebebasan linier</h3>
+      <p>Himpunan vektor bisa memuat vektor yang "berlebih": vektor yang sudah bisa dibentuk dari vektor lainnya. Kebebasan linier (linear independence) adalah syarat bahwa tidak ada yang berlebih.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Bebas linier dan bergantung linier (Modul, Definisi 1.2.11)</div>
+        <p>Himpunan $S = \set{\mathbf{v}_1, \dots, \mathbf{v}_k} \subseteq V$ disebut <strong>bebas linier</strong> jika persamaan</p>
+        <p>$$c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \dots + c_k\mathbf{v}_k = \mathbf{0}$$</p>
+        <p>hanya dipenuhi oleh solusi trivial $c_1 = c_2 = \dots = c_k = 0$. Jika ada solusi dengan sekurang-kurangnya satu $c_i \ne 0$, $S$ disebut <strong>bergantung linier</strong> (linearly dependent).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Bergantung linier dan kombinasi linier (Modul, Teorema 1.2.12)</div>
+        <p>$S = \set{\mathbf{v}_1, \dots, \mathbf{v}_k}$ bergantung linier jika dan hanya jika sekurang-kurangnya satu vektor di $S$ merupakan kombinasi linier dari vektor-vektor lainnya di $S$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Misalkan $c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k = \mathbf{0}$ dengan $c_j \ne 0$ untuk suatu $j$. Pindahkan suku lain ke ruas kanan:</p>
+        <p>$$c_j\mathbf{v}_j = -\sum_{i \ne j} c_i\mathbf{v}_i.$$</p>
+        <p>Karena $F$ lapangan dan $c_j \ne 0$, $c_j^{-1}$ ada. Kalikan kedua ruas dengan $c_j^{-1}$:</p>
+        <p>$$\mathbf{v}_j = \sum_{i \ne j} \Bigl(-\frac{c_i}{c_j}\Bigr)\mathbf{v}_i,$$</p>
+        <p>jadi $\mathbf{v}_j$ kombinasi linier dari vektor lainnya.</p>
+        <p><strong>(⇐)</strong> Misalkan $\mathbf{v}_j = \sum_{i \ne j} d_i\mathbf{v}_i$. Maka</p>
+        <p>$$d_1\mathbf{v}_1 + \dots + d_{j-1}\mathbf{v}_{j-1} + (-1)\mathbf{v}_j + d_{j+1}\mathbf{v}_{j+1} + \dots + d_k\mathbf{v}_k = \mathbf{0}.$$</p>
+        <p>Koefisien $\mathbf{v}_j$ adalah $-1 \ne 0$, jadi ini solusi tak trivial, dan $S$ bergantung linier.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">$\set{1, x, x^2}$ bebas linier di $P_2(\R)$ (Modul, Contoh 1.2.13)</div>
+        <p>Dari $c_1 + c_2x + c_3x^2 = 0 + 0x + 0x^2$ (polinomial nol) dan kesamaan koefisien, diperoleh $c_1 = c_2 = c_3 = 0$. Hanya solusi trivial, jadi bebas linier.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">$\set{e^x, e^{-x}, \sinh x}$ bergantung linier (Modul, Contoh 1.2.14)</div>
+        <p>Karena $\sinh x = \tfrac{1}{2}(e^x - e^{-x})$, berlaku</p>
+        <p>$$\tfrac{1}{2}e^x - \tfrac{1}{2}e^{-x} - 1 \cdot \sinh x = 0$$</p>
+        <p>untuk semua $x$. Koefisiennya tidak semuanya nol, jadi himpunan ini bergantung linier di ruang fungsi $\mathcal{F}(\R, \R)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks satuan di $M_{2 \times 2}(\R)$ (Modul, Contoh 1.2.15)</div>
+        <p>Dengan $E_{11}, E_{12}, E_{21}, E_{22}$ seperti di Contoh 2, $c_1E_{11} + c_2E_{12} + c_3E_{21} + c_4E_{22} = \begin{pmatrix} c_1 & c_2 \\ c_3 & c_4 \end{pmatrix}$. Ini sama dengan matriks nol hanya jika $c_1 = c_2 = c_3 = c_4 = 0$. Jadi bebas linier.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Fitur redundan dalam data (Modul, Real Problem 1.2.B)</div>
+        <p>Tiga fitur $\mathbf{v}_1 = (1, 2)$, $\mathbf{v}_2 = (2, 4)$, $\mathbf{v}_3 = (1, 0)$. Persamaan $c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + c_3\mathbf{v}_3 = \mathbf{0}$ memberi</p>
+        <p>$$\begin{cases} c_1 + 2c_2 + c_3 = 0, \\ 2c_1 + 4c_2 = 0. \end{cases}$$</p>
+        <p>Persamaan kedua memberi $c_1 = -2c_2$; dengan $c_2 = 1$, $c_3 = 0$, $c_1 = -2$ diperoleh solusi tak trivial. Jadi himpunan bergantung linier, dan memang $\mathbf{v}_2 = 2\mathbf{v}_1$. Fitur $\mathbf{v}_2$ tidak membawa informasi baru (multikolinearitas, multicollinearity) dan bisa dibuang; $\set{\mathbf{v}_1, \mathbf{v}_3}$ tetap merentang $\R^2$.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Hanya memeriksa ketertutupan tanpa memeriksa "tak kosong".</strong> Himpunan kosong tertutup terhadap kedua operasi secara hampa, tetapi bukan subruang. Cara aman: periksa $\mathbf{0} \in W$ lebih dulu.</li>
+        <li><strong>Menganggap "ada satu solusi" berarti bebas linier.</strong> Persamaan $\sum c_i\mathbf{v}_i = \mathbf{0}$ <em>selalu</em> punya solusi trivial. Pertanyaannya adalah apakah itu <em>satu-satunya</em> solusi.</li>
+        <li><strong>Mengira bergantung linier berarti setiap vektor kombinasi linier dari yang lain.</strong> Teorema 3 hanya menjamin <em>sekurang-kurangnya satu</em>. Di Real Problem 1.2.B, $\mathbf{v}_3 = (1, 0)$ bukan kombinasi linier dari $\mathbf{v}_1$ dan $\mathbf{v}_2$.</li>
+        <li><strong>Lupa bahwa himpunan yang memuat $\mathbf{0}$ selalu bergantung linier.</strong> Jika $\mathbf{v}_1 = \mathbf{0}$, maka $1 \cdot \mathbf{v}_1 + 0\mathbf{v}_2 + \dots = \mathbf{0}$ adalah solusi tak trivial.</li>
+        <li><strong>Mencampur "span" dengan himpunan $S$ itu sendiri.</strong> $S$ biasanya berhingga, sedangkan $\operatorname{span}(S)$ (atas $\R$, untuk $S$ yang memuat vektor tak nol) berisi tak hingga banyak vektor.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Periksa apakah $S = \set{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3}$ di $\R^3$ bebas linier atau bergantung linier, dengan $\mathbf{v}_1 = (1, 2, 3)$, $\mathbf{v}_2 = (2, 5, 7)$, $\mathbf{v}_3 = (1, 3, 5)$. Jika bergantung linier, nyatakan salah satu vektor sebagai kombinasi linier vektor lainnya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Persamaan $c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + c_3\mathbf{v}_3 = \mathbf{0}$ adalah sistem homogen $A\mathbf{c} = \mathbf{0}$, dengan $A$ matriks yang kolom-kolomnya $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$:
+              $$A = \begin{pmatrix} 1 & 2 & 1 \\ 2 & 5 & 3 \\ 3 & 7 & 5 \end{pmatrix}.$$</li>
+            <li>Sistem homogen hanya punya solusi trivial jika dan hanya jika $\det A \ne 0$. Ekspansi kofaktor baris pertama:
+              $$\begin{aligned}
+                \det A &= 1\begin{vmatrix} 5 & 3 \\ 7 & 5 \end{vmatrix} - 2\begin{vmatrix} 2 & 3 \\ 3 & 5 \end{vmatrix} + 1\begin{vmatrix} 2 & 5 \\ 3 & 7 \end{vmatrix} \\
+                &= (25 - 21) - 2(10 - 9) + (14 - 15) \\
+                &= 4 - 2 - 1 = 1.
+              \end{aligned}$$</li>
+            <li>Karena $\det A = 1 \ne 0$, $A$ invertibel dan satu-satunya solusi adalah $c_1 = c_2 = c_3 = 0$.</li>
+          </ol>
+          <p>Jadi $S$ <strong>bebas linier</strong>, dan tidak ada vektor yang merupakan kombinasi linier vektor lainnya (Teorema 3).</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Diberikan $\mathbf{a} = (1, 2, 1)$, $\mathbf{b} = (2, 4, 2)$, $\mathbf{c} = (3, 6, 3)$ di $\R^3$. Apakah $\set{\mathbf{a}, \mathbf{b}, \mathbf{c}}$ bebas linier? Jika tidak, tuliskan hubungan ketergantungannya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Perhatikan $\mathbf{b} = 2\mathbf{a}$ dan $\mathbf{c} = 3\mathbf{a}$: semua vektor kelipatan $\mathbf{a}$, jadi himpunan ini pasti bergantung linier (Teorema 3).</li>
+            <li>Secara sistematis, $c_1\mathbf{a} + c_2\mathbf{b} + c_3\mathbf{c} = \mathbf{0}$ memberi
+              $$\begin{cases} c_1 + 2c_2 + 3c_3 = 0, \\ 2c_1 + 4c_2 + 6c_3 = 0, \\ c_1 + 2c_2 + 3c_3 = 0. \end{cases}$$
+              Persamaan kedua adalah dua kali persamaan pertama, dan persamaan ketiga sama dengan yang pertama, jadi hanya tersisa $c_1 + 2c_2 + 3c_3 = 0$.</li>
+            <li>Pilih $c_2 = 1$, $c_3 = 0$, maka $c_1 = -2$. Ini solusi tak trivial.</li>
+          </ol>
+          <p>Jadi himpunan <strong>bergantung linier</strong>, dengan hubungan $-2\mathbf{a} + \mathbf{b} + 0\mathbf{c} = \mathbf{0}$, yaitu $\mathbf{b} = 2\mathbf{a}$ (juga $\mathbf{c} = 3\mathbf{a}$).</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Apakah $p_1(x) = 1 + x^2$, $p_2(x) = 2 - x$, $p_3(x) = 3 + 2x - x^2$ bebas linier di $P_2(\R)$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Susun $c_1p_1 + c_2p_2 + c_3p_3 = 0$ (polinomial nol):
+              $$c_1(1 + x^2) + c_2(2 - x) + c_3(3 + 2x - x^2) = 0 + 0x + 0x^2.$$</li>
+            <li>Samakan koefisien tiap pangkat $x$:
+              <ul>
+                <li>$x^2$: $c_1 - c_3 = 0$, jadi $c_1 = c_3$.</li>
+                <li>$x$: $-c_2 + 2c_3 = 0$, jadi $c_2 = 2c_3$.</li>
+                <li>konstanta: $c_1 + 2c_2 + 3c_3 = 0$.</li>
+              </ul></li>
+            <li>Substitusi ke persamaan konstanta: $c_3 + 2(2c_3) + 3c_3 = 8c_3 = 0$, jadi $c_3 = 0$, lalu $c_1 = 0$ dan $c_2 = 0$.</li>
+          </ol>
+          <p>Hanya ada solusi trivial, jadi $\set{p_1, p_2, p_3}$ <strong>bebas linier</strong>.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Apakah $W = \set{(x, y, z) \in \R^3 : x + y + z = 1}$ subruang dari $\R^3$? Bagaimana dengan $U = \set{(x, y, z) \in \R^3 : x + y + z = 0}$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$W$: vektor nol $(0, 0, 0)$ memberi $0 + 0 + 0 = 0 \ne 1$, jadi $\mathbf{0} \notin W$. Karena setiap subruang memuat $\mathbf{0}$, $W$ <strong>bukan</strong> subruang.</li>
+            <li>$U$ tak kosong karena $(0, 0, 0) \in U$.</li>
+            <li>Penjumlahan: jika $x_1 + y_1 + z_1 = 0$ dan $x_2 + y_2 + z_2 = 0$, maka $(x_1 + x_2) + (y_1 + y_2) + (z_1 + z_2) = 0 + 0 = 0$. Jadi jumlahnya di $U$.</li>
+            <li>Perkalian skalar: $cx_1 + cy_1 + cz_1 = c(x_1 + y_1 + z_1) = c \cdot 0 = 0$. Jadi $c(x_1, y_1, z_1) \in U$.</li>
+          </ol>
+          <p>Menurut uji subruang, $U$ <strong>adalah</strong> subruang. Secara geometris, $U$ bidang melalui titik asal, sedangkan $W$ bidang sejajar yang tidak melalui titik asal.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>Kombinasi linier dan rentang:</p>
+      <p>$$\begin{gathered}
+        \mathbf{w} = c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k, \\
+        \operatorname{span}(S) = \set{c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k : c_i \in F}
+      \end{gathered}$$</p>
+      <p>Uji subruang, untuk $W \ne \emptyset$:</p>
+      <p>$$W \text{ subruang} \iff \mathbf{u} + \mathbf{v} \in W \text{ dan } c\mathbf{u} \in W \quad \forall\, \mathbf{u}, \mathbf{v} \in W,\ c \in F$$</p>
+      <p>Bebas linier:</p>
+      <p>$$c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k = \mathbf{0} \implies c_1 = \dots = c_k = 0$$</p>
+      <p>Untuk $n$ vektor di $F^n$ yang disusun sebagai kolom matriks $A$:</p>
+      <p>$$\text{bebas linier} \iff \det A \ne 0$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/01-Ruang-Vektor.md</code>, Bab 1, §1.2: Definisi 1.2.1–1.2.11, Teorema 1.2.5, 1.2.9, 1.2.12, Contoh 1.2.2–1.2.15, Real Problem 1.2.A–B. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.1.2, §8.1.5, §8.1.6 (Latihan 1–3).</li>
+        <li>Latihan 4 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

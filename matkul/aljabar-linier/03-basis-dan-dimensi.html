@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Basis dan Dimensi · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Basis dan Dimensi</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Basis adalah himpunan yang bebas linier <em>dan</em> merentang $V$; terhadap basis, setiap vektor punya koordinat yang tunggal.</li>
+        <li>Himpunan bebas linier bisa diperluas menjadi basis; himpunan perentang bisa dipangkas menjadi basis.</li>
+        <li>Teorema Pertukaran Steinitz: banyak vektor bebas linier $\le$ banyak vektor perentang. Akibatnya semua basis ruang berdimensi hingga sama besar, dan $\dim V$ terdefinisi.</li>
+        <li>Di ruang berdimensi $n$: $n$ vektor bebas linier, atau $n$ vektor perentang, otomatis basis.</li>
+        <li>Untuk subruang $W \subseteq V$: $\dim W \le \dim V$, dengan kesamaan hanya jika $W = V$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Basis dan koordinat</h3>
+      <p>Basis adalah himpunan vektor yang cukup untuk membangun seluruh ruang, tetapi tanpa vektor yang berlebih. Dua syarat itu persis "merentang" dan "bebas linier" dari topik sebelumnya.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Basis (Modul, Definisi 1.3.1)</div>
+        <p>Misalkan $V$ ruang vektor atas $F$. Himpunan $B = \set{\mathbf{v}_1, \dots, \mathbf{v}_n} \subseteq V$ disebut <strong>basis</strong> untuk $V$ jika</p>
+        <ol>
+          <li>$B$ bebas linier, dan</li>
+          <li>$B$ merentang $V$, yaitu $\operatorname{span}(B) = V$.</li>
+        </ol>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Representasi tunggal (Modul, Teorema 1.3.2)</div>
+        <p>Jika $B = \set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ basis untuk $V$, maka setiap $\mathbf{v} \in V$ dapat ditulis <em>secara tunggal</em> sebagai</p>
+        <p>$$\mathbf{v} = c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \dots + c_n\mathbf{v}_n, \qquad c_i \in F.$$</p>
+        <p>Skalar $c_1, \dots, c_n$ disebut <strong>koordinat</strong> $\mathbf{v}$ terhadap $B$, ditulis sebagai vektor kolom</p>
+        <p>$$[\mathbf{v}]_B = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Keberadaan.</strong> Karena $\operatorname{span}(B) = V$, setiap $\mathbf{v} \in V$ adalah kombinasi linier dari $\mathbf{v}_1, \dots, \mathbf{v}_n$.</p>
+        <p><strong>Ketunggalan.</strong> Misalkan $\mathbf{v} = \sum_i c_i\mathbf{v}_i = \sum_i d_i\mathbf{v}_i$. Kurangkan kedua bentuk:</p>
+        <p>$$\mathbf{0} = (c_1 - d_1)\mathbf{v}_1 + \dots + (c_n - d_n)\mathbf{v}_n.$$</p>
+        <p>Karena $B$ bebas linier, semua koefisien nol: $c_i - d_i = 0$, jadi $c_i = d_i$ untuk setiap $i$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Perluasan dan pemangkasan (Modul, Teorema 1.3.3)</div>
+        <p>Misalkan $V$ ruang vektor atas $F$.</p>
+        <ol type="a">
+          <li>Setiap himpunan bebas linier di $V$ termuat dalam suatu basis $V$.</li>
+          <li>Setiap himpunan yang merentang $V$ memuat suatu basis $V$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(a)</strong> Misalkan $S$ bebas linier. Pandang keluarga</p>
+        <p>$$\mathcal{L} = \set{T \subseteq V : S \subseteq T \text{ dan } T \text{ bebas linier}},$$</p>
+        <p>terurut oleh inklusi $\subseteq$. Keluarga ini tak kosong karena $S \in \mathcal{L}$. Untuk setiap rantai $\set{T_\alpha}$ di $\mathcal{L}$, gabungan $T = \bigcup_\alpha T_\alpha$ juga bebas linier: setiap kombinasi linier berhingga dari anggota $T$ hanya melibatkan berhingga banyak $T_\alpha$, dan karena rantai, semuanya termuat dalam satu $T_\beta$ yang bebas linier. Jadi $T$ batas atas rantai itu di $\mathcal{L}$.</p>
+        <p>Menurut Lemma Zorn (Zorn's lemma), $\mathcal{L}$ punya elemen maksimal $B$. Jika $B$ tidak merentang $V$, ada $\mathbf{v} \in V \setminus \operatorname{span}(B)$, dan $B \cup \set{\mathbf{v}}$ masih bebas linier (Teorema 1.2.12), bertentangan dengan kemaksimalan $B$. Jadi $B$ basis yang memuat $S$.</p>
+        <p><strong>(b)</strong> Untuk $S$ berhingga dengan $\operatorname{span}(S) = V$: selama $S$ bergantung linier, ada vektor $\mathbf{s} \in S$ yang merupakan kombinasi linier vektor lainnya (Teorema 1.2.12). Membuang $\mathbf{s}$ tidak mengubah rentang. Karena $S$ berhingga, proses berhenti pada himpunan $B \subseteq S$ yang bebas linier dan tetap merentang $V$, yaitu basis.</p>
+        <p><span class="cek">[CEK: catatan kaki sumber merumuskan Lemma Zorn untuk "himpunan berhingga terurut parsial"; yang benar adalah himpunan terurut parsial tak kosong (tidak harus berhingga) yang setiap rantainya punya batas atas. Untuk (b) dengan $S$ tak hingga, argumen pemangkasan di sumber tidak lengkap; biasanya dibuktikan dengan Lemma Zorn pada himpunan bagian bebas linier dari $S$.]</span></p>
+      </details>
+
+      <p>Akibat penting Teorema 2: <strong>setiap ruang vektor punya basis</strong> (perluas himpunan kosong, yang bebas linier secara hampa).</p>
+
+      <div class="box contoh">
+        <div class="box-title">Basis baku $P_n(\R)$ (Modul, Contoh 1.3.4)</div>
+        <p>$B = \set{1, x, x^2, \dots, x^n}$ basis untuk $P_n(\R)$.</p>
+        <ol>
+          <li>Bebas linier: jika $c_0 + c_1x + \dots + c_nx^n$ adalah polinomial nol, semua koefisiennya nol.</li>
+          <li>Merentang: setiap $p \in P_n(\R)$ menurut definisinya berbentuk $a_0 + a_1x + \dots + a_nx^n$.</li>
+        </ol>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Basis standar $M_{m \times n}(\R)$ (Modul, Contoh 1.3.5)</div>
+        <p>Matriks $E_{ij}$ (entri $1$ di baris $i$ kolom $j$, sisanya $0$) membentuk basis. Untuk $2 \times 2$:</p>
+        <p>$$\begin{pmatrix} a & b \\ c & d \end{pmatrix} = aE_{11} + bE_{12} + cE_{21} + dE_{22},$$</p>
+        <p>jadi $\set{E_{11}, E_{12}, E_{21}, E_{22}}$ merentang; dan kombinasi ini matriks nol hanya jika $a = b = c = d = 0$, jadi bebas linier.</p>
+      </div>
+
+      <h3>Dimensi</h3>
+      <p>Dimensi mengukur "berapa arah independen" yang dimiliki ruang. Agar definisi ini masuk akal, kita perlu tahu bahwa semua basis punya banyak anggota yang sama. Itulah gunanya Teorema Pertukaran Steinitz.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Dimensi (Modul, Definisi 1.3.6)</div>
+        <p>Jika $V$ punya basis dengan $n$ vektor, <strong>dimensi</strong> $V$ adalah $n$, ditulis $\dim V = n$, dan $V$ disebut berdimensi hingga (finite-dimensional). Jika $V$ tidak punya basis berhingga, $V$ berdimensi tak hingga (infinite-dimensional).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Pertukaran Steinitz (Steinitz exchange theorem) (Modul, Teorema 1.3.7)</div>
+        <p>Misalkan $S = \set{\mathbf{v}_1, \dots, \mathbf{v}_m}$ bebas linier di $V$ dan $T = \set{\mathbf{w}_1, \dots, \mathbf{w}_n}$ merentang $V$. Maka $m \le n$. Lebih lanjut, setelah urutan $\mathbf{w}_j$ disusun ulang, himpunan</p>
+        <p>$$T' = \set{\mathbf{v}_1, \dots, \mathbf{v}_m, \mathbf{w}_{m+1}, \dots, \mathbf{w}_n}$$</p>
+        <p>masih merentang $V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Kita tukar vektor $T$ dengan vektor $S$ satu per satu. Misalkan setelah $k - 1$ langkah ($k \le \min(m, n)$) himpunan $T_{k-1} = \set{\mathbf{v}_1, \dots, \mathbf{v}_{k-1}, \mathbf{w}_k, \dots, \mathbf{w}_n}$ merentang $V$ (untuk $k = 1$ ini $T$ sendiri).</p>
+        <p><strong>Langkah $k$.</strong> Karena $T_{k-1}$ merentang $V$,</p>
+        <p>$$\mathbf{v}_k = b_1\mathbf{v}_1 + \dots + b_{k-1}\mathbf{v}_{k-1} + b_k\mathbf{w}_k + \dots + b_n\mathbf{w}_n.$$</p>
+        <p>Koefisien $b_k, \dots, b_n$ tidak mungkin semuanya nol: jika ya, $\mathbf{v}_k$ kombinasi linier dari $\mathbf{v}_1, \dots, \mathbf{v}_{k-1}$, bertentangan dengan $S$ bebas linier (untuk $k = 1$: $\mathbf{v}_1 = \mathbf{0}$, juga mustahil). Urutkan ulang agar $b_k \ne 0$. Maka</p>
+        <p>$$\mathbf{w}_k = \frac{1}{b_k}\Bigl(\mathbf{v}_k - \sum_{i \lt k} b_i\mathbf{v}_i - \sum_{j \gt k} b_j\mathbf{w}_j\Bigr),$$</p>
+        <p>sehingga $\mathbf{w}_k \in \operatorname{span}(T_k)$ dengan $T_k = \set{\mathbf{v}_1, \dots, \mathbf{v}_k, \mathbf{w}_{k+1}, \dots, \mathbf{w}_n}$. Semua anggota $T_{k-1}$ ada di $\operatorname{span}(T_k)$, jadi $T_k$ juga merentang $V$.</p>
+        <p><strong>$m \le n$.</strong> Andaikan $m \gt n$. Setelah $n$ langkah, $T_n = \set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ merentang $V$, jadi $\mathbf{v}_{n+1}$ kombinasi linier dari $\mathbf{v}_1, \dots, \mathbf{v}_n$. Ini bertentangan dengan $S$ bebas linier. Jadi $m \le n$, dan setelah $m$ langkah diperoleh $T' = T_m$ yang merentang $V$.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Ukuran basis konsisten (Modul, Teorema 1.3.8)</div>
+        <p>Jika $V$ berdimensi hingga, semua basis $V$ punya banyak vektor yang sama. Jadi $\dim V$ terdefinisi dengan baik.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $B_1$ (dengan $n$ vektor) dan $B_2$ (dengan $m$ vektor) basis $V$. $B_2$ bebas linier dan $B_1$ merentang, jadi $m \le n$ menurut Teorema 3. Dengan peran ditukar, $n \le m$. Jadi $m = n$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Dimensi beberapa ruang (Modul, Contoh 1.3.9–1.3.11)</div>
+        <ul>
+          <li>$\dim P_n(\R) = n + 1$, dari basis $\set{1, x, \dots, x^n}$. Misalnya $\dim P_0(\R) = 1$, $\dim P_2(\R) = 3$.</li>
+          <li>$\dim M_{m \times n}(\R) = mn$, dari $mn$ matriks $E_{ij}$. Misalnya $\dim M_{2 \times 2}(\R) = 4$, $\dim M_{3 \times 2}(\R) = 6$.</li>
+          <li>Ruang semua polinomial $P(\R)$ berdimensi tak hingga, dengan basis $\set{1, x, x^2, \dots}$. Ruang fungsi kontinu $C(\R)$ juga berdimensi tak hingga.</li>
+        </ul>
+      </div>
+
+      <h3>Konsekuensi untuk ruang berdimensi $n$</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Bebas linier maksimal, perentang minimal (Modul, Teorema 1.3.12)</div>
+        <p>Misalkan $\dim V = n$.</p>
+        <ol>
+          <li>Setiap himpunan bebas linier dengan $n$ vektor adalah basis $V$.</li>
+          <li>Setiap himpunan perentang $V$ dengan $n$ vektor adalah basis $V$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(1)</strong> Misalkan $S$ bebas linier dengan $n$ vektor, tetapi $\operatorname{span}(S) \ne V$. Ambil $\mathbf{w} \in V \setminus \operatorname{span}(S)$; maka $S \cup \set{\mathbf{w}}$ bebas linier dengan $n + 1$ vektor (Teorema 1.2.12). Tetapi $V$ punya basis dengan $n$ vektor yang merentang $V$, sehingga menurut Teorema 3 himpunan bebas linier paling banyak $n$ vektor. Kontradiksi; jadi $S$ merentang $V$ dan merupakan basis.</p>
+        <p><strong>(2)</strong> Misalkan $T$ merentang $V$ dengan $n$ vektor, tetapi bergantung linier. Menurut Teorema 1.2.12 ada $\mathbf{w}_k \in T$ yang merupakan kombinasi linier vektor lainnya, sehingga $T \setminus \set{\mathbf{w}_k}$ masih merentang $V$ dengan $n - 1$ vektor. Basis $V$ bebas linier dengan $n$ vektor, jadi menurut Teorema 3, $n \le n - 1$. Kontradiksi; jadi $T$ bebas linier dan merupakan basis.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Dimensi subruang (Modul, Teorema 1.3.13)</div>
+        <p>Jika $W$ subruang dari $V$ yang berdimensi hingga, maka $\dim W \le \dim V$, dan $\dim W = \dim V$ jika dan hanya jika $W = V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $\dim V = n$. Jika $W = \set{\mathbf{0}}$, basisnya $\emptyset$ dan $\dim W = 0 \le n$. Jika tidak, pilih $\mathbf{w}_1 \in W$ tak nol; selama $\set{\mathbf{w}_1, \dots, \mathbf{w}_k}$ belum merentang $W$, pilih $\mathbf{w}_{k+1} \in W$ di luar rentangnya, sehingga himpunannya tetap bebas linier. Vektor-vektor ini juga bebas linier di $V$, jadi menurut Teorema 3 banyaknya paling banyak $n$. Proses berhenti pada basis $W$ dengan $k \le n$ vektor, jadi $\dim W \le n$.</p>
+        <p>Jika $\dim W = n$, basis $W$ adalah $n$ vektor bebas linier di $V$, sehingga menurut Teorema 4(1) juga basis $V$. Maka $V = \operatorname{span}(\text{basis } W) \subseteq W$, dan bersama $W \subseteq V$ diperoleh $W = V$. Arah sebaliknya jelas.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Ruang solusi persamaan diferensial (Modul, Real Problem 1.3.A)</div>
+        <p>Ruang solusi $y'' - 3y' + 2y = 0$. Persamaan karakteristik $r^2 - 3r + 2 = (r - 1)(r - 2) = 0$ memberi $r = 1, 2$, dan solusi umumnya $y = C_1e^x + C_2e^{2x}$.</p>
+        <ol>
+          <li>Bebas linier: misalkan $c_1e^x + c_2e^{2x} = 0$ untuk semua $x$. Bagi dengan $e^x$: $c_1 + c_2e^x = 0$. Turunkan: $c_2e^x = 0$, jadi $c_2 = 0$, lalu $c_1 = 0$.</li>
+          <li>Merentang: setiap solusi berbentuk $C_1e^x + C_2e^{2x}$.</li>
+        </ol>
+        <p>Jadi $\set{e^x, e^{2x}}$ basis dan ruang solusinya berdimensi $2$: dua syarat awal (mis. $y(0)$ dan $y'(0)$) menentukan koordinat $(C_1, C_2)$ secara tunggal. <span class="cek">[CEK: sumber menyebut persamaan ini "model pegas teredam"; dengan akar karakteristik positif $1$ dan $2$, solusinya tumbuh eksponensial, jadi label fisis itu meragukan. Matematikanya benar.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Hanya memeriksa satu syarat basis.</strong> $\set{(1, 0), (0, 1), (1, 1)}$ merentang $\R^2$ tetapi tidak bebas linier; $\set{(1, 0)}$ bebas linier tetapi tidak merentang. Keduanya bukan basis.</li>
+        <li><strong>Mengira basis tunggal.</strong> Ruang vektor punya banyak basis; yang tunggal adalah <em>banyaknya</em> anggota basis (dimensi) dan koordinat terhadap basis yang sudah dipilih.</li>
+        <li><strong>Salah menghitung dimensi $P_n$.</strong> $\dim P_n(\R) = n + 1$, bukan $n$, karena konstanta $1$ ikut dihitung.</li>
+        <li><strong>Mengambil vektor dari bentuk eselon sebagai basis ruang kolom.</strong> Kolom pivot memberi tahu <em>posisi</em>; basis ruang kolom diambil dari kolom matriks <em>asli</em> pada posisi itu (Latihan 3).</li>
+        <li><strong>Lupa urutan basis.</strong> Koordinat $[\mathbf{v}]_B$ bergantung pada urutan vektor di $B$; menukar urutan menukar entri koordinat.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$W \subseteq \R^4$ adalah himpunan solusi sistem $x_1 + 2x_2 - x_3 + x_4 = 0$ dan $2x_1 + 4x_2 - x_3 + 3x_4 = 0$. Tentukan basis dan dimensi $W$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Eliminasi Gauss pada matriks koefisien, dengan $B_2 \leftarrow B_2 - 2B_1$:
+              $$\begin{pmatrix} 1 & 2 & -1 & 1 \\ 2 & 4 & -1 & 3 \end{pmatrix} \to \begin{pmatrix} 1 & 2 & -1 & 1 \\ 0 & 0 & 1 & 1 \end{pmatrix}.$$</li>
+            <li>Lanjutkan ke bentuk eselon baris tereduksi dengan $B_1 \leftarrow B_1 + B_2$:
+              $$\begin{pmatrix} 1 & 2 & 0 & 2 \\ 0 & 0 & 1 & 1 \end{pmatrix}.$$</li>
+            <li>Pivot di kolom $1$ dan $3$, jadi $x_2, x_4$ bebas: $x_1 = -2x_2 - 2x_4$ dan $x_3 = -x_4$.</li>
+            <li>Solusi umum:
+              $$\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = x_2\begin{pmatrix} -2 \\ 1 \\ 0 \\ 0 \end{pmatrix} + x_4\begin{pmatrix} -2 \\ 0 \\ -1 \\ 1 \end{pmatrix}.$$</li>
+            <li>Kedua vektor merentang $W$ dan bebas linier (bukan kelipatan satu sama lain; lihat entri kedua dan keempat).</li>
+          </ol>
+          <p>Basis $W$: $\set{(-2, 1, 0, 0), (-2, 0, -1, 1)}$, dan $\dim W = 2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan basis dan dimensi ruang solusi sistem $x_1 + x_2 - x_3 = 0$ dan $2x_1 + 2x_2 + x_3 + x_4 = 0$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Dengan $B_2 \leftarrow B_2 - 2B_1$:
+              $$\begin{pmatrix} 1 & 1 & -1 & 0 \\ 2 & 2 & 1 & 1 \end{pmatrix} \to \begin{pmatrix} 1 & 1 & -1 & 0 \\ 0 & 0 & 3 & 1 \end{pmatrix}.$$</li>
+            <li>Pivot di kolom $x_1$ dan $x_3$; variabel bebas $x_2$ dan $x_4$.</li>
+            <li>Baris kedua: $3x_3 + x_4 = 0$, jadi $x_3 = -\tfrac{1}{3}x_4$. Baris pertama: $x_1 = -x_2 + x_3 = -x_2 - \tfrac{1}{3}x_4$.</li>
+            <li>Solusi umum:
+              $$\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = x_2\begin{pmatrix} -1 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{x_4}{3}\begin{pmatrix} -1 \\ 0 \\ -1 \\ 3 \end{pmatrix}.$$
+              Vektor kedua sudah dikalikan $3$ agar tanpa pecahan; kelipatan tak nol tidak mengubah rentang.</li>
+          </ol>
+          <p>Basis: $\set{(-1, 1, 0, 0), (-1, 0, -1, 3)}$ (bebas linier karena bukan kelipatan), dan dimensinya $2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$W \subseteq \R^3$ direntang oleh $\mathbf{v}_1 = (1, 2, 1)$, $\mathbf{v}_2 = (2, 4, 2)$, $\mathbf{v}_3 = (1, 0, 1)$. Tentukan basis dan dimensi $W$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$W$ adalah ruang kolom matriks yang kolom-kolomnya $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$:
+              $$A = \begin{pmatrix} 1 & 2 & 1 \\ 2 & 4 & 0 \\ 1 & 2 & 1 \end{pmatrix}.$$</li>
+            <li>Dengan $B_2 \leftarrow B_2 - 2B_1$ dan $B_3 \leftarrow B_3 - B_1$:
+              $$\begin{pmatrix} 1 & 2 & 1 \\ 0 & 0 & -2 \\ 0 & 0 & 0 \end{pmatrix}.$$</li>
+            <li>Pivot ada di kolom $1$ dan $3$. Operasi baris tidak mengubah hubungan linier antarkolom, jadi kolom asli yang bersesuaian, $\mathbf{v}_1$ dan $\mathbf{v}_3$, membentuk basis ruang kolom. (Memang $\mathbf{v}_2 = 2\mathbf{v}_1$.)</li>
+          </ol>
+          <p>Basis $W$: $\set{(1, 2, 1), (1, 0, 1)}$, dan $\dim W = 2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Misalkan $W = \set{(a, b, c) \in \R^3 : 2a - 3b + c = 0}$. (a) Buktikan $W$ subruang dari $\R^3$. (b) Berikan sebuah basis untuk $W$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p><strong>(a)</strong> Gunakan uji subruang.</p>
+          <ol>
+            <li>Tak kosong: $(0, 0, 0) \in W$ karena $2(0) - 3(0) + 0 = 0$.</li>
+            <li>Penjumlahan: jika $\mathbf{w} = (w_1, w_2, w_3)$ dan $\mathbf{v} = (v_1, v_2, v_3)$ di $W$, maka
+              $$2(w_1 + v_1) - 3(w_2 + v_2) + (w_3 + v_3) = (2w_1 - 3w_2 + w_3) + (2v_1 - 3v_2 + v_3) = 0 + 0 = 0.$$</li>
+            <li>Perkalian skalar: $2\alpha w_1 - 3\alpha w_2 + \alpha w_3 = \alpha(2w_1 - 3w_2 + w_3) = \alpha \cdot 0 = 0$.</li>
+          </ol>
+          <p>Jadi $W$ subruang.</p>
+          <p><strong>(b)</strong> Dari $2a - 3b + c = 0$ diperoleh $c = 3b - 2a$, sehingga</p>
+          <p>$$(a, b, c) = (a, b, 3b - 2a) = a(1, 0, -2) + b(0, 1, 3).$$</p>
+          <p>Jadi $W = \operatorname{span}\set{(1, 0, -2), (0, 1, 3)}$. Kedua vektor bebas linier (lihat dua entri pertama), sehingga $\set{(1, 0, -2), (0, 1, 3)}$ basis $W$ dan $\dim W = 2$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>Basis dan koordinat:</p>
+      <p>$$\begin{gathered}
+        B \text{ basis} \iff B \text{ bebas linier dan } \operatorname{span}(B) = V, \\
+        \mathbf{v} = \sum_{i=1}^{n} c_i\mathbf{v}_i \iff [\mathbf{v}]_B = (c_1, \dots, c_n)^{T}
+      \end{gathered}$$</p>
+      <p>Steinitz dan dimensi:</p>
+      <p>$$\begin{gathered}
+        \#(\text{bebas linier}) \le \#(\text{perentang}), \\
+        W \subseteq V \implies \dim W \le \dim V, \quad \dim W = \dim V \iff W = V
+      \end{gathered}$$</p>
+      <p>Dimensi ruang baku:</p>
+      <p>$$\dim F^n = n, \qquad \dim P_n(F) = n + 1, \qquad \dim M_{m \times n}(F) = mn$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/01-Ruang-Vektor.md</code>, Bab 1, §1.3: Definisi 1.3.1, 1.3.6, Teorema 1.3.2, 1.3.3, 1.3.7, 1.3.8, 1.3.12, 1.3.13, Contoh 1.3.4–1.3.11, Real Problem 1.3.A. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.1.3, §8.1.7, §8.1.8, §8.1.11 (Latihan 1–4).</li>
+        <li>Bukti Teorema 3 ditulis ulang lebih ringkas dari versi sumber. Bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

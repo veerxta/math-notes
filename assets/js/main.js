@@ -54,6 +54,11 @@
   function urlTopik(m, t) { return AKAR + "matkul/" + m.slug + "/" + t.file; }
   function urlRingkasan(m) { return AKAR + "matkul/" + m.slug + "/ringkasan.html"; }
 
+  // Label bab sebelum topik yang memulai bab baru (field opsional `bab` di data.js).
+  function labelBab(t) {
+    return t.bab ? h("li", { class: "label-bab" }, t.bab) : null;
+  }
+
   // Nomor topik dari awalan nama file ("01-ruang-vektor.html" -> "01").
   function nomor(t, i) {
     var n = /^(\d+)-/.exec(t.file);
@@ -229,13 +234,13 @@
 
     // Topik hanya ditampilkan untuk matkul yang sedang dibuka.
     if (aktif && (total || m.ringkasan)) {
-      var ol = h("ol", { class: "sidebar-topik" }, m.topik.map(function (t, i) {
-        return h("li", null, h("a", { href: urlTopik(m, t), "aria-current": t === TOPIK ? "page" : null }, [
+      var ol = h("ol", { class: "sidebar-topik" }, [].concat.apply([], m.topik.map(function (t, i) {
+        return [labelBab(t), h("li", null, h("a", { href: urlTopik(m, t), "aria-current": t === TOPIK ? "page" : null }, [
           h("span", { class: "no" }, nomor(t, i)),
           h("span", { class: "judul" }, t.judul),
           tandaSelesai({ "data-topik": t.file, hidden: !sudah(m, t) }),
-        ]));
-      }));
+        ]))];
+      })));
       if (m.ringkasan) {
         ol.append(h("li", null, h("a", { href: urlRingkasan(m), "aria-current": FILE === "ringkasan.html" ? "page" : null }, [
           h("span", { class: "no" }, "∑"),
@@ -421,12 +426,14 @@
     var s = jumlahSelesai(MATKUL);
     if (progres) progres.replaceChildren(s + " dari " + n + " topik sudah dipelajari.", bilah(s, n));
 
-    var item = MATKUL.topik.map(function (t, i) {
-      return h("li", null, h("a", { href: urlTopik(MATKUL, t) }, [
+    var item = [];
+    MATKUL.topik.forEach(function (t, i) {
+      if (t.bab) item.push(labelBab(t));
+      item.push(h("li", null, h("a", { href: urlTopik(MATKUL, t) }, [
         h("span", { class: "no" }, nomor(t, i)),
         h("span", { class: "judul" }, t.judul),
         sudah(MATKUL, t) ? tandaSelesai() : null,
-      ]));
+      ])));
     });
     if (MATKUL.ringkasan) {
       item.push(h("li", null, h("a", { href: urlRingkasan(MATKUL) }, [

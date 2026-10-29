@@ -6,6 +6,8 @@
  *   1. Salin _templates/topik.html ke matkul/<slug>/NN-judul-topik.html.
  *   2. Tambahkan { file: "NN-judul-topik.html", judul: "Judul Topik" } ke `topik`.
  * Daftar topik di matkul/<slug>/index.html dibuat otomatis oleh main.js.
+ * bab (opsional): tulis pada topik pertama tiap bab, mis. bab: "Bab 2 · Transformasi Linier";
+ *   main.js menampilkannya sebagai label di atas topik itu.
  *
  * aksen: satu warna lembut per matkul (versi mode gelap dicerahkan otomatis di CSS).
  * ringkasan: ubah ke true setelah matkul/<slug>/ringkasan.html dibuat.
@@ -18,7 +20,10 @@ window.MATH_NOTES = {
       aksen: "#4C6BB5",
       ringkasan: false,
       topik: [
-        { file: "01-ruang-vektor.html", judul: "Ruang Vektor" },
+        { file: "01-ruang-vektor.html", judul: "Ruang Vektor", bab: "Bab 1 · Ruang Vektor" },
+        { file: "02-kombinasi-linier-dan-kebebasan-linier.html", judul: "Kombinasi Linier, Rentang, dan Kebebasan Linier" },
+        { file: "03-basis-dan-dimensi.html", judul: "Basis dan Dimensi" },
+        { file: "04-perubahan-basis.html", judul: "Perubahan Basis" },
       ],
     },
     {
