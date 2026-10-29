@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Representasi Matriks · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Representasi Matriks</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Setelah basis $B$ untuk $V$ dan $C$ untuk $W$ dipilih, setiap $T \colon V \to W$ linier diwakili satu matriks $[T]_{C \leftarrow B}$ berukuran $\dim W \times \dim V$.</li>
+        <li>Kolom ke-$j$ dari $[T]_{C \leftarrow B}$ adalah $[T(\mathbf{b}_j)]_C$: peta vektor basis domain, ditulis dalam koordinat basis kodomain.</li>
+        <li>Rumus koordinat: $[T(\mathbf{v})]_C = [T]_{C \leftarrow B}[\mathbf{v}]_B$; menerapkan $T$ sama dengan mengalikan matriks.</li>
+        <li>Matriks representasi bergantung pada pilihan basis: transformasi yang sama bisa punya matriks yang berbeda.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Matriks relatif terhadap dua basis</h3>
+      <p>Transformasi linier ditentukan sepenuhnya oleh nilainya pada basis, karena $T\bigl(\sum k_j\mathbf{b}_j\bigr) = \sum k_jT(\mathbf{b}_j)$. Jadi cukup menyimpan $T(\mathbf{b}_1), \dots, T(\mathbf{b}_n)$, masing-masing sebagai vektor koordinat terhadap basis kodomain. Menyusun vektor-vektor koordinat itu sebagai kolom menghasilkan matriks representasi. Matriks transisi di topik Perubahan Basis adalah kasus khusus: matriks dari transformasi identitas $I \colon V \to V$.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Matriks transformasi linier (Modul, Definisi 2.2.2)</div>
+        <p>Misalkan $T \colon V \to W$ linier, $\dim V = n$, $\dim W = m$, $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_n}$ basis $V$, dan $C = \set{\mathbf{c}_1, \dots, \mathbf{c}_m}$ basis $W$. <strong>Matriks $T$ relatif terhadap $B$ dan $C$</strong> adalah matriks $m \times n$</p>
+        <p>$$[T]_{C \leftarrow B} = \begin{pmatrix} [T(\mathbf{b}_1)]_C & [T(\mathbf{b}_2)]_C & \cdots & [T(\mathbf{b}_n)]_C \end{pmatrix}.$$</p>
+        <p>Notasi lain: $[T]_{B,C}$ atau $[T]_B^C$. Jika $V = W$ dan $B = C$, cukup ditulis $[T]_B$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Rumus koordinat (Modul, Teorema 2.2.3)</div>
+        <p>Untuk setiap $\mathbf{v} \in V$,</p>
+        <p>$$[T(\mathbf{v})]_C = [T]_{C \leftarrow B}\,[\mathbf{v}]_B.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tulis $\mathbf{v} = k_1\mathbf{b}_1 + \dots + k_n\mathbf{b}_n$, jadi $[\mathbf{v}]_B = (k_1, \dots, k_n)^T$. Karena $T$ linier (Teorema 2.1.6),</p>
+        <p>$$T(\mathbf{v}) = k_1T(\mathbf{b}_1) + \dots + k_nT(\mathbf{b}_n).$$</p>
+        <p>Pemetaan koordinat $\mathbf{w} \mapsto [\mathbf{w}]_C$ juga linier: jika $\mathbf{w} = \sum a_i\mathbf{c}_i$ dan $\mathbf{w}' = \sum a'_i\mathbf{c}_i$, maka $\mathbf{w} + \mathbf{w}' = \sum (a_i + a'_i)\mathbf{c}_i$ dan $k\mathbf{w} = \sum (ka_i)\mathbf{c}_i$. Maka</p>
+        <p>$$[T(\mathbf{v})]_C = k_1[T(\mathbf{b}_1)]_C + \dots + k_n[T(\mathbf{b}_n)]_C.$$</p>
+        <p>Ruas kanan adalah kombinasi linier kolom-kolom $[T]_{C \leftarrow B}$ dengan koefisien $k_1, \dots, k_n$, yaitu hasil kali $[T]_{C \leftarrow B}[\mathbf{v}]_B$.</p>
+      </details>
+
+      <p>Teorema 1 bisa dibaca sebagai diagram komutatif (commutative diagram): berjalan dari $V$ ke $F^m$ lewat jalur atas (terapkan $T$, lalu ambil koordinat terhadap $C$) atau lewat jalur bawah (ambil koordinat terhadap $B$, lalu kalikan matriks) memberi hasil yang sama, $[T]_{C \leftarrow B} \circ [\,\cdot\,]_B = [\,\cdot\,]_C \circ T$.</p>
+      <p>$$\begin{CD}
+        V @>{T}>> W \\
+        @V{[\,\cdot\,]_B}VV @VV{[\,\cdot\,]_C}V \\
+        F^n @>{[T]_{C \leftarrow B}}>> F^m
+      \end{CD}$$</p>
+
+      <h3>Contoh</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Refleksi terhadap sumbu-$x$ (Modul, Contoh 2.2.4)</div>
+        <p>$T(x, y) = (x, -y)$ dengan basis standar $E$ di domain dan kodomain. Karena $T(\mathbf{e}_1) = (1, 0)$ dan $T(\mathbf{e}_2) = (0, -1)$,</p>
+        <p>$$[T]_E = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.$$</p>
+        <p>Untuk $\mathbf{v} = (2, 3)$: $[T(\mathbf{v})]_E = [T]_E(2, 3)^T = (2, -3)^T$, sesuai dengan $T(2, 3) = (2, -3)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Transformasi yang sama, basis domain berbeda (Modul, Contoh 2.2.5)</div>
+        <p>$T(x, y) = (x, -y)$ dengan basis domain $B = \set{(1, 1), (-1, 1)}$ dan basis kodomain $E$. Karena $T(1, 1) = (1, -1)$ dan $T(-1, 1) = (-1, -1)$,</p>
+        <p>$$[T]_{E \leftarrow B} = \begin{pmatrix} 1 & -1 \\ -1 & -1 \end{pmatrix}.$$</p>
+        <p>Matriksnya berbeda dari Contoh 1, padahal transformasinya sama. Cek dengan $\mathbf{v} = (2, 3)$: dari $\mathbf{v} = a(1, 1) + b(-1, 1)$ diperoleh $a - b = 2$, $a + b = 3$, jadi $[\mathbf{v}]_B = (\tfrac{5}{2}, \tfrac{1}{2})^T$ dan</p>
+        <p>$$[T]_{E \leftarrow B}[\mathbf{v}]_B = \begin{pmatrix} 5/2 - 1/2 \\ -5/2 - 1/2 \end{pmatrix} = \begin{pmatrix} 2 \\ -3 \end{pmatrix},$$</p>
+        <p>sama dengan $T(2, 3)$.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menulis peta basis sebagai baris.</strong> $[T(\mathbf{b}_j)]_C$ adalah <em>kolom</em> ke-$j$. Menyusunnya sebagai baris memberi transpos.</li>
+        <li><strong>Lupa mengubah peta ke koordinat basis kodomain.</strong> Jika $C$ bukan basis standar, $T(\mathbf{b}_j)$ harus dinyatakan sebagai kombinasi linier $\mathbf{c}_1, \dots, \mathbf{c}_m$ dulu (Latihan 1(b)).</li>
+        <li><strong>Salah ukuran.</strong> $[T]_{C \leftarrow B}$ berukuran $\dim W \times \dim V$ (banyak baris = dimensi kodomain), sehingga bisa dikalikan dengan $[\mathbf{v}]_B \in F^{\dim V}$.</li>
+        <li><strong>Mengalikan matriks dengan vektor aslinya, bukan koordinatnya.</strong> Di Contoh 2, $[T]_{E \leftarrow B}$ dikalikan dengan $[\mathbf{v}]_B$, bukan dengan $(2, 3)$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$T \colon \R^2 \to \R^2$, $T(x, y) = (2x - y,\ x + 3y)$. (a) Tentukan $[T]_E$ terhadap basis standar. (b) Tentukan $[T]_B$ untuk $B = \set{(1, 1), (1, -1)}$ (di domain dan kodomain).</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p><strong>(a)</strong> $T(1, 0) = (2, 1)$ dan $T(0, 1) = (-1, 3)$. Terhadap basis standar koordinatnya adalah vektor itu sendiri, jadi</p>
+          <p>$$[T]_E = \begin{pmatrix} 2 & -1 \\ 1 & 3 \end{pmatrix}.$$</p>
+          <p><strong>(b)</strong> Dengan $\mathbf{b}_1 = (1, 1)$ dan $\mathbf{b}_2 = (1, -1)$:</p>
+          <ol>
+            <li>$T(\mathbf{b}_1) = (2 - 1,\ 1 + 3) = (1, 4)$ dan $T(\mathbf{b}_2) = (2 + 1,\ 1 - 3) = (3, -2)$.</li>
+            <li>Tulis $(1, 4) = \alpha(1, 1) + \beta(1, -1)$: $\alpha + \beta = 1$, $\alpha - \beta = 4$. Jumlahkan: $2\alpha = 5$, jadi $\alpha = \tfrac{5}{2}$ dan $\beta = -\tfrac{3}{2}$.</li>
+            <li>Tulis $(3, -2) = \gamma(1, 1) + \delta(1, -1)$: $\gamma + \delta = 3$, $\gamma - \delta = -2$. Jumlahkan: $2\gamma = 1$, jadi $\gamma = \tfrac{1}{2}$ dan $\delta = \tfrac{5}{2}$.</li>
+          </ol>
+          <p>$$[T]_B = \begin{pmatrix} 5/2 & 1/2 \\ -3/2 & 5/2 \end{pmatrix}.$$</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada $P_3(\R)$ dengan basis $B = \set{1, x, x^2, x^3}$, $T(p) = x\,p''(x) - 2p'(x)$. (a) Tentukan $[T]_B$. (b) Untuk $p(x) = 2 - 3x + x^2 - 4x^3$, hitung $[T(p)]_B$ dengan perkalian matriks.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p><strong>(a)</strong> Terapkan $T$ pada setiap vektor basis:</p>
+          <ul>
+            <li>$T(1) = x \cdot 0 - 2 \cdot 0 = 0$;</li>
+            <li>$T(x) = x \cdot 0 - 2 \cdot 1 = -2$;</li>
+            <li>$T(x^2) = x \cdot 2 - 2 \cdot 2x = -2x$;</li>
+            <li>$T(x^3) = x \cdot 6x - 2 \cdot 3x^2 = 0$.</li>
+          </ul>
+          <p>Koordinat-koordinat itu menjadi kolom:</p>
+          <p>$$[T]_B = \begin{pmatrix} 0 & -2 & 0 & 0 \\ 0 & 0 & -2 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix}.$$</p>
+          <p><strong>(b)</strong> $[p]_B = (2, -3, 1, -4)^T$, sehingga</p>
+          <p>$$[T(p)]_B = [T]_B[p]_B = \begin{pmatrix} -2(-3) \\ -2(1) \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 6 \\ -2 \\ 0 \\ 0 \end{pmatrix},$$</p>
+          <p>yaitu $T(p) = 6 - 2x$. (Cek langsung: $p' = -3 + 2x - 12x^2$, $p'' = 2 - 24x$, dan $x p'' - 2p' = 2x - 24x^2 + 6 - 4x + 24x^2 = 6 - 2x$.)</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Turunan $D \colon P_2(\R) \to P_1(\R)$, $D(p) = p'$. Tentukan $[D]_{C \leftarrow B}$ untuk $B = \set{1, x, x^2}$ dan $C = \set{1, x}$, lalu pakai untuk menghitung turunan $5 - x + 4x^2$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Peta basis domain: $D(1) = 0$, $D(x) = 1$, $D(x^2) = 2x$.</li>
+            <li>Koordinat terhadap $C = \set{1, x}$: $[0]_C = (0, 0)^T$, $[1]_C = (1, 0)^T$, $[2x]_C = (0, 2)^T$.</li>
+            <li>Susun sebagai kolom; matriksnya $2 \times 3$ karena $\dim P_1 = 2$ dan $\dim P_2 = 3$:
+              $$[D]_{C \leftarrow B} = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}.$$</li>
+            <li>Untuk $p = 5 - x + 4x^2$, $[p]_B = (5, -1, 4)^T$, jadi
+              $$[D(p)]_C = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} 5 \\ -1 \\ 4 \end{pmatrix} = \begin{pmatrix} -1 \\ 8 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Jadi $p' = -1 + 8x$, sesuai dengan turunan langsung.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        [T]_{C \leftarrow B} = \begin{pmatrix} [T(\mathbf{b}_1)]_C & \cdots & [T(\mathbf{b}_n)]_C \end{pmatrix} \in M_{m \times n}(F), \\
+        [T(\mathbf{v})]_C = [T]_{C \leftarrow B}[\mathbf{v}]_B
+      \end{gathered}$$</p>
+      <p>Untuk $T(\mathbf{x}) = A\mathbf{x}$ di $F^n$ dengan basis standar:</p>
+      <p>$$[T]_E = A = \begin{pmatrix} T(\mathbf{e}_1) & \cdots & T(\mathbf{e}_n) \end{pmatrix}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/02-Transformasi-Linier.md</code>, Bab 2, §2.2: Definisi 2.2.2, Teorema 2.2.3 dan diagram komutatif (Gambar 2.1, dibuat ulang dengan lingkungan CD KaTeX), Contoh 2.2.4, 2.2.5. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.2.2 dan §8.2.8 (Latihan 1–2).</li>
+        <li>Pengecekan di Contoh 2, Latihan 3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

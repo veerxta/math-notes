@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Koset dan Ruang Hasil Bagi · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Koset dan Ruang Hasil Bagi</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Koset $\mathbf{v} + W$ adalah "salinan $W$ yang digeser ke $\mathbf{v}$"; dua koset sama atau saling asing, dan $\mathbf{v} + W = \mathbf{x} + W \iff \mathbf{v} - \mathbf{x} \in W$.</li>
+        <li>Himpunan semua koset, $V/W$, adalah ruang vektor dengan operasi lewat wakil koset; operasinya terdefinisi dengan baik karena $W$ subruang.</li>
+        <li>$\dim(V/W) = \dim V - \dim W$ untuk $V$ berdimensi hingga.</li>
+        <li>Pemetaan kanonik $\mathbf{v} \mapsto \mathbf{v} + W$ linier dengan kernel $W$: setiap subruang adalah kernel suatu transformasi linier.</li>
+        <li>Operator $T$ pada $V$ menginduksi operator $\mathbf{v} + W \mapsto T(\mathbf{v}) + W$ di $V/W$ jika dan hanya jika $W$ invarian-$T$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Koset</h3>
+      <p>Tujuan bagian ini adalah menunjukkan bahwa setiap subruang $W$ adalah kernel suatu transformasi linier. Untuk itu kita perlu ruang baru yang "menganggap semua vektor di $W$ sebagai nol". Bahan dasarnya adalah koset (coset).</p>
+
+      <div class="box definisi">
+        <div class="box-title">Koset (Modul, Definisi 2.3.2)</div>
+        <p>Misalkan $W$ subruang dari ruang vektor $V$ atas $F$. <strong>Koset-$W$</strong> dari $\mathbf{v} \in V$ adalah himpunan</p>
+        <p>$$\mathbf{v} + W = \set{\mathbf{v} + \mathbf{w} : \mathbf{w} \in W}.$$</p>
+        <p>Setiap anggota $\mathbf{x} \in \mathbf{v} + W$ disebut <strong>wakil</strong> (representatif) koset itu. Himpunan semua koset-$W$ di $V$ ditulis $V/W$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Koset garis $y = x$ di $\R^2$ (Modul, Contoh 2.3.3)</div>
+        <p>Untuk $W = \operatorname{span}\set{(1, 1)}$, yaitu garis $y = x$, dan $(a, b) \in \R^2$:</p>
+        <p>$$(a, b) + W = \set{(t + a,\ t + b) : t \in \R},$$</p>
+        <p>yaitu garis $y = x + (b - a)$. Sebaliknya, garis $y = x + b$ adalah koset $(0, b) + W$. Jadi koset-koset $W$ tepat semua garis bergradien $1$: keluarga garis sejajar $W$. Satu koset punya banyak wakil; misalnya garis $y = x + 3$ diwakili $(0, 3)$, $(1, 4)$, maupun $(-2, 1)$.</p>
+        <figure>
+          <svg viewBox="0 0 290 210" width="290" height="210" role="img" aria-labelledby="judul-svg-koset">
+            <title id="judul-svg-koset">Garis W yang melalui titik asal dengan gradien 1, serta dua koset sejajarnya yang melalui titik (−2, 1) dan (1, −1)</title>
+            <path d="M12 105H272M140 200V10" stroke="currentColor" stroke-width="1" opacity="0.35" fill="none"/>
+            <line x1="50" y1="195" x2="230" y2="15" stroke-width="2.5" style="stroke: var(--c-definisi)"/>
+            <line x1="20" y1="135" x2="140" y2="15" stroke-width="2" style="stroke: var(--c-contoh)"/>
+            <line x1="110" y1="195" x2="260" y2="45" stroke-width="2" style="stroke: var(--c-contoh)"/>
+            <g fill="currentColor">
+              <circle cx="80" cy="75" r="3.5"/>
+              <circle cx="170" cy="135" r="3.5"/>
+              <circle cx="140" cy="105" r="3"/>
+            </g>
+            <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12">
+              <text x="238" y="22" font-weight="700" style="fill: var(--c-definisi)">W</text>
+              <text x="74" y="72" text-anchor="end">(−2, 1)</text>
+              <text x="178" y="140">(1, −1)</text>
+              <text x="146" y="118">0</text>
+              <text x="14" y="26">(−2, 1) + W</text>
+              <text x="190" y="190">(1, −1) + W</text>
+            </g>
+          </svg>
+          <figcaption>Koset-koset $W = \operatorname{span}\set{(1, 1)}$ adalah garis-garis sejajar bergradien $1$: $W$ sendiri ($y = x$), $(-2, 1) + W$ ($y = x + 3$), dan $(1, -1) + W$ ($y = x - 2$).</figcaption>
+        </figure>
+        <p><span class="cek">[CEK: pada kode TikZ Gambar 2.3.1 di sumber, koset $(1, -1) + W$ digambar dengan gradien $-1$; seharusnya gradien $1$ seperti di atas.]</span></p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Kesamaan koset (Modul, Teorema 2.3.4)</div>
+        <p>Misalkan $W$ subruang $V$ dan $\mathbf{v}, \mathbf{x} \in V$. Pernyataan berikut ekuivalen:</p>
+        <ol type="a">
+          <li>$\mathbf{v} \in \mathbf{x} + W$;</li>
+          <li>$\mathbf{v} - \mathbf{x} \in W$;</li>
+          <li>$\mathbf{x} - \mathbf{v} \in W$;</li>
+          <li>$\mathbf{x} \in \mathbf{v} + W$;</li>
+          <li>$\mathbf{v} + W = \mathbf{x} + W$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(a) ⇒ (b)</strong> Jika $\mathbf{v} = \mathbf{x} + \mathbf{w}$ dengan $\mathbf{w} \in W$, maka $\mathbf{v} - \mathbf{x} = \mathbf{w} \in W$.</p>
+        <p><strong>(b) ⇒ (c)</strong> $W$ tertutup terhadap perkalian dengan $-1$, jadi $\mathbf{x} - \mathbf{v} = -(\mathbf{v} - \mathbf{x}) \in W$.</p>
+        <p><strong>(c) ⇒ (d)</strong> Jika $\mathbf{x} - \mathbf{v} = \mathbf{w} \in W$, maka $\mathbf{x} = \mathbf{v} + \mathbf{w} \in \mathbf{v} + W$.</p>
+        <p><strong>(d) ⇒ (e)</strong> Misalkan $\mathbf{x} = \mathbf{v} + \mathbf{w}_1$. Untuk setiap $\mathbf{w}_2 \in W$, $\mathbf{x} + \mathbf{w}_2 = \mathbf{v} + (\mathbf{w}_1 + \mathbf{w}_2) \in \mathbf{v} + W$, jadi $\mathbf{x} + W \subseteq \mathbf{v} + W$. Dari (d) juga $\mathbf{v} = \mathbf{x} + (-\mathbf{w}_1)$, dan argumen yang sama memberi $\mathbf{v} + W \subseteq \mathbf{x} + W$.</p>
+        <p><strong>(e) ⇒ (a)</strong> $\mathbf{v} = \mathbf{v} + \mathbf{0} \in \mathbf{v} + W = \mathbf{x} + W$.</p>
+      </details>
+
+      <p>Akibatnya, dua koset selalu sama atau saling asing, dan setiap vektor $\mathbf{v}$ ada di tepat satu koset, yaitu $\mathbf{v} + W$. Jadi koset-koset $W$ membentuk <strong>partisi</strong> dari $V$.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Koset di $\mathbb{F}_2^3$ (Modul, Contoh 2.3.5)</div>
+        <p>Di $V = \mathbb{F}_2^3$ (delapan vektor, aritmetika modulo $2$), ambil $W = \operatorname{span}\set{(1, 1, 1)} = \set{(0, 0, 0), (1, 1, 1)}$. Pilih vektor di luar koset yang sudah ada, berulang-ulang:</p>
+        <p>$$\begin{aligned}
+          W &= \set{(0, 0, 0), (1, 1, 1)}, \\
+          (1, 0, 0) + W &= \set{(1, 0, 0), (0, 1, 1)}, \\
+          (0, 1, 0) + W &= \set{(0, 1, 0), (1, 0, 1)}, \\
+          (0, 0, 1) + W &= \set{(0, 0, 1), (1, 1, 0)}.
+        \end{aligned}$$</p>
+        <p>Keempat koset saling asing dan menutupi kedelapan vektor, jadi $V/W$ punya empat anggota.</p>
+      </div>
+
+      <h3>Ruang hasil bagi</h3>
+
+      <div class="box teorema">
+        <div class="box-title">$V/W$ ruang vektor (Modul, Teorema 2.3.6 dan Definisi 2.3.7)</div>
+        <p>Jika $W$ subruang $V$, maka $V/W$ dengan operasi</p>
+        <p>$$\begin{aligned}
+          (\mathbf{v}_1 + W) + (\mathbf{v}_2 + W) &:= (\mathbf{v}_1 + \mathbf{v}_2) + W, \\
+          c(\mathbf{v} + W) &:= c\mathbf{v} + W
+        \end{aligned}$$</p>
+        <p>adalah ruang vektor atas $F$, disebut <strong>ruang hasil bagi</strong> (quotient space) $V$ oleh $W$ dan dibaca "$V$ modulo $W$". Vektor nolnya $W = \mathbf{0} + W$ dan invers $\mathbf{v} + W$ adalah $-\mathbf{v} + W$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Operasi didefinisikan lewat wakil, jadi kita harus cek bahwa hasilnya tidak bergantung pada wakil yang dipilih (terdefinisi dengan baik, well-defined).</p>
+        <p><strong>Penjumlahan.</strong> Misalkan $\mathbf{v}_i + W = \mathbf{x}_i + W$ untuk $i = 1, 2$. Menurut Teorema 1, $\mathbf{v}_i - \mathbf{x}_i \in W$. Karena $W$ subruang,</p>
+        <p>$$(\mathbf{v}_1 + \mathbf{v}_2) - (\mathbf{x}_1 + \mathbf{x}_2) = (\mathbf{v}_1 - \mathbf{x}_1) + (\mathbf{v}_2 - \mathbf{x}_2) \in W,$$</p>
+        <p>jadi $(\mathbf{v}_1 + \mathbf{v}_2) + W = (\mathbf{x}_1 + \mathbf{x}_2) + W$ menurut Teorema 1 lagi.</p>
+        <p><strong>Perkalian skalar.</strong> Jika $\mathbf{v} + W = \mathbf{x} + W$, maka $\mathbf{v} - \mathbf{x} \in W$, sehingga $c\mathbf{v} - c\mathbf{x} = c(\mathbf{v} - \mathbf{x}) \in W$ dan $c\mathbf{v} + W = c\mathbf{x} + W$.</p>
+        <p><strong>Aksioma.</strong> $(\mathbf{v} + W) + (\mathbf{0} + W) = \mathbf{v} + W$, jadi $W$ vektor nol; $(\mathbf{v} + W) + (-\mathbf{v} + W) = \mathbf{0} + W$. Aksioma lain (asosiatif, komutatif, distributif, dan seterusnya) diperoleh dengan menerapkan aksioma yang sama pada wakil-wakil di $V$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">$\C$ modulo $\R$ (Modul, Contoh 2.3.8)</div>
+        <p>Pandang $V = \C$ sebagai ruang vektor atas $\R$ dan $W = \R$. Untuk $z = a + ib$, $z + W = ib + W$ karena $a \in W$. Dua koset $ib + W$ dan $ib' + W$ sama jika dan hanya jika $i(b - b') \in \R$, yaitu $b = b'$. Jadi</p>
+        <p>$$\C/\R = \set{ib + \R : b \in \R},$$</p>
+        <p>yang dapat diidentifikasi dengan bilangan imajiner murni $i\R$ (dan $b = 0$ memberi vektor nol $\R$). <span class="cek">[CEK: sumber menulis $V/W = \{\{W\}, \{ib + W \mid b \ne 0\}\}$ dan memberi syarat $b \ne 0$ pada $z + W = ib + W$; syarat itu tidak diperlukan, dan penulisan himpunannya kurang tepat. Di atas ditulis ulang.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">$\R^2$ modulo garis $y = x$ (Modul, Contoh 2.3.9)</div>
+        <p>Untuk $W$ di Contoh 1, $V/W$ adalah himpunan semua garis bergradien $1$. Setiap garis seperti itu ditentukan oleh titik potongnya dengan sumbu-$y$, jadi $V/W$ dapat diidentifikasi dengan $\R$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Dimensi ruang hasil bagi (Modul, Teorema 2.3.10)</div>
+        <p>Jika $\dim V = n$ dan $\dim W = k$, maka</p>
+        <p>$$\dim(V/W) = n - k.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Ambil basis $\set{\mathbf{w}_1, \dots, \mathbf{w}_k}$ untuk $W$ dan perluas menjadi basis $\set{\mathbf{w}_1, \dots, \mathbf{w}_k, \mathbf{v}_{k+1}, \dots, \mathbf{v}_n}$ untuk $V$ (Teorema 1.3.3). Klaim: $\set{\mathbf{v}_{k+1} + W, \dots, \mathbf{v}_n + W}$ basis $V/W$.</p>
+        <p><strong>Merentang.</strong> Setiap $\mathbf{v} = \sum_{i \le k} d_i\mathbf{w}_i + \sum_{j \gt k} d_j\mathbf{v}_j$. Bagian pertama ada di $W$, jadi</p>
+        <p>$$\mathbf{v} + W = \sum_{j \gt k} d_j\mathbf{v}_j + W = \sum_{j \gt k} d_j(\mathbf{v}_j + W).$$</p>
+        <p><strong>Bebas linier.</strong> Jika $\sum_{j \gt k} c_j(\mathbf{v}_j + W) = W$ (vektor nol $V/W$), maka $\sum_{j \gt k} c_j\mathbf{v}_j \in W$, sehingga $\sum_{j \gt k} c_j\mathbf{v}_j = \sum_{i \le k} e_i\mathbf{w}_i$ untuk suatu $e_i$. Pindahkan ke satu ruas: diperoleh kombinasi linier basis $V$ yang bernilai $\mathbf{0}$, jadi semua koefisien, termasuk semua $c_j$, nol.</p>
+        <p>Basis ini punya $n - k$ anggota.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">$\R^3$ modulo bidang-$xy$ (Modul, Contoh 2.3.11)</div>
+        <p>$W = \set{(x, y, 0) : x, y \in \R}$ dengan basis $\set{(1, 0, 0), (0, 1, 0)}$, jadi $\dim W = 2$ dan $\dim(\R^3/W) = 3 - 2 = 1$. Basis $V/W$: $(0, 0, 1) + W$, dan setiap koset berbentuk $c\bigl((0, 0, 1) + W\bigr)$. Secara geometris, koset $(x, y, z) + W$ adalah bidang mendatar setinggi $z$; ruang hasil bagi hanya "melihat" komponen $z$.</p>
+      </div>
+
+      <h3>Pemetaan kanonik dan operator terinduksi</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Subruang sebagai kernel (Modul, Teorema 2.3.12)</div>
+        <p>Setiap subruang $W$ dari $V$ adalah kernel suatu transformasi linier pada $V$, yaitu <strong>pemetaan kanonik</strong> (canonical map)</p>
+        <p>$$\pi \colon V \to V/W, \qquad \pi(\mathbf{v}) = \mathbf{v} + W.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Linier: $\pi(c\mathbf{v}_1 + \mathbf{v}_2) = (c\mathbf{v}_1 + \mathbf{v}_2) + W = c(\mathbf{v}_1 + W) + (\mathbf{v}_2 + W) = c\pi(\mathbf{v}_1) + \pi(\mathbf{v}_2)$, menurut definisi operasi di $V/W$. Kernel: $\pi(\mathbf{v}) = W$ (vektor nol $V/W$) jika dan hanya jika $\mathbf{v} + W = \mathbf{0} + W$, yaitu $\mathbf{v} \in W$ (Teorema 1). Jadi $\ker \pi = W$.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Arti "kanonik" dan pemetaan terinduksi</div>
+        <p>Pemetaan disebut kanonik jika definisinya tidak bergantung pada pilihan basis atau koordinat. Sumber juga mencatat: untuk $T \colon V \to X$ linier, $T[\mathbf{v} + W] = T(\mathbf{v}) + T[W]$, dan rumus $\widetilde{T}(\mathbf{v} + W) := T(\mathbf{v}) + T[W]$ memberi transformasi linier $\widetilde{T} \colon V/W \to X/T[W]$ yang terdefinisi dengan baik, karena $\mathbf{v}_1 - \mathbf{v}_2 \in W$ mengakibatkan $T(\mathbf{v}_1) - T(\mathbf{v}_2) \in T[W]$. Dikatakan bahwa $T$ <strong>menginduksi</strong> $\widetilde{T}$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Subruang invarian (Modul, Definisi 2.3.13)</div>
+        <p>Misalkan $T$ operator linier pada $V$. Subruang $W \subseteq V$ disebut <strong>invarian-$T$</strong> ($T$-invariant) jika $T[W] \subseteq W$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Kernel selalu invarian (Modul, Contoh 2.3.14)</div>
+        <p>Untuk operator $T \colon V \to V$, $T[\ker T] = \set{\mathbf{0}} \subseteq \ker T$, jadi $\ker T$ invarian-$T$. Image $T[V]$ juga invarian-$T$ (Latihan 3).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Operator terinduksi di $V/W$ (Modul, Teorema 2.3.15)</div>
+        <p>Misalkan $T$ operator linier pada $V$ dan $W$ subruang $V$. Rumus</p>
+        <p>$$\widetilde{T}(\mathbf{v} + W) := T(\mathbf{v}) + W$$</p>
+        <p>mendefinisikan operator linier (yang terdefinisi dengan baik) pada $V/W$ jika dan hanya jika $W$ invarian-$T$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Misalkan $\widetilde{T}$ terdefinisi dengan baik, dan ambil $\mathbf{w} \in W$. Karena $\mathbf{w} + W = \mathbf{0} + W$, haruslah $T(\mathbf{w}) + W = T(\mathbf{0}) + W = W$, yaitu $T(\mathbf{w}) \in W$. Jadi $T[W] \subseteq W$.</p>
+        <p><strong>(⇐)</strong> Terdefinisi dengan baik: jika $\mathbf{v}_1 + W = \mathbf{v}_2 + W$, maka $\mathbf{v}_1 - \mathbf{v}_2 \in W$, sehingga $T(\mathbf{v}_1) - T(\mathbf{v}_2) = T(\mathbf{v}_1 - \mathbf{v}_2) \in W$ karena $W$ invarian-$T$; jadi $T(\mathbf{v}_1) + W = T(\mathbf{v}_2) + W$. Linier:</p>
+        <p>$$\begin{aligned}
+          \widetilde{T}\bigl(c_1(\mathbf{v}_1 + W) + c_2(\mathbf{v}_2 + W)\bigr) &= T(c_1\mathbf{v}_1 + c_2\mathbf{v}_2) + W \\
+          &= c_1\bigl(T(\mathbf{v}_1) + W\bigr) + c_2\bigl(T(\mathbf{v}_2) + W\bigr) \\
+          &= c_1\widetilde{T}(\mathbf{v}_1 + W) + c_2\widetilde{T}(\mathbf{v}_2 + W).
+        \end{aligned}$$</p>
+      </details>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menganggap koset sebagai subruang.</strong> $\mathbf{v} + W$ subruang hanya jika $\mathbf{v} \in W$ (yaitu koset itu $W$ sendiri); koset lain tidak memuat $\mathbf{0}$.</li>
+        <li><strong>Mengira wakil koset tunggal.</strong> $\mathbf{v} + W = \mathbf{x} + W$ untuk setiap $\mathbf{x}$ dengan $\mathbf{x} - \mathbf{v} \in W$. Karena itu setiap definisi lewat wakil harus dicek "terdefinisi dengan baik".</li>
+        <li><strong>Lupa bahwa vektor nol $V/W$ adalah $W$.</strong> "$\mathbf{v} + W = \mathbf{0}$ di $V/W$" berarti $\mathbf{v} + W = W$, yaitu $\mathbf{v} \in W$, bukan $\mathbf{v} = \mathbf{0}$.</li>
+        <li><strong>Menulis $\dim(V/W) = \dim V / \dim W$.</strong> Rumusnya selisih, $\dim V - \dim W$, bukan hasil bagi.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$V = \R^3$ dan $W = \set{(x, y, z) : x - 2y + z = 0}$. (a) Tentukan koset $\mathbf{v} + W$ untuk $\mathbf{v} = (1, 0, 2)$. (b) Jelaskan $V/W$ dan tentukan dimensinya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Parametrisasi $W$: dari $x = 2y - z$,
+              $$W = \set{(2y - z, y, z) : y, z \in \R} = \operatorname{span}\set{(2, 1, 0), (-1, 0, 1)}.$$</li>
+            <li>(a) Maka
+              $$\mathbf{v} + W = \set{(1 + 2a - b,\ a,\ 2 + b) : a, b \in \R}.$$
+              Ini bidang sejajar $W$ yang melalui $(1, 0, 2)$.</li>
+            <li>(b) $V/W$ adalah himpunan semua koset $\mathbf{v} + W$ dengan operasi lewat wakil. Kedua vektor perentang $W$ bebas linier, jadi $\dim W = 2$, dan menurut Teorema 3, $\dim(V/W) = 3 - 2 = 1$.</li>
+            <li>Interpretasi: $W$ adalah kernel fungsi linier $f(x, y, z) = x - 2y + z$, dan dua vektor ada di koset yang sama tepat bila nilai $f$-nya sama. Jadi setiap koset ditandai satu bilangan real, $f(\mathbf{v})$, dan $V/W \cong \R$. Untuk $\mathbf{v} = (1, 0, 2)$, $f(\mathbf{v}) = 3$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$V = \operatorname{Sym}_3(\R)$ (matriks simetris $3 \times 3$, dimensi $6$) dan $W = \set{A \in V : \operatorname{tr}(A) = 0}$. (a) Hitung $\dim W$. (b) Tentukan $\dim(V/W)$ dan jelaskan anggotanya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Matriks simetris umum punya enam parameter bebas $x, y, z, w, u, v$:
+              $$A = \begin{pmatrix} x & y & z \\ y & w & u \\ z & u & v \end{pmatrix}.$$</li>
+            <li>(a) Syarat $\operatorname{tr}(A) = x + w + v = 0$ memberi $v = -x - w$, sehingga tersisa lima parameter bebas $x, y, z, w, u$. Jadi $\dim W = 5$.</li>
+            <li>(b) $\dim(V/W) = 6 - 5 = 1$ (Teorema 3).</li>
+            <li>Anggota $V/W$ adalah koset $A + W$. Karena $A + W = B + W \iff A - B \in W \iff \operatorname{tr}(A) = \operatorname{tr}(B)$, setiap koset ditentukan oleh satu bilangan real, yaitu trace-nya; $V/W \cong \R$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Misalkan $T$ operator linier pada $V$. Buktikan bahwa $\operatorname{Im} T = T[V]$ invarian-$T$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Yang harus ditunjukkan: $T[\operatorname{Im} T] \subseteq \operatorname{Im} T$.</li>
+            <li>Ambil sebarang anggota $T[\operatorname{Im} T]$; bentuknya $T(\mathbf{w})$ dengan $\mathbf{w} \in \operatorname{Im} T$.</li>
+            <li>Karena $\mathbf{w} \in \operatorname{Im} T \subseteq V$, $\mathbf{w}$ adalah vektor di $V$, sehingga $T(\mathbf{w})$ adalah peta suatu vektor $V$, yaitu $T(\mathbf{w}) \in \operatorname{Im} T$.</li>
+          </ol>
+          <p>Jadi $T[\operatorname{Im} T] \subseteq \operatorname{Im} T$, dan $\operatorname{Im} T$ subruang (Teorema 2.1.8), sehingga invarian-$T$. Menurut Teorema 5, $T$ menginduksi operator pada $V/\operatorname{Im} T$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mathbf{v} + W = \set{\mathbf{v} + \mathbf{w} : \mathbf{w} \in W}, \qquad \mathbf{v} + W = \mathbf{x} + W \iff \mathbf{v} - \mathbf{x} \in W, \\
+        (\mathbf{v}_1 + W) + (\mathbf{v}_2 + W) = (\mathbf{v}_1 + \mathbf{v}_2) + W, \qquad c(\mathbf{v} + W) = c\mathbf{v} + W
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        \dim(V/W) = \dim V - \dim W, \\
+        \pi(\mathbf{v}) = \mathbf{v} + W, \quad \ker \pi = W, \\
+        \widetilde{T}(\mathbf{v} + W) = T(\mathbf{v}) + W \text{ terdefinisi} \iff T[W] \subseteq W
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/02-Transformasi-Linier.md</code>, Bab 2, §2.3: Definisi 2.3.2, 2.3.7, 2.3.13, Teorema 2.3.4, 2.3.6, 2.3.10, 2.3.12, 2.3.15, Contoh 2.3.3, 2.3.5, 2.3.8, 2.3.9, 2.3.11, 2.3.14, Gambar 2.3.1 (dibuat ulang sebagai SVG). Gambar 3D untuk Contoh 2.3.11 (tautan eksternal di sumber) tidak dibuat ulang; isinya dijelaskan dengan teks. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.2.3 dan §8.2.9 (Latihan 1–2).</li>
+        <li>Latihan 3 (dari "latihan untuk Anda" di Contoh 2.3.14) dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

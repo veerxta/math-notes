@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Transformasi Linier, Kernel, dan Image · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Transformasi Linier, Kernel, dan Image</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>$T \colon V \to W$ linier jika $T(c\mathbf{u} + d\mathbf{v}) = cT(\mathbf{u}) + dT(\mathbf{v})$; akibatnya $T(\mathbf{0}) = \mathbf{0}$ dan $T$ mengawetkan semua kombinasi linier.</li>
+        <li>$\ker T$ subruang dari $V$ dan $\operatorname{Im} T$ subruang dari $W$; peta dan prapeta subruang juga subruang.</li>
+        <li>$T$ injektif $\iff \ker T = \set{\mathbf{0}} \iff T$ mengirim himpunan bebas linier ke himpunan bebas linier.</li>
+        <li>$T$ surjektif $\iff T$ mengirim himpunan perentang $V$ ke himpunan perentang $W$.</li>
+        <li>Teorema rank–nulitas: $\dim V = \operatorname{nulitas}(T) + \operatorname{rank}(T)$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Definisi dan contoh</h3>
+      <p>Transformasi linier (linear transformation) adalah fungsi antarruang vektor yang "menghormati" kedua operasi: menjumlahkan lalu memetakan sama dengan memetakan lalu menjumlahkan, dan begitu pula untuk perkalian skalar. Di bab ini sumber memakai huruf $T$ dan $L$ secara bergantian.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Transformasi linier (Modul, Definisi 2.1.1)</div>
+        <p>Misalkan $V$ dan $W$ ruang vektor atas $F$. Fungsi $T \colon V \to W$ disebut <strong>transformasi linier</strong> jika untuk semua $\mathbf{u}, \mathbf{v} \in V$ dan $c \in F$:</p>
+        <ol>
+          <li>aditif: $T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$;</li>
+          <li>homogen: $T(c\mathbf{u}) = cT(\mathbf{u})$.</li>
+        </ol>
+        <p>Keduanya setara dengan satu syarat: $T(c\mathbf{u} + d\mathbf{v}) = cT(\mathbf{u}) + dT(\mathbf{v})$ untuk semua $\mathbf{u}, \mathbf{v} \in V$ dan $c, d \in F$.</p>
+        <p>Jika $V = W$, $T$ disebut <strong>operator linier</strong>. Jika $T$ bijektif, $T$ disebut <strong>isomorfisma linier</strong> dan ditulis $V \cong W$; isomorfisma dari $V$ ke $V$ disebut <strong>automorfisma linier</strong>.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Perkalian matriks (Modul, Contoh 2.1.2)</div>
+        <p>Untuk matriks $A$ berukuran $m \times n$, $T(\mathbf{x}) = A\mathbf{x}$ dari $\R^n$ ke $\R^m$ linier, karena perkalian matriks distributif, $A(\mathbf{u} + \mathbf{v}) = A\mathbf{u} + A\mathbf{v}$, dan skalar bisa dikeluarkan, $A(c\mathbf{u}) = c(A\mathbf{u})$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Translasi tidak linier (Modul, Contoh 2.1.3)</div>
+        <p>$T(x, y) = (x + 1, y)$ di $\R^2$. Untuk $\mathbf{u} = (x_1, y_1)$ dan $\mathbf{v} = (x_2, y_2)$:</p>
+        <p>$$\begin{aligned}
+          T(\mathbf{u} + \mathbf{v}) &= (x_1 + x_2 + 1,\ y_1 + y_2), \\
+          T(\mathbf{u}) + T(\mathbf{v}) &= (x_1 + x_2 + 2,\ y_1 + y_2).
+        \end{aligned}$$</p>
+        <p>Keduanya berbeda, jadi $T$ tidak aditif dan bukan transformasi linier. (Lebih cepat lagi: $T(0, 0) = (1, 0) \ne (0, 0)$, bertentangan dengan Teorema 1.)</p>
+      </div>
+
+      <h3>Sifat dasar</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Sifat dasar transformasi linier (Modul, Teorema 2.1.4–2.1.6)</div>
+        <p>Jika $T \colon V \to W$ linier, maka</p>
+        <ol>
+          <li>$T(\mathbf{0}_V) = \mathbf{0}_W$;</li>
+          <li>$T(-\mathbf{v}) = -T(\mathbf{v})$ untuk setiap $\mathbf{v} \in V$;</li>
+          <li>$T(c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k) = c_1T(\mathbf{v}_1) + \dots + c_kT(\mathbf{v}_k)$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(1)</strong> Ambil sebarang $\mathbf{v} \in V$. Karena $0\mathbf{v} = \mathbf{0}_V$, homogenitas memberi $T(\mathbf{0}_V) = T(0\mathbf{v}) = 0\,T(\mathbf{v}) = \mathbf{0}_W$.</p>
+        <p><strong>(2)</strong> Karena $-\mathbf{v} = (-1)\mathbf{v}$, $T(-\mathbf{v}) = (-1)T(\mathbf{v}) = -T(\mathbf{v})$.</p>
+        <p><strong>(3)</strong> Induksi pada $k$. Untuk $k = 1$ itu homogenitas. Jika benar untuk $k$, maka dengan aditivitas, hipotesis induksi, dan homogenitas,</p>
+        <p>$$\begin{aligned}
+          T\Bigl(\sum_{i=1}^{k+1} c_i\mathbf{v}_i\Bigr) &= T\Bigl(\sum_{i=1}^{k} c_i\mathbf{v}_i\Bigr) + T(c_{k+1}\mathbf{v}_{k+1}) \\
+          &= \sum_{i=1}^{k} c_iT(\mathbf{v}_i) + c_{k+1}T(\mathbf{v}_{k+1}).
+        \end{aligned}$$</p>
+      </details>
+
+      <h3>Kernel dan image</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Kernel dan image (Modul, Definisi 2.1.7)</div>
+        <p>Untuk $T \colon V \to W$ linier, <strong>kernel</strong> (inti) $T$ dan <strong>image</strong> (jangkauan, range) $T$ adalah</p>
+        <p>$$\begin{aligned}
+          \ker T &= \set{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}_W} \subseteq V, \\
+          \operatorname{Im} T &= \set{T(\mathbf{v}) : \mathbf{v} \in V} \subseteq W.
+        \end{aligned}$$</p>
+        <p>Notasi lain: $\operatorname{Nul}(T)$ untuk kernel, dan $\operatorname{Ran}(T)$ atau $T(V)$ untuk image. Untuk subruang $X \subseteq V$ dan $Y \subseteq W$, tulis $T[X] = \set{T(\mathbf{x}) : \mathbf{x} \in X}$ (peta) dan $T^{-1}[Y] = \set{\mathbf{v} \in V : T(\mathbf{v}) \in Y}$ (prapeta).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Kernel, image, peta, dan prapeta (Modul, Teorema 2.1.8)</div>
+        <p>Misalkan $T \colon V \to W$ linier, $X$ subruang $V$, dan $Y$ subruang $W$. Maka</p>
+        <ol>
+          <li>$\ker T$ subruang dari $V$;</li>
+          <li>$\operatorname{Im} T$ subruang dari $W$;</li>
+          <li>$T$ injektif (satu-satu) jika dan hanya jika $\ker T = \set{\mathbf{0}_V}$;</li>
+          <li>$T[X]$ subruang dari $W$;</li>
+          <li>$T^{-1}[Y]$ subruang dari $V$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk (1), (2), (4), (5) dipakai uji subruang; ketiganya memuat vektor nol karena $T(\mathbf{0}_V) = \mathbf{0}_W$ (Teorema 1).</p>
+        <p><strong>(1)</strong> Jika $T(\mathbf{u}) = T(\mathbf{v}) = \mathbf{0}_W$, maka $T(\mathbf{u} + \mathbf{v}) = \mathbf{0}_W + \mathbf{0}_W = \mathbf{0}_W$ dan $T(c\mathbf{u}) = c\mathbf{0}_W = \mathbf{0}_W$.</p>
+        <p><strong>(2)</strong> Jika $\mathbf{w}_1 = T(\mathbf{v}_1)$ dan $\mathbf{w}_2 = T(\mathbf{v}_2)$, maka $\mathbf{w}_1 + \mathbf{w}_2 = T(\mathbf{v}_1 + \mathbf{v}_2)$ dan $c\mathbf{w}_1 = T(c\mathbf{v}_1)$, keduanya di $\operatorname{Im} T$.</p>
+        <p><strong>(3)</strong> (⇒) Jika $T(\mathbf{v}) = \mathbf{0}_W = T(\mathbf{0}_V)$, injektif memberi $\mathbf{v} = \mathbf{0}_V$. (⇐) Jika $T(\mathbf{v}_1) = T(\mathbf{v}_2)$, maka $T(\mathbf{v}_1 - \mathbf{v}_2) = T(\mathbf{v}_1) - T(\mathbf{v}_2) = \mathbf{0}_W$, jadi $\mathbf{v}_1 - \mathbf{v}_2 \in \ker T = \set{\mathbf{0}_V}$ dan $\mathbf{v}_1 = \mathbf{v}_2$.</p>
+        <p><strong>(4)</strong> Untuk $\mathbf{u}, \mathbf{v} \in X$: $T(\mathbf{u}) + T(\mathbf{v}) = T(\mathbf{u} + \mathbf{v})$ dan $\lambda T(\mathbf{v}) = T(\lambda\mathbf{v})$, dengan $\mathbf{u} + \mathbf{v}, \lambda\mathbf{v} \in X$ karena $X$ subruang.</p>
+        <p><strong>(5)</strong> Jika $T(\mathbf{v}_1), T(\mathbf{v}_2) \in Y$, maka $T(\mathbf{v}_1 + \mathbf{v}_2) = T(\mathbf{v}_1) + T(\mathbf{v}_2) \in Y$ dan $T(\lambda\mathbf{v}_1) = \lambda T(\mathbf{v}_1) \in Y$ karena $Y$ subruang.</p>
+        <p>Perhatikan bahwa (1) adalah kasus khusus (5) dengan $Y = \set{\mathbf{0}_W}$, dan (2) kasus khusus (4) dengan $X = V$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Injektif dan bebas linier (Modul, Teorema 2.1.9)</div>
+        <p>$T \colon V \to W$ injektif jika dan hanya jika untuk setiap himpunan bebas linier $\set{\mathbf{v}_1, \dots, \mathbf{v}_k} \subseteq V$, himpunan $\set{T(\mathbf{v}_1), \dots, T(\mathbf{v}_k)}$ bebas linier di $W$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Misalkan $a_1T(\mathbf{v}_1) + \dots + a_kT(\mathbf{v}_k) = \mathbf{0}_W$. Dengan Teorema 1(3), $T(a_1\mathbf{v}_1 + \dots + a_k\mathbf{v}_k) = \mathbf{0}_W$, jadi $a_1\mathbf{v}_1 + \dots + a_k\mathbf{v}_k \in \ker T = \set{\mathbf{0}_V}$ (Teorema 2(3)). Karena $\set{\mathbf{v}_i}$ bebas linier, semua $a_i = 0$.</p>
+        <p><strong>(⇐)</strong> Andaikan $T$ tidak injektif. Menurut Teorema 2(3) ada $\mathbf{u} \in \ker T$ dengan $\mathbf{u} \ne \mathbf{0}_V$. Himpunan $\set{\mathbf{u}}$ bebas linier, tetapi petanya $\set{T(\mathbf{u})} = \set{\mathbf{0}_W}$ bergantung linier. Kontradiksi.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Kriteria surjektif (Modul, Teorema 2.1.10)</div>
+        <p>$T \colon V \to W$ surjektif jika dan hanya jika untuk setiap himpunan $S$ yang merentang $V$, $T[S]$ merentang $W$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Ambil $\mathbf{w} \in W$. Karena $T$ surjektif, $\mathbf{w} = T(\mathbf{v})$ untuk suatu $\mathbf{v}$, dan $\mathbf{v} = \sum_i c_i\mathbf{v}_i$ dengan $\mathbf{v}_i \in S$. Maka $\mathbf{w} = \sum_i c_iT(\mathbf{v}_i) \in \operatorname{span} T[S]$.</p>
+        <p><strong>(⇐)</strong> Ambil satu himpunan perentang $S$ untuk $V$ (misalnya $V$ sendiri). Menurut hipotesis, setiap $\mathbf{w} \in W$ berbentuk $\sum_i a_iT(\mathbf{v}_i) = T\bigl(\sum_i a_i\mathbf{v}_i\bigr)$, jadi $\mathbf{w} \in \operatorname{Im} T$.</p>
+      </details>
+
+      <h3>Rank, nulitas, dan teorema dimensi</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Rank dan nulitas (Modul, Definisi 2.1.11)</div>
+        <p>Untuk $T \colon V \to W$ linier dengan $V$ berdimensi hingga:</p>
+        <p>$$\operatorname{nulitas}(T) = \dim \ker T, \qquad \operatorname{rank}(T) = \dim \operatorname{Im} T.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Teorema rank–nulitas (rank–nullity theorem) (Modul, Teorema 2.1.12)</div>
+        <p>Jika $T \colon V \to W$ linier dan $V$ berdimensi hingga, maka</p>
+        <p>$$\dim V = \operatorname{nulitas}(T) + \operatorname{rank}(T).$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $\dim V = n$ dan $\set{\mathbf{v}_1, \dots, \mathbf{v}_k}$ basis $\ker T$. Perluas menjadi basis $\set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ untuk $V$ (Teorema 1.3.3). Kita tunjukkan $B_R = \set{T(\mathbf{v}_{k+1}), \dots, T(\mathbf{v}_n)}$ basis $\operatorname{Im} T$.</p>
+        <p><strong>Merentang.</strong> Untuk $\mathbf{w} = T(\mathbf{v})$, tulis $\mathbf{v} = \sum_{i=1}^{n} c_i\mathbf{v}_i$. Karena $T(\mathbf{v}_i) = \mathbf{0}$ untuk $i \le k$,</p>
+        <p>$$\mathbf{w} = \sum_{i=1}^{n} c_iT(\mathbf{v}_i) = \sum_{i=k+1}^{n} c_iT(\mathbf{v}_i).$$</p>
+        <p><strong>Bebas linier.</strong> Jika $\sum_{i \gt k} d_iT(\mathbf{v}_i) = \mathbf{0}$, maka $T\bigl(\sum_{i \gt k} d_i\mathbf{v}_i\bigr) = \mathbf{0}$, jadi $\sum_{i \gt k} d_i\mathbf{v}_i \in \ker T$ dan dapat ditulis $\sum_{i \le k} e_i\mathbf{v}_i$. Maka</p>
+        <p>$$-e_1\mathbf{v}_1 - \dots - e_k\mathbf{v}_k + d_{k+1}\mathbf{v}_{k+1} + \dots + d_n\mathbf{v}_n = \mathbf{0},$$</p>
+        <p>dan karena $\set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ bebas linier, semua $d_i = 0$.</p>
+        <p>Jadi $\operatorname{rank}(T) = n - k$, dan $\dim V = n = k + (n - k) = \operatorname{nulitas}(T) + \operatorname{rank}(T)$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Menghitung kernel, image, rank, nulitas (Modul, Contoh 2.1.13)</div>
+        <p>$T \colon \R^3 \to \R^2$, $T(x, y, z) = (x - y,\ y - z)$.</p>
+        <p><strong>Kernel.</strong> $x - y = 0$ dan $y - z = 0$ memberi $x = y = z$, jadi $\ker T = \operatorname{span}\set{(1, 1, 1)}$ dan $\operatorname{nulitas}(T) = 1$.</p>
+        <p><strong>Image.</strong> Image direntang oleh peta basis standar: $T(\mathbf{e}_1) = (1, 0)$, $T(\mathbf{e}_2) = (-1, 1)$, $T(\mathbf{e}_3) = (0, -1)$. Karena $(0, -1) = -(1, 0) - (-1, 1)$, cukup $\set{(1, 0), (-1, 1)}$, yang bebas linier. Jadi $\operatorname{Im} T = \R^2$ dan $\operatorname{rank}(T) = 2$.</p>
+        <p><strong>Cek.</strong> $\dim \R^3 = 3 = 1 + 2$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Isomorfisma $\R[t]_2 \cong \R^3$ (Modul, Contoh 2.1.14)</div>
+        <p>$L \colon \R[t]_2 \to \R^3$, $L(a + bt + ct^2) = (a, b, c)$, dengan $\R[t]_2$ polinomial berderajat paling banyak $2$ (sama dengan $P_2(\R)$).</p>
+        <ol>
+          <li>Linier: menjumlahkan dua polinomial menjumlahkan koefisiennya, dan mengalikan dengan $k$ mengalikan setiap koefisien dengan $k$; persis sama dengan operasi di $\R^3$.</li>
+          <li>Injektif: $L(a + bt + ct^2) = (0, 0, 0)$ berarti $a = b = c = 0$, jadi $\ker L = \set{0}$ (Teorema 2(3)).</li>
+          <li>Surjektif: untuk setiap $(x, y, z)$, $L(x + yt + zt^2) = (x, y, z)$.</li>
+        </ol>
+        <p>Jadi $L$ isomorfisma dan $\R[t]_2 \cong \R^3$: keduanya ruang berdimensi $3$ dengan struktur yang sama.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menganggap fungsi "berbentuk lurus" selalu linier.</strong> $T(x) = 2x + 1$ grafiknya garis, tetapi bukan transformasi linier karena $T(0) \ne 0$. Itu pemetaan afin (lihat topik Himpunan dan Pemetaan Afin).</li>
+        <li><strong>Hanya memeriksa $T(\mathbf{0}) = \mathbf{0}$.</strong> Syarat itu perlu, tetapi tidak cukup: $T(x, y) = (x^2, y)$ memetakan $\mathbf{0}$ ke $\mathbf{0}$ tetapi tidak aditif.</li>
+        <li><strong>Mencampur kernel dan image.</strong> Kernel tinggal di domain $V$; image tinggal di kodomain $W$. Di Contoh 3, $\ker T \subseteq \R^3$ tetapi $\operatorname{Im} T \subseteq \R^2$.</li>
+        <li><strong>Mengambil peta basis standar sebagai basis image tanpa membuang yang bergantung.</strong> Peta basis domain hanya <em>merentang</em> image; vektor yang bergantung linier harus dibuang dulu.</li>
+        <li><strong>Lupa syarat dimensi hingga.</strong> Teorema rank–nulitas memerlukan $V$ berdimensi hingga; dimensi $W$ tidak berperan.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Periksa apakah $T \colon \R^2 \to \R^3$, $T(x, y) = (2x + y,\ x - 3y,\ 4x)$ linier. Jika ya, tentukan kernel dan image-nya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Aditif: untuk $\mathbf{u} = (x_1, y_1)$, $\mathbf{v} = (x_2, y_2)$, setiap komponen $T(\mathbf{u} + \mathbf{v})$ adalah kombinasi linier dari $x_1 + x_2$ dan $y_1 + y_2$, sehingga terpisah menjadi komponen $T(\mathbf{u})$ ditambah komponen $T(\mathbf{v})$:
+              $$T(\mathbf{u} + \mathbf{v}) = (2x_1 + y_1,\ x_1 - 3y_1,\ 4x_1) + (2x_2 + y_2,\ x_2 - 3y_2,\ 4x_2).$$</li>
+            <li>Homogen: $T(kx, ky) = (2kx + ky,\ kx - 3ky,\ 4kx) = k(2x + y,\ x - 3y,\ 4x)$. Jadi $T$ linier.</li>
+            <li>Kernel: $2x + y = 0$, $x - 3y = 0$, $4x = 0$. Dari $4x = 0$, $x = 0$; lalu $y = 0$. Jadi $\ker T = \set{(0, 0)}$ dan $T$ injektif.</li>
+            <li>Image: $T(x, y) = x(2, 1, 4) + y(1, -3, 0)$, jadi $\operatorname{Im} T = \operatorname{span}\set{(2, 1, 4), (1, -3, 0)}$. Kedua vektor bebas linier (bukan kelipatan), sehingga image adalah bidang berdimensi $2$ di $\R^3$.</li>
+          </ol>
+          <p>Cek rank–nulitas: $\dim \R^2 = 2 = 0 + 2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$T \colon M_{2 \times 2}(\R) \to P_3(\R)$ didefinisikan oleh</p>
+        <p>$$T\begin{pmatrix} a & b \\ c & d \end{pmatrix} = (a + d)x^3 + (a - b)x^2 + (c - d)x + (b + c).$$</p>
+        <p>(a) Tunjukkan $T$ linier. (b) Tentukan basis $\ker T$ dan nulitasnya. (c) Tentukan basis $\operatorname{Im} T$ dan rank-nya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p><strong>(a)</strong> Setiap koefisien $T(A)$ adalah kombinasi linier entri $A$. Untuk $A = (a_1, b_1, c_1, d_1)$ dan $B = (a_2, b_2, c_2, d_2)$ (entri dibaca baris demi baris), koefisien $x^3$ dari $T(A + B)$ adalah $(a_1 + a_2) + (d_1 + d_2) = (a_1 + d_1) + (a_2 + d_2)$, dan seterusnya untuk koefisien lain, jadi $T(A + B) = T(A) + T(B)$. Begitu pula $(ka_1 + kd_1) = k(a_1 + d_1)$ dan seterusnya, jadi $T(kA) = kT(A)$.</p>
+          <p><strong>(b)</strong> $T(A) = 0$ berarti semua koefisien nol:</p>
+          <p>$$a + d = 0, \quad a - b = 0, \quad c - d = 0, \quad b + c = 0.$$</p>
+          <p>Maka $d = -a$, $b = a$, $c = d = -a$, dan persamaan terakhir $b + c = a - a = 0$ konsisten. Jadi</p>
+          <p>$$A = a\begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix},$$</p>
+          <p>basis $\ker T$ adalah $\set{\begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix}}$ dan $\operatorname{nulitas}(T) = 1$.</p>
+          <p><strong>(c)</strong> Peta basis standar:</p>
+          <p>$$\begin{aligned}
+            T(E_{11}) &= x^3 + x^2, & T(E_{12}) &= -x^2 + 1, \\
+            T(E_{21}) &= x + 1, & T(E_{22}) &= x^3 - x.
+          \end{aligned}$$</p>
+          <p>Karena $T(E_{22}) = T(E_{11}) + T(E_{12}) - T(E_{21})$, image direntang tiga polinomial pertama. Dari $c_1(x^3 + x^2) + c_2(-x^2 + 1) + c_3(x + 1) = 0$, yaitu $c_1x^3 + (c_1 - c_2)x^2 + c_3x + (c_2 + c_3) = 0$, diperoleh $c_1 = 0$, lalu $c_2 = 0$ dan $c_3 = 0$. Jadi basis $\operatorname{Im} T$ adalah $\set{x^3 + x^2, -x^2 + 1, x + 1}$ dan $\operatorname{rank}(T) = 3$.</p>
+          <p>Cek: $\dim M_{2 \times 2}(\R) = 4 = 1 + 3$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa $T \colon \R^2 \to \R^2$, $T(x, y) = (xy, x)$, bukan transformasi linier.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Uji $T(\mathbf{0}) = \mathbf{0}$: $T(0, 0) = (0, 0)$. Syarat ini lolos, jadi belum bisa disimpulkan apa-apa.</li>
+            <li>Uji homogenitas dengan $c = 2$ dan $\mathbf{u} = (1, 1)$: $T(2, 2) = (4, 2)$, sedangkan $2T(1, 1) = 2(1, 1) = (2, 2)$.</li>
+            <li>Karena $(4, 2) \ne (2, 2)$, homogenitas gagal.</li>
+          </ol>
+          <p>Jadi $T$ bukan transformasi linier. Penyebabnya suku $xy$, yang berderajat dua.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>Linieritas dan akibatnya:</p>
+      <p>$$\begin{gathered}
+        T(c\mathbf{u} + d\mathbf{v}) = cT(\mathbf{u}) + dT(\mathbf{v}), \\
+        T(\mathbf{0}) = \mathbf{0}, \qquad T(-\mathbf{v}) = -T(\mathbf{v}), \qquad T\Bigl(\sum c_i\mathbf{v}_i\Bigr) = \sum c_iT(\mathbf{v}_i)
+      \end{gathered}$$</p>
+      <p>Kernel, image, dan kriteria:</p>
+      <p>$$\begin{gathered}
+        \ker T = \set{\mathbf{v} : T(\mathbf{v}) = \mathbf{0}}, \qquad \operatorname{Im} T = \set{T(\mathbf{v}) : \mathbf{v} \in V}, \\
+        T \text{ injektif} \iff \ker T = \set{\mathbf{0}}
+      \end{gathered}$$</p>
+      <p>Rank–nulitas:</p>
+      <p>$$\dim V = \dim \ker T + \dim \operatorname{Im} T$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/02-Transformasi-Linier.md</code>, Bab 2, §2.1: Definisi 2.1.1, 2.1.7, 2.1.11, Teorema 2.1.4–2.1.6, 2.1.8–2.1.10, 2.1.12, Contoh 2.1.2, 2.1.3, 2.1.13, 2.1.14. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.2.1 dan §8.2.11 (Latihan 1–2).</li>
+        <li>Latihan 3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

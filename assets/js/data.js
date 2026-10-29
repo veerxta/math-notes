@@ -24,6 +24,9 @@ window.MATH_NOTES = {
         { file: "02-kombinasi-linier-dan-kebebasan-linier.html", judul: "Kombinasi Linier, Rentang, dan Kebebasan Linier" },
         { file: "03-basis-dan-dimensi.html", judul: "Basis dan Dimensi" },
         { file: "04-perubahan-basis.html", judul: "Perubahan Basis" },
+        { file: "05-transformasi-linier.html", judul: "Transformasi Linier, Kernel, dan Image", bab: "Bab 2 · Transformasi Linier" },
+        { file: "06-representasi-matriks.html", judul: "Representasi Matriks" },
+        { file: "07-koset-dan-ruang-hasil-bagi.html", judul: "Koset dan Ruang Hasil Bagi" },
       ],
     },
     {
