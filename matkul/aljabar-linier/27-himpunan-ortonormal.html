@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Himpunan Ortonormal dan Gram–Schmidt · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Himpunan Ortonormal dan Gram–Schmidt</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>$\mathbf{v}$ dan $\mathbf{w}$ ortogonal jika $\sigma(\mathbf{v}, \mathbf{w}) = 0$; relasi ini simetris, dan $\mathbf{0}$ ortogonal terhadap semua vektor.</li>
+        <li>Proyeksi $\operatorname{proj}_{\mathbf{w}}\mathbf{v} = \dfrac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\mathbf{w}$, dan $\mathbf{v} - \operatorname{proj}_{\mathbf{w}}\mathbf{v} \perp \mathbf{w}$.</li>
+        <li>Himpunan ortogonal dari vektor tak nol selalu bebas linier.</li>
+        <li>Proses Gram–Schmidt mengubah basis apa pun menjadi basis ortonormal dengan rentang awal yang sama, dan vektor satuan mana pun bisa dijadikan vektor pertama.</li>
+        <li>Terhadap basis ortonormal, koefisien dihitung langsung: $\mathbf{v} = \sum_i \sigma(\mathbf{u}_i, \mathbf{v})\,\mathbf{u}_i$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Kata <em>ortogonal</em> berasal dari <em>ortho</em> ("benar", "tegak") dan <em>gon</em> ("sudut", seperti pada poligon). Kata <em>perpendicular</em> berakar pada <em>pend</em> ("menggantung", seperti liontin): benda yang tergantung bebas membentuk sudut siku-siku dengan tanah datar.</p>
+
+      <h3>Ortogonalitas dan proyeksi</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Ortogonal (Modul, Definisi 5.4.1)</div>
+        <p>Di ruang hasil kali dalam $(V, \sigma)$, $\mathbf{v}$ <strong>ortogonal</strong> terhadap $\mathbf{w}$ jika $\sigma(\mathbf{w}, \mathbf{v}) = 0$.</p>
+        <p>Relasi ini simetris: $\sigma(\mathbf{v}, \mathbf{w}) = \overline{\sigma(\mathbf{w}, \mathbf{v})} = 0$. Jadi cukup dikatakan "$\mathbf{v}$ dan $\mathbf{w}$ ortogonal", ditulis $\mathbf{v} \perp \mathbf{w}$. Vektor nol ortogonal terhadap semua vektor, sehingga himpunan semua vektor yang ortogonal terhadap vektor tertentu adalah subruang.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Mengapa "grup ortogonal"</div>
+        <p>Grup ortogonal $O_n(\R)$ (lihat topik Grup Matriks) mempertahankan ortogonalitas: jika $\mathbf{v} \cdot \mathbf{w} = 0$, maka $A\mathbf{v} \cdot A\mathbf{w} = \mathbf{v}^TA^TA\mathbf{w} = \mathbf{v} \cdot \mathbf{w} = 0$ untuk setiap $A \in O_n(\R)$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Proyeksi dan vektor satuan (Modul, Definisi 5.4.2)</div>
+        <p>Untuk $\mathbf{v} \in V$ dan $\mathbf{w} \ne \mathbf{0}$, <strong>komponen</strong> $\mathbf{v}$ dalam arah $\mathbf{w}$, atau <strong>proyeksi</strong> $\mathbf{v}$ pada $\mathbf{w}$, adalah</p>
+        <p>$$\operatorname{proj}_{\mathbf{w}}(\mathbf{v}) := \frac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\,\mathbf{w}.$$</p>
+        <p>Dengan <strong>vektor satuan</strong> $\mathbf{u}_{\mathbf{w}} := \mathbf{w}/\norm{\mathbf{w}}$ dalam arah $\mathbf{w}$, berlaku $\operatorname{proj}_{\mathbf{w}}(\mathbf{v}) = \sigma(\mathbf{u}_{\mathbf{w}}, \mathbf{v})\,\mathbf{u}_{\mathbf{w}}$.</p>
+        <p><span class="cek">[CEK: Definisi 5.4.2 di sumber menulis $\sigma(\mathbf{v}, \mathbf{w})$ dan $\sigma(\mathbf{v}, \mathbf{u}_{\mathbf{w}})$, sedangkan bukti Lemma 5.4.3 memakai $\sigma(\mathbf{w}, \mathbf{v})$. Karena hasil kali dalam di buku ini linier di argumen kedua, yang membuat Lemma 5.4.3 benar adalah $\sigma(\mathbf{w}, \mathbf{v})$, seperti ditulis di atas. Di ruang real keduanya sama.]</span></p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Sisa proyeksi ortogonal (Modul, Lemma 5.4.3)</div>
+        <p>Untuk $\mathbf{v}, \mathbf{w} \in V$ dengan $\mathbf{w} \ne \mathbf{0}$, vektor $\mathbf{v} - \operatorname{proj}_{\mathbf{w}}(\mathbf{v})$ ortogonal terhadap $\mathbf{w}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $\mathbf{u} = \mathbf{v} - \dfrac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\mathbf{w}$. Karena $\sigma$ linier di argumen kedua dan $\sigma(\mathbf{w}, \mathbf{w}) = \norm{\mathbf{w}}^2$,</p>
+        <p>$$\sigma(\mathbf{w}, \mathbf{u}) = \sigma(\mathbf{w}, \mathbf{v}) - \frac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\,\norm{\mathbf{w}}^2 = 0.$$</p>
+        <p>Ini persis langkah pertama bukti Cauchy–Schwarz di topik sebelumnya. Jadi $\mathbf{v} = \operatorname{proj}_{\mathbf{w}}\mathbf{v} + (\mathbf{v} - \operatorname{proj}_{\mathbf{w}}\mathbf{v})$ menguraikan $\mathbf{v}$ menjadi bagian searah $\mathbf{w}$ dan bagian yang tegak lurus $\mathbf{w}$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Proyeksi di $\R^3$ (Modul, Contoh 5.4.4)</div>
+        <p>Untuk $\mathbf{v} = (1, 2, -1)$ dan $\mathbf{w} = (1, 1, 1)$ dengan hasil kali titik: $\mathbf{u}_{\mathbf{w}} = \tfrac{1}{\sqrt{3}}(1, 1, 1)$ dan $\mathbf{v} \cdot \mathbf{u}_{\mathbf{w}} = \tfrac{1 + 2 - 1}{\sqrt{3}} = \tfrac{2}{\sqrt{3}}$. Maka</p>
+        <p>$$\operatorname{proj}_{\mathbf{w}}\mathbf{v} = \tfrac{2}{\sqrt{3}} \cdot \tfrac{1}{\sqrt{3}}(1, 1, 1) = \left(\tfrac{2}{3}, \tfrac{2}{3}, \tfrac{2}{3}\right), \qquad \mathbf{v} - \operatorname{proj}_{\mathbf{w}}\mathbf{v} = \left(\tfrac{1}{3}, \tfrac{4}{3}, -\tfrac{5}{3}\right),$$</p>
+        <p>dan memang $\left(\tfrac{2}{3}, \tfrac{2}{3}, \tfrac{2}{3}\right) \cdot \left(\tfrac{1}{3}, \tfrac{4}{3}, -\tfrac{5}{3}\right) = \tfrac{2}{9}(1 + 4 - 5) = 0$.</p>
+      </div>
+
+      <h3>Himpunan dan basis ortonormal</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Himpunan ortogonal dan ortonormal (Modul, Definisi 5.4.5)</div>
+        <p><strong>Himpunan ortogonal</strong> $S \subseteq V$: $\sigma(\mathbf{v}, \mathbf{w}) = 0$ untuk setiap $\mathbf{v} \ne \mathbf{w}$ di $S$. <strong>Himpunan ortonormal</strong>: himpunan ortogonal yang semua anggotanya vektor satuan, yaitu</p>
+        <p>$$\sigma(\mathbf{u}_i, \mathbf{u}_j) = \delta_{ij} = \begin{cases} 1, &amp; i = j, \\ 0, &amp; i \ne j. \end{cases}$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Ortogonal ⇒ bebas linier (Modul, Teorema 5.4.6)</div>
+        <p>Himpunan ortogonal dari vektor-vektor tak nol di ruang hasil kali dalam mana pun bebas linier.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Ambil $\mathbf{v}_1, \dots, \mathbf{v}_t \in S$ berbeda dan misalkan $\sum_i c_i\mathbf{v}_i = \mathbf{0}$. Untuk setiap $j$, dengan linieritas di argumen kedua,</p>
+        <p>$$0 = \sigma\Bigl(\mathbf{v}_j, \sum_i c_i\mathbf{v}_i\Bigr) = \sum_i c_i\,\sigma(\mathbf{v}_j, \mathbf{v}_i) = c_j\norm{\mathbf{v}_j}^2.$$</p>
+        <p>Karena $\mathbf{v}_j \ne \mathbf{0}$, $\norm{\mathbf{v}_j}^2 \ne 0$, jadi $c_j = 0$. Semua koefisien nol, sehingga $S$ bebas linier.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Basis ortonormal (Modul, Definisi 5.4.7)</div>
+        <p><strong>Basis ortonormal aljabar</strong> ruang hasil kali dalam $V$ adalah himpunan ortonormal yang merentang $V$. Di dimensi hingga kata "aljabar" biasanya dihilangkan. Basis standar $\R^n$ dan $\C^n$ ortonormal terhadap hasil kali titik.</p>
+      </div>
+
+      <h3>Proses Gram–Schmidt</h3>
+      <p>Misalkan $\set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ bebas linier (kalau tidak, buang dulu vektor yang bergantung; rentangnya tidak berubah). <strong>Proses Gram–Schmidt</strong> (Gram–Schmidt process):</p>
+      <ol>
+        <li>$\mathbf{u}_1 = \mathbf{v}_1/\norm{\mathbf{v}_1}$.</li>
+        <li>Untuk $k = 2, \dots, n$: buang komponen di arah $\mathbf{u}_1, \dots, \mathbf{u}_{k-1}$, lalu normalkan:
+          $$\mathbf{w}_k = \mathbf{v}_k - \sum_{i=1}^{k-1} \sigma(\mathbf{u}_i, \mathbf{v}_k)\,\mathbf{u}_i, \qquad \mathbf{u}_k = \frac{\mathbf{w}_k}{\norm{\mathbf{w}_k}}.$$</li>
+      </ol>
+
+      <div class="box teorema">
+        <div class="box-title">Basis ortonormal selalu ada (Modul, Teorema 5.4.8)</div>
+        <p>Misalkan $U$ subruang tak trivial berdimensi hingga dari ruang hasil kali dalam $(V, \sigma)$, dan $\mathbf{v} \in U$ tak nol. Maka $U$ punya basis ortonormal yang memuat $\mathbf{u}_{\mathbf{v}} = \mathbf{v}/\norm{\mathbf{v}}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $\dim U = 1$, $\set{\mathbf{u}_{\mathbf{v}}}$ sudah basis ortonormal. Jika $\dim U = n \ge 2$, perluas $\set{\mathbf{v}}$ menjadi basis $\set{\mathbf{v}_1 = \mathbf{v}, \mathbf{v}_2, \dots, \mathbf{v}_n}$ dari $U$ dan jalankan Gram–Schmidt, sehingga $\mathbf{u}_1 = \mathbf{u}_{\mathbf{v}}$. Dengan induksi pada $k$ dibuktikan: (i) $\mathbf{u}_1, \dots, \mathbf{u}_k$ ortonormal; (ii) $\operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_k} = \operatorname{span}\set{\mathbf{v}_1, \dots, \mathbf{v}_k}$; (iii) $\mathbf{w}_k \ne \mathbf{0}$.</p>
+        <ol>
+          <li><strong>Basis</strong> $k = 1$: jelas.</li>
+          <li><strong>Ortogonal.</strong> Untuk $j \lt k$, dengan hipotesis induksi $\sigma(\mathbf{u}_j, \mathbf{u}_i) = \delta_{ji}$: $\sigma(\mathbf{u}_j, \mathbf{w}_k) = \sigma(\mathbf{u}_j, \mathbf{v}_k) - \sum_{i \lt k}\sigma(\mathbf{u}_i, \mathbf{v}_k)\delta_{ji} = 0$.</li>
+          <li><strong>Tak nol.</strong> Jika $\mathbf{w}_k = \mathbf{0}$, maka $\mathbf{v}_k \in \operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_{k-1}} = \operatorname{span}\set{\mathbf{v}_1, \dots, \mathbf{v}_{k-1}}$, bertentangan dengan kebebasan linier. Jadi $\mathbf{u}_k$ terdefinisi dan ortonormal terhadap yang sebelumnya.</li>
+          <li><strong>Rentang.</strong> Setiap $\mathbf{u}_i$ kombinasi linier $\mathbf{v}_1, \dots, \mathbf{v}_i$; sebaliknya definisi $\mathbf{w}_k$ memberi $\mathbf{v}_k = \norm{\mathbf{w}_k}\mathbf{u}_k + \sum_{i \lt k}\sigma(\mathbf{u}_i, \mathbf{v}_k)\mathbf{u}_i$. Jadi kedua rentang sama.</li>
+        </ol>
+        <p>Untuk $k = n$ diperoleh basis ortonormal $U$ yang memuat $\mathbf{u}_1 = \mathbf{u}_{\mathbf{v}}$.</p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Koefisien terhadap basis ortonormal (Modul, Lemma 5.4.9)</div>
+        <p>Jika $\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$ basis ortonormal subruang $U$, maka untuk setiap $\mathbf{v} \in U$:</p>
+        <p>$$\mathbf{v} = \sum_{i=1}^{k} \sigma(\mathbf{u}_i, \mathbf{v})\,\mathbf{u}_i.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tulis $\mathbf{v} = \sum_i c_i\mathbf{u}_i$. Maka $\sigma(\mathbf{u}_j, \mathbf{v}) = \sum_i c_i\,\sigma(\mathbf{u}_j, \mathbf{u}_i) = \sum_i c_i\delta_{ji} = c_j$. Tidak perlu menyelesaikan sistem persamaan: cukup satu hasil kali dalam per koefisien.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Gram–Schmidt di $\R^4$ (Modul, Contoh 5.4.10)</div>
+        <p>$U = \operatorname{span}\set{\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3}$ dengan $\mathbf{a}_1 = (1, 1, -1, 1)$, $\mathbf{a}_2 = (-1, 1, -1, 1)$, $\mathbf{a}_3 = (1, 1, 1, 1)$, hasil kali titik.</p>
+        <ol>
+          <li>$\norm{\mathbf{a}_1} = 2$, jadi $\mathbf{u}_1 = \tfrac{1}{2}(1, 1, -1, 1)$.</li>
+          <li>$\mathbf{a}_2 \cdot \mathbf{u}_1 = \tfrac{1}{2}(-1 + 1 + 1 + 1) = 1$, jadi $\mathbf{w}_2 = \mathbf{a}_2 - \mathbf{u}_1 = \left(-\tfrac{3}{2}, \tfrac{1}{2}, -\tfrac{1}{2}, \tfrac{1}{2}\right)$, $\norm{\mathbf{w}_2}^2 = \tfrac{9 + 1 + 1 + 1}{4} = 3$, dan
+            $$\mathbf{u}_2 = \tfrac{1}{\sqrt{3}}\mathbf{w}_2 = \left(-\tfrac{\sqrt{3}}{2}, \tfrac{1}{2\sqrt{3}}, -\tfrac{1}{2\sqrt{3}}, \tfrac{1}{2\sqrt{3}}\right).$$</li>
+          <li>$\mathbf{a}_3 \cdot \mathbf{u}_1 = 1$ dan $\mathbf{a}_3 \cdot \mathbf{u}_2 = \tfrac{1}{\sqrt{3}}\,\mathbf{a}_3 \cdot \mathbf{w}_2 = \tfrac{1}{\sqrt{3}}\left(-\tfrac{3}{2} + \tfrac{1}{2} - \tfrac{1}{2} + \tfrac{1}{2}\right) = -\tfrac{1}{\sqrt{3}}$. Maka
+            $$\mathbf{w}_3 = \mathbf{a}_3 - \mathbf{u}_1 + \tfrac{1}{\sqrt{3}}\mathbf{u}_2 = \mathbf{a}_3 - \mathbf{u}_1 + \tfrac{1}{3}\mathbf{w}_2 = \left(0, \tfrac{2}{3}, \tfrac{4}{3}, \tfrac{2}{3}\right),$$
+            $\norm{\mathbf{w}_3}^2 = \tfrac{4 + 16 + 4}{9} = \tfrac{8}{3}$, dan $\mathbf{u}_3 = \tfrac{1}{\sqrt{6}}(0, 1, 2, 1)$.</li>
+        </ol>
+        <p><strong>Uji Lemma 2</strong> dengan $\mathbf{v} = (0, 2, 1, 2) \in U$: $\mathbf{v} \cdot \mathbf{u}_1 = \tfrac{3}{2}$, $\mathbf{v} \cdot \mathbf{u}_2 = \tfrac{3}{2\sqrt{3}} = \tfrac{\sqrt{3}}{2}$, $\mathbf{v} \cdot \mathbf{u}_3 = \tfrac{6}{\sqrt{6}} = \sqrt{6}$. Dan memang</p>
+        <p>$$\tfrac{3}{2}\mathbf{u}_1 + \tfrac{\sqrt{3}}{2}\mathbf{u}_2 + \sqrt{6}\,\mathbf{u}_3 = \left(\tfrac{3}{4}, \tfrac{3}{4}, -\tfrac{3}{4}, \tfrac{3}{4}\right) + \left(-\tfrac{3}{4}, \tfrac{1}{4}, -\tfrac{1}{4}, \tfrac{1}{4}\right) + (0, 1, 2, 1) = (0, 2, 1, 2).$$</p>
+        <p>Basis yang dihasilkan bergantung pada urutan $\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3$, tetapi rentangnya selalu $U$.</p>
+      </div>
+
+      <h3>Matriks ortogonal mempertahankan panjang</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Dua matriks ortogonal (Modul, Contoh 5.4.11 dan 5.4.12)</div>
+        <p>$$A_1 = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \end{pmatrix}, \qquad A_2 = \begin{pmatrix} 0 &amp; -\tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}} \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}} \end{pmatrix}.$$</p>
+        <p>Baris-baris masing-masing matriks ortonormal (misalnya di $A_2$, baris 1 · baris 3 $= -\tfrac{1}{2} + \tfrac{1}{2} = 0$), jadi $A_iA_i^T = I$; begitu juga $A_i^TA_i = I$. Keduanya matriks ortogonal. ($A_1$ adalah matriks permutasi siklik.)</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Matriks ortogonal adalah isometri (Modul, Lemma 5.4.13)</div>
+        <p>Jika $A \in O_n(\R)$, maka $\norm{A\mathbf{x}} = \norm{\mathbf{x}}$ untuk semua $\mathbf{x} \in \R^n$ (hasil kali titik).</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\norm{A\mathbf{x}}^2 = (A\mathbf{x})^T(A\mathbf{x}) = \mathbf{x}^TA^TA\mathbf{x} = \mathbf{x}^T\mathbf{x} = \norm{\mathbf{x}}^2$. Ambil akar (keduanya tak negatif).</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Verifikasi langsung (Modul, Contoh 5.4.14)</div>
+        <p>Untuk $A_2$ di atas dan $\mathbf{x} = (x_1, x_2, x_3)$:</p>
+        <p>$$A_2\mathbf{x} = \left(\tfrac{x_3 - x_2}{\sqrt{2}},\ x_1,\ \tfrac{x_2 + x_3}{\sqrt{2}}\right), \qquad \norm{A_2\mathbf{x}}^2 = \tfrac{x_2^2 - 2x_2x_3 + x_3^2}{2} + x_1^2 + \tfrac{x_2^2 + 2x_2x_3 + x_3^2}{2} = x_1^2 + x_2^2 + x_3^2.$$</p>
+        <p>Suku silang $\pm x_2x_3$ saling menghapus. <span class="cek">[CEK: di sumber, Contoh 5.4.15 adalah salinan persis Contoh 5.4.14 (matriks dan perhitungan sama), dan keduanya menulis $\mathbf{x} \in \R^n$ padahal $\mathbf{x} \in \R^3$. Di sini hanya ditulis sekali.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Lupa menormalkan.</strong> Gram–Schmidt tanpa langkah $\mathbf{w}_k/\norm{\mathbf{w}_k}$ hanya memberi basis ortogonal; rumus $\sigma(\mathbf{u}_i, \mathbf{v}_k)\mathbf{u}_i$ hanya benar jika $\mathbf{u}_i$ vektor satuan. Dengan $\mathbf{w}_i$ yang belum dinormalkan, pakai $\dfrac{\sigma(\mathbf{w}_i, \mathbf{v}_k)}{\norm{\mathbf{w}_i}^2}\mathbf{w}_i$.</li>
+        <li><strong>Memproyeksikan ke $\mathbf{v}_i$ lama</strong> alih-alih ke $\mathbf{u}_i$ baru. Proyeksi harus ke vektor yang sudah ortogonal.</li>
+        <li><strong>Urutan argumen di ruang kompleks.</strong> Dengan konvensi linier di argumen kedua, koefisiennya $\sigma(\mathbf{u}_i, \mathbf{v})$, bukan $\sigma(\mathbf{v}, \mathbf{u}_i)$ (yang merupakan konjugatnya).</li>
+        <li><strong>Mengira ortogonal sama dengan bebas linier.</strong> Ortogonal (tanpa vektor nol) ⇒ bebas linier, tetapi tidak sebaliknya: $(1, 0)$ dan $(1, 1)$ bebas linier tetapi tidak ortogonal.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Terapkan proses Gram–Schmidt pada basis $\set{\mathbf{v}_1 = (1, 1, 0), \mathbf{v}_2 = (1, 0, 1), \mathbf{v}_3 = (0, 1, 1)}$ di $\R^3$ (hasil kali titik).</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$\mathbf{w}_1 = \mathbf{v}_1$, $\norm{\mathbf{w}_1} = \sqrt{2}$, $\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}(1, 1, 0)$.</li>
+            <li>$\langle \mathbf{v}_2, \mathbf{u}_1 \rangle = \tfrac{1}{\sqrt{2}}$, jadi $\mathbf{w}_2 = (1, 0, 1) - \tfrac{1}{2}(1, 1, 0) = \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right)$. $\norm{\mathbf{w}_2} = \sqrt{\tfrac{1}{4} + \tfrac{1}{4} + 1} = \sqrt{\tfrac{3}{2}}$, sehingga $\mathbf{u}_2 = \tfrac{1}{\sqrt{6}}(1, -1, 2)$.</li>
+            <li>$\langle \mathbf{v}_3, \mathbf{u}_1 \rangle = \tfrac{1}{\sqrt{2}}$ dan $\langle \mathbf{v}_3, \mathbf{u}_2 \rangle = \tfrac{0 - 1 + 2}{\sqrt{6}} = \tfrac{1}{\sqrt{6}}$. Jadi
+              $$\mathbf{w}_3 = (0, 1, 1) - \left(\tfrac{1}{2}, \tfrac{1}{2}, 0\right) - \left(\tfrac{1}{6}, -\tfrac{1}{6}, \tfrac{2}{6}\right) = \left(-\tfrac{2}{3}, \tfrac{2}{3}, \tfrac{2}{3}\right).$$</li>
+            <li>$\norm{\mathbf{w}_3} = \tfrac{2}{\sqrt{3}}$, sehingga $\mathbf{u}_3 = \tfrac{1}{\sqrt{3}}(-1, 1, 1)$.</li>
+          </ol>
+          <p>$\set{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3}$ basis ortonormal: $\langle \mathbf{u}_i, \mathbf{u}_j \rangle = \delta_{ij}$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Dengan basis ortonormal dari Latihan 1, tulis $\mathbf{v} = (2, 0, 1)$ sebagai kombinasi linier $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3$ tanpa menyelesaikan sistem persamaan.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Menurut Lemma 2, koefisiennya $\langle \mathbf{u}_i, \mathbf{v} \rangle$.</li>
+            <li>$\langle \mathbf{u}_1, \mathbf{v} \rangle = \tfrac{2 + 0 + 0}{\sqrt{2}} = \sqrt{2}$; $\langle \mathbf{u}_2, \mathbf{v} \rangle = \tfrac{2 - 0 + 2}{\sqrt{6}} = \tfrac{4}{\sqrt{6}}$; $\langle \mathbf{u}_3, \mathbf{v} \rangle = \tfrac{-2 + 0 + 1}{\sqrt{3}} = -\tfrac{1}{\sqrt{3}}$.</li>
+            <li>Cek: $\sqrt{2}\,\mathbf{u}_1 = (1, 1, 0)$, $\tfrac{4}{\sqrt{6}}\mathbf{u}_2 = \tfrac{4}{6}(1, -1, 2) = \left(\tfrac{2}{3}, -\tfrac{2}{3}, \tfrac{4}{3}\right)$, $-\tfrac{1}{\sqrt{3}}\mathbf{u}_3 = \left(\tfrac{1}{3}, -\tfrac{1}{3}, -\tfrac{1}{3}\right)$. Jumlahnya $(2, 0, 1)$.</li>
+          </ol>
+          <p>Jadi $\mathbf{v} = \sqrt{2}\,\mathbf{u}_1 + \tfrac{4}{\sqrt{6}}\mathbf{u}_2 - \tfrac{1}{\sqrt{3}}\mathbf{u}_3$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Di $\C^2$ dengan hasil kali titik kompleks, tentukan $\operatorname{proj}_{\mathbf{w}}\mathbf{v}$ untuk $\mathbf{v} = (1, i)$ dan $\mathbf{w} = (1, 1)$, lalu periksa bahwa sisanya ortogonal terhadap $\mathbf{w}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\sigma(\mathbf{w}, \mathbf{v}) = \mathbf{w}^\dagger\mathbf{v} = \bar{1}\cdot 1 + \bar{1}\cdot i = 1 + i$ dan $\norm{\mathbf{w}}^2 = 2$.</li>
+            <li>$\operatorname{proj}_{\mathbf{w}}\mathbf{v} = \tfrac{1 + i}{2}(1, 1)$.</li>
+            <li>Sisa: $\mathbf{r} = (1, i) - \tfrac{1 + i}{2}(1, 1) = \left(\tfrac{1 - i}{2}, \tfrac{-1 + i}{2}\right)$.</li>
+            <li>$\sigma(\mathbf{w}, \mathbf{r}) = \tfrac{1 - i}{2} + \tfrac{-1 + i}{2} = 0$. Jadi $\mathbf{r} \perp \mathbf{w}$.</li>
+          </ol>
+          <p>Seandainya koefisien yang dipakai $\sigma(\mathbf{v}, \mathbf{w}) = 1 - i$, sisanya $\left(\tfrac{1 + i}{2}, \tfrac{-1 + 3i}{2}\right)$ dan $\sigma(\mathbf{w}, \cdot)$-nya $2i \ne 0$: urutan argumen penting.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \operatorname{proj}_{\mathbf{w}}\mathbf{v} = \frac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\mathbf{w}, \qquad \sigma(\mathbf{u}_i, \mathbf{u}_j) = \delta_{ij}, \qquad \mathbf{v} = \sum_i \sigma(\mathbf{u}_i, \mathbf{v})\,\mathbf{u}_i, \\
+        \mathbf{w}_k = \mathbf{v}_k - \sum_{i \lt k}\sigma(\mathbf{u}_i, \mathbf{v}_k)\,\mathbf{u}_i, \quad \mathbf{u}_k = \frac{\mathbf{w}_k}{\norm{\mathbf{w}_k}}, \qquad A^TA = I \Rightarrow \norm{A\mathbf{x}} = \norm{\mathbf{x}}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.4: asal kata, Definisi 5.4.1–5.4.2, Lemma 5.4.3, Contoh 5.4.4, Definisi 5.4.5, Teorema 5.4.6, Definisi 5.4.7, proses Gram–Schmidt, Teorema 5.4.8, Lemma 5.4.9, Contoh 5.4.10–5.4.12, Lemma 5.4.13, Contoh 5.4.14 (5.4.15 duplikat). Bukti Teorema 5.4.6 di sumber memakai $\sigma(\mathbf{0}, \mathbf{v}_j) = \sum c_i\sigma(\mathbf{v}_i, \mathbf{v}_j)$, yang di ruang kompleks seharusnya memuat $\bar{c}_i$; di sini argumen dibalik agar linieritas di argumen kedua langsung berlaku. Foto liontin (eksternal) tidak dibuat ulang. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.3 (Latihan 1).</li>
+        <li>Latihan 2–3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Teorema Fundamental dan Kuadrat Terkecil · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Teorema Fundamental dan Kuadrat Terkecil</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Empat ruang fundamental matriks $A \in M_{m,n}$: di domain $\operatorname{Row}A \perp \operatorname{Nul}A$, di kodomain $\operatorname{Col}A \perp \operatorname{Nul}A^\dagger$; dimensinya $r, n - r, r, m - r$.</li>
+        <li>Untuk matriks kompleks: $\operatorname{Nul}A = (\operatorname{Col}A^\dagger)^\perp$, $\operatorname{Nul}A^\dagger = (\operatorname{Col}A)^\perp$, $\operatorname{Nul}\bar{A} = (\operatorname{Row}A)^\perp$.</li>
+        <li>$\operatorname{proj}_U\mathbf{v} = \sum_i \sigma(\mathbf{u}_i, \mathbf{v})\mathbf{u}_i$ (basis ortonormal) adalah titik di $U$ yang <strong>terdekat</strong> ke $\mathbf{v}$, dan $\mathbf{v} - \operatorname{proj}_U\mathbf{v} \in U^\perp$.</li>
+        <li>Solusi kuadrat terkecil $A\mathbf{x} \approx \mathbf{b}$: $A\mathbf{y} = \operatorname{proj}_{\operatorname{Col}A}\mathbf{b}$, setara dengan persamaan normal $A^\dagger A\mathbf{y} = A^\dagger\mathbf{b}$.</li>
+        <li>Jika kolom $A$ bebas linier, $A^\dagger A$ invertibel dan $\mathbf{y} = (A^\dagger A)^{-1}A^\dagger\mathbf{b}$ tunggal.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Empat ruang fundamental</h3>
+      <p>Bagian ini mengikuti makalah Gilbert Strang, <em>The Fundamental Theorem of Linear Algebra</em> (American Mathematical Monthly, 1993). Pandang $A$ sebagai "mesin" $\mathbf{x} \mapsto A\mathbf{x}$ dari $F^n$ ke $F^m$.</p>
+      <div class="tabel">
+        <table>
+          <thead><tr><th>Sisi</th><th>Ruang</th><th>Makna</th><th>Dimensi</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2">domain $F^n$</td><td>$\operatorname{Row}A$</td><td>arah yang "terbaca" oleh $A$</td><td>$r$</td></tr>
+            <tr><td>$\operatorname{Nul}A$</td><td>arah yang dikirim ke $\mathbf{0}$</td><td>$n - r$</td></tr>
+            <tr><td rowspan="2">kodomain $F^m$</td><td>$\operatorname{Col}A$</td><td>semua keluaran $A\mathbf{x}$</td><td>$r$</td></tr>
+            <tr><td>$\operatorname{Nul}A^T$ (real) / $\operatorname{Nul}A^\dagger$</td><td>arah tegak lurus semua kolom ("ruang nol kiri")</td><td>$m - r$</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Di tiap sisi, kedua ruang saling tegak lurus dan bersama-sama merentang seluruh ruang. Seperti lampu sorot, $A$ hanya "menyorot" $r$ arah dan memadamkan sisanya. Untuk matriks kompleks, pasangan-pasangannya melibatkan $\bar{A}$ dan $A^\dagger$, seperti berikut.</p>
+
+      <div class="box teorema">
+        <div class="box-title">Teorema dasar (Modul, Teorema 5.9.1)</div>
+        <p>Jika $A \in M_{m,n}(\C)$, maka $\operatorname{Nul}A = (\operatorname{Col}A^\dagger)^\perp$ (hasil kali titik di $\C^n$).</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan baris-baris $A$ adalah $\mathbf{w}_1, \dots, \mathbf{w}_m$ (vektor baris). Entri ke-$i$ dari $A\mathbf{x}$ adalah $\mathbf{w}_i\mathbf{x}$. Maka</p>
+        <p>$$\mathbf{x} \in \operatorname{Nul}A \iff \mathbf{w}_i\mathbf{x} = 0 \ \forall i \iff \overline{\mathbf{w}_i\mathbf{x}} = (\mathbf{w}_i\mathbf{x})^\dagger = \mathbf{x}^\dagger\mathbf{w}_i^\dagger = 0 \ \forall i.$$</p>
+        <p>Konjugasikan sekali lagi: $\mathbf{w}_i^\dagger \cdot \mathbf{x} = (\mathbf{w}_i^\dagger)^\dagger\mathbf{x} = \mathbf{w}_i\mathbf{x} = 0$. Karena $\mathbf{w}_i^\dagger$ adalah kolom ke-$i$ dari $A^\dagger$, syaratnya tepat $\mathbf{x} \perp$ semua kolom $A^\dagger$, yaitu $\mathbf{x} \in (\operatorname{Col}A^\dagger)^\perp$ (cukup basis/perentang, topik Komplemen Ortogonal).</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Ruang nol adjoin (Modul, Korolari 5.9.2)</div>
+        <p>Jika $A \in M_{m,n}(\C)$, maka $\operatorname{Nul}A^\dagger = (\operatorname{Col}A)^\perp$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Terapkan Teorema 1 pada $A^\dagger$, dengan $(A^\dagger)^\dagger = A$. Secara langsung: $\langle A\mathbf{u}, \mathbf{x} \rangle = \langle \mathbf{u}, A^\dagger\mathbf{x} \rangle$. Jika $A^\dagger\mathbf{x} = \mathbf{0}$, ruas kanan nol untuk semua $\mathbf{u}$, jadi $\mathbf{x} \perp \operatorname{Col}A$. Sebaliknya, jika $\mathbf{x} \perp \operatorname{Col}A$, maka $\langle \mathbf{u}, A^\dagger\mathbf{x} \rangle = 0$ untuk semua $\mathbf{u}$, jadi $A^\dagger\mathbf{x} = \mathbf{0}$.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Ruang nol konjugat (Modul, Korolari 5.9.3)</div>
+        <p>Jika $A \in M_{m,n}(\C)$, maka $\operatorname{Nul}\bar{A} = (\operatorname{Row}A)^\perp$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Terapkan Akibat 1 pada $A^T$: $(A^T)^\dagger = \bar{A}$ dan $\operatorname{Col}A^T = \operatorname{Row}A$ (baris $A$ ditulis sebagai kolom).</p>
+        <p>Untuk matriks real, $\bar{A} = A$ dan $A^\dagger = A^T$, sehingga diperoleh bentuk Strang: $\operatorname{Nul}A = (\operatorname{Row}A)^\perp$ dan $\operatorname{Nul}A^T = (\operatorname{Col}A)^\perp$. Untuk matriks kompleks, $\operatorname{Nul}A^T$ adalah konjugat dari $\operatorname{Nul}A^\dagger$, jadi berdimensi $m - r$ juga, tetapi yang tegak lurus $\operatorname{Col}A$ adalah $\operatorname{Nul}A^\dagger$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Empat ruang fundamental (Modul, Contoh 5.9.12)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{pmatrix}$ ber-rank $2$, karena baris $3 = 2 \cdot$ baris $2 -$ baris $1$.</p>
+        <ul>
+          <li>$\operatorname{Row}A = \operatorname{span}\set{(1, 2, 3), (4, 5, 6)}$ dan $\operatorname{Nul}A = \operatorname{span}\set{(1, -2, 1)}$: memang $(1, -2, 1) \cdot (1, 2, 3) = 0$ dan $(1, -2, 1) \cdot (4, 5, 6) = 0$.</li>
+          <li>$\operatorname{Col}A = \operatorname{span}\set{(1, 4, 7), (2, 5, 8)}$ dan $\operatorname{Nul}A^T = \operatorname{span}\set{(1, -2, 1)}$: $(1, -2, 1) \cdot (1, 4, 7) = 0$ dan $(1, -2, 1) \cdot (2, 5, 8) = 0$.</li>
+          <li>Dimensi: $2 + 1 = 3$ di domain dan $2 + 1 = 3$ di kodomain.</li>
+        </ul>
+        <p>(Sumber hanya menyebut "hasil komputasi menunjukkan" hubungan ini; basis eksplisit di atas dihitung oleh Claude.)</p>
+      </div>
+
+      <h3>Proyeksi ortogonal dan titik terdekat</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Proyeksi pada subruang (Modul, Definisi 5.9.4)</div>
+        <p>Jika $U$ subruang berdimensi hingga dengan basis ortonormal $\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$, <strong>proyeksi</strong> $\mathbf{v}$ pada $U$ (komponen $\mathbf{v}$ dalam $U$) adalah</p>
+        <p>$$\operatorname{proj}_U\mathbf{v} = \sum_{i=1}^{k}\sigma(\mathbf{u}_i, \mathbf{v})\,\mathbf{u}_i.$$</p>
+        <p>Untuk $k = 1$ ini kembali ke $\operatorname{proj}_{\mathbf{w}}\mathbf{v}$ di topik Himpunan Ortonormal.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Identitas Parseval (dari Lemma 5.4.9)</div>
+        <p>Jika $\set{\mathbf{u}_i}_{i=1}^n$ basis ortonormal $V$, maka $\norm{\mathbf{v}}^2 = \sum_{i=1}^{n}\abs{\sigma(\mathbf{u}_i, \mathbf{v})}^2$: Pythagoras dalam $n$ arah tegak lurus.</p>
+      </div>
+
+      <div class="box akibat">
+        <div class="box-title">Sisa proyeksi tegak lurus $U$ (Modul, Korolari 5.9.7)</div>
+        <p>Untuk setiap $\mathbf{v} \in V$, $\mathbf{v} - \operatorname{proj}_U\mathbf{v} \in U^\perp$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Cukup diperiksa terhadap basis ortonormal $U$. Untuk setiap $j$, dengan $\sigma(\mathbf{u}_j, \mathbf{u}_i) = \delta_{ji}$:</p>
+        <p>$$\sigma\bigl(\mathbf{u}_j, \mathbf{v} - \operatorname{proj}_U\mathbf{v}\bigr) = \sigma(\mathbf{u}_j, \mathbf{v}) - \sum_i \sigma(\mathbf{u}_i, \mathbf{v})\,\sigma(\mathbf{u}_j, \mathbf{u}_i) = \sigma(\mathbf{u}_j, \mathbf{v}) - \sigma(\mathbf{u}_j, \mathbf{v}) = 0.$$</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Teorema proyeksi ortogonal (Modul, Teorema 5.9.5)</div>
+        <p>Jika $V$ berdimensi hingga dan $U$ subruang, setiap $\mathbf{v} \in V$ ditulis secara tunggal sebagai</p>
+        <p>$$\mathbf{v} = \underbrace{\operatorname{proj}_U\mathbf{v}}_{\in U} + \underbrace{(\mathbf{v} - \operatorname{proj}_U\mathbf{v})}_{\in U^\perp}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\operatorname{proj}_U\mathbf{v} \in U$ karena kombinasi linier basis $U$, dan sisanya di $U^\perp$ menurut Akibat 3. Ketunggalan dari $V = U \oplus U^\perp$ (topik Komplemen Ortogonal). Akibatnya, $\operatorname{proj}_U\mathbf{v}$ tidak bergantung pada basis ortonormal yang dipilih untuk $U$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Aproksimasi terbaik (Modul, Teorema 5.9.6)</div>
+        <p>Jarak minimum dari $\mathbf{v}$ ke anggota $U$ adalah $\norm{\mathbf{v} - \operatorname{proj}_U\mathbf{v}}$, dan dicapai hanya di $\mathbf{u} = \operatorname{proj}_U\mathbf{v}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Untuk $\mathbf{u} \in U$, tulis $\mathbf{v} - \mathbf{u} = (\mathbf{v} - \operatorname{proj}_U\mathbf{v}) + (\operatorname{proj}_U\mathbf{v} - \mathbf{u})$; suku pertama di $U^\perp$, suku kedua di $U$.</li>
+          <li>Keduanya ortogonal, jadi menurut Pythagoras $\norm{\mathbf{v} - \mathbf{u}}^2 = \norm{\mathbf{v} - \operatorname{proj}_U\mathbf{v}}^2 + \norm{\operatorname{proj}_U\mathbf{v} - \mathbf{u}}^2 \ge \norm{\mathbf{v} - \operatorname{proj}_U\mathbf{v}}^2$.</li>
+          <li>Kesamaan tepat jika $\norm{\operatorname{proj}_U\mathbf{v} - \mathbf{u}} = 0$, yaitu $\mathbf{u} = \operatorname{proj}_U\mathbf{v}$.</li>
+        </ol>
+        <p>Di $\R^3$: jarak terpendek dari titik $P$ ke bidang $\alpha$ diperoleh dengan menjatuhkan garis tegak lurus; kaki garis itu adalah proyeksi $P$ pada $\alpha$.</p>
+      </details>
+
+      <h3>Kuadrat terkecil</h3>
+      <p>Jika $A\mathbf{x} = \mathbf{b}$ tidak konsisten, artinya $\mathbf{b} \notin \operatorname{Col}A$. Ini sering terjadi bila persamaan lebih banyak dari peubah. Pendekatan <strong>kuadrat terkecil</strong> (least squares) mencari $\mathbf{x}$ yang meminimumkan $\norm{A\mathbf{x} - \mathbf{b}}$; menurut Teorema 3, minimumnya dicapai saat $A\mathbf{x} = \operatorname{proj}_{\operatorname{Col}A}\mathbf{b}$, yang selalu konsisten.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Solusi kuadrat terkecil (Modul, Definisi 5.9.8)</div>
+        <p><strong>Solusi kuadrat terkecil</strong> $A\mathbf{x} = \mathbf{b}$ adalah $\mathbf{y}$ dengan $A\mathbf{y} = \operatorname{proj}_U\mathbf{b}$, $U = \operatorname{Col}A$. Ia meminimumkan $\norm{A\mathbf{y} - \mathbf{b}}$ (dan kuadratnya, jumlah kuadrat residu).</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">Persamaan normal (Modul, persamaan 5.9.1)</div>
+        <p>$\mathbf{y}$ solusi kuadrat terkecil $A\mathbf{x} = \mathbf{b}$ jika dan hanya jika</p>
+        <p>$$A^\dagger A\mathbf{y} = A^\dagger\mathbf{b}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$A\mathbf{y} = \operatorname{proj}_U\mathbf{b}$ ⇔ $A\mathbf{y} \in U$ dan $\mathbf{b} - A\mathbf{y} \in U^\perp$ (ketunggalan di Teorema 2; $A\mathbf{y} \in U$ selalu benar) ⇔ $\mathbf{b} - A\mathbf{y} \in (\operatorname{Col}A)^\perp = \operatorname{Nul}A^\dagger$ (Akibat 1) ⇔ $A^\dagger(\mathbf{b} - A\mathbf{y}) = \mathbf{0}$.</p>
+        <p>Sistem $A^\dagger A\mathbf{y} = A^\dagger\mathbf{b}$ disebut <strong>sistem persamaan normal</strong> (normal equations) dari $A\mathbf{x} = \mathbf{b}$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Rumus solusi (Modul, Teorema 5.9.9)</div>
+        <p>Jika $A$ berukuran $m \times n$ dengan rank $n$ (kolom bebas linier), maka $A^\dagger A$ nonsingular dan solusi kuadrat terkecil tunggal:</p>
+        <p>$$\mathbf{y} = (A^\dagger A)^{-1}A^\dagger\mathbf{b}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Misalkan $A^\dagger A\mathbf{v} = \mathbf{0}$ ($\mathbf{v} \in F^n$). Kalikan kiri dengan $\mathbf{v}^\dagger$: $0 = \mathbf{v}^\dagger A^\dagger A\mathbf{v} = (A\mathbf{v})^\dagger(A\mathbf{v}) = \norm{A\mathbf{v}}^2$, jadi $A\mathbf{v} = \mathbf{0}$.</li>
+          <li>Rank $n$ berarti $n$ kolom $A$ bebas linier, jadi $\operatorname{Nul}A = \set{\mathbf{0}}$ dan $\mathbf{v} = \mathbf{0}$. Matriks persegi $A^\dagger A$ berkernel trivial, jadi nonsingular.</li>
+          <li>Kalikan persamaan normal dengan $(A^\dagger A)^{-1}$ dari kiri.</li>
+        </ol>
+        <p>Solusi kuadrat terkecil selalu ada, tetapi tunggal tepat jika kolom $A$ bebas linier. Secara praktis, menghitung basis ortonormal $\operatorname{Col}A$ lalu $\operatorname{proj}_U\mathbf{b}$ terlalu mahal; persamaan normal (atau QR/SVD) lebih sering dipakai.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Kuadrat terkecil $3 \times 2$ (Modul, Contoh 5.9.10)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}$, $\mathbf{b} = (-1, 1, 3)$. Rank $2$, jadi pakai Teorema 4.</p>
+        <ol>
+          <li>$A^TA = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}$, $(A^TA)^{-1} = \tfrac{1}{3}\begin{pmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{pmatrix}$.</li>
+          <li>$A^T\mathbf{b} = (-1 + 3,\ 1 + 3) = (2, 4)$.</li>
+          <li>$\mathbf{y} = \tfrac{1}{3}(4 - 4,\ -2 + 8) = (0, 2)$, dan $\operatorname{proj}_{\operatorname{Col}A}\mathbf{b} = A\mathbf{y} = (0, 2, 2)$.</li>
+        </ol>
+        <p>Cek: residu $\mathbf{b} - A\mathbf{y} = (-1, -1, 1)$ dan $A^T(-1, -1, 1) = (0, 0)$, jadi residu tegak lurus $\operatorname{Col}A$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Menyelesaikan persamaan normal (Modul, Contoh 5.9.11)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 2 \\ 0 &amp; -2 \\ 3 &amp; 2 \end{pmatrix}$, $\mathbf{b} = (3, 3, 1)$. ($\mathbf{b} \notin \operatorname{Col}A$: vektor normal $\operatorname{Col}A$ adalah $(6, 4, -2)$, dan $(6, 4, -2) \cdot \mathbf{b} = 28 \ne 0$.)</p>
+        <ol>
+          <li>$A^TA = \begin{pmatrix} 10 &amp; 8 \\ 8 &amp; 12 \end{pmatrix}$ dan $A^T\mathbf{b} = (6, 2)$.</li>
+          <li>Persamaan normal: $10y_1 + 8y_2 = 6$, $8y_1 + 12y_2 = 2$.</li>
+          <li>$(A^TA)^{-1} = \tfrac{1}{56}\begin{pmatrix} 12 &amp; -8 \\ -8 &amp; 10 \end{pmatrix} = \tfrac{1}{28}\begin{pmatrix} 6 &amp; -4 \\ -4 &amp; 5 \end{pmatrix}$, sehingga $\mathbf{y} = \tfrac{1}{28}(36 - 8,\ -24 + 10) = \left(1, -\tfrac{1}{2}\right)$.</li>
+        </ol>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Real problem: regresi linier dengan data besar (Modul, Contoh 5.9.13)</div>
+        <p>Model harga rumah dari $10\,000$ transaksi dengan 5 prediktor (luas tanah, luas bangunan, kamar tidur, kamar mandi, usia rumah). Dicari $\boldsymbol\beta \in \R^5$ yang meminimumkan $\norm{X\boldsymbol\beta - \mathbf{y}}^2$, dengan $X$ berukuran $10\,000 \times 5$:</p>
+        <p>$$\boldsymbol\beta = (X^TX)^{-1}X^T\mathbf{y}.$$</p>
+        <p>Eksperimen di sumber: $X$ dibangkitkan dari normal standar, $\boldsymbol\beta_{\text{true}} = (2{,}5;\ -1{,}8;\ 0{,}9;\ 0{,}3;\ -0{,}2)$, $\mathbf{y} = X\boldsymbol\beta_{\text{true}} + \boldsymbol\varepsilon$ dengan $\varepsilon \sim \mathcal{N}(0, 0{,}5^2)$. Menurut sumber, galat koefisien di bawah $0{,}02$ dan MSE sekitar $0{,}25$ (sama dengan variansi derau). Persamaan normal hanya melibatkan matriks $5 \times 5$, jadi murah walaupun datanya besar; bila prediktornya sangat banyak, QR atau SVD lebih stabil.</p>
+        <p><span class="cek">[CEK: angka hasil simulasi (galat &lt; 0,02, MSE ≈ 0,25, waktu &lt; 0,1 detik) tidak disertai kode atau data di sumber, jadi tidak dapat diverifikasi. Nilai MSE ≈ 0,25 konsisten dengan variansi derau $0{,}5^2$. Sumber juga menyebut $R^2$ "mendekati 1"; dengan koefisien dan derau di atas, $R^2 \approx 10{,}43/10{,}68 \approx 0{,}98$ (perkiraan Claude), jadi klaim itu masuk akal.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Memakai rumus $\sum\sigma(\mathbf{u}_i, \mathbf{v})\mathbf{u}_i$ dengan basis yang tidak ortonormal.</strong> Rumus proyeksi ini hanya benar untuk basis ortonormal; dengan basis sembarang, pakai persamaan normal.</li>
+        <li><strong>Menulis $\mathbf{y} = A^{-1}\mathbf{b}$.</strong> $A$ biasanya tidak persegi; yang dibalik adalah $A^\dagger A$.</li>
+        <li><strong>Lupa syarat rank penuh kolom.</strong> Jika kolom $A$ bergantung linier, $A^\dagger A$ singular dan solusinya tidak tunggal (tetapi tetap ada).</li>
+        <li><strong>Memakai $A^T$ untuk matriks kompleks.</strong> Persamaan normalnya $A^\dagger A\mathbf{y} = A^\dagger\mathbf{b}$, dan yang tegak lurus $\operatorname{Col}A$ adalah $\operatorname{Nul}A^\dagger$, bukan $\operatorname{Nul}A^T$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Buktikan teorema proyeksi: jika $W$ subruang berdimensi hingga dari ruang hasil kali dalam $V$ dan $\mathbf{v} \in V$, maka ada tepat satu $\mathbf{w}_0 \in W$ yang meminimumkan $\norm{\mathbf{v} - \mathbf{w}}$ ($\mathbf{w} \in W$), yaitu yang memenuhi $\mathbf{v} - \mathbf{w}_0 \in W^\perp$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Ambil basis ortonormal $\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$ dari $W$ dan definisikan $\mathbf{w}_0 = \operatorname{proj}_W\mathbf{v} = \sum_i \langle \mathbf{u}_i, \mathbf{v} \rangle\mathbf{u}_i \in W$.</li>
+            <li>$\mathbf{v} - \mathbf{w}_0 \in W^\perp$: untuk setiap $j$, $\langle \mathbf{u}_j, \mathbf{v} - \mathbf{w}_0 \rangle = \langle \mathbf{u}_j, \mathbf{v} \rangle - \sum_i \langle \mathbf{u}_i, \mathbf{v} \rangle\langle \mathbf{u}_j, \mathbf{u}_i \rangle = 0$; jadi ortogonal terhadap seluruh $W$.</li>
+            <li>Minimal: untuk $\mathbf{w} \in W$, $\mathbf{v} - \mathbf{w} = (\mathbf{v} - \mathbf{w}_0) + (\mathbf{w}_0 - \mathbf{w})$ dengan suku pertama di $W^\perp$ dan suku kedua di $W$. Pythagoras: $\norm{\mathbf{v} - \mathbf{w}}^2 = \norm{\mathbf{v} - \mathbf{w}_0}^2 + \norm{\mathbf{w}_0 - \mathbf{w}}^2 \ge \norm{\mathbf{v} - \mathbf{w}_0}^2$.</li>
+            <li>Kesamaan hanya jika $\mathbf{w} = \mathbf{w}_0$, jadi peminimumnya tunggal.</li>
+          </ol>
+          <p>$\mathbf{w}_0$ adalah aproksimasi terbaik (best approximation), dasar metode kuadrat terkecil.</p>
+          <p><em>Catatan:</em> sumber menulis koefisiennya $\langle \mathbf{v}, \mathbf{u}_i \rangle$; di ruang kompleks dengan konvensi bab ini (linier di argumen kedua) koefisien yang benar $\langle \mathbf{u}_i, \mathbf{v} \rangle$, seperti di atas. Di ruang real keduanya sama.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Cari garis $y = c_0 + c_1t$ yang paling cocok (kuadrat terkecil) untuk titik $(0, 1)$, $(1, 3)$, $(2, 4)$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Sistem $c_0 + c_1t_i = y_i$: $A = \begin{pmatrix} 1 &amp; 0 \\ 1 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}$, $\mathbf{b} = (1, 3, 4)$. Tidak konsisten (tiga titik tidak segaris).</li>
+            <li>$A^TA = \begin{pmatrix} 3 &amp; 3 \\ 3 &amp; 5 \end{pmatrix}$, $A^T\mathbf{b} = (8, 11)$.</li>
+            <li>$\det A^TA = 6$, $(A^TA)^{-1} = \tfrac{1}{6}\begin{pmatrix} 5 &amp; -3 \\ -3 &amp; 3 \end{pmatrix}$, jadi $(c_0, c_1) = \tfrac{1}{6}(40 - 33,\ -24 + 33) = \left(\tfrac{7}{6}, \tfrac{3}{2}\right)$.</li>
+            <li>Cek residu: prediksi $\tfrac{7}{6}, \tfrac{8}{3}, \tfrac{25}{6}$, residu $-\tfrac{1}{6}, \tfrac{1}{3}, -\tfrac{1}{6}$. Jumlahnya $0$ dan $0 \cdot (-\tfrac{1}{6}) + 1 \cdot \tfrac{1}{3} + 2 \cdot (-\tfrac{1}{6}) = 0$: residu tegak lurus kedua kolom $A$.</li>
+          </ol>
+          <p>Garis terbaik: $y = \tfrac{7}{6} + \tfrac{3}{2}t$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan titik pada bidang $W = \set{x + y + z = 0}$ yang terdekat ke $\mathbf{v} = (1, 2, 3)$, dan jaraknya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$W^\perp = \operatorname{span}\set{\mathbf{n}}$ dengan $\mathbf{n} = (1, 1, 1)$ (topik Komplemen Ortogonal).</li>
+            <li>$\operatorname{proj}_{W^\perp}\mathbf{v} = \tfrac{\mathbf{v} \cdot \mathbf{n}}{\mathbf{n} \cdot \mathbf{n}}\mathbf{n} = \tfrac{6}{3}(1, 1, 1) = (2, 2, 2)$.</li>
+            <li>Karena $\mathbf{v} = \operatorname{proj}_W\mathbf{v} + \operatorname{proj}_{W^\perp}\mathbf{v}$: $\operatorname{proj}_W\mathbf{v} = (1, 2, 3) - (2, 2, 2) = (-1, 0, 1)$, dan memang $-1 + 0 + 1 = 0$.</li>
+            <li>Jarak (Teorema 3): $\norm{\mathbf{v} - \operatorname{proj}_W\mathbf{v}} = \norm{(2, 2, 2)} = 2\sqrt{3}$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \operatorname{Nul}A = (\operatorname{Col}A^\dagger)^\perp, \qquad \operatorname{Nul}A^\dagger = (\operatorname{Col}A)^\perp, \qquad \operatorname{Nul}\bar{A} = (\operatorname{Row}A)^\perp, \\
+        \operatorname{proj}_U\mathbf{v} = \sum_i \sigma(\mathbf{u}_i, \mathbf{v})\mathbf{u}_i, \qquad \min_{\mathbf{u} \in U}\norm{\mathbf{v} - \mathbf{u}} = \norm{\mathbf{v} - \operatorname{proj}_U\mathbf{v}}, \\
+        A^\dagger A\mathbf{y} = A^\dagger\mathbf{b}, \qquad \mathbf{y} = (A^\dagger A)^{-1}A^\dagger\mathbf{b} \ (\operatorname{rank}A = n)
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.9: pengantar empat ruang fundamental, Teorema 5.9.1, Korolari 5.9.2–5.9.3, Definisi 5.9.4, identitas Parseval, Teorema 5.9.5–5.9.6, Korolari 5.9.7, Definisi 5.9.8, persamaan 5.9.1, Teorema 5.9.9, Contoh 5.9.10–5.9.13. Urutan bukti disusun ulang: Korolari 5.9.7 dibuktikan langsung dari rumus proyeksi (di sumber, buktinya merujuk balik ke Teorema 5.9.5 yang sendiri belum mengaitkan komponen $U$ dengan rumus $\sum\sigma(\mathbf{u}_i, \mathbf{v})\mathbf{u}_i$). File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.8 (Latihan 1).</li>
+        <li>Latihan 2–3, basis eksplisit pada Contoh 1, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

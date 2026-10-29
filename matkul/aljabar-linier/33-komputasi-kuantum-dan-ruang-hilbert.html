@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Komputasi Kuantum dan Ruang Hilbert · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Komputasi Kuantum dan Ruang Hilbert</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Ruang Hilbert: ruang hasil kali dalam yang lengkap. Setiap ruang hasil kali dalam berdimensi hingga, misalnya $\C^2$ (satu qubit) atau $\C^{2^n}$ ($n$ qubit), adalah ruang Hilbert.</li>
+        <li>Keadaan = vektor satuan; peluang hasil ukur = kuadrat modulus hasil kali dalam (aturan Born).</li>
+        <li>Gerbang kuantum = operator uniter; observabel = operator swadjoin, dengan nilai eigen real sebagai hasil ukur.</li>
+        <li>Sistem banyak qubit hidup di hasil kali tensor; keadaan terjerat tidak dapat ditulis sebagai satu hasil kali tensor.</li>
+        <li>Rank Schmidt (rank matriks koefisien) $= 1$ ⇔ keadaan terpisah.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Dalam teori kuantum, keadaan sistem adalah vektor di ruang Hilbert, operasi yang diizinkan adalah transformasi uniter (mempertahankan hasil kali dalam dan norma), dan pengukuran berkaitan dengan operator swadjoin. Topik ini merangkum bagaimana seluruh Bab 5 dipakai di sana.</p>
+
+      <h3>Ruang Hilbert dan qubit</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Ruang Hilbert (Modul, Definisi 5.10.1)</div>
+        <p><strong>Ruang Hilbert</strong> (Hilbert space) $\mathcal{H}$ adalah ruang vektor atas $\C$ (atau $\R$) dengan hasil kali dalam $\langle\cdot, \cdot\rangle$ yang <strong>lengkap</strong> terhadap norma terinduksi: setiap barisan Cauchy (Cauchy sequence) di $\mathcal{H}$ konvergen ke suatu anggota $\mathcal{H}$.</p>
+        <p>Contoh dasar: $\C^2$ dengan $\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u}^\dagger\mathbf{v}$. Vektor bernorma $1$ di $\C^2$ disebut <strong>keadaan murni</strong> (pure state) sebuah qubit. (Sebaliknya, $C([a, b])$ dengan norma integral tidak lengkap; pelengkapannya $L^2([a, b])$.)</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Notasi Dirac dan qubit (Modul, §5.10.2)</div>
+        <p><strong>Ket</strong> $\lvert\psi\rangle$ adalah vektor keadaan; <strong>bra</strong> $\langle\phi\rvert = \lvert\phi\rangle^\dagger$ adalah kovektor (fungsional $\mathbf{w} \mapsto \langle \phi, \mathbf{w} \rangle$, lihat representasi Riesz di topik Adjoin Operator). Hasil kali dalam ditulis $\langle\phi\vert\psi\rangle$. Basis standar $\lvert 0\rangle = (1, 0)^T$, $\lvert 1\rangle = (0, 1)^T$, dan keadaan umum</p>
+        <p>$$\lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle, \qquad \alpha, \beta \in \C, \quad \abs{\alpha}^2 + \abs{\beta}^2 = 1 \iff \langle\psi\vert\psi\rangle = 1.$$</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Superposisi seragam (Modul, Contoh 5.10.3)</div>
+        <p>$\lvert\psi\rangle = \tfrac{1}{\sqrt{2}}(\lvert 0\rangle + \lvert 1\rangle) = \tfrac{1}{\sqrt{2}}(1, 1)^T$, dengan $\langle\psi\vert\psi\rangle = \tfrac{1}{2}(1 + 1) = 1$. Diukur dalam basis standar, peluang hasil $\lvert 0\rangle$ adalah $\abs{\langle 0\vert\psi\rangle}^2 = \tfrac{1}{2}$, sama dengan peluang $\lvert 1\rangle$. Ini <strong>aturan Born</strong> (Born rule).</p>
+      </div>
+
+      <h3>Gerbang dan observabel</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Gerbang kuantum dan observabel (Modul, §5.10.4 dan §5.10.6)</div>
+        <ul>
+          <li><strong>Gerbang kuantum</strong> (dan evolusi waktu) adalah operator uniter $U^\dagger U = UU^\dagger = I$. Karena mempertahankan hasil kali dalam (topik Transformasi Uniter), keadaan ternormalisasi tetap ternormalisasi.</li>
+          <li><strong>Observabel</strong> (besaran terukur) adalah operator swadjoin. Nilai eigennya hasil ukur yang mungkin, dan vektor eigennya membentuk basis ortonormal (teorema spektral, Bab 6).</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Gerbang Hadamard (Modul, Contoh 5.10.5)</div>
+        <p>$$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}, \qquad H\lvert 0\rangle = \frac{\lvert 0\rangle + \lvert 1\rangle}{\sqrt{2}} = \lvert +\rangle, \qquad H\lvert 1\rangle = \frac{\lvert 0\rangle - \lvert 1\rangle}{\sqrt{2}} = \lvert -\rangle.$$</p>
+        <p>$H$ real simetris, jadi $H^\dagger = H$, dan $H^\dagger H = H^2 = \tfrac{1}{2}\begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} = I$: uniter sekaligus swadjoin. Gerbang ini membuat superposisi dan dipakai di algoritma Deutsch–Jozsa dan Grover.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Pauli $Z$ sebagai observabel (Modul, Contoh 5.10.7)</div>
+        <p>$Z = \operatorname{diag}(1, -1)$ swadjoin dan uniter, dengan nilai eigen $+1$ (untuk $\lvert 0\rangle$) dan $-1$ (untuk $\lvert 1\rangle$). Untuk $\lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle$, peluang hasil $+1$ adalah $\abs{\alpha}^2$ dan hasil $-1$ adalah $\abs{\beta}^2$, dengan nilai harap</p>
+        <p>$$\langle Z\rangle = \langle\psi\rvert Z\lvert\psi\rangle = \abs{\alpha}^2 - \abs{\beta}^2 \in \R.$$</p>
+      </div>
+
+      <h3>Keterjeratan</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Terpisah dan terjerat (Modul, §5.10.8)</div>
+        <p>Ruang keadaan $n$ subsistem adalah hasil kali tensor $\mathcal{H}_1 \otimes \cdots \otimes \mathcal{H}_n$ (topik Pemetaan Multilinear dan Tensor). Keadaan yang dapat ditulis sebagai <em>satu</em> hasil kali tensor keadaan subsistem disebut <strong>terpisah</strong> (separable); yang tidak dapat disebut <strong>terjerat</strong> (entangled). Keterjeratan adalah sumber daya utama komputasi dan kriptografi kuantum. Notasi: $\lvert ab\rangle = \lvert a\rangle \otimes \lvert b\rangle$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Keadaan Bell (Modul, §5.10.9)</div>
+        <p>Empat keadaan terjerat maksimum di $\C^2 \otimes \C^2$:</p>
+        <p>$$\lvert\Phi^\pm\rangle = \tfrac{1}{\sqrt{2}}\bigl(\lvert 00\rangle \pm \lvert 11\rangle\bigr), \qquad \lvert\Psi^\pm\rangle = \tfrac{1}{\sqrt{2}}\bigl(\lvert 01\rangle \pm \lvert 10\rangle\bigr).$$</p>
+        <p>Keempatnya basis ortonormal $\C^4$ (basis Bell, Latihan 2), dan tidak satu pun berbentuk $\lvert\phi\rangle \otimes \lvert\psi\rangle$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Membuat $\lvert\Phi^+\rangle$ dengan gerbang (Modul, Contoh 5.10.10)</div>
+        <p>Gerbang CNOT membalik qubit target jika qubit kontrol bernilai $1$; terhadap basis $\lvert 00\rangle, \lvert 01\rangle, \lvert 10\rangle, \lvert 11\rangle$:</p>
+        <p>$$\mathrm{CNOT} = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}.$$</p>
+        <ol>
+          <li>$(H \otimes I)\lvert 00\rangle = (H\lvert 0\rangle) \otimes \lvert 0\rangle = \tfrac{1}{\sqrt{2}}(\lvert 00\rangle + \lvert 10\rangle)$.</li>
+          <li>CNOT mengubah $\lvert 10\rangle$ menjadi $\lvert 11\rangle$ dan membiarkan $\lvert 00\rangle$: hasilnya $\tfrac{1}{\sqrt{2}}(\lvert 00\rangle + \lvert 11\rangle) = \lvert\Phi^+\rangle$.</li>
+        </ol>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Dekomposisi Schmidt (Modul, §5.10.11)</div>
+        <p>Setiap keadaan murni $\lvert\psi\rangle \in \mathcal{H}_A \otimes \mathcal{H}_B$ (dimensi hingga) dapat ditulis</p>
+        <p>$$\lvert\psi\rangle = \sum_{i=1}^{r}\lambda_i\,\lvert u_i\rangle \otimes \lvert v_i\rangle, \qquad \lambda_i \gt 0, \quad \sum_i \lambda_i^2 = 1,$$</p>
+        <p>dengan $\set{\lvert u_i\rangle}$ dan $\set{\lvert v_i\rangle}$ ortonormal. Bilangan $r$ disebut <strong>rank Schmidt</strong> (Schmidt rank): keadaan terpisah jika dan hanya jika $r = 1$. Secara praktis, $\lambda_i$ adalah nilai singular tak nol dari <strong>matriks koefisien</strong> $C = [c_{ab}]$ dalam $\lvert\psi\rangle = \sum_{a,b}c_{ab}\lvert a\rangle \otimes \lvert b\rangle$, jadi $r = \operatorname{rank}C$. (Teorema ini dinyatakan di sumber tanpa bukti; buktinya memakai dekomposisi nilai singular.)</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Memeriksa keterjeratan dengan rank Schmidt (Modul, Contoh 5.10.12)</div>
+        <ul>
+          <li>$\lvert\Phi^+\rangle$: $C = \tfrac{1}{\sqrt{2}}I$, nilai singular $\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}$, jadi $r = 2$: <strong>terjerat</strong>.</li>
+          <li>$\lvert 0\rangle \otimes \lvert +\rangle = \tfrac{1}{\sqrt{2}}(\lvert 00\rangle + \lvert 01\rangle)$: $C = \begin{pmatrix} 1/\sqrt{2} &amp; 1/\sqrt{2} \\ 0 &amp; 0 \end{pmatrix}$, satu nilai singular tak nol, jadi $r = 1$: <strong>terpisah</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Penutup Bab 5</div>
+        <p>Semua unsur komputasi kuantum (keadaan, gerbang, pengukuran, keterjeratan) dijelaskan oleh konsep bab ini: hasil kali dalam, ortogonalitas, basis ortonormal, operator uniter dan swadjoin, serta hasil kali tensor.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Peluang = $\langle\phi\vert\psi\rangle$.</strong> Peluang adalah $\abs{\langle\phi\vert\psi\rangle}^2$, bukan hasil kali dalamnya sendiri (yang bisa kompleks).</li>
+        <li><strong>Menganggap setiap keadaan dua qubit yang "rumit" terjerat.</strong> $\tfrac{1}{2}(\lvert 00\rangle + \lvert 01\rangle + \lvert 10\rangle + \lvert 11\rangle)$ terpisah (Latihan 3); ujilah rank matriks koefisien.</li>
+        <li><strong>Mencampur peran uniter dan swadjoin.</strong> Gerbang/evolusi harus uniter; observabel harus swadjoin. Hadamard dan Pauli kebetulan keduanya.</li>
+        <li><strong>Lupa normalisasi.</strong> Keadaan harus bernorma $1$ agar jumlah peluang $1$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Qubit hidup di $\mathcal{H} = \C^2$ dengan basis $\lvert 0\rangle = (1, 0)^T$, $\lvert 1\rangle = (0, 1)^T$. (a) Tunjukkan $\set{\lvert 0\rangle, \lvert 1\rangle}$ ortonormal. (b) Gerbang Hadamard $H$ uniter; hitung $H\lvert 0\rangle$ dan peluang hasil ukurnya. (c) Apa hubungan ruang Hilbert dengan hasil kali dalam?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) Dengan $\langle\phi\vert\psi\rangle = \phi^\dagger\psi$: $\langle 0\vert 0\rangle = 1$, $\langle 1\vert 1\rangle = 1$, $\langle 0\vert 1\rangle = 0$. Jadi ortonormal.</li>
+            <li>(b) $H\lvert 0\rangle = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \tfrac{1}{\sqrt{2}}(1, 1)^T = \lvert +\rangle$. Normanya tetap: $\tfrac{1}{2} + \tfrac{1}{2} = 1$. Peluang hasil $\lvert 0\rangle$: $\abs{\langle 0\vert +\rangle}^2 = \abs{1/\sqrt{2}}^2 = \tfrac{1}{2}$; begitu juga $\lvert 1\rangle$. Superposisi.</li>
+            <li>(c) Ruang Hilbert adalah ruang hasil kali dalam yang lengkap terhadap norma terinduksinya (setiap barisan Cauchy konvergen). $\C^n$ dengan hasil kali dalam standar adalah ruang Hilbert berdimensi hingga. Keadaan = vektor satuan, evolusi = operator uniter $U$ (mempertahankan $\langle U\psi\vert U\psi\rangle$), observabel = operator swadjoin $A = A^\dagger$ dengan nilai eigen real sebagai hasil ukur.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa empat keadaan Bell membentuk basis ortonormal $\C^4$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Dalam koordinat basis $\lvert 00\rangle, \lvert 01\rangle, \lvert 10\rangle, \lvert 11\rangle$: $\lvert\Phi^\pm\rangle = \tfrac{1}{\sqrt{2}}(1, 0, 0, \pm 1)$ dan $\lvert\Psi^\pm\rangle = \tfrac{1}{\sqrt{2}}(0, 1, \pm 1, 0)$. Semua real, jadi hasil kali dalamnya hasil kali titik biasa.</li>
+            <li>Norma: masing-masing $\tfrac{1}{2}(1 + 1) = 1$.</li>
+            <li>$\langle\Phi^+\vert\Phi^-\rangle = \tfrac{1}{2}(1 - 1) = 0$ dan $\langle\Psi^+\vert\Psi^-\rangle = \tfrac{1}{2}(1 - 1) = 0$.</li>
+            <li>Setiap $\lvert\Phi^\pm\rangle$ dan $\lvert\Psi^\pm\rangle$ tak nol di koordinat yang berbeda (1, 4 lawan 2, 3), jadi hasil kali dalamnya $0$.</li>
+          </ol>
+          <p>Empat vektor ortonormal di $\C^4$ bebas linier (Teorema "ortogonal ⇒ bebas linier"), jadi basis.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Apakah $\lvert\psi\rangle = \tfrac{1}{2}(\lvert 00\rangle + \lvert 01\rangle + \lvert 10\rangle + \lvert 11\rangle)$ terjerat? Bagaimana dengan $\lvert\chi\rangle = \tfrac{1}{\sqrt{3}}(\lvert 00\rangle + \lvert 01\rangle + \lvert 11\rangle)$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Matriks koefisien $\lvert\psi\rangle$: $C = \tfrac{1}{2}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}$, rank $1$. Jadi rank Schmidt $1$: <strong>terpisah</strong>. Memang $\lvert\psi\rangle = \lvert +\rangle \otimes \lvert +\rangle$.</li>
+            <li>Matriks koefisien $\lvert\chi\rangle$: $C = \tfrac{1}{\sqrt{3}}\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}$, $\det C = \tfrac{1}{3} \ne 0$, rank $2$: <strong>terjerat</strong>.</li>
+          </ol>
+          <p>Untuk dua qubit, uji cepatnya: terpisah ⇔ $\det C = 0$, yaitu $c_{00}c_{11} = c_{01}c_{10}$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle, \quad \abs{\alpha}^2 + \abs{\beta}^2 = 1, \qquad \Pr(\phi) = \abs{\langle\phi\vert\psi\rangle}^2, \qquad \langle A\rangle = \langle\psi\rvert A\lvert\psi\rangle, \\
+        U^\dagger U = I \ (\text{gerbang}), \qquad A = A^\dagger \ (\text{observabel}), \qquad \lvert\psi\rangle = \sum_{i=1}^r \lambda_i\lvert u_i\rangle\lvert v_i\rangle, \ r = \operatorname{rank}C
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.10: Definisi 5.10.1, §5.10.2–5.10.12. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.9 (Latihan 1).</li>
+        <li>Latihan 2–3, uji determinan untuk dua qubit, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

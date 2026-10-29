@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Komplemen Ortogonal · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Komplemen Ortogonal</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>$S^\perp = \set{\mathbf{v} : \sigma(\mathbf{u}, \mathbf{v}) = 0 \ \forall \mathbf{u} \in S}$ selalu subruang, dan hanya bergantung pada $\operatorname{span} S$.</li>
+        <li>$W \cap W^\perp = \set{\mathbf{0}}$ untuk setiap subruang $W$ (karena definit positif).</li>
+        <li>Di dimensi hingga: $V = W \oplus W^\perp$, jadi setiap $\mathbf{v}$ terurai tunggal menjadi $\mathbf{w} + \mathbf{w}^\perp$.</li>
+        <li>Subruang punya banyak komplemen langsung, tetapi hanya <em>satu</em> komplemen ortogonal.</li>
+        <li>Di dimensi tak hingga $W^\perp$ bisa terlalu kecil: ada $W \ne V$ dengan $W^\perp = \set{\mathbf{0}}$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Definisi dan sifat dasar</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Komplemen ortogonal (Modul, Definisi 5.5.1)</div>
+        <p>Untuk himpunan bagian $S$ dari ruang hasil kali dalam $(V, \sigma)$, <strong>komplemen ortogonal</strong> (orthogonal complement) $S$ adalah</p>
+        <p>$$S^\perp = \set{\mathbf{v} \in V : \sigma(\mathbf{u}, \mathbf{v}) = 0 \text{ untuk semua } \mathbf{u} \in S},$$</p>
+        <p>dibaca "$S$ tegak lurus" (S perp). Untuk $S = \set{\mathbf{v}}$ biasa ditulis $\mathbf{v}^\perp$. Vektor tak nol yang ortogonal terhadap semua anggota subruang $W$ disebut <strong>vektor normal</strong> bagi $W$.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">$S^\perp$ subruang (Modul, Lemma 5.5.2)</div>
+        <p>Untuk setiap himpunan bagian $S \subseteq V$, $S^\perp$ subruang $V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\mathbf{0} \in S^\perp$. Jika $\mathbf{v}_1, \mathbf{v}_2 \in S^\perp$ dan $c$ skalar, maka untuk setiap $\mathbf{u} \in S$, dengan linieritas di argumen kedua, $\sigma(\mathbf{u}, c\mathbf{v}_1 + \mathbf{v}_2) = c\sigma(\mathbf{u}, \mathbf{v}_1) + \sigma(\mathbf{u}, \mathbf{v}_2) = 0$. (Perhatikan: $S$ sendiri tidak perlu subruang.)</p>
+      </details>
+
+      <div class="box proposisi">
+        <div class="box-title">Komplemen hanya bergantung pada rentang (Modul, setelah Lemma 5.5.2)</div>
+        <p>Jika $W = \operatorname{span} S$, maka $S^\perp = W^\perp$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>$W^\perp \subseteq S^\perp$: karena $S \subseteq W$, syarat "ortogonal terhadap semua anggota $W$" lebih kuat.</li>
+          <li>$S^\perp \subseteq W^\perp$: ambil $\mathbf{v} \in S^\perp$ dan $\mathbf{w} = \sum_i c_i\mathbf{u}_i \in W$ ($\mathbf{u}_i \in S$). Maka $\sigma(\mathbf{w}, \mathbf{v}) = \sum_i \bar{c}_i\,\sigma(\mathbf{u}_i, \mathbf{v}) = 0$ (di ruang real tanpa konjugat).</li>
+        </ol>
+        <p>Kasus tepi: $\varnothing^\perp = V$ (syaratnya terpenuhi secara hampa, dan $\operatorname{span}\varnothing = \set{\mathbf{0}}$); jika $\operatorname{span} S = V$ maka $S^\perp = \set{\mathbf{0}}$. Akibatnya, untuk memeriksa $\mathbf{v} \in W^\perp$ cukup diperiksa ortogonalitas terhadap <em>basis</em> $W$.</p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Irisan trivial (Modul, Lemma 5.5.3)</div>
+        <p>Untuk setiap subruang $W$ dari ruang hasil kali dalam, $W \cap W^\perp = \set{\mathbf{0}}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $\mathbf{x} \in W \cap W^\perp$, maka $\mathbf{x}$ ortogonal terhadap setiap anggota $W$, termasuk dirinya sendiri: $\sigma(\mathbf{x}, \mathbf{x}) = 0$. Karena definit positif, $\mathbf{x} = \mathbf{0}$. Sebaliknya $\mathbf{0}$ ada di keduanya.</p>
+        <p>Bandingkan dengan bentuk bilinear yang tidak definit positif (topik Bentuk Bilinear): di sana sebuah vektor bisa "tegak lurus dirinya sendiri", dan irisan ini bisa tak trivial.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Bidang dengan normal $(1, 1, 1)$ (Modul, Contoh 5.5.4 dan uraian sebelumnya)</div>
+        <p>Untuk $\mathbf{v} = (1, 1, 1) \in \R^3$, $\mathbf{v}^\perp = \set{(x, y, z) : x + y + z = 0}$, bidang melalui titik asal dengan vektor normal $\mathbf{v}$. Basisnya misalnya $\mathbf{b}_1 = (1, 0, -1)$ dan $\mathbf{b}_2 = (1, -1, 0)$.</p>
+        <p>Ambil $\mathbf{a} = (2, 3, 4)$ dan $W = \operatorname{span}\set{\mathbf{v}}$. Maka</p>
+        <p>$$\mathbf{a}_W = \frac{\mathbf{a} \cdot \mathbf{v}}{\mathbf{v} \cdot \mathbf{v}}\mathbf{v} = \frac{9}{3}(1, 1, 1) = (3, 3, 3), \qquad \mathbf{a}_{W^\perp} = \mathbf{a} - \mathbf{a}_W = (-1, 0, 1),$$</p>
+        <p>dan $\mathbf{a}_{W^\perp} \cdot \mathbf{v} = 0$, jadi $\mathbf{a}_{W^\perp}$ terletak di bidang $x + y + z = 0$. Ini dekomposisi $\mathbf{a} = \mathbf{a}_W + \mathbf{a}_{W^\perp}$ dari Teorema 1 di bawah.</p>
+      </div>
+
+      <h3>Dekomposisi ortogonal</h3>
+
+      <div class="box teorema">
+        <div class="box-title">$V = W \oplus W^\perp$ (Modul, Teorema 5.5.6)</div>
+        <p>Jika $(V, \sigma)$ berdimensi hingga dan $W$ subruang, maka $V = W \oplus W^\perp$. Jadi setiap $\mathbf{v} \in V$ dapat ditulis secara tunggal sebagai $\mathbf{v} = \mathbf{w} + \mathbf{w}^\perp$ dengan $\mathbf{w} \in W$, $\mathbf{w}^\perp \in W^\perp$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Perluas basis $W$ menjadi basis $V$ dan jalankan Gram–Schmidt (vektor basis $W$ diproses lebih dulu). Diperoleh basis ortonormal $\set{\mathbf{u}_1, \dots, \mathbf{u}_k, \mathbf{u}_{k+1}, \dots, \mathbf{u}_n}$ dengan $W = \operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$, karena Gram–Schmidt mempertahankan rentang awal.</li>
+          <li>Misalkan $U = \operatorname{span}\set{\mathbf{u}_{k+1}, \dots, \mathbf{u}_n}$. Maka $V = W \oplus U$, dan $U \subseteq W^\perp$ karena setiap $\mathbf{u}_j$ ($j \gt k$) ortogonal terhadap basis $W$ (Proposisi 1).</li>
+          <li>Sebaliknya, ambil $\mathbf{v} \in W^\perp$ dan tulis $\mathbf{v} = \mathbf{w} + \mathbf{u}$ ($\mathbf{w} \in W$, $\mathbf{u} \in U$). Maka $0 = \sigma(\mathbf{w}, \mathbf{v}) = \norm{\mathbf{w}}^2 + \sigma(\mathbf{w}, \mathbf{u}) = \norm{\mathbf{w}}^2$, jadi $\mathbf{w} = \mathbf{0}$ dan $\mathbf{v} \in U$. Jadi $U = W^\perp$ dan $V = W \oplus W^\perp$.</li>
+          <li>Ketunggalan: jika $\mathbf{w} + \mathbf{w}^\perp = \mathbf{w}_1 + \mathbf{w}_1^\perp$, maka $\mathbf{w} - \mathbf{w}_1 = \mathbf{w}_1^\perp - \mathbf{w}^\perp \in W \cap W^\perp = \set{\mathbf{0}}$ (Lemma 2).</li>
+        </ol>
+        <p>Akibatnya $\dim W + \dim W^\perp = \dim V$. Berbeda dengan komplemen langsung biasa (yang banyak), komplemen ortogonal tunggal: ia ditentukan oleh $W$ dan $\sigma$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Komplemen ortogonal di ruang polinomial (Modul, Contoh 5.5.7)</div>
+        <p>Pada $\R_2[t]$ dengan $\sigma(p, q) = \int_{-1}^{1} p(t)q(t)\,dt$, cari $U^\perp$ untuk $U = \operatorname{span}\set{1 + t, 1 - t}$. Karena $\dim U = 2$ dan $\dim \R_2[t] = 3$, $\dim U^\perp = 1$.</p>
+        <ol>
+          <li>Untuk $q = a_0 + a_1t + a_2t^2$, gunakan $\int_{-1}^1 t^k\,dt = \tfrac{2}{k+1}$ untuk $k$ genap dan $0$ untuk $k$ ganjil:
+            $$\sigma(1 + t, q) = 2a_0 + \tfrac{2}{3}(a_1 + a_2), \qquad \sigma(1 - t, q) = 2a_0 + \tfrac{2}{3}(a_2 - a_1).$$</li>
+          <li>Kedua syarat nol: selisihnya memberi $a_1 = 0$, lalu $a_0 + \tfrac{1}{3}a_2 = 0$.</li>
+          <li>Pilih $a_0 = 1$, $a_2 = -3$: $U^\perp = \operatorname{span}\set{1 - 3t^2}$.</li>
+        </ol>
+        <p>Karena $U = \operatorname{span}\set{1, t}$, polinomial $1 - 3t^2$ adalah kelipatan polinomial Legendre $P_2(t) = \tfrac{1}{2}(3t^2 - 1)$.</p>
+      </div>
+
+      <div class="box peringatan">
+        <div class="box-title">Di dimensi tak hingga $W \oplus W^\perp$ bisa gagal (Modul, Contoh 5.5.5)</div>
+        <p>Pada $C([0, 1])$ dengan $\sigma(f, g) = \int_0^1 fg$, misalkan $W = \set{f : f(0) = 0}$, jelas subruang dan $W \ne C([0, 1])$.</p>
+        <ol>
+          <li>Ambil $f \in W^\perp$. Fungsi $g(t) = tf(t)$ kontinu dan $g(0) = 0$, jadi $g \in W$.</li>
+          <li>Maka $0 = \sigma(g, f) = \int_0^1 t f(t)^2\,dt$. Integrannya kontinu dan tak negatif, jadi $tf(t)^2 \equiv 0$, sehingga $f(t) = 0$ untuk $t \gt 0$, dan $f(0) = 0$ karena kontinu.</li>
+          <li>Jadi $W^\perp = \set{0}$, sehingga $W \oplus W^\perp = W \ne C([0, 1])$.</li>
+        </ol>
+        <p>Komplemen ortogonal tetap tunggal, tetapi tidak selalu komplemen langsung bila dimensinya tak hingga.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menyamakan komplemen ortogonal dengan komplemen himpunan.</strong> $W^\perp$ bukan $V \setminus W$; misalnya $\mathbf{0}$ ada di keduanya, dan $W^\perp$ selalu subruang.</li>
+        <li><strong>Memeriksa ortogonalitas terhadap terlalu banyak vektor.</strong> Cukup terhadap basis (atau himpunan perentang) $W$.</li>
+        <li><strong>Menerapkan $V = W \oplus W^\perp$ tanpa syarat dimensi hingga</strong> (lihat kotak peringatan di atas).</li>
+        <li><strong>Lupa bahwa $W^\perp$ bergantung pada hasil kali dalam.</strong> Mengganti $\sigma$ mengubah $W^\perp$, walaupun $W$ tetap.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Misalkan $W = \set{(x, y, z) \in \R^3 : x + y + z = 0}$. Tentukan $W^\perp$ dan buktikan $\R^3 = W \oplus W^\perp$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Basis $W$: $\mathbf{w}_1 = (1, -1, 0)$, $\mathbf{w}_2 = (1, 0, -1)$ ($\dim W = 2$).</li>
+            <li>$\mathbf{v} = (a, b, c) \in W^\perp$ cukup diperiksa terhadap basis (Proposisi 1): $\mathbf{v} \cdot \mathbf{w}_1 = a - b = 0$ dan $\mathbf{v} \cdot \mathbf{w}_2 = a - c = 0$. Jadi $\mathbf{v} = a(1, 1, 1)$ dan $W^\perp = \operatorname{span}\set{(1, 1, 1)}$.</li>
+            <li>Irisan: jika $(a, a, a) \in W$, maka $3a = 0$, jadi $a = 0$ dan $W \cap W^\perp = \set{\mathbf{0}}$.</li>
+            <li>Dimensi: $\dim W + \dim W^\perp = 2 + 1 = 3 = \dim \R^3$, sehingga $W + W^\perp = \R^3$.</li>
+          </ol>
+          <p>Jadi $\R^3 = W \oplus W^\perp$; setiap $\mathbf{v}$ terurai sebagai $\operatorname{proj}_W\mathbf{v} + \operatorname{proj}_{W^\perp}\mathbf{v}$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Di $\R^4$ (hasil kali titik), tentukan basis $W^\perp$ untuk $W = \operatorname{span}\set{(1, 0, 1, 0), (0, 1, 1, 1)}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$(x_1, x_2, x_3, x_4) \in W^\perp$ jika $x_1 + x_3 = 0$ dan $x_2 + x_3 + x_4 = 0$. Ini ruang nol matriks $\begin{pmatrix} 1 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 &amp; 1 \end{pmatrix}$.</li>
+            <li>Variabel bebas $x_3 = s$, $x_4 = t$: $x_1 = -s$, $x_2 = -s - t$.</li>
+            <li>$\mathbf{x} = s(-1, -1, 1, 0) + t(0, -1, 0, 1)$.</li>
+            <li>Cek: $(-1, -1, 1, 0) \cdot (1, 0, 1, 0) = 0$, $(-1, -1, 1, 0) \cdot (0, 1, 1, 1) = 0$, $(0, -1, 0, 1) \cdot (1, 0, 1, 0) = 0$, $(0, -1, 0, 1) \cdot (0, 1, 1, 1) = 0$.</li>
+          </ol>
+          <p>Basis $W^\perp$: $\set{(-1, -1, 1, 0), (0, -1, 0, 1)}$, dan $\dim W + \dim W^\perp = 4$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan: jika $V$ berdimensi hingga dan $W$ subruang, maka $(W^\perp)^\perp = W$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$W \subseteq (W^\perp)^\perp$: untuk $\mathbf{w} \in W$ dan $\mathbf{x} \in W^\perp$, $\sigma(\mathbf{x}, \mathbf{w}) = \overline{\sigma(\mathbf{w}, \mathbf{x})} = 0$. Jadi $\mathbf{w}$ ortogonal terhadap semua anggota $W^\perp$.</li>
+            <li>Dimensi: menurut Teorema 1 untuk $W$ dan untuk $W^\perp$, $\dim W^\perp = n - \dim W$ dan $\dim (W^\perp)^\perp = n - \dim W^\perp = \dim W$.</li>
+            <li>Subruang berdimensi hingga yang memuat $W$ dan berdimensi sama dengan $W$ adalah $W$ sendiri.</li>
+          </ol>
+          <p>Jadi $(W^\perp)^\perp = W$. (Pada contoh di kotak peringatan hal ini gagal: $(W^\perp)^\perp = \set{0}^\perp = C([0, 1]) \ne W$.)</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        S^\perp = \set{\mathbf{v} : \sigma(\mathbf{u}, \mathbf{v}) = 0 \ \forall \mathbf{u} \in S}, \qquad S^\perp = (\operatorname{span} S)^\perp, \qquad W \cap W^\perp = \set{\mathbf{0}}, \\
+        \dim V \lt \infty: \quad V = W \oplus W^\perp, \qquad \dim W + \dim W^\perp = \dim V, \qquad (W^\perp)^\perp = W
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.5: Definisi 5.5.1, Lemma 5.5.2, uraian $S^\perp = (\operatorname{span} S)^\perp$, Lemma 5.5.3, Contoh 5.5.4–5.5.5, Teorema 5.5.6, Contoh 5.5.7. Lemma 5.5.8 di sumber adalah pengulangan Lemma 5.5.3, jadi tidak ditulis ulang. Gambar 3D bidang $W^\perp$ (PNG eksternal) tidak dibuat ulang; isinya diuraikan dalam Contoh 1. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.4 (Latihan 1).</li>
+        <li>Latihan 2–3, catatan polinomial Legendre, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

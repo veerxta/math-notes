@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Ruang Hasil Kali Dalam Fungsi · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Ruang Hasil Kali Dalam Fungsi</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Fungsi kompleks pada selang real ditulis $f(t) = u(t) + iv(t)$; kontinuitas, turunan, dan integral dihitung per komponen.</li>
+        <li>$\sigma(f, g) = \int_a^b \overline{f(t)}\,g(t)\,dt$ adalah hasil kali dalam Hermitian pada $C([a, b])$ (kompleks).</li>
+        <li>Di dimensi tak hingga dipakai <strong>basis ortonormal analitik</strong>: jumlah parsial $\sum_{n \le N}\sigma(f_n, f)f_n$ konvergen ke $f$ dalam norma.</li>
+        <li>Contoh penting: polinomial Legendre (Gram–Schmidt pada $1, t, t^2, \dots$), $\set{\sqrt{2/\pi}\sin nt}$ pada $[0, \pi]$ (deret Fourier sinus), dan wavelet Haar.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Ruang hasil kali dalam fungsi memindahkan geometri vektor ke fungsi: <strong>norma</strong> $\norm{f} = \sqrt{\langle f, f \rangle}$ mengukur "energi" fungsi, <strong>jarak</strong> $\norm{f - g}$ mengukur seberapa beda dua fungsi, dan $f \perp g$ jika $\langle f, g \rangle = 0$. Contoh utamanya: $L^2[a, b]$ (fungsi kuadrat-terintegralkan, dua fungsi dianggap sama bila berbeda hanya pada himpunan berukuran nol), sistem Fourier $\sin nx, \cos nx$ yang saling ortogonal di $[-\pi, \pi]$, dan ruang polinomial dengan hasil kali dalam berbobot $\int_{-1}^1 p(x)q(x)w(x)\,dx$, $w \gt 0$ (asal polinomial Legendre dan Chebyshev).</p>
+      <p><span class="cek">[CEK: pengantar §5.6 di sumber menulis hasil kali dalam $L^2$ sebagai $\int_a^b f\,\bar{g}$ (linier di argumen pertama), sedangkan persamaan 5.6.2 dan seluruh bab memakai $\int_a^b \bar{f}\,g$ (linier di argumen kedua). Halaman ini memakai konvensi bab, $\int \bar{f}g$.]</span></p>
+
+      <h3>Fungsi kompleks peubah real</h3>
+      <p>Fungsi kompleks $f \colon D \subseteq \C \to \C$ dengan $z = x + iy$ punya bagian real $\operatorname{Re} f(x, y)$ dan bagian imajiner $\operatorname{Im} f(x, y)$, masing-masing fungsi real dua peubah.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Bagian real dan imajiner polinomial (Modul, Contoh 5.6.1)</div>
+        <p>Untuk $p(z) = 2 + i - 5iz + 3z^2$ dan $z = x + iy$:</p>
+        <p>$$p(x + iy) = 2 + i - 5ix + 5y + 3(x^2 - y^2 + 2ixy) = (2 + 5y + 3x^2 - 3y^2) + i(1 - 5x + 6xy).$$</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Kalkulus fungsi kompleks pada selang real (Modul, persamaan 5.6.1)</div>
+        <p>Pada selang $[a, b] \subset \R$ ($y = 0$), setiap fungsi kompleks berbentuk $f(t) = u(t) + iv(t)$ dengan $u, v$ real.</p>
+        <ul>
+          <li>$f$ kontinu pada $[a, b]$ jika dan hanya jika $u$ dan $v$ kontinu.</li>
+          <li>Turunan: $f'(t) := u'(t) + iv'(t)$.</li>
+          <li>Integral: $\int_a^b f := \int_a^b u + i\int_a^b v$ (ada jika kedua integral ada). Teorema dasar kalkulus berlaku per komponen.</li>
+          <li>Konjugat: $\bar{f}(t) := \overline{f(t)} = u(t) - iv(t)$.</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Turunan dan integral (Modul, Contoh 5.6.2)</div>
+        <p>Pada $[-1, 1]$, $p(t) = (2 + 3t^2) + i(1 - 5t)$, jadi $p'(t) = 6t - 5i$ dan</p>
+        <p>$$\int_{-1}^{1} p(t)\,dt = \bigl[2t + t^3\bigr]_{-1}^{1} + i\bigl[t - \tfrac{5}{2}t^2\bigr]_{-1}^{1} = 6 + 2i.$$</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Eksponensial kompleks (Modul, Contoh 5.6.3)</div>
+        <p>Rumus Euler: $e^{it} = \cos t + i\sin t$. Untuk konstanta $z = x + iy$ dan $t$ real, $e^{zt} = e^{xt}\bigl(\cos(yt) + i\sin(yt)\bigr)$. Maka:</p>
+        <ul>
+          <li>$\overline{e^{zt}} = e^{\bar{z}t}$ (cosinus genap, sinus ganjil);</li>
+          <li>$\dfrac{d}{dt}e^{zt} = ze^{zt}$;</li>
+          <li>untuk $z \ne 0$: $\displaystyle\int_a^b e^{zt}\,dt = \frac{1}{z}\bigl(e^{zb} - e^{za}\bigr)$.</li>
+        </ul>
+      </div>
+
+      <h3>Hasil kali dalam pada $C([a, b])$</h3>
+
+      <div class="box proposisi">
+        <div class="box-title">Hasil kali dalam integral kompleks (Modul, persamaan 5.6.2)</div>
+        <p>Pada ruang kompleks $C([a, b])$ (fungsi kompleks kontinu pada $[a, b]$), atau subruangnya,</p>
+        <p>$$\sigma(f, g) := \int_a^b \overline{f(t)}\,g(t)\,dt$$</p>
+        <p>adalah hasil kali dalam Hermitian.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li><strong>Simetri Hermitian:</strong> konjugasi masuk ke integral (per komponen), jadi $\overline{\sigma(f, g)} = \int_a^b \overline{\bar{f}g} = \int_a^b \bar{g}f = \sigma(g, f)$.</li>
+          <li><strong>Linier di argumen kedua:</strong> $\sigma(f, \alpha g_1 + \beta g_2) = \int \bar{f}(\alpha g_1 + \beta g_2) = \alpha\sigma(f, g_1) + \beta\sigma(f, g_2)$.</li>
+          <li><strong>Definit positif:</strong> $\sigma(f, f) = \int_a^b \abs{f(t)}^2\,dt \ge 0$. Jika nol, maka $\abs{f}^2$ kontinu, tak negatif, berintegral nol, sehingga $\abs{f}^2 \equiv 0$ dan $f \equiv 0$ (argumen yang sama dengan topik Hasil Kali Dalam).</li>
+        </ol>
+      </details>
+
+      <h3>Basis ortonormal analitik</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Basis ortonormal analitik (Modul, Definisi 5.6.4)</div>
+        <p>Di ruang hasil kali dalam berdimensi tak hingga $(V, \sigma)$, barisan ortonormal $\set{f_n}_{n=1}^\infty$ adalah <strong>basis ortonormal analitik</strong> (analytic orthonormal basis) jika untuk setiap $f \in V$, jumlah parsial</p>
+        <p>$$F_N := \sum_{n=1}^{N} \sigma(f_n, f)\,f_n$$</p>
+        <p>memenuhi $\norm{F_N - f} \to 0$ untuk $N \to \infty$. Jadi deret proyeksi $f$ pada basis konvergen ke $f$ <em>dalam norma</em>. Bila basis aljabar (Hamel) ruang itu tak terhitung, istilah "basis ortonormal" biasanya berarti basis analitik ini.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Polinomial Legendre (Modul, Contoh 5.6.5)</div>
+        <p>Pada $\C[t]$ dengan $\sigma(p, q) = \int_{-1}^1 \overline{p(t)}q(t)\,dt$, proses Gram–Schmidt pada $1, t, t^2, \dots$ menghasilkan polinomial Legendre ternormalisasi. Karena setiap polinomial kombinasi linier <em>berhingga</em> monomial, keluarga ini basis ortonormal <em>aljabar</em> untuk $\C[t]$. Di $C([-1, 1])$ keluarga yang sama hanya basis ortonormal <em>analitik</em>: fungsi kontinu umumnya bukan polinomial, tetapi dapat dihampiri polinomial dalam norma.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Sistem sinus ortonormal (Modul, Contoh 5.6.6)</div>
+        <p>$B = \set{b_n = \sqrt{2/\pi}\,\sin nt}_{n=1}^\infty$ ortonormal di $C([0, \pi])$.</p>
+        <ol>
+          <li><strong>Norma satuan:</strong> $\int_0^\pi \sin^2 nt\,dt = \tfrac{1}{2}\int_0^\pi (1 - \cos 2nt)\,dt = \tfrac{\pi}{2}$, jadi $\norm{b_n}^2 = \tfrac{2}{\pi}\cdot\tfrac{\pi}{2} = 1$.</li>
+          <li><strong>Ortogonal ($m \ne n$):</strong> $\sin nt\sin mt = \tfrac{1}{2}\bigl[\cos(n - m)t - \cos(n + m)t\bigr]$, dan $\int_0^\pi \cos kt\,dt = \tfrac{\sin k\pi}{k} = 0$ untuk bilangan bulat $k \ne 0$. Karena $n - m \ne 0$ dan $n + m \ne 0$, integralnya nol.</li>
+        </ol>
+        <p>Bahwa $B$ juga <em>merentang</em> dalam arti analitik memerlukan teori deret Fourier di luar cakupan bab ini.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Deret Fourier sinus untuk $f(t) = t$ (Modul, setelah Contoh 5.6.6)</div>
+        <ol>
+          <li>Integrasi parsial ($u = t$, $dv = \sin nt\,dt$): $\int_0^\pi t\sin nt\,dt = \left[-\tfrac{t\cos nt}{n}\right]_0^\pi + \tfrac{1}{n}\int_0^\pi \cos nt\,dt = -\tfrac{\pi(-1)^n}{n}$.</li>
+          <li>Koefisien terhadap $b_n$: $a_n = \sigma(b_n, f) = \sqrt{\tfrac{2}{\pi}}\cdot\left(-\tfrac{\pi(-1)^n}{n}\right) = \sqrt{2\pi}\,\dfrac{(-1)^{n+1}}{n}$.</li>
+          <li>Maka $a_nb_n = \sqrt{2\pi}\cdot\sqrt{\tfrac{2}{\pi}}\,\tfrac{(-1)^{n+1}}{n}\sin nt = \tfrac{2(-1)^{n+1}}{n}\sin nt$, sehingga
+            $$t = 2\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}\sin nt \qquad (\text{dalam norma; titik demi titik di } 0 \lt t \lt \pi).$$</li>
+          <li>Di $t = \pi/2$: $\sin(n\pi/2) = 1, 0, -1, 0, \dots$, jadi deret menjadi $2\bigl(1 - \tfrac{1}{3} + \tfrac{1}{5} - \cdots\bigr) = 2 \cdot \tfrac{\pi}{4} = \tfrac{\pi}{2}$ (deret Leibniz).</li>
+        </ol>
+        <p>Di $t = \pi$ deret bernilai $0 \ne \pi$. Ini tidak bertentangan: konvergensi dalam norma (integral) tidak peduli nilai di titik-titik terisolasi. Inilah contoh perbedaan konvergensi dalam norma dan titik demi titik yang dijanjikan di topik Panjang dan Sudut.</p>
+      </div>
+
+      <h3>Wavelet Haar</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Transformasi wavelet Haar (Modul, Contoh 5.6.7)</div>
+        <p><strong>Wavelet</strong> adalah fungsi basis yang terlokalisasi dalam waktu <em>dan</em> frekuensi (basis Fourier hanya terlokalisasi dalam frekuensi). Wavelet Haar dan fungsi skalanya pada $[0, 1)$:</p>
+        <p>$$\psi(t) = \begin{cases} 1, &amp; 0 \le t \lt \tfrac{1}{2}, \\ -1, &amp; \tfrac{1}{2} \le t \lt 1, \\ 0, &amp; \text{lainnya}, \end{cases} \qquad \phi(t) = 1 \text{ pada } [0, 1).$$</p>
+        <p>Keluarga $\phi$ dan $\psi_{j,k}(t) = 2^{j/2}\psi(2^jt - k)$ ($j \ge 0$, $k = 0, \dots, 2^j - 1$) membentuk basis ortonormal $L^2([0, 1])$. Misalnya $\langle \phi, \psi \rangle = \int_0^{1/2} 1 - \int_{1/2}^1 1 = 0$ dan $\norm{\psi}^2 = 1$.</p>
+        <p><strong>Transformasi diskret untuk $f = [1, 2, 3, 4]$</strong> (rata-rata $s = \tfrac{a + b}{2}$, selisih $d = \tfrac{a - b}{2}$):</p>
+        <ol>
+          <li>Level 1: pasangan $(1, 2)$ dan $(3, 4)$ memberi $s = 1{,}5;\ 3{,}5$ dan $d = -0{,}5;\ -0{,}5$.</li>
+          <li>Level 2 pada $[1{,}5;\ 3{,}5]$: $s = 2{,}5$, $d = -1$. Hasil: $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$.</li>
+          <li>Rekonstruksi ($a = s + d$, $b = s - d$): $[2{,}5;\ -1] \to [1{,}5;\ 3{,}5]$, lalu $\to [1, 2, 3, 4]$. Sinyal pulih sempurna.</li>
+        </ol>
+        <p>Agar transformasinya uniter (mempertahankan norma), tiap langkah memakai $\tfrac{a \pm b}{\sqrt{2}}$. Dengan normalisasi itu: level 1 memberi $\tfrac{3}{\sqrt{2}}, \tfrac{7}{\sqrt{2}}$ dan $-\tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}$; level 2 memberi $5$ dan $-2$. Hasilnya $\bigl[5;\ -2;\ -\tfrac{1}{\sqrt{2}};\ -\tfrac{1}{\sqrt{2}}\bigr]$, dan memang $25 + 4 + \tfrac{1}{2} + \tfrac{1}{2} = 30 = 1 + 4 + 9 + 16$.</p>
+        <p><span class="cek">[CEK: sumber menyebut $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$ sebagai vektor "setelah normalisasi sesuai faktor skala $\sqrt{2}$", lalu di kalimat berikutnya menyatakan bahwa itu versi tanpa normalisasi. Yang benar: $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$ tanpa normalisasi; versi ternormalisasi di atas dihitung oleh Claude.]</span></p>
+        <p><strong>Aplikasi:</strong> koefisien detail yang kecil bisa dibuang untuk kompresi (JPEG2000 memakai wavelet, bukan DCT seperti JPEG), dan wavelet dipakai untuk mendeteksi lonjakan pada sinyal medis (EEG, EKG).</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Lupa konjugat di ruang fungsi kompleks.</strong> Tanpa konjugat, $\int_0^{2\pi} e^{it}e^{it}\,dt = 0$ padahal $e^{it} \ne 0$; definit positif hilang.</li>
+        <li><strong>Menganggap basis analitik sebagai basis aljabar.</strong> $t$ pada $[0, \pi]$ bukan kombinasi linier <em>berhingga</em> sinus; ia hanya limit (dalam norma) jumlah parsial.</li>
+        <li><strong>Mengira deret Fourier sama dengan $f$ di setiap titik.</strong> Konvergensi dalam norma bisa gagal di titik tertentu (di $t = \pi$ deret sinus untuk $t$ bernilai $0$).</li>
+        <li><strong>Mencampur normalisasi.</strong> Koefisien terhadap $\sin nt$ dan terhadap $\sqrt{2/\pi}\sin nt$ berbeda faktor; hasil akhir deretnya sama.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Pada $C[0, 1]$ dengan $\langle f, g \rangle = \int_0^1 f(x)g(x)\,dx$: (a) hitung $\langle f, g \rangle$, $\norm{f}$, $\norm{g}$ untuk $f(x) = x$ dan $g(x) = x^2$; (b) apakah $f$ dan $g$ ortogonal?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$\langle f, g \rangle = \int_0^1 x^3\,dx = \left[\tfrac{x^4}{4}\right]_0^1 = \tfrac{1}{4}$.</li>
+            <li>$\norm{f}^2 = \int_0^1 x^2\,dx = \tfrac{1}{3}$, jadi $\norm{f} = \tfrac{1}{\sqrt{3}}$; $\norm{g}^2 = \int_0^1 x^4\,dx = \tfrac{1}{5}$, jadi $\norm{g} = \tfrac{1}{\sqrt{5}}$.</li>
+            <li>Ortogonal berarti $\langle f, g \rangle = 0$; di sini $\tfrac{1}{4} \ne 0$, jadi <strong>tidak ortogonal</strong>.</li>
+          </ol>
+          <p>Contoh pasangan ortogonal: $1$ dan $x - \tfrac{1}{2}$, karena $\int_0^1 (x - \tfrac{1}{2})\,dx = 0$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada $C([0, 2\pi])$ kompleks dengan $\sigma(f, g) = \int_0^{2\pi}\bar{f}g$, tunjukkan bahwa $e_n(t) = \tfrac{1}{\sqrt{2\pi}}e^{int}$ ($n \in \Z$) membentuk himpunan ortonormal.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\overline{e^{imt}} = e^{-imt}$ (Contoh 3 dengan $z = im$, $\bar{z} = -im$).</li>
+            <li>$\sigma(e_m, e_n) = \tfrac{1}{2\pi}\int_0^{2\pi} e^{i(n - m)t}\,dt$.</li>
+            <li>Jika $n = m$: integrannya $1$, jadi $\sigma(e_n, e_n) = \tfrac{2\pi}{2\pi} = 1$.</li>
+            <li>Jika $n \ne m$: dengan $z = i(n - m) \ne 0$, $\int_0^{2\pi} e^{zt}\,dt = \tfrac{1}{z}(e^{2\pi i(n - m)} - 1) = 0$, karena $e^{2\pi ik} = 1$ untuk $k$ bulat.</li>
+          </ol>
+          <p>Jadi $\sigma(e_m, e_n) = \delta_{mn}$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Hitung transformasi Haar ternormalisasi (dua level) untuk $f = [4, 2, 5, 5]$ dan periksa bahwa normanya terjaga.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Level 1, pasangan $(4, 2)$ dan $(5, 5)$: rata-rata $\tfrac{6}{\sqrt{2}}, \tfrac{10}{\sqrt{2}}$; detail $\tfrac{2}{\sqrt{2}} = \sqrt{2}$ dan $0$.</li>
+            <li>Level 2 pada $\left(\tfrac{6}{\sqrt{2}}, \tfrac{10}{\sqrt{2}}\right)$: $\tfrac{6 + 10}{2} = 8$ dan $\tfrac{6 - 10}{2} = -2$.</li>
+            <li>Hasil: $[8;\ -2;\ \sqrt{2};\ 0]$.</li>
+            <li>Norma: $64 + 4 + 2 + 0 = 70$ dan $16 + 4 + 25 + 25 = 70$. Terjaga, sesuai sifat uniter.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \sigma(f, g) = \int_a^b \overline{f(t)}\,g(t)\,dt, \qquad \overline{e^{zt}} = e^{\bar{z}t}, \qquad \int_a^b e^{zt}\,dt = \tfrac{1}{z}(e^{zb} - e^{za}), \\
+        F_N = \sum_{n=1}^{N}\sigma(f_n, f)\,f_n \to f, \qquad t = 2\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}\sin nt \ \text{ pada } (0, \pi)
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.6: pengantar, Contoh 5.6.1–5.6.3, persamaan 5.6.1–5.6.2, Definisi 5.6.4, Contoh 5.6.5–5.6.7, ekspansi Fourier $f(t) = t$. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.5 (Latihan 1).</li>
+        <li>Latihan 2–3, transformasi Haar ternormalisasi, catatan nilai deret di $t = \pi$, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

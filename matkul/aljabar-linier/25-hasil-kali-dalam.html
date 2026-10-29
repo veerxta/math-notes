@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Hasil Kali Dalam · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Hasil Kali Dalam</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Hasil kali dalam adalah bentuk Hermitian (kompleks) atau bentuk bilinear simetris (real) yang <strong>definit positif</strong>: $\sigma(\mathbf{v}, \mathbf{v}) \gt 0$ untuk setiap $\mathbf{v} \ne \mathbf{0}$.</li>
+        <li>Definit positif ⇒ tak terdegenerasi, tetapi tidak sebaliknya.</li>
+        <li>Matriks hasil kali dalam punya entri diagonal positif (dan invertibel).</li>
+        <li>Kelipatan positif dan jumlah hasil kali dalam adalah hasil kali dalam; pembatasan ke subruang juga; dan isomorfisma linier memindahkan hasil kali dalam ke ruang lain.</li>
+        <li>$\langle f, g \rangle = \int_a^b f(t)g(t)\,dt$ adalah hasil kali dalam pada $C([a, b])$, perluasan alami hasil kali titik.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Definit positif</h3>
+      <p>Bentuk Hermitian pada contoh terakhir topik Hasil Kali Titik (Modul, Contoh 5.1.10) memberi "panjang nol" untuk setiap titik di $\operatorname{span}\set{(1, 1)}$. Untuk mendapat ukuran jarak yang wajar, diperlukan syarat tambahan.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Tak terdegenerasi dan definit positif (Modul, §5.2)</div>
+        <p>Pemetaan $\sigma \colon V \times V \to F$ <strong>tak terdegenerasi</strong> jika $\sigma(\mathbf{v}, \mathbf{w}) = 0$ untuk semua $\mathbf{w}$ hanya bila $\mathbf{v} = \mathbf{0}$, dan $\sigma(\mathbf{v}, \mathbf{w}) = 0$ untuk semua $\mathbf{v}$ hanya bila $\mathbf{w} = \mathbf{0}$. Untuk $\sigma$ Hermitian di dimensi hingga, ini setara dengan "setiap matriks representasi tak singular" (bukti yang sama seperti di topik Bentuk Bilinear).</p>
+        <p>Jika nilai $\sigma(\mathbf{v}, \mathbf{v})$ ada di lapangan terurut ($\R$), $\sigma$ <strong>definit positif</strong> jika $\sigma(\mathbf{v}, \mathbf{v}) \gt 0$ untuk setiap $\mathbf{v} \ne \mathbf{0}$. Definit positif jelas mengakibatkan tak terdegenerasi (ambil $\mathbf{w} = \mathbf{v}$).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Tak terdegenerasi tetapi tidak definit positif (Modul, Contoh 5.2.1)</div>
+        <p>Bentuk bilinear simetris $\sigma(\mathbf{v}, \mathbf{w}) = \mathbf{v}^TA\mathbf{w}$ pada $\C^2$ dengan $A = \begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$. Karena $\det A = 1 - i^2 = 2 \ne 0$, $\sigma$ tak terdegenerasi. Tetapi untuk $\mathbf{v} = (1, 1)$:</p>
+        <p>$$\sigma(\mathbf{v}, \mathbf{v}) = (1\ \ 1)\begin{pmatrix} 1 + i \\ i + 1 \end{pmatrix} = 2 + 2i,$$</p>
+        <p>bukan bilangan real positif, jadi $\sigma$ tidak definit positif.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Hasil kali dalam (Modul, Definisi 5.2.2)</div>
+        <ul>
+          <li><strong>Hasil kali dalam Hermitian</strong> (Hermitian inner product): bentuk Hermitian definit positif pada ruang vektor kompleks.</li>
+          <li><strong>Hasil kali dalam real</strong> (real inner product): bentuk bilinear simetris definit positif pada ruang vektor real.</li>
+        </ul>
+        <p><strong>Ruang hasil kali dalam</strong> $(V, \sigma)$ adalah ruang vektor kompleks dengan hasil kali dalam Hermitian, atau ruang vektor real dengan hasil kali dalam real. Hasil kali titik di $\R^n$ dan $\C^n$ adalah hasil kali dalam. Mulai sekarang $F$ adalah $\R$ atau $\C$, dan (konvensi buku ini) hasil kali dalam linier di argumen kedua.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Diagonal positif (Modul, Lemma 5.2.3)</div>
+        <p>Jika $A = [a_{ij}] \in M_n(F)$ menentukan hasil kali dalam $\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^\dagger A[\mathbf{w}]_B$ pada $V \cong F^n$, maka $a_{ii} \gt 0$ untuk setiap $i$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$a_{ii} = \mathbf{e}_i^\dagger A\mathbf{e}_i = [\mathbf{b}_i]_B^\dagger A[\mathbf{b}_i]_B = \sigma(\mathbf{b}_i, \mathbf{b}_i) \gt 0$, karena $\mathbf{b}_i \ne \mathbf{0}$ dan $\sigma$ definit positif. (Karena hasil kali dalam tak terdegenerasi, $A$ juga invertibel.)</p>
+      </details>
+
+      <h3>Membangun hasil kali dalam baru</h3>
+
+      <div class="box lemma">
+        <div class="box-title">Kelipatan positif dan jumlah (Modul, Lemma 5.2.4)</div>
+        <p>Misalkan $V$ ruang vektor atas $\R$ atau $\C$.</p>
+        <ol>
+          <li>Jika $\sigma$ hasil kali dalam dan $c \gt 0$ real, maka $c\sigma$ hasil kali dalam.</li>
+          <li>Jika $\sigma_1, \sigma_2$ hasil kali dalam, maka $\sigma_1 + \sigma_2$ hasil kali dalam.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(1)</strong> Linier (atau seskuilinear) karena mengalikan dengan konstanta mempertahankan linieritas di tiap argumen. Simetri (Hermitian): karena $c$ real, $\overline{c\sigma(\mathbf{w}, \mathbf{u})} = c\,\overline{\sigma(\mathbf{w}, \mathbf{u})} = c\sigma(\mathbf{u}, \mathbf{w})$. Definit positif: $c\sigma(\mathbf{v}, \mathbf{v}) \gt 0$ untuk $\mathbf{v} \ne \mathbf{0}$ karena $c \gt 0$. (Untuk $c \le 0$ sifat ini gagal.)</p>
+        <p><strong>(2)</strong> Jumlah pemetaan linier (seskuilinear) linier (seskuilinear). $\overline{\sigma_1(\mathbf{w}, \mathbf{u}) + \sigma_2(\mathbf{w}, \mathbf{u})} = \sigma_1(\mathbf{u}, \mathbf{w}) + \sigma_2(\mathbf{u}, \mathbf{w})$. Dan $\sigma_1(\mathbf{v}, \mathbf{v}) + \sigma_2(\mathbf{v}, \mathbf{v}) \gt 0$ untuk $\mathbf{v} \ne \mathbf{0}$, sebagai jumlah dua bilangan positif.</p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Pembatasan ke subruang (Modul, Lemma 5.2.5)</div>
+        <p>Jika $(V, \sigma)$ ruang hasil kali dalam dan $U \subseteq V$ subruang tak nol, maka $(U, \sigma|_{U \times U})$ ruang hasil kali dalam, dan norma di $U$ sama dengan norma di $V$: $\norm{\mathbf{u}}_U = \norm{\mathbf{u}}_V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk $\mathbf{u}, \mathbf{w} \in U$, $\sigma_U(\mathbf{u}, \mathbf{w}) = \sigma(\mathbf{u}, \mathbf{w})$ terdefinisi. Simetri (Hermitian) dan linieritas (seskuilinearitas) berlaku karena berlaku untuk semua vektor $V$ dan operasi $U$ sama dengan operasi $V$. Definit positif: jika $\mathbf{u} \in U$ tak nol, $\sigma_U(\mathbf{u}, \mathbf{u}) = \sigma(\mathbf{u}, \mathbf{u}) \gt 0$.</p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Memindahkan hasil kali dalam lewat isomorfisma (Modul, Lemma 5.2.6)</div>
+        <p>Jika $(V, \sigma)$ ruang hasil kali dalam dan $L \colon V \to W$ isomorfisma linier, maka $\zeta(L(\mathbf{v}), L(\mathbf{x})) := \sigma(\mathbf{v}, \mathbf{x})$ hasil kali dalam pada $W$, dan $L$ isometri dari $(V, \sigma)$ ke $(W, \zeta)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Terdefinisi: karena $L$ bijektif, setiap $\mathbf{w} \in W$ adalah $L(\mathbf{v})$ untuk tepat satu $\mathbf{v}$.</li>
+          <li>Simetri: $\zeta(\mathbf{w}, \mathbf{w}') = \sigma(\mathbf{v}, \mathbf{x}) = \overline{\sigma(\mathbf{x}, \mathbf{v})} = \overline{\zeta(\mathbf{w}', \mathbf{w})}$.</li>
+          <li>Linier di argumen kedua: karena $\alpha\mathbf{w}_1 + \beta\mathbf{w}_2 = L(\alpha\mathbf{v}_1 + \beta\mathbf{v}_2)$, $\zeta(\mathbf{w}, \alpha\mathbf{w}_1 + \beta\mathbf{w}_2) = \sigma(\mathbf{v}, \alpha\mathbf{v}_1 + \beta\mathbf{v}_2) = \alpha\zeta(\mathbf{w}, \mathbf{w}_1) + \beta\zeta(\mathbf{w}, \mathbf{w}_2)$.</li>
+          <li>Definit positif: jika $\zeta(\mathbf{w}, \mathbf{w}) = \sigma(\mathbf{v}, \mathbf{v}) = 0$, maka $\mathbf{v} = \mathbf{0}$ dan $\mathbf{w} = L(\mathbf{0}) = \mathbf{0}$.</li>
+        </ol>
+        <p>Inilah yang dilakukan saat hasil kali dalam di $V \cong F^n$ didefinisikan lewat vektor koordinat. Jadi setiap ruang vektor real atau kompleks (berdimensi hingga) punya hasil kali dalam, walaupun biasanya dicari yang muncul secara alami dari konteks.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Hasil kali dalam integral (Modul, Contoh 5.2.7)</div>
+        <p>Pada ruang real $C([a, b])$, $\sigma(f, g) := \int_a^b f(t)g(t)\,dt$ hasil kali dalam.</p>
+        <ol>
+          <li>Terdefinisi: $fg$ kontinu pada $[a, b]$ tertutup, jadi terintegralkan.</li>
+          <li>Bilinear: integral linier, $\int(\alpha f_1 + \beta f_2)g = \alpha\int f_1g + \beta\int f_2g$, dan sama di argumen kedua.</li>
+          <li>Simetris: $\int fg = \int gf$.</li>
+          <li>Definit positif: $\int_a^b f^2 \ge 0$. Jika $f(t_0) \ne 0$, karena $f$ kontinu ada selang $I \ni t_0$ (panjang positif) dengan $f(t)^2 \gt \tfrac{1}{2}f(t_0)^2$ di $I$, sehingga $\int_a^b f^2 \ge \int_I f^2 \gt 0$. Jadi $\int_a^b f^2 = 0$ memaksa $f \equiv 0$.</li>
+        </ol>
+        <p>Norma yang dihasilkan $\norm{f} = \bigl(\int_a^b f(t)^2\,dt\bigr)^{1/2}$. Integral adalah "jumlah yang digeneralisasi", jadi ini perluasan alami hasil kali titik. Ruang Hilbert (lengkap) yang terkait adalah $L^2([a, b])$; $C([a, b])$ dengan norma ini tidak lengkap.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Hanya memeriksa simetri.</strong> $\sigma(\mathbf{x}, \mathbf{y}) = x_1y_1 - x_2y_2$ simetris dan bilinear tetapi tidak definit positif (Latihan 2).</li>
+        <li><strong>Memeriksa $\sigma(\mathbf{e}_i, \mathbf{e}_i) \gt 0$ saja.</strong> Diagonal positif perlu, tetapi tidak cukup: $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$ berdiagonal positif, tetapi $\sigma((1, -1), (1, -1)) = 1 - 4 + 1 = -2$.</li>
+        <li><strong>Mengalikan dengan konstanta negatif atau kompleks.</strong> Hanya kelipatan <em>real positif</em> yang mempertahankan hasil kali dalam.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Apakah $\langle \mathbf{x}, \mathbf{y} \rangle = x_1y_1 + 2x_2y_2 - x_1y_2 - x_2y_1$ hasil kali dalam pada $\R^2$? Bagaimana dengan $\langle \mathbf{x}, \mathbf{y} \rangle = x_1y_1 + 2x_2y_2$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Syarat hasil kali dalam real: simetris, bilinear, definit positif.</li>
+            <li>Bentuk pertama: matriksnya $A = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} = A^T$, jadi simetris dan bilinear.</li>
+            <li>Definit positif: $\langle \mathbf{x}, \mathbf{x} \rangle = x_1^2 - 2x_1x_2 + 2x_2^2 = (x_1 - x_2)^2 + x_2^2$, positif kecuali $x_2 = 0$ dan $x_1 = x_2$, yaitu $\mathbf{x} = \mathbf{0}$. (Minor utama: $\Delta_1 = 1 \gt 0$, $\Delta_2 = \det A = 1 \gt 0$.) Jadi <strong>hasil kali dalam</strong>.</li>
+            <li>Bentuk kedua: matriks $\operatorname{diag}(1, 2)$ simetris, dan $\langle \mathbf{x}, \mathbf{x} \rangle = x_1^2 + 2x_2^2 \gt 0$ untuk $\mathbf{x} \ne \mathbf{0}$. Jadi juga hasil kali dalam (berbobot, tidak standar).</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa $\sigma(\mathbf{x}, \mathbf{y}) = x_1y_1 - x_2y_2$ pada $\R^2$ bentuk bilinear simetris tak terdegenerasi yang bukan hasil kali dalam.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Matriksnya $\operatorname{diag}(1, -1)$, simetris, jadi $\sigma$ bilinear simetris.</li>
+            <li>$\det = -1 \ne 0$, jadi tak terdegenerasi (topik Bentuk Bilinear).</li>
+            <li>Tetapi untuk $\mathbf{x} = (0, 1)$, $\sigma(\mathbf{x}, \mathbf{x}) = -1 \lt 0$, dan untuk $\mathbf{x} = (1, 1)$, $\sigma(\mathbf{x}, \mathbf{x}) = 0$ dengan $\mathbf{x} \ne \mathbf{0}$.</li>
+          </ol>
+          <p>Jadi tidak definit positif, sehingga bukan hasil kali dalam. (Bentuk seperti ini dipakai dalam relativitas khusus, metrik Minkowski.)</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada $P_1(\R)$, tunjukkan bahwa $\langle p, q \rangle = p(0)q(0) + p(1)q(1)$ hasil kali dalam.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Evaluasi $p \mapsto p(c)$ linier, jadi setiap suku bilinear; jumlahnya bilinear. Simetris jelas.</li>
+            <li>Definit positif: $\langle p, p \rangle = p(0)^2 + p(1)^2 \ge 0$.</li>
+            <li>Jika $\langle p, p \rangle = 0$, maka $p(0) = p(1) = 0$. Polinomial berderajat paling banyak $1$ dengan dua akar berbeda adalah polinomial nol: untuk $p = a + bx$, $a = 0$ dan $a + b = 0$, jadi $b = 0$.</li>
+          </ol>
+          <p>Jadi hasil kali dalam. (Di $P_2(\R)$ rumus yang sama <em>gagal</em> definit positif: $p = x(x - 1)$ tak nol tetapi $\langle p, p \rangle = 0$.)</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \langle \mathbf{v}, \mathbf{v} \rangle \gt 0 \ (\mathbf{v} \ne \mathbf{0}), \qquad \langle \mathbf{v}, \mathbf{w} \rangle = \overline{\langle \mathbf{w}, \mathbf{v} \rangle}, \qquad \langle \mathbf{v}, c\mathbf{w} + \mathbf{x} \rangle = c\langle \mathbf{v}, \mathbf{w} \rangle + \langle \mathbf{v}, \mathbf{x} \rangle, \\
+        \langle f, g \rangle = \int_a^b f(t)g(t)\,dt, \qquad a_{ii} = \langle \mathbf{b}_i, \mathbf{b}_i \rangle \gt 0
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.2: definisi tak terdegenerasi dan definit positif, Contoh 5.2.1, Definisi 5.2.2, Lemma 5.2.3–5.2.6, Contoh 5.2.7. Pada langkah definit positif di Contoh 5.2.7, sumber menulis "$f(t)^2 \ge 0$ di $I$", yang tidak cukup untuk ketaksamaan ketat; di sini dirapikan menjadi $f(t)^2 \gt \tfrac{1}{2}f(t_0)^2$. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.1 (Latihan 1).</li>
+        <li>Latihan 2–3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

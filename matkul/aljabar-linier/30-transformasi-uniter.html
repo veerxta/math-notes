@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Transformasi Uniter · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Transformasi Uniter</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Transformasi uniter: isomorfisma linier yang mempertahankan hasil kali dalam, $\zeta(L\mathbf{v}, L\mathbf{x}) = \sigma(\mathbf{v}, \mathbf{x})$. Di ruang real disebut ortogonal.</li>
+        <li>Invers dan komposisi transformasi uniter uniter; operator uniter pada $V$ membentuk grup.</li>
+        <li>$L$ uniter ⇔ $L$ memetakan basis ortonormal ke basis ortonormal.</li>
+        <li>Matriks $A$ uniter ($A^*A = I$) ⇔ kolomnya ortonormal ⇔ barisnya ortonormal ⇔ $A\mathbf{v} \cdot A\mathbf{w} = \mathbf{v} \cdot \mathbf{w}$ ⇔ $A^{-1} = A^*$.</li>
+        <li>Terhadap basis ortonormal, operator uniter tepat diwakili matriks uniter.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Di topik Matriks Swadjoin dan Uniter sudah terlihat bahwa matriks uniter adalah analog kompleks matriks ortogonal. Di sini gagasan itu dibahas pada tingkat transformasi. Sepanjang halaman, $F = \R$ atau $\C$, dan $A^* = \bar{A}^T$ (transpos konjugat, juga ditulis $A^\dagger$).</p>
+
+      <h3>Definisi dan sifat dasar</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Transformasi uniter (Modul, Definisi 5.7.1)</div>
+        <p>Misalkan $(V, \sigma)$ dan $(W, \zeta)$ ruang hasil kali dalam atas lapangan yang sama. <strong>Transformasi uniter</strong> (unitary transformation) adalah isomorfisma $L \in \mathcal{L}(V, W)$ dengan</p>
+        <p>$$\zeta\bigl(L(\mathbf{v}), L(\mathbf{x})\bigr) = \sigma(\mathbf{v}, \mathbf{x}) \quad \text{untuk semua } \mathbf{v}, \mathbf{x} \in V.$$</p>
+        <p><strong>Operator uniter</strong>: transformasi uniter $V \to V$. Di ruang real, keduanya disebut <strong>transformasi/operator ortogonal</strong>.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Rotasi di $\R^2$ (Modul, Contoh 5.7.A)</div>
+        <p>Rotasi $L_\theta(x, y) = (x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta)$ berlawanan arah jarum jam, dengan matriks $A = \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix}$. Untuk $\mathbf{u} = (x_1, y_1)$, $\mathbf{v} = (x_2, y_2)$, setelah dijabarkan, suku $x_1y_2$ dan $y_1x_2$ hilang (koefisiennya $-\cos\theta\sin\theta + \sin\theta\cos\theta = 0$), sehingga</p>
+        <p>$$\langle L_\theta\mathbf{u}, L_\theta\mathbf{v} \rangle = x_1x_2(\cos^2\theta + \sin^2\theta) + y_1y_2(\sin^2\theta + \cos^2\theta) = \langle \mathbf{u}, \mathbf{v} \rangle.$$</p>
+        <p>Jadi $L_\theta$ ortogonal, dan memang $A^TA = I$: kolom-kolom $A$ basis ortonormal $\R^2$.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Invers, basis, komposisi (Modul, Lemma 5.7.2)</div>
+        <ol type="a">
+          <li>Invers transformasi uniter adalah transformasi uniter.</li>
+          <li>Jika $\set{\mathbf{u}_i}_{i=1}^n$ dan $\set{\mathbf{x}_i}_{i=1}^n$ basis ortonormal $(V, \sigma)$, perluasan linier $\mathbf{u}_i \mapsto \mathbf{x}_i$ adalah operator uniter.</li>
+          <li>Jika $L_1 \in \mathcal{L}(V, W)$ dan $L_2 \in \mathcal{L}(W, U)$ uniter, maka $L_2 \circ L_1 \in \mathcal{L}(V, U)$ uniter.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol type="a">
+          <li>Untuk $\mathbf{w}_1, \mathbf{w}_2 \in W$, tulis $\mathbf{w}_k = L(\mathbf{v}_k)$. Maka $\sigma(L^{-1}\mathbf{w}_1, L^{-1}\mathbf{w}_2) = \sigma(\mathbf{v}_1, \mathbf{v}_2) = \zeta(L\mathbf{v}_1, L\mathbf{v}_2) = \zeta(\mathbf{w}_1, \mathbf{w}_2)$, dan $L^{-1}$ isomorfisma.</li>
+          <li>$L$ memetakan basis ke basis, jadi isomorfisma. Untuk $\mathbf{v} = \sum a_i\mathbf{u}_i$ dan $\mathbf{x} = \sum b_j\mathbf{u}_j$: $\sigma(L\mathbf{v}, L\mathbf{x}) = \sum_{i,j}\bar{a}_ib_j\,\sigma(\mathbf{x}_i, \mathbf{x}_j) = \sum_i \bar{a}_ib_i = \sum_{i,j}\bar{a}_ib_j\,\sigma(\mathbf{u}_i, \mathbf{u}_j) = \sigma(\mathbf{v}, \mathbf{x})$.</li>
+          <li>Komposisi isomorfisma isomorfisma, dan $\chi(L_2L_1\mathbf{v}, L_2L_1\mathbf{x}) = \zeta(L_1\mathbf{v}, L_1\mathbf{x}) = \sigma(\mathbf{v}, \mathbf{x})$.</li>
+        </ol>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Dari basis ortonormal ke basis ortonormal (Modul, Contoh 5.7.B)</div>
+        <p>Di $\R^2$, petakan basis standar ke $\mathbf{x}_1 = \tfrac{1}{\sqrt{2}}(1, 1)$, $\mathbf{x}_2 = \tfrac{1}{\sqrt{2}}(-1, 1)$. Karena $\mathbf{x}_1 \cdot \mathbf{x}_1 = \mathbf{x}_2 \cdot \mathbf{x}_2 = 1$ dan $\mathbf{x}_1 \cdot \mathbf{x}_2 = 0$, Lemma 1(b) menjamin $L$ ortogonal, dengan matriks $A = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$ (rotasi $45^\circ$).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Grup uniter (Modul, Teorema 5.7.3)</div>
+        <p>Operator uniter pada ruang hasil kali dalam membentuk grup terhadap komposisi.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Identitas uniter; menurut Lemma 1(a) dan 1(c), himpunan ini tertutup terhadap invers dan komposisi; komposisi fungsi asosiatif.</p>
+      </details>
+
+      <h3>Uniter dan basis ortonormal</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Kriteria basis ortonormal (Modul, Teorema 5.7.4)</div>
+        <p>Misalkan $B = \set{\mathbf{u}_1, \dots, \mathbf{u}_n}$ basis ortonormal $(V, \sigma)$. Maka $L \in \mathcal{L}(V, W)$ uniter jika dan hanya jika $L[B]$ basis ortonormal $(W, \zeta)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> $L$ isomorfisma, jadi $L[B]$ basis, dan $\zeta(L\mathbf{u}_i, L\mathbf{u}_j) = \sigma(\mathbf{u}_i, \mathbf{u}_j) = \delta_{ij}$.</p>
+        <p><strong>(⇐)</strong> $L$ memetakan basis ke basis, jadi isomorfisma. Untuk $\mathbf{v}, \mathbf{x} \in V$, dengan Lemma koefisien (topik Himpunan Ortonormal), $\mathbf{v} = \sum_i c_i\mathbf{u}_i$ dan $\mathbf{x} = \sum_i d_i\mathbf{u}_i$ dengan $c_i = \sigma(\mathbf{u}_i, \mathbf{v})$, $d_i = \sigma(\mathbf{u}_i, \mathbf{x})$. Maka $L\mathbf{v} = \sum c_iL\mathbf{u}_i$ dan $L\mathbf{x} = \sum d_iL\mathbf{u}_i$, sehingga, karena kedua basis ortonormal,</p>
+        <p>$$\zeta(L\mathbf{v}, L\mathbf{x}) = \sum_{i} \bar{c}_i d_i = \sigma(\mathbf{v}, \mathbf{x}).$$</p>
+        <p>(Identitas $\sigma(\mathbf{v}, \mathbf{x}) = \sum_i \overline{\sigma(\mathbf{u}_i, \mathbf{v})}\,\sigma(\mathbf{u}_i, \mathbf{x})$ disebut identitas Parseval, atau "Pythagoras yang diperumum".)</p>
+        <p><span class="cek">[CEK: sumber menulis identitas ini sebagai $\sigma(\mathbf{v}, \mathbf{x}) = \sum_i \sigma(\mathbf{u}_i, \mathbf{v})\,\sigma(\mathbf{u}_i, \mathbf{x})$, tanpa konjugat pada faktor pertama. Itu hanya benar di ruang real; di ruang kompleks diperlukan $\overline{\sigma(\mathbf{u}_i, \mathbf{v})}$.]</span></p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Peta koordinat uniter (Modul, Korolari 5.7.5)</div>
+        <p>Untuk basis terurut $B = (\mathbf{b}_1, \dots, \mathbf{b}_n)$ dari $(V, \sigma)$, peta koordinat $T(\mathbf{v}) = [\mathbf{v}]_B$ ke $F^n$ (hasil kali titik) uniter jika dan hanya jika $B$ ortonormal.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> $T(\mathbf{b}_i) = \mathbf{e}_i$, jadi $\sigma(\mathbf{b}_i, \mathbf{b}_j) = \mathbf{e}_i \cdot \mathbf{e}_j = \delta_{ij}$.</p>
+        <p><strong>(⇐)</strong> Untuk $\mathbf{v} = \sum\alpha_i\mathbf{b}_i$ dan $\mathbf{w} = \sum\beta_j\mathbf{b}_j$: $\sigma(\mathbf{v}, \mathbf{w}) = \sum_{i,j}\bar{\alpha}_i\beta_j\,\sigma(\mathbf{b}_i, \mathbf{b}_j) = \sum_i\bar{\alpha}_i\beta_i = T(\mathbf{v})^*T(\mathbf{w})$. $T$ linier dan bijektif.</p>
+        <p>Intuisi: peta koordinat adalah "isomorfisma geometris" tepat ketika basisnya kerangka ortonormal.</p>
+      </details>
+
+      <h3>Matriks uniter</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Kolom ortonormal (Modul, Teorema 5.7.6)</div>
+        <p>$A \in M_n(F)$ uniter ($A^*A = I$) jika dan hanya jika kolom-kolomnya basis ortonormal $F^n$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk $A = [\mathbf{a}_1 \cdots \mathbf{a}_n]$, entri $(i, j)$ dari $A^*A$ adalah $\mathbf{a}_i^*\mathbf{a}_j = \mathbf{a}_i \cdot \mathbf{a}_j$. Jadi $A^*A = I$ tepat berarti $\mathbf{a}_i \cdot \mathbf{a}_j = \delta_{ij}$; $n$ vektor ortonormal di $F^n$ otomatis basis (Teorema "ortogonal ⇒ bebas linier").</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks uniter kompleks $2 \times 2$ (Modul, Contoh 5.7.C)</div>
+        <p>$A = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ i &amp; -i \end{pmatrix}$, kolom $\mathbf{a}_1 = \tfrac{1}{\sqrt{2}}(1, i)$ dan $\mathbf{a}_2 = \tfrac{1}{\sqrt{2}}(1, -i)$:</p>
+        <p>$$\mathbf{a}_1^*\mathbf{a}_1 = \tfrac{1}{2}(1 - i \cdot i) = 1, \qquad \mathbf{a}_2^*\mathbf{a}_2 = \tfrac{1}{2}(1 + i(-i)) = 1, \qquad \mathbf{a}_1^*\mathbf{a}_2 = \tfrac{1}{2}(1 + (-i)(-i)) = \tfrac{1}{2}(1 - 1) = 0.$$</p>
+        <p>Jadi $A$ uniter (Teorema 3) dan $A^{-1} = A^* = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; -i \\ 1 &amp; i \end{pmatrix}$. Perhatikan konjugat pada baris pertama hasil kali: tanpa konjugat, $\mathbf{a}_1^T\mathbf{a}_1 = \tfrac{1}{2}(1 + i^2) = 0$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Mempertahankan hasil kali titik (Modul, Teorema 5.7.7 dan Korolari 5.7.8)</div>
+        <p>$A \in M_n(F)$ uniter jika dan hanya jika $A\mathbf{v} \cdot A\mathbf{w} = \mathbf{v} \cdot \mathbf{w}$ untuk semua $\mathbf{v}, \mathbf{w} \in F^n$, yaitu jika dan hanya jika $T(\mathbf{v}) = A\mathbf{v}$ operator uniter pada $(F^n, \cdot)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> $A\mathbf{v} \cdot A\mathbf{w} = (A\mathbf{v})^*(A\mathbf{w}) = \mathbf{v}^*A^*A\mathbf{w} = \mathbf{v}^*\mathbf{w}$.</p>
+        <p><strong>(⇐)</strong> Dengan $\mathbf{v} = \mathbf{e}_i$, $\mathbf{w} = \mathbf{e}_j$: $\mathbf{a}_i \cdot \mathbf{a}_j = A\mathbf{e}_i \cdot A\mathbf{e}_j = \delta_{ij}$, jadi kolom ortonormal dan $A$ uniter (Teorema 3). Cara lain: $\mathbf{v}^*(A^*A - I)\mathbf{w} = 0$ untuk semua $\mathbf{v}, \mathbf{w}$, dan pilihan $\mathbf{e}_i, \mathbf{e}_j$ memberi setiap entri $A^*A - I$ nol.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Operator uniter ⇔ matriks uniter (Modul, Teorema 5.7.9)</div>
+        <p>Misalkan $V$ berdimensi hingga. $L \in \mathcal{L}(V)$ uniter jika dan hanya jika $[L]_B$ uniter untuk suatu (dan karenanya setiap) basis ortonormal $B$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Kolom ke-$j$ dari $[L]_B$ adalah $[L\mathbf{b}_j]_B$. Karena peta koordinat uniter (Akibat 1), $\set{L\mathbf{b}_j}$ ortonormal di $V$ jika dan hanya jika kolom-kolom $[L]_B$ ortonormal di $F^n$. Dengan Teorema 2 dan Teorema 3 diperoleh kesetaraannya. Karena syarat "$L$ uniter" tidak bergantung pada $B$, hasilnya berlaku untuk setiap basis ortonormal.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Ekuivalensi (Modul, Teorema 5.7.10)</div>
+        <p>Misalkan $B$ basis ortonormal $(V, \sigma)$ berdimensi hingga, $L \in \mathcal{L}(V)$, dan $A = [L]_B$. Pernyataan berikut ekuivalen:</p>
+        <ol type="a">
+          <li>$L$ operator uniter;</li>
+          <li>$A$ matriks uniter;</li>
+          <li>$A^{-1}$ matriks uniter;</li>
+          <li>$L^{-1}$ operator uniter;</li>
+          <li>$A^* = A^{-1}$;</li>
+          <li>kolom-kolom $A$ basis ortonormal $F^n$;</li>
+          <li>baris-baris $A$ basis ortonormal $F^n$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Peta koordinat $T$ uniter (Akibat 1) dan $T \circ L = A \circ T$:</p>
+        <p>$$\begin{CD} V @>{L}>> V \\ @V{T}VV @VV{T}V \\ F^n @>{A}>> F^n \end{CD}$$</p>
+        <ul>
+          <li><strong>(a) ⇔ (b):</strong> Teorema 5.</li>
+          <li><strong>(b) ⇔ (e):</strong> jika $A^*A = I$, maka $A$ persegi dan invertibel, dan mengalikan di <em>kanan</em> dengan $A^{-1}$ memberi $A^* = A^{-1}$. Sebaliknya $A^* = A^{-1}$ memberi $A^*A = I$.</li>
+          <li><strong>(b) ⇔ (c):</strong> jika $A^{-1} = A^*$, maka $(A^{-1})^*A^{-1} = AA^* = AA^{-1} = I$. Sebaliknya terapkan arah yang sama pada $A^{-1}$, karena $(A^{-1})^{-1} = A$.</li>
+          <li><strong>(a) ⇔ (d):</strong> Lemma 1(a), diterapkan pada $L$ dan pada $L^{-1}$.</li>
+          <li><strong>(b) ⇔ (f):</strong> Teorema 3.</li>
+          <li><strong>(b) ⇔ (g):</strong> baris-baris $A$ (dikonjugasikan) adalah kolom-kolom $A^*$, dan entri $(i, j)$ dari $AA^*$ adalah hasil kali titik baris $i$ dan baris $j$. Untuk matriks persegi, $AA^* = I \iff A^*A = I$.</li>
+        </ul>
+        <p>Jadi semua pernyataan ekuivalen. Ringkasnya: transformasi uniter = isomorfisma yang mempertahankan hasil kali dalam; di ruang real = transformasi ortogonal; dalam koordinat ortonormal = matriks dengan kolom (dan baris) ortonormal.</p>
+      </details>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Memakai $A^T$ alih-alih $A^*$ di ruang kompleks.</strong> Untuk matriks kompleks, uji $A^*A = I$; $A^TA = I$ mendefinisikan matriks ortogonal kompleks, yang lain lagi.</li>
+        <li><strong>Menguji uniter terhadap basis yang tidak ortonormal.</strong> Teorema 5 hanya berlaku untuk basis ortonormal; terhadap basis lain, operator uniter bisa diwakili matriks yang tidak uniter.</li>
+        <li><strong>Hanya memeriksa norma kolom.</strong> Kolom harus juga saling ortogonal; kolom bernorma 1 saja tidak cukup.</li>
+        <li><strong>Mengira kolom ortonormal tetapi baris tidak.</strong> Untuk matriks persegi, keduanya selalu bersamaan (Teorema 6).</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Untuk $U = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ i &amp; -i \end{pmatrix}$ di $\C^2$, buktikan $U^*U = I$ dan tunjukkan bahwa transformasi uniter mempertahankan norma.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$U^* = \bar{U}^T = \tfrac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; -i \\ 1 &amp; i \end{pmatrix}$.</li>
+            <li>$U^*U = \tfrac{1}{2}\begin{pmatrix} 1 &amp; -i \\ 1 &amp; i \end{pmatrix}\begin{pmatrix} 1 &amp; 1 \\ i &amp; -i \end{pmatrix} = \tfrac{1}{2}\begin{pmatrix} 1 + 1 &amp; 1 - 1 \\ 1 - 1 &amp; 1 + 1 \end{pmatrix} = I$. Jadi $U$ uniter dan $U^{-1} = U^*$.</li>
+            <li>Untuk $\mathbf{x} \in \C^2$: $\norm{U\mathbf{x}}^2 = (U\mathbf{x})^*(U\mathbf{x}) = \mathbf{x}^*U^*U\mathbf{x} = \mathbf{x}^*\mathbf{x} = \norm{\mathbf{x}}^2$.</li>
+          </ol>
+          <p>Transformasi uniter adalah analog kompleks transformasi ortogonal (rotasi dan pencerminan, $Q^TQ = I$), sehingga mempertahankan panjang dan sudut.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa jika $A$ uniter, maka $\abs{\det A} = 1$. Apakah kebalikannya benar?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\det(A^*) = \det(\bar{A}^T) = \det\bar{A} = \overline{\det A}$, karena determinan adalah polinomial dalam entri berkoefisien bulat.</li>
+            <li>Dari $A^*A = I$: $1 = \det(A^*)\det A = \overline{\det A}\,\det A = \abs{\det A}^2$. Jadi $\abs{\det A} = 1$.</li>
+            <li>Kebalikannya salah: $A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}$ ber-$\det = 1$, tetapi kolom $(1, 0)$ dan $(1, 1)$ tidak ortogonal, jadi $A$ tidak uniter.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Diberikan kolom pertama $\mathbf{a}_1 = \tfrac{1}{\sqrt{3}}(1, 1 + i)$. Tentukan kolom kedua $\mathbf{a}_2$ sehingga $A = [\mathbf{a}_1\ \mathbf{a}_2]$ uniter.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Cek $\norm{\mathbf{a}_1}^2 = \tfrac{1}{3}(1 + \abs{1 + i}^2) = \tfrac{1}{3}(1 + 2) = 1$.</li>
+            <li>Cari $(x, y)$ dengan $\mathbf{a}_1^*(x, y)^T = 0$: $\bar{1}x + \overline{(1 + i)}y = x + (1 - i)y = 0$. Pilih $y = 1$, maka $x = -1 + i$.</li>
+            <li>Normalkan: $\abs{-1 + i}^2 + 1 = 3$, jadi $\mathbf{a}_2 = \tfrac{1}{\sqrt{3}}(-1 + i, 1)$.</li>
+            <li>Cek: $\mathbf{a}_1^*\mathbf{a}_2 = \tfrac{1}{3}\bigl(1(-1 + i) + (1 - i) \cdot 1\bigr) = 0$.</li>
+          </ol>
+          <p>Jadi $A = \tfrac{1}{\sqrt{3}}\begin{pmatrix} 1 &amp; -1 + i \\ 1 + i &amp; 1 \end{pmatrix}$ uniter (Teorema 3). Kolom kedua tidak tunggal: kalikan dengan $e^{i\theta}$ mana pun.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \zeta(L\mathbf{v}, L\mathbf{x}) = \sigma(\mathbf{v}, \mathbf{x}), \qquad A^*A = AA^* = I \iff A^{-1} = A^*, \qquad A\mathbf{v} \cdot A\mathbf{w} = \mathbf{v} \cdot \mathbf{w}, \\
+        \sigma(\mathbf{v}, \mathbf{x}) = \sum_i \overline{\sigma(\mathbf{u}_i, \mathbf{v})}\,\sigma(\mathbf{u}_i, \mathbf{x}) \ \text{(Parseval)}, \qquad \abs{\det A} = 1
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.7: Definisi 5.7.1, Contoh 5.7.A–5.7.C, Lemma 5.7.2, Teorema 5.7.3–5.7.4, Korolari 5.7.5, Teorema 5.7.6–5.7.7, Korolari 5.7.8, Teorema 5.7.9–5.7.10. Beberapa langkah bukti dirapikan: pada Korolari 5.7.5 sumber menulis $\sum\alpha_i\bar{\beta}_j$ (konvensi linier di argumen pertama), di sini $\sum\bar{\alpha}_i\beta_j$ sesuai konvensi bab; pada (b)⇔(e) perkalian dengan $A^{-1}$ dilakukan di kanan; (a)⇔(d) memakai Lemma 5.7.2(a) alih-alih adjoin yang baru didefinisikan di §5.8. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.6 (Latihan 1).</li>
+        <li>Latihan 2–3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

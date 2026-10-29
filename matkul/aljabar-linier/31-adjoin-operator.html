@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Adjoin Operator · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Adjoin Operator</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Di dimensi hingga, setiap fungsional linier berbentuk $\mathbf{w} \mapsto \sigma(\mathbf{v}, \mathbf{w})$ untuk tepat satu $\mathbf{v}$ (representasi Riesz); peta $\mathbf{v} \mapsto f_{\mathbf{v}}$ linier-konjugat.</li>
+        <li>Adjoin $L^\dagger$ adalah operator tunggal dengan $\sigma(\mathbf{v}, L\mathbf{w}) = \sigma(L^\dagger\mathbf{v}, \mathbf{w})$.</li>
+        <li>$(L + cT)^\dagger = L^\dagger + \bar{c}T^\dagger$, $(L^\dagger)^\dagger = L$, $(LT)^\dagger = T^\dagger L^\dagger$.</li>
+        <li>Terhadap basis <strong>ortonormal</strong>, $[L^\dagger]_B = [L]_B^\dagger$ (transpos konjugat).</li>
+        <li>$L$ swadjoin jika $L = L^\dagger$; ini setara dengan matriksnya Hermitian terhadap basis ortonormal. Nilai eigennya real.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Untuk matriks $A \in M_n(F)$ dan hasil kali titik, $A\mathbf{v} \cdot \mathbf{w} = (A\mathbf{v})^\dagger\mathbf{w} = \mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v} \cdot A^\dagger\mathbf{w}$. Pertanyaannya: untuk ruang hasil kali dalam sembarang $(V, \sigma)$ dan $L \in \mathcal{L}(V)$, adakah $L^\dagger$ dengan $\sigma(L^\dagger\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L\mathbf{w})$? Jawabannya memakai hubungan ruang dual dan hasil kali dalam (topik Dualitas dan Bidual), diperluas ke kasus Hermitian.</p>
+      <p><span class="cek">[CEK: pada pengantar §5.8 di sumber, rantai kesamaannya ditulis $\cdots = \mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w} = \mathbf{v} \cdot A\mathbf{w}$. Langkah $\mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w}$ hanya benar jika $A$ Hermitian; yang benar secara umum $A\mathbf{v} \cdot \mathbf{w} = \mathbf{v} \cdot A^\dagger\mathbf{w}$, seperti ditulis di atas.]</span></p>
+
+      <h3>Representasi Riesz</h3>
+
+      <div class="box lemma">
+        <div class="box-title">Fungsional sebagai hasil kali dalam (Modul, Lemma 5.8.1)</div>
+        <p>Jika $(V, \sigma)$ berdimensi hingga, maka</p>
+        <p>$$V \to V^*, \qquad \mathbf{v} \mapsto f_{\mathbf{v}}, \qquad f_{\mathbf{v}}(\mathbf{w}) = \sigma(\mathbf{v}, \mathbf{w})$$</p>
+        <p>adalah bijeksi <strong>linier-konjugat</strong> (conjugate-linear): $f_{\alpha\mathbf{v} + \beta\mathbf{u}} = \bar{\alpha}f_{\mathbf{v}} + \bar{\beta}f_{\mathbf{u}}$. Di ruang real peta ini linier.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li><strong>Linier-konjugat:</strong> $\sigma(\alpha\mathbf{v} + \beta\mathbf{u}, \mathbf{w}) = \bar{\alpha}\sigma(\mathbf{v}, \mathbf{w}) + \bar{\beta}\sigma(\mathbf{u}, \mathbf{w})$ untuk setiap $\mathbf{w}$. (Setiap $f_{\mathbf{v}}$ sendiri linier karena $\sigma$ linier di argumen kedua.)</li>
+          <li><strong>Injektif:</strong> jika $f_{\mathbf{v}} = 0$, maka $\sigma(\mathbf{v}, \mathbf{w}) = 0$ untuk semua $\mathbf{w}$, termasuk $\mathbf{w} = \mathbf{v}$; jadi $\mathbf{v} = \mathbf{0}$.</li>
+          <li><strong>Surjektif (konstruktif):</strong> ambil basis ortonormal $\set{\mathbf{e}_1, \dots, \mathbf{e}_n}$ dan $f \in V^*$, tulis $a_i = f(\mathbf{e}_i)$. Untuk $\mathbf{w} = \sum_j w_j\mathbf{e}_j$ dengan $w_j = \sigma(\mathbf{e}_j, \mathbf{w})$, berlaku $f(\mathbf{w}) = \sum_j a_jw_j$. Pilih $\mathbf{v} = \sum_i \bar{a}_i\mathbf{e}_i$. Karena $\sigma$ linier-konjugat di argumen pertama,
+            $$\sigma(\mathbf{v}, \mathbf{w}) = \sum_{i,j}\overline{\bar{a}_i}\,w_j\,\sigma(\mathbf{e}_i, \mathbf{e}_j) = \sum_j a_jw_j = f(\mathbf{w}).$$
+            (Atau: $\dim V = \dim V^*$, dan peta linier-konjugat yang injektif antara ruang berdimensi sama juga surjektif.)</li>
+        </ol>
+        <p><span class="cek">[CEK: pada bukti konstruktif di sumber, koordinat ditulis $w_i = \sigma(\mathbf{w}, \mathbf{e}_i)$ dan diperoleh $\sigma(\mathbf{v}, \mathbf{w}) = \sum\bar{a}_iw_i$, lalu disamakan dengan $\sum a_iw_i$. Dengan konvensi linier di argumen kedua, $w_i = \sigma(\mathbf{e}_i, \mathbf{w})$ dan $\sigma(\mathbf{v}, \mathbf{w}) = \sum a_iw_i$; pilihan $\mathbf{v} = \sum\bar{a}_i\mathbf{e}_i$ tetap benar, hanya langkah perantaranya yang perlu dibetulkan seperti di atas.]</span></p>
+      </details>
+
+      <h3>Operator adjoin</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Keberadaan dan ketunggalan adjoin (Modul, Teorema 5.8.2)</div>
+        <p>Jika $(V, \sigma)$ berdimensi hingga dan $L \in \mathcal{L}(V)$, ada tepat satu $L^\dagger \in \mathcal{L}(V)$ dengan</p>
+        <p>$$\sigma\bigl(\mathbf{v}, L(\mathbf{w})\bigr) = \sigma\bigl(L^\dagger(\mathbf{v}), \mathbf{w}\bigr) \quad \text{untuk semua } \mathbf{v}, \mathbf{w} \in V.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li><strong>Definisi.</strong> Tetapkan $\mathbf{v}$. Fungsi $f(\mathbf{w}) = \sigma(\mathbf{v}, L\mathbf{w})$ linier, jadi $f \in V^*$. Menurut Lemma 1 ada $\mathbf{x}$ tunggal dengan $f = f_{\mathbf{x}}$. Definisikan $L^\dagger(\mathbf{v}) := \mathbf{x}$.</li>
+          <li><strong>Linier.</strong> Untuk setiap $\mathbf{w}$: $\sigma(L^\dagger(c\mathbf{v}_1 + \mathbf{v}_2), \mathbf{w}) = \sigma(c\mathbf{v}_1 + \mathbf{v}_2, L\mathbf{w}) = \bar{c}\,\sigma(L^\dagger\mathbf{v}_1, \mathbf{w}) + \sigma(L^\dagger\mathbf{v}_2, \mathbf{w}) = \sigma(cL^\dagger\mathbf{v}_1 + L^\dagger\mathbf{v}_2, \mathbf{w})$. Karena tak terdegenerasi, $L^\dagger(c\mathbf{v}_1 + \mathbf{v}_2) = cL^\dagger\mathbf{v}_1 + L^\dagger\mathbf{v}_2$.</li>
+          <li><strong>Tunggal.</strong> Jika $T$ juga memenuhi, maka $\sigma(L^\dagger\mathbf{v} - T\mathbf{v}, \mathbf{w}) = 0$ untuk semua $\mathbf{w}$, jadi $L^\dagger\mathbf{v} = T\mathbf{v}$.</li>
+        </ol>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Operator adjoin (Modul, Definisi 5.8.3)</div>
+        <p>Untuk $L \in \mathcal{L}(V)$ di ruang hasil kali dalam sembarang, $L^\dagger \in \mathcal{L}(V)$ dengan $\sigma(\mathbf{v}, L\mathbf{w}) = \sigma(L^\dagger\mathbf{v}, \mathbf{w})$ untuk semua $\mathbf{v}, \mathbf{w}$ disebut <strong>operator adjoin</strong> (adjoint) dari $L$. Argumen ketunggalan di atas tidak memakai dimensi hingga: jika adjoin ada, ia tunggal. (Di dimensi tak hingga adjoin tidak selalu ada.)</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Adjoin bekerja dua arah (Modul, Lemma 5.8.4)</div>
+        <p>Jika $L^\dagger$ ada, maka juga $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L^\dagger\mathbf{w})$ untuk semua $\mathbf{v}, \mathbf{w}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Dengan simetri Hermitian dua kali: $\sigma(L\mathbf{v}, \mathbf{w}) = \overline{\sigma(\mathbf{w}, L\mathbf{v})} = \overline{\sigma(L^\dagger\mathbf{w}, \mathbf{v})} = \sigma(\mathbf{v}, L^\dagger\mathbf{w})$.</p>
+        <p><span class="cek">[CEK: sumber menulis $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{w}, L\mathbf{v}) = \sigma(L^\dagger\mathbf{w}, \mathbf{v}) = \sigma(\mathbf{v}, L^\dagger\mathbf{w})$ tanpa konjugat; langkah-langkah itu hanya benar di ruang real, walaupun hasil akhirnya benar juga di ruang kompleks.]</span></p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Sifat aljabar adjoin (Modul, Lemma 5.8.5)</div>
+        <p>Jika adjoin yang terlibat ada, maka:</p>
+        <ol>
+          <li>$(L + cT)^\dagger = L^\dagger + \bar{c}\,T^\dagger$;</li>
+          <li>$(L^\dagger)^\dagger = L$;</li>
+          <li>$(L \circ T)^\dagger = T^\dagger \circ L^\dagger$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Semuanya dari ketunggalan adjoin: cukup tunjukkan bahwa ruas kanan memenuhi persamaan definisi.</p>
+        <ol>
+          <li>$\sigma(\mathbf{v}, (L + cT)\mathbf{w}) = \sigma(L^\dagger\mathbf{v}, \mathbf{w}) + c\,\sigma(T^\dagger\mathbf{v}, \mathbf{w}) = \sigma\bigl((L^\dagger + \bar{c}T^\dagger)\mathbf{v}, \mathbf{w}\bigr)$, karena $c\,\sigma(\mathbf{x}, \mathbf{w}) = \sigma(\bar{c}\mathbf{x}, \mathbf{w})$.</li>
+          <li>Adjoin dari $L^\dagger$ adalah operator $M$ dengan $\sigma(\mathbf{v}, L^\dagger\mathbf{w}) = \sigma(M\mathbf{v}, \mathbf{w})$. Menurut Lemma 2, $M = L$ memenuhi syarat ini. Jadi $(L^\dagger)^\dagger = L$.</li>
+          <li>$\sigma(\mathbf{v}, LT\mathbf{w}) = \sigma(L^\dagger\mathbf{v}, T\mathbf{w}) = \sigma(T^\dagger L^\dagger\mathbf{v}, \mathbf{w})$.</li>
+        </ol>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Matriks adjoin (Modul, Teorema 5.8.6)</div>
+        <p>Jika $B = \set{\mathbf{u}_1, \dots, \mathbf{u}_n}$ basis ortonormal $(V, \sigma)$ dan $A = [L]_B$, maka $[L^\dagger]_B = A^\dagger$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Koefisien $\mathbf{u}_i$ dalam $L\mathbf{u}_j$ adalah (Lemma koefisien) $a_{ij} = \sigma(\mathbf{u}_i, L\mathbf{u}_j) = \sigma(L^\dagger\mathbf{u}_i, \mathbf{u}_j) = \overline{\sigma(\mathbf{u}_j, L^\dagger\mathbf{u}_i)}$. Padahal $\sigma(\mathbf{u}_j, L^\dagger\mathbf{u}_i)$ adalah entri $(j, i)$ dari $[L^\dagger]_B$. Jadi entri $(j, i)$ dari $[L^\dagger]_B$ adalah $\bar{a}_{ij}$, yaitu entri $(j, i)$ dari $A^\dagger$.</p>
+        <p>Syarat ortonormal penting: terhadap basis sembarang, $[L^\dagger]_B$ umumnya bukan $A^\dagger$ (Latihan 3).</p>
+      </details>
+
+      <h3>Operator swadjoin</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Swadjoin (Modul, Definisi 5.8.7)</div>
+        <p>$L$ <strong>swadjoin</strong> (self-adjoint) jika $L^\dagger$ ada dan $L = L^\dagger$, yaitu $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L\mathbf{w})$. Di ruang real, operator swadjoin disebut juga <strong>operator simetris</strong>.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks spin Pauli (Modul, Contoh 5.8.8)</div>
+        <p>Keadaan spin elektron diwakili subruang berdimensi satu di $\C^2$. Matriks Pauli</p>
+        <p>$$\sigma_x = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}, \qquad \sigma_y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}, \qquad \sigma_z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}$$</p>
+        <p>sekaligus swadjoin ($\sigma_k^\dagger = \sigma_k$) dan uniter ($\sigma_k^\dagger\sigma_k = \sigma_k^2 = I$).</p>
+        <p><span class="cek">[CEK: sumber menyebut operator swadjoin "merepresentasikan transisi antar keadaan spin". Dalam mekanika kuantum yang lazim, operator swadjoin mewakili <em>observabel</em> (besaran yang diukur), sedangkan perubahan/transisi keadaan diwakili operator uniter (lihat Real Problem di bawah dan topik Komputasi Kuantum). Pauli kebetulan keduanya.]</span></p>
+      </div>
+
+      <div class="box akibat">
+        <div class="box-title">Swadjoin ⇔ Hermitian (Modul, Korolari 5.8.9)</div>
+        <p>Di $(V, \sigma)$ berdimensi hingga, $L$ swadjoin jika dan hanya jika $[L]_B$ Hermitian ($A = A^\dagger$) untuk suatu (dan karenanya setiap) basis ortonormal $B$. Di ruang real: "Hermitian" diganti "simetris" dan $A^\dagger$ diganti $A^T$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> $A = [L]_B = [L^\dagger]_B = A^\dagger$ (Teorema 2).</p>
+        <p><strong>(⇐)</strong> Dengan koordinat ortonormal, $\sigma(\mathbf{v}, \mathbf{w}) = \mathbf{x}^*\mathbf{y}$ untuk $\mathbf{x} = [\mathbf{v}]_B$, $\mathbf{y} = [\mathbf{w}]_B$ (peta koordinat uniter). Maka $\sigma(L\mathbf{v}, \mathbf{w}) = (A\mathbf{x})^*\mathbf{y} = \mathbf{x}^*A^*\mathbf{y} = \mathbf{x}^*A\mathbf{y} = \sigma(\mathbf{v}, L\mathbf{w})$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Proyeksi koordinat (Modul, Contoh 5.8.10)</div>
+        <p>Di $\C^3$ (hasil kali titik), $L(z_1, z_2, z_3) = (z_1, 0, z_3)$ swadjoin:</p>
+        <p>$$L\mathbf{z} \cdot \mathbf{w} = \bar{z}_1w_1 + \bar{z}_3w_3 = \mathbf{z} \cdot L\mathbf{w}.$$</p>
+        <p>(Sumber menulis $z_1w_1 + z_3w_3$, tanpa konjugat; kesimpulannya sama.) Matriksnya $\operatorname{diag}(1, 0, 1)$, Hermitian.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Adjoin, swadjoin, dan nilai eigen di $\C^2$ (Modul, Contoh 5.8.11)</div>
+        <p>$A = \begin{pmatrix} 2 &amp; 1 + i \\ 1 - i &amp; 3 \end{pmatrix}$ terhadap basis standar.</p>
+        <ol>
+          <li>$A^\dagger = \bar{A}^T = \begin{pmatrix} 2 &amp; 1 + i \\ 1 - i &amp; 3 \end{pmatrix} = A$: diagonal real, entri luar diagonal saling konjugat. Jadi $L$ swadjoin, dan $\langle L\mathbf{v}, \mathbf{w} \rangle = \mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w} = \langle \mathbf{v}, L\mathbf{w} \rangle$.</li>
+          <li>$\det(A - \lambda I) = (2 - \lambda)(3 - \lambda) - (1 + i)(1 - i) = \lambda^2 - 5\lambda + 4 = (\lambda - 1)(\lambda - 4)$. Nilai eigen $1$ dan $4$, keduanya real.</li>
+          <li>$\lambda = 1$: $v_1 + (1 + i)v_2 = 0$, jadi $\mathbf{v} = (-1 - i, 1)$. $\lambda = 4$: $-2v_1 + (1 + i)v_2 = 0$, jadi $\mathbf{v} = (1 + i, 2)$.</li>
+          <li>Ortogonal: $\overline{(-1 - i)}(1 + i) + 1 \cdot 2 = (-1 + i)(1 + i) + 2 = -2 + 2 = 0$.</li>
+        </ol>
+        <p>Vektor eigen untuk nilai eigen berbeda dari operator swadjoin selalu ortogonal (teorema spektral, Bab 6).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Real problem: pengukuran spin (Modul, §5.8.12)</div>
+        <p>Qubit $\lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle$, $\abs{\alpha}^2 + \abs{\beta}^2 = 1$. Observabel spin-$z$ adalah $Z = \sigma_z$, dengan nilai eigen $+1$ (untuk $\lvert 0\rangle$) dan $-1$ (untuk $\lvert 1\rangle$). Untuk $\lvert\psi\rangle = \tfrac{1}{\sqrt{3}}\lvert 0\rangle + \sqrt{\tfrac{2}{3}}\lvert 1\rangle$:</p>
+        <ol>
+          <li>Proyektor ke ruang eigen: $P_+ = \lvert 0\rangle\langle 0\rvert = \operatorname{diag}(1, 0)$ dan $P_- = \lvert 1\rangle\langle 1\rvert = \operatorname{diag}(0, 1)$, keduanya swadjoin.</li>
+          <li>$\Pr(+1) = \langle\psi\rvert P_+\lvert\psi\rangle = \abs{\langle 0 \vert \psi\rangle}^2 = \tfrac{1}{3}$ dan $\Pr(-1) = \abs{\langle 1 \vert \psi\rangle}^2 = \tfrac{2}{3}$. Jumlahnya $1$.</li>
+          <li>Nilai harap $\langle\psi\rvert Z\lvert\psi\rangle = \tfrac{1}{3}(+1) + \tfrac{2}{3}(-1) = -\tfrac{1}{3}$, real karena $Z$ swadjoin.</li>
+        </ol>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira adjoin selalu transpos (konjugat) matriksnya.</strong> Itu hanya benar terhadap basis ortonormal (Latihan 3).</li>
+        <li><strong>$(LT)^\dagger = L^\dagger T^\dagger$.</strong> Urutannya terbalik: $(LT)^\dagger = T^\dagger L^\dagger$.</li>
+        <li><strong>$(cL)^\dagger = cL^\dagger$.</strong> Di ruang kompleks, $(cL)^\dagger = \bar{c}L^\dagger$. Misalnya $(iI)^\dagger = -iI$, jadi $iI$ tidak swadjoin.</li>
+        <li><strong>Menyamakan swadjoin dengan uniter.</strong> Pauli kebetulan keduanya, tetapi $2I$ swadjoin dan tidak uniter, sedangkan rotasi $90^\circ$ uniter dan tidak swadjoin.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$T \colon \R^2 \to \R^2$ bermatriks $A = \begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 3 \end{pmatrix}$ terhadap basis standar (hasil kali dalam standar). Tentukan $T^*$ dan periksa $\langle T\mathbf{x}, \mathbf{y} \rangle = \langle \mathbf{x}, T^*\mathbf{y} \rangle$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Basis standar ortonormal dan ruangnya real, jadi (Teorema 2) $[T^*] = A^T = \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 3 \end{pmatrix}$.</li>
+            <li>$T\mathbf{x} = (2x_1 + x_2, 3x_2)$, jadi $\langle T\mathbf{x}, \mathbf{y} \rangle = 2x_1y_1 + x_2y_1 + 3x_2y_2$.</li>
+            <li>$T^*\mathbf{y} = (2y_1, y_1 + 3y_2)$, jadi $\langle \mathbf{x}, T^*\mathbf{y} \rangle = 2x_1y_1 + x_2y_1 + 3x_2y_2$. Sama.</li>
+          </ol>
+          <p>Di $\C^n$ adjoin adalah transpos konjugat $\bar{A}^T$. Operator swadjoin jika $T = T^*$, dan <strong>normal</strong> jika $TT^* = T^*T$ (dibahas di Bab 6).</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Di $\C^2$ (hasil kali titik), tentukan adjoin $L$ bermatriks $A = \begin{pmatrix} 1 &amp; i \\ 2 &amp; 1 + i \end{pmatrix}$. Apakah $L$ swadjoin? Apakah $L + L^\dagger$ swadjoin?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A^\dagger = \bar{A}^T = \begin{pmatrix} 1 &amp; 2 \\ -i &amp; 1 - i \end{pmatrix}$ (Teorema 2, basis standar ortonormal).</li>
+            <li>$A^\dagger \ne A$ (misalnya entri $(1, 2)$: $2 \ne i$), jadi $L$ tidak swadjoin.</li>
+            <li>$(L + L^\dagger)^\dagger = L^\dagger + (L^\dagger)^\dagger = L^\dagger + L$ (Lemma 3), jadi swadjoin. Matriksnya $\begin{pmatrix} 2 &amp; 2 + i \\ 2 - i &amp; 2 \end{pmatrix}$, memang Hermitian.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada $\R^2$ dengan $\sigma(\mathbf{v}, \mathbf{w}) = \mathbf{v}^TD\mathbf{w}$, $D = \operatorname{diag}(1, 2)$, misalkan $L\mathbf{w} = A\mathbf{w}$ dengan $A = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}$. Tentukan $L^\dagger$ dan bandingkan dengan $A^T$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Syarat: $\sigma(\mathbf{v}, A\mathbf{w}) = \mathbf{v}^TDA\mathbf{w}$ harus sama dengan $\sigma(M\mathbf{v}, \mathbf{w}) = \mathbf{v}^TM^TD\mathbf{w}$ untuk semua $\mathbf{v}, \mathbf{w}$. Jadi $M^TD = DA$, sehingga $M = D^{-1}A^TD$.</li>
+            <li>$A^TD = \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}$, dan $D^{-1}A^TD = \begin{pmatrix} 0 &amp; 0 \\ \tfrac{1}{2} &amp; 0 \end{pmatrix}$.</li>
+            <li>Cek: $\sigma(\mathbf{v}, A\mathbf{w}) = \sigma((v_1, v_2), (w_2, 0)) = v_1w_2$, dan $\sigma(M\mathbf{v}, \mathbf{w}) = \sigma((0, \tfrac{v_1}{2}), \mathbf{w}) = 2 \cdot \tfrac{v_1}{2}w_2 = v_1w_2$.</li>
+          </ol>
+          <p>Jadi $L^\dagger$ bermatriks $\begin{pmatrix} 0 &amp; 0 \\ 1/2 &amp; 0 \end{pmatrix} \ne A^T$. Basis standar tidak ortonormal terhadap $\sigma$ ($\norm{\mathbf{e}_2}^2 = 2$), sehingga Teorema 2 tidak berlaku.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        f_{\mathbf{v}}(\mathbf{w}) = \sigma(\mathbf{v}, \mathbf{w}), \qquad \sigma(\mathbf{v}, L\mathbf{w}) = \sigma(L^\dagger\mathbf{v}, \mathbf{w}), \qquad \sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L^\dagger\mathbf{w}), \\
+        (L + cT)^\dagger = L^\dagger + \bar{c}T^\dagger, \quad (L^\dagger)^\dagger = L, \quad (LT)^\dagger = T^\dagger L^\dagger, \quad [L^\dagger]_B = [L]_B^\dagger \ (B \text{ ortonormal})
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.8: pengantar, Lemma 5.8.1, Teorema 5.8.2, Definisi 5.8.3, Lemma 5.8.4–5.8.5, Teorema 5.8.6, Definisi 5.8.7, Contoh 5.8.8, Korolari 5.8.9, Contoh 5.8.10–5.8.11, Real Problem 5.8.12. Bukti Lemma 5.8.5(2) dan langkah terakhir bukti Teorema 5.8.6 (konjugat $\overline{\sigma(\mathbf{u}_j, L^\dagger\mathbf{u}_i)}$ yang di sumber tidak tertulis) ditulis ulang. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.7 (Latihan 1).</li>
+        <li>Latihan 2–3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

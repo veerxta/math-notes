@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Panjang dan Sudut · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Panjang dan Sudut</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Norma terinduksi $\norm{\mathbf{v}} = \sqrt{\sigma(\mathbf{v}, \mathbf{v})}$ dan jarak $\norm{\mathbf{v} - \mathbf{w}}$; barisan konvergen dalam norma jika $\norm{f_n - g} \to 0$.</li>
+        <li>Ketaksamaan Cauchy–Schwarz: $\abs{\sigma(\mathbf{w}, \mathbf{v})} \le \norm{\mathbf{v}}\norm{\mathbf{w}}$. Dari sini diperoleh ketaksamaan segitiga.</li>
+        <li>Sudut: $\cos\varphi = \dfrac{\operatorname{Re}\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{v}}\norm{\mathbf{w}}}$, $\varphi \in [0, \pi]$.</li>
+        <li>Hukum kosinus berlaku di setiap ruang hasil kali dalam; Pythagoras adalah kasus $\varphi = \pi/2$.</li>
+        <li>Panjang, jarak, dan ortogonalitas bergantung pada hasil kali dalam yang dipilih, bukan hanya pada ruang vektornya.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Norma dan konvergensi</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Norma dan jarak (Modul, Definisi 5.3.1)</div>
+        <p><strong>Panjang</strong> atau <strong>norma</strong> vektor $\mathbf{v}$ di ruang hasil kali dalam $(V, \sigma)$ adalah</p>
+        <p>$$\norm{\mathbf{v}} := \sqrt{\sigma(\mathbf{v}, \mathbf{v})}.$$</p>
+        <p><strong>Jarak</strong> antara $\mathbf{v}$ dan $\mathbf{w}$ adalah $\norm{\mathbf{v} - \mathbf{w}}$. Norma ini disebut <strong>norma terinduksi</strong> (induced norm). Ada pula norma yang tidak berasal dari hasil kali dalam (lihat latihan pada sumber).</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Norma memperumum nilai mutlak</div>
+        <p>Dengan hasil kali titik, $\R$ dan $\C$ sendiri adalah ruang hasil kali dalam, dan normanya $\norm{a} = \sqrt{\bar{a}a} = \abs{a}$. Jadi $\abs{\cdot}$ (modulus skalar) adalah kasus khusus $\norm{\cdot}$. Karena norma selalu bilangan real, konvergensi di $V$ dapat didefinisikan lewat konvergensi di $\R$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Konvergensi dalam norma (Modul, Definisi 5.3.2)</div>
+        <p>Barisan $\set{f_n}$ di ruang hasil kali dalam $V$ <strong>konvergen ke $g$</strong> jika $\norm{f_n - g} \to 0$ di $\R$. Ini disebut <strong>konvergensi dalam norma</strong> (normwise convergence), berbeda dari <strong>konvergensi titik demi titik</strong> (pointwise convergence). Di topik ruang hasil kali dalam fungsi akan muncul barisan yang konvergen dalam norma tetapi tidak titik demi titik.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Barisan fungsi yang konvergen ke nol (Modul, Contoh 5.3.3)</div>
+        <p>Pada $C([0, 1])$ dengan $\sigma(f, g) = \int_0^1 f(t)g(t)\,dt$, ambil $f_n(t) = t/n$. Maka</p>
+        <p>$$\norm{f_n}^2 = \int_0^1 \frac{t^2}{n^2}\,dt = \frac{1}{3n^2}, \qquad \norm{f_n} = \frac{1}{\sqrt{3}\,n} \to 0.$$</p>
+        <p>Jadi $f_n \to 0$ dalam norma. (Di sini $f_n \to 0$ juga titik demi titik.)</p>
+      </div>
+
+      <h3>Ketaksamaan Cauchy–Schwarz</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Ketaksamaan Cauchy–Schwarz (Modul, Teorema 5.3.4)</div>
+        <p>Jika $(V, \sigma)$ ruang hasil kali dalam dengan norma terinduksi dan $\mathbf{v}, \mathbf{w} \in V$, maka</p>
+        <p>$$\abs{\sigma(\mathbf{w}, \mathbf{v})}^2 \le \norm{\mathbf{v}}^2\norm{\mathbf{w}}^2.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $\mathbf{v}$ atau $\mathbf{w}$ nol, kedua ruas nol. Anggap $\mathbf{w} \ne \mathbf{0}$ dan definisikan "sisa setelah membuang komponen searah $\mathbf{w}$":</p>
+        <p>$$\mathbf{x} = \mathbf{v} - \frac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\,\mathbf{w}.$$</p>
+        <ol>
+          <li>Karena $\sigma$ linier di argumen kedua, $\sigma(\mathbf{w}, \mathbf{x}) = \sigma(\mathbf{w}, \mathbf{v}) - \dfrac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\sigma(\mathbf{w}, \mathbf{w}) = 0$.</li>
+          <li>Maka $0 \le \norm{\mathbf{x}}^2 = \sigma\bigl(\mathbf{v} - c\mathbf{w}, \mathbf{x}\bigr) = \sigma(\mathbf{v}, \mathbf{x}) - \bar{c}\,\sigma(\mathbf{w}, \mathbf{x}) = \sigma(\mathbf{v}, \mathbf{x})$, dengan $c = \sigma(\mathbf{w}, \mathbf{v})/\norm{\mathbf{w}}^2$.</li>
+          <li>Hitung: $\sigma(\mathbf{v}, \mathbf{x}) = \norm{\mathbf{v}}^2 - \dfrac{\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{w}}^2}\sigma(\mathbf{v}, \mathbf{w}) = \norm{\mathbf{v}}^2 - \dfrac{\abs{\sigma(\mathbf{w}, \mathbf{v})}^2}{\norm{\mathbf{w}}^2}$, karena $\sigma(\mathbf{v}, \mathbf{w}) = \overline{\sigma(\mathbf{w}, \mathbf{v})}$.</li>
+          <li>Jadi $\abs{\sigma(\mathbf{w}, \mathbf{v})}^2/\norm{\mathbf{w}}^2 \le \norm{\mathbf{v}}^2$; kalikan dengan $\norm{\mathbf{w}}^2 \gt 0$.</li>
+        </ol>
+        <p>Kesamaan berlaku tepat jika $\mathbf{x} = \mathbf{0}$, yaitu $\mathbf{v}$ kelipatan skalar $\mathbf{w}$.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Ketaksamaan segitiga (Modul, persamaan 5.3.1)</div>
+        <p>Di setiap ruang hasil kali dalam, $\norm{\mathbf{v} + \mathbf{w}} \le \norm{\mathbf{v}} + \norm{\mathbf{w}}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Uraikan: $\norm{\mathbf{v} + \mathbf{w}}^2 = \sigma(\mathbf{v}, \mathbf{v}) + \sigma(\mathbf{v}, \mathbf{w}) + \sigma(\mathbf{w}, \mathbf{v}) + \sigma(\mathbf{w}, \mathbf{w}) = \norm{\mathbf{v}}^2 + 2\operatorname{Re}\sigma(\mathbf{v}, \mathbf{w}) + \norm{\mathbf{w}}^2$, karena $z + \bar{z} = 2\operatorname{Re} z$.</li>
+          <li>Cauchy–Schwarz: $\operatorname{Re}\sigma(\mathbf{v}, \mathbf{w}) \le \abs{\sigma(\mathbf{v}, \mathbf{w})} \le \norm{\mathbf{v}}\norm{\mathbf{w}}$.</li>
+          <li>Jadi $\norm{\mathbf{v} + \mathbf{w}}^2 \le (\norm{\mathbf{v}} + \norm{\mathbf{w}})^2$. Kedua ruas tak negatif, jadi ambil akar.</li>
+        </ol>
+        <p>Kesamaan terjadi tepat jika $\operatorname{Re}\sigma(\mathbf{v}, \mathbf{w}) = \norm{\mathbf{v}}\norm{\mathbf{w}}$, yaitu (untuk $\mathbf{v} \ne \mathbf{0}$) $\mathbf{w} = c\mathbf{v}$ dengan $c$ real tak negatif: kedua vektor searah.</p>
+      </details>
+
+      <h3>Sudut</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Kosinus terdefinisi (Modul, Teorema 5.3.5)</div>
+        <p>Untuk $\mathbf{v}, \mathbf{w} \ne \mathbf{0}$ di ruang hasil kali dalam,</p>
+        <p>$$\frac{\operatorname{Re}\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{v}}\norm{\mathbf{w}}} \in [-1, 1].$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tulis $\sigma(\mathbf{w}, \mathbf{v}) = a + ib$. Maka $(\operatorname{Re}\sigma(\mathbf{w}, \mathbf{v}))^2 = a^2 \le a^2 + b^2 = \abs{\sigma(\mathbf{w}, \mathbf{v})}^2 \le \norm{\mathbf{v}}^2\norm{\mathbf{w}}^2$ (Teorema 1). Bagi dengan $\norm{\mathbf{v}}^2\norm{\mathbf{w}}^2$ dan ambil akar.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Sudut antara dua vektor (Modul, Definisi 5.3.6)</div>
+        <p>Sudut antara vektor tak nol $\mathbf{v}$ dan $\mathbf{w}$ adalah</p>
+        <p>$$\varphi = \cos^{-1}\!\left(\frac{\operatorname{Re}\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{v}}\norm{\mathbf{w}}}\right) \in [0, \pi].$$</p>
+        <p>Di $\R^2$ ini kembali ke $\mathbf{v} \cdot \mathbf{w} = \norm{\mathbf{v}}\norm{\mathbf{w}}\cos\varphi$. Karena $\operatorname{Re}\bar{z} = \operatorname{Re} z$, urutan $\sigma(\mathbf{w}, \mathbf{v})$ atau $\sigma(\mathbf{v}, \mathbf{w})$ tidak berpengaruh.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Sudut di $\C^2$ (Modul, Contoh 5.3.7)</div>
+        <p>Untuk $\mathbf{v} = (1, -i)$ dan $\mathbf{w} = (i, 1)$ dengan hasil kali titik kompleks: $\mathbf{v} \cdot \mathbf{w} = \bar{1}\cdot i + \overline{(-i)}\cdot 1 = i + i = 2i$. Bagian realnya $0$, jadi sudutnya $\pi/2$.</p>
+        <p><span class="cek">[CEK: sumber menyimpulkan "kedua vektor tegak lurus". Perhatikan bahwa $\mathbf{w} = i\mathbf{v}$, jadi keduanya bergantung linier atas $\C$, dan $\mathbf{v} \cdot \mathbf{w} = 2i \ne 0$. Sudutnya memang $\pi/2$ menurut Definisi 3, tetapi keduanya <em>tidak</em> ortogonal dalam arti $\sigma(\mathbf{v}, \mathbf{w}) = 0$ yang dipakai mulai §5.4. Jadi "sudut $\pi/2$" dan "ortogonal" tidak sama di ruang kompleks.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Sudut antara dua polinomial (Modul, Contoh 5.3.8)</div>
+        <p>Pada $\R[t]$ dengan $\sigma(p, q) = \int_0^1 p(t)q(t)\,dt$, ambil $p = 1 - t$ dan $q = 1 + t$:</p>
+        <p>$$\sigma(p, q) = \int_0^1 (1 - t^2)\,dt = \tfrac{2}{3}, \quad \norm{p}^2 = \int_0^1 (1 - t)^2\,dt = \tfrac{1}{3}, \quad \norm{q}^2 = \int_0^1 (1 + t)^2\,dt = \tfrac{7}{3}.$$</p>
+        <p>Maka $\cos\varphi = \dfrac{2/3}{\sqrt{1/3}\sqrt{7/3}} = \dfrac{2/3}{\sqrt{7}/3} = \dfrac{2}{\sqrt{7}}$, sehingga $\varphi = \cos^{-1}(2/\sqrt{7}) \approx 0{,}71372$ rad, sekitar $41^\circ$.</p>
+        <p><span class="cek">[CEK: sumber menulis $\varphi = \cos^{-1}\bigl(\sqrt{2/7}\bigr)$. Nilai yang benar adalah $\cos^{-1}(2/\sqrt{7}) = \cos^{-1}\bigl(\sqrt{4/7}\bigr)$; angka $0{,}71372\ldots$ di sumber cocok dengan versi ini, sedangkan $\cos^{-1}\sqrt{2/7} \approx 1{,}0068$.]</span></p>
+      </div>
+
+      <h3>Hukum kosinus dan Pythagoras</h3>
+      <p>Karena satu ruang vektor punya banyak hasil kali dalam, jarak bukan sifat ruang vektor itu sendiri. Misalnya, pada $\R^2$ dengan $\sigma(\mathbf{v}, \mathbf{w}) = \mathbf{v}^T\operatorname{diag}(1, 2)\,\mathbf{w}$, vektor $(1, 0)$ berpanjang $1$ sedangkan $(0, 1)$ berpanjang $\sqrt{2}$.</p>
+      <p><span class="cek">[CEK: sumber menulis bahwa $(0, 1)$ "memiliki panjang dua satuan". Dengan norma terinduksi, $\norm{(0, 1)}^2 = 2$, jadi panjangnya $\sqrt{2}$.]</span></p>
+
+      <div class="box teorema">
+        <div class="box-title">Hukum kosinus (Modul, Teorema 5.3.9)</div>
+        <p>Jika $(V, \sigma)$ ruang hasil kali dalam, $\mathbf{v}, \mathbf{w} \in V$ tak nol, dan $\varphi$ sudut antara keduanya, maka</p>
+        <p>$$\norm{\mathbf{v} - \mathbf{w}}^2 = \norm{\mathbf{v}}^2 + \norm{\mathbf{w}}^2 - 2\norm{\mathbf{v}}\norm{\mathbf{w}}\cos\varphi.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>$\norm{\mathbf{v} - \mathbf{w}}^2 = \sigma(\mathbf{v} - \mathbf{w}, \mathbf{v} - \mathbf{w}) = \sigma(\mathbf{v}, \mathbf{v}) - \sigma(\mathbf{v}, \mathbf{w}) - \sigma(\mathbf{w}, \mathbf{v}) + \sigma(\mathbf{w}, \mathbf{w})$.</li>
+          <li>Karena $\sigma(\mathbf{w}, \mathbf{v}) = \overline{\sigma(\mathbf{v}, \mathbf{w})}$, suku silangnya $-2\operatorname{Re}\sigma(\mathbf{v}, \mathbf{w})$.</li>
+          <li>Menurut Definisi 3, $\operatorname{Re}\sigma(\mathbf{v}, \mathbf{w}) = \norm{\mathbf{v}}\norm{\mathbf{w}}\cos\varphi$. Substitusikan.</li>
+        </ol>
+        <p>Untuk $\varphi = \pi/2$ diperoleh <strong>teorema Pythagoras</strong> $\norm{\mathbf{v} - \mathbf{w}}^2 = \norm{\mathbf{v}}^2 + \norm{\mathbf{w}}^2$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Pythagoras bergantung pada hasil kali dalam (Modul, setelah Teorema 5.3.9)</div>
+        <p>Dengan $\sigma = \operatorname{diag}(1, 2)$ seperti di atas, ambil $\mathbf{v} = (1, 1)$ dan $\mathbf{w} = (1, -\tfrac{1}{2})$, sehingga $\mathbf{v} + \mathbf{w} = (2, \tfrac{1}{2})$. Menurut $\sigma$: $\sigma(\mathbf{v}, \mathbf{w}) = 1 + 2(-\tfrac{1}{2}) = 0$, $\norm{\mathbf{v}}^2 = 1 + 2 = 3$, $\norm{\mathbf{w}}^2 = 1 + \tfrac{1}{2} = \tfrac{3}{2}$, $\norm{\mathbf{v} + \mathbf{w}}^2 = 4 + \tfrac{1}{2}$. Menurut hasil kali titik: $\mathbf{v} \cdot \mathbf{w} = 1 - \tfrac{1}{2}$, $\norm{\mathbf{v}}^2 = 2$, $\norm{\mathbf{w}}^2 = \tfrac{5}{4}$, $\norm{\mathbf{v} + \mathbf{w}}^2 = 4 + \tfrac{1}{4}$. Ringkasnya:</p>
+        <div class="tabel">
+          <table>
+            <thead><tr><th></th><th>$\sigma$</th><th>titik</th></tr></thead>
+            <tbody>
+              <tr><td>$\langle \mathbf{v}, \mathbf{w} \rangle$</td><td>$0$</td><td>$\tfrac{1}{2}$</td></tr>
+              <tr><td>$\norm{\mathbf{v}}^2 + \norm{\mathbf{w}}^2$</td><td>$\tfrac{9}{2}$</td><td>$\tfrac{13}{4}$</td></tr>
+              <tr><td>$\norm{\mathbf{v} + \mathbf{w}}^2$</td><td>$\tfrac{9}{2}$</td><td>$\tfrac{17}{4}$</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Menurut $\sigma$, $\mathbf{v} \perp \mathbf{w}$ dan Pythagoras berlaku. Menurut hasil kali titik, keduanya tidak tegak lurus dan $\tfrac{17}{4} \ne \tfrac{13}{4}$. Ortogonalitas adalah sifat relatif terhadap hasil kali dalam.</p>
+        <figure>
+          <svg viewBox="0 0 260 190" width="260" height="190" role="img" aria-labelledby="judul-svg-pyth">
+            <title id="judul-svg-pyth">Vektor v = (1, 1), w = (1, −1/2), dan v + w = (2, 1/2) di bidang. Secara Euclid sudut antara v dan w bukan sudut siku-siku.</title>
+            <path d="M10 120H250M40 180V10" stroke="currentColor" stroke-width="1" opacity="0.35" fill="none"/>
+            <path d="M130 30L220 75M130 165L220 75" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.6" fill="none"/>
+            <line x1="40" y1="120" x2="130" y2="30" stroke-width="2.5" style="stroke: var(--c-definisi)"/>
+            <line x1="40" y1="120" x2="130" y2="165" stroke-width="2.5" style="stroke: var(--c-contoh)"/>
+            <line x1="40" y1="120" x2="220" y2="75" stroke-width="2" stroke="currentColor"/>
+            <g fill="currentColor">
+              <circle cx="130" cy="30" r="3.5"/>
+              <circle cx="130" cy="165" r="3.5"/>
+              <circle cx="220" cy="75" r="3.5"/>
+            </g>
+            <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12">
+              <text x="136" y="26" style="fill: var(--c-definisi)">v = (1, 1)</text>
+              <text x="136" y="180" style="fill: var(--c-contoh)">w = (1, −½)</text>
+              <text x="186" y="66">v + w</text>
+              <text x="28" y="134">0</text>
+            </g>
+          </svg>
+          <figcaption>Secara Euclid, $\mathbf{v}$ dan $\mathbf{w}$ tidak tegak lurus; menurut $\sigma = \operatorname{diag}(1, 2)$ keduanya ortogonal.</figcaption>
+        </figure>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Catatan sejarah singkat</div>
+        <p>Menurut sumber, hubungan Pythagoras sudah dikenal di Babilonia (tablet Plimpton 322) dan India kuno (Śulba Sūtra) jauh sebelum mazhab Pythagoras memberi bukti deduktif. Hukum kosinus muncul dalam bentuk geometris di <em>Elements</em> Euclid (Buku II) dan dirumuskan eksplisit dengan kosinus oleh al-Kāshī (abad ke-15), sehingga kadang disebut teorema al-Kāshī.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Memakai $\sigma(\mathbf{v}, \mathbf{w})$ langsung sebagai kosinus di ruang kompleks.</strong> $\sigma(\mathbf{v}, \mathbf{w})$ bisa kompleks; yang dipakai untuk sudut adalah bagian realnya.</li>
+        <li><strong>Menyamakan "sudut $\pi/2$" dengan "ortogonal" di ruang kompleks.</strong> Ortogonal berarti $\sigma(\mathbf{v}, \mathbf{w}) = 0$; sudut $\pi/2$ hanya berarti $\operatorname{Re}\sigma(\mathbf{v}, \mathbf{w}) = 0$ (Contoh 2).</li>
+        <li><strong>Lupa akar kuadrat.</strong> $\sigma(\mathbf{v}, \mathbf{v})$ adalah <em>kuadrat</em> norma.</li>
+        <li><strong>Menganggap panjang dan ortogonalitas sifat mutlak.</strong> Keduanya bergantung pada hasil kali dalam yang dipilih (Contoh 4).</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Di $\R^3$ dengan hasil kali dalam standar, diberikan $\mathbf{u} = (1, 2, 2)$ dan $\mathbf{v} = (2, -1, 2)$. (a) Hitung $\norm{\mathbf{u}}$, $\norm{\mathbf{v}}$, dan jarak $d(\mathbf{u}, \mathbf{v})$. (b) Hitung sudut $\theta$ antara keduanya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$\norm{\mathbf{u}} = \sqrt{1 + 4 + 4} = 3$ dan $\norm{\mathbf{v}} = \sqrt{4 + 1 + 4} = 3$.</li>
+            <li>$\mathbf{u} - \mathbf{v} = (-1, 3, 0)$, jadi $d(\mathbf{u}, \mathbf{v}) = \norm{\mathbf{u} - \mathbf{v}} = \sqrt{1 + 9} = \sqrt{10}$.</li>
+            <li>$\langle \mathbf{u}, \mathbf{v} \rangle = 2 - 2 + 4 = 4$.</li>
+            <li>$\cos\theta = \dfrac{4}{3 \cdot 3} = \dfrac{4}{9}$, jadi $\theta = \arccos(4/9) \approx 63{,}6^\circ$. Cauchy–Schwarz menjamin $\abs{\cos\theta} \le 1$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Dengan hukum kosinus (atau langsung), periksa untuk $\mathbf{u}, \mathbf{v}$ pada Latihan 1 bahwa $\norm{\mathbf{u} - \mathbf{v}}^2 = \norm{\mathbf{u}}^2 + \norm{\mathbf{v}}^2 - 2\norm{\mathbf{u}}\norm{\mathbf{v}}\cos\theta$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Ruas kiri: $\norm{\mathbf{u} - \mathbf{v}}^2 = 10$ (Latihan 1).</li>
+            <li>Ruas kanan: $9 + 9 - 2 \cdot 3 \cdot 3 \cdot \tfrac{4}{9} = 18 - 8 = 10$.</li>
+          </ol>
+          <p>Kedua ruas sama, sesuai Teorema 3.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada $C([0, 1])$ dengan $\sigma(f, g) = \int_0^1 fg$, periksa ketaksamaan Cauchy–Schwarz untuk $f(t) = 1$ dan $g(t) = t$, lalu tentukan sudut antara keduanya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\sigma(f, g) = \int_0^1 t\,dt = \tfrac{1}{2}$, $\norm{f}^2 = \int_0^1 1\,dt = 1$, $\norm{g}^2 = \int_0^1 t^2\,dt = \tfrac{1}{3}$.</li>
+            <li>Cauchy–Schwarz: $\abs{\sigma(f, g)}^2 = \tfrac{1}{4} \le 1 \cdot \tfrac{1}{3} = \tfrac{1}{3}$. Benar, dan tidak sama karena $g$ bukan kelipatan $f$.</li>
+            <li>$\cos\varphi = \dfrac{1/2}{1 \cdot 1/\sqrt{3}} = \dfrac{\sqrt{3}}{2}$, jadi $\varphi = \pi/6$ ($30^\circ$).</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \norm{\mathbf{v}} = \sqrt{\sigma(\mathbf{v}, \mathbf{v})}, \qquad \abs{\sigma(\mathbf{w}, \mathbf{v})} \le \norm{\mathbf{v}}\norm{\mathbf{w}}, \qquad \norm{\mathbf{v} + \mathbf{w}} \le \norm{\mathbf{v}} + \norm{\mathbf{w}}, \\
+        \cos\varphi = \frac{\operatorname{Re}\sigma(\mathbf{w}, \mathbf{v})}{\norm{\mathbf{v}}\norm{\mathbf{w}}}, \qquad \norm{\mathbf{v} - \mathbf{w}}^2 = \norm{\mathbf{v}}^2 + \norm{\mathbf{w}}^2 - 2\norm{\mathbf{v}}\norm{\mathbf{w}}\cos\varphi
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, §5.3: Definisi 5.3.1–5.3.2, persamaan 5.3.1, Contoh 5.3.3, Teorema 5.3.4–5.3.5, Definisi 5.3.6, Contoh 5.3.7–5.3.8, Teorema 5.3.9, contoh Pythagoras, dan tinjauan sejarah. Gambar vektor (PNG eksternal) digambar ulang sebagai SVG. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.5.2 (Latihan 1).</li>
+        <li>Latihan 2–3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

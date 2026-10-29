@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Hasil Kali Titik · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Hasil Kali Titik</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Di $\R^n$, $\mathbf{v} \cdot \mathbf{w} = \mathbf{v}^T\mathbf{w}$ memberi panjang $\norm{\mathbf{v}} = \sqrt{\mathbf{v} \cdot \mathbf{v}}$. Di $\C^n$, $\mathbf{v}^T\mathbf{v}$ bisa nol untuk $\mathbf{v} \ne \mathbf{0}$, jadi transpos diganti transpos konjugat: $\mathbf{v} \cdot_{\C} \mathbf{w} = \mathbf{v}^\dagger\mathbf{w} = \sum \overline{v_i}w_i$.</li>
+        <li>Hasil kali titik kompleks linier di argumen kedua, konjugat-linier di argumen pertama, dan simetris Hermitian: $\mathbf{v} \cdot \mathbf{w} = \overline{\mathbf{w} \cdot \mathbf{v}}$.</li>
+        <li>Panjang di $\C^n$ sama dengan panjang Euclid di $\R^{2n}$ lewat $z_j = a_j + ib_j \mapsto (a_j, b_j)$.</li>
+        <li>Bentuk Hermitian (linier di argumen kedua) pada $V \cong \C^n$ tepat berbentuk $\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^\dagger A[\mathbf{w}]_B$ dengan $A$ swadjoin; $\sigma(\mathbf{v}, \mathbf{v})$ selalu real.</li>
+        <li>Geometri Euclid memerlukan lapangan skalar $\R$ atau $\C$; karena itu bab ini hanya membahas ruang vektor real dan kompleks.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Dari $\R^n$ ke $\C^n$</h3>
+      <p>Di $\R^2$, teorema Pythagoras memberi panjang $\mathbf{v} = (a, b)$ sebagai $\sqrt{a^2 + b^2} = \sqrt{\mathbf{v} \cdot \mathbf{v}}$. Di $\C^2$, rumus yang sama gagal: untuk $\mathbf{v} = (i, 1)$, $\mathbf{v}^T\mathbf{v} = i^2 + 1^2 = 0$, sehingga titik $(i, 1) \ne (0, 0)$ akan "berjarak nol" dari titik asal. Perbaikannya: pakai transpos konjugat.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Hasil kali titik kompleks (Modul, Definisi 5.1.2)</div>
+        <p><strong>Hasil kali titik kompleks</strong> atau <strong>hasil kali dalam Hermitian standar</strong> pada $\C^n$ adalah</p>
+        <p>$$\mathbf{v} \cdot_{\C} \mathbf{w} := \mathbf{v}^\dagger\mathbf{w} = \sum_{i=1}^{n} \overline{v_i}\,w_i,$$</p>
+        <p>dengan $\mathbf{v}^\dagger = \overline{\mathbf{v}}^T$. Karena $\mathbf{v}^\dagger = \mathbf{v}^T$ di $\R^n$, notasi $\mathbf{v} \cdot \mathbf{w} := \mathbf{v}^\dagger\mathbf{w}$ dipakai untuk keduanya; bila perlu dibedakan, ditulis $\cdot_\R$ dan $\cdot_\C$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Panjang $(i, 1)$ (Modul, §5.1.2)</div>
+        <p>$\mathbf{v}^\dagger\mathbf{v} = \bar{i} \cdot i + \bar{1} \cdot 1 = (-i)(i) + 1 = 2$: real dan positif, jadi $\norm{\mathbf{v}} = \sqrt{2}$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Panjang (Modul, Definisi 5.1.3)</div>
+        <p><strong>Panjang</strong> $\mathbf{v}$ di ruang $n$-dimensi real atau kompleks adalah $\norm{\mathbf{v}} = \sqrt{\mathbf{v} \cdot \mathbf{v}}$.</p>
+        <p>Di $\C^n$ ini sama dengan panjang Euclid lewat isomorfisma kanonik $\Phi(z_1, \dots, z_n) = (a_1, b_1, \dots, a_n, b_n)$, $z_j = a_j + ib_j$:</p>
+        <p>$$\norm{\mathbf{z}} = \sqrt{\sum_j \overline{z_j}z_j} = \sqrt{\sum_j (a_j^2 + b_j^2)} = \norm{\Phi(\mathbf{z})}_{\R^{2n}}.$$</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Mengapa hanya $\R$ dan $\C$ (Modul, §5.1.2)</div>
+        <ul>
+          <li>Kebanyakan lapangan tidak terurut. Di $\mathbb{F}_3$, jika $1 \gt 0$ dan $2 = 1 + 1 \gt 1$, maka $0 = 2 + 1 \gt 1$, kontradiksi. Hal seperti ini tak terhindarkan di karakteristik positif.</li>
+          <li>$\C$ tidak terurut, tetapi memuat $\R$, dan $\mathbf{v} \cdot_\C \mathbf{v} \in \R$; ini cukup untuk membandingkan panjang dan memperoleh ketaksamaan segitiga.</li>
+          <li>$\Q$ terurut, tetapi panjang $(1, 1) \in \Q^2$ adalah $\sqrt{2} \notin \Q$.</li>
+        </ul>
+        <p>Jadi geometri Euclid memerlukan salinan garis real kontinu di lapangan skalar; sisa bab ini membahas ruang vektor real dan kompleks saja.</p>
+      </div>
+
+      <h3>Sifat hasil kali titik</h3>
+
+      <div class="box lemma">
+        <div class="box-title">Linier dan simetri (Modul, Lemma 5.1.4)</div>
+        <p>Untuk vektor $\mathbf{v}, \mathbf{w}, \mathbf{x}$ di ruang $n$-dimensi real atau kompleks dan skalar $c$:</p>
+        <ol type="a">
+          <li>$\mathbf{v} \cdot (c\mathbf{w} + \mathbf{x}) = c(\mathbf{v} \cdot \mathbf{w}) + \mathbf{v} \cdot \mathbf{x}$;</li>
+          <li>$\mathbf{v} \cdot \mathbf{w} = \mathbf{w} \cdot \mathbf{v}$ di kasus real, dan $\mathbf{v} \cdot_\C \mathbf{w} = \overline{\mathbf{w} \cdot_\C \mathbf{v}}$ di kasus kompleks.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>(a) $\mathbf{v}^\dagger(c\mathbf{w} + \mathbf{x}) = c\,\mathbf{v}^\dagger\mathbf{w} + \mathbf{v}^\dagger\mathbf{x}$ (perkalian matriks linier di faktor kanan). (b) Real: $\sum v_iw_i = \sum w_iv_i$. Kompleks: $\mathbf{v}^\dagger\mathbf{w} = \sum \overline{v_i}w_i = \overline{\sum \overline{w_i}v_i} = \overline{\mathbf{w}^\dagger\mathbf{v}}$.</p>
+      </details>
+
+      <p>Jadi hasil kali titik kompleks <em>tidak</em> simetris dan <em>tidak</em> bilinear: dari (a) dan (b), $(c\mathbf{v}) \cdot \mathbf{w} = \overline{\mathbf{w} \cdot c\mathbf{v}} = \overline{c}\,(\mathbf{v} \cdot \mathbf{w})$, konjugat-linier di argumen pertama.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Simetris Hermitian, seskuilinear, bentuk Hermitian (Modul, Definisi 5.1.5 dan 5.1.6)</div>
+        <p>Untuk ruang vektor kompleks $V$, $\sigma \colon V \times V \to \C$ <strong>simetris Hermitian</strong> jika $\sigma(\mathbf{v}, \mathbf{w}) = \overline{\sigma(\mathbf{w}, \mathbf{v})}$ untuk semua $\mathbf{v}, \mathbf{w}$. Pemetaan yang linier di satu argumen dan konjugat-linier di argumen lain disebut <strong>seskuilinear</strong> (sesquilinear; <em>sesqui</em> = satu setengah). <strong>Bentuk Hermitian</strong> adalah pemetaan simetris Hermitian yang linier di salah satu argumen (otomatis konjugat-linier di argumen lain).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Bentuk trace $\operatorname{Tr}(A^\dagger B)$ (Modul, Contoh 5.1.7)</div>
+        <p>Pada $M_n(F)$, $\sigma(A, B) = \operatorname{Tr}(A^\dagger B)$.</p>
+        <ul>
+          <li>$F = \R$: $A^\dagger = A^T$, jadi $\sigma(A, B) = \operatorname{Tr}(A^TB)$, bilinear dan simetris karena $\operatorname{Tr}(A^TB) = \operatorname{Tr}((A^TB)^T) = \operatorname{Tr}(B^TA)$.</li>
+          <li>$F = \C$: $\sigma(B, A) = \operatorname{Tr}(B^\dagger A) = \operatorname{Tr}\bigl((A^\dagger B)^\dagger\bigr) = \overline{\operatorname{Tr}(A^\dagger B)} = \overline{\sigma(A, B)}$, dan $\sigma(A, cB_1 + B_2) = c\,\sigma(A, B_1) + \sigma(A, B_2)$. Jadi $\sigma$ bentuk Hermitian.</li>
+        </ul>
+      </div>
+
+      <h3>Matriks bentuk Hermitian</h3>
+      <p>Seperti bentuk bilinear ($\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^T[\sigma]_B[\mathbf{w}]_B$), bentuk Hermitian pada $V \cong \C^n$ dikoordinatkan dengan $[\sigma]_B = [a_{ij}]$, $a_{ij} = \sigma(\mathbf{b}_i, \mathbf{b}_j)$.</p>
+
+      <div class="box lemma">
+        <div class="box-title">Dari bentuk Hermitian ke matriks swadjoin (Modul, Lemma 5.1.8)</div>
+        <p>Misalkan $\sigma$ bentuk Hermitian pada $V \cong \C^n$, $B$ basis terurut, dan $A = [\sigma]_B$. Maka $A$ swadjoin. Jika $\sigma$ linier di argumen kedua,</p>
+        <p>$$\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^\dagger\,A\,[\mathbf{w}]_B;$$</p>
+        <p>jika $\sigma$ linier di argumen pertama, $\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^T\,A\,\overline{[\mathbf{w}]_B}$.</p>
+        <p><span class="cek">[CEK: sumber menulis rumus kasus kedua sebagai $[\mathbf{v}]_B^TA[\mathbf{w}]_B$, tanpa konjugat pada $[\mathbf{w}]_B$; dengan $\sigma$ konjugat-linier di argumen kedua, konjugat itu diperlukan.]</span></p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$a_{ij} = \sigma(\mathbf{b}_i, \mathbf{b}_j) = \overline{\sigma(\mathbf{b}_j, \mathbf{b}_i)} = \overline{a_{ji}}$, jadi $A = A^\dagger$. Untuk $[\mathbf{v}]_B = (c_1, \dots, c_n)$ dan $[\mathbf{w}]_B = (d_1, \dots, d_n)$, dengan $\sigma$ linier di argumen kedua dan konjugat-linier di argumen pertama:</p>
+        <p>$$\sigma(\mathbf{v}, \mathbf{w}) = \sum_{i,j} \overline{c_i}\,d_j\,\sigma(\mathbf{b}_i, \mathbf{b}_j) = \sum_{i,j} \overline{c_i}\,a_{ij}\,d_j = [\mathbf{v}]_B^\dagger A[\mathbf{w}]_B.$$</p>
+        <p>Kasus linier di argumen pertama: $\sigma(\mathbf{v}, \mathbf{w}) = \sum_{i,j} c_i\,\overline{d_j}\,a_{ij} = [\mathbf{v}]_B^TA\overline{[\mathbf{w}]_B}$. (Sumber menulis koefisien $c_i$ tanpa konjugat di kasus pertama; konjugatnya diperlukan karena $\sigma$ konjugat-linier di argumen pertama.)</p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Dari matriks swadjoin ke bentuk Hermitian (Modul, Lemma 5.1.9)</div>
+        <p>Jika $A \in M_n(\C)$ swadjoin dan $B$ basis terurut $V \cong \C^n$, maka $\sigma(\mathbf{v}, \mathbf{w}) := [\mathbf{v}]_B^\dagger A[\mathbf{w}]_B$ bentuk Hermitian yang linier di argumen kedua, dan $[\sigma]_B = A$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tulis $\mathbf{x} = [\mathbf{v}]_B$, $\mathbf{y} = [\mathbf{w}]_B$. Linier di argumen kedua: $\mathbf{x}^\dagger A(\alpha\mathbf{y}_1 + \beta\mathbf{y}_2) = \alpha\,\mathbf{x}^\dagger A\mathbf{y}_1 + \beta\,\mathbf{x}^\dagger A\mathbf{y}_2$. Konjugat-linier di argumen pertama: $(\gamma\mathbf{x}_1 + \delta\mathbf{x}_2)^\dagger = \bar{\gamma}\mathbf{x}_1^\dagger + \bar{\delta}\mathbf{x}_2^\dagger$. Simetri Hermitian: $\mathbf{y}^\dagger A\mathbf{x}$ adalah skalar, jadi sama dengan transposnya; dengan Teorema 3.6.6, $\mathbf{y}^\dagger A\mathbf{x} = \overline{(\mathbf{y}^\dagger A\mathbf{x})^\dagger} = \overline{\mathbf{x}^\dagger A^\dagger\mathbf{y}} = \overline{\mathbf{x}^\dagger A\mathbf{y}}$. Terakhir, $\sigma(\mathbf{b}_i, \mathbf{b}_j) = \mathbf{e}_i^\dagger A\mathbf{e}_j = a_{ij}$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Bentuk Hermitian yang tidak definit (Modul, Contoh 5.1.10)</div>
+        <p>$A = \begin{pmatrix} 1 & -i \\ i & -1 \end{pmatrix}$ swadjoin, jadi $\sigma(\mathbf{v}, \mathbf{w}) = \mathbf{v}^\dagger A\mathbf{w}$ bentuk Hermitian di $\C^2$. Untuk $\mathbf{v} = (z_1, z_2)$, $A\mathbf{v} = (z_1 - iz_2,\ iz_1 - z_2)$ dan</p>
+        <p>$$\sigma(\mathbf{v}, \mathbf{v}) = \overline{z_1}(z_1 - iz_2) + \overline{z_2}(iz_1 - z_2) = \abs{z_1}^2 - \abs{z_2}^2 + i\bigl(\overline{z_2}z_1 - \overline{z_1}z_2\bigr).$$</p>
+        <p>Dengan $u = \overline{z_2}z_1$, suku terakhir $i(u - \bar{u}) = i \cdot 2i\operatorname{Im} u = -2\operatorname{Im}(\overline{z_2}z_1)$, jadi</p>
+        <p>$$\sigma(\mathbf{v}, \mathbf{v}) = \abs{z_1}^2 - \abs{z_2}^2 - 2\operatorname{Im}(\overline{z_2}z_1) \in \R.$$</p>
+        <p>Misalnya $\mathbf{v} = (1, i)$: $A\mathbf{v} = (2, 0)$ dan $\sigma(\mathbf{v}, \mathbf{v}) = 2$, sesuai rumus ($0 - 2\operatorname{Im}(-i) = 2$). Tetapi untuk $\mathbf{v} = (1, 1)$, $\sigma(\mathbf{v}, \mathbf{v}) = 0$ walaupun $\mathbf{v} \ne \mathbf{0}$; topik berikutnya menambahkan syarat definit positif. <span class="cek">[CEK: sumber menulis suku terakhir sebagai $+2\operatorname{Im}(\overline{z_2}z_1)$; tandanya seharusnya negatif, seperti dicek dengan $\mathbf{v} = (1, i)$. Kesimpulan "$\sigma(\mathbf{v}, \mathbf{v})$ real" tetap benar.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Memakai $\mathbf{v}^T\mathbf{w}$ di $\C^n$.</strong> Tanpa konjugat, "panjang kuadrat" bisa nol atau bahkan tidak real.</li>
+        <li><strong>Mengeluarkan skalar dari argumen pertama tanpa konjugat.</strong> Dengan konvensi buku ini, $(c\mathbf{v}) \cdot \mathbf{w} = \bar{c}(\mathbf{v} \cdot \mathbf{w})$.</li>
+        <li><strong>Mencampur konvensi.</strong> Banyak buku matematika memakai linier di argumen <em>pertama</em>; buku ini (seperti fisika) memakai linier di argumen <em>kedua</em>. Pilih satu dan konsisten.</li>
+        <li><strong>Mengira bentuk Hermitian selalu memberi "panjang".</strong> Contoh 3 menunjukkan $\sigma(\mathbf{v}, \mathbf{v})$ bisa nol atau negatif.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Untuk $\mathbf{v} = (1 + i, 2)$ dan $\mathbf{w} = (i, 1 - i)$ di $\C^2$, hitung $\mathbf{v} \cdot \mathbf{w}$, $\mathbf{w} \cdot \mathbf{v}$, dan $\norm{\mathbf{v}}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\mathbf{v} \cdot \mathbf{w} = \overline{(1 + i)}\,i + \overline{2}\,(1 - i) = (1 - i)i + 2 - 2i = i + 1 + 2 - 2i = 3 - i$.</li>
+            <li>$\mathbf{w} \cdot \mathbf{v} = \bar{i}(1 + i) + \overline{(1 - i)}\cdot 2 = -i(1 + i) + 2(1 + i) = -i + 1 + 2 + 2i = 3 + i = \overline{\mathbf{v} \cdot \mathbf{w}}$, sesuai Lemma 1(b).</li>
+            <li>$\norm{\mathbf{v}}^2 = \abs{1 + i}^2 + \abs{2}^2 = 2 + 4 = 6$, jadi $\norm{\mathbf{v}} = \sqrt{6}$. (Lewat $\Phi$: $(1, 1, 2, 0) \in \R^4$ juga berpanjang $\sqrt{6}$.)</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Apakah $A = \begin{pmatrix} 2 & 1 + i \\ 1 - i & 3 \end{pmatrix}$ swadjoin? Jika ya, tuliskan $\sigma(\mathbf{v}, \mathbf{v}) = \mathbf{v}^\dagger A\mathbf{v}$ untuk $\mathbf{v} = (z_1, z_2)$ dan tunjukkan nilainya real.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A^\dagger = \overline{A}^T = \begin{pmatrix} 2 & 1 + i \\ 1 - i & 3 \end{pmatrix} = A$, jadi swadjoin (diagonal real, entri $(1,2)$ dan $(2,1)$ saling konjugat).</li>
+            <li>$A\mathbf{v} = \bigl(2z_1 + (1 + i)z_2,\ (1 - i)z_1 + 3z_2\bigr)$, sehingga
+              $$\sigma(\mathbf{v}, \mathbf{v}) = 2\abs{z_1}^2 + 3\abs{z_2}^2 + (1 + i)\overline{z_1}z_2 + (1 - i)\overline{z_2}z_1.$$</li>
+            <li>Dua suku terakhir saling konjugat: $\overline{(1 + i)\overline{z_1}z_2} = (1 - i)z_1\overline{z_2}$. Jumlah bilangan dengan konjugatnya real ($2\operatorname{Re}$), jadi $\sigma(\mathbf{v}, \mathbf{v}) = 2\abs{z_1}^2 + 3\abs{z_2}^2 + 2\operatorname{Re}\bigl((1 + i)\overline{z_1}z_2\bigr) \in \R$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mathbf{v} \cdot \mathbf{w} = \mathbf{v}^\dagger\mathbf{w} = \sum_i \overline{v_i}w_i, \qquad \norm{\mathbf{v}} = \sqrt{\mathbf{v} \cdot \mathbf{v}}, \\
+        \mathbf{v} \cdot (c\mathbf{w}) = c(\mathbf{v} \cdot \mathbf{w}), \qquad (c\mathbf{v}) \cdot \mathbf{w} = \bar{c}(\mathbf{v} \cdot \mathbf{w}), \qquad \mathbf{v} \cdot \mathbf{w} = \overline{\mathbf{w} \cdot \mathbf{v}}
+      \end{gathered}$$</p>
+      <p>$$\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^\dagger A[\mathbf{w}]_B, \qquad A = A^\dagger$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/5-Ruang-Hasil-Kali-Dalam.md</code>, Bab 5, Pendahuluan dan §5.1: §5.1.1, Definisi 5.1.2, 5.1.3, 5.1.5, 5.1.6, Lemma 5.1.4, 5.1.8, 5.1.9, Contoh 5.1.7, 5.1.10. Gambar 5.1.1 (tautan eksternal) tidak dibuat ulang. File Markdown, tanpa nomor halaman.</li>
+        <li>Sumber tidak memuat soal untuk §5.1; Latihan 1–2 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>
