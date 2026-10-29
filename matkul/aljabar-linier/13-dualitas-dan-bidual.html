@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Dualitas dan Bidual · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Dualitas dan Bidual</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Fungsional linier adalah transformasi linier $V \to F$; semuanya membentuk ruang dual $V^* = \mathcal{L}(V, F)$. Untuk $F^n$ (vektor kolom), $(F^n)^* \cong F_n$ (vektor baris).</li>
+        <li>Basis $B = \set{\mathbf{b}_j}$ memberi basis dual $B^* = \set{f_i}$ dengan $f_i(\mathbf{b}_j) = \delta_{ij}$; $f_i(\mathbf{v})$ adalah koordinat ke-$i$ dari $\mathbf{v}$. Jika $\dim V = n$, $\dim V^* = n$.</li>
+        <li>Hiperruang (subruang dengan $\dim(V/W) = 1$) tepat kernel fungsional linier tak nol; subruang berkodimensi $k$ adalah irisan $k$ hiperruang.</li>
+        <li>Pemetaan kanonik $\varphi(\mathbf{v})(f) = f(\mathbf{v})$ selalu injektif $V \to V^{**}$, dan isomorfisma bila $V$ berdimensi hingga.</li>
+        <li>Pemetaan dual $L^*(f) = f \circ L$ membawa $W^* \to V^*$, dan $L \mapsto L^*$ linier.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Fungsional linier dan ruang dual</h3>
+      <p>Dari semua transformasi linier, yang menuju lapangan skalar $F$ sendiri ternyata sangat penting: transformasi seperti itu "mengukur" vektor dengan satu bilangan.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Fungsional linier dan ruang dual (Modul, Definisi 3.1.3 dan §3.1.4)</div>
+        <p><strong>Fungsional linier</strong> (linear functional) pada $V$ adalah pemetaan $\varphi \colon V \to F$ yang aditif dan homogen: $\varphi(f + g) = \varphi(f) + \varphi(g)$ dan $\varphi(\alpha f) = \alpha\varphi(f)$. Himpunan semua fungsional linier pada $V$ adalah <strong>ruang dual</strong> $V^* = \mathcal{L}(V, F)$.</p>
+        <p>Jika $\dim V = n$, maka $\dim V^* = n \cdot 1 = n$ (Teorema 2.5.13). Jika $V$ berdimensi tak hingga, bisa terjadi $V \not\cong V^*$; dalam konteks itu $V^*$ disebut <strong>dual aljabar</strong>, dan "ruang dual" kadang merujuk ke subruang sejati dari $V^*$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Integral sebagai fungsional (Modul, Contoh 3.1.2 dan 3.1.4)</div>
+        <p>Pada $V = C([0, 1])$, ruang fungsi kontinu $[0, 1] \to \R$, $\varphi(f) = \int_0^1 f(t)\,dt$ fungsional linier, karena</p>
+        <p>$$\int_0^1 (f + g) = \int_0^1 f + \int_0^1 g, \qquad \int_0^1 \alpha f = \alpha\int_0^1 f.$$</p>
+        <p>Yang fungsional linier adalah pemetaan integralnya, bukan ruang $V$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Dual dari $F^n$ (Modul, Teorema 3.1.5)</div>
+        <p>$(F^n)^* \cong F_n$: setiap fungsional linier pada ruang kolom $F^n$ berbentuk perkalian dari kiri dengan vektor baris $\mathbf{a} = (a_1, \dots, a_n) \in F_n$,</p>
+        <p>$$\varphi_{\mathbf{a}}(\mathbf{x}) = \mathbf{a}\mathbf{x} = a_1x_1 + \dots + a_nx_n.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\Phi \colon F_n \to (F^n)^*$, $\Phi(\mathbf{a}) = \varphi_{\mathbf{a}}$, linier karena $(c\mathbf{a} + \mathbf{a}')\mathbf{x} = c\,\mathbf{a}\mathbf{x} + \mathbf{a}'\mathbf{x}$. Injektif: jika $\varphi_{\mathbf{a}} = 0$, maka $a_i = \varphi_{\mathbf{a}}(\mathbf{e}_i) = 0$ untuk setiap $i$. Surjektif: untuk $\varphi \in (F^n)^*$, ambil $a_i = \varphi(\mathbf{e}_i)$; maka $\varphi(\mathbf{x}) = \sum x_i\varphi(\mathbf{e}_i) = \varphi_{\mathbf{a}}(\mathbf{x})$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Vektor baris sebagai fungsional (Modul, Contoh 3.1.6)</div>
+        <p>$\mathbf{a} = (2, -1, 3) \in F_3$ memberi $\varphi(\mathbf{x}) = 2x_1 - x_2 + 3x_3$, elemen $(F^3)^*$.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Transpos dan isomorfisma kanonik (Modul, Definisi 3.1.7)</div>
+        <p>Transpos $A^T = [c_{ij}]$ dengan $c_{ij} = a_{ji}$. Pemetaan $\mathbf{v} \mapsto \mathbf{v}^T$ adalah isomorfisma <em>kanonik</em> $F_n \to F^n$ (tidak bergantung basis), sehingga beda baris dan kolom "hanya kosmetik". Untuk ruang sebarang, umumnya <em>tidak</em> ada isomorfisma kanonik $V \to V^*$; yang bisa dibuat adalah pemetaan lewat basis dual.</p>
+      </div>
+
+      <h3>Basis dual</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Basis dual (Modul, §3.1.7, persamaan (12.1))</div>
+        <p>Untuk basis $B = \set{\mathbf{b}_j}_{j \in J}$ dari $V$, setiap $f_i \in B^* \subseteq V^*$ didefinisikan dengan perluasan linier dari</p>
+        <p>$$f_i(\mathbf{b}_j) = \delta(i, j) = \begin{cases} 1, & i = j, \\ 0, & i \ne j, \end{cases}$$</p>
+        <p>dengan $\delta$ delta Kronecker. Jadi $f_i\bigl(\sum_j v_j\mathbf{b}_j\bigr) = v_i$: $f_i$ mengambil koordinat ke-$i$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Evaluasi basis dual (Modul, Contoh 3.1.8)</div>
+        <p>$V = \operatorname{span}\set{\sin t, \cos t, e^t} \subseteq C(\R)$ dengan $B^* = \set{f_1, f_2, f_3}$. Untuk $\mathbf{v} = 2\sin t + 3\cos t - e^t$:</p>
+        <p>$$f_1(\mathbf{v}) = 2, \qquad f_2(\mathbf{v}) = 3, \qquad f_3(\mathbf{v}) = -1.$$</p>
+        <p><span class="cek">[CEK: sumber menulis $f_3(\mathbf{v}) = 1$; karena koefisien $e^t$ adalah $-1$, seharusnya $f_3(\mathbf{v}) = -1$.]</span></p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Basis dual adalah basis (Modul, Teorema 3.1.9)</div>
+        <p>Jika $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_n}$ basis $V$, maka $B^* = \set{f_1, \dots, f_n}$ basis $V^*$, dan setiap $\phi \in V^*$ dapat ditulis</p>
+        <p>$$\phi = \sum_{j=1}^{n} \phi(\mathbf{b}_j)\,f_j.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Bebas linier.</strong> Jika $\sum_i \alpha_if_i = 0$ (fungsional nol), evaluasi di $\mathbf{b}_j$ memberi $\sum_i \alpha_i\delta_{ij} = \alpha_j = 0$ untuk setiap $j$ (sumber menunjukkan ini untuk Contoh 2).</p>
+        <p><strong>Merentang.</strong> Untuk $\phi \in V^*$ dan $\mathbf{v} = \sum_j v_j\mathbf{b}_j$: $\phi(\mathbf{v}) = \sum_j v_j\phi(\mathbf{b}_j) = \sum_j \phi(\mathbf{b}_j)f_j(\mathbf{v})$, karena $f_j(\mathbf{v}) = v_j$. Jadi $\phi = \sum_j \phi(\mathbf{b}_j)f_j$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Basis dual baku (Modul, Contoh 3.1.10)</div>
+        <p>Untuk basis standar $E$ dari $F^n$, $f_i(\mathbf{e}_j) = \delta(i, j)$ berarti $f_i$ adalah vektor baris $\mathbf{e}_i^T$ (baris ke-$i$ matriks identitas). Jadi $E^* = \set{\mathbf{e}_1^T, \dots, \mathbf{e}_n^T}$, dan untuk vektor baris $\mathbf{y} = (a_1, \dots, a_n) = \sum a_i\mathbf{e}_i^T$, $[\mathbf{y}]_{E^*} = \mathbf{y}^T$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Dimensi tak hingga (Modul, Contoh 3.1.11)</div>
+        <p>Untuk $B = \set{1, t, t^2, \dots} \subseteq \R[t]$ dengan $B^* = \set{f_0, f_1, \dots}$ ($f_k$ mengambil koefisien $t^k$), fungsional $f(p) = \int_0^1 p(t)\,dt$ memenuhi</p>
+        <p>$$\int_0^1 (a_0 + a_1t + \dots + a_nt^n)\,dt = a_0 + \tfrac{1}{2}a_1 + \dots + \tfrac{1}{n+1}a_n,$$</p>
+        <p>sehingga secara formal $f = f_0 + \tfrac{1}{2}f_1 + \tfrac{1}{3}f_2 + \cdots$. Jumlah ini tak hingga, jadi $f \notin \operatorname{span}(B^*)$: di dimensi tak hingga, $B^*$ bebas linier tetapi tidak merentang $V^*$, dan karena itu bukan basis. <span class="cek">[CEK: sumber tetap menyebut $B^*$ "basis dual" di sini; dalam dimensi tak hingga istilah itu hanya berarti himpunan $\set{f_i}$ dengan $f_i(\mathbf{b}_j) = \delta_{ij}$, bukan basis $V^*$.]</span></p>
+      </div>
+
+      <h3>Hiperruang dan hiperbidang</h3>
+      <p>Fungsional linier tak nol selalu surjektif ke $F$ (image-nya subruang $F$ yang tak nol, jadi seluruh $F$), sehingga menurut teorema isomorfisma $V/\ker f \cong F$ berdimensi $1$.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Hiperruang dan hiperbidang (Modul, Definisi 3.1.12)</div>
+        <p><strong>Hiperruang</strong> (hyperspace) adalah subruang $W \subseteq V$ dengan $\dim(V/W) = 1$. <strong>Hiperbidang</strong> (hyperplane) adalah koset dari hiperruang.</p>
+        <p>Di ruang berdimensi $n$, hiperruang berdimensi $n - 1$: bidang melalui titik asal di $\R^3$, garis melalui titik asal di $\R^2$, $\set{0}$ di $\R^1$. Misalnya $W = \set{(x, y, 0)}$ hiperruang di $\R^3$, dan $(0, 0, 5) + W = \set{(x, y, 5)}$ hiperbidang.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Hiperruang sebagai kernel (Modul, Teorema 3.1.13)</div>
+        <p>Subruang $W \subseteq V$ adalah hiperruang jika dan hanya jika $W = \ker f$ untuk suatu $f \in V^*$ tak nol. Akibatnya hiperbidang adalah himpunan $\set{\mathbf{v} : f(\mathbf{v}) = c}$ untuk suatu $f \ne 0$ dan $c \in F$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇐)</strong> Jika $f \ne 0$, maka $V/\ker f \cong f[V] = F$ (Teorema 2.5.6), jadi $\dim(V/\ker f) = 1$.</p>
+        <p><strong>(⇒)</strong> Misalkan $W$ hiperruang dan $\set{\mathbf{b}}$ basis dari suatu komplemen langsung $W$ (berdimensi $1$ karena isomorfik dengan $V/W$). Setiap $\mathbf{v} = \mathbf{w} + c\mathbf{b}$ secara tunggal. Definisikan $f(\mathbf{w} + c\mathbf{b}) = c$; maka $f$ linier, $f(\mathbf{b}) = 1$, dan $\ker f = W$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Irisan hiperruang (Modul, Teorema 3.1.14)</div>
+        <p>Jika $V$ berdimensi hingga dan $\dim(V/W) = k$, maka $W$ adalah irisan $k$ hiperruang: ada $f_1, \dots, f_k \in V^*$ dengan</p>
+        <p>$$W = \ker f_1 \cap \dots \cap \ker f_k.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Misalkan $\pi \colon V \to V/W$ pemetaan kanonik. $\Psi(\phi) = \phi \circ \pi$ adalah isomorfisma dari $(V/W)^*$ ke $\set{f \in V^* : W \subseteq \ker f}$: linier; injektif karena $\pi$ surjektif; surjektif karena setiap $f$ yang nol di $W$ menginduksi $\phi(\mathbf{v} + W) = f(\mathbf{v})$, yang terdefinisi baik sebab $\mathbf{v} - \mathbf{v}' \in W$ memberi $f(\mathbf{v}) = f(\mathbf{v}')$.</li>
+          <li>Jadi ruang fungsional yang nol di $W$ berdimensi $\dim(V/W)^* = k$. Pilih basis $f_1, \dots, f_k$ (masing-masing tak nol, jadi $\ker f_i$ hiperruang) dan tulis $U = \bigcap_i \ker f_i \supseteq W$.</li>
+          <li>$U$ adalah kernel dari $\mathbf{v} \mapsto (f_1(\mathbf{v}), \dots, f_k(\mathbf{v})) \in F^k$; karena $f_i$ bebas linier, pemetaan ini surjektif, jadi $\dim U = \dim V - k = \dim W$. Bersama $W \subseteq U$, diperoleh $W = U$.</li>
+        </ol>
+        <p><span class="cek">[CEK: sumber menyatakan teorema untuk $V$ sebarang, tetapi langkah dimensi $\dim U = \dim V - k$ di buktinya hanya bermakna bila $V$ berdimensi hingga. Klaim "surjektif karena $f_i$ bebas linier" di langkah 3 juga tidak dibuktikan di sumber.]</span></p>
+      </details>
+
+      <h3>Ruang bidual</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Ruang bidual dan pemetaan kanonik (Modul, Definisi 3.1.15)</div>
+        <p><strong>Ruang bidual</strong> $V^{**} = (V^*)^*$. <strong>Pemetaan kanonik</strong> $\varphi \colon V \to V^{**}$ didefinisikan oleh</p>
+        <p>$$\varphi(\mathbf{v})(f) := f(\mathbf{v}), \qquad \mathbf{v} \in V,\ f \in V^*:$$</p>
+        <p>vektor $\mathbf{v}$ dipandang sebagai "evaluasi di $\mathbf{v}$".</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">$V$ tertanam di $V^{**}$ (Modul, Teorema 3.1.16)</div>
+        <p>Untuk sebarang ruang vektor $V$, pemetaan kanonik $\varphi$ linier dan injektif, sehingga $V \cong \varphi[V] \subseteq V^{**}$ secara kanonik.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>$\varphi(\mathbf{v}) \in V^{**}$:</strong> $\varphi(\mathbf{v})(cf_1 + f_2) = cf_1(\mathbf{v}) + f_2(\mathbf{v}) = c\varphi(\mathbf{v})(f_1) + \varphi(\mathbf{v})(f_2)$.</p>
+        <p><strong>$\varphi$ linier:</strong> $\varphi(c\mathbf{v}_1 + \mathbf{v}_2)(f) = f(c\mathbf{v}_1 + \mathbf{v}_2) = c\varphi(\mathbf{v}_1)(f) + \varphi(\mathbf{v}_2)(f)$ untuk setiap $f$.</p>
+        <p><strong>Injektif:</strong> jika $\mathbf{v} \ne \mathbf{0}$, perluas $\set{\mathbf{v}}$ menjadi basis $B$ (Teorema 1.3.3(a)) dan definisikan $f$ dengan $f(\mathbf{v}) = 1$ dan $f = 0$ pada $B \setminus \set{\mathbf{v}}$. Maka $\varphi(\mathbf{v})(f) = 1$, jadi $\varphi(\mathbf{v}) \ne 0$.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Ruang berdimensi hingga dan bidualnya (Modul, Teorema 3.1.17)</div>
+        <p>Jika $V$ berdimensi hingga, $\varphi \colon V \to V^{**}$ isomorfisma kanonik: $V \cong V^{**}$ tanpa memilih basis.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\dim V^{**} = \dim V^* = \dim V$ (Teorema 2), dan transformasi linier injektif antara ruang berdimensi sama adalah isomorfisma (Akibat 2.5.10).</p>
+      </details>
+
+      <h3>Pemetaan dual</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Pemetaan dual (Modul, Definisi 3.1.18)</div>
+        <p>Untuk $L \in \mathcal{L}(V, W)$, <strong>pemetaan dual</strong> $L^* \colon W^* \to V^*$ didefinisikan oleh</p>
+        <p>$$L^*(f)(\mathbf{v}) := f(L(\mathbf{v})), \qquad \text{yaitu } L^*(f) = f \circ L.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Dualisasi linier (Modul, Teorema 3.1.19)</div>
+        <p>$L^* \in \mathcal{L}(W^*, V^*)$, dan pemetaan $L \mapsto L^*$ adalah transformasi linier $\mathcal{L}(V, W) \to \mathcal{L}(W^*, V^*)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$L^*(cf + g)(\mathbf{v}) = (cf + g)(L(\mathbf{v})) = cL^*(f)(\mathbf{v}) + L^*(g)(\mathbf{v})$, jadi $L^*$ linier. Untuk $T \in \mathcal{L}(V, W)$: $(cL + T)^*(f)(\mathbf{v}) = f(cL(\mathbf{v}) + T(\mathbf{v})) = cL^*(f)(\mathbf{v}) + T^*(f)(\mathbf{v})$, jadi $(cL + T)^* = cL^* + T^*$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Rekonstruksi sinyal dari evaluasi fungsional (Modul, §3.1.21)</div>
+        <p>Alat perekam (misalnya ECG) hanya mencatat beberapa nilai fungsional linier dari sinyal $f \in C([0, 1])$, seperti $f(t_i)$ atau $\int_0^1 f(t)\phi_i(t)\,dt$; masing-masing adalah elemen $C([0, 1])^*$. Dari nilai-nilai itu sinyal didekati dengan polinomial $f_N(t) = \sum_{k=0}^{N-1} c_kt^k$, memakai hasil kali dalam $\langle f, g \rangle = \int_0^1 f(t)g(t)\,dt$, misalnya untuk $f(t) = \sin(2\pi t) + 0{,}5\cos(6\pi t)$. Mutu rekonstruksi diukur dengan galat RMS:</p>
+        <p>$$\text{RMS} = \sqrt{\frac{1}{b - a}\int_a^b \bigl(f(t) - f_N(t)\bigr)^2\,dt}.$$</p>
+        <p>Sumber menyediakan implementasinya (SciPy dan Matplotlib) di notebook Colab. <span class="cek">[CEK: (1) sumber mengambil $c_k = \langle f, t^k \rangle / \langle t^k, t^k \rangle$ sebagai "proyeksi ortogonal", padahal $\set{1, t, \dots, t^{N-1}}$ tidak ortogonal terhadap hasil kali dalam ini, sehingga rumus itu tidak memberi proyeksi ortogonal ke $P_{N-1}$ (perlu Gram–Schmidt atau persamaan normal). (2) Sumber menulis $C([0, 1]) \cong C([0, 1])^{**}$; untuk ruang berdimensi tak hingga, pemetaan kanonik hanya injektif (Teorema 5), tidak surjektif.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira $f_i$ hanya bergantung pada $\mathbf{b}_i$.</strong> Fungsional dual $f_i$ bergantung pada <em>seluruh</em> basis $B$. Mengganti $\mathbf{b}_2$ bisa mengubah $f_1$ (bandingkan Latihan 2 dengan basis standar).</li>
+        <li><strong>Mencampur $V^*$ dengan $V$.</strong> Anggota $V^*$ adalah fungsi pada $V$; untuk $F^n$ ia vektor baris, bukan vektor kolom.</li>
+        <li><strong>Menganggap $V \cong V^{**}$ selalu kanonik-isomorfik.</strong> Itu hanya untuk dimensi hingga; secara umum $V$ hanya tertanam di $V^{**}$.</li>
+        <li><strong>Membalik arah pemetaan dual.</strong> $L \colon V \to W$ tetapi $L^* \colon W^* \to V^*$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$V = \R^3$ dengan basis standar. (a) Tentukan basis dual $\set{\mathbf{e}_1^*, \mathbf{e}_2^*, \mathbf{e}_3^*}$. (b) Tunjukkan bahwa $\Phi \colon V \to V^{**}$, $\Phi(\mathbf{v})(f) = f(\mathbf{v})$, isomorfisma.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) Syarat $\mathbf{e}_i^*(\mathbf{e}_j) = \delta_{ij}$. Untuk $\mathbf{v} = x_1\mathbf{e}_1 + x_2\mathbf{e}_2 + x_3\mathbf{e}_3$, linieritas memberi $\mathbf{e}_i^*(\mathbf{v}) = x_i$. Jadi $\mathbf{e}_i^*(x_1, x_2, x_3) = x_i$.</li>
+            <li>(b) Linier: $\Phi(c\mathbf{v} + \mathbf{w})(f) = cf(\mathbf{v}) + f(\mathbf{w}) = c\Phi(\mathbf{v})(f) + \Phi(\mathbf{w})(f)$.</li>
+            <li>Injektif: jika $\Phi(\mathbf{v}) = 0$, maka $f(\mathbf{v}) = 0$ untuk semua $f$; khususnya $\mathbf{e}_i^*(\mathbf{v}) = 0$, jadi semua koordinat $\mathbf{v}$ nol dan $\mathbf{v} = \mathbf{0}$.</li>
+            <li>$\dim V^{**} = \dim V^* = \dim V = 3$, jadi $\Phi$ injektif antara ruang berdimensi sama, sehingga bijektif.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$V = \R^2$ dengan basis $B = \set{(1, 1), (1, 2)}$. Tentukan basis dual $B^* = \set{f_1, f_2}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Setiap fungsional di $\R^2$ berbentuk $f(x, y) = ax + by$ (Teorema 1). Tulis $f_1 = a_1x + b_1y$.</li>
+            <li>$f_1(1, 1) = a_1 + b_1 = 1$ dan $f_1(1, 2) = a_1 + 2b_1 = 0$. Kurangkan: $b_1 = -1$, lalu $a_1 = 2$. Jadi $f_1(x, y) = 2x - y$.</li>
+            <li>$f_2(1, 1) = a_2 + b_2 = 0$ dan $f_2(1, 2) = a_2 + 2b_2 = 1$. Kurangkan: $b_2 = 1$, lalu $a_2 = -1$. Jadi $f_2(x, y) = -x + y$.</li>
+            <li>Cek: $f_1(1, 1) = 1$, $f_1(1, 2) = 0$, $f_2(1, 1) = 0$, $f_2(1, 2) = 1$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$B = \set{1 + t, 1 + 2t} \subseteq \R[t]_1$ dengan basis dual $\set{f_1, f_2}$. Hitung $f_i(a + bt)$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$f_1(a + bt)$ dan $f_2(a + bt)$ adalah koordinat $a + bt$ terhadap $B$. Tulis $a + bt = c(1 + t) + d(1 + 2t)$.</li>
+            <li>Samakan koefisien: $c + d = a$ dan $c + 2d = b$. Kurangkan: $d = b - a$, lalu $c = a - d = 2a - b$.</li>
+          </ol>
+          <p>Jadi $f_1(a + bt) = 2a - b$ dan $f_2(a + bt) = b - a$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada $V = \R[t]_1$, $f_1(p) = \int_0^1 p(t)\,dt$ dan $f_2(p) = \int_0^2 p(t)\,dt$. (a) Tunjukkan $\set{f_1, f_2}$ basis $V^*$. (b) Tentukan basis $V$ yang basis dualnya $\set{f_1, f_2}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p><strong>(a)</strong> Untuk $p = a + bt$: $f_1(p) = a + \frac{b}{2}$ dan $f_2(p) = 2a + 2b$. Dalam koordinat $(a, b)$, kedua fungsional adalah baris matriks</p>
+          <p>$$M = \begin{pmatrix} 1 & 1/2 \\ 2 & 2 \end{pmatrix}, \qquad \det M = 2 - 1 = 1 \ne 0,$$</p>
+          <p>jadi $f_1, f_2$ bebas linier, dan karena $\dim V^* = 2$, keduanya basis.</p>
+          <p class="oleh-claude">Bagian (b): pembahasan oleh Claude — perlu dicek (sumber hanya memberi petunjuk)</p>
+          <p><strong>(b)</strong> Kita cari $\mathbf{v}_1, \mathbf{v}_2$ dengan $f_i(\mathbf{v}_j) = \delta_{ij}$. Jika koordinat $\mathbf{v}_j$ disusun sebagai kolom matriks $C$, syaratnya $MC = I$, jadi $C = M^{-1}$:</p>
+          <p>$$M^{-1} = \frac{1}{1}\begin{pmatrix} 2 & -1/2 \\ -2 & 1 \end{pmatrix}.$$</p>
+          <p>Maka $\mathbf{v}_1 = 2 - 2t$ dan $\mathbf{v}_2 = -\frac{1}{2} + t$. Cek: $f_1(2 - 2t) = 2 - 1 = 1$, $f_2(2 - 2t) = 4 - 4 = 0$, $f_1(-\frac{1}{2} + t) = -\frac{1}{2} + \frac{1}{2} = 0$, $f_2(-\frac{1}{2} + t) = -1 + 2 = 1$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$\operatorname{Tr}(A)$ adalah jumlah entri diagonal $A \in M_n(F)$. Tunjukkan (a) $\operatorname{Tr}$ fungsional linier, (b) $\operatorname{Tr}(A^T) = \operatorname{Tr}(A)$, (c) $\operatorname{Tr}(AB) = \operatorname{Tr}(BA)$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) Entri diagonal $cA + B$ adalah $ca_{ii} + b_{ii}$, jadi $\operatorname{Tr}(cA + B) = c\operatorname{Tr}(A) + \operatorname{Tr}(B)$.</li>
+            <li>(b) Transpos tidak mengubah entri diagonal: $(A^T)_{ii} = a_{ii}$.</li>
+            <li>(c) $\operatorname{Tr}(AB) = \sum_i (AB)_{ii} = \sum_i\sum_j a_{ij}b_{ji} = \sum_j\sum_i b_{ji}a_{ij} = \sum_j (BA)_{jj} = \operatorname{Tr}(BA)$, dengan menukar urutan penjumlahan berhingga.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$f \in (\R^4)^*$, $f(x, y, z, w) = 2x - 3y + z + 5w$. (a) Tentukan $\ker f$ dan dimensinya. (b) Tentukan basis $\ker f$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $\ker f = \set{(x, y, z, w) : 2x - 3y + z + 5w = 0}$. Karena $f \ne 0$, $\operatorname{Im} f = \R$, dan rank–nulitas memberi $\dim \ker f = 4 - 1 = 3$: hiperruang di $\R^4$ (Teorema 3).</li>
+            <li>(b) Nyatakan $z = -2x + 3y - 5w$, dengan $x, y, w$ bebas:
+              $$\begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix} = x\begin{pmatrix} 1 \\ 0 \\ -2 \\ 0 \end{pmatrix} + y\begin{pmatrix} 0 \\ 1 \\ 3 \\ 0 \end{pmatrix} + w\begin{pmatrix} 0 \\ 0 \\ -5 \\ 1 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Ketiga vektor merentang $\ker f$ dan bebas linier (lihat komponen $x, y, w$), jadi membentuk basis.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        V^* = \mathcal{L}(V, F), \qquad (F^n)^* \cong F_n, \qquad \dim V^* = \dim V \ (\text{dimensi hingga}), \\
+        f_i(\mathbf{b}_j) = \delta_{ij}, \qquad \phi = \sum_j \phi(\mathbf{b}_j)f_j
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        W \text{ hiperruang} \iff W = \ker f,\ f \ne 0, \qquad \dim(V/W) = k \implies W = \bigcap_{i=1}^{k} \ker f_i, \\
+        \varphi(\mathbf{v})(f) = f(\mathbf{v}), \qquad L^*(f) = f \circ L
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/03-Ruang-Dual.md</code>, Bab 3, §3.1: Definisi 3.1.3, 3.1.7, 3.1.12, 3.1.15, 3.1.18, Teorema 3.1.5, 3.1.9, 3.1.13, 3.1.14, 3.1.16, 3.1.17, 3.1.19, Contoh 3.1.2, 3.1.4, 3.1.6, 3.1.8, 3.1.10, 3.1.11, Soal dan Jawaban 3.1.20 (nomor 4, 8, 9 dipakai di sini), §3.1.21 (tautan Colab tidak dibuka). File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.3.1, §8.3.8, §8.3.11 (Latihan 1, 2, 6).</li>
+        <li>Latihan 4(b) dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Operator Linier dan Jumlah Langsung · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Operator Linier dan Jumlah Langsung</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Dekomposisi-$L$: $V = U \oplus W$ dengan $U$ dan $W$ sama-sama invarian-$L$; lalu $L = L_U \oplus L_W$ dengan $L_U = L|_U$, $L_W = L|_W$.</li>
+        <li>Setiap proyeksi memberi dekomposisi-$L$, tetapi tidak setiap operator punya dekomposisi tak trivial.</li>
+        <li>Di dimensi hingga: $L$ punya dekomposisi jumlah langsung menjadi subruang invarian ⇔ $L$ punya matriks blok diagonal $\operatorname{diag}(A_1, \dots, A_k)$.</li>
+        <li>Matriks blok diagonal dikalikan blok demi blok: $\operatorname{diag}(A_i)\operatorname{diag}(B_i) = \operatorname{diag}(A_iB_i)$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Dekomposisi operator</h3>
+      <p>Semua jumlah langsung di sini internal. Ingat bahwa subruang $U$ disebut invarian-$L$ jika $L[U] \subseteq U$; kernel dan image setiap operator selalu invarian.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Dekomposisi-$L$ (Modul, Definisi 3.4.1)</div>
+        <p>Untuk $L \in \mathcal{L}(V)$, <strong>dekomposisi-$L$</strong> dari $V$ adalah jumlah langsung $V = U \oplus W$ dengan $U$ dan $W$ keduanya invarian-$L$; $U$ dan $W$ disebut <strong>komplemen-$L$</strong>. Pembatasan $L_U := L|_U \in \mathcal{L}(U)$ dan $L_W := L|_W \in \mathcal{L}(W)$, dan ditulis</p>
+        <p>$$L = L_U \oplus L_W,$$</p>
+        <p>dekomposisi jumlah langsung dari $L$. Dekomposisi ini <strong>tak trivial</strong> jika $U$ dan $W$ keduanya tak nol.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Proyeksi (Modul, §3.4 dan Contoh 3.4.2)</div>
+        <p>Untuk proyeksi $L$, $V = L[V] \oplus \ker L$ adalah dekomposisi-$L$. Misalnya proyeksi ke sumbu-$y$ sepanjang garis $y = x$, yaitu $L(x, y) = (0, y - x)$: $U = \ker L = \operatorname{span}\set{(1, 1)}$ dan $W = L[\R^2] = \operatorname{span}\set{(0, 1)}$. Di sini $L_U = 0$ dan $L_W$ identitas.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Operator tanpa dekomposisi tak trivial (Modul, Contoh 3.4.3)</div>
+        <p>$L(x, y) = (2x + y,\ 2y)$ di $\R^2$. Dekomposisi tak trivial akan berupa dua garis invarian $\operatorname{span}\set{\mathbf{v}}$, yaitu $L(\mathbf{v}) = c\mathbf{v}$. Dari $(2x + y, 2y) = c(x, y)$:</p>
+        <p>$$(2 - c)x + y = 0, \qquad (2 - c)y = 0.$$</p>
+        <p>Jika $y \ne 0$, persamaan kedua memberi $c = 2$, lalu persamaan pertama memberi $y = 0$, kontradiksi. Jadi $y = 0$, $x \ne 0$, dan $c = 2$. Satu-satunya garis invarian adalah $\operatorname{span}\set{(1, 0)}$, sehingga tidak ada dua garis invarian yang membentuk jumlah langsung: $L$ tidak punya dekomposisi tak trivial.</p>
+        <p><span class="cek">[CEK: sumber menuliskan sistemnya sebagai $2x = cx$, $x + 2y = cy$ dan menyimpulkan garis invarian $\operatorname{span}\set{(0, 1)}$. Itu cocok untuk operator $(x, y) \mapsto (2x,\ x + 2y)$, bukan untuk $(2x + y,\ 2y)$ yang didefinisikan. Untuk operator yang didefinisikan, garis invariannya $\operatorname{span}\set{(1, 0)}$. Kesimpulan "tidak ada dekomposisi tak trivial" berlaku untuk keduanya.]</span></p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Eksponensial bebas linier (Modul, §3.4, sebelum Contoh 3.4.4)</div>
+        <p>Himpunan $C = \set{e^{at} : a \in \R}$ bebas linier, jadi basis untuk $U = \operatorname{span} C$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $c_1e^{a_1t} + \dots + c_ne^{a_nt} = 0$ untuk semua $t$, dengan $a_i$ berbeda. Turunkan $k$ kali ($k = 0, \dots, n - 1$) dan evaluasi di $t = 0$: $\sum_i c_ia_i^k = 0$. Dalam matriks, $V\mathbf{c} = \mathbf{0}$ dengan $V$ matriks Vandermonde (baris ke-$k$: $a_1^k, \dots, a_n^k$), dan</p>
+        <p>$$\det V = \prod_{1 \le i \lt j \le n} (a_j - a_i) \ne 0$$</p>
+        <p>karena $a_i$ berbeda. Jadi $V$ invertibel dan $\mathbf{c} = \mathbf{0}$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Subruang invarian tanpa komplemen invarian (Modul, Contoh 3.4.4)</div>
+        <p>Turunan $D(f) = f'$ operator linier pada $C^\infty(\R)$, dan $U = \operatorname{span}\set{e^{at}}$ invarian-$D$, karena turunan $\sum c_ie^{a_it}$ adalah $\sum a_ic_ie^{a_it} \in U$.</p>
+        <p>Andaikan $W$ komplemen invarian-$D$ dari $U$. Karena $te^t \notin U$, tulis $te^t = \sum_i c_ie^{a_it} + f$ dengan $f \in W$. Maka $f' = (t + 1)e^t - \sum a_ic_ie^{a_it} \in W$, dan</p>
+        <p>$$f' - f = e^t - \sum_i (a_i - 1)c_ie^{a_it} \in U \cap W = \set{0}.$$</p>
+        <p>Jadi $f' = f$, sehingga $f = ce^t \in U$; bersama $f \in W$, $f = 0$ dan $te^t \in U$, kontradiksi. Jadi $U$ tidak punya komplemen invarian-$D$ di $C^\infty(\R)$.</p>
+      </div>
+
+      <h3>Matriks blok diagonal</h3>
+      <p>Jika $L = L_U \oplus L_W$ dengan basis $B_U$ untuk $U$ dan $B_W$ untuk $W$, maka $B = B_U \cup B_W$ basis $V$ dan $L[V] = L[U] \oplus L[W]$. Di dimensi hingga, misalkan $\dim U = k$, $B_U = \set{\mathbf{b}_1, \dots, \mathbf{b}_k}$, $B_W = \set{\mathbf{b}_{k+1}, \dots, \mathbf{b}_n}$. Peta vektor $B_U$ punya koordinat $(a_1, \dots, a_k, 0, \dots, 0)$ dan peta vektor $B_W$ punya koordinat $(0, \dots, 0, a_{k+1}, \dots, a_n)$, sehingga</p>
+      <p>$$[L]_B = \begin{pmatrix} A_U & O_{k, n-k} \\ O_{n-k, k} & A_W \end{pmatrix}, \qquad A_U = [L_U]_{B_U}, \quad A_W = [L_W]_{B_W}.$$</p>
+      <p>Secara umum ditulis $A = \operatorname{diag}(A_1, \dots, A_k)$ untuk matriks blok diagonal (block diagonal) dengan blok persegi $A_i$ di diagonal dan nol di tempat lain; blok nol di luar diagonal tidak harus persegi.</p>
+
+      <div class="box teorema">
+        <div class="box-title">Blok diagonal ⇔ dekomposisi invarian (Modul, Teorema 3.4.5)</div>
+        <p>Misalkan $V$ berdimensi hingga. $L \in \mathcal{L}(V)$ punya matriks blok diagonal terhadap suatu basis terurut jika dan hanya jika $V = U_1 \oplus \dots \oplus U_k$ dengan setiap $U_i$ invarian-$L$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(⇒)</strong> Jika $[L]_B = \operatorname{diag}(A_1, \dots, A_k)$ dengan $A_i$ berukuran $n_i$, bagi $B$ menjadi $B_1, \dots, B_k$ sesuai ukuran blok dan tulis $U_i = \operatorname{span} B_i$. Kolom-kolom untuk $\mathbf{b} \in B_i$ nol di luar baris blok $i$, jadi $L(\mathbf{b}) \in U_i$ dan $U_i$ invarian. $V = \bigoplus U_i$ karena basis $B$ terpartisi menjadi $B_i$ (Teorema 2.7.5).</p>
+        <p><strong>(⇐)</strong> Pilih basis $B_i$ untuk tiap $U_i$ dan gabungkan berurutan menjadi basis $B$ (Teorema 2.7.5). Karena $U_i$ invarian, $L(\mathbf{b})$ untuk $\mathbf{b} \in B_i$ kombinasi linier anggota $B_i$ saja, jadi kolomnya nol di luar baris blok $i$. Maka $[L]_B = \operatorname{diag}\bigl([L|_{U_i}]_{B_i}\bigr)$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Dua blok $2 \times 2$ (Modul, Contoh 3.4.6)</div>
+        <p>$$[L]_E = \begin{pmatrix} 1 & 2 & 0 & 0 \\ 0 & 3 & 0 & 0 \\ 0 & 0 & 4 & 0 \\ 0 & 0 & 1 & 5 \end{pmatrix}, \qquad A_U = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}, \quad A_W = \begin{pmatrix} 4 & 0 \\ 1 & 5 \end{pmatrix}.$$</p>
+        <p>Dengan $U = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2}$ dan $W = \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_4}$: $L(\mathbf{e}_1) = \mathbf{e}_1$, $L(\mathbf{e}_2) = 2\mathbf{e}_1 + 3\mathbf{e}_2 \in U$, $L(\mathbf{e}_3) = 4\mathbf{e}_3 + \mathbf{e}_4$, $L(\mathbf{e}_4) = 5\mathbf{e}_4 \in W$. Jadi $\R^4 = U \oplus W$ adalah dekomposisi-$L$ dan $L = L|_U \oplus L|_W$ dengan matriks $A_U$ dan $A_W$.</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">Perkalian blok diagonal (Modul, Teorema 3.4.7)</div>
+        <p>Jika $A = \operatorname{diag}(A_1, \dots, A_k)$ dan $B = \operatorname{diag}(B_1, \dots, B_k)$ dengan $A_i, B_i \in M_{n_i}(F)$, maka</p>
+        <p>$$AB = \operatorname{diag}(A_1B_1, \dots, A_kB_k).$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Dengan perkalian matriks berblok, blok $(i, j)$ dari $AB$ adalah $\sum_r A_{ir}B_{rj}$. Karena $A_{ir} = 0$ untuk $i \ne r$ dan $B_{rj} = 0$ untuk $r \ne j$, setiap suku dengan $i \ne j$ memuat faktor nol, sedangkan untuk $i = j$ hanya suku $r = i$ yang tersisa: $A_iB_i$.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Perkalian matriks berblok umum</div>
+        <p>Untuk $A = \begin{pmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{pmatrix}$ dan $B = \begin{pmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \end{pmatrix}$ dengan setiap $A_{ik}B_{kj}$ terdefinisi,</p>
+        <p>$$AB = \begin{pmatrix} A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22} \\ A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22} \end{pmatrix}.$$</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Hanya memeriksa satu subruang invarian.</strong> Dekomposisi-$L$ butuh <em>kedua</em> komplemen invarian. Di Contoh 3, $U$ invarian, tetapi tidak ada komplemen yang invarian.</li>
+        <li><strong>Mengira $V = U \oplus W$ sebarang memberi matriks blok diagonal.</strong> Tanpa invariansi, matriksnya hanya blok segitiga atau tidak berstruktur sama sekali.</li>
+        <li><strong>Lupa urutan basis.</strong> Matriks blok diagonal muncul hanya jika vektor basis $U_1$ ditulis dulu, lalu $U_2$, dan seterusnya.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$P \colon \R^3 \to \R^3$, $P(x, y, z) = (x, y, 0)$. (a) Tentukan matriks $P$ terhadap basis standar. (b) Tunjukkan $\R^3 = \ker P \oplus \operatorname{Im} P$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $P(\mathbf{e}_1) = \mathbf{e}_1$, $P(\mathbf{e}_2) = \mathbf{e}_2$, $P(\mathbf{e}_3) = \mathbf{0}$, jadi $[P] = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$.</li>
+            <li>(b) $P(x, y, z) = \mathbf{0} \iff x = y = 0$, jadi $\ker P = \set{(0, 0, z)}$ (sumbu-$z$). $\operatorname{Im} P = \set{(x, y, 0)}$ (bidang-$xy$).</li>
+            <li>Irisan: vektor berbentuk $(0, 0, z)$ dan $(x, y, 0)$ sekaligus harus $(0, 0, 0)$.</li>
+            <li>Jumlah: $(x, y, z) = (0, 0, z) + (x, y, 0)$, dengan suku pertama di $\ker P$ dan suku kedua di $\operatorname{Im} P$.</li>
+          </ol>
+          <p>Jadi $\R^3 = \ker P \oplus \operatorname{Im} P$, dan ini dekomposisi-$P$ dengan $P_{\ker P} = 0$ dan $P_{\operatorname{Im} P} = I$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Dengan $[L]_E$ dari Contoh 4, hitung $[L]_E^2$ memakai Proposisi 1 dan periksa bahwa $U$ dan $W$ tetap invarian-$L^2$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Menurut Proposisi 1, $[L]_E^2 = \operatorname{diag}(A_U^2, A_W^2)$.</li>
+            <li>$A_U^2 = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} 1 & 8 \\ 0 & 9 \end{pmatrix}$ dan $A_W^2 = \begin{pmatrix} 4 & 0 \\ 1 & 5 \end{pmatrix}\begin{pmatrix} 4 & 0 \\ 1 & 5 \end{pmatrix} = \begin{pmatrix} 16 & 0 \\ 9 & 25 \end{pmatrix}$.</li>
+            <li>Jadi
+              $$[L]_E^2 = \begin{pmatrix} 1 & 8 & 0 & 0 \\ 0 & 9 & 0 & 0 \\ 0 & 0 & 16 & 0 \\ 0 & 0 & 9 & 25 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Matriks ini masih blok diagonal dengan blok yang sama ukurannya, jadi menurut Teorema 1, $U$ dan $W$ invarian-$L^2$ (juga langsung: $L[U] \subseteq U$ memberi $L^2[U] \subseteq L[U] \subseteq U$).</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        V = U \oplus W,\ L[U] \subseteq U,\ L[W] \subseteq W \implies L = L_U \oplus L_W, \\
+        [L]_{B_U \cup B_W} = \begin{pmatrix} [L_U]_{B_U} & O \\ O & [L_W]_{B_W} \end{pmatrix}, \qquad \operatorname{diag}(A_i)\operatorname{diag}(B_i) = \operatorname{diag}(A_iB_i)
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/03-Ruang-Dual.md</code>, Bab 3, §3.4: Definisi 3.4.1, Teorema 3.4.5, 3.4.7, Contoh 3.4.2–3.4.4, 3.4.6, bukti kebebasan linier $\set{e^{at}}$, perkalian matriks berblok. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.3.4 (Latihan 1).</li>
+        <li>Penyelesaian sistem di Contoh 2 (yang ditinggalkan sumber sebagai latihan), Latihan 2, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Real Problem Ruang Dual · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Real Problem Ruang Dual</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Pengklasifikasi linier (SVM) memisahkan data dengan hiperbidang $f(\mathbf{x}) = c$, yaitu koset dari $\ker f$ untuk suatu fungsional $f \ne 0$.</li>
+        <li>Matriks dual adalah transpos; karena $\operatorname{rank} A = \operatorname{rank} A^T$, informasi rank tidak hilang saat "membalik" arah (misalnya dari film ke pengguna).</li>
+        <li>Energi kinetik $\tfrac{1}{2}\mathbf{v}^TM\mathbf{v}$ datang dari bentuk bilinear simetris tak terdegenerasi $\sigma(\mathbf{v}, \mathbf{x}) = \mathbf{v}^TM\mathbf{x}$; injeksi $\mathbf{v} \mapsto M\mathbf{v}$ adalah momentum.</li>
+        <li>Rotasi di robotika ada di $O_n(\R)$ (dengan $\det = 1$, grup $SO_n$); evolusi kuantum memakai matriks uniter.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Sumber menutup Bab 3 dengan contoh penerapan yang masing-masing dikaitkan ke teorema tertentu. Soal dan pembahasannya ada di bagian Latihan; tabel berikut merangkum kaitannya. Sumber juga menyertakan kode visualisasi untuk tiap soal (tidak disalin).</p>
+
+      <div class="tabel">
+        <table>
+          <caption>Real problem dan konsep yang dipakai (Modul, §3.7)</caption>
+          <thead>
+            <tr><th scope="col">Real problem</th><th scope="col">Konsep</th><th scope="col">Topik</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>3.7.1 SVM / klasifikasi spam</td><td>Hiperruang $= \ker f$, hiperbidang $f = c$</td><td>Dualitas dan Bidual</td></tr>
+            <tr><td>3.7.2 Matriks rating (Netflix)</td><td>$[L^*] = A^T$, $\operatorname{rank} A = \operatorname{rank} A^T$</td><td>Transposisi dan Dualitas</td></tr>
+            <tr><td>3.7.3 Energi kinetik</td><td>Bentuk bilinear tak terdegenerasi, $P^TMP$</td><td>Bentuk Bilinear</td></tr>
+            <tr><td>3.7.4 Robotika, 3.7.5 kuantum</td><td>$O_n(\R)$, $\det = \pm 1$; $U_n(\C)$</td><td>Grup Matriks; Swadjoin dan Uniter</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">SVM sebagai masalah dual</div>
+        <p>Melatih SVM berarti mencari $f \in V^*$ (dan konstanta $c$) yang memaksimalkan margin $\min_i \abs{f(\mathbf{x}_i) - c}/\norm{f}$. Evaluasi $f$ pada titik data $\mathbf{x}_i$ adalah $\varphi(\mathbf{x}_i)(f)$, unsur bidual (topik Dualitas dan Bidual); di sinilah dualitas masuk ke optimasi.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Ortogonal menjaga jarak, uniter menjaga probabilitas</div>
+        <p>Benda yang diputar (lengan robot, objek 3D di game) tidak boleh "melar", jadi transformasinya harus di $O_n(\R)$. Rotasi murni membentuk $SO_n = \set{A \in O_n(\R) : \det A = 1}$. Di komputasi kuantum, matriks uniter mempertahankan hasil kali dalam kompleks, sehingga peluang total tetap $1$.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menganggap hiperbidang pemisah selalu melalui titik asal.</strong> Pemisah $\mathbf{w} \cdot \mathbf{x} + b = 0$ dengan $b \ne 0$ adalah koset, bukan subruang.</li>
+        <li><strong>Menyamakan "ortogonal" dengan "$\det = 1$".</strong> Refleksi ortogonal dengan $\det = -1$; matriks ber-$\det$ $1$ belum tentu ortogonal.</li>
+        <li><strong>Lupa bahwa matriks bentuk bilinear berubah dengan $P^TMP$.</strong> Dalam koordinat baru, matriks massa bukan $P^{-1}MP$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p><strong>SVM (Real Problem 3.7.1).</strong> Di $\R^2$ ada data positif $(2, 2)$ dan negatif $(0, 0)$. Tentukan fungsional $f \in (\R^2)^*$ dan hiperbidang pemisah optimal.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Arah yang memisahkan kedua titik paling baik adalah arah selisihnya, $(2, 2) - (0, 0) \parallel (1, 1)$. Ambil $f(x, y) = x + y$, yaitu vektor baris $(1, 1) \in \R_2$ (Teorema 3.1.5).</li>
+            <li>$\ker f = \set{(x, y) : x + y = 0}$ hiperruang (garis melalui titik asal), sesuai Teorema 3.1.13.</li>
+            <li>$f(0, 0) = 0$ dan $f(2, 2) = 4$. Pemisah dengan margin terbesar ada di tengah, $f = 2$: hiperbidang $x + y = 2$, yaitu koset $(1, 1) + \ker f$.</li>
+          </ol>
+          <p>Kedua titik berjarak sama, $\abs{f(\mathbf{x}_i) - 2}/\norm{(1, 1)} = 2/\sqrt{2} = \sqrt{2}$, dari pemisah.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p><strong>Rekomendasi (Real Problem 3.7.2).</strong> $A = \begin{pmatrix} 1 & 2 \\ 3 & 1 \end{pmatrix}$ dengan $L(\mathbf{e}_1) = (1, 3)$, $L(\mathbf{e}_2) = (2, 1)$. Tunjukkan bagaimana $A^T$ bekerja sebagai dual, dan mengapa $\operatorname{rank} A = \operatorname{rank} A^T$ penting.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Menurut Teorema 3.2.7, $[L^*] = A^T = \begin{pmatrix} 1 & 3 \\ 2 & 1 \end{pmatrix}$.</li>
+            <li>Interpretasi: $L$ memetakan film ke rating pengguna; $L^*$ memetakan preferensi pengguna ke "profil film ideal" (collaborative filtering).</li>
+            <li>Fungsional $\mathbf{y} = \mathbf{e}_1^T$ ("tanya rating pengguna 1") memberi $L^*(\mathbf{y}) = \mathbf{y}A = (1, 2)$: baris pertama $A$, vektor baris film yang disukai pengguna 1, sama seperti dualitas baris/kolom di Contoh 3.2.6.</li>
+            <li>Teorema 3.2.5(b): $\operatorname{rank} A = \operatorname{rank} A^T$ (di sini keduanya $2$, karena $\det A = 1 - 6 = -5 \ne 0$), jadi banyak faktor laten yang diperlukan untuk kompresi (misalnya SVD) sama dari kedua arah.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p><strong>Energi (Real Problem 3.7.3).</strong> Dua partikel bermassa $m_1 = 1$, $m_2 = 2$, dengan $M = \operatorname{diag}(1, 2)$ dan $\sigma(\mathbf{v}, \mathbf{x}) = \mathbf{v}^TM\mathbf{x}$ (energi kinetik $T = \tfrac{1}{2}\sigma(\mathbf{v}, \mathbf{v})$). Tunjukkan $\sigma$ tak terdegenerasi dan hitung matriksnya di basis baru dengan $P = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>$\sigma$ bilinear (Definisi 3.3.2) karena perkalian matriks bilinear, dan simetris karena $M^T = M$.</li>
+            <li>$[\sigma]_E = M$ dengan $\det M = 2 \ne 0$, jadi menurut Teorema 3.3.8, $\sigma$ tak terdegenerasi. Secara fisis: tidak ada kecepatan tak nol $\mathbf{v}$ dengan $\sigma(\mathbf{v}, \mathbf{x}) = 0$ untuk semua $\mathbf{x}$, dan $\mathbf{v} \mapsto \sigma(\mathbf{v}, \cdot)$ (injektif $V \to V^*$, Teorema 3.3.9) adalah momentum $\mathbf{p} = M\mathbf{v}$.</li>
+            <li>Menurut Teorema 3.3.5, matriks di basis baru adalah $P^TMP$:
+              $$P^TMP = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 3 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Matriks baru tetap simetris dan $\det = 3 - 1 = 2 \ne 0$, sesuai bahwa kongruensi mempertahankan kedua sifat itu. <span class="cek">[CEK: sumber menyebut $P$ ini "koordinat pusat massa" dan hasil $P^TMP$ dihitung lewat kode yang tidak disalin; nilai di atas dihitung ulang oleh Claude. Label "pusat massa" untuk $P$ ini meragukan.]</span></p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p><strong>Robotika (Real Problem 3.7.4).</strong> $R = \begin{pmatrix} \cos 30^\circ & -\sin 30^\circ \\ \sin 30^\circ & \cos 30^\circ \end{pmatrix}$. Buktikan $R \in O_2(\R)$ dan jelaskan peran $\det = \pm 1$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Tulis $c = \cos 30^\circ$, $s = \sin 30^\circ$. Maka $R^TR = \begin{pmatrix} c^2 + s^2 & -cs + sc \\ -sc + cs & s^2 + c^2 \end{pmatrix} = I$ karena $c^2 + s^2 = 1$. Jadi $R^T = R^{-1}$ dan $R \in O_2(\R)$ (Definisi 3.5.5).</li>
+            <li>Sebagai operator ortogonal, $R\mathbf{v} \cdot R\mathbf{w} = \mathbf{v} \cdot \mathbf{w}$: panjang dan sudut tetap.</li>
+            <li>$\det R = c^2 + s^2 = 1$, jadi $R$ rotasi (Contoh 3.5.6). Matriks ortogonal dengan $\det = -1$ berbentuk $\begin{pmatrix} \cos\varphi & \sin\varphi \\ \sin\varphi & -\cos\varphi \end{pmatrix}$, yaitu refleksi.</li>
+          </ol>
+          <p>Dalam robotika, grup rotasi murni adalah $SO_n = \set{A \in O_n(\R) : \det A = 1}$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \text{hiperbidang: } \set{\mathbf{x} : f(\mathbf{x}) = c}, \qquad \text{margin} = \min_i \frac{\abs{f(\mathbf{x}_i) - c}}{\norm{f}}, \\
+        [L^*] = A^T, \qquad [\sigma]_{\text{baru}} = P^TMP, \qquad SO_n = \set{A \in O_n(\R) : \det A = 1}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/03-Ruang-Dual.md</code>, Bab 3, §3.7: Real Problem 3.7.1–3.7.5 beserta pembahasannya (Latihan 1–4) dan kode visualisasi (tidak disalin). File Markdown, tanpa nomor halaman.</li>
+        <li>Hasil $P^TMP$ di Latihan 3, perhitungan margin di Latihan 1, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

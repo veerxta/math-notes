@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Transposisi dan Dualitas · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Transposisi dan Dualitas</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Transpos $A \mapsto A^T$ adalah isomorfisma $M_{m \times n}(F) \to M_{n \times m}(F)$ yang inversnya dirinya sendiri, tetapi membalik urutan perkalian: $(AB)^T = B^TA^T$.</li>
+        <li>Transpos membawa ruang kolom $A$ ke ruang baris $A^T$ dan sebaliknya; akibatnya $\operatorname{rank} A = \operatorname{rank} A^T$, dan $(A^T)^{-1} = (A^{-1})^T$.</li>
+        <li>Basis dual dari $B^*$ di $V^{**}$ adalah $\set{\varphi(\mathbf{b}_i)}$, dengan $\varphi$ pemetaan kanonik.</li>
+        <li>Matriks pemetaan dual terhadap basis dual adalah transpos: $[L^*]_{B^* \leftarrow C^*} = \bigl([L]_{C \leftarrow B}\bigr)^T$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Sifat transpos</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Transpos linier dan invers diri (Modul, Teorema 3.2.2 dan 3.2.3)</div>
+        <p>Untuk $c \in F$ dan $A, B \in M_{m \times n}(F)$, $(cA + B)^T = cA^T + B^T$. Transpos adalah isomorfisma $M_{m \times n}(F) \to M_{n \times m}(F)$, dan $(A^T)^T = A$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Entri ke-$(i, j)$ dari $(cA + B)^T$ adalah entri ke-$(j, i)$ dari $cA + B$, yaitu $ca_{ji} + b_{ji}$, yang juga entri ke-$(i, j)$ dari $cA^T + B^T$. Kernel transpos hanya matriks nol, jadi injektif; dan $\dim M_{m \times n}(F) = mn = \dim M_{n \times m}(F)$, jadi isomorfisma. $(A^T)^T = A$ jelas dari definisi.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Transpos hasil kali (Modul, Teorema 3.2.4)</div>
+        <p>Jika $AB$ terdefinisi, maka $(AB)^T = B^TA^T$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Entri ke-$(i, j)$ dari $(AB)^T$ adalah entri ke-$(j, i)$ dari $AB$: $\sum_k a_{jk}b_{ki}$. Entri ke-$(i, j)$ dari $B^TA^T$ adalah (baris ke-$i$ dari $B^T$) kali (kolom ke-$j$ dari $A^T$) $= \sum_k b_{ki}a_{jk}$. Keduanya sama.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Bukan automorfisma aljabar</div>
+        <p>Karena urutan perkalian terbalik, transpos <em>bukan</em> automorfisma aljabar pada $M_n(F)$ (homomorfisma aljabar harus memenuhi $\varphi(AB) = \varphi(A)\varphi(B)$). Selain itu, transpos matriks segitiga atas adalah segitiga bawah, dan matriks diagonal sama dengan transposnya.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Ruang kolom, ruang baris, rank, invers (Modul, Teorema 3.2.5)</div>
+        <p>Misalkan $A \in M_{m \times n}(F)$.</p>
+        <ol type="a">
+          <li>Transpos memetakan $\operatorname{Col} A$ secara isomorfik ke $\operatorname{Row} A^T$, dan $\operatorname{Row} A$ ke $\operatorname{Col} A^T$.</li>
+          <li>$\operatorname{rank} A = \operatorname{rank} A^T$.</li>
+          <li>Untuk $A$ persegi, $A$ invertibel jika dan hanya jika $A^T$ invertibel, dan $(A^T)^{-1} = (A^{-1})^T$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>(a) Transpos isomorfisma yang membawa kolom-kolom $A$ ke baris-baris $A^T$ (dan sebaliknya), jadi rentangnya juga bersesuaian. (b) $\operatorname{rank} A = \dim \operatorname{Col} A = \dim \operatorname{Row} A^T = \operatorname{rank} A^T$. (c) Jika $A$ invertibel, transpos dari $AA^{-1} = I_n = A^{-1}A$ memberi, dengan Teorema 2, $(A^{-1})^TA^T = I_n = A^T(A^{-1})^T$. Jadi $A^T$ invertibel dengan invers $(A^{-1})^T$; arah sebaliknya dengan menerapkan hal yang sama pada $A^T$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Membandingkan ruang kolom dan ruang baris (Modul, Contoh 3.2.6)</div>
+        <p>$$A = \begin{pmatrix} 1 & 1 & -2 & 4 & 5 \\ 2 & 2 & -3 & 1 & 3 \\ 3 & 3 & -4 & -2 & 1 \end{pmatrix}, \qquad A^T = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \\ -2 & -3 & -4 \\ 4 & 1 & -2 \\ 5 & 3 & 1 \end{pmatrix}.$$</p>
+        <p>Bentuk eselon baris tereduksi:</p>
+        <p>$$\operatorname{rref}(A) = \begin{pmatrix} 1 & 1 & 0 & -10 & -9 \\ 0 & 0 & 1 & -7 & -7 \\ 0 & 0 & 0 & 0 & 0 \end{pmatrix}, \qquad \operatorname{rref}(A^T) = \begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}.$$</p>
+        <ul>
+          <li>Pivot $A$ di kolom $1$ dan $3$, jadi $B_c = \set{(1, 2, 3)^T, (-2, -3, -4)^T}$ basis $\operatorname{Col} A$, dan baris tak nol $\operatorname{rref}(A)$ basis $\operatorname{Row} A$: $B_r = \set{(1, 1, 0, -10, -9), (0, 0, 1, -7, -7)}$.</li>
+          <li>Baris tak nol $\operatorname{rref}(A^T)$, $(1, 0, -1)$ dan $(0, 1, 2)$, basis $\operatorname{Row} A^T$; kombinasi liniernya memberi kembali $(1, 2, 3) = 1 \cdot (1, 0, -1) + 2(0, 1, 2)$ dan $(-2, -3, -4) = -2(1, 0, -1) - 3(0, 1, 2)$, transpos anggota $B_c$.</li>
+          <li>Kolom pivot $A^T$, yaitu $(1, 1, -2, 4, 5)^T$ dan $(2, 2, -3, 1, 3)^T$, basis $\operatorname{Col} A^T$; kombinasi liniernya memberi transpos anggota $B_r$.</li>
+        </ul>
+        <p>Rank keduanya $2$. Sumber memverifikasi dengan SageMath:</p>
+<pre><code>A = Matrix(QQ, [[1, 1, -2, 4, 5],
+                [2, 2, -3, 1, 3],
+                [3, 3, -4, -2, 1]])
+AT = A.transpose()
+A.row_space() == AT.column_space()    # True
+A.column_space() == AT.row_space()    # True</code></pre>
+      </div>
+
+      <h3>Matriks pemetaan dual</h3>
+      <p>Untuk $L \in \mathcal{L}(F^n, F^m)$ dengan matriks baku $A_L$, fungsional di $F^m$ adalah vektor baris $\mathbf{y}$, dan</p>
+      <p>$$L^*(\mathbf{y})(\mathbf{v}) = \mathbf{y}(A_L\mathbf{v}) = (\mathbf{y}A_L)\mathbf{v}, \qquad \text{jadi } L^*(\mathbf{y}) = \mathbf{y}A_L.$$</p>
+      <p>Khususnya $L^*(\mathbf{e}_i^T) = \mathbf{e}_i^TA_L = \mathbf{w}_i$, baris ke-$i$ dari $A_L$, dan $[\mathbf{w}_i]_{E^*} = \mathbf{w}_i^T$ adalah kolom ke-$i$ dari $A_L^T$.</p>
+
+      <div class="box teorema">
+        <div class="box-title">Matriks dual di basis standar (Modul, Teorema 3.2.7)</div>
+        <p>Jika $A_L$ matriks baku $L \in \mathcal{L}(F^n, F^m)$, maka matriks $L^*$ terhadap basis dual standar adalah $A_{L^*} = A_L^T$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Dari perhitungan di atas, kolom ke-$i$ matriks $L^*$ adalah $[L^*(\mathbf{e}_i^T)]_{E^*} = \mathbf{w}_i^T$, yaitu kolom ke-$i$ dari $A_L^T$. <span class="cek">[CEK: sumber menulis $L^* \colon F^m \to F^n$; karena fungsional di sini vektor baris, lebih tepat $L^* \colon F_m \to F_n$ (lihat topik Dualitas dan Bidual).]</span></p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Dual dari basis dual (Modul, Catatan §3.2)</div>
+        <p>Misalkan $\varphi \colon V \to V^{**}$ pemetaan kanonik dan $B = \set{\mathbf{b}_i}$ basis dengan basis dual $B^* = \set{f_i}$. Maka basis yang dual terhadap $B^*$ di $V^{**}$ adalah $\set{\varphi(\mathbf{b}_i)}$, karena</p>
+        <p>$$\varphi(\mathbf{b}_i)(f_j) = f_j(\mathbf{b}_i) = \delta(i, j).$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Matriks dual di basis sebarang (Modul, Teorema 3.2.8)</div>
+        <p>Misalkan $\dim V = n$, $\dim W = m$, $L \in \mathcal{L}(V, W)$, $B$ dan $C$ basis terurut $V$ dan $W$ dengan basis dual $B^*$ dan $C^*$, dan $A = [L]_{C \leftarrow B}$. Maka</p>
+        <p>$$[L^*]_{B^* \leftarrow C^*} = A^T.$$</p>
+        <p>(Sumber menulis $A = [L]_C^B$ dan $[L^*]_{B^*}^{C^*}$.)</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tulis $B = \set{\mathbf{b}_j}$, $B^* = \set{f_j}$, $C = \set{\mathbf{c}_i}$, $C^* = \set{g_i}$.</p>
+        <ol>
+          <li>Entri $A_{ij}$ adalah koordinat ke-$i$ dari $L(\mathbf{b}_j)$ terhadap $C$, jadi $A_{ij} = g_i(L(\mathbf{b}_j))$.</li>
+          <li>Menurut definisi pemetaan dual, $g_i(L(\mathbf{b}_j)) = L^*(g_i)(\mathbf{b}_j) = \varphi(\mathbf{b}_j)\bigl(L^*(g_i)\bigr)$.</li>
+          <li>Menurut Lemma 1, $\varphi(\mathbf{b}_j)$ adalah fungsional koordinat ke-$j$ terhadap $B^*$. Jadi $A_{ij}$ adalah entri ke-$j$ dari $[L^*(g_i)]_{B^*}$, yaitu entri $(j, i)$ dari $[L^*]_{B^* \leftarrow C^*}$ (kolom ke-$i$ matriks itu adalah $[L^*(g_i)]_{B^*}$).</li>
+        </ol>
+        <p>Entri $(i, j)$ dari $A$ sama dengan entri $(j, i)$ dari $[L^*]_{B^* \leftarrow C^*}$, jadi matriks itu $A^T$. Sumber juga menyertakan program SageMath interaktif yang menghitung basis dual sebagai baris-baris $(M^T)^{-1}$ ($M$ matriks basis) lalu memverifikasi $[L^*] = [L]^T$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Dari polinomial ke matriks (Modul, Contoh 3.2.9)</div>
+        <p>$L \colon \R[t]_2 \to M_2(\R)$, $L(a + bt + ct^2) = \begin{pmatrix} a + b & b + c \\ a - b & a - c \end{pmatrix}$, dengan $B = \set{1, t, t^2}$ dan $C$ basis standar $\set{E_{11}, E_{12}, E_{21}, E_{22}}$.</p>
+        <p>$$L(1) = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, \quad L(t) = \begin{pmatrix} 1 & 1 \\ -1 & 0 \end{pmatrix}, \quad L(t^2) = \begin{pmatrix} 0 & 1 \\ 0 & -1 \end{pmatrix},$$</p>
+        <p>$$[L]_{C \leftarrow B} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & -1 & 0 \\ 1 & 0 & -1 \end{pmatrix}.$$</p>
+        <p>Dengan $g_i$ mengambil entri ke-$i$ (urutan $E_{11}, E_{12}, E_{21}, E_{22}$), nilai $L^*(g_i) = g_i \circ L$ pada $1, t, t^2$ adalah baris ke-$i$ matriks di atas: misalnya $L^*(g_1)$ bernilai $1, 1, 0$. Jadi</p>
+        <p>$$[L^*]_{B^* \leftarrow C^*} = \begin{pmatrix} 1 & 0 & 1 & 1 \\ 1 & 1 & -1 & 0 \\ 0 & 1 & 0 & -1 \end{pmatrix} = \bigl([L]_{C \leftarrow B}\bigr)^T.$$</p>
+      </div>
+
+      <h3>Annihilator</h3>
+      <p>Konsep berikut tidak dibahas di teks Bab 3, tetapi dipakai dalam file pembahasan soal (Latihan 3–4).</p>
+
+      <div class="box definisi">
+        <div class="box-title">Annihilator (Pembahasan Soal, §8.3.7)</div>
+        <p>Untuk subruang $W \subseteq V$, <strong>annihilator</strong> $W$ adalah</p>
+        <p>$$W^0 = \set{f \in V^* : f(\mathbf{w}) = 0 \text{ untuk semua } \mathbf{w} \in W}.$$</p>
+        <p>Pembahasan soal memakai "teorema dimensi" $\dim W^0 = \dim V - \dim W$ (untuk $V$ berdimensi hingga) tanpa membuktikannya; ini sesuai dengan isomorfisma $(V/W)^* \cong \set{f : W \subseteq \ker f} = W^0$ di bukti Teorema 3.1.14.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menulis $(AB)^T = A^TB^T$.</strong> Urutannya terbalik: $(AB)^T = B^TA^T$. Untuk matriks tak persegi, $A^TB^T$ bahkan sering tidak terdefinisi.</li>
+        <li><strong>Mengambil basis ruang kolom dari kolom $\operatorname{rref}(A)$.</strong> Yang benar kolom <em>asli</em> $A$ pada posisi pivot; untuk ruang <em>baris</em>, baris tak nol $\operatorname{rref}(A)$ boleh dipakai langsung.</li>
+        <li><strong>Mengira $L^*$ diwakili $A_L$ sendiri.</strong> Matriksnya $A_L^T$, dan arahnya terbalik ($W^* \to V^*$).</li>
+        <li><strong>Lupa memakai basis dual.</strong> $[L^*] = A^T$ hanya terhadap basis <em>dual</em> $B^*$ dan $C^*$; terhadap basis lain matriksnya berbeda.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$T \colon \R^2 \to \R^3$ dengan matriks baku $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}$. (a) Jelaskan operator transpos (dual) $T^* \colon (\R^3)^* \to (\R^2)^*$. (b) Tentukan matriksnya terhadap basis dual standar.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $T^*(f)(\mathbf{v}) = f(T(\mathbf{v}))$, yaitu $T^*(f) = f \circ T$, linier karena komposisi pemetaan linier.</li>
+            <li>(b) Misalkan $\set{\mathbf{e}_1^*, \mathbf{e}_2^*}$ dan $\set{\mathbf{f}_1^*, \mathbf{f}_2^*, \mathbf{f}_3^*}$ basis dual standar $(\R^2)^*$ dan $(\R^3)^*$. Kolom ke-$j$ matriks $T^*$ adalah koordinat $T^*(\mathbf{f}_j^*)$ terhadap $\set{\mathbf{e}_i^*}$, yaitu nilai-nilai $T^*(\mathbf{f}_j^*)(\mathbf{e}_i) = \mathbf{f}_j^*(T(\mathbf{e}_i))$.</li>
+            <li>$T(\mathbf{e}_i)$ adalah kolom ke-$i$ dari $A$, jadi $\mathbf{f}_j^*(T(\mathbf{e}_i)) = a_{ji}$. Koordinat $T^*(\mathbf{f}_j^*)$ adalah $(a_{j1}, a_{j2})$, baris ke-$j$ dari $A$.</li>
+          </ol>
+          <p>$$[T^*] = \begin{pmatrix} 1 & 3 & 5 \\ 2 & 4 & 6 \end{pmatrix} = A^T,$$</p>
+          <p>sesuai Teorema 4.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan bahwa untuk matriks persegi $A$, $A^TA$ simetris, dan $\operatorname{rank}(A) = \operatorname{rank}(A^T)$ dapat dicek pada $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Dengan Teorema 2 dan $(A^T)^T = A$: $(A^TA)^T = A^T(A^T)^T = A^TA$. Jadi $A^TA$ simetris.</li>
+            <li>Untuk $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$, baris kedua $2 \times$ baris pertama, jadi $\operatorname{rank} A = 1$. Di sini $A^T = A$, jadi $\operatorname{rank} A^T = 1$ juga.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>$V = P_2(\R)$ dengan basis $\set{1, x, x^2}$, dan $W = \set{p \in V : p(1) = 0,\ p'(0) = 0}$. Tentukan basis dan dimensi annihilator $W^0$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Untuk $p = a_0 + a_1x + a_2x^2$: $p'(0) = a_1 = 0$ dan $p(1) = a_0 + a_1 + a_2 = 0$, jadi $a_2 = -a_0$. Maka $p = a_0(1 - x^2)$, $W = \operatorname{span}\set{1 - x^2}$, $\dim W = 1$.</li>
+            <li>$f \in W^0$ jika dan hanya jika $f(1 - x^2) = 0$.</li>
+            <li>Dua fungsional yang mendefinisikan $W$ jelas memenuhinya: $\phi_1(p) = p'(0) = a_1$ memberi $\phi_1(1 - x^2) = 0$, dan $\phi_2(p) = p(1) = a_0 + a_1 + a_2$ memberi $\phi_2(1 - x^2) = 1 + 0 - 1 = 0$. Keduanya bebas linier (dalam koordinat, $(0, 1, 0)$ dan $(1, 1, 1)$ bukan kelipatan).</li>
+            <li>$\dim W^0 = \dim V - \dim W = 3 - 1 = 2$.</li>
+          </ol>
+          <p>Jadi $\set{\phi_1, \phi_2}$ basis $W^0$, dengan $\dim W^0 = 2$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk subruang $U, W$ dari $V$ berdimensi hingga, buktikan $(U + W)^0 = U^0 \cap W^0$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p><strong>($\subseteq$)</strong> Misalkan $f \in (U + W)^0$. Setiap $\mathbf{u} \in U$ dapat ditulis $\mathbf{u} + \mathbf{0} \in U + W$, jadi $f(\mathbf{u}) = 0$ dan $f \in U^0$. Dengan cara yang sama, $\mathbf{w} = \mathbf{0} + \mathbf{w}$ memberi $f \in W^0$. Jadi $f \in U^0 \cap W^0$.</p>
+          <p><strong>($\supseteq$)</strong> Misalkan $g \in U^0 \cap W^0$ dan $\mathbf{v} \in U + W$, tulis $\mathbf{v} = \mathbf{u}_0 + \mathbf{w}_0$. Karena $g$ linier, $g(\mathbf{v}) = g(\mathbf{u}_0) + g(\mathbf{w}_0) = 0 + 0 = 0$. Jadi $g \in (U + W)^0$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        (cA + B)^T = cA^T + B^T, \qquad (AB)^T = B^TA^T, \qquad (A^T)^{-1} = (A^{-1})^T, \\
+        \operatorname{rank} A = \operatorname{rank} A^T
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        L^*(\mathbf{y}) = \mathbf{y}A_L, \qquad [L^*]_{B^* \leftarrow C^*} = \bigl([L]_{C \leftarrow B}\bigr)^T, \\
+        W^0 = \set{f : f|_W = 0}, \qquad \dim W^0 = \dim V - \dim W, \qquad (U + W)^0 = U^0 \cap W^0
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/03-Ruang-Dual.md</code>, Bab 3, §3.2: Teorema 3.2.2–3.2.5, 3.2.7, 3.2.8, Contoh 3.2.6, 3.2.9, Catatan tentang basis dual di $V^{**}$, sel SageMath. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.3.2, §8.3.7, §8.3.9 (Latihan 1, 3, 4; definisi annihilator).</li>
+        <li>Latihan 2 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

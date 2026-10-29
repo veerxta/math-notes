@@ -32,6 +32,13 @@ window.MATH_NOTES = {
         { file: "10-ekuivalensi-dan-similaritas.html", judul: "Ekuivalensi dan Similaritas" },
         { file: "11-jumlah-langsung-dan-proyeksi.html", judul: "Jumlah Langsung, Produk, dan Proyeksi" },
         { file: "12-aplikasi-transformasi-linier.html", judul: "Aplikasi Transformasi Linier" },
+        { file: "13-dualitas-dan-bidual.html", judul: "Dualitas dan Bidual", bab: "Bab 3 · Ruang Dual" },
+        { file: "14-transposisi-dan-dualitas.html", judul: "Transposisi dan Dualitas" },
+        { file: "15-bentuk-bilinear.html", judul: "Bentuk Bilinear" },
+        { file: "16-operator-dan-jumlah-langsung.html", judul: "Operator Linier dan Jumlah Langsung" },
+        { file: "17-grup-matriks.html", judul: "Grup Matriks" },
+        { file: "18-matriks-swadjoin-dan-uniter.html", judul: "Matriks Swadjoin dan Uniter" },
+        { file: "19-real-problem-ruang-dual.html", judul: "Real Problem Ruang Dual" },
       ],
     },
     {

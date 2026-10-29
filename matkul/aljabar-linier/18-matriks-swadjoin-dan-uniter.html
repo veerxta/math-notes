@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Matriks Swadjoin dan Uniter · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Matriks Swadjoin dan Uniter</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Adjoin (transpos konjugat) $A^\dagger = \overline{A^T}$ memainkan peran transpos untuk matriks kompleks: $(AB)^\dagger = B^\dagger A^\dagger$, $(A^\dagger)^\dagger = A$.</li>
+        <li>Konjugasi dan $A \mapsto A^\dagger$ antilinier: skalar keluar sebagai konjugatnya, $(cA + B)^\dagger = \bar{c}A^\dagger + B^\dagger$.</li>
+        <li>Matriks swadjoin (Hermitian, $A^\dagger = A$) adalah padanan kompleks matriks simetris; matriks uniter ($A^\dagger = A^{-1}$) padanan matriks ortogonal.</li>
+        <li>Matriks uniter membentuk grup uniter $U_n(\C)$. Simetris real ⇒ swadjoin, ortogonal real ⇒ uniter, tetapi tidak sebaliknya untuk matriks kompleks.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Adjoin matriks kompleks</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Adjoin (Modul, Definisi 3.6.1)</div>
+        <p><strong>Transpos konjugat</strong> atau <strong>adjoin</strong> (adjoint) dari matriks kompleks $A$ adalah $A^\dagger = \overline{A^T}$: transpos lalu konjugasikan setiap entri.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Menghitung adjoin (Modul, §3.6.1)</div>
+        <p>$$A = \begin{pmatrix} 2 + i & -3i & 0 \\ 1 & 4 - 2i & -1 \\ i & 1 + i & 0 \end{pmatrix} \implies A^\dagger = \begin{pmatrix} 2 - i & 1 & -i \\ 3i & 4 + 2i & 1 - i \\ 0 & -1 & 0 \end{pmatrix}.$$</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Konjugasi matriks (Modul, Teorema 3.6.2)</div>
+        <p>Untuk matriks kompleks $A, B$ dan $c \in \C$:</p>
+        <ol type="a">
+          <li>$\overline{cA + B} = \bar{c}\,\overline{A} + \overline{B}$ (jika $A + B$ terdefinisi);</li>
+          <li>$\overline{AB} = \overline{A}\,\overline{B}$ (jika $AB$ terdefinisi);</li>
+          <li>$\overline{A^T} = (\overline{A})^T$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Entri demi entri, memakai $\overline{z + w} = \bar{z} + \bar{w}$ dan $\overline{zw} = \bar{z}\bar{w}$ untuk bilangan kompleks. (a) $\overline{ca_{ij} + b_{ij}} = \bar{c}\,\overline{a_{ij}} + \overline{b_{ij}}$. (b) $\overline{\sum_k a_{ik}b_{kj}} = \sum_k \overline{a_{ik}}\,\overline{b_{kj}}$. (c) Entri $(i, j)$ kedua ruas sama dengan $\overline{a_{ji}}$.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Adjoin hasil kali (Modul, Korolari 3.6.3)</div>
+        <p>$$(AB)^\dagger = \overline{(AB)}^{\,T} = (\overline{A}\,\overline{B})^T = \overline{B}^{\,T}\,\overline{A}^{\,T} = B^\dagger A^\dagger.$$</p>
+        <p>(Langkah ketiga memakai $(XY)^T = Y^TX^T$, Teorema 3.2.4.)</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Konjugat invers (Modul, Teorema 3.6.4)</div>
+        <p>Jika $A$ invertibel, maka $\overline{A}$ invertibel dan $(\overline{A})^{-1} = \overline{A^{-1}}$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Konjugasikan $AA^{-1} = I$ dan $A^{-1}A = I$ dengan Teorema 1(b), dan ingat $\overline{I} = I$: $\overline{A}\,\overline{A^{-1}} = I = \overline{A^{-1}}\,\overline{A}$. Jadi $\overline{A^{-1}}$ invers dua sisi dari $\overline{A}$.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Antilinier (Modul, Definisi 3.6.5)</div>
+        <p>Untuk ruang vektor kompleks $V, W$, pemetaan $L \colon V \to W$ disebut <strong>konjugat-linier</strong> atau <strong>antilinier</strong> (antilinear) jika</p>
+        <p>$$L(c\mathbf{v} + \mathbf{x}) = \bar{c}\,L(\mathbf{v}) + L(\mathbf{x})$$</p>
+        <p>untuk semua $\mathbf{v}, \mathbf{x} \in V$ dan $c \in \C$. Teorema 1(a) mengatakan konjugasi matriks antilinier, "hampir linier".</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Sifat adjoin (Modul, Teorema 3.6.6)</div>
+        <p>Untuk matriks kompleks $A, B$ dan $c \in \C$:</p>
+        <ol type="a">
+          <li>$(A^\dagger)^T = \overline{A}$;</li>
+          <li>$\overline{A^\dagger} = A^T$;</li>
+          <li>$(A^\dagger)^\dagger = A$;</li>
+          <li>$(cA + B)^\dagger = \bar{c}A^\dagger + B^\dagger$ (jadi $A \mapsto A^\dagger$ antilinier);</li>
+          <li>$(AB)^\dagger = B^\dagger A^\dagger$;</li>
+          <li>jika $A$ invertibel, $A^\dagger$ invertibel dan $(A^\dagger)^{-1} = (A^{-1})^\dagger$.</li>
+        </ol>
+        <p>Sumber meninggalkan buktinya sebagai latihan (Latihan 2).</p>
+      </div>
+
+      <h3>Matriks swadjoin dan uniter</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Swadjoin (Hermitian) (Modul, Definisi 3.6.7)</div>
+        <p>Matriks $A \in M_n(\C)$ <strong>swadjoin</strong> (self-adjoint) atau <strong>Hermitian</strong> jika $A^\dagger = A$, yaitu $a_{ij} = \overline{a_{ji}}$ untuk semua $i, j$.</p>
+        <p>Matriks simetris real swadjoin, karena $\overline{A} = A$ memberi $A^\dagger = A^T = A$. Matriks simetris <em>kompleks</em> umumnya tidak swadjoin; misalnya $\begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}$ simetris, tetapi adjoinnya $\begin{pmatrix} 0 & -i \\ -i & 0 \end{pmatrix}$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Uniter dan grup uniter (Modul, §3.6 dan Definisi 3.6.8)</div>
+        <p>Matriks $A \in M_n(\C)$ <strong>uniter</strong> (unitary) jika $A^\dagger = A^{-1}$, dan <strong>grup uniter</strong></p>
+        <p>$$U_n(\C) := \set{A \in \mathrm{GL}_n(\C) : A^\dagger = A^{-1}}.$$</p>
+        <p>Matriks ortogonal real uniter ($A^\dagger = A^T = A^{-1}$), tetapi matriks ortogonal kompleks umumnya tidak. $A$ uniter jika dan hanya jika $A^{-1} = A^\dagger$ uniter, dan hasil kali matriks uniter uniter (Latihan 3), sehingga $U_n(\C)$ memang grup. Matriks ortogonal bisa didefinisikan di lapangan apa pun, sedangkan matriks uniter khas untuk $\C$. <span class="cek">[CEK: sumber tidak menuliskan definisi "matriks uniter" secara terpisah sebelum memakainya; definisi di atas diambil dari Definisi 3.6.8.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks uniter (Modul, §3.6)</div>
+        <p>$A = \begin{pmatrix} 0 & i \\ 1 & 0 \end{pmatrix}$ uniter: $A^\dagger = \begin{pmatrix} 0 & 1 \\ -i & 0 \end{pmatrix}$ dan</p>
+        <p>$$AA^\dagger = \begin{pmatrix} 0 \cdot 0 + i(-i) & 0 \cdot 1 + i \cdot 0 \\ 1 \cdot 0 + 0 \cdot (-i) & 1 \cdot 1 + 0 \cdot 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.$$</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Hanya mentranspos tanpa konjugasi.</strong> Untuk matriks kompleks, padanan "simetris" adalah $A^\dagger = A$, bukan $A^T = A$.</li>
+        <li><strong>Mengeluarkan skalar tanpa konjugasi.</strong> $(cA)^\dagger = \bar{c}A^\dagger$, bukan $cA^\dagger$.</li>
+        <li><strong>Lupa bahwa diagonal matriks Hermitian real.</strong> Dari $a_{ii} = \overline{a_{ii}}$, entri diagonal harus real; ini cara cepat menolak matriks yang bukan Hermitian.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. (a) Tunjukkan $A$ swadjoin terhadap hasil kali dalam standar di $\R^2$. (b) Tentukan nilai eigen dan vektor eigen $A$; periksa bahwa nilai eigennya real dan vektor eigen untuk nilai eigen berbeda ortogonal.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $A$ real dan $A^T = A$, jadi $A^\dagger = A^T = A$: swadjoin.</li>
+            <li>(b) Persamaan karakteristik: $\det(A - \lambda I) = (2 - \lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda - 1)(\lambda - 3) = 0$. Nilai eigen $1$ dan $3$, keduanya real.</li>
+            <li>$\lambda = 1$: $(A - I)\mathbf{v} = \mathbf{0}$ memberi $x + y = 0$, jadi $\mathbf{v}_1 = (1, -1)$.</li>
+            <li>$\lambda = 3$: $(A - 3I)\mathbf{v} = \mathbf{0}$ memberi $-x + y = 0$, jadi $\mathbf{v}_2 = (1, 1)$.</li>
+            <li>$\mathbf{v}_1 \cdot \mathbf{v}_2 = 1 - 1 = 0$: ortogonal, sesuai sifat matriks swadjoin (dibahas di Bab 6, teorema spektral).</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan Teorema 3(c)–(f): $(A^\dagger)^\dagger = A$, $(cA + B)^\dagger = \bar{c}A^\dagger + B^\dagger$, $(AB)^\dagger = B^\dagger A^\dagger$, dan $(A^\dagger)^{-1} = (A^{-1})^\dagger$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>(c) Konjugasi dan transpos masing-masing diterapkan dua kali, dan keduanya bertukar urutan (Teorema 1(c)): $(A^\dagger)^\dagger = \overline{\overline{A^T}^{\,T}} = \overline{\overline{(A^T)^T}} = A$.</li>
+            <li>(d) Dengan Teorema 1(a) dan linieritas transpos (Teorema 3.2.2): $(cA + B)^\dagger = \overline{cA^T + B^T} = \bar{c}\,\overline{A^T} + \overline{B^T} = \bar{c}A^\dagger + B^\dagger$.</li>
+            <li>(e) Akibat 1.</li>
+            <li>(f) Dari $AA^{-1} = I$ dan (e): $(A^{-1})^\dagger A^\dagger = (AA^{-1})^\dagger = I^\dagger = I$; begitu pula $A^\dagger(A^{-1})^\dagger = (A^{-1}A)^\dagger = I$. Jadi $(A^{-1})^\dagger$ invers dua sisi dari $A^\dagger$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan bahwa hasil kali dua matriks uniter uniter, dan invers matriks uniter uniter.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Untuk $A, B$ uniter: $(AB)^\dagger = B^\dagger A^\dagger = B^{-1}A^{-1} = (AB)^{-1}$ (Teorema 3(e)).</li>
+            <li>Untuk $A$ uniter: $(A^{-1})^\dagger = (A^\dagger)^\dagger = A = (A^{-1})^{-1}$, jadi $A^{-1}$ uniter.</li>
+          </ol>
+          <p>Bersama $I \in U_n(\C)$ dan sifat asosiatif, ini menunjukkan $U_n(\C)$ subgrup $\mathrm{GL}_n(\C)$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Operator $T$ pada $\C^3$ (mekanika kuantum) punya matriks terhadap basis ortonormal standar</p>
+        <p>$$[T] = \begin{pmatrix} 1 & i & 2 \\ 2E & 3 & -i \\ -2 & i & 4 \end{pmatrix},$$</p>
+        <p>dengan $E$ konstanta real. Tentukan $[T]^\dagger$ dan periksa apakah ada $E$ real yang membuat $T$ swadjoin.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Konjugasi: $\overline{[T]} = \begin{pmatrix} 1 & -i & 2 \\ 2E & 3 & i \\ -2 & -i & 4 \end{pmatrix}$ ($E$ real, jadi $\overline{2E} = 2E$).</li>
+            <li>Transpos:
+              $$[T]^\dagger = \begin{pmatrix} 1 & 2E & -2 \\ -i & 3 & -i \\ 2 & i & 4 \end{pmatrix}.$$</li>
+            <li>Swadjoin berarti $[T] = [T]^\dagger$. Entri $(1, 2)$: $i = 2E$, jadi $E = i/2$, bukan real. Entri $(1, 3)$: $2 = -2$, mustahil.</li>
+          </ol>
+          <p>Karena $a_{13} = 2 \ne \overline{a_{31}} = -2$, <strong>tidak ada</strong> $E$ real yang membuat $T$ swadjoin.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        A^\dagger = \overline{A^T}, \qquad (AB)^\dagger = B^\dagger A^\dagger, \qquad (cA + B)^\dagger = \bar{c}A^\dagger + B^\dagger, \\
+        (A^\dagger)^{-1} = (A^{-1})^\dagger, \qquad (\overline{A})^{-1} = \overline{A^{-1}}
+      \end{gathered}$$</p>
+      <p>$$\text{Hermitian: } A^\dagger = A, \qquad \text{uniter: } A^\dagger = A^{-1}, \qquad U_n(\C) = \set{A : A^\dagger = A^{-1}}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/03-Ruang-Dual.md</code>, Bab 3, §3.6: Definisi 3.6.1, 3.6.5, 3.6.7, 3.6.8, Teorema 3.6.2, 3.6.4, 3.6.6, Korolari 3.6.3, contoh adjoin dan matriks uniter. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.3.6 dan §8.3.10 (Latihan 1 dan 4).</li>
+        <li>Contoh matriks simetris kompleks yang tidak Hermitian, Latihan 2–3 (latihan yang ditinggalkan sumber), dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

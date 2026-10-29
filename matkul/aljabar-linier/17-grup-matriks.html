@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Grup Matriks · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Grup Matriks</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Grup: himpunan dengan operasi biner asosiatif, identitas, dan invers untuk setiap anggota; subgrup adalah himpunan bagian yang juga grup.</li>
+        <li>Matriks invertibel $n \times n$ membentuk grup linear umum $\mathrm{GL}_n(F)$ terhadap perkalian, walaupun bukan subruang.</li>
+        <li>Operator ortogonal pada $\R^n$ mempertahankan hasil kali titik, jadi juga panjang, jarak, dan sudut; matriksnya memenuhi $A^TA = I_n$.</li>
+        <li>Matriks ortogonal ($A^T = A^{-1}$) membentuk grup ortogonal $O_n(F)$; setiap anggota $O_2(\R)$ adalah rotasi ($\det = 1$) atau refleksi ($\det = -1$).</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Grup</h3>
+      <p>Matriks segitiga, simetris, dan antisimetri membentuk subruang $M_n(F)$. Matriks invertibel tidak (misalnya $I - I = 0$ tidak invertibel), dan automorfisma tidak membentuk subruang $\mathcal{L}(V)$; tetapi keduanya tertutup terhadap perkalian dan invers. Struktur yang tepat untuk itu adalah grup.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Grup (Modul, Definisi 3.5.1)</div>
+        <p><strong>Grup</strong> $(G, \circ)$ adalah himpunan $G$ dengan operasi biner asosiatif $\circ$ sehingga</p>
+        <ol type="a">
+          <li>ada elemen identitas di $G$ terhadap $\circ$, dan</li>
+          <li>setiap anggota $G$ punya invers terhadap $\circ$ di $G$.</li>
+        </ol>
+        <p>Grup <strong>abelian</strong> jika $\circ$ komutatif. <strong>Subgrup</strong> adalah himpunan bagian grup yang juga grup dengan operasi yang sama.</p>
+        <p>Notasi: untuk grup umum dipakai perkalian ($ab$, invers $g^{-1}$, identitas $e$); untuk grup abelian sering dipakai penjumlahan ($a + b$, invers $-g$, identitas $0$).</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Grup linear umum (Modul, Definisi 3.5.2)</div>
+        <p><strong>Grup linear umum</strong> (general linear group) $\mathrm{GL}_n(F)$ adalah himpunan matriks invertibel di $M_n(F)$ dengan operasi perkalian matriks.</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">$\mathrm{GL}_n(F)$ grup (Modul, §3.5)</div>
+        <p>$\mathrm{GL}_n(F)$ adalah grup terhadap perkalian matriks.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Tertutup: $(AB)^{-1} = B^{-1}A^{-1}$, jadi $AB$ invertibel. Asosiatif: perkalian matriks asosiatif. Identitas: $I_n \in \mathrm{GL}_n(F)$. Invers: jika $A$ invertibel, $A^{-1}$ juga invertibel (dengan invers $A$), jadi $A^{-1} \in \mathrm{GL}_n(F)$.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">$\mathrm{GL}_2(\mathbb{F}_2)$ dan subgrupnya (Modul, Contoh 3.5.2)</div>
+        <p>Atas $\mathbb{F}_2$ ada tepat enam matriks $2 \times 2$ invertibel:</p>
+        <p>$$\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \ \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}, \ \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, \ \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, \ \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}.$$</p>
+        <p>$H = \set{I, \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}}$ subgrup (matriks kedua adalah inversnya sendiri). Dengan $M = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, modulo $2$:</p>
+        <p>$$M^2 = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = M^{-1},$$</p>
+        <p>sehingga $K = \set{I, M, M^2}$ juga subgrup. Sumber memverifikasinya dengan SageMath.</p>
+      </div>
+
+      <h3>Operator dan matriks ortogonal</h3>
+      <p>Di $\R^n$, hasil kali titik menentukan geometri: panjang $\norm{\mathbf{v}} = \sqrt{\mathbf{v} \cdot \mathbf{v}}$, jarak $\norm{\mathbf{v} - \mathbf{x}}$, dan sudut $\varphi$ dengan</p>
+      <p>$$\cos\varphi = \frac{\mathbf{v} \cdot \mathbf{x}}{\norm{\mathbf{v}}\,\norm{\mathbf{x}}}.$$</p>
+      <p>Operator yang mempertahankan hasil kali titik mempertahankan semuanya.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Operator ortogonal (Modul, Definisi 3.5.3)</div>
+        <p><strong>Operator ortogonal</strong> pada $\R^n$ adalah $L \in \mathcal{L}(\R^n)$ dengan</p>
+        <p>$$L(\mathbf{v}) \cdot L(\mathbf{x}) = \mathbf{v} \cdot \mathbf{x} \qquad \text{untuk semua } \mathbf{v}, \mathbf{x} \in \R^n.$$</p>
+        <p>Untuk matriks baku $A$ dari $L$: $A\mathbf{v} \cdot A\mathbf{x} = (A\mathbf{v})^T(A\mathbf{x}) = \mathbf{v}^TA^TA\mathbf{x}$, jadi syaratnya $\mathbf{v}^TA^TA\mathbf{x} = \mathbf{v}^T\mathbf{x}$ untuk semua $\mathbf{v}, \mathbf{x}$, yang setara dengan $A^TA = I_n$ (Latihan 2). Khususnya $A \in \mathrm{GL}_n(\R)$ dan $A^T = A^{-1}$.</p>
+      </div>
+
+      <div class="tabel">
+        <table>
+          <caption>Operator ortogonal dan matriksnya (Modul, ringkasan perbandingan §3.5)</caption>
+          <thead>
+            <tr><th scope="col">Operator ortogonal $L$</th><th scope="col">Matriks ortogonal $A$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$L(\mathbf{v}) \cdot L(\mathbf{x}) = \mathbf{v} \cdot \mathbf{x}$</td><td>$A^TA = I_n$</td></tr>
+            <tr><td>Mempertahankan panjang: $\norm{L(\mathbf{v})} = \norm{\mathbf{v}}$</td><td>Kolom-kolom $A$ ortonormal</td></tr>
+            <tr><td>Mempertahankan jarak dan sudut</td><td>$A^{-1} = A^T$</td></tr>
+            <tr><td>Invertibel, $L^{-1}$ juga ortogonal</td><td>$\det A = \pm 1$</td></tr>
+            <tr><td>Rotasi atau refleksi</td><td>Matriks representasinya</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Matriks ortogonal dan grup ortogonal (Modul, Definisi 3.5.4 dan 3.5.5)</div>
+        <p>Matriks persegi $A$ <strong>ortogonal</strong> jika $A^T = A^{-1}$ (definisi ini berlaku untuk lapangan apa pun). <strong>Grup ortogonal</strong></p>
+        <p>$$O_n(F) := \set{A \in \mathrm{GL}_n(F) : A^T = A^{-1}}.$$</p>
+        <p>Hasil kali dan invers matriks ortogonal juga ortogonal, sehingga $O_n(F)$ subgrup dari $\mathrm{GL}_n(F)$ (Latihan 3).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Isi $O_2(\R)$ (Modul, Contoh 3.5.6)</div>
+        <p>Untuk $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in O_2(\R)$,</p>
+        <p>$$AA^T = \begin{pmatrix} a^2 + b^2 & ac + bd \\ ac + bd & c^2 + d^2 \end{pmatrix} = I_2,$$</p>
+        <p>jadi baris-baris $A$ vektor satuan yang saling tegak lurus. Tulis baris pertama $(a, b) = (\cos\varphi, \sin\varphi)$. Vektor satuan yang tegak lurus padanya hanya $\pm(-\sin\varphi, \cos\varphi)$, sehingga ada dua keluarga:</p>
+        <p>$$\begin{pmatrix} \cos\varphi & \sin\varphi \\ -\sin\varphi & \cos\varphi \end{pmatrix} \ (\det = 1), \qquad \begin{pmatrix} \cos\varphi & \sin\varphi \\ \sin\varphi & -\cos\varphi \end{pmatrix} \ (\det = -1).$$</p>
+        <p>Keluarga pertama rotasi (sebesar $-\varphi$), keluarga kedua refleksi. Contoh selain $I_2$: $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$, $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$.</p>
+        <p><span class="cek">[CEK: sumber menulis $a = \pm\cos\varphi$, $b = \pm\sin\varphi$, $c = \pm\cos\psi$, $d = \pm\sin\psi$ lalu membagi kasus $\varphi - \psi = \pi/2$ dan $\varphi + \psi = \pi/2$. Pada kasus kedua sumber menulis $\cos\psi = -\sin\varphi$, padahal $\varphi + \psi = \pi/2$ memberi $\cos\psi = \sin\varphi$; tanda yang tepat harus diambil dari pilihan $\pm$. Kedua matriks akhir sumber benar; penurunan di atas disusun ulang.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira $\mathrm{GL}_n(F)$ ruang vektor.</strong> Jumlah dua matriks invertibel bisa tidak invertibel, dan matriks nol tidak invertibel.</li>
+        <li><strong>Menganggap $\det A = \pm 1$ cukup untuk ortogonal.</strong> $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ ber-$\det$ $1$ tetapi tidak ortogonal (kolomnya tidak tegak lurus).</li>
+        <li><strong>Lupa memeriksa ketertutupan subgrup.</strong> Himpunan bagian harus memuat identitas, invers, dan hasil kali anggotanya.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$\mathrm{SL}(2, \R) = \set{A \in M_2(\R) : \det A = 1}$. (a) Buktikan $\mathrm{SL}(2, \R)$ grup terhadap perkalian. (b) Beri dua contoh anggotanya dan hitung invers salah satunya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) Tertutup: $\det(AB) = \det A \det B = 1$. Asosiatif: perkalian matriks asosiatif. Identitas: $\det I_2 = 1$. Invers: $\det A = 1 \ne 0$ jadi $A^{-1}$ ada, dan $\det A^{-1} = 1/\det A = 1$. Jadi $\mathrm{SL}(2, \R)$ grup, bahkan subgrup $\mathrm{GL}(2, \R)$.</li>
+            <li>(b) $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ ($\det = 1$) dan $B = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ ($\det = 2 - 1 = 1$). Dengan rumus invers $2 \times 2$, $A^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}$, yang juga ber-$\det$ $1$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Buktikan: $\mathbf{v}^TA^TA\mathbf{x} = \mathbf{v}^T\mathbf{x}$ untuk semua $\mathbf{v}, \mathbf{x} \in \R^n$ jika dan hanya jika $A^TA = I_n$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>(⇐) Jika $A^TA = I_n$, maka $\mathbf{v}^TA^TA\mathbf{x} = \mathbf{v}^TI_n\mathbf{x} = \mathbf{v}^T\mathbf{x}$.</li>
+            <li>(⇒) Tulis $M = A^TA$. Ambil $\mathbf{v} = \mathbf{e}_i$ dan $\mathbf{x} = \mathbf{e}_j$: ruas kiri $\mathbf{e}_i^TM\mathbf{e}_j = m_{ij}$, ruas kanan $\mathbf{e}_i^T\mathbf{e}_j = \delta_{ij}$.</li>
+            <li>Jadi $m_{ij} = \delta_{ij}$ untuk semua $i, j$, yaitu $M = I_n$.</li>
+          </ol>
+          <p>(Ini juga mengatakan bahwa bentuk bilinear $\mathbf{v}^TM\mathbf{x}$ menentukan $M$, karena $M$ adalah matriksnya terhadap basis standar.)</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa $O_n(F)$ subgrup dari $\mathrm{GL}_n(F)$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Identitas: $I^T = I = I^{-1}$, jadi $I \in O_n(F)$.</li>
+            <li>Tertutup: untuk $A, B \in O_n(F)$, $(AB)^T = B^TA^T = B^{-1}A^{-1} = (AB)^{-1}$ (Teorema 3.2.4).</li>
+            <li>Invers: untuk $A \in O_n(F)$, $(A^{-1})^T = (A^T)^T = A = (A^{-1})^{-1}$, jadi $A^{-1} \in O_n(F)$.</li>
+            <li>Asosiatif diwarisi dari $\mathrm{GL}_n(F)$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \mathrm{GL}_n(F) = \set{A : A \text{ invertibel}}, \qquad (AB)^{-1} = B^{-1}A^{-1}, \\
+        O_n(F) = \set{A : A^T = A^{-1}}, \qquad A\mathbf{v} \cdot A\mathbf{x} = \mathbf{v} \cdot \mathbf{x} \iff A^TA = I
+      \end{gathered}$$</p>
+      <p>$$O_2(\R): \ \begin{pmatrix} \cos\varphi & \sin\varphi \\ -\sin\varphi & \cos\varphi \end{pmatrix}, \ \begin{pmatrix} \cos\varphi & \sin\varphi \\ \sin\varphi & -\cos\varphi \end{pmatrix}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/03-Ruang-Dual.md</code>, Bab 3, §3.5: Definisi 3.5.1–3.5.5, Contoh 3.5.2, 3.5.6, ringkasan perbandingan operator/matriks ortogonal, sel SageMath. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.3.5 (Latihan 1).</li>
+        <li>Latihan 2 (latihan yang ditinggalkan sumber), Latihan 3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>
