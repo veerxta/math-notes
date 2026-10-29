@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Operator Nilpoten, Bagian I · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Operator Nilpoten, Bagian I</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Dalam satu komponen primer $\ker(L - \lambda I)^\xi$, operator $L - \lambda I$ nilpoten berindeks $\xi$; jadi cukup dipelajari operator nilpoten.</li>
+        <li>Untuk $L$ nilpoten berindeks $\xi$ dan $L^{\xi-1}\mathbf{x} \ne \mathbf{0}$, subruang siklik $K = \operatorname{span}\set{\mathbf{x}, L\mathbf{x}, \dots, L^{\xi-1}\mathbf{x}}$ punya <strong>komplemen-$L$</strong>: subruang $L$-invarian $H$ dengan $V = K \oplus H$.</li>
+        <li>Komplemen-$L$ ada tetapi tidak tunggal.</li>
+        <li>Diterapkan berulang, lemma ini menguraikan $V$ menjadi jumlah langsung subruang siklik: cikal bakal bentuk Jordan.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p><strong>Bentuk normal</strong> operator pada ruang berdimensi hingga adalah jenis matriks yang mencirikan kelas similaritasnya; syaratnya di sini, semua nilai eigen ada di lapangan skalar. Latar belakangnya dekomposisi primer $V = \bigoplus_i\ker(L - \lambda_iI)^{\xi_i}$ (topik sebelumnya). Fokus pada satu komponen $K = \ker(L - \lambda I)^\xi$: di sana $(L - \lambda I)|_K$ nilpoten berindeks $\xi$. Maka cukup dipelajari operator nilpoten $L$ berindeks $\xi$ pada $V$.</p>
+
+      <h3>Lemma komplemen-$L$</h3>
+
+      <div class="box lemma">
+        <div class="box-title">Subruang siklik punya komplemen-$L$ (Modul, Lemma 7.3.1)</div>
+        <p>Misalkan $V$ berdimensi hingga dan $L \in \mathcal{L}(V)$ nilpoten berindeks $\xi$. Untuk setiap $\mathbf{x}$ dengan $L^{\xi-1}\mathbf{x} \ne \mathbf{0}$,</p>
+        <p>$$K = \operatorname{span}\set{\mathbf{x}, L\mathbf{x}, \dots, L^{\xi-1}\mathbf{x}}$$</p>
+        <p>punya komplemen-$L$ di $V$: ada subruang $L$-invarian $H$ dengan $V = K \oplus H$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Induksi pada $\xi$. Untuk $\xi = 1$, $L = O$, jadi setiap komplemen langsung $K$ (yang ada di dimensi hingga) invarian. Misalkan $\xi \gt 1$.</p>
+        <ol>
+          <li><strong>Turun ke citra.</strong> $R = L[V]$ $L$-invarian, dan $L|_R$ nilpoten berindeks $\xi - 1$: $L^{\xi-1}[R] = L^\xi[V] = \set{\mathbf{0}}$, sedangkan $L^{\xi-2}(L\mathbf{x}) \ne \mathbf{0}$. $\set{\mathbf{x}, \dots, L^{\xi-1}\mathbf{x}}$ basis $K$ (topik Dekomposisi Primer, Lemma 1), dan $K_0 = L[K] = \operatorname{span}\set{L\mathbf{x}, \dots, L^{\xi-1}\mathbf{x}}$ subruang siklik di $R$ yang dibangkitkan $L\mathbf{x}$.</li>
+          <li><strong>Hipotesis induksi.</strong> Ada $H_0 \subseteq R$, $L$-invarian, dengan $R = K_0 \oplus H_0$.</li>
+          <li><strong>Prapeta.</strong> $H_1 = L^{-1}[H_0] = \set{\mathbf{v} : L\mathbf{v} \in H_0}$; karena $H_0$ invarian, $H_0 \subseteq H_1$. Klaim $V = K + H_1$: untuk $\mathbf{v} \in V$, tulis $L\mathbf{v} = \mathbf{k}_0 + \mathbf{h}_0$ dan pilih $\mathbf{k} \in K$ dengan $L\mathbf{k} = \mathbf{k}_0$; maka $L(\mathbf{v} - \mathbf{k}) = \mathbf{h}_0$, jadi $\mathbf{v} - \mathbf{k} \in H_1$. (Jumlah ini belum langsung: $L^{\xi-1}\mathbf{x} \in K \cap H_1$.)</li>
+          <li><strong>$H_0 \cap K = \set{\mathbf{0}}$.</strong> Jika $\mathbf{v} \in H_0 \cap K$, maka $L\mathbf{v} \in K_0 \cap H_0 = \set{\mathbf{0}}$. Menulis $\mathbf{v} = \sum_{i=1}^{\xi}a_iL^{i-1}\mathbf{x}$ dan menerapkan $L$: $\sum_{i \lt \xi}a_iL^i\mathbf{x} = \mathbf{0}$, jadi $a_1 = \cdots = a_{\xi-1} = 0$ dan $\mathbf{v} = a_\xi L^{\xi-1}\mathbf{x} \in K_0$. Maka $\mathbf{v} \in H_0 \cap K_0 = \set{\mathbf{0}}$.</li>
+          <li><strong>Pangkas.</strong> Karena $H_0$ dan $K \cap H_1$ subruang $H_1$ yang beririsan trivial, tulis $H_1 = H_0 \oplus (K \cap H_1) \oplus U$ untuk suatu komplemen $U$. Ambil $H = H_0 \oplus U$.</li>
+          <li><strong>$V = K \oplus H$.</strong> Merentang: $\mathbf{v} = \mathbf{k} + (\mathbf{h}_0 + \mathbf{k}' + \mathbf{u}) = (\mathbf{k} + \mathbf{k}') + \mathbf{h}_0 + \mathbf{u}$. Langsung: jika $\mathbf{k} = \mathbf{h}_0 + \mathbf{u} \in K \cap H$, maka $\mathbf{k} \in H_1$ (karena $H \subseteq H_1$), jadi $\mathbf{k} \in K \cap H_1$, dan $\mathbf{h}_0 + \mathbf{u} - \mathbf{k} = \mathbf{0}$ dengan komponen di tiga suku jumlah langsung $H_1$; semuanya nol.</li>
+          <li><strong>$H$ invarian.</strong> $L[U] \subseteq L[H_1] \subseteq H_0$ dan $L[H_0] \subseteq H_0$, jadi $L[H] \subseteq H_0 \subseteq H$.</li>
+        </ol>
+        <p><span class="cek">[CEK: dua hal kecil dalam bukti sumber. Kasus dasar $\xi = 1$ disebut "benar secara vakum", padahal untuk $\xi = 1$ hipotesisnya bisa dipenuhi ($L^0\mathbf{x} = \mathbf{x} \ne \mathbf{0}$); kesimpulannya tetap benar karena setiap komplemen invarian terhadap $L = O$. Selain itu, sumber menyimpulkan $V = K \oplus (H_0 \oplus U)$ hanya dari $V = K + H_0 + U$, tanpa memeriksa irisannya; langkah (6) di atas melengkapinya.]</span></p>
+      </details>
+
+      <h3>Contoh</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Subruang siklik seluruh ruang (Modul, Contoh 7.3.2)</div>
+        <p>$N = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$ di $\R^3$, indeks $3$. Dengan $\mathbf{x} = \mathbf{e}_3$: $L\mathbf{x} = \mathbf{e}_2$, $L^2\mathbf{x} = \mathbf{e}_1 \ne \mathbf{0}$, jadi $K = \R^3$ dan komplemen-$L$-nya $H = \set{\mathbf{0}}$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Komplemen-$L$ yang jelas (Modul, Contoh 7.3.3)</div>
+        <p>$N = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}$ di $\R^4$ (blok berukuran $3$ dan $1$), indeks $3$. Dengan $\mathbf{x} = \mathbf{e}_3$: $K = \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_2, \mathbf{e}_1}$. Karena $L\mathbf{e}_4 = \mathbf{0}$, $H = \operatorname{span}\set{\mathbf{e}_4}$ invarian dan $\R^4 = K \oplus H$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Komplemen-$L$ tidak tunggal (Modul, Contoh 7.3.4)</div>
+        <p>$N = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}$ (dua blok berukuran $2$), indeks $2$. Kolom-kolomnya memberi $L\mathbf{e}_1 = \mathbf{0}$, $L\mathbf{e}_2 = \mathbf{e}_1$, $L\mathbf{e}_3 = \mathbf{0}$, $L\mathbf{e}_4 = \mathbf{e}_3$, dan $\ker L = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_3}$. Dengan $\mathbf{x} = \mathbf{e}_2$: $K = \operatorname{span}\set{\mathbf{e}_2, \mathbf{e}_1}$.</p>
+        <ul>
+          <li>$H_1 = \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_4}$ komplemen-$L$: $L\mathbf{e}_4 = \mathbf{e}_3$, $L\mathbf{e}_3 = \mathbf{0}$.</li>
+          <li>$H_2 = \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_1 + \mathbf{e}_4}$ juga: $L(\mathbf{e}_1 + \mathbf{e}_4) = \mathbf{e}_3 \in H_2$, $L\mathbf{e}_3 = \mathbf{0}$, dan $a\mathbf{e}_3 + b(\mathbf{e}_1 + \mathbf{e}_4) \in K$ memaksa $a = b = 0$.</li>
+          <li>$H_3 = \operatorname{span}\set{\mathbf{e}_2 + \mathbf{e}_4, \mathbf{e}_1 + \mathbf{e}_3}$ juga: $L(\mathbf{e}_2 + \mathbf{e}_4) = \mathbf{e}_1 + \mathbf{e}_3$ dan $L(\mathbf{e}_1 + \mathbf{e}_3) = \mathbf{0}$.</li>
+        </ul>
+        <p>Jadi komplemen-$L$ ada (Lemma 1) tetapi tidak tunggal: penguraian menjadi subruang siklik bisa dilakukan dengan banyak cara.</p>
+        <p><span class="cek">[CEK: sumber menulis $L(\mathbf{e}_3) = \mathbf{e}_4$ dan $L(\mathbf{e}_4) = \mathbf{0}$, padahal dari matriks $N$ (dan dari "$\ker L = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_3}$" di sumber sendiri) $L\mathbf{e}_4 = \mathbf{e}_3$ dan $L\mathbf{e}_3 = \mathbf{0}$. Akibatnya kesimpulan sumber terbalik: $\operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_1 + \mathbf{e}_4}$ yang ditolak sumber justru komplemen-$L$, sedangkan $\operatorname{span}\set{\mathbf{e}_1 + \mathbf{e}_3, \mathbf{e}_4}$ yang dipilih sumber <em>tidak</em> invarian ($L\mathbf{e}_4 = \mathbf{e}_3 \notin$ rentangnya). $H_3$ ditambahkan oleh Claude.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Menuju bentuk Jordan (Modul, §7.3.5)</div>
+        <p>$L$ nilpoten pada $\R^5$ berindeks $3$ dengan $\dim\ker L = 2$.</p>
+        <ol>
+          <li>Ada $\mathbf{x}$ dengan $L^2\mathbf{x} \ne \mathbf{0}$; Lemma 1 memberi $V = K_1 \oplus H_1$, $\dim K_1 = 3$, $\dim H_1 = 2$.</li>
+          <li>$L|_{H_1}$ nilpoten berindeks $\le 2$. Jika berindeks $2$, ada subruang siklik $K_2 \subseteq H_1$ berdimensi $2$ dan (Lemma 1 lagi) $H_1 = K_2 \oplus H_2$ dengan $H_2 = \set{\mathbf{0}}$; jika berindeks $1$, $H_1 \subseteq \ker L$.</li>
+          <li>Setiap subruang siklik menyumbang tepat satu dimensi ke $\ker L$ (yaitu $L^{\text{panjang}-1}$ generatornya), jadi banyak blok $= \dim\ker L = 2$. Kasus berindeks $1$ akan memberi $3$ blok ($3 + 1 + 1$). Jadi blok-bloknya berukuran $3$ dan $2$: $V = K_1 \oplus K_2$, bentuk $J_3(0) \oplus J_2(0)$.</li>
+        </ol>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mengira komplemen langsung sembarang otomatis komplemen-$L$.</strong> Komplemennya juga harus $L$-invarian; misalnya $\operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_4 + \mathbf{e}_2}$ di Contoh 3 komplemen langsung $K$, tetapi $L(\mathbf{e}_4 + \mathbf{e}_2) = \mathbf{e}_3 + \mathbf{e}_1$ tidak di dalamnya.</li>
+        <li><strong>Memilih $\mathbf{x}$ dengan $L^{\xi-1}\mathbf{x} = \mathbf{0}$.</strong> Lemma menuntut rantai terpanjang; rantai yang lebih pendek belum tentu punya komplemen-$L$ (Latihan 2).</li>
+        <li><strong>Membaca aksi $L$ dari baris, bukan kolom.</strong> $L\mathbf{e}_j$ adalah kolom ke-$j$ matriksnya.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Buktikan bahwa $N = \begin{pmatrix} 0 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 3 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$ nilpoten. Tentukan indeks nilpotensinya dan rantai kernel $\ker N \subset \ker N^2 \subset \ker N^3$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Matriks segitiga atas berdiagonal nol selalu nilpoten. Langsung: $N^2 = \begin{pmatrix} 0 &amp; 0 &amp; 3 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \ne O$ dan $N^3 = O$, jadi indeksnya $3$.</li>
+            <li>$\ker N$: $N(x, y, z) = (y + 2z, 3z, 0) = \mathbf{0}$ memberi $z = 0$, $y = 0$, jadi $\ker N = \operatorname{span}\set{\mathbf{e}_1}$ (dimensi $1$).</li>
+            <li>$\ker N^2$: $N^2(x, y, z) = (3z, 0, 0) = \mathbf{0}$ memberi $z = 0$, jadi $\ker N^2 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2}$ (dimensi $2$).</li>
+            <li>$\ker N^3 = \R^3$ (dimensi $3$).</li>
+          </ol>
+          <p>Barisan dimensi $1, 2, 3$ berarti satu blok Jordan berukuran $3$. Umumnya, $\dim\ker N^k - \dim\ker N^{k-1}$ sama dengan banyak blok Jordan berukuran $\ge k$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Pada Contoh 2, tunjukkan bahwa subruang siklik <em>pendek</em> $\operatorname{span}\set{\mathbf{e}_1}$ (dibangkitkan $\mathbf{e}_1$, dengan $L\mathbf{e}_1 = \mathbf{0}$) tidak punya komplemen-$L$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Andaikan $H$ $L$-invarian berdimensi $3$ dengan $\R^4 = \operatorname{span}\set{\mathbf{e}_1} \oplus H$.</li>
+            <li>Tulis $\mathbf{e}_3 = c\mathbf{e}_1 + \mathbf{h}$ dengan $\mathbf{h} \in H$. Karena $L^2\mathbf{e}_1 = \mathbf{0}$ dan $L^2\mathbf{e}_3 = \mathbf{e}_1$: $L^2\mathbf{h} = L^2\mathbf{e}_3 - cL^2\mathbf{e}_1 = \mathbf{e}_1$.</li>
+            <li>$H$ invarian, jadi $L^2\mathbf{h} = \mathbf{e}_1 \in H$, padahal $\mathbf{e}_1 \notin H$ (irisannya trivial). Kontradiksi.</li>
+          </ol>
+          <p>Jadi syarat "$L^{\xi-1}\mathbf{x} \ne \mathbf{0}$" (rantai terpanjang) pada Lemma 1 penting.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk $N$ pada Latihan 1, tentukan $\mathbf{x}$ dengan $N^2\mathbf{x} \ne \mathbf{0}$ dan tulis matriks $N$ terhadap basis $\set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\mathbf{x} = \mathbf{e}_3$: $N\mathbf{x} = (2, 3, 0)$, $N^2\mathbf{x} = (3, 0, 0) \ne \mathbf{0}$.</li>
+            <li>Terhadap $B = \set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$: $N$ memetakan vektor basis ke-$i$ ke vektor ke-$(i+1)$ dan yang terakhir ke $\mathbf{0}$.</li>
+            <li>Jadi $[N]_B = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}$, matriks "sub-1" (topik berikutnya).</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        L^\xi = O,\ L^{\xi-1}\mathbf{x} \ne \mathbf{0} \Rightarrow V = \operatorname{span}\set{\mathbf{x}, \dots, L^{\xi-1}\mathbf{x}} \oplus H,\ L[H] \subseteq H, \\
+        \#\set{\text{blok}} = \dim\ker L, \qquad \#\set{\text{blok berukuran} \ge k} = \dim\ker L^k - \dim\ker L^{k-1}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/7-Similaritas.md</code>, Bab 7, §7.3: pengantar, Lemma 7.3.1, Contoh 7.3.2–7.3.4, §7.3.5. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.7.3 (Latihan 1).</li>
+        <li>Langkah (6) bukti Lemma 7.3.1, komplemen $H_3$ di Contoh 7.3.4, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Bentuk Kanonik Jordan · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Bentuk Kanonik Jordan</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Blok Jordan: $\lambda I_m + S_m$ (matriks skalar ditambah sub-1), atau dalam konvensi super-1 $\lambda I_m + N_m$. Satu blok punya satu nilai eigen dan ruang eigen berdimensi $1$.</li>
+        <li><strong>Teorema Jordan</strong>: jika semua nilai eigen $L$ ada di $F$, $L$ berepresentasi $\operatorname{diag}(J_1, \dots, J_k)$ dengan blok Jordan $J_i$, tunggal sampai urutan blok.</li>
+        <li>Untuk nilai eigen $\lambda$ dengan $d_k = \dim\ker(L - \lambda I)^k$: banyak blok $= d_1$, banyak blok berukuran $\ge k$ adalah $d_k - d_{k-1}$, banyak blok berukuran tepat $k$ adalah $2d_k - d_{k-1} - d_{k+1}$.</li>
+        <li>Dua matriks (atas $\C$) similar ⇔ bentuk Jordannya sama.</li>
+        <li>Eksponensial matriks: $e^{At} = Pe^{Jt}P^{-1}$ dan $e^{(\lambda I + N)t} = e^{\lambda t}\sum_{k \lt m}\tfrac{t^k}{k!}N^k$, sumber faktor $t^ke^{\lambda t}$ pada sistem diferensial.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Blok Jordan</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Blok Jordan (Modul, Definisi 7.5.1)</div>
+        <p><strong>Matriks blok Jordan</strong> adalah matriks $1 \times 1$ atau jumlah matriks skalar $\lambda I_m$ dan matriks sub-1 $S_m$ (topik sebelumnya). Setiap matriks sub-1 blok Jordan (dengan $\lambda = 0$).</p>
+        <p><strong>Konvensi.</strong> Sumber memakai sub-1 (angka $1$ di bawah diagonal). Kebanyakan buku, terutama untuk persamaan diferensial, memakai <strong>super-1</strong> (angka $1$ di atas diagonal): $J_m(\lambda) = \lambda I_m + N_m$. Keduanya similar (balik urutan basis); semua teorema tetap berlaku. Bagian persamaan diferensial di bawah memakai super-1.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Blok dan bukan blok (Modul, Contoh 7.5.2)</div>
+        <p>$A = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix} = 2I_3 + S_3$ blok Jordan. $B = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix}$ bukan (diagonalnya tidak konstan). Sebuah blok Jordan punya tepat satu nilai eigen dengan ruang eigen berdimensi $1$; matriks diagonal $n \times n$ adalah gabungan $n$ blok Jordan $1 \times 1$.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Bentuk Jordan (Modul, Definisi 7.5.3)</div>
+        <p>$J = \operatorname{diag}(J_1, \dots, J_k)$ dalam <strong>bentuk kanonik Jordan</strong> (bentuk Jordan) jika setiap $J_i$ blok Jordan. Di $2 \times 2$ ada dua jenis: $\begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}$ (dua blok, $\lambda_i$ boleh sama) dan $\begin{pmatrix} \lambda &amp; 0 \\ 1 &amp; \lambda \end{pmatrix} = \lambda I + S_2$ (satu blok).</p>
+      </div>
+
+      <h3>Teorema bentuk Jordan</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Bentuk kanonik Jordan (Modul, Teorema 7.5.4)</div>
+        <p>Misalkan $V \cong F^n$ dan $L \in \mathcal{L}(V)$ dengan semua nilai eigen di $F$ (misalnya $F = \C$). Maka $L$ punya representasi matriks dalam bentuk Jordan, dan bentuk ini tunggal sampai permutasi blok-bloknya.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Eksistensi.</strong></p>
+        <ol>
+          <li><strong>Pisahkan nilai eigen.</strong> Dekomposisi primer: $V = \bigoplus_\lambda K_\lambda$, $K_\lambda = \ker(L - \lambda I)^{\ell_\lambda}$. Gabungan basis $B_\lambda$ tiap komponen (diurutkan per nilai eigen) memberi $[L]_B = \operatorname{diag}(A_{\lambda_1}, \dots, A_{\lambda_r})$ dengan $A_\lambda = [L_{K_\lambda}]_{B_\lambda}$.</li>
+          <li><strong>Pisahkan skalar.</strong> $L \mapsto [L]_B$ linier, jadi $A_\lambda = [(L - \lambda I)_{K_\lambda}]_{B_\lambda} + \lambda I_{m_\lambda}$, $m_\lambda = \dim K_\lambda$.</li>
+          <li><strong>Bagian nilpoten.</strong> $(L - \lambda I)_{K_\lambda}$ nilpoten, jadi (bentuk normal nilpoten, topik sebelumnya) ada $B_\lambda$ dengan $[(L - \lambda I)_{K_\lambda}]_{B_\lambda} = \operatorname{diag}(S_{m_1}, \dots, S_{m_t})$ (dengan $S_1 = O_1$). Konkretnya: pilih rantai terpanjang $\mathbf{x}, (L - \lambda I)\mathbf{x}, \dots$, ambil komplemen-$L$, ulangi pada komplemennya.</li>
+          <li>Maka $A_\lambda = \operatorname{diag}(\lambda I_{m_1} + S_{m_1}, \dots)$, gabungan blok Jordan. Bila $\ell_\lambda = 1$, $A_\lambda = \lambda I_{m_\lambda}$: $m_\lambda$ blok $1 \times 1$.</li>
+        </ol>
+        <p><strong>Ketunggalan.</strong> Dua bentuk Jordan $J, J'$ dari $L$ similar, jadi punya nilai eigen dan kerangkapan aljabar yang sama. Untuk tiap $\lambda$, $d_k = \dim\ker(L - \lambda I)^k$ invarian similaritas. Pada blok $J_m(\mu)$ dengan $\mu \ne \lambda$, $J_m(\mu) - \lambda I$ invertibel (tak menyumbang ke kernel); pada blok $J_m(\lambda)$ sumbangannya $\min(k, m)$. Jadi</p>
+        <p>$$d_1 = \#\text{blok}_\lambda, \qquad d_k - d_{k-1} = \#\set{\text{blok}_\lambda \text{ berukuran} \ge k}, \qquad \#\set{\text{berukuran tepat } k} = 2d_k - d_{k-1} - d_{k+1}$$</p>
+        <p>($d_0 = 0$). Semuanya ditentukan $L$, jadi banyak dan ukuran blok untuk tiap $\lambda$ tunggal; hanya urutannya bebas.</p>
+        <p>(Sumber menyatukan bukti dari hasil-hasil sebelumnya dengan uraian panjang, dan satu kalimatnya terpotong: "jumlah $(L - \lambda I) + \lambda I$ adalah jumlah dari elemen-elemen dalam Teorema Dekomposisi Primer menyiratkan bahwa gabungan $L(K_\lambda)$". Di sini uraiannya diringkas; maksudnya, kedua suku adalah operator pada $K_\lambda$.)</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Klasifikasi similaritas</div>
+        <p>Atas lapangan tertutup secara aljabar (misalnya $\C$), dua matriks $n \times n$ similar jika dan hanya jika bentuk Jordannya sama (sampai urutan blok). Bentuk Jordan menggabungkan dekomposisi primer (memisahkan nilai eigen) dan struktur nilpoten $N = J - \lambda I$ di tiap blok.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika $A$ dan $B$ similar, keduanya representasi operator yang sama, jadi bentuk Jordannya sama (ketunggalan). Sebaliknya, jika $A \sim J$ dan $B \sim J$, transitivitas similaritas memberi $A \sim B$. (Dirumuskan oleh Claude dari Pembahasan §8.7.5.)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Kasus dapat didiagonalkan (Modul, Contoh 7.5.5)</div>
+        <p>$L(x, y, z) = (2x + z, 2y + z, z)$, $A = \begin{pmatrix} 2 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$, $\det(A - \lambda I) = (2 - \lambda)^2(1 - \lambda)$.</p>
+        <ul>
+          <li>$\lambda = 2$: $(A - 2I)\mathbf{x} = (z, z, -z)$, jadi $z = 0$: basis $\set{\mathbf{e}_1, \mathbf{e}_2}$, kerangkapan geometris $2$.</li>
+          <li>$\lambda = 1$: $(A - I)\mathbf{x} = (x + z, y + z, 0)$: basis $\set{(-1, -1, 1)}$ (memang $A(-1, -1, 1) = (-1, -1, 1)$).</li>
+        </ul>
+        <p>Kerangkapan geometris = aljabar untuk setiap nilai eigen, jadi $J = \operatorname{diag}(2, 2, 1)$, dengan basis $\set{\mathbf{e}_1, \mathbf{e}_2, (-1, -1, 1)}$: tiga blok $1 \times 1$.</p>
+      </div>
+
+      <h3>Eksponensial matriks dan persamaan diferensial</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Eksponensial matriks (Modul, Definisi 7.5.6)</div>
+        <p>Untuk $A \in M_n(\C)$, $\displaystyle e^A = \sum_{k=0}^{\infty}\frac{A^k}{k!}$ (konvergen untuk semua $A$), dan $\displaystyle e^{At} = \sum_{k=0}^{\infty}\frac{t^kA^k}{k!}$. Solusi $\dot{\mathbf{x}} = A\mathbf{x}$ adalah $\mathbf{x}(t) = e^{At}\mathbf{x}(0)$.</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title">Menghitung lewat bentuk Jordan (Modul, persamaan 7.5.6.1)</div>
+        <p>Jika $A = PJP^{-1}$, maka $e^{At} = Pe^{Jt}P^{-1}$. Untuk blok super-1 $J = \lambda I_m + N$ ($N^m = O$):</p>
+        <p>$$e^{Jt} = e^{\lambda t}\sum_{k=0}^{m-1}\frac{t^k}{k!}N^k = e^{\lambda t}\begin{pmatrix} 1 &amp; t &amp; \tfrac{t^2}{2!} &amp; \cdots &amp; \tfrac{t^{m-1}}{(m-1)!} \\ 0 &amp; 1 &amp; t &amp; \cdots &amp; \tfrac{t^{m-2}}{(m-2)!} \\ \vdots &amp; &amp; \ddots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; 1 &amp; t \\ 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{pmatrix}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$(PJP^{-1})^k = PJ^kP^{-1}$, jadi deretnya $P\bigl(\sum t^kJ^k/k!\bigr)P^{-1}$. Karena $\lambda I$ dan $N$ komutatif, $e^{(\lambda I + N)t} = e^{\lambda t}e^{Nt}$, dan deret $e^{Nt}$ berhenti pada $k = m - 1$. $N^k$ berisi angka $1$ di superdiagonal ke-$k$, sehingga entri $(i, i + k)$ bernilai $t^k/k!$. (Sumber menyatakan rumus ini; penjelasannya ditambahkan oleh Claude.)</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Sistem dengan satu blok $2 \times 2$ (Modul, Contoh 7.5.7)</div>
+        <p>$\dot{\mathbf{x}} = A\mathbf{x}$, $A = \begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{pmatrix} = 2I + N$, $N^2 = O$. Maka $e^{At} = e^{2t}(I + tN) = e^{2t}\begin{pmatrix} 1 &amp; t \\ 0 &amp; 1 \end{pmatrix}$ dan</p>
+        <p>$$x_1(t) = e^{2t}\bigl(x_1(0) + tx_2(0)\bigr), \qquad x_2(t) = e^{2t}x_2(0).$$</p>
+        <p>Faktor $t$ muncul karena blok Jordan.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Persamaan orde dua dengan akar kembar (Modul, Contoh 7.5.8)</div>
+        <p>$\ddot{y} + 2\dot{y} + y = 0$ dengan $x_1 = y$, $x_2 = \dot{y}$: $\dot{\mathbf{x}} = A\mathbf{x}$, $A = \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; -2 \end{pmatrix}$, nilai eigen $-1$ (kembar), tidak dapat didiagonalkan. $J = \begin{pmatrix} -1 &amp; 1 \\ 0 &amp; -1 \end{pmatrix}$.</p>
+        <ol>
+          <li>Vektor eigen $\mathbf{v}_1 = (1, -1)$ dan vektor eigen diperumum $\mathbf{v}_2 = (1, 0)$ ($(A + I)\mathbf{v}_2 = \mathbf{v}_1$): $P = \begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 0 \end{pmatrix}$, $P^{-1} = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$, dan $AP = PJ$.</li>
+          <li>$y(0) = 1$, $\dot{y}(0) = 0$: $P^{-1}\mathbf{x}(0) = (0, 1)$, $e^{Jt}(0, 1) = e^{-t}(t, 1)$, dan $\mathbf{x}(t) = Pe^{-t}(t, 1) = e^{-t}(1 + t, -t)$.</li>
+          <li>Jadi $y(t) = e^{-t}(1 + t)$, solusi standar untuk akar karakteristik kembar.</li>
+        </ol>
+        <p>Pegas teredam kritis $\ddot{y} + 2\zeta\omega_n\dot{y} + \omega_n^2y = 0$ dengan $\zeta = 1$ memberi suku $te^{-\omega_nt}$, yang berasal dari blok Jordan.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Rangkaian RLC (Modul, Contoh 7.5.9)</div>
+        <p>$L\ddot{q} + R\dot{q} + q/C = 0$ dengan $L = 1\,\mathrm{H}$, $R = 2\,\Omega$, $C = 1\,\mathrm{F}$ memberi $\ddot{q} + 2\dot{q} + q = 0$, sama dengan Contoh 4. Solusinya $q(t) = \bigl(q(0) + t(\dot{q}(0) + q(0))\bigr)e^{-t}$; untuk $q(0) = 1$, $\dot{q}(0) = 0$: $q(t) = (1 + t)e^{-t}$ dan arus $i(t) = \dot{q}(t) = -te^{-t}$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Real problem: suspensi aktif kendaraan (Modul, Contoh 7.5.10)</div>
+        <p>Pengendali dirancang agar semua kutub loop tertutup di $s = -1$ (tanpa overshoot): $\dddot{y} + 3\ddot{y} + 3\dot{y} + y = 0$. Dengan $x_1 = y$, $x_2 = \dot{y}$, $x_3 = \ddot{y}$:</p>
+        <p>$$A = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ -1 &amp; -3 &amp; -3 \end{pmatrix}, \qquad \det(\lambda I - A) = (\lambda + 1)^3, \qquad J = \begin{pmatrix} -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; -1 \end{pmatrix}.$$</p>
+        <ol>
+          <li>Ruang eigen berdimensi $1$, jadi satu blok $3 \times 3$. Rantai $(A + I)\mathbf{v}_1 = \mathbf{0}$, $(A + I)\mathbf{v}_2 = \mathbf{v}_1$, $(A + I)\mathbf{v}_3 = \mathbf{v}_2$: misalnya $\mathbf{v}_1 = (1, -1, 1)$, $\mathbf{v}_2 = (1, 0, -1)$, $\mathbf{v}_3 = (1, 0, 0)$, dan $P = [\mathbf{v}_1\ \mathbf{v}_2\ \mathbf{v}_3]$ memenuhi $AP = PJ$ (diperiksa Claude secara numerik).</li>
+          <li>$e^{Jt} = e^{-t}\begin{pmatrix} 1 &amp; t &amp; t^2/2 \\ 0 &amp; 1 &amp; t \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$ dan $\mathbf{x}(t) = Pe^{Jt}P^{-1}\mathbf{x}(0)$.</li>
+          <li>Langsung dari persamaan skalar: $y = (C_1 + C_2t + C_3t^2)e^{-t}$. Dengan $y(0) = 1$, $\dot{y}(0) = 0$, $\ddot{y}(0) = 0$ (bodi terangkat $1$ cm lalu dilepas): $C_1 = 1$, $C_2 - C_1 = 0$, $2C_3 - 2C_2 + C_1 = 0$, jadi
+            $$y(t) = \left(1 + t + \tfrac{1}{2}t^2\right)e^{-t}.$$</li>
+          <li>$y \gt 0$ untuk semua $t \ge 0$ (tanpa overshoot) dan $y \to 0$. Suku $te^{-t}$ dan $t^2e^{-t}$ adalah ciri blok Jordan $3 \times 3$.</li>
+        </ol>
+        <p><span class="cek">[CEK: (1) Matriks $P = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ -1 &amp; -2 &amp; 1 \end{pmatrix}$ di sumber tidak memenuhi $AP = PJ$: kolom pertamanya $(1, -1, -1)$ bukan vektor eigen, karena $(A + I)(1, -1, -1) = (0, -2, 4)$. Rantai di atas dihitung oleh Claude. (2) Sumber menyebut waktu turun ke $5\%$ "sekitar $t \approx 4{,}7$ detik"; penyelesaian numerik $(1 + t + t^2/2)e^{-t} = 0{,}05$ oleh Claude memberi $t \approx 6{,}30$ (satuan waktu model). (3) Bagian eksponensial matriks tertulis dua kali di sumber, dan merujuk "solusi (7.5.8.1)" yang tidak ada.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menentukan blok hanya dari polinomial minimal.</strong> Pangkat $(t - \lambda)^r$ di $m_L$ hanya memberi ukuran blok <em>terbesar</em>; banyak blok perlu $d_1 = \dim\ker(L - \lambda I)$, dan kadang $d_2, d_3, \dots$.</li>
+        <li><strong>Urutan rantai di $P$.</strong> Untuk konvensi super-1, kolom $P$ adalah $\mathbf{v}_1$ (vektor eigen), lalu $\mathbf{v}_2$ dengan $(A - \lambda I)\mathbf{v}_2 = \mathbf{v}_1$, dan seterusnya; urutan terbalik memberi sub-1.</li>
+        <li><strong>$e^{A + B} = e^Ae^B$ tanpa syarat.</strong> Hanya benar bila $AB = BA$; di sini $\lambda I$ dan $N$ komutatif.</li>
+        <li><strong>Lupa memeriksa $AP = PJ$.</strong> Cara paling cepat menangkap salah tanda atau salah urutan rantai.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Diberikan $A = \begin{pmatrix} 3 &amp; 1 &amp; 0 \\ 0 &amp; 3 &amp; 0 \\ 0 &amp; 0 &amp; 4 \end{pmatrix}$. (a) Tentukan polinomial karakteristik, polinomial minimal, dan bentuk Jordan $J$. (b) Tentukan $P$ dengan $P^{-1}AP = J$ dan jelaskan ketunggalan $J$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>(a) $p_A(\lambda) = (3 - \lambda)^2(4 - \lambda)$. Untuk $\lambda = 3$: $A - 3I = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$ ber-rank $2$, jadi $\dim\ker = 1 \lt 2$: tidak dapat didiagonalkan.</li>
+            <li>$(A - 3I)^2 = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \ne O$, tetapi $(A - 3I)^2(A - 4I) = O$, jadi $m_A = (x - 3)^2(x - 4)$.</li>
+            <li>Untuk $\lambda = 3$: satu blok berukuran $2$ (pangkat $2$ di $m_A$, dan $d_1 = 1$), $J_2(3) = \begin{pmatrix} 3 &amp; 1 \\ 0 &amp; 3 \end{pmatrix}$; untuk $\lambda = 4$: $J_1(4) = [4]$. Jadi $J = \begin{pmatrix} 3 &amp; 1 &amp; 0 \\ 0 &amp; 3 &amp; 0 \\ 0 &amp; 0 &amp; 4 \end{pmatrix}$: $A$ sudah berbentuk Jordan (konvensi super-1).</li>
+            <li>(b) $P = I$. Umumnya kolom $P$ adalah rantai Jordan: $\mathbf{v} = \mathbf{e}_2$ dengan $(A - 3I)^2\mathbf{v} = \mathbf{0}$ tetapi $(A - 3I)\mathbf{v} = \mathbf{e}_1 \ne \mathbf{0}$ memberi rantai $\set{\mathbf{e}_1, \mathbf{e}_2}$; untuk $\lambda = 4$, $\mathbf{e}_3$.</li>
+          </ol>
+          <p><strong>Ketunggalan:</strong> bentuk Jordan tunggal sampai permutasi blok, dan dua matriks similar ⇔ bentuk Jordannya sama. $J$ adalah representasi paling sederhana di kelas similaritasnya, menggabungkan dekomposisi primer dan struktur nilpoten $N = J - \lambda I$ di tiap blok: teorema klasifikasi operator linier atas $\C$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk nilai eigen $\lambda$ suatu operator berlaku $d_1 = 3$, $d_2 = 5$, $d_3 = 6$, $d_4 = 6$. Tentukan blok-blok Jordan untuk $\lambda$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Banyak blok $d_1 = 3$; kernel stabil di $k = 3$, jadi blok terbesar berukuran $3$ dan kerangkapan aljabar $d_3 = 6$.</li>
+            <li>Tepat $k$: $k = 1$: $2d_1 - d_0 - d_2 = 6 - 0 - 5 = 1$; $k = 2$: $2 \cdot 5 - 3 - 6 = 1$; $k = 3$: $2 \cdot 6 - 5 - 6 = 1$.</li>
+            <li>Jadi satu blok masing-masing berukuran $1, 2, 3$ (total $6$): $J_3(\lambda) \oplus J_2(\lambda) \oplus J_1(\lambda)$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Hitung $e^{At}$ untuk $A = \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; -2 \end{pmatrix}$ (Contoh 4) secara eksplisit.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$A = -I + M$ dengan $M = A + I = \begin{pmatrix} 1 &amp; 1 \\ -1 &amp; -1 \end{pmatrix}$, dan $M^2 = \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}$ (nilpoten).</li>
+            <li>$-I$ dan $M$ komutatif, jadi $e^{At} = e^{-t}(I + tM) = e^{-t}\begin{pmatrix} 1 + t &amp; t \\ -t &amp; 1 - t \end{pmatrix}$.</li>
+            <li>Cek: kolom pertama $e^{-t}(1 + t, -t)$ sama dengan $\mathbf{x}(t)$ di Contoh 4 untuk $\mathbf{x}(0) = (1, 0)$.</li>
+          </ol>
+          <p>Trik $A = \lambda I + (A - \lambda I)$ bekerja langsung jika hanya ada satu nilai eigen, tanpa menghitung $P$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        J = \operatorname{diag}(J_{m_1}(\lambda_1), \dots), \qquad d_k = \dim\ker(L - \lambda I)^k, \qquad \#\set{\text{blok tepat } k} = 2d_k - d_{k-1} - d_{k+1}, \\
+        e^{At} = Pe^{Jt}P^{-1}, \qquad e^{(\lambda I + N)t} = e^{\lambda t}\sum_{k=0}^{m-1}\tfrac{t^k}{k!}N^k
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/7-Similaritas.md</code>, Bab 7, §7.5: Definisi 7.5.1 dan catatan konvensi, Contoh 7.5.2, Definisi 7.5.3, Teorema 7.5.4, Contoh 7.5.5, Definisi 7.5.6, persamaan 7.5.6.1, Contoh 7.5.7–7.5.10. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.7.5 (Latihan 1).</li>
+        <li>Akibat 1, penjelasan rumus $e^{Jt}$, rantai Jordan Contoh 7.5.10, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

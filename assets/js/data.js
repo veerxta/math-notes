@@ -65,6 +65,11 @@ window.MATH_NOTES = {
         { file: "43-vektor-singular-kiri-dan-svd.html", judul: "Vektor Singular Kiri dan SVD" },
         { file: "44-pseudo-invers.html", judul: "Pseudo-Invers lewat SVD" },
         { file: "45-rotasi-dan-translasi.html", judul: "Rotasi dan Translasi" },
+        { file: "46-bentuk-segitiga.html", judul: "Bentuk Segitiga", bab: "Bab 7 · Similaritas" },
+        { file: "47-dekomposisi-primer.html", judul: "Dekomposisi Primer" },
+        { file: "48-operator-nilpoten-i.html", judul: "Operator Nilpoten, Bagian I" },
+        { file: "49-operator-nilpoten-ii.html", judul: "Operator Nilpoten, Bagian II" },
+        { file: "50-bentuk-kanonik-jordan.html", judul: "Bentuk Kanonik Jordan" },
       ],
     },
     {

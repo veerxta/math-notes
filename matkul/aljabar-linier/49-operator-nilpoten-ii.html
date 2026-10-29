@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Operator Nilpoten, Bagian II · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Operator Nilpoten, Bagian II</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Terhadap basis siklik $\mathbf{x}, L\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}$, operator nilpoten bermatriks <strong>sub-1</strong> (angka $1$ di subdiagonal, nol di tempat lain).</li>
+        <li><strong>Bentuk normal nilpoten</strong>: setiap operator nilpoten berdimensi hingga punya basis dengan $[L]_B = \operatorname{diag}(A_1, \dots, A_k)$, tiap $A_i$ matriks sub-1 atau nol $1 \times 1$.</li>
+        <li>Blok-bloknya tunggal sampai urutan: banyak blok berukuran $\ge k$ adalah $\dim\ker L^k - \dim\ker L^{k-1}$.</li>
+        <li>Banyak blok $= \dim\ker L$; ukuran blok terbesar = indeks nilpotensi.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Matriks sub-1</h3>
+      <p>Misalkan $L$ nilpoten berindeks $\ell$, $L^{\ell-1}\mathbf{x} \ne \mathbf{0}$, dan $K = \operatorname{span}\set{\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}}$ dengan basis terurut $\mathbf{b}_i = L^{i-1}\mathbf{x}$. Maka $L\mathbf{b}_i = \mathbf{b}_{i+1}$ ($i \lt \ell$) dan $L\mathbf{b}_\ell = \mathbf{0}$, jadi $[L_K]_B = (\mathbf{e}_2, \dots, \mathbf{e}_\ell, \mathbf{0})$:</p>
+      <p>$$[L_K]_B = \begin{pmatrix} 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ \vdots &amp; &amp; \ddots &amp; &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 \end{pmatrix} \quad (\ell \times \ell).$$</p>
+
+      <div class="box definisi">
+        <div class="box-title">Subdiagonal, superdiagonal, sub-1, super-1 (Modul, Definisi 7.4.1)</div>
+        <p>Untuk $A = [a_{ij}]$ berukuran $n \times n$: <strong>subdiagonal</strong> adalah $(a_{21}, a_{32}, \dots, a_{n,n-1})$ dan <strong>superdiagonal</strong> adalah $(a_{12}, a_{23}, \dots, a_{n-1,n})$. <strong>Matriks sub-1</strong>: subdiagonal $(1, \dots, 1)$ dan entri lain nol, yaitu $a_{ij} = \delta_{i, j+1}$. <strong>Matriks super-1</strong>: superdiagonal $(1, \dots, 1)$ dan entri lain nol, $a_{ij} = \delta_{i, j-1}$.</p>
+        <p>Contoh: untuk $\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{pmatrix}$ subdiagonalnya $(4, 8)$ dan superdiagonalnya $(2, 6)$. Untuk setiap $k \ge 2$ ada tepat satu matriks sub-1 $k \times k$ (misalnya $S_3 = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}$), dan tidak ada matriks sub-1 $1 \times 1$. Semua hasil untuk sub-1 berlaku juga untuk super-1 (urutan basis dibalik).</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Nilpoten tetapi bukan sub-1 (Modul, §7.4)</div>
+        <p>$B = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$ nilpoten ($B^2 = O$) tetapi subdiagonalnya $(1, 0)$, jadi bukan sub-1. Namun $B = \operatorname{diag}(S_2, O_1)$ dengan $S_2 = \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}$: blok diagonal dari matriks sub-1 dan matriks nol. Inilah bentuk normal yang sedang dicari.</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Dimensi bagian siklik dan komplemennya (Modul, Lemma 7.4.2)</div>
+        <p>Dalam dekomposisi-$L$ $V = K \oplus H$ dari Lemma komplemen-$L$ (topik sebelumnya), dengan $L$ berindeks $\ell \gt 1$, $\dim K = \ell$ dan $\dim H = n - \ell$, tidak bergantung pada pilihan $\mathbf{x}$ maupun $H$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$\set{\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}}$ bebas linier, jadi $\dim K = \ell$ untuk setiap $\mathbf{x}$ yang memenuhi syarat, dan $\dim H = n - \ell$. Sumber menyebutnya "tunggal hingga isomorfisma"; isinya hanya kesamaan dimensi, bukan ketunggalan subruangnya.</p>
+      </details>
+
+      <h3>Bentuk normal nilpoten</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Bentuk normal operator nilpoten (Modul, Teorema 7.4.3)</div>
+        <p>Jika $V \cong F^n$ dan $L \in \mathcal{L}(V)$ nilpoten, ada basis $B$ dengan</p>
+        <p>$$[L]_B = \operatorname{diag}(A_1, \dots, A_k),$$</p>
+        <p>tiap $A_i$ matriks sub-1 atau matriks nol $1 \times 1$. Jika basis lain $C$ memberi $[L]_C = \operatorname{diag}(B_1, \dots, B_r)$ berbentuk sama, maka $r = k$ dan $B_{\sigma(i)} = A_i$ untuk suatu permutasi $\sigma \in S_k$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Eksistensi</strong> (induksi pada $n$). Untuk $n = 1$ atau $\ell = 1$, $L = O$ dan $[L] = O_n = \operatorname{diag}(O_1, \dots, O_1)$. Untuk $\ell \gt 1$: pilih $\mathbf{x}$ dengan $L^{\ell-1}\mathbf{x} \ne \mathbf{0}$, $B_1 = \set{\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}}$, $K = \operatorname{span}B_1$. Lemma komplemen-$L$ memberi $V = K \oplus H$ dengan $H$ invarian, $\dim H \lt n$. $L_H$ nilpoten, jadi menurut hipotesis induksi $H$ punya basis dengan $[L_H] = \operatorname{diag}(A_2, \dots, A_k)$. Dengan $A_1 = [L_K]_{B_1}$ (sub-1 $\ell \times \ell$), gabungan basis memberi $[L] = \operatorname{diag}(A_1, \dots, A_k)$.</p>
+        <p><strong>Ketunggalan.</strong> Jika $[L]_B = \operatorname{diag}(A_1, \dots, A_k)$ dengan blok berukuran $m_1, \dots, m_k$ (blok nol $1 \times 1$ dihitung berukuran $1$), maka pada blok berukuran $m$, $\dim\ker(S_m)^j = \min(j, m)$. Jadi</p>
+        <p>$$\dim\ker L^j = \sum_{i=1}^{k}\min(j, m_i), \qquad \dim\ker L^j - \dim\ker L^{j-1} = \#\set{i : m_i \ge j}.$$</p>
+        <p>Ruas kiri tidak bergantung pada basis, jadi banyak blok berukuran $\ge j$ (untuk setiap $j$), dan karenanya banyak blok berukuran tepat $j$, ditentukan oleh $L$. Kedua representasi punya multiset ukuran blok yang sama, dan blok berukuran sama identik.</p>
+        <p><span class="cek">[CEK: sumber menyimpulkan ketunggalan blok dari "ketunggalan dekomposisi-$L$ $V = K \oplus H$ hingga isomorfisma" (Lemma 7.4.2). Isomorfisma ruang vektor $H \cong H'$ hanya menyamakan dimensi, tidak menyamakan struktur $L_H$ dan $L_{H'}$, jadi argumen itu tidak cukup. Bukti ketunggalan lewat dimensi kernel di atas ditulis oleh Claude; rumus yang sama muncul di Pembahasan sumber §8.7.3–8.7.4.]</span></p>
+      </details>
+
+      <h3>Contoh</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Ilustrasi bentuk normal (Modul, Contoh 7.4.4)</div>
+        <ol>
+          <li><strong>$\R^2$, indeks $2$.</strong> Untuk $\mathbf{x}$ dengan $L\mathbf{x} \ne \mathbf{0}$, $K = \operatorname{span}\set{\mathbf{x}, L\mathbf{x}} = V$ dan $[L]_{(\mathbf{x}, L\mathbf{x})} = S_2$.</li>
+          <li><strong>$\R^4$, indeks $3$.</strong> Satu blok berasal dari $\mathbf{x}$ dengan $L^2\mathbf{x} \ne \mathbf{0}$; sisanya berdimensi $1$, jadi blok nol $O_1$ (direntang $\mathbf{y}$ dengan $L\mathbf{y} = \mathbf{0}$). Terhadap $\set{\mathbf{x}, L\mathbf{x}, L^2\mathbf{x}, \mathbf{y}}$: $[L] = \operatorname{diag}(S_3, O_1)$.</li>
+          <li><strong>$\R^7$, blok $3 + 3 + 1$.</strong> $[L] = \operatorname{diag}(S_3, S_3, O_1)$, tanpa entri di luar blok karena subruang-subruangnya $L$-invarian dan saling bebas. (Sumber merumuskannya sebagai operator berindeks $3$ dengan "dua vektor bebas $\mathbf{x}_1, \mathbf{x}_2$ yang memenuhi $L^2\mathbf{x}_i \ne \mathbf{0}$"; syarat itu saja belum memaksa bentuk $3 + 3 + 1$, karena misalnya $3 + 2 + 2$ juga mungkin. Bentuknya ditentukan oleh $\dim\ker L^j$, seperti di bukti ketunggalan.)</li>
+          <li><strong>$\R^5$, blok $3 + 2$.</strong> $[L]_C = \operatorname{diag}(S_3, S_2)$. Basis lain hanya bisa memberi blok berukuran $3$ dan $2$ dalam urutan lain; misalnya $\operatorname{diag}(S_4, O_1)$ mustahil karena indeks nilpotensinya akan $4$, bukan $3$ (dan $\dim\ker L$ akan sama, $2$, tetapi $\dim\ker L^3$ berbeda).</li>
+        </ol>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menentukan bentuk normal hanya dari indeks nilpotensi dan dimensi.</strong> Di $\R^4$ dengan indeks $2$, bentuknya bisa $2 + 2$ atau $2 + 1 + 1$; perlu $\dim\ker L$.</li>
+        <li><strong>Mencampur sub-1 dan super-1.</strong> Urutan $\mathbf{x}, L\mathbf{x}, \dots$ memberi sub-1; urutan terbalik $L^{\ell-1}\mathbf{x}, \dots, \mathbf{x}$ memberi super-1 (konvensi bentuk Jordan yang umum).</li>
+        <li><strong>Lupa blok nol $1 \times 1$.</strong> Vektor di $\ker L$ yang bukan ujung rantai panjang membentuk blok sendiri.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Misalkan $N$ nilpoten, $\dim V = 4$, $\dim\ker N = 2$, $\dim\ker N^2 = 3$, $\dim\ker N^3 = 4$. Tentukan bentuk Jordan nilpotennya dan basis siklik yang merealisasikannya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Banyak blok $= \dim\ker N = 2$. Misalkan ukurannya $n_1 \ge n_2$ dengan $n_1 + n_2 = 4$.</li>
+            <li>Banyak blok berukuran $\ge 2$ adalah $\dim\ker N^2 - \dim\ker N = 1$, jadi hanya satu blok berukuran $\ge 2$: kemungkinan $(3, 1)$.</li>
+            <li>Cek: untuk $(3, 1)$, $\dim\ker N = 2$, $\dim\ker N^2 = \min(2, 3) + \min(2, 1) = 3$, $\dim\ker N^3 = 3 + 1 = 4$. Semua cocok, jadi $J = \operatorname{diag}(J_3(0), J_1(0))$.</li>
+            <li>Basis siklik: pilih $\mathbf{v}_1$ dengan $N^2\mathbf{v}_1 \ne \mathbf{0}$ (generator rantai panjang $3$): $\mathbf{v}_1, N\mathbf{v}_1, N^2\mathbf{v}_1$. Pilih $\mathbf{v}_2 \in \ker N$ yang bebas linier dari $N^2\mathbf{v}_1$: rantai pendek $\mathbf{v}_2$.</li>
+          </ol>
+          <p>Basis $\set{N^2\mathbf{v}_1, N\mathbf{v}_1, \mathbf{v}_1} \cup \set{\mathbf{v}_2}$ (bentuk super-1) atau $\set{\mathbf{v}_1, N\mathbf{v}_1, N^2\mathbf{v}_1} \cup \set{\mathbf{v}_2}$ (bentuk sub-1). Struktur siklik ini inti klasifikasi operator nilpoten.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan bentuk normal nilpoten dari $N = \begin{pmatrix} 0 &amp; 1 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Kolom: $N\mathbf{e}_1 = \mathbf{0}$, $N\mathbf{e}_2 = \mathbf{e}_1$, $N\mathbf{e}_3 = \mathbf{e}_1$, $N\mathbf{e}_4 = \mathbf{e}_2$. Jadi $N^2\mathbf{e}_4 = \mathbf{e}_1$, $N^2\mathbf{e}_j = \mathbf{0}$ untuk $j \le 3$, dan $N^3 = O$.</li>
+            <li>$\operatorname{rank}N = 2$ (citra $\operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2}$), jadi $\dim\ker N = 2$; $\operatorname{rank}N^2 = 1$, $\dim\ker N^2 = 3$; $\dim\ker N^3 = 4$.</li>
+            <li>Sama seperti Latihan 1: blok $(3, 1)$, bentuk $\operatorname{diag}(S_3, O_1)$.</li>
+            <li>Basis: rantai $\mathbf{e}_4 \to \mathbf{e}_2 \to \mathbf{e}_1$, dan $\mathbf{e}_2 - \mathbf{e}_3 \in \ker N$ (karena $N(\mathbf{e}_2 - \mathbf{e}_3) = \mathbf{e}_1 - \mathbf{e}_1 = \mathbf{0}$), bebas dari $\mathbf{e}_1$. Terhadap $\set{\mathbf{e}_4, \mathbf{e}_2, \mathbf{e}_1, \mathbf{e}_2 - \mathbf{e}_3}$: $[N] = \operatorname{diag}(S_3, O_1)$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Berapa banyak bentuk normal nilpoten yang berbeda (sampai urutan blok) untuk $\dim V = 4$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Menurut Teorema 1, bentuk normal ditentukan oleh multiset ukuran blok, yaitu <strong>partisi</strong> bilangan $4$.</li>
+            <li>Partisi $4$: $4$, $3 + 1$, $2 + 2$, $2 + 1 + 1$, $1 + 1 + 1 + 1$.</li>
+          </ol>
+          <p>Jadi ada $5$ kelas similaritas operator nilpoten di ruang berdimensi $4$, dengan indeks nilpotensi berturut-turut $4, 3, 2, 2, 1$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        [L_K]_{(\mathbf{x}, L\mathbf{x}, \dots)} = S_\ell, \quad (S_\ell)_{ij} = \delta_{i, j+1}, \qquad [L]_B = \operatorname{diag}(S_{m_1}, \dots, S_{m_k}) \ (S_1 = O_1), \\
+        \dim\ker L^j = \sum_i\min(j, m_i), \qquad \#\set{m_i \ge j} = \dim\ker L^j - \dim\ker L^{j-1}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/7-Similaritas.md</code>, Bab 7, §7.4: matriks basis siklik, Definisi 7.4.1 dan contohnya, Lemma 7.4.2, Teorema 7.4.3, Contoh 7.4.4 (lima bagian). File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.7.4 (Latihan 1).</li>
+        <li>Bukti ketunggalan Teorema 7.4.3, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

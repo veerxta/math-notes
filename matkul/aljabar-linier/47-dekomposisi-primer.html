@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Dekomposisi Primer · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Dekomposisi Primer</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Matriks blok diagonal: polinomial karakteristiknya hasil kali polinomial karakteristik blok-bloknya.</li>
+        <li>Kernel $\ker L \subseteq \ker L^2 \subseteq \cdots$ stabil pada <strong>indeks kernel</strong> $\ell$; lalu $V = \ker L^\ell \oplus L^\ell[V]$, dengan $L$ nilpoten pada bagian pertama dan invertibel pada bagian kedua.</li>
+        <li>Nilpoten: $L^\ell = O$ untuk suatu $\ell$; jika $L^{\ell-1}\mathbf{x} \ne \mathbf{0}$, maka $\mathbf{x}, L\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}$ bebas linier.</li>
+        <li><strong>Teorema dekomposisi primer</strong>: jika semua nilai eigen di $F$, $V = \bigoplus_i\ker(L - \lambda_iI)^{\ell_i}$, dengan $\dim$ komponen = kerangkapan aljabar $\lambda_i$.</li>
+        <li>Eksponen polinomial minimal tepat indeks kernel: $m_L = \prod(t - \lambda_i)^{\ell_i}$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Tujuan dekat: melihat $L$ sebagai <strong>jumlah langsung</strong> operator-operator sederhana, yaitu $V$ sebagai jumlah-$L$ (jumlah langsung subruang $L$-invarian), atau $L$ berepresentasi matriks blok diagonal. Jika $V = W \oplus U$ jumlah-$L$, ditulis $L = L_W \oplus L_U$ dengan $L_W = L|_W$.</p>
+
+      <div class="box akibat">
+        <div class="box-title">Polinomial karakteristik blok diagonal (Modul, Korolari 7.2.1)</div>
+        <p>Jika $A = \operatorname{diag}(A_1, \dots, A_k)$ (blok persegi), polinomial karakteristik $A$ adalah hasil kali polinomial karakteristik $A_1, \dots, A_k$, dan akar-akarnya gabungan akar-akar mereka.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$A - tI = \operatorname{diag}(A_1 - tI_{n_1}, \dots, A_k - tI_{n_k})$, dan $\det\operatorname{diag}(B_1, \dots, B_k) = \det B_1\cdots\det B_k$ (Modul, persamaan 7.2.1). Bagian kedua: hasil kali nol tepat jika salah satu faktornya nol.</p>
+      </details>
+
+      <h3>Nilpoten dan indeks kernel</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Nilpoten (Modul, Definisi 7.2.2)</div>
+        <p>$L \in \mathcal{L}(V)$ <strong>nilpoten</strong> jika $L^\ell = O$ untuk suatu bilangan bulat positif $\ell$. Bilangan terkecil seperti itu adalah <strong>indeks nilpotensi</strong>. Pemetaan nol nilpoten berindeks $1$. Polinomial minimal operator nilpoten berindeks $\ell$ adalah $t^\ell$, jadi indeks nilpotensi invarian similaritas.</p>
+        <p>Nilpoten mengakibatkan <em>tidak</em> invertibel ($\det L^\ell = (\det L)^\ell = 0$), tetapi tidak sebaliknya: $L_1 = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}$ singular dengan $L_1^j = L_1$, tidak nilpoten; $L_2 = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}$ nilpoten berindeks $2$.</p>
+        <p><span class="cek">[CEK: sumber menulis "Nilpotensi mengimplikasikan invers, tetapi operator yang tidak mempunyai invers belum tentu nilpoten". Dari contohnya, yang dimaksud jelas "nilpotensi mengakibatkan <em>tidak</em> mempunyai invers".]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Dua contoh (Modul, Contoh 7.2.3 dan 7.2.4)</div>
+        <ul>
+          <li>$L(x, y, z) = (x + y + z, y + z, z)$: $(L - I)(x, y, z) = (y + z, z, 0)$, $(L - I)^2(x, y, z) = (z, 0, 0)$, $(L - I)^3 = O$. Jadi $L - I$ nilpoten berindeks $3$.</li>
+          <li>$L(x, y, z) = (s, s, s)$ dengan $s = x + y + z$ (nilai eigen $0$ dan $3$): $L$ sendiri tidak nilpoten. Latihan sumber (dijawab oleh Claude): $L^j(x, y, z) = 3^{j-1}(s, s, s)$, karena $L(s, s, s) = (3s, 3s, 3s)$; dan $L - 3I$ <em>tidak</em> nilpoten, sebab $(L - 3I)(1, -1, 0) = -3(1, -1, 0)$, jadi $(L - 3I)^j(1, -1, 0) = (-3)^j(1, -1, 0) \ne \mathbf{0}$.</li>
+        </ul>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Rantai kernel stabil (Modul, Teorema 7.2.5)</div>
+        <p>Misalkan $V \cong F^n$, $L \in \mathcal{L}(V)$, $K_i = \ker L^i$. Ada $\ell \in \Z^+$ dengan</p>
+        <p>$$K_1 \subseteq K_2 \subseteq \cdots \subseteq K_\ell = K_{\ell+1} = K_{\ell+2} = \cdots.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Jika $L^j\mathbf{x} = \mathbf{0}$, maka $L^{j+1}\mathbf{x} = L(\mathbf{0}) = \mathbf{0}$: rantai naik.</li>
+          <li>Dimensinya dibatasi $n$, jadi ada $\ell$ (ambil terkecil) dengan $K_\ell = K_{\ell+1}$.</li>
+          <li>Jika $\mathbf{x} \in K_{\ell+j}$ ($j \ge 2$), maka $L^{j-1}\mathbf{x} \in K_{\ell+1} = K_\ell$, jadi $L^{\ell+j-1}\mathbf{x} = \mathbf{0}$, yaitu $\mathbf{x} \in K_{\ell+j-1}$. Induksi memberi $K_{\ell+j} = K_\ell$: sekali stabil, kernel tidak tumbuh lagi.</li>
+        </ol>
+        <p>Kasus ekstrem: $L = O$ memberi $K_j = V$ untuk semua $j$; $L$ invertibel memberi $K_j = \set{\mathbf{0}}$. Keduanya stabil sejak $j = 1$.</p>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Indeks kernel (Modul, Definisi 7.2.6)</div>
+        <p>Untuk $L \in \mathcal{L}(V)$, $V \cong F^n$, <strong>indeks kernel</strong> $L$ adalah $\ell \in \Z^+$ terkecil dengan $\ker L^\ell = \ker L^{\ell+1}$. Berbeda dari indeks nilpotensi: indeks kernel terdefinisi untuk semua operator (berdimensi hingga), misalnya $1$ untuk operator invertibel. Untuk operator nilpoten keduanya sama.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Pergeseran $3 \times 3$ (Modul, Contoh 7.2.7)</div>
+        <p>$A = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$: $\ker L = \operatorname{span}\set{\mathbf{e}_1}$, $A^2 = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$ dan $\ker L^2 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2}$, $A^3 = O$. Indeks nilpotensi dan indeks kernel sama-sama $3$. Perhatikan $\ker L = \operatorname{span}\set{\mathbf{e}_1} \subseteq L[V] = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2}$ dan $\ker L^2 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2} \supseteq L^2[V] = \operatorname{span}\set{\mathbf{e}_1}$: baru pada pangkat $3$ kernel dan citra saling komplemen (Teorema 2).</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Dekomposisi kernel–citra (Modul, Teorema 7.2.8)</div>
+        <p>Misalkan $V \cong F^n$ dan $\ell$ indeks kernel $L$. Maka</p>
+        <p>$$V = \ker L^j \oplus L^j[V] \iff j \ge \ell,$$</p>
+        <p>dan untuk $j \ge \ell$, $\ker L^j = \ker L^\ell$ dan $L^j[V] = L^\ell[V]$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li><strong>$j = \ell$.</strong> Jika $\mathbf{x} \in \ker L^\ell \cap L^\ell[V]$, tulis $\mathbf{x} = L^\ell\mathbf{y}$; maka $L^{2\ell}\mathbf{y} = \mathbf{0}$, jadi $\mathbf{y} \in K_{2\ell} = K_\ell$ dan $\mathbf{x} = \mathbf{0}$. Irisan trivial plus teorema rank ($\dim\ker + \dim\operatorname{Im} = n$) memberi jumlah langsung $V$.</li>
+          <li><strong>$j \gt \ell$.</strong> $\ker L^j = \ker L^\ell$ (Teorema 1), jadi menurut teorema rank $\dim L^j[V] = \dim L^\ell[V]$; dan $L^j[V] = L^\ell(L^{j-\ell}[V]) \subseteq L^\ell[V]$, jadi sama. Dekomposisinya sama dengan kasus $j = \ell$.</li>
+          <li><strong>$j \lt \ell$ gagal.</strong> Karena $K_j \subsetneq K_{j+1}$, ada $\mathbf{y}$ dengan $L^{j+1}\mathbf{y} = \mathbf{0}$ tetapi $L^j\mathbf{y} \ne \mathbf{0}$. Maka $\mathbf{x} = L^j\mathbf{y} \ne \mathbf{0}$ ada di $L^j[V]$, dan $L^j\mathbf{x} = L^{2j}\mathbf{y} = \mathbf{0}$ (karena $2j \ge j + 1$). Jadi $\mathbf{x} \in \ker L^j \cap L^j[V]$: bukan jumlah langsung.</li>
+        </ol>
+        <p><span class="cek">[CEK: pada langkah (3), sumber memakai $L(\mathbf{y})$ sebagai anggota tak nol $\ker L^j \cap L^j[V]$. Memang $L(\mathbf{y}) \in \ker L^j$, tetapi belum tentu di $L^j[V]$ untuk $j \ge 2$. Vektor yang benar adalah $L^j(\mathbf{y})$, seperti di atas.]</span></p>
+      </details>
+
+      <div class="box lemma">
+        <div class="box-title">Rantai siklik bebas linier (Modul, Lemma 7.2.9)</div>
+        <p>Jika $L$ nilpoten berindeks $\ell$ dan $L^{\ell-1}\mathbf{x} \ne \mathbf{0}$, maka $\set{\mathbf{x}, L\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}}$ bebas linier. Akibatnya $\ell \le \dim V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Misalkan $a_1\mathbf{x} + a_2L\mathbf{x} + \cdots + a_\ell L^{\ell-1}\mathbf{x} = \mathbf{0}$. Terapkan $L^{\ell-1}$: semua suku kecuali yang pertama menjadi $L^{\ge \ell}(\cdot) = \mathbf{0}$, jadi $a_1L^{\ell-1}\mathbf{x} = \mathbf{0}$ dan $a_1 = 0$. Terapkan $L^{\ell-2}$ pada sisanya: $a_2 = 0$. Lanjutkan sampai $a_\ell = 0$.</p>
+        <p>(Sumber membuktikannya dengan induksi pada $\ell$, membatasi $L$ ke $L[V]$ yang berindeks $\ell - 1$; argumen langsung di atas ditulis oleh Claude. Sumber juga menyebut kasus $\ell = 1$ "benar secara hampa karena $L^0$ tidak terdefinisi"; dengan konvensi $L^0 = I$ yang dipakai di topik Polinomial Minimal, kasus itu hanya menyatakan bahwa $\set{\mathbf{x}}$ dengan $\mathbf{x} \ne \mathbf{0}$ bebas linier.)</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Bagian nilpoten dan bagian invertibel (Modul, Teorema 7.2.10)</div>
+        <p>Jika $V \cong F^n$ dan $\ell$ indeks kernel $L$, maka dengan $K = \ker L^\ell$ dan $R = L^\ell[V]$: $L = L_K \oplus L_R$, dengan $L_K$ nilpoten dan $L_R$ invertibel.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>$V = K \oplus R$ (Teorema 2), dan $K$, $R$ $L$-invarian (keduanya kernel/citra polinomial dalam $L$). $L_K^\ell = O$ jelas. Jika $\mathbf{x} \in R$ dengan $L\mathbf{x} = \mathbf{0}$, tulis $\mathbf{x} = L^\ell\mathbf{y}$; maka $L^{\ell+1}\mathbf{y} = \mathbf{0}$, $\mathbf{y} \in K_{\ell+1} = K_\ell$, jadi $\mathbf{x} = \mathbf{0}$. Kernel $L_R$ trivial, jadi $L_R$ invertibel.</p>
+      </details>
+
+      <h3>Teorema dekomposisi primer</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Dekomposisi primer (Modul, Teorema 7.2.11)</div>
+        <p>Misalkan $V \cong F^n$, $L \in \mathcal{L}(V)$, dan semua nilai eigen $\lambda_1, \dots, \lambda_k$ (akar polinomial karakteristik) ada di $F$. Jika $\ell_i$ indeks kernel $L - \lambda_iI$, maka $V$ punya dekomposisi-$L$</p>
+        <p>$$V = \bigoplus_{i=1}^{k}\ker(L - \lambda_iI)^{\ell_i},$$</p>
+        <p>dan $\dim\ker(L - \lambda_iI)^{\ell_i}$ sama dengan kerangkapan aljabar $\lambda_i$. Ini disebut <strong>dekomposisi primer-$L$</strong> (primary decomposition) $V$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Induksi pada $k$.</p>
+        <ol>
+          <li><strong>$k = 1$.</strong> Polinomial karakteristik $(\lambda - t)^n$. Teorema 3 untuk $L - \lambda I$: $V = K \oplus R$ dengan $(L - \lambda I)_R$ invertibel, jadi $L_R$ tidak bernilai eigen $\lambda$. Menurut Akibat 1, nilai eigen $L_R$ termasuk nilai eigen $L$, yaitu hanya $\lambda$. Jadi $L_R$ tak punya nilai eigen (di $F$, padahal polinomial karakteristiknya terurai), sehingga $R = \set{\mathbf{0}}$ dan $V = K$, berdimensi $n$.</li>
+          <li><strong>Langkah induksi.</strong> Polinomial karakteristik $p(t) = \prod_i(\lambda_i - t)^{r_i}$. Ambil $K = \ker(L - \lambda_1I)^{\ell_1}$, $R = (L - \lambda_1I)^{\ell_1}[V]$. $L_R$ tidak bernilai eigen $\lambda_1$, dan $L_K$ hanya bernilai eigen $\lambda_1$ (karena $L - \lambda_1I$ nilpoten di $K$). Hipotesis induksi pada $L_R$ (dengan $\le k - 1$ nilai eigen): $R = \bigoplus_{i \ge 2}\ker(L - \lambda_iI)^{\ell_i}$ dengan dimensi $r_i$.</li>
+          <li>Akibat 1: $p(t) = \det(L_K - tI)\prod_{i \ge 2}(\lambda_i - t)^{r_i}$, jadi $\det(L_K - tI) = (\lambda_1 - t)^{r_1}$ dan $\dim K = r_1$.</li>
+        </ol>
+        <p>(Detail kecil: komponen $\ker(L_R - \lambda_iI)^{\ell}$ di $R$ sama dengan $\ker(L - \lambda_iI)^{\ell_i}$ di $V$, karena vektor yang ditiadakan pangkat $L - \lambda_iI$ ($i \ge 2$) tidak punya komponen di $K$, tempat $L - \lambda_iI$ invertibel.)</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Indeks kernel = eksponen polinomial minimal (Modul, Korolari 7.2.12)</div>
+        <p>Dengan hipotesis Teorema 4, polinomial minimal $L$ adalah</p>
+        <p>$$m_L(t) = \prod_{i=1}^{k}(t - \lambda_i)^{\ell_i}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>$\prod(t - \lambda_i)^{\ell_i}$ meniadakan $L$: pada komponen ke-$j$, faktor $(L - \lambda_jI)^{\ell_j}$ sudah nol (faktornya komutatif). Jadi eksponen $r_i$ di $m_L$ memenuhi $r_i \le \ell_i$.</li>
+          <li>Andaikan $r_1 \lt \ell_1$. Ada $\mathbf{x} \in \ker(L - \lambda_1I)^{\ell_1}$ dengan $(L - \lambda_1I)^{r_1}\mathbf{x} \ne \mathbf{0}$ (definisi indeks kernel). Faktor $(L - \lambda_iI)^{r_i}$, $i \ge 2$, invertibel pada komponen pertama (satu-satunya nilai eigen di sana $\lambda_1$), jadi $m_L(L)\mathbf{x} \ne \mathbf{0}$, kontradiksi. Jadi $r_i = \ell_i$.</li>
+        </ol>
+        <p>Akibatnya: $L$ dapat didiagonalkan ⇔ semua $\ell_i = 1$ ⇔ setiap komponen primer adalah ruang eigen (topik Diagonalisasi).</p>
+      </details>
+
+      <h3>Contoh</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Penerapan langsung (Modul, Contoh 7.2.13)</div>
+        <p>$A = \begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}$, nilai eigen $2$ dan $3$.</p>
+        <ul>
+          <li>$\lambda = 2$: $\ker(A - 2I) = \operatorname{span}\set{\mathbf{e}_1} \subsetneq \ker(A - 2I)^2 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2}$ (dan $(A - 2I)^3$ berkernel sama), jadi $\ell = 2$.</li>
+          <li>$\lambda = 3$: $(A - 3I)^2 = \begin{pmatrix} 1 &amp; -2 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, $\ker(A - 3I) = \ker(A - 3I)^2 = \operatorname{span}\set{\mathbf{e}_3}$, jadi $\ell = 1$.</li>
+          <li>$\R^3 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2} \oplus \operatorname{span}\set{\mathbf{e}_3}$, $m_L = (t - 2)^2(t - 3)$, $p_L = (t - 2)^2(t - 3)$ (bentuk monik). Komponennya bersesuaian dengan blok Jordan $J_2(2)$ dan $J_1(3)$.</li>
+        </ul>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Kriteria diagonalisasi (Modul, §7.2.14)</div>
+        <p>$A = \begin{pmatrix} 1 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; -1 \end{pmatrix}$: nilai eigen $1$ dan $-1$, masing-masing berkerangkapan aljabar $2$. Untuk $\lambda = 1$: $\mathbf{e}_2 \in \ker(A - I)^2 \setminus \ker(A - I)$, jadi $\ell_1 = 2$; secara simetris $\ell_{-1} = 2$. Maka $m_L = (t - 1)^2(t + 1)^2$ punya akar ganda, dan $L$ <strong>tidak dapat didiagonalkan</strong>: komponen $\ker(L - I)^2$ berdimensi $2$, tetapi ruang eigen $\ker(L - I)$ hanya berdimensi $1$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Basis siklik dalam satu komponen (Modul, Contoh 7.2.15)</div>
+        <p>$L(x, y, z) = (2x + y + z, 2y + z, 2z)$, $A = \begin{pmatrix} 2 &amp; 1 &amp; 1 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$, satu nilai eigen $2$. $N = A - 2I$: $N^2 = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, $N^3 = O$; kernelnya $\operatorname{span}\set{\mathbf{e}_1} \subset \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2} \subset \R^3$, jadi $\ell = 3$ dan $\R^3 = \ker(L - 2I)^3$ (dekomposisi trivial).</p>
+        <p>Dengan $\mathbf{x} = \mathbf{e}_3$: $N\mathbf{x} = (1, 1, 0)$ dan $N^2\mathbf{x} = (1, 0, 0) \ne \mathbf{0}$, jadi menurut Lemma 1 ketiganya basis. Karena $L = 2I + N$:</p>
+        <ul>
+          <li>terhadap urutan $\set{N^2\mathbf{x}, N\mathbf{x}, \mathbf{x}} = \set{(1, 0, 0), (1, 1, 0), (0, 0, 1)}$: $[L] = \begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$ (bentuk Jordan, segitiga atas);</li>
+          <li>terhadap urutan $\set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$: $[L] = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix}$ (segitiga bawah).</li>
+        </ul>
+        <p><span class="cek">[CEK: sumber memakai urutan $\mathcal{B} = \set{(0, 0, 1), (1, 1, 0), (1, 0, 0)} = \set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$ tetapi menuliskan hasil $\begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$; matriks itu muncul untuk urutan terbalik. Dengan urutan sumber, hasilnya transpos (segitiga bawah), seperti di atas.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Dimensi komponen dari polinomial minimal (Modul, §7.2.16)</div>
+        <p>Diketahui $\dim V = 6$, nilai eigen $2$ dan $5$, $m_L = (t - 2)^2(t - 5)$, dan $\dim\ker(L - 2I) = 2$.</p>
+        <ol>
+          <li>Akibat 2: indeks kernel $\ell_2 = 2$, $\ell_5 = 1$, sehingga $V = \ker(L - 2I)^2 \oplus \ker(L - 5I)$, dengan $d_2 + d_5 = 6$.</li>
+          <li>$N = (L - 2I)$ dibatasi pada $\ker(L - 2I)^2$ nilpoten berindeks $2$. Dalam bentuk Jordan (topik berikut), $N$ terdiri dari blok berukuran $\le 2$ dan sedikitnya satu blok berukuran $2$; banyak blok $= \dim\ker N = 2$.</li>
+          <li>Jadi blok untuk nilai eigen $2$ adalah $(2, 2)$ atau $(2, 1)$, sehingga $d_2 = 4$ atau $d_2 = 3$, dan $d_5 = 2$ atau $3$.</li>
+          <li>Polinomial karakteristik: $(t - 2)^4(t - 5)^2$ atau $(t - 2)^3(t - 5)^3$. Data yang diberikan tidak cukup untuk memilih salah satu.</li>
+        </ol>
+        <p><span class="cek">[CEK: sumber memakai "untuk operator nilpoten berindeks $2$, $\dim\ker N^2 = 2\dim\ker N$" dan menyimpulkan $d_2 = 4$, $p_L = (t - 2)^4(t - 5)^2$. Klaim itu salah: untuk blok $J_2(0) \oplus J_1(0)$, $\dim\ker N = 2$ tetapi $\dim\ker N^2 = 3$. Verifikasi sumber juga menyebut blok "$J_2(5)$", yang bertentangan dengan $\ell_5 = 1$ (nilai eigen $5$ hanya punya blok $1 \times 1$). Analisis di atas ditulis oleh Claude.]</span></p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Memakai ruang eigen $\ker(L - \lambda I)$ alih-alih ruang eigen diperumum $\ker(L - \lambda I)^{\ell}$</strong> dalam dekomposisi; ruang eigen saja tidak merentang $V$ bila $L$ tidak dapat didiagonalkan.</li>
+        <li><strong>Menyamakan indeks kernel dengan kerangkapan aljabar.</strong> Pada §7.2.16, kerangkapan aljabar $\lambda = 2$ adalah $3$ atau $4$, sedangkan indeks kernelnya $2$.</li>
+        <li><strong>Lupa menghitung pangkat cukup tinggi.</strong> Berhenti hanya saat $\ker(L - \lambda I)^j = \ker(L - \lambda I)^{j+1}$.</li>
+        <li><strong>Mengira nilpoten berarti matriks nol</strong> atau sebaliknya, mengira singular berarti nilpoten.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Misalkan $m_T(x) = (x - 2)^2(x - 3)$. Jelaskan dekomposisi primer $V = \ker(T - 2I)^2 \oplus \ker(T - 3I)$ dan tentukan proyektor ke masing-masing komponen.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Teorema dekomposisi primer (bentuk umum): jika $m_T = p_1^{r_1}\cdots p_k^{r_k}$ dengan $p_i$ prima berbeda, $V = \bigoplus\ker p_i(T)^{r_i}$, masing-masing $T$-invarian. Di sini $V_1 = \ker(T - 2I)^2$ dan $V_2 = \ker(T - 3I)$.</li>
+            <li>$\dim V_1$ = kerangkapan aljabar $2$, $\dim V_2$ = kerangkapan aljabar $3$ (misalnya $2$ dan $1$ bila $\dim V = 3$).</li>
+            <li>$(x - 2)^2$ dan $x - 3$ koprima; identitas Bézout: $(x - 2)^2 - (x - 1)(x - 3) = (x^2 - 4x + 4) - (x^2 - 4x + 3) = 1$.</li>
+            <li>Substitusi $T$: $I = (T - 2I)^2 - (T - I)(T - 3I)$.</li>
+            <li>$P_2 = (T - 2I)^2$ proyektor ke $V_2$, karena $(T - 3I)P_2 = m_T(T) = O$; $P_1 = I - P_2 = -(T - I)(T - 3I)$ proyektor ke $V_1$, karena $(T - 2I)^2P_1 = -(T - I)m_T(T) = O$.</li>
+          </ol>
+          <p>Dekomposisi ini memisahkan $T$ menjadi bagian "skalar + nilpoten" per nilai eigen.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan dekomposisi primer dan polinomial minimal $A = \begin{pmatrix} 3 &amp; 1 &amp; 0 \\ 0 &amp; 3 &amp; 0 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Satu nilai eigen $3$ (kerangkapan aljabar $3$), jadi dekomposisi primernya trivial: $\R^3 = \ker(A - 3I)^{\ell}$.</li>
+            <li>$N = A - 3I = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, $N^2 = O$. $\ker N = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_3}$ (dimensi $2$), $\ker N^2 = \R^3$. Indeks kernel $\ell = 2$.</li>
+            <li>Akibat 2: $m_A = (t - 3)^2$, sedangkan polinomial karakteristik $(t - 3)^3$. Tidak dapat didiagonalkan.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk $L$ nilpoten berindeks $\ell$ pada $V$ berdimensi $n$, tunjukkan $\ell \le n$. Simpulkan $L^n = O$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Karena $L^{\ell-1} \ne O$, ada $\mathbf{x}$ dengan $L^{\ell-1}\mathbf{x} \ne \mathbf{0}$.</li>
+            <li>Lemma 1: $\mathbf{x}, \dots, L^{\ell-1}\mathbf{x}$ adalah $\ell$ vektor bebas linier di $V$, jadi $\ell \le n$.</li>
+            <li>Maka $L^n = L^{n-\ell}L^\ell = O$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \det(\operatorname{diag}(A_i) - tI) = \prod_i\det(A_i - tI), \qquad \ker L^\ell = \ker L^{\ell+1} \Rightarrow V = \ker L^\ell \oplus L^\ell[V], \\
+        V = \bigoplus_i\ker(L - \lambda_iI)^{\ell_i}, \quad \dim = \text{kerangkapan aljabar}, \qquad m_L = \prod_i(t - \lambda_i)^{\ell_i}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/7-Similaritas.md</code>, Bab 7, §7.2: Korolari 7.2.1, Definisi 7.2.2, Contoh 7.2.3–7.2.4, Teorema 7.2.5, Definisi 7.2.6, Contoh 7.2.7, Teorema 7.2.8, Lemma 7.2.9, Teorema 7.2.10–7.2.11, Korolari 7.2.12, Contoh 7.2.13–7.2.16. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.7.2 (Latihan 1).</li>
+        <li>Jawaban latihan di Contoh 7.2.4, bukti langsung Lemma 7.2.9, analisis ulang §7.2.16, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>
