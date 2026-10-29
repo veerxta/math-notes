@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Ruang Vektor · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Ruang Vektor</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Ruang vektor adalah himpunan $V$ <em>atas</em> sebuah lapangan $F$, dengan penjumlahan vektor dan perkalian skalar yang memenuhi sembilan aksioma.</li>
+        <li>Lima aksioma pertama hanya menyangkut penjumlahan, dan menyatakan bahwa $(V, +)$ adalah grup komutatif.</li>
+        <li>Ruang vektor tidak hanya $\R^n$: polinomial $P_n(F)$, matriks $M_{m \times n}(F)$, fungsi $\mathcal{F}(S, F)$, dan barisan tak hingga juga ruang vektor.</li>
+        <li>Enam sifat dasar selalu berlaku: vektor nol dan invers penjumlahan tunggal, $0\mathbf{v} = \mathbf{0}$, $a\mathbf{0} = \mathbf{0}$, $(-1)\mathbf{v} = -\mathbf{v}$, dan $a\mathbf{v} = \mathbf{0}$ hanya jika $a = 0$ atau $\mathbf{v} = \mathbf{0}$.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Definisi</h3>
+      <p>Di $\R^2$ dan $\R^3$ kita terbiasa menjumlahkan vektor dan mengalikannya dengan bilangan. Ruang vektor (vector space) mengambil dua operasi itu, menuliskan sifat-sifat yang dibutuhkan sebagai aksioma, lalu berlaku untuk objek apa pun yang memenuhinya: polinomial, matriks, fungsi, bahkan barisan tak hingga. Bilangan pengali diambil dari sebuah lapangan (field) $F$, biasanya $\R$ atau $\C$.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Ruang vektor (Modul, Definisi 1.1.2)</div>
+        <p>Misalkan $F$ lapangan. Himpunan $V$ yang dilengkapi penjumlahan vektor $\mathbf{u} + \mathbf{v}$ dan perkalian skalar $a\mathbf{u}$ (dengan $a \in F$) disebut <strong>ruang vektor atas $F$</strong> jika untuk semua $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ dan $a, b \in F$:</p>
+        <ol>
+          <li>Tertutup terhadap penjumlahan: $\mathbf{u} + \mathbf{v} \in V$.</li>
+          <li>Asosiatif: $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$.</li>
+          <li>Ada vektor nol $\mathbf{0} \in V$ dengan $\mathbf{0} + \mathbf{u} = \mathbf{u} = \mathbf{u} + \mathbf{0}$.</li>
+          <li>Setiap $\mathbf{u} \in V$ punya invers penjumlahan (additive inverse) $-\mathbf{u} \in V$ dengan $-\mathbf{u} + \mathbf{u} = \mathbf{0} = \mathbf{u} + (-\mathbf{u})$.</li>
+          <li>Komutatif: $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$.</li>
+          <li>Tertutup terhadap perkalian skalar: $a\mathbf{u} \in V$.</li>
+          <li>Distributif: $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$ dan $(a + b)\mathbf{u} = a\mathbf{u} + b\mathbf{u}$.</li>
+          <li>Identitas skalar: $1\mathbf{u} = \mathbf{u}$, dengan $1$ elemen satuan di $F$.</li>
+          <li>Asosiatif perkalian skalar: $a(b\mathbf{u}) = (ab)\mathbf{u}$. <span class="cek">[CEK: aksioma ini tidak tercantum di Definisi 1.1.2 sumber, yang hanya memuat aksioma 1–8, padahal bukti Teorema 1.1.5(6) memakainya dengan nama "Aksioma S2". Aksioma ini bagian dari definisi baku ruang vektor.]</span></li>
+        </ol>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Selalu "atas $F$"</div>
+        <p>Ruang vektor selalu disebut bersama lapangan skalarnya: "ruang vektor $V$ atas $F$". Aksioma 1–5 hanya melibatkan penjumlahan dan menyatakan bahwa $(V, +)$ adalah grup komutatif (abelian group). Aksioma 6–9 mengatur cara skalar dari $F$ bekerja pada grup itu. Selain $\R$ dan $\C$, sumber juga memakai lapangan berhingga seperti $\Z_3$ dan $\Z_5$.</p>
+      </div>
+
+      <h3>Sifat dasar</h3>
+      <p>Dari aksioma saja sudah bisa diturunkan beberapa sifat yang terasa "jelas", tetapi tetap perlu dibuktikan karena $V$ bisa berupa himpunan apa pun.</p>
+
+      <div class="box teorema">
+        <div class="box-title">Sifat dasar ruang vektor (Modul, Teorema 1.1.5)</div>
+        <p>Misalkan $V$ ruang vektor atas $F$, $\mathbf{v} \in V$, dan $a \in F$. Maka:</p>
+        <ol>
+          <li>Vektor nol $\mathbf{0}$ tunggal.</li>
+          <li>Invers penjumlahan $-\mathbf{v}$ tunggal.</li>
+          <li>$0\mathbf{v} = \mathbf{0}$ (nol di kiri skalar di $F$, nol di kanan vektor di $V$).</li>
+          <li>$a\mathbf{0} = \mathbf{0}$.</li>
+          <li>$(-1)\mathbf{v} = -\mathbf{v}$.</li>
+          <li>Jika $a\mathbf{v} = \mathbf{0}$, maka $a = 0$ atau $\mathbf{v} = \mathbf{0}$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(1)</strong> Misalkan $\mathbf{0}_1$ dan $\mathbf{0}_2$ sama-sama memenuhi aksioma 3. Karena $\mathbf{0}_2$ vektor nol, $\mathbf{0}_1 + \mathbf{0}_2 = \mathbf{0}_1$. Karena $\mathbf{0}_1$ vektor nol, $\mathbf{0}_1 + \mathbf{0}_2 = \mathbf{0}_2$. Jadi $\mathbf{0}_1 = \mathbf{0}_2$.</p>
+
+        <p><strong>(2)</strong> Misalkan $\mathbf{w}_1$ dan $\mathbf{w}_2$ sama-sama memenuhi aksioma 4 untuk $\mathbf{v}$, yaitu $\mathbf{w}_i + \mathbf{v} = \mathbf{0} = \mathbf{v} + \mathbf{w}_i$. Maka</p>
+        <p>$$\begin{aligned}
+          \mathbf{w}_1 &= \mathbf{w}_1 + \mathbf{0} && \text{aksioma 3} \\
+          &= \mathbf{w}_1 + (\mathbf{v} + \mathbf{w}_2) && \text{sebab } \mathbf{v} + \mathbf{w}_2 = \mathbf{0} \\
+          &= (\mathbf{w}_1 + \mathbf{v}) + \mathbf{w}_2 && \text{aksioma 2} \\
+          &= \mathbf{0} + \mathbf{w}_2 && \text{sebab } \mathbf{w}_1 + \mathbf{v} = \mathbf{0} \\
+          &= \mathbf{w}_2 && \text{aksioma 3}
+        \end{aligned}$$</p>
+
+        <p><strong>(3)</strong> Tulis $\mathbf{w} = 0\mathbf{v}$. Di $F$ berlaku $0 = 0 + 0$, sehingga menurut aksioma 7, $\mathbf{w} = (0 + 0)\mathbf{v} = 0\mathbf{v} + 0\mathbf{v} = \mathbf{w} + \mathbf{w}$. Tambahkan invers $-\mathbf{w}$ ke kedua ruas:</p>
+        <p>$$\begin{aligned}
+          \mathbf{0} &= \mathbf{w} + (-\mathbf{w}) && \text{aksioma 4} \\
+          &= (\mathbf{w} + \mathbf{w}) + (-\mathbf{w}) && \text{sebab } \mathbf{w} = \mathbf{w} + \mathbf{w} \\
+          &= \mathbf{w} + \bigl(\mathbf{w} + (-\mathbf{w})\bigr) && \text{aksioma 2} \\
+          &= \mathbf{w} + \mathbf{0} = \mathbf{w} && \text{aksioma 4, lalu 3}
+        \end{aligned}$$</p>
+        <p>Jadi $0\mathbf{v} = \mathbf{w} = \mathbf{0}$.</p>
+
+        <p><strong>(4)</strong> Caranya sama dengan (3), dengan $\mathbf{w} = a\mathbf{0}$ dan dimulai dari $\mathbf{0} = \mathbf{0} + \mathbf{0}$ di $V$: menurut aksioma 7, $\mathbf{w} = a(\mathbf{0} + \mathbf{0}) = a\mathbf{0} + a\mathbf{0} = \mathbf{w} + \mathbf{w}$. Langkah yang sama memberi $\mathbf{w} = \mathbf{0}$, yaitu $a\mathbf{0} = \mathbf{0}$.</p>
+
+        <p><strong>(5)</strong> Dengan aksioma 8, lalu aksioma 7, lalu sifat (3):</p>
+        <p>$$\begin{aligned}
+          \mathbf{v} + (-1)\mathbf{v} &= 1\mathbf{v} + (-1)\mathbf{v} \\
+          &= \bigl(1 + (-1)\bigr)\mathbf{v} = 0\mathbf{v} = \mathbf{0}.
+        \end{aligned}$$</p>
+        <p>Menurut aksioma 5, juga $(-1)\mathbf{v} + \mathbf{v} = \mathbf{0}$. Jadi $(-1)\mathbf{v}$ memenuhi aksioma 4 sebagai invers $\mathbf{v}$. Karena invers tunggal (sifat 2), $(-1)\mathbf{v} = -\mathbf{v}$.</p>
+
+        <p><strong>(6)</strong> Misalkan $a\mathbf{v} = \mathbf{0}$. Jika $a = 0$, pernyataan sudah benar. Jika $a \ne 0$, maka $a$ punya invers $a^{-1} \in F$ karena $F$ lapangan, dan</p>
+        <p>$$\begin{aligned}
+          \mathbf{v} &= 1\mathbf{v} && \text{aksioma 8} \\
+          &= (a^{-1}a)\mathbf{v} && \text{sebab } a^{-1}a = 1 \\
+          &= a^{-1}(a\mathbf{v}) && \text{aksioma 9} \\
+          &= a^{-1}\mathbf{0} = \mathbf{0} && \text{sifat (4)}
+        \end{aligned}$$</p>
+        <p>Jadi $a = 0$ atau $\mathbf{v} = \mathbf{0}$. Langkah ketiga memakai aksioma 9, yaitu aksioma yang tidak tercantum di definisi sumber (lihat catatan [CEK] pada Definisi 1).</p>
+      </details>
+
+      <h3>Contoh ruang vektor</h3>
+      <p>Untuk setiap contoh, operasinya harus disebutkan, karena himpunan yang sama dengan operasi berbeda bisa saja bukan ruang vektor (lihat Latihan 1).</p>
+
+      <div class="box contoh">
+        <div class="box-title">Ruang polinomial $P_n(F)$ (Modul, §1.1.4 no. 1)</div>
+        <p>$P_n(F)$ adalah himpunan semua polinomial berderajat paling banyak $n$ dengan koefisien $a_0, \dots, a_n \in F$:</p>
+        <p>$$p(x) = a_n x^n + \dots + a_1 x + a_0,$$</p>
+        <p>atau ringkasnya $p(x) = \sum_{i=0}^{n} a_i x^i$.</p>
+        <p>Penjumlahan dan perkalian skalar dilakukan per koefisien. Untuk $q(x) = \sum_{i=0}^{n} b_i x^i$ dan $c \in F$:</p>
+        <p>$$\begin{aligned}
+          (p + q)(x) &= \sum_{i=0}^{n} (a_i + b_i)\, x^i, \\
+          (cp)(x) &= \sum_{i=0}^{n} (c\,a_i)\, x^i.
+        \end{aligned}$$</p>
+        <p>Vektor nolnya adalah polinomial nol, yang semua koefisiennya $0$. Basis standarnya $\set{1, x, x^2, \dots, x^n}$, jadi $\dim P_n(F) = n + 1$. Contoh anggota: $3x^2 - 5x + 1 \in P_2(\R)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Ruang matriks $M_{m \times n}(F)$ (Modul, §1.1.4 no. 2)</div>
+        <p>$M_{m \times n}(F)$ adalah himpunan semua matriks $m \times n$ dengan entri di $F$. Operasinya entri demi entri: $A + B = [a_{ij} + b_{ij}]$ dan $cA = [c\,a_{ij}]$. Vektor nolnya matriks nol. Basisnya terdiri atas $mn$ matriks yang tepat satu entrinya $1$ dan sisanya $0$, jadi $\dim M_{m \times n}(F) = mn$. Di $M_{2 \times 2}(\R)$, misalnya:</p>
+        <p>$$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \qquad \tfrac{1}{2}A = \begin{pmatrix} \tfrac{1}{2} & 1 \\[2pt] \tfrac{3}{2} & 2 \end{pmatrix}.$$</p>
+        <p>Sumber juga memeriksa keanggotaan dengan SageMath. Contoh untuk ruang matriks atas lapangan berhingga $\Z_3$:</p>
+<pre><code>Z3 = GF(3)                         # lapangan Z_3
+M = MatrixSpace(Z3, 2, 2)          # ruang vektor M_{2x2}(Z_3)
+A = matrix(Z3, [[1, 2], [2, 2]])
+A in M                             # True</code></pre>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Ruang fungsi $\mathcal{F}(S, F)$ (Modul, §1.1.4 no. 3)</div>
+        <p>Untuk sebarang himpunan $S$, $\mathcal{F}(S, F)$ adalah himpunan semua fungsi $f \colon S \to F$. Operasinya titik demi titik (pointwise): untuk setiap $x \in S$,</p>
+        <p>$$\begin{gathered}
+          (f + g)(x) = f(x) + g(x), \\
+          (cf)(x) = c\,f(x).
+        \end{gathered}$$</p>
+        <p>Vektor nolnya fungsi nol, $z(x) = 0$ untuk semua $x \in S$. Jika $S$ tak hingga, misalnya selang $[a, b]$, ruang ini berdimensi tak hingga. Ruang fungsi lain yang sering muncul: $C[a, b]$, yaitu fungsi kontinu dari $[a, b]$ ke $\R$, dan $C^\infty(\R)$, yaitu fungsi dari $\R$ ke $\R$ yang dapat diturunkan berapa kali pun.</p>
+        <p>Sumber menulis ruang ini sebagai $F(S, F)$; di sini dipakai $\mathcal{F}$ agar tidak tertukar dengan lapangan $F$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Ruang barisan $s$ (Modul, §1.1.4 no. 4)</div>
+        <p>$s$ adalah himpunan semua barisan real tak hingga $(x_n) = (x_1, x_2, x_3, \dots)$, dengan operasi suku demi suku:</p>
+        <p>$$\begin{gathered}
+          (x_n) + (y_n) = (x_n + y_n), \\
+          c\,(x_n) = (c\,x_n).
+        \end{gathered}$$</p>
+        <p>Misalnya $(1, 2, 3, \dots) + (1, 1, 1, \dots) = (2, 3, 4, \dots)$.</p>
+        <p>Vektor nolnya $(0, 0, 0, \dots)$, dan ruang ini berdimensi tak hingga. Contoh anggota: $\bigl(1, \tfrac{1}{2}, \tfrac{1}{3}, \dots\bigr)$ dan $(1, 2, 4, 8, \dots)$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Koefisien Fourier sebagai vektor di $s$ (Modul, §1.1.4)</div>
+        <p>Gelombang kotak (square wave) dengan periode $2\pi$ didefinisikan oleh</p>
+        <p>$$f(t) = \begin{cases} 1, & 0 \le t \lt \pi, \\ -1, & \pi \le t \lt 2\pi, \end{cases}$$</p>
+        <p>lalu diperpanjang secara periodik: $f(t + 2\pi) = f(t)$. Deret Fourier menulis fungsi periodik sebagai kombinasi sinus dan kosinus:</p>
+        <p>$$f(t) = a_0 + \sum_{n=1}^{\infty} \bigl(a_n \cos nt + b_n \sin nt\bigr).$$</p>
+        <p>Untuk gelombang kotak ini $a_0 = 0$ dan $a_n = 0$ untuk semua $n$, karena $f$ fungsi ganjil, sedangkan</p>
+        <p>$$b_n = \begin{cases} \dfrac{4}{n\pi}, & n \text{ ganjil}, \\[4pt] 0, & n \text{ genap}. \end{cases}$$</p>
+        <p>Jadi, di setiap titik tempat $f$ kontinu,</p>
+        <p>$$\begin{aligned}
+          f(t) &= \frac{4}{\pi}\Bigl(\sin t + \frac{\sin 3t}{3} + \frac{\sin 5t}{5} + \cdots\Bigr) \\
+          &= \frac{4}{\pi} \sum_{k=0}^{\infty} \frac{\sin\bigl((2k+1)t\bigr)}{2k+1}.
+        \end{aligned}$$</p>
+        <p>Di titik loncatan $t = k\pi$, semua sukunya nol, sehingga deret bernilai $0$. Barisan koefisien $\bigl(\tfrac{4}{\pi}, 0, \tfrac{4}{3\pi}, 0, \tfrac{4}{5\pi}, \dots\bigr)$ adalah satu vektor di ruang barisan $s$: seluruh informasi tentang $f$ tersimpan dalam satu barisan bilangan. Barisan ini juga anggota $\ell^2$, karena $\sum_{k} \bigl(\tfrac{4}{(2k+1)\pi}\bigr)^2$ konvergen, tetapi <em>bukan</em> anggota $\ell^1$, karena $\sum_{k} \tfrac{4}{(2k+1)\pi}$ divergen. <span class="cek">[CEK: sumber menyebut barisan ini anggota "$l^1$ atau $l^2$ karena deret ini konvergen cukup cepat"; yang benar hanya $\ell^2$.]</span></p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Sejarah singkat dan penerapan</div>
+        <p>Gagasan ruang vektor tumbuh dari geometri analitik Descartes dan Fermat (sekitar 1636) dan karya Grassmann (1844). Peano memberikan definisi aksiomatik modern pertama pada 1888, yang ia sebut "sistem linear". Kini ruang vektor menjadi bahasa dasar pembelajaran mesin, pengolahan sinyal, dan kriptografi, karena data di bidang-bidang itu direpresentasikan sebagai vektor berdimensi tinggi.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Lupa memeriksa ketertutupan.</strong> Garis $\set{(x, y) \in \R^2 : y = x + 1}$ tampak seperti bagian dari $\R^2$, tetapi bukan ruang vektor dengan operasi biasa: $(0, 0)$ tidak termasuk di dalamnya, dan jumlah dua anggotanya bisa keluar dari himpunan (Latihan 3).</li>
+        <li><strong>Menganggap vektor nol selalu "angka 0".</strong> Vektor nol bergantung pada ruangnya: polinomial nol di $P_n(F)$, matriks nol di $M_{m \times n}(F)$, fungsi nol di $\mathcal{F}(S, F)$.</li>
+        <li><strong>Mencampur skalar $0$ dengan vektor $\mathbf{0}$.</strong> Pada $0\mathbf{v} = \mathbf{0}$, nol di kiri adalah skalar di $F$ dan nol di kanan adalah vektor di $V$.</li>
+        <li><strong>Menganggap $(-1)\mathbf{v} = -\mathbf{v}$ sebagai definisi.</strong> Simbol $-\mathbf{v}$ didefinisikan sebagai invers penjumlahan (aksioma 4); kesamaannya dengan $(-1)\mathbf{v}$ adalah teorema yang perlu dibuktikan (Teorema 1, sifat 5).</li>
+        <li><strong>Menyebut ruang vektor tanpa lapangannya.</strong> Himpunan yang sama bisa berbeda sifatnya atas lapangan yang berbeda: $\C$ atas $\C$ berdimensi $1$, tetapi $\C$ atas $\R$ berdimensi $2$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Pada $\R^2$, pakai penjumlahan biasa, tetapi perkalian skalar baru $a \odot (x, y) = (ax, 0)$. Aksioma mana yang tidak terpenuhi?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Aksioma 1–5 hanya menyangkut penjumlahan, dan penjumlahannya tetap penjumlahan biasa di $\R^2$. Semuanya terpenuhi.</li>
+            <li>Aksioma 6: $a \odot (x, y) = (ax, 0) \in \R^2$. Terpenuhi.</li>
+            <li>Aksioma 7: $a \odot \bigl((x_1, y_1) + (x_2, y_2)\bigr) = \bigl(a(x_1 + x_2), 0\bigr) = (ax_1, 0) + (ax_2, 0)$, dan $(a + b) \odot (x, y) = \bigl((a + b)x, 0\bigr) = (ax, 0) + (bx, 0)$. Terpenuhi.</li>
+            <li>Aksioma 9: $a \odot \bigl(b \odot (x, y)\bigr) = a \odot (bx, 0) = (abx, 0) = (ab) \odot (x, y)$. Terpenuhi.</li>
+            <li>Aksioma 8: $1 \odot (x, y) = (x, 0)$, yang berbeda dari $(x, y)$ bila $y \ne 0$. Misalnya $1 \odot (0, 1) = (0, 0) \ne (0, 1)$. <strong>Gagal.</strong></li>
+          </ol>
+          <p>Jadi hanya aksioma 8 yang gagal, dan $\R^2$ dengan operasi ini bukan ruang vektor. Contoh ini menunjukkan bahwa aksioma 8 tidak bisa dibuang: tanpa aksioma itu, perkalian skalar boleh "membuang" sebagian vektor.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Misalkan $V$ ruang vektor atas $F$. Buktikan bahwa untuk setiap $a \in F$ dan $\mathbf{v} \in V$ berlaku $a(-\mathbf{v}) = -(a\mathbf{v}) = (-a)\mathbf{v}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <p>Gunakan sifat 5 dari Teorema 1, yaitu $-\mathbf{w} = (-1)\mathbf{w}$ untuk setiap vektor $\mathbf{w}$, bersama aksioma 9. Di lapangan $F$ berlaku $a(-1) = (-1)a = -a$. Pertama,</p>
+          <p>$$\begin{aligned}
+            a(-\mathbf{v}) &= a\bigl((-1)\mathbf{v}\bigr) && \text{sifat 5} \\
+            &= \bigl(a(-1)\bigr)\mathbf{v} && \text{aksioma 9} \\
+            &= (-a)\mathbf{v} && \text{sifat } F
+          \end{aligned}$$</p>
+          <p>Kedua, dengan sifat 5 untuk $\mathbf{w} = a\mathbf{v}$,</p>
+          <p>$$\begin{aligned}
+            -(a\mathbf{v}) &= (-1)(a\mathbf{v}) && \text{sifat 5} \\
+            &= \bigl((-1)a\bigr)\mathbf{v} && \text{aksioma 9} \\
+            &= (-a)\mathbf{v} && \text{sifat } F
+          \end{aligned}$$</p>
+          <p>Kedua ruas sama dengan $(-a)\mathbf{v}$, jadi $a(-\mathbf{v}) = -(a\mathbf{v}) = (-a)\mathbf{v}$.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Apakah $W = \set{(x, y) \in \R^2 : y = x + 1}$, dengan penjumlahan dan perkalian skalar biasa, merupakan ruang vektor atas $\R$?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Vektor nol. Untuk penjumlahan biasa, satu-satunya vektor nol adalah $(0, 0)$ (Teorema 1, sifat 1). Karena $0 \ne 0 + 1$, $(0, 0) \notin W$. Aksioma 3 gagal.</li>
+            <li>Ketertutupan. $(0, 1) \in W$ dan $(1, 2) \in W$, tetapi $(0, 1) + (1, 2) = (1, 3)$, dan $3 \ne 1 + 1$, jadi $(1, 3) \notin W$. Aksioma 1 juga gagal.</li>
+          </ol>
+          <p>Jadi $W$ bukan ruang vektor. Secara geometris, $W$ adalah garis yang tidak melalui titik asal.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>Aksioma, untuk semua $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ dan $a, b \in F$, selain ketertutupan $\mathbf{u} + \mathbf{v} \in V$ dan $a\mathbf{u} \in V$:</p>
+      <p>$$\begin{aligned}
+        (\mathbf{u} + \mathbf{v}) + \mathbf{w} &= \mathbf{u} + (\mathbf{v} + \mathbf{w}) \\
+        \mathbf{u} + \mathbf{v} &= \mathbf{v} + \mathbf{u} \\
+        \mathbf{0} + \mathbf{u} &= \mathbf{u} = \mathbf{u} + \mathbf{0} \\
+        -\mathbf{u} + \mathbf{u} &= \mathbf{0} = \mathbf{u} + (-\mathbf{u}) \\
+        a(\mathbf{u} + \mathbf{v}) &= a\mathbf{u} + a\mathbf{v} \\
+        (a + b)\mathbf{u} &= a\mathbf{u} + b\mathbf{u} \\
+        a(b\mathbf{u}) &= (ab)\mathbf{u} \\
+        1\mathbf{u} &= \mathbf{u}
+      \end{aligned}$$</p>
+      <p>Sifat dasar:</p>
+      <p>$$\begin{gathered}
+        0\mathbf{v} = \mathbf{0}, \qquad a\mathbf{0} = \mathbf{0}, \qquad (-1)\mathbf{v} = -\mathbf{v}, \\
+        a\mathbf{v} = \mathbf{0} \implies a = 0 \text{ atau } \mathbf{v} = \mathbf{0}
+      \end{gathered}$$</p>
+      <p>Dimensi:</p>
+      <p>$$\begin{gathered}
+        \dim P_n(F) = n + 1, \\
+        \dim M_{m \times n}(F) = mn
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/01-Ruang-Vektor.md</code>, Bab 1, §1.1: §1.1.1 (sejarah), §1.1.2 (Definisi), §1.1.3 (penerapan), §1.1.4 (Contoh), §1.1.5 (Teorema dan bukti). File Markdown, tanpa nomor halaman.</li>
+        <li>Bagian "Kesalahan umum" dan semua pembahasan latihan ditulis oleh Claude; sumber tidak memuat latihan untuk §1.1.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

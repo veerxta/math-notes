@@ -1,0 +1,119 @@
+<!doctype html>
+<!--
+  Kerangka halaman topik Math Notes.
+  1. Salin ke matkul/<slug>/NN-judul-topik.html (NN = urutan dua digit).
+     Path ../../ di bawah sudah benar untuk lokasi itu, jadi jangan dibuka dari folder _templates/.
+  2. Ganti semua [teks dalam kurung siku]. Lewati bagian yang tidak relevan.
+  3. Daftarkan { file: "NN-judul-topik.html", judul: "Judul Topik" } di assets/js/data.js.
+  Contoh semua komponen ada di komponen.html.
+-->
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>[Judul Topik] · [Nama Matkul] · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <!-- Pasang tema tersimpan sebelum halaman digambar, supaya tidak berkedip -->
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <!-- Urutan penting: navigasi dibangun dulu, lalu KaTeX merender seluruh halaman -->
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <!-- 1. Breadcrumb (diisi main.js), judul, nama matkul -->
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>[Judul Topik]</h1>
+        <p class="label-matkul">[Nama Matkul]</p>
+      </header>
+
+      <!-- 2. Daftar isi (diisi main.js dari h2/h3) -->
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- 3. Intisari: 3–5 poin yang harus dikuasai -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>[Poin yang harus dikuasai]</li>
+        <li>[Poin yang harus dikuasai]</li>
+        <li>[Poin yang harus dikuasai]</li>
+      </ul>
+
+      <!-- 4. Materi: definisi → teorema/sifat → bukti → contoh -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>[Subjudul]</h3>
+      <p>[Pengantar singkat dengan kata-kata sendiri. Istilah asing di kurung saat pertama muncul, mis. "barisan Cauchy (Cauchy sequence)".]</p>
+
+      <!-- Rumus: dolar tunggal untuk inline, dolar ganda untuk display. Di dalam rumus tulis \lt dan \gt. -->
+      <div class="box definisi">
+        <div class="box-title">[Nama konsep] (Modul, Definisi [x.y])</div>
+        <p>[Isi definisi]</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">[Nama teorema] (Modul, Teorema [x.y])</div>
+        <p>[Pernyataan teorema]</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>[Langkah bukti, dengan alasan tiap langkah. Tanda ∎ muncul otomatis.]</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">[Judul contoh]</div>
+        <p>[Isi contoh]</p>
+      </div>
+
+      <!-- 5. Kesalahan umum -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li>[Kesalahan, dan cara menghindarinya]</li>
+      </ul>
+
+      <!-- 6. Latihan soal dengan pembahasan tersembunyi -->
+      <h2 id="latihan">Latihan soal</h2>
+      <div class="latihan">
+        <p>[Soal]</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <!-- Hapus label ini bila kunci jawaban ada di sumber -->
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <p>[Langkah demi langkah, dengan alasan tiap langkah]</p>
+        </details>
+      </div>
+
+      <!-- 7. Ringkasan rumus -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>[Rumus-rumus penting, sebagai rumus display]</p>
+
+      <!-- 8. Sumber: nama file, bab, halaman. Bagian yang meragukan: <span class="cek">[CEK: alasan]</span> -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/[slug]/[nama-file]</code>, Bab [x], hlm. [y]</li>
+      </ul>
+
+      <!-- 9. Sebelumnya · Sudah dipelajari · Berikutnya (diisi main.js) -->
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

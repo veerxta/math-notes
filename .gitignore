@@ -1,0 +1,8 @@
+# Sumber asli (PDF, foto, catatan): jangan pernah di-commit
+sumber/
+
+# macOS
+.DS_Store
+
+# Konfigurasi lokal Claude Code (server pratinjau)
+.claude/

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Komponen · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <script defer src="assets/js/data.js"></script>
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/vendor/katex/katex.min.js"></script>
+  <script defer src="assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Komponen</h1>
+        <p>Contoh semua komponen beserta kodenya. Perbarui halaman ini setiap kali komponen di <code>style.css</code> berubah.</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ===================================================== -->
+      <h2 id="tipografi">Tipografi</h2>
+      <p>Teks isi memakai Source Serif 4, 17 px di HP dan 18 px di layar lebar, dengan jarak baris 1,7. Judul dan antarmuka memakai Inter. Paragraf bisa memuat <em>teks miring</em>, <strong>teks tebal</strong>, <code>kode singkat</code>, <a href="index.html">tautan</a>, dan rumus inline seperti $\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n} = e$ atau $\sum_{k=1}^{n} k = \frac{n(n+1)}{2}$.</p>
+      <ul>
+        <li>Daftar berpoin untuk hal yang tidak berurutan.</li>
+        <li>Istilah asing ditulis dalam kurung saat pertama muncul, mis. ruang vektor (vector space).</li>
+      </ul>
+      <ol>
+        <li>Daftar bernomor untuk langkah yang berurutan.</li>
+        <li>Langkah kedua.</li>
+      </ol>
+
+      <!-- ===================================================== -->
+      <h2 id="kotak">Kotak</h2>
+      <p>Satu kelas untuk semua kotak: <code>box</code>, ditambah salah satu varian. Nomor dihitung otomatis per jenis di setiap halaman. Nomor dari sumber boleh ditulis di judul, mis. "(Modul, Teorema 3.2)".</p>
+<pre><code>&lt;div class="box definisi"&gt;
+  &lt;div class="box-title"&gt;Barisan Cauchy (Cauchy sequence)&lt;/div&gt;
+  &lt;p&gt;…&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3>Definisi, teorema, lemma, proposisi, akibat</h3>
+
+      <div class="box definisi">
+        <div class="box-title">Barisan Cauchy (Cauchy sequence)</div>
+        <p>Barisan bilangan real $(x_n)$ disebut <em>barisan Cauchy</em> jika untuk setiap $\varepsilon \gt 0$ terdapat $N \in \N$ sehingga $\abs{x_m - x_n} \lt \varepsilon$ untuk semua $m, n \ge N$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Teorema dasar kalkulus</div>
+        <p>Jika $f$ kontinu pada $[a, b]$ dan $F$ adalah antiturunan $f$ pada $[a, b]$, yaitu $F'(x) = f(x)$ untuk setiap $x \in [a, b]$, maka</p>
+        <p>$$\int_a^b f(x)\,dx = F(b) - F(a).$$</p>
+      </div>
+
+      <div class="box lemma">
+        <div class="box-title">Ketaksamaan segitiga</div>
+        <p>Untuk setiap $x, y \in \R$ berlaku $\abs{x + y} \le \abs{x} + \abs{y}$.</p>
+      </div>
+
+      <div class="box proposisi">
+        <div class="box-title"></div>
+        <p>Setiap barisan real yang konvergen adalah barisan Cauchy.</p>
+      </div>
+
+      <div class="box akibat">
+        <div class="box-title">Ketaksamaan segitiga terbalik</div>
+        <p>Untuk setiap $x, y \in \R$ berlaku $\bigl\lvert \abs{x} - \abs{y} \bigr\rvert \le \abs{x - y}$.</p>
+      </div>
+
+      <h3>Contoh, catatan, peringatan</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Memakai teorema dasar kalkulus</div>
+        <p>Antiturunan $x^2$ adalah $F(x) = \frac{x^3}{3}$, sehingga</p>
+        <p>$$\int_0^1 x^2\,dx = \left[\frac{x^3}{3}\right]_0^1 = \frac{1}{3} - 0 = \frac{1}{3}.$$</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Makro bersama</div>
+        <p>$\abs{x}$, $\norm{\mathbf{v}}$, $\set{x \in \R : x \gt 0}$, dan $\inner{\mathbf{u}}{\mathbf{v}}$ ditulis dengan makro dari <code>katex-config.js</code>. Daftar lengkapnya ada di bagian <a href="#makro-bersama">Makro bersama</a>.</p>
+      </div>
+
+      <div class="box peringatan">
+        <div class="box-title">Turunan hasil bagi</div>
+        <p>Pada umumnya $\left(\dfrac{u}{v}\right)' \ne \dfrac{u'}{v'}$. Yang benar, untuk $v \ne 0$:</p>
+        <p>$$\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}.$$</p>
+      </div>
+
+      <!-- ===================================================== -->
+      <h2 id="bukti">Bukti</h2>
+      <p>Bukti disembunyikan dalam <code>&lt;details class="bukti"&gt;</code> dan diakhiri ∎ secara otomatis. Contoh: bukti Akibat 1 di atas.</p>
+<pre><code>&lt;details class="bukti"&gt;
+  &lt;summary&gt;Bukti&lt;/summary&gt;
+  &lt;p&gt;…&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Menurut Lemma 1, $\abs{x} = \abs{(x - y) + y} \le \abs{x - y} + \abs{y}$, sehingga $\abs{x} - \abs{y} \le \abs{x - y}$.</p>
+        <p>Dengan menukar peran $x$ dan $y$, diperoleh $\abs{y} - \abs{x} \le \abs{y - x} = \abs{x - y}$.</p>
+        <p>Jadi $-\abs{x - y} \le \abs{x} - \abs{y} \le \abs{x - y}$, yaitu $\bigl\lvert \abs{x} - \abs{y} \bigr\rvert \le \abs{x - y}$.</p>
+      </details>
+
+      <!-- ===================================================== -->
+      <h2 id="latihan-dan-pembahasan">Latihan dan pembahasan</h2>
+      <p>Setiap <code>.latihan</code> diberi nomor otomatis. Pembahasan disembunyikan dalam <code>details.pembahasan</code>. Bila kunci jawaban tidak ada di sumber, pembahasan diberi label <code>.oleh-claude</code>.</p>
+<pre><code>&lt;div class="latihan"&gt;
+  &lt;p&gt;Soal…&lt;/p&gt;
+  &lt;details class="pembahasan"&gt;
+    &lt;summary&gt;Lihat pembahasan&lt;/summary&gt;
+    &lt;p class="oleh-claude"&gt;Pembahasan oleh Claude — perlu dicek&lt;/p&gt;
+    &lt;p&gt;Langkah demi langkah…&lt;/p&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+
+      <div class="latihan">
+        <p>Hitung $\displaystyle\int_0^{\pi} \sin x\,dx$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Cari antiturunan: $F(x) = -\cos x$, karena $F'(x) = \sin x$.</li>
+            <li>Fungsi $\sin x$ kontinu pada $[0, \pi]$, jadi teorema dasar kalkulus berlaku: $$\int_0^{\pi} \sin x\,dx = F(\pi) - F(0) = -\cos \pi - (-\cos 0) = 1 + 1 = 2.$$</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tentukan $\det A$ untuk $A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <p>Untuk matriks $2 \times 2$ berlaku $\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$. Dengan $a = 2$, $b = 1$, $c = 1$, $d = 3$ diperoleh $\det A = 2 \cdot 3 - 1 \cdot 1 = 5$.</p>
+        </details>
+      </div>
+
+      <!-- ===================================================== -->
+      <h2 id="sorotan-cek">Sorotan [CEK]</h2>
+      <p>Bagian yang perlu dicek ditandai <code>&lt;span class="cek"&gt;[CEK: alasan]&lt;/span&gt;</code>. Contoh tampilan: nilai ini terbaca 0,25 di sumber <span class="cek">[CEK: halaman terpotong, angka tidak terbaca jelas]</span>.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="rumus">Rumus</h2>
+      <p>Rumus inline ditulis di antara dolar tunggal, rumus display di antara dolar ganda. Di dalam rumus, tulis <code>\lt</code> dan <code>\gt</code> sebagai pengganti tanda kurang dari dan lebih dari. Rumus display yang panjang bisa digeser ke samping di dalam kotaknya sendiri.</p>
+
+      <h3 id="makro-bersama">Makro bersama</h3>
+      <div class="tabel">
+        <table>
+          <thead>
+            <tr><th scope="col">Ditulis</th><th scope="col">Hasil</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>\R \N \Z \Q \C</code></td><td>$\R \quad \N \quad \Z \quad \Q \quad \C$</td></tr>
+            <tr><td><code>\abs{x}</code></td><td>$\abs{x}$</td></tr>
+            <tr><td><code>\norm{\mathbf{v}}</code></td><td>$\norm{\mathbf{v}}$</td></tr>
+            <tr><td><code>\set{x \in \R : x \gt 0}</code></td><td>$\set{x \in \R : x \gt 0}$</td></tr>
+            <tr><td><code>\inner{\mathbf{u}}{\mathbf{v}}</code></td><td>$\inner{\mathbf{u}}{\mathbf{v}}$</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pecahan</h3>
+      <p>Inline: $\tfrac{1}{2} + \tfrac{1}{3} = \tfrac{5}{6}$. Display, dengan pecahan berlanjut:</p>
+      <p>$$\cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \dotsb}}} = \frac{\sqrt{5} - 1}{2}$$</p>
+
+      <h3>Integral</h3>
+      <p>$$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}$$</p>
+      <p>Integral lipat dua atas cakram satuan $D = \set{(x, y) : x^2 + y^2 \le 1}$ dalam koordinat polar:</p>
+      <p>$$\iint_{D} f(x, y)\,dA = \int_{0}^{2\pi} \int_{0}^{1} f(r\cos\theta,\, r\sin\theta)\, r\,dr\,d\theta$$</p>
+
+      <h3>Matriks</h3>
+      <p>Untuk $A$ di bawah, $\det A = 2 \cdot 3 - 1 \cdot 1 = 5$:</p>
+      <p>$$A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}, \qquad A^{-1} = \frac{1}{5}\begin{pmatrix} 3 & -1 \\ -1 & 2 \end{pmatrix}$$</p>
+      <p>Determinan dengan <code>vmatrix</code>, dan matriks umum dengan <code>bmatrix</code>:</p>
+      <p>$$\begin{vmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 5 & 6 & 0 \end{vmatrix} = 1$$</p>
+      <p>$$\begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{bmatrix}$$</p>
+
+      <h3>Align</h3>
+      <p>$$\begin{align*}
+        (a + b)^2 &= (a + b)(a + b) \\
+        &= a^2 + ab + ba + b^2 && \text{(sifat distributif)} \\
+        &= a^2 + 2ab + b^2 && \text{(karena } ab = ba \text{ di } \R\text{)}
+      \end{align*}$$</p>
+
+      <h3>Kasus</h3>
+      <p>$$\abs{x} = \begin{cases} x, & x \ge 0, \\ -x, & x \lt 0. \end{cases}$$</p>
+
+      <h3>Rumus panjang</h3>
+      <p>$$e^{x} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \frac{x^{4}}{4!} + \frac{x^{5}}{5!} + \frac{x^{6}}{6!} + \frac{x^{7}}{7!} + \frac{x^{8}}{8!} + \frac{x^{9}}{9!} + \frac{x^{10}}{10!} + \frac{x^{11}}{11!} + \frac{x^{12}}{12!} + \cdots = \sum_{k=0}^{\infty} \frac{x^{k}}{k!}$$</p>
+
+      <!-- ===================================================== -->
+      <h2 id="tabel">Tabel</h2>
+      <p>Tabel selalu dibungkus <code>&lt;div class="tabel"&gt;</code>, sehingga tabel lebar bisa digeser ke samping tanpa menggeser halaman.</p>
+      <div class="tabel">
+        <table>
+          <caption>Metode biseksi untuk $f(x) = x^2 - 2$ pada $[1, 2]$. Karena $f(a_n) \lt 0$, selang berikutnya $[a_n, c_n]$ bila $f(c_n) \gt 0$, dan $[c_n, b_n]$ bila $f(c_n) \lt 0$.</caption>
+          <thead>
+            <tr>
+              <th scope="col">$n$</th>
+              <th scope="col">$a_n$</th>
+              <th scope="col">$b_n$</th>
+              <th scope="col">$c_n = \frac{a_n + b_n}{2}$</th>
+              <th scope="col">$f(c_n)$</th>
+              <th scope="col">Selang berikutnya</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>1</td><td>2</td><td>1,5</td><td>0,25</td><td>[1;&nbsp;1,5]</td></tr>
+            <tr><td>1</td><td>1</td><td>1,5</td><td>1,25</td><td>−0,4375</td><td>[1,25;&nbsp;1,5]</td></tr>
+            <tr><td>2</td><td>1,25</td><td>1,5</td><td>1,375</td><td>−0,109375</td><td>[1,375;&nbsp;1,5]</td></tr>
+            <tr><td>3</td><td>1,375</td><td>1,5</td><td>1,4375</td><td>0,06640625</td><td>[1,375;&nbsp;1,4375]</td></tr>
+            <tr><td>4</td><td>1,375</td><td>1,4375</td><td>1,40625</td><td>−0,0224609375</td><td>[1,40625;&nbsp;1,4375]</td></tr>
+            <tr><td>5</td><td>1,40625</td><td>1,4375</td><td>1,421875</td><td>0,021728515625</td><td>[1,40625;&nbsp;1,421875]</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===================================================== -->
+      <h2 id="kode">Kode</h2>
+      <p>Blok kode memakai <code>&lt;pre&gt;&lt;code&gt;</code>. Isinya tidak dirender sebagai rumus, dan baris panjang bisa digeser ke samping.</p>
+<pre><code>def biseksi(f, a, b, tol=1e-6):
+    """Akar f di [a, b]; syarat: f(a) dan f(b) berbeda tanda."""
+    if f(a) * f(b) &gt; 0:
+        raise ValueError("f(a) dan f(b) harus berbeda tanda")
+    while (b - a) / 2 &gt; tol:
+        c = (a + b) / 2
+        if f(a) * f(c) &lt;= 0:
+            b = c
+        else:
+            a = c
+    return (a + b) / 2
+
+print(biseksi(lambda x: x**2 - 2, 1, 2))  # ≈ 1.414214</code></pre>
+
+      <!-- ===================================================== -->
+      <h2 id="diagram">Diagram</h2>
+      <p>Diagram dibuat ulang sebagai SVG langsung di halaman, dalam <code>&lt;figure&gt;</code>. Warna memakai token CSS, jadi ikut berganti di mode gelap.</p>
+      <figure>
+        <svg viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="judul-svg-vektor">
+          <title id="judul-svg-vektor">Penjumlahan vektor u dan v dengan aturan jajaran genjang</title>
+          <defs>
+            <marker id="panah-u" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto" style="color: var(--c-definisi)"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+            <marker id="panah-v" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto" style="color: var(--c-contoh)"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+            <marker id="panah-w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto" style="color: var(--c-teorema)"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+          </defs>
+          <path d="M30 170H290M40 180V10" stroke="currentColor" stroke-width="1" opacity="0.35" fill="none"/>
+          <path d="M190 130L250 20M100 60L250 20" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.5" fill="none"/>
+          <line x1="40" y1="170" x2="190" y2="130" stroke-width="2.5" style="stroke: var(--c-definisi)" marker-end="url(#panah-u)"/>
+          <line x1="40" y1="170" x2="100" y2="60" stroke-width="2.5" style="stroke: var(--c-contoh)" marker-end="url(#panah-v)"/>
+          <line x1="40" y1="170" x2="250" y2="20" stroke-width="2.5" style="stroke: var(--c-teorema)" marker-end="url(#panah-w)"/>
+          <g fill="currentColor" font-family="'Source Serif 4', Georgia, serif" font-size="16" font-weight="700">
+            <text x="150" y="160">u</text>
+            <text x="52" y="112">v</text>
+            <text x="118" y="86">u + v</text>
+          </g>
+        </svg>
+        <figcaption>Aturan jajaran genjang: $\mathbf{u} + \mathbf{v}$ adalah diagonal jajaran genjang yang dibentuk $\mathbf{u}$ dan $\mathbf{v}$.</figcaption>
+      </figure>
+
+      <!-- ===================================================== -->
+      <h2 id="kerangka-halaman">Kerangka halaman</h2>
+      <p>Kerangka lengkap halaman topik ada di <code>_templates/topik.html</code>. Bagian bertanda "diisi main.js" cukup ditulis sebagai wadah kosong.</p>
+      <div class="tabel">
+        <table>
+          <thead>
+            <tr><th scope="col">Kelas</th><th scope="col">Kegunaan</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>.isi</code>, <code>.artikel</code>, <code>.halaman</code></td><td>Kolom isi; <code>.artikel</code> untuk halaman topik (punya daftar isi)</td></tr>
+            <tr><td><code>.kepala-halaman</code>, <code>.label-matkul</code></td><td>Judul halaman dan nama matkul di bawahnya</td></tr>
+            <tr><td><code>.intisari</code></td><td>Daftar 3–5 poin yang harus dikuasai</td></tr>
+            <tr><td><code>.breadcrumb</code></td><td>Wadah breadcrumb, diisi main.js</td></tr>
+            <tr><td><code>.daftar-isi</code></td><td>Wadah daftar isi dari h2/h3, diisi main.js</td></tr>
+            <tr><td><code>.nav-topik</code></td><td>Sebelumnya · Sudah dipelajari · Berikutnya, diisi main.js</td></tr>
+            <tr><td><code>.progres-total</code>, <code>.daftar-matkul</code></td><td>Progres dan kartu matkul di beranda, diisi main.js</td></tr>
+            <tr><td><code>.progres-matkul</code>, <code>.daftar-topik</code></td><td>Progres dan daftar topik di halaman matkul, diisi main.js</td></tr>
+            <tr><td><code>.kosong</code></td><td>Keterangan saat daftar masih kosong</td></tr>
+            <tr><td><code>.lewati</code>, <code>.sr-only</code></td><td>Tautan "Langsung ke isi" dan teks khusus pembaca layar</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Contoh <code>.intisari</code>:</p>
+      <ul class="intisari">
+        <li>Ruang vektor adalah himpunan dengan penjumlahan dan perkalian skalar yang memenuhi aksioma.</li>
+        <li>Vektor nol dan invers penjumlahan selalu tunggal.</li>
+        <li>Banyak objek selain $\R^n$ membentuk ruang vektor: polinomial, matriks, fungsi.</li>
+      </ul>
+      <p>Contoh <code>.kosong</code>:</p>
+      <p class="kosong">Belum ada topik.</p>
+    </article>
+  </main>
+</body>
+</html>
