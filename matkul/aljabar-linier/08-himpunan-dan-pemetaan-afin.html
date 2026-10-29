@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Himpunan dan Pemetaan Afin · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Himpunan dan Pemetaan Afin</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Himpunan afin adalah koset $\mathbf{v} + W$ dari suatu subruang $W$; dimensinya $\dim W$. Titik, garis, dan bidang adalah himpunan afin berdimensi $0$, $1$, dan $2$.</li>
+        <li>Koset-koset dari subruang yang sama sejajar: arahnya sama dan tidak berpotongan.</li>
+        <li>Dua titik berbeda menentukan tepat satu garis; dua garis berbeda berpotongan di paling banyak satu titik.</li>
+        <li>Pemetaan afin berbentuk $\mathbf{x} \mapsto L(\mathbf{x}) + \mathbf{w}$ dengan $L$ linier; transformasi afin adalah pemetaan afin $V \to V$ dengan $L$ bijektif.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Himpunan afin dan geometri afin</h3>
+      <p>Garis melalui titik asal di $\R^2$ adalah subruang, tetapi garis yang tidak melalui titik asal bukan subruang. Garis seperti itu tetap bisa dipelajari dengan aljabar linier: ia adalah koset dari sebuah subruang (topik Koset dan Ruang Hasil Bagi). Sudut pandang geometris terhadap koset ini disebut geometri afin (affine geometry).</p>
+
+      <div class="box definisi">
+        <div class="box-title">Himpunan afin (Modul, Definisi 2.4.2)</div>
+        <p><strong>Himpunan afin</strong> (affine set) di ruang vektor $V$ adalah koset $\mathbf{v} + W$ dari suatu subruang $W \subseteq V$. Dimensinya adalah $\dim W$. Himpunan afin berdimensi $k$ disebut <strong>$k$-ruang</strong>; khususnya <strong>titik</strong> adalah $0$-ruang, <strong>garis</strong> adalah $1$-ruang, dan <strong>bidang</strong> adalah $2$-ruang.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Geometri afin, insidensi, arah (Modul, Definisi 2.4.3)</div>
+        <p>Dua himpunan afin berbeda yang irisannya tak kosong disebut <strong>bersinggungan</strong> (incident); misalnya "titik $P$ terletak pada garis $\ell$" atau "$\ell$ melalui $P$". <strong>Geometri afin</strong> yang terkait dengan $V$ adalah koleksi semua himpunan afin di $V$ beserta relasi insidensi itu.</p>
+        <p>Jika $W$ subruang dasar himpunan afin $\alpha$, setiap vektor tak nol di $W$ disebut <strong>vektor arah</strong> $\alpha$. Untuk dua titik $\mathbf{v}, \mathbf{w} \in \alpha$, selisih $\mathbf{v} - \mathbf{w}$ (jika tak nol) adalah vektor arah $\alpha$.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Sejajar</div>
+        <p>Koset-koset berbeda dari <em>subruang yang sama</em> $W$ tidak berpotongan dan memiliki arah yang sama; himpunan afin seperti itu disebut <strong>sejajar</strong> (parallel). Jadi semua koset $W$ membentuk satu kelas himpunan afin yang saling sejajar.</p>
+      </div>
+
+      <p>Himpunan afin berperilaku seperti titik, garis, dan bidang yang kita kenal, tetapi tidak semuanya. Karena setiap lapangan punya sekurang-kurangnya dua anggota, setiap garis memuat sekurang-kurangnya dua titik. Namun atas lapangan berhingga, sebuah garis hanya memuat berhingga banyak titik.</p>
+
+      <div class="box contoh">
+        <div class="box-title">Tiga garis sejajar atas lapangan berhingga (Modul, Gambar 2.4.1)</div>
+        <p>Di ruang dengan koordinat dari $\set{0, 1, 2}$ (aritmetika modulo $3$), garis melalui titik asal dengan arah $(1, 2)$ adalah $\set{(0, 0), (1, 2), (2, 1)}$, karena $2 \cdot (1, 2) = (2, 4) = (2, 1)$. Dua koset lainnya, $(1, 0) + W$ dan $(2, 0) + W$, adalah garis-garis sejajar, masing-masing dengan tiga titik. Ketiganya membagi kesembilan titik.</p>
+        <figure>
+          <svg viewBox="0 0 220 200" width="220" height="200" role="img" aria-labelledby="judul-svg-f3">
+            <title id="judul-svg-f3">Sembilan titik dengan koordinat 0, 1, 2, terbagi menjadi tiga garis sejajar yang masing-masing berisi tiga titik</title>
+            <path d="M30 150H200M50 170V15" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.4" fill="none"/>
+            <g fill="currentColor" font-family="Inter, system-ui, sans-serif" font-size="12" text-anchor="middle">
+              <text x="50" y="186">0</text><text x="110" y="186">1</text><text x="170" y="186">2</text>
+              <text x="34" y="154">0</text><text x="34" y="94">1</text><text x="34" y="34">2</text>
+            </g>
+            <g style="fill: var(--c-definisi)">
+              <circle cx="50" cy="150" r="7"/><circle cx="110" cy="30" r="7"/><circle cx="170" cy="90" r="7"/>
+            </g>
+            <g style="fill: var(--c-contoh)">
+              <circle cx="110" cy="150" r="7"/><circle cx="50" cy="90" r="7"/><circle cx="170" cy="30" r="7"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="50" cy="30" r="6.5"/><circle cx="170" cy="150" r="6.5"/><circle cx="110" cy="90" r="6.5"/>
+            </g>
+          </svg>
+          <figcaption>Biru: $W = \operatorname{span}\set{(1, 2)}$. Hijau: $(1, 0) + W$. Lingkaran kosong: $(2, 0) + W$.</figcaption>
+        </figure>
+        <p><span class="cek">[CEK: sumber menyebut gambar ini sebagai "ruang $\mathbb{F}_2^3$", padahal koordinatnya $0, 1, 2$ dan tiap garis berisi tiga titik, jadi yang digambar adalah $\mathbb{F}_3^2$. Di $\mathbb{F}_2^3$ setiap garis hanya berisi dua titik.]</span></p>
+      </div>
+
+      <h3>Titik dan garis</h3>
+
+      <div class="box teorema">
+        <div class="box-title">Dua titik menentukan satu garis (Modul, Teorema 2.4.4)</div>
+        <p>Di ruang vektor mana pun, dua titik berbeda $\mathbf{v}$ dan $\mathbf{w}$ terletak pada tepat satu garis, yaitu</p>
+        <p>$$\ell = \mathbf{v} + \operatorname{span}\set{\mathbf{v} - \mathbf{w}}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Ada.</strong> $\mathbf{x} = \mathbf{v} - \mathbf{w} \ne \mathbf{0}$, jadi $\operatorname{span}\set{\mathbf{x}}$ berdimensi $1$ dan $\ell$ sebuah garis. Jelas $\mathbf{v} \in \ell$, dan $\mathbf{w} = \mathbf{v} - \mathbf{x} \in \ell$.</p>
+        <p><strong>Tunggal.</strong> Misalkan garis $\ell' = \mathbf{u} + \operatorname{span}\set{\mathbf{y}}$ juga memuat $\mathbf{v}$ dan $\mathbf{w}$. Karena wakil koset boleh diganti (Teorema 2.3.4), $\ell' = \mathbf{v} + \operatorname{span}\set{\mathbf{y}} = \mathbf{w} + \operatorname{span}\set{\mathbf{y}}$, sehingga $\mathbf{v} - \mathbf{w} \in \operatorname{span}\set{\mathbf{y}}$. Vektor tak nol di ruang berdimensi $1$ merentang ruang itu, jadi $\operatorname{span}\set{\mathbf{y}} = \operatorname{span}\set{\mathbf{v} - \mathbf{w}}$ dan $\ell' = \ell$.</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Perpotongan dua garis (Modul, Teorema 2.4.5)</div>
+        <p>Dua garis berbeda berpotongan di tepat satu titik atau tidak berpotongan sama sekali.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Jika dua garis berbeda $\ell_1$ dan $\ell_2$ punya dua titik potong berbeda $\mathbf{p}$ dan $\mathbf{q}$, maka keduanya adalah garis yang melalui $\mathbf{p}$ dan $\mathbf{q}$. Menurut Teorema 1 garis itu tunggal, jadi $\ell_1 = \ell_2$. Kontradiksi. Maka irisannya kosong atau satu titik.</p>
+        <p>Sumber juga membahas kedua kasus secara eksplisit. Jika $\ell_1 = \mathbf{v}_1 + \operatorname{span}\set{\mathbf{d}_1}$ dan $\ell_2 = \mathbf{v}_2 + \operatorname{span}\set{\mathbf{d}_2}$ dengan $\operatorname{span}\set{\mathbf{d}_1} = \operatorname{span}\set{\mathbf{d}_2}$, keduanya koset dari subruang yang sama; karena berbeda, keduanya saling asing (sejajar). Jika arahnya tidak sama, titik potong $\mathbf{p} = \mathbf{v}_1 + c_1\mathbf{d}_1 = \mathbf{v}_2 + c_2\mathbf{d}_2$ (bila ada) tunggal, sebab dua titik potong memberi $(c_1 - c_1')\mathbf{d}_1 = (c_2 - c_2')\mathbf{d}_2$, dan $\mathbf{d}_1, \mathbf{d}_2$ bebas linier.</p>
+      </details>
+
+      <div class="box contoh">
+        <div class="box-title">Garis melalui $(1, 2)$ dan $(4, 8)$ (Modul, Contoh 2.4.6)</div>
+        <p>Vektor arah $\mathbf{v} - \mathbf{w} = (1, 2) - (4, 8) = (-3, -6) = -3(1, 2)$, jadi boleh dipakai arah $\mathbf{d} = (1, 2)$:</p>
+        <p>$$\ell = \set{(1 + c,\ 2 + 2c) : c \in \R}.$$</p>
+        <p>Cek $\mathbf{w}$: $1 + c = 4$ dan $2 + 2c = 8$ sama-sama memberi $c = 3$, jadi $(4, 8) \in \ell$. Garis ini adalah $y = 2x$. Garis lain $\ell' = \mathbf{v} + \operatorname{span}\set{\mathbf{y}}$ yang melalui kedua titik harus memuat arah $\mathbf{v} - \mathbf{w} = -3\mathbf{d}$, jadi $\operatorname{span}\set{\mathbf{y}} = \operatorname{span}\set{\mathbf{d}}$ dan $\ell' = \ell$. (Kebetulan garis ini melalui titik asal, sehingga sekaligus subruang.)</p>
+      </div>
+
+      <h3>Pemetaan afin</h3>
+      <p>Dalam geometri afin, peran transformasi linier diambil alih oleh pemetaan yang boleh menggeser titik asal.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Pemetaan dan transformasi afin (Modul, Definisi 2.4.7)</div>
+        <p>Misalkan $V, W$ ruang vektor atas $F$. Untuk $\mathbf{w} \in W$, <strong>translasi</strong> $T_{\mathbf{w}} \colon W \to W$ adalah $T_{\mathbf{w}}(\mathbf{y}) = \mathbf{y} + \mathbf{w}$. <strong>Pemetaan afin</strong> (affine map) $V \to W$ adalah pemetaan berbentuk</p>
+        <p>$$A(L, \mathbf{w}) = T_{\mathbf{w}} \circ L, \qquad \text{yaitu} \quad A(L, \mathbf{w})(\mathbf{x}) = L(\mathbf{x}) + \mathbf{w},$$</p>
+        <p>dengan $L \colon V \to W$ linier. <strong>Transformasi afin</strong> (affine transformation) adalah pemetaan afin $A(L, \mathbf{v}) \colon V \to V$ dengan $L$ operator linier yang <em>bijektif</em>.</p>
+      </div>
+
+      <div class="box peringatan">
+        <div class="box-title"></div>
+        <p>"Pemetaan linier" dan "transformasi linier" sering dipakai bergantian, tetapi "pemetaan afin" dan "transformasi afin" <strong>tidak</strong>: transformasi afin harus dari $V$ ke $V$ dan bagian liniernya bijektif.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">$f(x) = 2x + 1$ (Modul, Contoh 2.4.8)</div>
+        <p>Grafiknya garis lurus, tetapi $f(0) = 1 \ne 0$, jadi $f$ bukan linier. Karena $f = T_1 \circ L$ dengan $L(x) = 2x$ linier dan bijektif di $\R$, $f$ adalah transformasi afin.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Garis parametrik di $\R^3$ (Modul, Contoh 2.4.9)</div>
+        <p>$f \colon \R \to \R^3$, $f(t) = (2t + 1,\ 3t - 1,\ t + 2)$, adalah deskripsi parametrik sebuah garis. Dengan $L(t) = (2t, 3t, t)$ linier dan $\mathbf{w} = (1, -1, 2)$, $f = T_{\mathbf{w}} \circ L$. Jadi $f$ pemetaan afin, tetapi bukan transformasi afin karena domain dan kodomainnya berbeda.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Apa yang diawetkan</div>
+        <ul>
+          <li>Transformasi linier memetakan subruang ke subruang.</li>
+          <li>Pemetaan afin memetakan himpunan afin ke himpunan afin (Latihan 2).</li>
+          <li>Transformasi afin mengawetkan dimensi: $k$-ruang dipetakan ke $k$-ruang.</li>
+        </ul>
+        <p>Sumber meninggalkan verifikasinya sebagai latihan.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menyebut fungsi berbentuk $ax + b$ "linier".</strong> Dalam aljabar linier, $ax + b$ dengan $b \ne 0$ adalah afin, bukan linier.</li>
+        <li><strong>Menganggap himpunan afin sebagai subruang.</strong> Himpunan afin subruang hanya jika memuat $\mathbf{0}$.</li>
+        <li><strong>Menukar "pemetaan afin" dan "transformasi afin".</strong> Contoh 3 adalah pemetaan afin tetapi bukan transformasi afin.</li>
+        <li><strong>Membawa intuisi $\R^2$ ke semua lapangan.</strong> Atas $\mathbb{F}_3$, sebuah garis hanya berisi tiga titik (Contoh 1).</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>$A \colon \R^2 \to \R^2$, $A(x, y) = (2x - y + 3,\ x + 4y - 1)$. (a) Tunjukkan $A$ pemetaan afin tetapi bukan linier. (b) Tentukan komponen linier dan translasinya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <ol>
+            <li>Pisahkan suku yang memuat variabel dari suku konstan:
+              $$A(x, y) = (2x - y,\ x + 4y) + (3, -1).$$</li>
+            <li>Bagian $L(x, y) = (2x - y,\ x + 4y)$ linier, karena berbentuk perkalian matriks
+              $$[L] = \begin{pmatrix} 2 & -1 \\ 1 & 4 \end{pmatrix}.$$
+              Jadi $A = T_{\mathbf{b}} \circ L$ dengan $\mathbf{b} = (3, -1)$, sehingga $A$ pemetaan afin.</li>
+            <li>$A$ tidak linier karena $A(0, 0) = (3, -1) \ne (0, 0)$, padahal transformasi linier selalu memetakan $\mathbf{0}$ ke $\mathbf{0}$.</li>
+          </ol>
+          <p>(b) Komponen linier $L$ dengan matriks di atas, dan translasi $\mathbf{b} = (3, -1)$. (Karena $\det[L] = 8 + 1 = 9 \ne 0$, $L$ bijektif, jadi $A$ bahkan transformasi afin.)</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Misalkan $f(\mathbf{x}) = L(\mathbf{x}) + \mathbf{w}$ pemetaan afin $V \to W$ dan $\alpha = \mathbf{v} + U$ himpunan afin di $V$. Tunjukkan bahwa $f[\alpha]$ himpunan afin di $W$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Setiap anggota $\alpha$ berbentuk $\mathbf{v} + \mathbf{u}$ dengan $\mathbf{u} \in U$.</li>
+            <li>Karena $L$ linier, $f(\mathbf{v} + \mathbf{u}) = L(\mathbf{v}) + L(\mathbf{u}) + \mathbf{w} = \bigl(L(\mathbf{v}) + \mathbf{w}\bigr) + L(\mathbf{u})$.</li>
+            <li>Ketika $\mathbf{u}$ berjalan di seluruh $U$, $L(\mathbf{u})$ berjalan di seluruh $L[U]$. Jadi
+              $$f[\alpha] = \bigl(L(\mathbf{v}) + \mathbf{w}\bigr) + L[U].$$</li>
+            <li>$L[U]$ subruang $W$ (Teorema 2.1.8(4)), jadi $f[\alpha]$ koset dari subruang, yaitu himpunan afin.</li>
+          </ol>
+          <p>Dimensinya $\dim L[U] \le \dim U$; jika $L$ injektif (misalnya transformasi afin), dimensinya sama, sesuai catatan "transformasi afin mengawetkan dimensi".</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        \text{himpunan afin: } \mathbf{v} + W, \quad \dim(\mathbf{v} + W) = \dim W, \\
+        \text{garis melalui } \mathbf{v} \ne \mathbf{w}: \ \mathbf{v} + \operatorname{span}\set{\mathbf{v} - \mathbf{w}}, \\
+        \text{pemetaan afin: } \mathbf{x} \mapsto L(\mathbf{x}) + \mathbf{w}, \quad f[\mathbf{v} + U] = f(\mathbf{v}) + L[U]
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/02-Transformasi-Linier.md</code>, Bab 2, §2.4: Definisi 2.4.2, 2.4.3, 2.4.7, Teorema 2.4.4, 2.4.5, Contoh 2.4.6, 2.4.8, 2.4.9, Gambar 2.4.1 (dibuat ulang sebagai SVG). File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.2.4 (Latihan 1).</li>
+        <li>Bukti singkat Teorema 2.4.5, Latihan 2, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

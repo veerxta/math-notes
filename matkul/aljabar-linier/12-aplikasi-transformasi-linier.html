@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Aplikasi Transformasi Linier · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Aplikasi Transformasi Linier</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>Rotasi berlawanan arah jarum jam sebesar $\theta$ di $\R^2$ punya matriks $R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$, yang kolomnya adalah peta $\mathbf{e}_1$ dan $\mathbf{e}_2$.</li>
+        <li>Sistem dinamis $\mathbf{v}_{t+1} = A\mathbf{v}_t$ dengan $A = \lambda R_\theta$ punya nilai eigen $\lambda e^{\pm i\theta}$: untuk $\lambda = 1$ vektor hanya berputar, tanpa tumbuh atau menyusut.</li>
+        <li>Proyeksi ke arah $\mathbf{u}$ mengukur seberapa besar keadaan "searah" dengan $\mathbf{u}$.</li>
+        <li>Kompresi data (PCA, kompresi citra) adalah proyeksi ke subruang berdimensi rendah, $A \approx U_rU_r^TA$; kualitasnya diukur dengan PSNR dan SSIM.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+      <p>Bagian ini mengumpulkan penerapan konsep di Bab 2: matriks representasi, komposisi, dan proyeksi. Sumber menyertakan banyak program SageMath interaktif (<code>@interact</code>) dan dua notebook Colab; di sini hanya gagasan matematisnya yang dirangkum.</p>
+
+      <h3>Rotasi di grafika komputer</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Matriks rotasi 2D (Modul, Contoh 2.8.1)</div>
+        <p>Rotasi berlawanan arah jarum jam sebesar $\theta$:</p>
+        <p>$$R_\theta(x, y) = (x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta).$$</p>
+        <p>Peta basis standar: $R_\theta(\mathbf{e}_1) = (\cos\theta, \sin\theta)$ dan $R_\theta(\mathbf{e}_2) = (-\sin\theta, \cos\theta)$. Sebagai kolom (topik Representasi Matriks):</p>
+        <p>$$[R_\theta]_E = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}.$$</p>
+        <p>Translasi bukan transformasi linier; grafika komputer menanganinya dengan koordinat homogen. Inti kalkulator SageMath di sumber:</p>
+<pre><code>theta = theta_deg * pi / 180
+R = matrix([[cos(theta), -sin(theta)],
+            [sin(theta),  cos(theta)]])
+v_rot = R * vector([x0, y0])   # vektor setelah dirotasi</code></pre>
+      </div>
+
+      <h3>Model dinamis volatilitas ekonomi</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Rotasi dan pertumbuhan (Modul, Contoh 2.8.2)</div>
+        <p>Keadaan dua sektor (industri $x_t$, jasa $y_t$) berubah menurut $\mathbf{v}_{t+1} = A\mathbf{v}_t$ dengan</p>
+        <p>$$A = \lambda R_\theta, \qquad \lambda \gt 0,$$</p>
+        <p>komposisi rotasi sebesar $\theta$ dan penskalaan (pertumbuhan) $\lambda$.</p>
+        <ul>
+          <li><strong>Nilai eigen.</strong> $\lambda e^{i\theta}$ dan $\lambda e^{-i\theta}$, dengan modulus $\lambda$. Untuk $\lambda = 1$ keduanya di lingkaran satuan: sistem konservatif, panjang $\mathbf{v}_t$ tetap.</li>
+          <li><strong>Interpretasi.</strong> Untuk $\lambda = 1$ dan $\theta \ne 0$ (bukan kelipatan $\pi$), tidak ada vektor eigen real; vektor keadaan hanya berputar, menggambarkan perpindahan dominasi antarsektor tanpa pertumbuhan jangka panjang.</li>
+          <li><strong>Proyeksi ke arah pertumbuhan ideal</strong> $\mathbf{u} = (1, 1)$:
+            $$\operatorname{proj}_{\mathbf{u}}(\mathbf{v}_t) = \frac{x_t + y_t}{2}\begin{pmatrix} 1 \\ 1 \end{pmatrix}.$$
+            Karena $\mathbf{v}_t$ hanya berputar, $x_t + y_t$ berosilasi dan tidak tumbuh secara asimtotik.</li>
+          <li><strong>Implikasi.</strong> Pertumbuhan memerlukan perubahan struktural yang menggeser nilai eigen ke luar lingkaran satuan, misalnya $\lambda \gt 1$.</li>
+        </ul>
+        <p>Simulasi SageMath di sumber mengiterasi $A^t\mathbf{v}_0$, menampilkan tabel $\mathbf{v}_t$, $x_t + y_t$, dan proyeksinya, lalu menghitung nilai eigen $A$.</p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Perluasan ke tiga sektor (Modul, §2.8, model 3D)</div>
+        <p>Dengan sektor ketiga (pertanian $z_t$), $A = \lambda R_z(\theta)$ dengan</p>
+        <p>$$R_z(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{pmatrix}.$$</p>
+        <p>Sektor $x$ dan $y$ bertukar dominasi, sedangkan $z$ hanya diskalakan. Arah ideal $\mathbf{u} = (1, 1, 1)$, dengan $\operatorname{proj}_{\mathbf{u}}(\mathbf{v}_t) = \frac{\mathbf{v}_t \cdot \mathbf{u}}{3}\mathbf{u}$. <span class="cek">[CEK: tabel ringkasan sumber untuk model 3D menyebut "eigenvalue kompleks modulus 1"; selain pasangan kompleks $\lambda e^{\pm i\theta}$, $\lambda R_z(\theta)$ juga punya nilai eigen real $\lambda$ dengan vektor eigen $(0, 0, 1)$, jadi sumbu pertanian adalah arah tetap.]</span></p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Model adaptif dengan intervensi kebijakan</div>
+        <p>Sumber juga membangun model $\mathbf{v}_{t+1} = A_t\mathbf{v}_t$ dengan</p>
+        <p>$$A_t = \Lambda_t\,R_z\bigl(\tfrac{\theta_t}{3}\bigr)\,R_y\bigl(\tfrac{\theta_t}{2}\bigr)\,R_x(\theta_t) + \text{Noise}_t,$$</p>
+        <p>dengan $\theta_t$ bertambah $2^\circ$ tiap kuartal, $\Lambda_t = \operatorname{diag}(\lambda_{x,t}, \lambda_{y,t}, \lambda_{z,t})$ laju pertumbuhan sektoral, dan $\text{Noise}_t$ matriks acak berentri di $[-\eta, \eta]$. Jika suatu sektor bernilai negatif, laju pertumbuhannya dinaikkan ($\delta_x = 0{,}05$, $\delta_y = 0{,}03$, $\delta_z = 0{,}02$), meniru stimulus kebijakan. Karena $A_t$ berubah tiap langkah, ini sistem linier yang bergantung waktu, bukan satu transformasi linier tetap.</p>
+      </div>
+
+      <h3>Kompresi data dan citra</h3>
+
+      <div class="box contoh">
+        <div class="box-title">Proyeksi ke bidang dan PCA (Modul, §2.8)</div>
+        <p>PCA (principal component analysis) mencari rotasi dan penskalaan yang menaruh sebagian besar varians data pada beberapa sumbu pertama, lalu memproyeksikan data ke subruang berdimensi $K \lt N$ yang direntang vektor eigen terbesar matriks kovarians.</p>
+        <p>Contoh paling sederhana: $T \colon \R^3 \to \R^2$, $T(x, y, z) = (x, y)$. Dari $T(\mathbf{e}_1) = (1, 0)$, $T(\mathbf{e}_2) = (0, 1)$, $T(\mathbf{e}_3) = (0, 0)$:</p>
+        <p>$$[T] = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix},$$</p>
+        <p>yang "membuang" informasi di arah $z$. <span class="cek">[CEK: sumber menulis matriks ini sebagai $[T]_{E_3 \leftarrow E_2}$; dengan notasi topik sebelumnya, domain $\R^3$ dan kodomain $\R^2$ memberi $[T]_{E_2 \leftarrow E_3}$.]</span></p>
+      </div>
+
+      <div class="box contoh">
+        <div class="box-title">Kompresi citra dengan proyeksi (Modul, §2.8)</div>
+        <p>Citra RGB berukuran $m \times n$ adalah tiga matriks $m \times n$ (merah, hijau, biru). Tiap kanal $A$ diproyeksikan ke subruang berdimensi $r$:</p>
+        <p>$$A \approx PA = U_rU_r^TA, \qquad U_r \in \R^{m \times r},$$</p>
+        <p>dengan kolom $U_r$ ortonormal (misalnya dari SVD), sehingga $P = U_rU_r^T$ memenuhi $P^2 = P$ dan $P^T = P$: proyektor ortogonal. Mode grayscale memakai satu kanal; mode RGB memproyeksikan ketiga kanal terpisah.</p>
+        <p>Kualitas hasil diukur dengan:</p>
+        <p>$$\begin{gathered}
+          \text{MSE} = \frac{1}{mn}\sum_{i=1}^{m}\sum_{j=1}^{n}\bigl(I(i,j) - \hat{I}(i,j)\bigr)^2, \qquad \text{PSNR} = 10\log_{10}\frac{255^2}{\text{MSE}} \ \text{dB}, \\
+          \text{SSIM}(x, y) = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2 + \mu_y^2 + C_1)(\sigma_x^2 + \sigma_y^2 + C_2)}.
+        \end{gathered}$$</p>
+        <p>PSNR (dalam dB, makin tinggi makin baik; di atas sekitar 30 dB biasanya dianggap bagus) mudah dihitung tetapi tidak selalu sesuai persepsi manusia. SSIM (antara $0$ dan $1$, makin dekat $1$ makin mirip) membandingkan kecerahan, kontras, dan struktur lokal, sehingga lebih perseptual.</p>
+      </div>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Menulis matriks rotasi dengan tanda $-\sin\theta$ di baris bawah.</strong> Itu rotasi searah jarum jam ($R_{-\theta}$). Cek dengan $R_\theta(\mathbf{e}_1) = (\cos\theta, \sin\theta)$.</li>
+        <li><strong>Menganggap model dengan translasi atau noise aditif sebagai transformasi linier.</strong> Translasi afin; matriks yang berubah tiap langkah memberi sistem linier bergantung waktu.</li>
+        <li><strong>Menyamakan "nilai eigen kompleks" dengan "tidak stabil".</strong> Yang menentukan tumbuh atau menyusut adalah modulusnya: $\abs{\lambda} \gt 1$ tumbuh, $\abs{\lambda} \lt 1$ menyusut, $\abs{\lambda} = 1$ berputar.</li>
+        <li><strong>Lupa bahwa $U_rU_r^T$ hanya proyektor jika kolom $U_r$ ortonormal.</strong> Untuk kolom sebarang, rumus proyeksinya $U(U^TU)^{-1}U^T$.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa $R_\alpha R_\beta = R_{\alpha + \beta}$, lalu simpulkan $R_\theta^{-1}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Kalikan:
+              $$R_\alpha R_\beta = \begin{pmatrix} \cos\alpha\cos\beta - \sin\alpha\sin\beta & -\cos\alpha\sin\beta - \sin\alpha\cos\beta \\ \sin\alpha\cos\beta + \cos\alpha\sin\beta & -\sin\alpha\sin\beta + \cos\alpha\cos\beta \end{pmatrix}.$$</li>
+            <li>Dengan rumus jumlah sudut, $\cos\alpha\cos\beta - \sin\alpha\sin\beta = \cos(\alpha + \beta)$ dan $\sin\alpha\cos\beta + \cos\alpha\sin\beta = \sin(\alpha + \beta)$. Jadi $R_\alpha R_\beta = R_{\alpha + \beta}$: memutar $\beta$ lalu $\alpha$ sama dengan memutar $\alpha + \beta$ (Teorema 2.5.19).</li>
+            <li>Khususnya $R_{-\theta}R_\theta = R_0 = I$, jadi $R_\theta^{-1} = R_{-\theta} = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix} = R_\theta^T$.</li>
+          </ol>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Untuk model $\mathbf{v}_{t+1} = A\mathbf{v}_t$ dengan $A = \lambda R_\theta$, tunjukkan bahwa $\norm{\mathbf{v}_t} = \lambda^t\norm{\mathbf{v}_0}$. Untuk $\lambda = 0{,}91$ (nilai bawaan simulasi sumber), setelah berapa kuartal panjang vektor keadaan turun di bawah separuhnya?</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Rotasi mempertahankan panjang: untuk $\mathbf{v} = (x, y)$, $\norm{R_\theta\mathbf{v}}^2 = (x\cos\theta - y\sin\theta)^2 + (x\sin\theta + y\cos\theta)^2 = (x^2 + y^2)(\cos^2\theta + \sin^2\theta) = \norm{\mathbf{v}}^2$, karena suku silang saling menghapus.</li>
+            <li>Jadi $\norm{A\mathbf{v}} = \lambda\norm{R_\theta\mathbf{v}} = \lambda\norm{\mathbf{v}}$, dan dengan induksi $\norm{\mathbf{v}_t} = \lambda^t\norm{\mathbf{v}_0}$.</li>
+            <li>Cari $t$ terkecil dengan $0{,}91^t \lt 0{,}5$, yaitu $t \gt \frac{\ln 0{,}5}{\ln 0{,}91} \approx \frac{-0{,}6931}{-0{,}0943} \approx 7{,}35$.</li>
+          </ol>
+          <p>Jadi setelah $8$ kuartal (cek: $0{,}91^7 \approx 0{,}517$ dan $0{,}91^8 \approx 0{,}470$).</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Sebuah citra grayscale direkonstruksi dengan MSE $= 25$. Hitung PSNR-nya.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$255^2 = 65025$, jadi $\frac{255^2}{\text{MSE}} = \frac{65025}{25} = 2601$.</li>
+            <li>$\log_{10} 2601 \approx 3{,}415$ (karena $10^{3{,}415} \approx 2600$).</li>
+            <li>$\text{PSNR} = 10 \times 3{,}415 \approx 34{,}2$ dB.</li>
+          </ol>
+          <p>Nilai di atas sekitar 30 dB, jadi menurut kriteria di sumber kualitasnya tergolong bagus.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}, \qquad R_\alpha R_\beta = R_{\alpha + \beta}, \qquad R_\theta^{-1} = R_\theta^T, \\
+        A = \lambda R_\theta: \ \text{nilai eigen } \lambda e^{\pm i\theta}, \quad \norm{A^t\mathbf{v}} = \lambda^t\norm{\mathbf{v}}
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        \operatorname{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\mathbf{v} \cdot \mathbf{u}}{\mathbf{u} \cdot \mathbf{u}}\,\mathbf{u}, \qquad P = U_rU_r^T, \\
+        \text{PSNR} = 10\log_{10}\frac{255^2}{\text{MSE}}
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/02-Transformasi-Linier.md</code>, Bab 2, §2.8: Contoh 2.8.1, 2.8.2, model 3D, model adaptif dengan intervensi kebijakan, PCA, kompresi citra dengan PSNR dan SSIM, beserta program SageMath interaktif dan tautan Colab (tidak dibuka). File Markdown, tanpa nomor halaman.</li>
+        <li>Sumber tidak memuat latihan khusus untuk §2.8; Latihan 1–3 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>

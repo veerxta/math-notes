@@ -27,6 +27,11 @@ window.MATH_NOTES = {
         { file: "05-transformasi-linier.html", judul: "Transformasi Linier, Kernel, dan Image", bab: "Bab 2 · Transformasi Linier" },
         { file: "06-representasi-matriks.html", judul: "Representasi Matriks" },
         { file: "07-koset-dan-ruang-hasil-bagi.html", judul: "Koset dan Ruang Hasil Bagi" },
+        { file: "08-himpunan-dan-pemetaan-afin.html", judul: "Himpunan dan Pemetaan Afin" },
+        { file: "09-isomorfisma-dan-teorema-rank.html", judul: "Isomorfisma dan Teorema Rank" },
+        { file: "10-ekuivalensi-dan-similaritas.html", judul: "Ekuivalensi dan Similaritas" },
+        { file: "11-jumlah-langsung-dan-proyeksi.html", judul: "Jumlah Langsung, Produk, dan Proyeksi" },
+        { file: "12-aplikasi-transformasi-linier.html", judul: "Aplikasi Transformasi Linier" },
       ],
     },
     {

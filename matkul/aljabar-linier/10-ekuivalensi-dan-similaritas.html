@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Ekuivalensi dan Similaritas · Aljabar Linier · Math Notes</title>
+  <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <script defer src="../../assets/js/data.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/vendor/katex/katex.min.js"></script>
+  <script defer src="../../assets/vendor/katex/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/js/katex-config.js"></script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+
+  <main id="isi" class="isi">
+    <article class="artikel">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="kepala-halaman">
+        <h1>Ekuivalensi dan Similaritas</h1>
+        <p class="label-matkul">Aljabar Linier</p>
+      </header>
+
+      <nav class="daftar-isi" aria-label="Daftar isi"></nav>
+
+      <!-- ================= Intisari ================= -->
+      <h2 id="intisari">Intisari</h2>
+      <ul class="intisari">
+        <li>$A, B \in M_{m \times n}(F)$ <em>ekuivalen</em> jika $B = PAQ$ dengan $P, Q$ invertibel; ini relasi ekuivalensi.</li>
+        <li>Mengganti basis domain dan kodomain mengubah matriks representasi menjadi matriks yang ekuivalen, dan sebaliknya setiap $B = PAQ$ muncul dari perubahan basis.</li>
+        <li>Setiap matriks ekuivalen dengan $\begin{pmatrix} I_k & O \\ O & O \end{pmatrix}$, $k = \operatorname{rank} A$; jadi ekuivalen sama dengan "rank sama".</li>
+        <li>$A, B \in M_n(F)$ <em>similar</em> jika $B = PAP^{-1}$; matriks similar mewakili operator yang sama dalam basis berbeda. Similar ⇒ rank sama, tetapi tidak sebaliknya.</li>
+        <li>Untuk operator $L$ pada $V \cong F^n$, sebelas syarat (invertibel, kernel trivial, kolom basis, invers kiri/kanan, …) semuanya ekuivalen.</li>
+      </ul>
+
+      <!-- ================= Materi ================= -->
+      <h2 id="materi">Materi</h2>
+
+      <h3>Ekuivalensi matriks</h3>
+      <p>Sumber mengingatkan bahwa istilah <em>ekuivalen</em> di sini dipakai dalam arti khusus untuk matriks, dan karena itu ditulis miring. Gagasan ini erat dengan pertanyaan: seberapa sederhana matriks sebuah transformasi bisa dibuat dengan memilih basis?</p>
+
+      <div class="box definisi">
+        <div class="box-title"><em>Ekuivalen</em> (Modul, Definisi 2.6.2)</div>
+        <p>Matriks $A, B \in M_{m \times n}(F)$ <em>ekuivalen</em> jika ada matriks invertibel $P \in M_m(F)$ dan $Q \in M_n(F)$ sehingga $B = PAQ$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title"><em>Ekuivalen</em> relasi ekuivalensi (Modul, Teorema 2.6.3)</div>
+        <p>Relasi <em>ekuivalen</em> refleksif, simetris, dan transitif pada $M_{m \times n}(F)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Refleksif:</strong> $A = I_mAI_n$. <strong>Simetris:</strong> dari $B = PAQ$, $A = P^{-1}BQ^{-1}$, dan $P^{-1}, Q^{-1}$ invertibel. <strong>Transitif:</strong> dari $B = P_1AQ_1$ dan $C = P_2BQ_2$, $C = (P_2P_1)A(Q_1Q_2)$, dan hasil kali matriks invertibel invertibel.</p>
+      </details>
+
+      <p>Di bab ini sumber berganti notasi menjadi $[L]_{C}^{B}$ dengan basis kodomain di bawah. Agar konsisten dengan topik sebelumnya, di sini dipakai $[L]_{C \leftarrow B}$ (domain $B$, kodomain $C$) dan $P_{C_2 \leftarrow C_1} = [I]_{C_2 \leftarrow C_1}$ untuk matriks transisi.</p>
+
+      <div class="box teorema">
+        <div class="box-title">Perubahan basis pada matriks representasi (Modul, Teorema 2.6.4)</div>
+        <p>Misalkan $B_1, B_2$ basis terurut $V \cong F^n$, $C_1, C_2$ basis terurut $W \cong F^m$, dan $L \colon V \to W$ linier. Maka</p>
+        <p>$$[L]_{C_2 \leftarrow B_2} = P_{C_2 \leftarrow C_1}\,[L]_{C_1 \leftarrow B_1}\,P_{B_1 \leftarrow B_2}.$$</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Untuk setiap $\mathbf{v} \in V$, dengan rumus koordinat (topik Perubahan Basis dan Representasi Matriks) dibaca dari kanan:</p>
+        <p>$$\begin{aligned}
+          [L(\mathbf{v})]_{C_2} &= P_{C_2 \leftarrow C_1}[L(\mathbf{v})]_{C_1} = P_{C_2 \leftarrow C_1}[L]_{C_1 \leftarrow B_1}[\mathbf{v}]_{B_1} \\
+          &= P_{C_2 \leftarrow C_1}[L]_{C_1 \leftarrow B_1}P_{B_1 \leftarrow B_2}[\mathbf{v}]_{B_2}.
+        \end{aligned}$$</p>
+        <p>Di lain pihak $[L(\mathbf{v})]_{C_2} = [L]_{C_2 \leftarrow B_2}[\mathbf{v}]_{B_2}$. Dengan $\mathbf{v}$ vektor-vektor $B_2$, kedua matriks punya kolom yang sama.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Matriks invertibel sebagai perubahan basis (Modul, Teorema 2.6.5)</div>
+        <p>Jika $B = PAQ$ dengan $P \in M_m(F)$, $Q \in M_n(F)$ invertibel, dan $V \cong F^n$, $W \cong F^m$, maka ada $L \colon V \to W$ linier sehingga $A$ dan $B$ sama-sama matriks representasi $L$ (terhadap pasangan basis yang berbeda).</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Pilih basis $\mathcal{B}_1 = \set{\mathbf{b}_j}$ untuk $V$ dan $\mathcal{C}_1 = \set{\mathbf{c}_i}$ untuk $W$, dan definisikan $L$ lewat $L(\mathbf{b}_j) = \sum_i a_{ij}\mathbf{c}_i$; maka $[L]_{\mathcal{C}_1 \leftarrow \mathcal{B}_1} = A$.</p>
+        <p>Untuk $Q = [q_{ij}]$, definisikan $\mathbf{x}_j = \sum_i q_{ij}\mathbf{b}_i$. Kolom ke-$j$ dari $Q$ adalah $[\mathbf{x}_j]_{\mathcal{B}_1}$; karena kolom-kolom $Q$ basis $F^n$ dan pemetaan koordinat isomorfisma, $\mathcal{B}_2 = \set{\mathbf{x}_j}$ basis $V$ dan $Q = P_{\mathcal{B}_1 \leftarrow \mathcal{B}_2}$.</p>
+        <p>Dengan cara yang sama, dari $P^{-1} = [p_{ij}]$ definisikan $\mathbf{y}_j = \sum_i p_{ij}\mathbf{c}_i$; maka $\mathcal{C}_2 = \set{\mathbf{y}_j}$ basis $W$, $P^{-1} = P_{\mathcal{C}_1 \leftarrow \mathcal{C}_2}$, jadi $P = P_{\mathcal{C}_2 \leftarrow \mathcal{C}_1}$. Menurut Teorema 2,</p>
+        <p>$$B = PAQ = P_{\mathcal{C}_2 \leftarrow \mathcal{C}_1}[L]_{\mathcal{C}_1 \leftarrow \mathcal{B}_1}P_{\mathcal{B}_1 \leftarrow \mathcal{B}_2} = [L]_{\mathcal{C}_2 \leftarrow \mathcal{B}_2}.$$</p>
+      </details>
+
+      <div class="box akibat">
+        <div class="box-title">Representasi berbeda saling ekuivalen (Modul, Teorema 2.6.6)</div>
+        <p>Jika $V, W$ berdimensi hingga dan $L \in \mathcal{L}(V, W)$, semua matriks representasi $L$ saling <em>ekuivalen</em>.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Menurut Teorema 2, $[L]_{C' \leftarrow B'} = P[L]_{C \leftarrow B}Q$ dengan $P = P_{C' \leftarrow C}$ dan $Q = P_{B \leftarrow B'}$, keduanya invertibel (Teorema 1.4.4).</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Bentuk kanonik ekuivalensi (Modul, Teorema 2.6.7)</div>
+        <p>Setiap $A \in M_{m \times n}(F)$ <em>ekuivalen</em> dengan</p>
+        <p>$$\begin{pmatrix} I_k & O_{k, n-k} \\ O_{m-k, k} & O_{m-k, n-k} \end{pmatrix}, \qquad k = \dim \operatorname{Col} A = \operatorname{rank} A,$$</p>
+        <p>dengan $O_{r,s}$ matriks nol $r \times s$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <ol>
+          <li>Pandang $L(\mathbf{x}) = A\mathbf{x}$ dari $F^n$ ke $F^m$; matriksnya terhadap basis standar adalah $A$.</li>
+          <li>Ambil basis $\set{\mathbf{v}_{k+1}, \dots, \mathbf{v}_n}$ untuk $\operatorname{Nul} A = \ker L$ (berdimensi $n - k$ menurut rank–nulitas) dan perluas menjadi basis $B = \set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ untuk $F^n$, dengan $\mathbf{v}_1, \dots, \mathbf{v}_k$ di depan.</li>
+          <li>Seperti di bukti rank–nulitas, $\set{A\mathbf{v}_1, \dots, A\mathbf{v}_k}$ basis $\operatorname{Col} A$. Perluas menjadi basis $C = \set{A\mathbf{v}_1, \dots, A\mathbf{v}_k, \mathbf{w}_{k+1}, \dots, \mathbf{w}_m}$ untuk $F^m$.</li>
+          <li>Untuk $j \le k$, $L(\mathbf{v}_j) = A\mathbf{v}_j$ adalah vektor basis ke-$j$ dari $C$, jadi kolomnya $\mathbf{e}_j$. Untuk $j \gt k$, $L(\mathbf{v}_j) = \mathbf{0}$, jadi kolomnya nol. Maka $[L]_{C \leftarrow B}$ berbentuk blok di atas.</li>
+          <li>Menurut Akibat 1, $A$ dan $[L]_{C \leftarrow B}$ <em>ekuivalen</em>.</li>
+        </ol>
+      </details>
+
+      <div class="box definisi">
+        <div class="box-title">Ekuivalen rank (Modul, Definisi 2.6.8)</div>
+        <p>$A, B \in M_{m \times n}(F)$ <strong>ekuivalen rank</strong> (rank equivalent) jika $\operatorname{rank} A = \operatorname{rank} B$.</p>
+      </div>
+
+      <div class="box catatan">
+        <div class="box-title">Mengapa nama "ekuivalen" bisa diganti</div>
+        <p>Dari Teorema 4 dan sifat transitif: dua matriks berukuran sama <em>ekuivalen</em> jika dan hanya jika rank-nya sama, karena keduanya ekuivalen dengan bentuk kanonik yang sama. (Arah sebaliknya: $B = PAQ$ tidak mengubah rank, karena $P$ dan $Q$ mewakili isomorfisma.) Karena itu sumber selanjutnya cukup berbicara tentang "ekuivalen rank".</p>
+      </div>
+
+      <h3>Similaritas</h3>
+      <p>Untuk operator linier $V \to V$, wajar memakai <em>basis yang sama</em> di domain dan kodomain. Perubahan basis lalu mengubah $[L]_B$ menjadi $P[L]_BP^{-1}$, bukan $P[L]_BQ$ sebarang.</p>
+
+      <div class="box definisi">
+        <div class="box-title">Similar (Modul, Definisi 2.6.9)</div>
+        <p>$A, B \in M_n(F)$ <strong>similar</strong>, ditulis $A \sim_s B$ (sumber juga menulis $A \sim B$), jika ada $P \in M_n(F)$ invertibel dengan $B = PAP^{-1}$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Similaritas relasi ekuivalensi (Modul, Teorema 2.6.10)</div>
+        <p>Similaritas adalah relasi ekuivalensi pada $M_n(F)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>Refleksif:</strong> $A = I_nAI_n^{-1}$. <strong>Simetris:</strong> dari $B = PAP^{-1}$, $A = P^{-1}BP = (P^{-1})B(P^{-1})^{-1}$. <strong>Transitif:</strong> dari $B = PAP^{-1}$ dan $C = QBQ^{-1}$, $C = (QP)A(QP)^{-1}$.</p>
+      </details>
+
+      <div class="box catatan">
+        <div class="box-title">Similar lebih ketat daripada ekuivalen rank</div>
+        <p>Matriks similar pasti ekuivalen rank (ambil $Q = P^{-1}$), tetapi tidak sebaliknya: pada similaritas, $Q$ dipaksa sama dengan $P^{-1}$. Latihan 2 memberi contohnya.</p>
+      </div>
+
+      <div class="box definisi">
+        <div class="box-title">Untuk transformasi linier (Modul, Definisi 2.6.11)</div>
+        <p>$L_1, L_2 \in \mathcal{L}(V, W)$ <strong>ekuivalen rank</strong> jika $\operatorname{rank} L_1 = \operatorname{rank} L_2$. Operator $L_1, L_2 \in \mathcal{L}(V)$ <strong>similar</strong>, $L_1 \sim_s L_2$, jika ada $T \in \mathcal{L}(V)$ invertibel dengan $L_2 = TL_1T^{-1}$.</p>
+      </div>
+
+      <div class="box teorema">
+        <div class="box-title">Relasi ekuivalensi pada transformasi (Modul, Teorema 2.6.12)</div>
+        <p>Ekuivalensi rank adalah relasi ekuivalensi pada $\mathcal{L}(V, W)$, dan similaritas adalah relasi ekuivalensi pada $\mathcal{L}(V)$.</p>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Ekuivalensi rank didefinisikan lewat kesamaan bilangan, jadi jelas refleksif, simetris, dan transitif. Untuk similaritas, buktinya sama dengan Teorema 5: $L = ILI^{-1}$; $L_1 = T^{-1}L_2T$; dan $L_3 = T_2(T_1L_1T_1^{-1})T_2^{-1} = (T_2T_1)L_1(T_2T_1)^{-1}$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Dari transformasi ke matriks (Modul, Teorema 2.6.13 dan 2.6.14)</div>
+        <p>Misalkan $V \cong F^n$, $W \cong F^m$.</p>
+        <ol>
+          <li>$L_1, L_2 \in \mathcal{L}(V, W)$ ekuivalen rank jika dan hanya jika matriks representasinya ekuivalen rank.</li>
+          <li>$L_1, L_2 \in \mathcal{L}(V)$ similar jika dan hanya jika matriks representasinya (terhadap satu basis $B$) similar.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p><strong>(1)</strong> $\operatorname{rank} L = \dim L[V]$ sama dengan rank matriks representasinya, karena pemetaan koordinat adalah isomorfisma yang membawa $L[V]$ ke ruang kolom matriksnya. <span class="cek">[CEK: di bukti sumber, simbol $\sim_s$ (similar) dipakai untuk ekuivalen rank; seharusnya simbol lain.]</span></p>
+        <p><strong>(2)</strong> (⇒) Jika $L_2 = TL_1T^{-1}$, maka karena $[\,\cdot\,]_B$ isomorfisma aljabar (Teorema 2.5.19), $[L_2]_B = [T]_B[L_1]_B[T]_B^{-1}$. (⇐) Jika $[L_2]_B = P[L_1]_BP^{-1}$, ada $T \in \mathcal{L}(V)$ dengan $[T]_B = P$ (surjektif), $T$ invertibel karena $P$ invertibel, dan $[L_2]_B = [TL_1T^{-1}]_B$. Karena $[\,\cdot\,]_B$ injektif, $L_2 = TL_1T^{-1}$.</p>
+      </details>
+
+      <div class="box teorema">
+        <div class="box-title">Kriteria invertibel (Modul, Teorema 2.6.15)</div>
+        <p>Misalkan $V \cong F^n$, $L \in \mathcal{L}(V)$, $B$ basis terurut $V$, dan $A = [L]_B$. Pernyataan berikut ekuivalen:</p>
+        <ol type="a">
+          <li>$A$ invertibel;</li>
+          <li>$L$ invertibel;</li>
+          <li>$\operatorname{Nul} A = \set{\mathbf{0}}$;</li>
+          <li>$\ker L = \set{\mathbf{0}}$;</li>
+          <li>$\operatorname{Col} A = F^n$;</li>
+          <li>kolom-kolom $A$ basis $F^n$;</li>
+          <li>$L[V] = V$;</li>
+          <li>$L$ punya invers kanan: $L \circ T = I_V$ untuk suatu $T \in \mathcal{L}(V)$;</li>
+          <li>$A$ punya invers kanan: $AB' = I_n$ untuk suatu $B' \in M_n(F)$;</li>
+          <li>$L$ punya invers kiri: $T \circ L = I_V$ untuk suatu $T \in \mathcal{L}(V)$;</li>
+          <li>$A$ punya invers kiri: $B'A = I_n$ untuk suatu $B' \in M_n(F)$.</li>
+        </ol>
+      </div>
+
+      <details class="bukti">
+        <summary>Bukti</summary>
+        <p>Karena $[\,\cdot\,]_B$ isomorfisma aljabar, setiap pernyataan tentang $L$ setara dengan pernyataan yang sama tentang $A$: (a)⇔(b), (c)⇔(d), (e)⇔(g), (h)⇔(i), (j)⇔(k). (Pemetaan koordinat membawa $\ker L$ ke $\operatorname{Nul} A$ dan $L[V]$ ke $\operatorname{Col} A$.)</p>
+        <p>Untuk operator pada ruang berdimensi $n$: (b)⇔(d)⇔(g) menurut Akibat 2.5.10 (injektif ⇔ surjektif ⇔ isomorfisma). (e)⇔(f): $n$ kolom yang merentang $F^n$ adalah basis (Teorema 1.3.12). Jika $L \circ T = I_V$, maka $L$ surjektif, jadi (h)⇒(g); jika $T \circ L = I_V$, maka $L$ injektif, jadi (j)⇒(d); dan (b) jelas memberi (h) dan (j). Semua pernyataan terhubung.</p>
+        <p>Bukti di sumber lebih ringkas dan beberapa langkahnya hanya disebut; urutan implikasi di atas disusun ulang oleh Claude.</p>
+      </details>
+
+      <!-- ================= Kesalahan umum ================= -->
+      <h2 id="kesalahan-umum">Kesalahan umum</h2>
+      <ul>
+        <li><strong>Mencampur ekuivalen dan similar.</strong> Ekuivalen: $PAQ$, boleh beda ukuran $P$ dan $Q$, berlaku untuk matriks persegi panjang. Similar: $PAP^{-1}$, hanya untuk matriks persegi.</li>
+        <li><strong>Menganggap rank sama berarti similar.</strong> $I_2$ dan $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ sama-sama rank $2$ tetapi tidak similar (Latihan 2).</li>
+        <li><strong>Salah urutan matriks transisi di Teorema 2.</strong> Matriks paling kanan mengubah koordinat <em>domain</em> baru ke lama ($P_{B_1 \leftarrow B_2}$); matriks paling kiri mengubah koordinat <em>kodomain</em> lama ke baru ($P_{C_2 \leftarrow C_1}$).</li>
+        <li><strong>Mengira invers satu sisi selalu cukup.</strong> Itu hanya benar untuk operator pada ruang berdimensi hingga (Teorema 8). Di $F[t]$, $p \mapsto tp$ punya invers kiri tetapi tidak invertibel.</li>
+      </ul>
+
+      <!-- ================= Latihan ================= -->
+      <h2 id="latihan">Latihan soal</h2>
+
+      <div class="latihan">
+        <p>Tentukan bentuk kanonik ekuivalensi (Teorema 4) dari $A = \begin{pmatrix} 1 & 2 & 1 \\ 2 & 4 & 2 \end{pmatrix}$.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>Hitung rank. Baris kedua adalah $2 \times$ baris pertama, jadi hanya ada satu baris bebas: $\operatorname{rank} A = 1$.</li>
+            <li>$A$ berukuran $2 \times 3$, jadi $m = 2$, $n = 3$, $k = 1$.</li>
+            <li>Bentuk kanoniknya punya blok $I_1$ di kiri atas dan nol di tempat lain:
+              $$\begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}.$$</li>
+          </ol>
+          <p>Jadi setiap matriks $2 \times 3$ berank $1$, termasuk $A$, ekuivalen dengan matriks itu.</p>
+        </details>
+      </div>
+
+      <div class="latihan">
+        <p>Tunjukkan bahwa $A = I_2$ dan $B = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ ekuivalen rank tetapi tidak similar.</p>
+        <details class="pembahasan">
+          <summary>Lihat pembahasan</summary>
+          <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
+          <ol>
+            <li>$\det B = 1 \ne 0$, jadi $B$ invertibel dan $\operatorname{rank} B = 2 = \operatorname{rank} I_2$. Keduanya ekuivalen rank (bahkan $B = B \cdot I_2 \cdot I_2$ dengan $P = B$, $Q = I_2$).</li>
+            <li>Andaikan $B = PI_2P^{-1}$ untuk suatu $P$ invertibel. Maka $B = PP^{-1} = I_2$.</li>
+            <li>Tetapi $B \ne I_2$ (entri $(1,2)$ berbeda). Kontradiksi.</li>
+          </ol>
+          <p>Jadi $A$ dan $B$ tidak similar. Kelas similaritas $I_2$ hanya berisi $I_2$ sendiri, sedangkan kelas ekuivalen rank-nya berisi semua matriks invertibel $2 \times 2$.</p>
+        </details>
+      </div>
+
+      <!-- ================= Ringkasan rumus ================= -->
+      <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
+      <p>$$\begin{gathered}
+        A \text{ ekuivalen } B \iff B = PAQ \iff \operatorname{rank} A = \operatorname{rank} B, \\
+        A \sim_s B \iff B = PAP^{-1}
+      \end{gathered}$$</p>
+      <p>$$\begin{gathered}
+        [L]_{C_2 \leftarrow B_2} = P_{C_2 \leftarrow C_1}[L]_{C_1 \leftarrow B_1}P_{B_1 \leftarrow B_2}, \\
+        A \sim \begin{pmatrix} I_k & O \\ O & O \end{pmatrix}, \quad k = \operatorname{rank} A
+      \end{gathered}$$</p>
+
+      <!-- ================= Sumber ================= -->
+      <h2 id="sumber">Sumber</h2>
+      <ul>
+        <li><code>sumber/aljabar-linier/02-Transformasi-Linier.md</code>, Bab 2, §2.6: Definisi 2.6.2, 2.6.8, 2.6.9, 2.6.11, Teorema 2.6.3–2.6.7, 2.6.10, 2.6.12–2.6.15. Sumber juga menautkan notebook Colab untuk Teorema 2.6.4 (tidak dibuka). File Markdown, tanpa nomor halaman.</li>
+        <li>Sumber tidak memuat soal khusus untuk §2.6; Latihan 1–2 dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
+      </ul>
+
+      <nav class="nav-topik" aria-label="Navigasi topik"></nav>
+
+    </article>
+  </main>
+</body>
+</html>
