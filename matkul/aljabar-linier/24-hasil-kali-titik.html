@@ -120,7 +120,7 @@
         <p>Misalkan $\sigma$ bentuk Hermitian pada $V \cong \C^n$, $B$ basis terurut, dan $A = [\sigma]_B$. Maka $A$ swadjoin. Jika $\sigma$ linier di argumen kedua,</p>
         <p>$$\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^\dagger\,A\,[\mathbf{w}]_B;$$</p>
         <p>jika $\sigma$ linier di argumen pertama, $\sigma(\mathbf{v}, \mathbf{w}) = [\mathbf{v}]_B^T\,A\,\overline{[\mathbf{w}]_B}$.</p>
-        <p><span class="cek">[CEK: sumber menulis rumus kasus kedua sebagai $[\mathbf{v}]_B^TA[\mathbf{w}]_B$, tanpa konjugat pada $[\mathbf{w}]_B$; dengan $\sigma$ konjugat-linier di argumen kedua, konjugat itu diperlukan.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis rumus kasus kedua sebagai $[\mathbf{v}]_B^TA[\mathbf{w}]_B$, tanpa konjugat pada $[\mathbf{w}]_B$; dengan $\sigma$ konjugat-linier di argumen kedua, konjugat itu diperlukan.]</span></p>
       </div>
 
       <details class="bukti">
@@ -146,7 +146,7 @@
         <p>$$\sigma(\mathbf{v}, \mathbf{v}) = \overline{z_1}(z_1 - iz_2) + \overline{z_2}(iz_1 - z_2) = \abs{z_1}^2 - \abs{z_2}^2 + i\bigl(\overline{z_2}z_1 - \overline{z_1}z_2\bigr).$$</p>
         <p>Dengan $u = \overline{z_2}z_1$, suku terakhir $i(u - \bar{u}) = i \cdot 2i\operatorname{Im} u = -2\operatorname{Im}(\overline{z_2}z_1)$, jadi</p>
         <p>$$\sigma(\mathbf{v}, \mathbf{v}) = \abs{z_1}^2 - \abs{z_2}^2 - 2\operatorname{Im}(\overline{z_2}z_1) \in \R.$$</p>
-        <p>Misalnya $\mathbf{v} = (1, i)$: $A\mathbf{v} = (2, 0)$ dan $\sigma(\mathbf{v}, \mathbf{v}) = 2$, sesuai rumus ($0 - 2\operatorname{Im}(-i) = 2$). Tetapi untuk $\mathbf{v} = (1, 1)$, $\sigma(\mathbf{v}, \mathbf{v}) = 0$ walaupun $\mathbf{v} \ne \mathbf{0}$; topik berikutnya menambahkan syarat definit positif. <span class="cek">[CEK: sumber menulis suku terakhir sebagai $+2\operatorname{Im}(\overline{z_2}z_1)$; tandanya seharusnya negatif, seperti dicek dengan $\mathbf{v} = (1, i)$. Kesimpulan "$\sigma(\mathbf{v}, \mathbf{v})$ real" tetap benar.]</span></p>
+        <p>Misalnya $\mathbf{v} = (1, i)$: $A\mathbf{v} = (2, 0)$ dan $\sigma(\mathbf{v}, \mathbf{v}) = 2$, sesuai rumus ($0 - 2\operatorname{Im}(-i) = 2$). Tetapi untuk $\mathbf{v} = (1, 1)$, $\sigma(\mathbf{v}, \mathbf{v}) = 0$ walaupun $\mathbf{v} \ne \mathbf{0}$; topik berikutnya menambahkan syarat definit positif. <span class="koreksi">[Koreksi: sumber menulis suku terakhir sebagai $+2\operatorname{Im}(\overline{z_2}z_1)$; tandanya seharusnya negatif, seperti dicek dengan $\mathbf{v} = (1, i)$. Kesimpulan "$\sigma(\mathbf{v}, \mathbf{v})$ real" tetap benar.]</span></p>
       </div>
 
       <!-- ================= Kesalahan umum ================= -->

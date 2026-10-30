@@ -88,7 +88,7 @@
         <p>$\sigma(A, B) = \operatorname{Tr}(AB)$ bilinear (trace linier dan perkalian bilinear) dan simetris ($\operatorname{Tr}(AB) = \operatorname{Tr}(BA)$). Pada $M_2(\R)$ dengan basis $\set{E_{11}, E_{12}, E_{21}, E_{22}}$: $E_{ij}E_{kl} = \delta_{jk}E_{il}$, dan $\operatorname{Tr}(E_{il}) = \delta_{il}$, jadi $\sigma(E_{ij}, E_{kl}) = 1$ tepat bila $k = j$ dan $l = i$:</p>
         <p>$$[\sigma] = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}.$$</p>
         <p>Untuk $A = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$ dan $B = \begin{pmatrix} 0 & 1 \\ 4 & 5 \end{pmatrix}$: $[A]^T[\sigma] = (1, 0, 2, 3)$, sehingga $\sigma(A, B) = (1, 0, 2, 3) \cdot (0, 1, 4, 5) = 8 + 15 = 23$. Langsung: $AB = \begin{pmatrix} 8 & 11 \\ 12 & 15 \end{pmatrix}$, $\operatorname{Tr}(AB) = 23$.</p>
-        <p><span class="cek">[CEK: sumber menuliskan $[\sigma]$ sebagai matriks identitas $4 \times 4$, padahal pasangan tak nolnya $\sigma(E_{12}, E_{21}) = \sigma(E_{21}, E_{12}) = 1$; perhitungan sumber, $[A]^T[\sigma] = (1, 0, 2, 3)$, justru memakai matriks yang benar di atas.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menuliskan $[\sigma]$ sebagai matriks identitas $4 \times 4$, padahal pasangan tak nolnya $\sigma(E_{12}, E_{21}) = \sigma(E_{21}, E_{12}) = 1$; perhitungan sumber, $[A]^T[\sigma] = (1, 0, 2, 3)$, justru memakai matriks yang benar di atas.]</span></p>
       </div>
 
       <h3>Perubahan basis dan kongruensi</h3>
@@ -153,7 +153,7 @@
         <summary>Bukti</summary>
         <p><strong>(I)</strong> Linier: $f_{\mathbf{v} + \alpha\mathbf{w}}(\mathbf{x}) = \sigma(\mathbf{v}, \mathbf{x}) + \alpha\sigma(\mathbf{w}, \mathbf{x})$. Injektif: $f_{\mathbf{v}} = 0$ berarti $\sigma(\mathbf{v}, \mathbf{x}) = 0$ untuk semua $\mathbf{x}$, jadi $\mathbf{v} = \mathbf{0}$.</p>
         <p><strong>(II)</strong> Linier di $\mathbf{x}$ karena $f(\mathbf{v}) \in V^*$; linier di $\mathbf{v}$ karena $f$ linier: $f(\mathbf{v} + \beta\mathbf{u})(\mathbf{x}) = f(\mathbf{v})(\mathbf{x}) + \beta f(\mathbf{u})(\mathbf{x})$. Jika $\sigma(\mathbf{v}, \cdot) = 0$, maka $f(\mathbf{v}) = 0$ dan injektif memberi $\mathbf{v} = \mathbf{0}$.</p>
-        <p><span class="cek">[CEK: arah (II) hanya menjamin tak terdegenerasi di argumen pertama. Untuk ruang berdimensi tak hingga, nondegenerasi di argumen kedua tidak otomatis; sumber sendiri mengakui hal ini dalam catatan yang terpotong di akhir bukti.]</span></p>
+        <p><span class="koreksi">[Koreksi: arah (II) hanya menjamin tak terdegenerasi di argumen pertama. Untuk ruang berdimensi tak hingga, nondegenerasi di argumen kedua tidak otomatis; sumber sendiri mengakui hal ini dalam catatan yang terpotong di akhir bukti.]</span></p>
       </details>
 
       <div class="box proposisi">
@@ -188,7 +188,7 @@
       <details class="bukti">
         <summary>Bukti</summary>
         <p>$(A + A^T)^T = A^T + A$, jadi $A + A^T$ simetris; $(A - A^T)^T = A^T - A = -(A - A^T)$, jadi $A - A^T$ antisimetri. Karena $\operatorname{char} F \ne 2$, $2$ punya invers di $F$, dan kedua suku dijumlahkan menjadi $\tfrac{1}{2}(2A) = A$.</p>
-        <p><span class="cek">[CEK: sumber merumuskan Teorema 3.3.12 untuk $\operatorname{char} F = 2$ dengan bukti "$S = A$, $K = 0$". Itu keliru: $S = A$ tidak simetris kecuali $A$ simetris. Dalam karakteristik $2$, simetris dan antisimetri berimpit, sehingga jumlahnya selalu simetris, dan matriks tak simetris seperti $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ <em>tidak</em> dapat diuraikan. Teks sumber sebelum teorema memang menyebut syarat $\operatorname{char} F \ne 2$; versi itulah yang dicantumkan di atas.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber merumuskan Teorema 3.3.12 untuk $\operatorname{char} F = 2$ dengan bukti "$S = A$, $K = 0$". Itu keliru: $S = A$ tidak simetris kecuali $A$ simetris. Dalam karakteristik $2$, simetris dan antisimetri berimpit, sehingga jumlahnya selalu simetris, dan matriks tak simetris seperti $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ <em>tidak</em> dapat diuraikan. Teks sumber sebelum teorema memang menyebut syarat $\operatorname{char} F \ne 2$; versi itulah yang dicantumkan di atas.]</span></p>
       </details>
 
       <!-- ================= Kesalahan umum ================= -->

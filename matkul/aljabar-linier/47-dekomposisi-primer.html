@@ -65,7 +65,7 @@
         <div class="box-title">Nilpoten (Modul, Definisi 7.2.2)</div>
         <p>$L \in \mathcal{L}(V)$ <strong>nilpoten</strong> jika $L^\ell = O$ untuk suatu bilangan bulat positif $\ell$. Bilangan terkecil seperti itu adalah <strong>indeks nilpotensi</strong>. Pemetaan nol nilpoten berindeks $1$. Polinomial minimal operator nilpoten berindeks $\ell$ adalah $t^\ell$, jadi indeks nilpotensi invarian similaritas.</p>
         <p>Nilpoten mengakibatkan <em>tidak</em> invertibel ($\det L^\ell = (\det L)^\ell = 0$), tetapi tidak sebaliknya: $L_1 = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}$ singular dengan $L_1^j = L_1$, tidak nilpoten; $L_2 = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}$ nilpoten berindeks $2$.</p>
-        <p><span class="cek">[CEK: sumber menulis "Nilpotensi mengimplikasikan invers, tetapi operator yang tidak mempunyai invers belum tentu nilpoten". Dari contohnya, yang dimaksud jelas "nilpotensi mengakibatkan <em>tidak</em> mempunyai invers".]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis "Nilpotensi mengimplikasikan invers, tetapi operator yang tidak mempunyai invers belum tentu nilpoten". Dari contohnya, yang dimaksud jelas "nilpotensi mengakibatkan <em>tidak</em> mempunyai invers".]</span></p>
       </div>
 
       <div class="box contoh">
@@ -116,7 +116,7 @@
           <li><strong>$j \gt \ell$.</strong> $\ker L^j = \ker L^\ell$ (Teorema 1), jadi menurut teorema rank $\dim L^j[V] = \dim L^\ell[V]$; dan $L^j[V] = L^\ell(L^{j-\ell}[V]) \subseteq L^\ell[V]$, jadi sama. Dekomposisinya sama dengan kasus $j = \ell$.</li>
           <li><strong>$j \lt \ell$ gagal.</strong> Karena $K_j \subsetneq K_{j+1}$, ada $\mathbf{y}$ dengan $L^{j+1}\mathbf{y} = \mathbf{0}$ tetapi $L^j\mathbf{y} \ne \mathbf{0}$. Maka $\mathbf{x} = L^j\mathbf{y} \ne \mathbf{0}$ ada di $L^j[V]$, dan $L^j\mathbf{x} = L^{2j}\mathbf{y} = \mathbf{0}$ (karena $2j \ge j + 1$). Jadi $\mathbf{x} \in \ker L^j \cap L^j[V]$: bukan jumlah langsung.</li>
         </ol>
-        <p><span class="cek">[CEK: pada langkah (3), sumber memakai $L(\mathbf{y})$ sebagai anggota tak nol $\ker L^j \cap L^j[V]$. Memang $L(\mathbf{y}) \in \ker L^j$, tetapi belum tentu di $L^j[V]$ untuk $j \ge 2$. Vektor yang benar adalah $L^j(\mathbf{y})$, seperti di atas.]</span></p>
+        <p><span class="koreksi">[Koreksi: pada langkah (3), sumber memakai $L(\mathbf{y})$ sebagai anggota tak nol $\ker L^j \cap L^j[V]$. Memang $L(\mathbf{y}) \in \ker L^j$, tetapi belum tentu di $L^j[V]$ untuk $j \ge 2$. Vektor yang benar adalah $L^j(\mathbf{y})$, seperti di atas.]</span></p>
       </details>
 
       <div class="box lemma">
@@ -197,10 +197,10 @@
         <p>$L(x, y, z) = (2x + y + z, 2y + z, 2z)$, $A = \begin{pmatrix} 2 &amp; 1 &amp; 1 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$, satu nilai eigen $2$. $N = A - 2I$: $N^2 = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, $N^3 = O$; kernelnya $\operatorname{span}\set{\mathbf{e}_1} \subset \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2} \subset \R^3$, jadi $\ell = 3$ dan $\R^3 = \ker(L - 2I)^3$ (dekomposisi trivial).</p>
         <p>Dengan $\mathbf{x} = \mathbf{e}_3$: $N\mathbf{x} = (1, 1, 0)$ dan $N^2\mathbf{x} = (1, 0, 0) \ne \mathbf{0}$, jadi menurut Lemma 1 ketiganya basis. Karena $L = 2I + N$:</p>
         <ul>
-          <li>terhadap urutan $\set{N^2\mathbf{x}, N\mathbf{x}, \mathbf{x}} = \set{(1, 0, 0), (1, 1, 0), (0, 0, 1)}$: $[L] = \begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$ (bentuk Jordan, segitiga atas);</li>
-          <li>terhadap urutan $\set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$: $[L] = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix}$ (segitiga bawah).</li>
+          <li>terhadap urutan $\set{N^2\mathbf{x}, N\mathbf{x}, \mathbf{x}} = \set{(1, 0, 0), (1, 1, 0), (0, 0, 1)}$: $[L] = \begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$ (bentuk Jordan dengan konvensi catatan ini, super-1);</li>
+          <li>terhadap urutan $\set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$: $[L] = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix}$ (segitiga bawah, konvensi sub-1 modul).</li>
         </ul>
-        <p><span class="cek">[CEK: sumber memakai urutan $\mathcal{B} = \set{(0, 0, 1), (1, 1, 0), (1, 0, 0)} = \set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$ tetapi menuliskan hasil $\begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$; matriks itu muncul untuk urutan terbalik. Dengan urutan sumber, hasilnya transpos (segitiga bawah), seperti di atas.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber memakai urutan $\mathcal{B} = \set{(0, 0, 1), (1, 1, 0), (1, 0, 0)} = \set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$ tetapi menuliskan hasil $\begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}$; matriks itu muncul untuk urutan terbalik. Dengan urutan sumber, hasilnya transpos (segitiga bawah), seperti di atas.]</span></p>
       </div>
 
       <div class="box contoh">
@@ -212,7 +212,7 @@
           <li>Jadi blok untuk nilai eigen $2$ adalah $(2, 2)$ atau $(2, 1)$, sehingga $d_2 = 4$ atau $d_2 = 3$, dan $d_5 = 2$ atau $3$.</li>
           <li>Polinomial karakteristik: $(t - 2)^4(t - 5)^2$ atau $(t - 2)^3(t - 5)^3$. Data yang diberikan tidak cukup untuk memilih salah satu.</li>
         </ol>
-        <p><span class="cek">[CEK: sumber memakai "untuk operator nilpoten berindeks $2$, $\dim\ker N^2 = 2\dim\ker N$" dan menyimpulkan $d_2 = 4$, $p_L = (t - 2)^4(t - 5)^2$. Klaim itu salah: untuk blok $J_2(0) \oplus J_1(0)$, $\dim\ker N = 2$ tetapi $\dim\ker N^2 = 3$. Verifikasi sumber juga menyebut blok "$J_2(5)$", yang bertentangan dengan $\ell_5 = 1$ (nilai eigen $5$ hanya punya blok $1 \times 1$). Analisis di atas ditulis oleh Claude.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber memakai "untuk operator nilpoten berindeks $2$, $\dim\ker N^2 = 2\dim\ker N$" dan menyimpulkan $d_2 = 4$, $p_L = (t - 2)^4(t - 5)^2$. Klaim itu salah: untuk blok $J_2(0) \oplus J_1(0)$, $\dim\ker N = 2$ tetapi $\dim\ker N^2 = 3$. Verifikasi sumber juga menyebut blok "$J_2(5)$", yang bertentangan dengan $\ell_5 = 1$ (nilai eigen $5$ hanya punya blok $1 \times 1$). Analisis di atas ditulis oleh Claude.]</span></p>
       </div>
 
       <!-- ================= Kesalahan umum ================= -->

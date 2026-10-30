@@ -95,7 +95,7 @@
             $$\sum_{k=0}^{n}c_kA^k = B_0A + \sum_{k=1}^{n-1}(B_kA^{k+1} - B_{k-1}A^k) - B_{n-1}A^n = O,$$
             karena semua suku saling menghapus. Jadi $p(A) = O$.</li>
         </ol>
-        <p><span class="cek">[CEK: sumber menyelesaikan bukti dengan "substitusi formal $t \mapsto A$" langsung ke $\operatorname{adj}(A - tI_n)(A - tI_n)$ dan menulis $\operatorname{adj}(A - AI_n)(A - AI_n) = p(A)I_n$. Ungkapan $\operatorname{adj}(A - AI_n)$ tidak bermakna, dan substitusi matriks ke dalam hasil kali polinomial bermatriks tidak otomatis sah karena koefisiennya tidak komutatif. Gagasannya benar, tetapi perlu dijalankan seperti di atas: uraikan adjugat menurut pangkat $t$, lalu bandingkan koefisien.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menyelesaikan bukti dengan "substitusi formal $t \mapsto A$" langsung ke $\operatorname{adj}(A - tI_n)(A - tI_n)$ dan menulis $\operatorname{adj}(A - AI_n)(A - AI_n) = p(A)I_n$. Ungkapan $\operatorname{adj}(A - AI_n)$ tidak bermakna, dan substitusi matriks ke dalam hasil kali polinomial bermatriks tidak otomatis sah karena koefisiennya tidak komutatif. Gagasannya benar, tetapi perlu dijalankan seperti di atas: uraikan adjugat menurut pangkat $t$, lalu bandingkan koefisien.]</span></p>
       </details>
 
       <div class="box akibat">
@@ -126,8 +126,16 @@
       </div>
 
       <h3>Dua kerangkapan</h3>
-      <p>Untuk $L \in \mathcal{L}(V)$, $\mathcal{Z}(L)$ menyatakan himpunan akar polinomial karakteristik $L$. Misalnya, jika $L \in \mathcal{L}(\R^2)$ berpolinomial karakteristik $t^2 + 1$, sumber menulis $\mathcal{Z}(L) = \set{i, -i} \subseteq \C$.</p>
-      <p><span class="cek">[CEK: sumber mendefinisikan $\mathcal{Z}(L)$ sebagai himpunan akar "di $F$", tetapi contohnya ($F = \R$) memberi akar di $\C$. Dengan definisi harfiah, $\mathcal{Z}(L) = \varnothing$ untuk contoh itu. Tampaknya yang dimaksud akar di penutupan aljabar $\overline{F}$; perlu dipastikan konvensi mana yang dipakai.]</span></p>
+      <div class="box definisi">
+        <div class="box-title">Himpunan akar $\mathcal{Z}(L)$ (Modul, §6.4; konvensi catatan ini)</div>
+        <p>Untuk $L \in \mathcal{L}(V)$, $\mathcal{Z}(L)$ adalah himpunan akar polinomial karakteristik $L$ di <strong>penutupan aljabar</strong> $\overline{F}$ (topik Faktorisasi Polinomial). Jadi:</p>
+        <ul>
+          <li>$\mathcal{Z}(L) \cap F$ adalah himpunan nilai eigen $L$ (Teorema 1);</li>
+          <li>syarat "$\mathcal{Z}(L) \subseteq F$" yang dipakai di topik-topik berikutnya berarti polinomial karakteristik (setara: polinomial minimal) <em>terurai</em> menjadi faktor linier atas $F$.</li>
+        </ul>
+        <p>Misalnya, jika $L \in \mathcal{L}(\R^2)$ berpolinomial karakteristik $t^2 + 1$, maka $\mathcal{Z}(L) = \set{i, -i} \subseteq \C$, $\mathcal{Z}(L) \not\subseteq \R$, dan $L$ tidak punya nilai eigen real.</p>
+        <p><span class="koreksi">[Koreksi: sumber menulis "akar … di $F$", tetapi contohnya sendiri ($F = \R$) memberi $\mathcal{Z}(L) = \set{i, -i} \subseteq \C$, dan syarat "$\mathcal{Z}(L) \subseteq F$" di §6.5 dan Bab 7 hanya bermakna bila akarnya diambil di $\overline{F}$. Catatan ini memakai $\overline{F}$.]</span></p>
+      </div>
 
       <div class="box definisi">
         <div class="box-title">Kerangkapan aljabar (Modul, Definisi 6.4.7)</div>

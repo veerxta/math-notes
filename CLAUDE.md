@@ -44,11 +44,12 @@ Urutan bagian (lewati yang tidak relevan):
 
 ## Komponen
 - Kotak: `<div class="box definisi">`; varian lain: `teorema`, `lemma`, `proposisi`, `akibat`, `contoh`, `catatan`, `peringatan`. Judul kotak di `<div class="box-title">`.
-- Warna kotak (garis kiri + latar sangat tipis): definisi biru; teorema, lemma, proposisi, akibat ungu; contoh hijau; catatan kuning; peringatan merah. Sorotan `cek` oranye. Semua warna disesuaikan untuk mode gelap.
+- Warna kotak (garis kiri + latar sangat tipis): definisi biru; teorema, lemma, proposisi, akibat ungu; contoh hijau; catatan kuning; peringatan merah. Sorotan `cek` oranye, `koreksi` biru. Semua warna disesuaikan untuk mode gelap.
 - Penomoran otomatis per halaman dengan CSS counter (Definisi 1, Teorema 1, …). Nomor dari sumber boleh ditulis di judul, mis. "(Modul, Teorema 3.2)".
 - Bukti: `<details class="bukti"><summary>Bukti</summary>…</details>`, diakhiri ∎ otomatis.
 - Latihan: `<div class="latihan">` berisi soal, lalu `<details class="pembahasan"><summary>Lihat pembahasan</summary>…</details>`.
 - Bagian yang perlu dicek: `<span class="cek">[CEK: alasan]</span>`.
+- Kesalahan sumber yang sudah dipastikan dan sudah dibetulkan di teks: `<span class="koreksi">[Koreksi: sumber menulis …; yang benar …]</span>` (biru). [CEK] hanya untuk hal yang belum bisa dipastikan.
 - Jangan membuat kelas baru tanpa menambahkannya ke `style.css` dan `komponen.html`.
 
 ## Aturan konten

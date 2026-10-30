@@ -195,7 +195,7 @@
         <div class="box-title">Distributif kiri (Modul, contoh setelah Teorema 4.2.17)</div>
         <p>$A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$, $B = I_2$, $C = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Maka $A + B = \begin{pmatrix} 2 & 2 \\ 0 & 2 \end{pmatrix}$ dan</p>
         <p>$$(A + B) \otimes C = \begin{pmatrix} 2C & 2C \\ 0 & 2C \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & 2 \\ 2 & 0 & 2 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & 2 & 0 \end{pmatrix},$$</p>
-        <p>sama dengan $A \otimes C + B \otimes C = \begin{pmatrix} C & 2C \\ 0 & C \end{pmatrix} + \begin{pmatrix} C & 0 \\ 0 & C \end{pmatrix}$. <span class="cek">[CEK: sumber menulis dua baris terakhir $(A + B) \otimes C$ sebagai nol, padahal blok kanan bawahnya $2C$.]</span></p>
+        <p>sama dengan $A \otimes C + B \otimes C = \begin{pmatrix} C & 2C \\ 0 & C \end{pmatrix} + \begin{pmatrix} C & 0 \\ 0 & C \end{pmatrix}$. <span class="koreksi">[Koreksi: sumber menulis dua baris terakhir $(A + B) \otimes C$ sebagai nol, padahal blok kanan bawahnya $2C$.]</span></p>
       </div>
 
       <div class="box teorema">
@@ -223,7 +223,7 @@
         <p>$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}$, $X = \begin{pmatrix} x & y \\ z & w \end{pmatrix}$, sehingga $\operatorname{vec}(X) = (x, z, y, w)^T$. Perkalian langsung memberi kolom pertama $AXB$: $(5x + 10z + 7y + 14w,\ 15x + 20z + 21y + 28w)$, dan kolom kedua $(6x + 12z + 8y + 16w,\ 18x + 24z + 24y + 32w)$. Di lain pihak,</p>
         <p>$$B^T \otimes A = \begin{pmatrix} 5A & 7A \\ 6A & 8A \end{pmatrix} = \begin{pmatrix} 5 & 10 & 7 & 14 \\ 15 & 20 & 21 & 28 \\ 6 & 12 & 8 & 16 \\ 18 & 24 & 24 & 32 \end{pmatrix},$$</p>
         <p>dan $(B^T \otimes A)(x, z, y, w)^T$ memberi persis keempat entri itu.</p>
-        <p><span class="cek">[CEK: sumber menulis $\operatorname{vec}(X) = (x, y, z, w)^T$ (urutan baris) lalu menyatakan kedua hasil "sama setelah disusun ulang"; dengan urutan itu hasilnya justru berbeda (misalnya $5x + 10y + \dots$ versus $5x + 7y + \dots$). Identitasnya benar dengan $\operatorname{vec}(X) = (x, z, y, w)^T$, susunan kolom.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis $\operatorname{vec}(X) = (x, y, z, w)^T$ (urutan baris) lalu menyatakan kedua hasil "sama setelah disusun ulang"; dengan urutan itu hasilnya justru berbeda (misalnya $5x + 10y + \dots$ versus $5x + 7y + \dots$). Identitasnya benar dengan $\operatorname{vec}(X) = (x, z, y, w)^T$, susunan kolom.]</span></p>
       </div>
 
       <div class="box contoh">
@@ -372,7 +372,7 @@
               $$|\psi\rangle = \tfrac{1}{\sqrt{2}}\bigl(|+\rangle|0\rangle + |-\rangle|1\rangle\bigr),$$
               dan memang $\tfrac{1}{\sqrt{2}}\bigl(\tfrac{|00\rangle + |10\rangle}{\sqrt{2}} + \tfrac{|01\rangle - |11\rangle}{\sqrt{2}}\bigr) = \tfrac{1}{2}(|00\rangle + |01\rangle + |10\rangle - |11\rangle)$.</li>
           </ol>
-          <p>Keterjeratan ditentukan rank matriks koefisien, bukan bentuk diagonalnya. <span class="cek">[CEK: sumber (Masalah 3) memakai koefisien $\tfrac{1}{\sqrt{2}}$ sehingga keadaannya berpanjang $\sqrt{2}$, tidak ternormalisasi (nilai singular $1, 1$, padahal $\sum\lambda_i^2$ seharusnya $1$), dan menuliskan dekomposisi Schmidt $\tfrac{1}{\sqrt{2}}(|{+}{+}\rangle + |{-}{-}\rangle)$, yang sebenarnya sama dengan $|\Phi^+\rangle$, bukan keadaan ini. Versi di atas memakai koefisien $\tfrac{1}{2}$ dan dekomposisi yang dihitung ulang oleh Claude; kesimpulan "terjerat, rank $2$" tetap sama.]</span></p>
+          <p>Keterjeratan ditentukan rank matriks koefisien, bukan bentuk diagonalnya. <span class="koreksi">[Koreksi: sumber (Masalah 3) memakai koefisien $\tfrac{1}{\sqrt{2}}$ sehingga keadaannya berpanjang $\sqrt{2}$, tidak ternormalisasi (nilai singular $1, 1$, padahal $\sum\lambda_i^2$ seharusnya $1$), dan menuliskan dekomposisi Schmidt $\tfrac{1}{\sqrt{2}}(|{+}{+}\rangle + |{-}{-}\rangle)$, yang sebenarnya sama dengan $|\Phi^+\rangle$, bukan keadaan ini. Versi di atas memakai koefisien $\tfrac{1}{2}$ dan dekomposisi yang dihitung ulang oleh Claude; kesimpulan "terjerat, rank $2$" tetap sama.]</span></p>
         </details>
       </div>
 

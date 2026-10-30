@@ -38,7 +38,7 @@
       <!-- ================= Intisari ================= -->
       <h2 id="intisari">Intisari</h2>
       <ul class="intisari">
-        <li>Blok Jordan: $\lambda I_m + S_m$ (matriks skalar ditambah sub-1), atau dalam konvensi super-1 $\lambda I_m + N_m$. Satu blok punya satu nilai eigen dan ruang eigen berdimensi $1$.</li>
+        <li>Blok Jordan: $J_m(\lambda) = \lambda I_m + N_m$ (matriks skalar ditambah super-1; modul memakai sub-1 $\lambda I_m + S_m$). Satu blok punya satu nilai eigen dan ruang eigen berdimensi $1$.</li>
         <li><strong>Teorema Jordan</strong>: jika semua nilai eigen $L$ ada di $F$, $L$ berepresentasi $\operatorname{diag}(J_1, \dots, J_k)$ dengan blok Jordan $J_i$, tunggal sampai urutan blok.</li>
         <li>Untuk nilai eigen $\lambda$ dengan $d_k = \dim\ker(L - \lambda I)^k$: banyak blok $= d_1$, banyak blok berukuran $\ge k$ adalah $d_k - d_{k-1}$, banyak blok berukuran tepat $k$ adalah $2d_k - d_{k-1} - d_{k+1}$.</li>
         <li>Dua matriks (atas $\C$) similar ⇔ bentuk Jordannya sama.</li>
@@ -52,18 +52,20 @@
 
       <div class="box definisi">
         <div class="box-title">Blok Jordan (Modul, Definisi 7.5.1)</div>
-        <p><strong>Matriks blok Jordan</strong> adalah matriks $1 \times 1$ atau jumlah matriks skalar $\lambda I_m$ dan matriks sub-1 $S_m$ (topik sebelumnya). Setiap matriks sub-1 blok Jordan (dengan $\lambda = 0$).</p>
-        <p><strong>Konvensi.</strong> Sumber memakai sub-1 (angka $1$ di bawah diagonal). Kebanyakan buku, terutama untuk persamaan diferensial, memakai <strong>super-1</strong> (angka $1$ di atas diagonal): $J_m(\lambda) = \lambda I_m + N_m$. Keduanya similar (balik urutan basis); semua teorema tetap berlaku. Bagian persamaan diferensial di bawah memakai super-1.</p>
+        <p><strong>Matriks blok Jordan</strong> adalah matriks $1 \times 1$ atau jumlah matriks skalar $\lambda I_m$ dan matriks super-1 $N_m$ (topik sebelumnya):</p>
+        <p>$$J_m(\lambda) = \lambda I_m + N_m = \begin{pmatrix} \lambda &amp; 1 &amp; &amp; \\ &amp; \lambda &amp; \ddots &amp; \\ &amp; &amp; \ddots &amp; 1 \\ &amp; &amp; &amp; \lambda \end{pmatrix}.$$</p>
+        <p>Setiap matriks super-1 blok Jordan (dengan $\lambda = 0$).</p>
+        <p><strong>Konvensi.</strong> Definisi 7.5.1 di modul memakai sub-1 ($\lambda I_m + S_m$, angka $1$ di bawah diagonal), sedangkan Pembahasan soal dan bagian persamaan diferensial modul memakai super-1. Catatan ini memakai super-1 di seluruh Bab 7 (lihat topik Bentuk Segitiga). Keduanya similar lewat pembalikan urutan basis, jadi semua teorema, termasuk ketunggalan, berlaku sama.</p>
       </div>
 
       <div class="box contoh">
         <div class="box-title">Blok dan bukan blok (Modul, Contoh 7.5.2)</div>
-        <p>$A = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix} = 2I_3 + S_3$ blok Jordan. $B = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix}$ bukan (diagonalnya tidak konstan). Sebuah blok Jordan punya tepat satu nilai eigen dengan ruang eigen berdimensi $1$; matriks diagonal $n \times n$ adalah gabungan $n$ blok Jordan $1 \times 1$.</p>
+        <p>Modul memberi $A = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix} = 2I_3 + S_3$ (blok Jordan sub-1) dan $B = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 2 \end{pmatrix}$, yang bukan blok Jordan (diagonalnya tidak konstan). Dalam konvensi catatan ini padanannya $A^T = 2I_3 + N_3 = J_3(2)$ dan $B^T$. Sebuah blok Jordan punya tepat satu nilai eigen dengan ruang eigen berdimensi $1$; matriks diagonal $n \times n$ adalah gabungan $n$ blok Jordan $1 \times 1$.</p>
       </div>
 
       <div class="box definisi">
         <div class="box-title">Bentuk Jordan (Modul, Definisi 7.5.3)</div>
-        <p>$J = \operatorname{diag}(J_1, \dots, J_k)$ dalam <strong>bentuk kanonik Jordan</strong> (bentuk Jordan) jika setiap $J_i$ blok Jordan. Di $2 \times 2$ ada dua jenis: $\begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}$ (dua blok, $\lambda_i$ boleh sama) dan $\begin{pmatrix} \lambda &amp; 0 \\ 1 &amp; \lambda \end{pmatrix} = \lambda I + S_2$ (satu blok).</p>
+        <p>$J = \operatorname{diag}(J_1, \dots, J_k)$ dalam <strong>bentuk kanonik Jordan</strong> (bentuk Jordan) jika setiap $J_i$ blok Jordan. Di $2 \times 2$ ada dua jenis: $\begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}$ (dua blok, $\lambda_i$ boleh sama) dan $\begin{pmatrix} \lambda &amp; 1 \\ 0 &amp; \lambda \end{pmatrix} = \lambda I + N_2 = J_2(\lambda)$ (satu blok; modul menulisnya $\begin{pmatrix} \lambda &amp; 0 \\ 1 &amp; \lambda \end{pmatrix}$).</p>
       </div>
 
       <h3>Teorema bentuk Jordan</h3>
@@ -79,8 +81,8 @@
         <ol>
           <li><strong>Pisahkan nilai eigen.</strong> Dekomposisi primer: $V = \bigoplus_\lambda K_\lambda$, $K_\lambda = \ker(L - \lambda I)^{\ell_\lambda}$. Gabungan basis $B_\lambda$ tiap komponen (diurutkan per nilai eigen) memberi $[L]_B = \operatorname{diag}(A_{\lambda_1}, \dots, A_{\lambda_r})$ dengan $A_\lambda = [L_{K_\lambda}]_{B_\lambda}$.</li>
           <li><strong>Pisahkan skalar.</strong> $L \mapsto [L]_B$ linier, jadi $A_\lambda = [(L - \lambda I)_{K_\lambda}]_{B_\lambda} + \lambda I_{m_\lambda}$, $m_\lambda = \dim K_\lambda$.</li>
-          <li><strong>Bagian nilpoten.</strong> $(L - \lambda I)_{K_\lambda}$ nilpoten, jadi (bentuk normal nilpoten, topik sebelumnya) ada $B_\lambda$ dengan $[(L - \lambda I)_{K_\lambda}]_{B_\lambda} = \operatorname{diag}(S_{m_1}, \dots, S_{m_t})$ (dengan $S_1 = O_1$). Konkretnya: pilih rantai terpanjang $\mathbf{x}, (L - \lambda I)\mathbf{x}, \dots$, ambil komplemen-$L$, ulangi pada komplemennya.</li>
-          <li>Maka $A_\lambda = \operatorname{diag}(\lambda I_{m_1} + S_{m_1}, \dots)$, gabungan blok Jordan. Bila $\ell_\lambda = 1$, $A_\lambda = \lambda I_{m_\lambda}$: $m_\lambda$ blok $1 \times 1$.</li>
+          <li><strong>Bagian nilpoten.</strong> $(L - \lambda I)_{K_\lambda}$ nilpoten, jadi (bentuk normal nilpoten, topik sebelumnya) ada $B_\lambda$ dengan $[(L - \lambda I)_{K_\lambda}]_{B_\lambda} = \operatorname{diag}(N_{m_1}, \dots, N_{m_t})$ (dengan $N_1 = O_1$). Konkretnya: pilih rantai terpanjang $\mathbf{x}, (L - \lambda I)\mathbf{x}, \dots$, urutkan dari ujungnya ($(L - \lambda I)^{\ell-1}\mathbf{x}$ lebih dulu), ambil komplemen-$L$, ulangi pada komplemennya.</li>
+          <li>Maka $A_\lambda = \operatorname{diag}(J_{m_1}(\lambda), \dots, J_{m_t}(\lambda))$, gabungan blok Jordan. Bila $\ell_\lambda = 1$, $A_\lambda = \lambda I_{m_\lambda}$: $m_\lambda$ blok $1 \times 1$.</li>
         </ol>
         <p><strong>Ketunggalan.</strong> Dua bentuk Jordan $J, J'$ dari $L$ similar, jadi punya nilai eigen dan kerangkapan aljabar yang sama. Untuk tiap $\lambda$, $d_k = \dim\ker(L - \lambda I)^k$ invarian similaritas. Pada blok $J_m(\mu)$ dengan $\mu \ne \lambda$, $J_m(\mu) - \lambda I$ invertibel (tak menyumbang ke kernel); pada blok $J_m(\lambda)$ sumbangannya $\min(k, m)$. Jadi</p>
         <p>$$d_1 = \#\text{blok}_\lambda, \qquad d_k - d_{k-1} = \#\set{\text{blok}_\lambda \text{ berukuran} \ge k}, \qquad \#\set{\text{berukuran tepat } k} = 2d_k - d_{k-1} - d_{k+1}$$</p>
@@ -117,7 +119,7 @@
 
       <div class="box proposisi">
         <div class="box-title">Menghitung lewat bentuk Jordan (Modul, persamaan 7.5.6.1)</div>
-        <p>Jika $A = PJP^{-1}$, maka $e^{At} = Pe^{Jt}P^{-1}$. Untuk blok super-1 $J = \lambda I_m + N$ ($N^m = O$):</p>
+        <p>Jika $A = PJP^{-1}$, maka $e^{At} = Pe^{Jt}P^{-1}$. Untuk blok $J = J_m(\lambda) = \lambda I_m + N$ ($N = N_m$, $N^m = O$):</p>
         <p>$$e^{Jt} = e^{\lambda t}\sum_{k=0}^{m-1}\frac{t^k}{k!}N^k = e^{\lambda t}\begin{pmatrix} 1 &amp; t &amp; \tfrac{t^2}{2!} &amp; \cdots &amp; \tfrac{t^{m-1}}{(m-1)!} \\ 0 &amp; 1 &amp; t &amp; \cdots &amp; \tfrac{t^{m-2}}{(m-2)!} \\ \vdots &amp; &amp; \ddots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; 1 &amp; t \\ 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{pmatrix}.$$</p>
       </div>
 
@@ -160,14 +162,14 @@
             $$y(t) = \left(1 + t + \tfrac{1}{2}t^2\right)e^{-t}.$$</li>
           <li>$y \gt 0$ untuk semua $t \ge 0$ (tanpa overshoot) dan $y \to 0$. Suku $te^{-t}$ dan $t^2e^{-t}$ adalah ciri blok Jordan $3 \times 3$.</li>
         </ol>
-        <p><span class="cek">[CEK: (1) Matriks $P = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ -1 &amp; -2 &amp; 1 \end{pmatrix}$ di sumber tidak memenuhi $AP = PJ$: kolom pertamanya $(1, -1, -1)$ bukan vektor eigen, karena $(A + I)(1, -1, -1) = (0, -2, 4)$. Rantai di atas dihitung oleh Claude. (2) Sumber menyebut waktu turun ke $5\%$ "sekitar $t \approx 4{,}7$ detik"; penyelesaian numerik $(1 + t + t^2/2)e^{-t} = 0{,}05$ oleh Claude memberi $t \approx 6{,}30$ (satuan waktu model). (3) Bagian eksponensial matriks tertulis dua kali di sumber, dan merujuk "solusi (7.5.8.1)" yang tidak ada.]</span></p>
+        <p><span class="koreksi">[Koreksi: (1) Matriks $P = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ -1 &amp; -2 &amp; 1 \end{pmatrix}$ di sumber tidak memenuhi $AP = PJ$: kolom pertamanya $(1, -1, -1)$ bukan vektor eigen, karena $(A + I)(1, -1, -1) = (0, -2, 4)$. Rantai di atas dihitung oleh Claude. (2) Sumber menyebut waktu turun ke $5\%$ "sekitar $t \approx 4{,}7$ detik"; penyelesaian numerik $(1 + t + t^2/2)e^{-t} = 0{,}05$ oleh Claude memberi $t \approx 6{,}30$ (satuan waktu model). (3) Bagian eksponensial matriks tertulis dua kali di sumber, dan merujuk "solusi (7.5.8.1)" yang tidak ada.]</span></p>
       </div>
 
       <!-- ================= Kesalahan umum ================= -->
       <h2 id="kesalahan-umum">Kesalahan umum</h2>
       <ul>
         <li><strong>Menentukan blok hanya dari polinomial minimal.</strong> Pangkat $(t - \lambda)^r$ di $m_L$ hanya memberi ukuran blok <em>terbesar</em>; banyak blok perlu $d_1 = \dim\ker(L - \lambda I)$, dan kadang $d_2, d_3, \dots$.</li>
-        <li><strong>Urutan rantai di $P$.</strong> Untuk konvensi super-1, kolom $P$ adalah $\mathbf{v}_1$ (vektor eigen), lalu $\mathbf{v}_2$ dengan $(A - \lambda I)\mathbf{v}_2 = \mathbf{v}_1$, dan seterusnya; urutan terbalik memberi sub-1.</li>
+        <li><strong>Urutan rantai di $P$.</strong> Untuk konvensi super-1, kolom $P$ adalah $\mathbf{v}_1$ (vektor eigen), lalu $\mathbf{v}_2$ dengan $(A - \lambda I)\mathbf{v}_2 = \mathbf{v}_1$, dan seterusnya; urutan terbalik memberi bentuk sub-1 modul.</li>
         <li><strong>$e^{A + B} = e^Ae^B$ tanpa syarat.</strong> Hanya benar bila $AB = BA$; di sini $\lambda I$ dan $N$ komutatif.</li>
         <li><strong>Lupa memeriksa $AP = PJ$.</strong> Cara paling cepat menangkap salah tanda atau salah urutan rantai.</li>
       </ul>

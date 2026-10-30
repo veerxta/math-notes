@@ -78,7 +78,7 @@
       <p>Coba $x_1 = ae^{pt}$, $x_2 = be^{pt}$ dan tulis $\lambda = mp^2/k$:</p>
       <p>$$\begin{pmatrix} -2 &amp; 1 \\ 1 &amp; -2 \end{pmatrix}\begin{pmatrix} a \\ b \end{pmatrix} = \lambda\begin{pmatrix} a \\ b \end{pmatrix}.$$</p>
       <p>Nilai $\lambda$ yang mungkin menentukan $p$, jadi frekuensi osilasi. Banyak masalah sains dan teknik bermuara pada <strong>masalah nilai eigen</strong> $A\mathbf{x} = \lambda\mathbf{x}$.</p>
-      <p><span class="cek">[CEK: sumber menulis bahwa simpangan "harus mengalami peluruhan eksponensial". Matriks di atas bernilai eigen $-1$ dan $-3$ (dihitung oleh Claude), sehingga $p^2 = -k/m$ atau $-3k/m$ dan $p = \pm i\sqrt{k/m}$ atau $\pm i\sqrt{3k/m}$: imajiner murni. Jadi $e^{pt}$ berosilasi (tanpa redaman), sesuai kalimat sumber berikutnya tentang "frekuensi osilasi"; bukan meluruh. Gambar pegas di sumber (eksternal) digambar ulang di atas.]</span></p>
+      <p><span class="koreksi">[Koreksi: sumber menulis bahwa simpangan "harus mengalami peluruhan eksponensial". Matriks di atas bernilai eigen $-1$ dan $-3$ (dihitung oleh Claude), sehingga $p^2 = -k/m$ atau $-3k/m$ dan $p = \pm i\sqrt{k/m}$ atau $\pm i\sqrt{3k/m}$: imajiner murni. Jadi $e^{pt}$ berosilasi (tanpa redaman), sesuai kalimat sumber berikutnya tentang "frekuensi osilasi"; bukan meluruh. Gambar pegas di sumber (eksternal) digambar ulang di atas.]</span></p>
 
       <h3>Nilai eigen dan vektor eigen</h3>
       <p>Subruang $L$-invarian (topik Operator Linier dan Jumlah Langsung) mengungkap banyak hal tentang $L$; yang paling sederhana direntang satu vektor eigen.</p>
@@ -134,7 +134,7 @@
         <summary>Bukti</summary>
         <p>(⇒) $L(c\mathbf{v}) = cL(\mathbf{v}) = c\lambda\mathbf{v} = \lambda(c\mathbf{v})$, dan $c\mathbf{v} \ne \mathbf{0}$. (⇐) Ambil $c = 1$.</p>
         <p>Jadi satu vektor eigen selalu membawa seluruh garis (tanpa titik asal) vektor eigen bersamanya.</p>
-        <p><span class="cek">[CEK: catatan intuisi di sumber menyatakan bahwa himpunan semua $\lambda$-vektor eigen "membentuk sebuah garis (subruang 1-dimensi)". Lemma ini hanya menjamin bahwa garis yang memuat satu vektor eigen terdiri dari vektor eigen; ruang eigen bisa berdimensi lebih dari $1$ (misalnya operator skalar $cI$: semua vektor tak nol adalah $c$-vektor eigen), seperti diakui sumber sendiri sebelum Definisi 6.3.7.]</span></p>
+        <p><span class="koreksi">[Koreksi: catatan intuisi di sumber menyatakan bahwa himpunan semua $\lambda$-vektor eigen "membentuk sebuah garis (subruang 1-dimensi)". Lemma ini hanya menjamin bahwa garis yang memuat satu vektor eigen terdiri dari vektor eigen; ruang eigen bisa berdimensi lebih dari $1$ (misalnya operator skalar $cI$: semua vektor tak nol adalah $c$-vektor eigen), seperti diakui sumber sendiri sebelum Definisi 6.3.7.]</span></p>
       </details>
 
       <div class="box contoh">
@@ -211,7 +211,7 @@
         <p>Untuk $p(t) = t^2 + 3t - 5$: karena $L(1, 1) = 2(1, 1)$ dan $L^2(1, 1) = 4(1, 1)$,</p>
         <p>$$p(L)(1, 1) = 4(1, 1) + 3 \cdot 2(1, 1) - 5(1, 1) = 5(1, 1) = (5, 5) \in V_2.$$</p>
         <p>Umumnya, $p(L)\mathbf{v} = p(\lambda)\mathbf{v}$ untuk $\lambda$-vektor eigen $\mathbf{v}$; di sini $p(2) = 5$.</p>
-        <p><span class="cek">[CEK: sumber menulis $3L(1, 1) = 3(1, 1)$ dan memperoleh $p(L)(1, 1) = (2, 2)$. Karena $L(1, 1) = (2, 2)$, yang benar $3L(1, 1) = (6, 6)$ dan $p(L)(1, 1) = (5, 5)$. Kesimpulan "berada di $V_2$" tetap benar.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis $3L(1, 1) = 3(1, 1)$ dan memperoleh $p(L)(1, 1) = (2, 2)$. Karena $L(1, 1) = (2, 2)$, yang benar $3L(1, 1) = (6, 6)$ dan $p(L)(1, 1) = (5, 5)$. Kesimpulan "berada di $V_2$" tetap benar.]</span></p>
       </div>
 
       <h3>Nilai eigen berbeda</h3>
@@ -240,7 +240,7 @@
           <li>Menurut hipotesis induksi, $c_i(\lambda_i - \lambda_k) = 0$, dan karena $\lambda_i \ne \lambda_k$, $c_i = 0$ untuk $i \lt k$.</li>
           <li>Tersisa $c_k\mathbf{v}_k = \mathbf{0}$ dengan $\mathbf{v}_k \ne \mathbf{0}$, jadi $c_k = 0$.</li>
         </ol>
-        <p><span class="cek">[CEK: bukti di sumber berargumen bahwa jumlah ruang eigen langsung karena ruang-ruang eigen "berpotongan secara trivial" (Teorema 6.3.11). Irisan berpasangan yang trivial tidak cukup untuk jumlah langsung bila ada tiga subruang atau lebih (lihat juga topik Jumlah Langsung, Produk, dan Proyeksi). Bukti induksi di atas ditulis oleh Claude.]</span></p>
+        <p><span class="koreksi">[Koreksi: bukti di sumber berargumen bahwa jumlah ruang eigen langsung karena ruang-ruang eigen "berpotongan secara trivial" (Teorema 6.3.11). Irisan berpasangan yang trivial tidak cukup untuk jumlah langsung bila ada tiga subruang atau lebih (lihat juga topik Jumlah Langsung, Produk, dan Proyeksi). Bukti induksi di atas ditulis oleh Claude.]</span></p>
       </details>
 
       <div class="box teorema">

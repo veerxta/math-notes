@@ -48,7 +48,7 @@
       <!-- ================= Materi ================= -->
       <h2 id="materi">Materi</h2>
       <p>Umumnya butuh banyak kerja untuk memutuskan apakah ada basis vektor eigen. Di ruang hasil kali dalam berdimensi hingga, satu syarat sudah menjamin: <em>swadjoin</em>. Di halaman ini $F = \R$ atau $\C$. Ingat: $L$ swadjoin jika $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L\mathbf{w})$; di ruang real disebut simetris. Matriks swadjoin: $A = A^\dagger$ (kompleks, Hermitian) atau $A = A^T$ (real, simetris).</p>
-      <p><span class="cek">[CEK: sumber menulis "matriks swadjoin adalah matriks $A$ yang memenuhi $A = A^\dagger = A^T$". Untuk matriks kompleks syaratnya hanya $A = A^\dagger$ (misalnya $\begin{pmatrix} 1 &amp; i \\ -i &amp; 1 \end{pmatrix}$ Hermitian tetapi tidak simetris); $A = A^T$ adalah syaratnya untuk matriks real.]</span></p>
+      <p><span class="koreksi">[Koreksi: sumber menulis "matriks swadjoin adalah matriks $A$ yang memenuhi $A = A^\dagger = A^T$". Untuk matriks kompleks syaratnya hanya $A = A^\dagger$ (misalnya $\begin{pmatrix} 1 &amp; i \\ -i &amp; 1 \end{pmatrix}$ Hermitian tetapi tidak simetris); $A = A^T$ adalah syaratnya untuk matriks real.]</span></p>
 
       <h3>Sifat dasar operator swadjoin</h3>
 
@@ -70,7 +70,7 @@
           <li>$V_3 = \operatorname{span}\set{(1, 1 + i)}$: $(A - 3I)(1, 1 + i) = (-2 + 2,\ 1 + i - 1 - i) = (0, 0)$.</li>
         </ul>
         <p>Basis $B = \set{(-2, 1 + i), (1, 1 + i)}$ ini <strong>ortogonal</strong>: $\overline{(-2)} \cdot 1 + \overline{(1 + i)}(1 + i) = -2 + 2 = 0$. Ini bukan kebetulan (Lemma 1).</p>
-        <p><span class="cek">[CEK: sumber merujuk basis ini sebagai hasil "Contoh 6.6.3"; yang dimaksud Contoh 6.6.2.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber merujuk basis ini sebagai hasil "Contoh 6.6.3"; yang dimaksud Contoh 6.6.2.]</span></p>
       </div>
 
       <div class="box peringatan">
@@ -120,7 +120,7 @@
           <li>Hipotesis induksi: $W^\perp$ punya basis ortonormal $\set{\mathbf{e}_2, \dots, \mathbf{e}_n}$ vektor eigen $L|_{W^\perp}$, jadi juga vektor eigen $L$.</li>
           <li>Setiap $\mathbf{e}_j$ ($j \ge 2$) ortogonal terhadap $\mathbf{e}_1$, jadi $\set{\mathbf{e}_1, \dots, \mathbf{e}_n}$ basis ortonormal vektor eigen.</li>
         </ol>
-        <p><span class="cek">[CEK: sumber menyatakan "karena semua nilai eigen $L$ berada di $\R$, maka terdapat setidaknya satu vektor eigen", lalu dalam langkah induksi mengakui bahwa keberadaan satu vektor eigen "diasumsikan". Realnya nilai eigen tidak menjamin keberadaannya; langkah 1 di atas (melalui $\C$ dan Teorema Dasar Aljabar) ditulis oleh Claude untuk menutup celah itu.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menyatakan "karena semua nilai eigen $L$ berada di $\R$, maka terdapat setidaknya satu vektor eigen", lalu dalam langkah induksi mengakui bahwa keberadaan satu vektor eigen "diasumsikan". Realnya nilai eigen tidak menjamin keberadaannya; langkah 1 di atas (melalui $\C$ dan Teorema Dasar Aljabar) ditulis oleh Claude untuk menutup celah itu.]</span></p>
       </details>
 
       <div class="box definisi">
@@ -162,7 +162,7 @@
           <li>Cek ortogonal: $\bar{1} \cdot 1 + \overline{(-i\varphi)}\cdot\tfrac{i}{\varphi} = 1 + i\varphi\cdot\tfrac{i}{\varphi} = 1 - 1 = 0$.</li>
           <li>Normalkan $\hat{\mathbf{v}}_k = \mathbf{v}_k/\norm{\mathbf{v}_k}$ dan $P = [\hat{\mathbf{v}}_1\ \hat{\mathbf{v}}_2]$: $P^\dagger AP = \operatorname{diag}(\lambda_1, \lambda_2)$ dan $A = \lambda_1\hat{\mathbf{v}}_1\hat{\mathbf{v}}_1^\dagger + \lambda_2\hat{\mathbf{v}}_2\hat{\mathbf{v}}_2^\dagger$.</li>
         </ol>
-        <p><span class="cek">[CEK: sumber menulis $x_2 = i(\lambda_1 - 2)$. Dari $(2 - \lambda_1)x_1 + ix_2 = 0$ diperoleh $x_2 = -i(\lambda_1 - 2)$; cek dengan baris kedua: $-i \cdot 1 + (3 - \lambda_1)(-i\varphi) = -i(1 + (3 - \lambda_1)\varphi) = -i(1 + \tfrac{1 - \sqrt{5}}{2}\cdot\tfrac{1 + \sqrt{5}}{2}) = -i(1 - 1) = 0$.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis $x_2 = i(\lambda_1 - 2)$. Dari $(2 - \lambda_1)x_1 + ix_2 = 0$ diperoleh $x_2 = -i(\lambda_1 - 2)$; cek dengan baris kedua: $-i \cdot 1 + (3 - \lambda_1)(-i\varphi) = -i(1 + (3 - \lambda_1)\varphi) = -i(1 + \tfrac{1 - \sqrt{5}}{2}\cdot\tfrac{1 + \sqrt{5}}{2}) = -i(1 - 1) = 0$.]</span></p>
       </div>
 
       <div class="box contoh">
@@ -184,7 +184,7 @@
           <li>Proyeksi $\mathbf{x} = (1, 2, 3)$ pada $\operatorname{span}\set{\mathbf{u}_1}$: $\mathbf{u}_1\mathbf{u}_1^T = \begin{pmatrix} \tfrac{1}{2} &amp; -\tfrac{1}{2} &amp; 0 \\ -\tfrac{1}{2} &amp; \tfrac{1}{2} &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, jadi $(\mathbf{u}_1\mathbf{u}_1^T)\mathbf{x} = \left(-\tfrac{1}{2}, \tfrac{1}{2}, 0\right)$, sama dengan $\langle \mathbf{x}, \mathbf{u}_1 \rangle\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}\mathbf{u}_1$.</li>
           <li>Sisa $\mathbf{x} - (\mathbf{u}_1\mathbf{u}_1^T)\mathbf{x} = \left(\tfrac{3}{2}, \tfrac{3}{2}, 3\right)$ ortogonal terhadap $\mathbf{u}_1$.</li>
         </ol>
-        <p><span class="cek">[CEK: di sumber, $\mathbf{u}_1$ dan $\mathbf{u}_2$ ditulis dengan tanda terbalik ($-\mathbf{v}_1/\norm{\mathbf{v}_1}$, $-\mathbf{v}_2/\norm{\mathbf{v}_2}$) dibanding langkah proyeksinya; ini tidak mengubah $\mathbf{u}_i\mathbf{u}_i^T$. Entri pertama $\mathbf{u}_2$ ditulis $\tfrac{1}{6}\sqrt{3}$; seharusnya $\pm\tfrac{1}{6}\sqrt{6}$, seperti di matriks $P$ sumber.]</span></p>
+        <p><span class="koreksi">[Koreksi: di sumber, $\mathbf{u}_1$ dan $\mathbf{u}_2$ ditulis dengan tanda terbalik ($-\mathbf{v}_1/\norm{\mathbf{v}_1}$, $-\mathbf{v}_2/\norm{\mathbf{v}_2}$) dibanding langkah proyeksinya; ini tidak mengubah $\mathbf{u}_i\mathbf{u}_i^T$. Entri pertama $\mathbf{u}_2$ ditulis $\tfrac{1}{6}\sqrt{3}$; seharusnya $\pm\tfrac{1}{6}\sqrt{6}$, seperti di matriks $P$ sumber.]</span></p>
       </div>
 
       <!-- ================= Kesalahan umum ================= -->

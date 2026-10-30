@@ -788,6 +788,19 @@ details.pembahasan[open] > summary { margin-bottom: 0.25rem; }
   box-decoration-break: clone;
 }
 
+/* Koreksi terhadap sumber yang sudah dipastikan (beda dari [CEK] yang masih terbuka). */
+.koreksi {
+  padding: 0.05em 0.35em;
+  background: var(--t-definisi);
+  border-radius: 4px;
+  color: var(--c-definisi);
+  font-family: var(--sans);
+  font-size: 0.82em;
+  font-weight: 600;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 /* ---------- Komponen: tabel (selalu dibungkus .tabel) ---------- */
 
 .tabel {
@@ -966,7 +979,7 @@ details.pembahasan[open] > summary { margin-bottom: 0.25rem; }
   h2, h3, h4, .box-title { break-after: avoid; }
   .box, .latihan, pre, figure, .tabel, .katex-display { break-inside: avoid; }
 
-  .box, .cek, .oleh-claude, .intisari, .latihan {
+  .box, .cek, .koreksi, .oleh-claude, .intisari, .latihan {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }

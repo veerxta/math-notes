@@ -103,7 +103,7 @@
 
       <div class="box catatan">
         <div class="box-title">Banyak subruang</div>
-        <p>Untuk keluarga $\set{W_j}_{j \in J}$ (boleh tak hingga), $V = \bigoplus_{j \in J} W_j$ berarti setiap $\mathbf{v}$ adalah jumlah berhingga $\mathbf{w}_{j_1} + \dots + \mathbf{w}_{j_k}$ dengan $\mathbf{w}_{j_i} \in W_{j_i}$, dan dekomposisi itu tunggal. Ketunggalan setara dengan $W_j \cap \sum_{i \ne j} W_i = \set{\mathbf{0}}$ untuk setiap $j$. <span class="cek">[CEK: sumber hanya mensyaratkan irisan berpasangan trivial ($W_{j_1} \cap W_{j_2} = \set{\mathbf{0}}$) ditambah keberadaan dekomposisi. Itu tidak cukup: tiga garis berbeda melalui titik asal di $\R^2$ beririsan trivial berpasangan tetapi jumlahnya tidak langsung. Bukti Teorema 2 di sumber sendiri memakai ketunggalan dekomposisi.]</span></p>
+        <p>Untuk keluarga $\set{W_j}_{j \in J}$ (boleh tak hingga), $V = \bigoplus_{j \in J} W_j$ berarti setiap $\mathbf{v}$ adalah jumlah berhingga $\mathbf{w}_{j_1} + \dots + \mathbf{w}_{j_k}$ dengan $\mathbf{w}_{j_i} \in W_{j_i}$, dan dekomposisi itu tunggal. Ketunggalan setara dengan $W_j \cap \sum_{i \ne j} W_i = \set{\mathbf{0}}$ untuk setiap $j$. <span class="koreksi">[Koreksi: sumber hanya mensyaratkan irisan berpasangan trivial ($W_{j_1} \cap W_{j_2} = \set{\mathbf{0}}$) ditambah keberadaan dekomposisi. Itu tidak cukup: tiga garis berbeda melalui titik asal di $\R^2$ beririsan trivial berpasangan tetapi jumlahnya tidak langsung. Bukti Teorema 2 di sumber sendiri memakai ketunggalan dekomposisi.]</span></p>
       </div>
 
       <div class="box teorema">
@@ -135,7 +135,7 @@
         <p><strong>Produk Kartesius</strong> keluarga himpunan $\set{S_j}_{j \in J}$ adalah himpunan semua pemetaan $f \colon J \to \bigcup_{j} S_j$ dengan $f(j) \in S_j$ untuk setiap $j$; ditulis $\prod_{j \in J} S_j$, dan $f(j)$ disebut komponen ke-$j$ dari $f$. Untuk $J = \set{1, \dots, n}$ ini $S_1 \times \dots \times S_n$, dengan $f = (s_1, \dots, s_n)$ berarti $f(j) = s_j$.</p>
         <p>Jika setiap $V_j$ ruang vektor atas $F$, <strong>produk langsung</strong> (direct product) $V = \prod_{j} V_j$ adalah produk Kartesius itu dengan operasi per komponen:</p>
         <p>$$(\mathbf{v} + c\mathbf{w})(j) := \mathbf{v}(j) + c\,\mathbf{w}(j), \qquad \mathbf{0}(j) := \mathbf{0}_{V_j}.$$</p>
-        <p><span class="cek">[CEK: sumber menulis kodomain pemetaan $f$ sebagai $\prod_j S_j$; seharusnya $\bigcup_j S_j$, seperti yang dipakai sumber sendiri pada bukti Teorema 2.7.8.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis kodomain pemetaan $f$ sebagai $\prod_j S_j$; seharusnya $\bigcup_j S_j$, seperti yang dipakai sumber sendiri pada bukti Teorema 2.7.8.]</span></p>
       </div>
 
       <div class="box teorema">
@@ -174,7 +174,7 @@
         <div class="box-title">Operator lewat komponen (Modul, Contoh 2.7.13)</div>
         <p>$W_1 = \operatorname{span}\set{(1, 1, 1)}$ dan $W_2 = \operatorname{span}\set{(1, 0, 1), (0, 1, 1)} = \set{(a, b, a + b)}$ memberi $\R^3 = W_1 \oplus W_2$. Untuk $\mathbf{v} = (1, -1, 2)$: dari $\alpha(1, 1, 1) + (a, b, a + b) = (1, -1, 2)$ diperoleh $\alpha = -2$, $a = 3$, $b = 1$, jadi</p>
         <p>$$\mathbf{v}^{(1)} = (-2, -2, -2) \in W_1, \qquad \mathbf{v}^{(2)} = 3(1, 0, 1) + (0, 1, 1) = (3, 1, 4) \in W_2.$$</p>
-        <p>Operator pada ruang jumlah langsung bisa didefinisikan dengan menentukan komponen-komponen petanya. Sumber mendefinisikan $L$ lewat $L(\mathbf{v})^{(1)} = 2\mathbf{v}^{(1)} + \mathbf{v}^{(2)}$ dan $L(\mathbf{v})^{(2)} = \mathbf{v}^{(1)} - \mathbf{v}^{(2)}$, lalu menyimpulkan $L(\mathbf{v}) = 3\mathbf{v}^{(1)}$, $L(1, 1, 1) = (3, 3, 3)$, dan $\ker L = W_2$. <span class="cek">[CEK: definisi ini tidak konsisten, karena komponen ke-$1$ harus terletak di $W_1$ dan komponen ke-$2$ di $W_2$, padahal $2\mathbf{v}^{(1)} + \mathbf{v}^{(2)}$ umumnya tidak di $W_1$ dan $\mathbf{v}^{(1)} - \mathbf{v}^{(2)}$ umumnya tidak di $W_2$ (misalnya untuk $\mathbf{v} = (1, 1, 1)$ diperoleh komponen ke-$2$ sama dengan $(1, 1, 1) \notin W_2$). Kesimpulan akhir sumber, yaitu operator $L(\mathbf{v}) = 3\mathbf{v}^{(1)}$, memang linier dengan kernel $W_2$ dan image $W_1$.]</span></p>
+        <p>Operator pada ruang jumlah langsung bisa didefinisikan dengan menentukan komponen-komponen petanya. Sumber mendefinisikan $L$ lewat $L(\mathbf{v})^{(1)} = 2\mathbf{v}^{(1)} + \mathbf{v}^{(2)}$ dan $L(\mathbf{v})^{(2)} = \mathbf{v}^{(1)} - \mathbf{v}^{(2)}$, lalu menyimpulkan $L(\mathbf{v}) = 3\mathbf{v}^{(1)}$, $L(1, 1, 1) = (3, 3, 3)$, dan $\ker L = W_2$. <span class="koreksi">[Koreksi: definisi ini tidak konsisten, karena komponen ke-$1$ harus terletak di $W_1$ dan komponen ke-$2$ di $W_2$, padahal $2\mathbf{v}^{(1)} + \mathbf{v}^{(2)}$ umumnya tidak di $W_1$ dan $\mathbf{v}^{(1)} - \mathbf{v}^{(2)}$ umumnya tidak di $W_2$ (misalnya untuk $\mathbf{v} = (1, 1, 1)$ diperoleh komponen ke-$2$ sama dengan $(1, 1, 1) \notin W_2$). Kesimpulan akhir sumber, yaitu operator $L(\mathbf{v}) = 3\mathbf{v}^{(1)}$, memang linier dengan kernel $W_2$ dan image $W_1$.]</span></p>
       </div>
 
       <h3>Proyeksi</h3>
@@ -207,7 +207,7 @@
         <ul>
           <li>Proyeksi ditentukan sepenuhnya oleh pasangan $(L[V], \ker L)$; sebaliknya setiap $V = U \oplus W$ memberi proyeksi ke $U$ sepanjang $W$. Karena komplemen tidak tunggal, ada banyak proyeksi ke subruang yang sama.</li>
           <li>Dengan basis yang mengikuti $V = L[V] \oplus \ker L$, matriks proyeksi berbentuk $\begin{pmatrix} I & 0 \\ 0 & 0 \end{pmatrix}$; nilai eigennya hanya $0$ dan $1$.</li>
-          <li>Untuk ruang berdimensi hingga atas $\R$ atau $\C$, $\operatorname{rank} L = \operatorname{tr} L$ (jejak matriks di atas). <span class="cek">[CEK: sumber menyatakannya tanpa syarat lapangan; atas lapangan berkarakteristik $p$, jejak hanya sama dengan rank modulo $p$.]</span></li>
+          <li>Untuk ruang berdimensi hingga atas $\R$ atau $\C$, $\operatorname{rank} L = \operatorname{tr} L$ (jejak matriks di atas). <span class="koreksi">[Koreksi: sumber menyatakannya tanpa syarat lapangan; atas lapangan berkarakteristik $p$, jejak hanya sama dengan rank modulo $p$.]</span></li>
           <li>Pada proyeksi ortogonal kernel tegak lurus image; pada proyeksi miring tidak.</li>
         </ul>
       </div>

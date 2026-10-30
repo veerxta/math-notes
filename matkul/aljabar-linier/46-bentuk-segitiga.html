@@ -39,7 +39,7 @@
       <h2 id="intisari">Intisari</h2>
       <ul class="intisari">
         <li>Matriks similar menyatakan operator yang sama; Bab 7 mencari bentuk matriks yang mencirikan kelas similaritas (bentuk Jordan).</li>
-        <li>$L$ punya representasi segitiga ⇔ ada rantai subruang $L$-invarian $V = H_1 \supseteq \cdots \supseteq H_n$ dengan $\dim H_j = n - j + 1$.</li>
+        <li>$L$ punya representasi segitiga atas ⇔ ada rantai subruang $L$-invarian $\set{\mathbf{0}} \subset V_1 \subset \cdots \subset V_n = V$ dengan $\dim V_j = j$.</li>
         <li>Jika polinomial minimal (atau karakteristik) $L$ terurai menjadi faktor linier di $F$, maka $L$ dapat <strong>disegitigakan</strong>; atas $\C$ ini selalu terjadi.</li>
         <li>Diagonal matriks segitiga berisi nilai eigen (dengan kerangkapan aljabar).</li>
         <li>Bentuk segitiga tidak tunggal dalam satu kelas similaritas; perlu diperhalus.</li>
@@ -49,33 +49,39 @@
       <h2 id="materi">Materi</h2>
       <p>Relasi ekuivalensi mengelompokkan objek yang "sama" dalam arti tertentu. Untuk matriks sudah dikenal tiga: <strong>ekuivalen baris</strong> (kernel dan jangkauan sama; dicirikan bentuk eselon baris tereduksi), <strong>ekuivalen rank</strong> (dimensi kernel dan jangkauan sama; dicirikan bentuk di topik Ekuivalensi dan Similaritas), dan <strong>similar</strong> (operator yang identik). Bab 7 mencari bentuk penciri kelas similaritas. Rencananya: bentuk segitiga → dekomposisi primer (memisahkan nilai eigen) → struktur operator nilpoten → <strong>bentuk kanonik Jordan</strong>. Teorema klasifikasi akhirnya berlaku di ruang berdimensi hingga atas lapangan yang tertutup secara aljabar.</p>
 
+      <div class="box catatan">
+        <div class="box-title">Konvensi Bab 7 di catatan ini</div>
+        <p>Modul memakai matriks <strong>segitiga bawah</strong> dan blok Jordan dengan angka $1$ di <em>bawah</em> diagonal (sub-1). Catatan ini memakai <strong>segitiga atas</strong> dan blok Jordan dengan angka $1$ di <em>atas</em> diagonal (super-1), seperti Pembahasan soal di modul, contoh persamaan diferensial di §7.5, dan kebanyakan buku. Keduanya setara: membalik urutan basis $(\mathbf{b}_1, \dots, \mathbf{b}_n) \mapsto (\mathbf{b}_n, \dots, \mathbf{b}_1)$ mengubah segitiga bawah menjadi segitiga atas (matriksnya menjadi $P^{-1}AP$ dengan $P$ matriks permutasi pembalik), tanpa mengubah nilai eigen, polinomial, maupun ukuran blok. Untuk membaca modul, transpos-kan bentuk-bentuk di sini (atau balik urutan basisnya).</p>
+      </div>
+
       <h3>Rantai subruang invarian</h3>
-      <p>Jika nilai eigen tidak semuanya di $F$, $L$ tidak dapat didiagonalkan atas $F$; tetapi diagonalisasi bisa gagal juga karena kekurangan vektor eigen (topik Polinomial Karakteristik). Bentuk "hampir diagonal" yang mudah diperoleh adalah matriks segitiga. Sumber memakai konvensi <strong>segitiga bawah</strong>: $a_{ij} = 0$ bila $i \lt j$. Semua hasil berlaku juga untuk segitiga atas (dengan urutan basis dibalik).</p>
+      <p>Jika nilai eigen tidak semuanya di $F$, $L$ tidak dapat didiagonalkan atas $F$; tetapi diagonalisasi bisa gagal juga karena kekurangan vektor eigen (topik Polinomial Karakteristik). Bentuk "hampir diagonal" yang mudah diperoleh adalah matriks <strong>segitiga atas</strong>: $a_{ij} = 0$ bila $i \gt j$.</p>
 
       <div class="box lemma">
         <div class="box-title">Segitiga ⇔ rantai invarian (Modul, Lemma 7.1.1)</div>
-        <p>Misalkan $V \cong F^n$. $L \in \mathcal{L}(V)$ punya representasi matriks segitiga bawah jika dan hanya jika ada subruang $L$-invarian</p>
-        <p>$$V = H_1 \supseteq H_2 \supseteq \cdots \supseteq H_n, \qquad \dim H_j = n - j + 1.$$</p>
+        <p>Misalkan $V \cong F^n$. $L \in \mathcal{L}(V)$ punya representasi matriks segitiga atas jika dan hanya jika ada subruang $L$-invarian</p>
+        <p>$$\set{\mathbf{0}} \subset V_1 \subset V_2 \subset \cdots \subset V_n = V, \qquad \dim V_j = j.$$</p>
+        <p>(Dalam konvensi modul: segitiga bawah ⇔ rantai menurun $V = H_1 \supseteq \cdots \supseteq H_n$, $\dim H_j = n - j + 1$; hubungannya $H_j = V_{n-j+1}$.)</p>
       </div>
 
       <details class="bukti">
         <summary>Bukti</summary>
-        <p><strong>(⇒)</strong> Jika $[L]_B = [a_{ij}]$ segitiga bawah untuk $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_n}$, ambil $H_j = \operatorname{span}\set{\mathbf{b}_j, \dots, \mathbf{b}_n}$. Kolom ke-$j$ nol di atas diagonal, jadi $L(\mathbf{b}_j) = a_{jj}\mathbf{b}_j + \cdots + a_{nj}\mathbf{b}_n \in H_j$, dan untuk $k \ge j$ juga $L(\mathbf{b}_k) \in H_k \subseteq H_j$. Jadi $H_j$ $L$-invarian.</p>
-        <p><strong>(⇐)</strong> Pilih $\mathbf{b}_n$ basis $H_n$. Jika $\mathbf{b}_{j+1}, \dots, \mathbf{b}_n$ basis $H_{j+1}$, pilih $\mathbf{b}_j \in H_j \setminus H_{j+1}$ (dimensinya selisih $1$), sehingga $\mathbf{b}_j, \dots, \mathbf{b}_n$ basis $H_j$. Karena $H_j$ invarian, $L(\mathbf{b}_j) \in \operatorname{span}\set{\mathbf{b}_j, \dots, \mathbf{b}_n}$: entri $a_{ij}$ dengan $i \lt j$ nol.</p>
+        <p><strong>(⇒)</strong> Jika $[L]_B = [a_{ij}]$ segitiga atas untuk $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_n}$, ambil $V_j = \operatorname{span}\set{\mathbf{b}_1, \dots, \mathbf{b}_j}$. Kolom ke-$k$ nol di bawah diagonal, jadi $L(\mathbf{b}_k) = a_{1k}\mathbf{b}_1 + \cdots + a_{kk}\mathbf{b}_k \in V_k \subseteq V_j$ untuk $k \le j$. Jadi $V_j$ $L$-invarian.</p>
+        <p><strong>(⇐)</strong> Pilih $\mathbf{b}_1$ basis $V_1$. Jika $\mathbf{b}_1, \dots, \mathbf{b}_{j-1}$ basis $V_{j-1}$, pilih $\mathbf{b}_j \in V_j \setminus V_{j-1}$ (dimensinya selisih $1$), sehingga $\mathbf{b}_1, \dots, \mathbf{b}_j$ basis $V_j$. Karena $V_j$ invarian, $L(\mathbf{b}_j) \in \operatorname{span}\set{\mathbf{b}_1, \dots, \mathbf{b}_j}$: entri $a_{ij}$ dengan $i \gt j$ nol.</p>
       </details>
 
       <div class="box catatan">
         <div class="box-title">Sumber kesulitan</div>
         <p>Dari topik Diagonalisasi: semua kesulitan berasal dari nilai eigen yang berkerangkapan $\gt 1$ di polinomial minimal. Tetapi untuk $m_L(t) = (t - \lambda)^m$ ada rantai alami</p>
-        <p>$$V = \ker(L - \lambda I)^m \supseteq \ker(L - \lambda I)^{m-1} \supseteq \cdots \supseteq \ker(L - \lambda I),$$</p>
-        <p>semuanya $L$-invarian. Rantai seperti ini (diperhalus sampai dimensi turun satu-satu) memberi bentuk segitiga melalui Lemma 1, dan gagasan ini muncul lagi sepanjang bab.</p>
+        <p>$$\ker(L - \lambda I) \subseteq \ker(L - \lambda I)^2 \subseteq \cdots \subseteq \ker(L - \lambda I)^m = V,$$</p>
+        <p>semuanya $L$-invarian. Rantai seperti ini (diperhalus sampai dimensi naik satu-satu) memberi bentuk segitiga melalui Lemma 1, dan gagasan ini muncul lagi sepanjang bab.</p>
       </div>
 
       <h3>Teorema penyegitigaan</h3>
 
       <div class="box teorema">
         <div class="box-title">Penyegitigaan (Modul, Teorema 7.1.2)</div>
-        <p>Misalkan $V \cong F^n$ dan $L \in \mathcal{L}(V)$. Jika polinomial minimal $L$ terurai menjadi faktor linier atas $F$ (semua akarnya di $F$), maka $L$ punya representasi matriks segitiga bawah.</p>
+        <p>Misalkan $V \cong F^n$ dan $L \in \mathcal{L}(V)$. Jika $\mathcal{Z}(L) \subseteq F$, yaitu polinomial minimal $L$ terurai menjadi faktor linier atas $F$, maka $L$ punya representasi matriks segitiga atas.</p>
       </div>
 
       <details class="bukti">
@@ -84,16 +90,16 @@
         <ol>
           <li>Ambil akar $\lambda$ dari $m_L$; menurut topik Nilai Eigen, $\lambda$ nilai eigen, dengan vektor eigen $\mathbf{v}$. $\operatorname{span}\set{\mathbf{v}}$ $L$-invarian, jadi $L$ menginduksi $\bar{L}$ pada $W = V/\operatorname{span}\set{\mathbf{v}}$, $\dim W = n - 1$ (topik Koset dan Ruang Hasil Bagi).</li>
           <li>$m_L(\bar{L}) = \overline{m_L(L)} = O$, jadi polinomial minimal $\bar{L}$ membagi $m_L$ dan juga terurai atas $F$.</li>
-          <li>Hipotesis induksi: ada basis $\bar{\mathbf{b}}_1, \dots, \bar{\mathbf{b}}_{n-1}$ dari $W$ dengan $[\bar{L}]$ segitiga bawah, yaitu $\bar{L}(\bar{\mathbf{b}}_i) \in \operatorname{span}\set{\bar{\mathbf{b}}_i, \dots, \bar{\mathbf{b}}_{n-1}}$.</li>
-          <li>Pilih wakil $\mathbf{b}_i$. Maka $\mathbf{b}_1, \dots, \mathbf{b}_{n-1}, \mathbf{v}$ basis $V$, dan $L(\mathbf{b}_i) \in \operatorname{span}\set{\mathbf{b}_i, \dots, \mathbf{b}_{n-1}, \mathbf{v}}$, $L(\mathbf{v}) = \lambda\mathbf{v}$.</li>
-          <li>Terhadap $B = \set{\mathbf{b}_1, \dots, \mathbf{b}_{n-1}, \mathbf{v}}$: $[L]_B = \begin{pmatrix} A &amp; \mathbf{0} \\ * &amp; \lambda \end{pmatrix}$ dengan $A = [\bar{L}]$ segitiga bawah. Jadi $[L]_B$ segitiga bawah.</li>
+          <li>Hipotesis induksi: ada basis $\bar{\mathbf{b}}_2, \dots, \bar{\mathbf{b}}_n$ dari $W$ dengan $[\bar{L}]$ segitiga atas, yaitu $\bar{L}(\bar{\mathbf{b}}_i) \in \operatorname{span}\set{\bar{\mathbf{b}}_2, \dots, \bar{\mathbf{b}}_i}$.</li>
+          <li>Pilih wakil $\mathbf{b}_i$. Maka $\mathbf{v}, \mathbf{b}_2, \dots, \mathbf{b}_n$ basis $V$, $L(\mathbf{v}) = \lambda\mathbf{v}$, dan $L(\mathbf{b}_i) \in \operatorname{span}\set{\mathbf{v}, \mathbf{b}_2, \dots, \mathbf{b}_i}$.</li>
+          <li>Terhadap $B = \set{\mathbf{v}, \mathbf{b}_2, \dots, \mathbf{b}_n}$: $[L]_B = \begin{pmatrix} \lambda &amp; * \\ \mathbf{0} &amp; A \end{pmatrix}$ dengan $A = [\bar{L}]$ segitiga atas. Jadi $[L]_B$ segitiga atas.</li>
         </ol>
-        <p><span class="cek">[CEK: sumber menulis hipotesis sebagai "himpunan akar polinomial minimal $\mathcal{Z}(L) \subseteq F$", padahal $\mathcal{Z}(L)$ di topik Polinomial Karakteristik didefinisikan sebagai akar <em>polinomial karakteristik</em> di $F$ (sehingga secara harfiah selalu $\subseteq F$). Maksudnya jelas: semua akar (di $\overline{F}$) ada di $F$, yaitu polinomial minimal (setara: karakteristik) terurai atas $F$. Pernyataan di atas memakai rumusan itu.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis hipotesis sebagai "himpunan akar polinomial minimal $\mathcal{Z}(L) \subseteq F$", padahal $\mathcal{Z}(L)$ adalah akar polinomial karakteristik (di $\overline{F}$, topik Polinomial Karakteristik). Karena polinomial minimal dan karakteristik punya akar yang sama, syaratnya setara: keduanya terurai atas $F$. Bukti sumber (segitiga bawah, vektor eigen di posisi terakhir) sama dengan bukti di atas setelah urutan basis dibalik.]</span></p>
       </details>
 
       <div class="box akibat">
         <div class="box-title">Kasus kompleks</div>
-        <p>Setiap operator pada ruang vektor kompleks berdimensi hingga (setiap matriks di $M_n(\C)$) similar dengan matriks segitiga. Diagonalnya berisi nilai eigen dengan kerangkapan aljabar, karena polinomial karakteristik matriks segitiga adalah hasil kali $(a_{ii} - t)$. Sebaliknya, jika polinomial minimal tidak terurai atas $F$ (misalnya rotasi $90^\circ$ atas $\R$), bentuk segitiga atas $F$ tidak ada.</p>
+        <p>Setiap operator pada ruang vektor kompleks berdimensi hingga (setiap matriks di $M_n(\C)$) similar dengan matriks segitiga atas. Diagonalnya berisi nilai eigen dengan kerangkapan aljabar, karena polinomial karakteristik matriks segitiga adalah hasil kali $(a_{ii} - t)$. Sebaliknya, jika polinomial minimal tidak terurai atas $F$ (misalnya rotasi $90^\circ$ atas $\R$), bentuk segitiga atas $F$ tidak ada.</p>
       </div>
 
       <details class="bukti">
@@ -103,20 +109,21 @@
 
       <div class="box contoh">
         <div class="box-title">Rantai invarian dan rantai kernel (Modul, Contoh 7.1.3)</div>
-        <p>Di $\R^3$, $A = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix}$ sudah segitiga bawah; $\det(tI - A) = (t - 1)^3$.</p>
+        <p>Modul memberi $A = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix}$ di $\R^3$ (segitiga bawah): $L\mathbf{e}_1 = \mathbf{e}_1 + \mathbf{e}_2$, $L\mathbf{e}_2 = \mathbf{e}_2 + \mathbf{e}_3$, $L\mathbf{e}_3 = \mathbf{e}_3$, dan $\det(tI - A) = (t - 1)^3$.</p>
         <ul>
-          <li><strong>Rantai (Lemma 1):</strong> $H_1 = V$, $H_2 = \operatorname{span}\set{\mathbf{e}_2, \mathbf{e}_3}$, $H_3 = \operatorname{span}\set{\mathbf{e}_3}$, karena $L\mathbf{e}_3 = \mathbf{e}_3$, $L\mathbf{e}_2 = \mathbf{e}_2 + \mathbf{e}_3$, $L\mathbf{e}_1 = \mathbf{e}_1 + \mathbf{e}_2$.</li>
-          <li><strong>Bagian nilpoten:</strong> $N = A - I = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}$, $N(x, y, z) = (0, x, y)$, $N^2 \ne O$, $N^3 = O$. Jadi $m_L = (t - 1)^3$.</li>
-          <li><strong>Rantai kernel:</strong> $\ker N = \operatorname{span}\set{\mathbf{e}_3}$, $\ker N^2 = \operatorname{span}\set{\mathbf{e}_2, \mathbf{e}_3}$, $\ker N^3 = V$, berdimensi $1, 2, 3$: tepat rantai $H_3 \subseteq H_2 \subseteq H_1$. Ini sesuai dengan satu blok Jordan $3 \times 3$ untuk nilai eigen $1$.</li>
+          <li><strong>Segitiga atas:</strong> terhadap urutan terbalik $(\mathbf{e}_3, \mathbf{e}_2, \mathbf{e}_1)$, $[L] = \begin{pmatrix} 1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$.</li>
+          <li><strong>Rantai (Lemma 1):</strong> $V_1 = \operatorname{span}\set{\mathbf{e}_3}$, $V_2 = \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_2}$, $V_3 = \R^3$, semuanya invarian.</li>
+          <li><strong>Bagian nilpoten:</strong> $N = A - I$ dengan $N(x, y, z) = (0, x, y)$, $N^2 \ne O$, $N^3 = O$. Jadi $m_L = (t - 1)^3$.</li>
+          <li><strong>Rantai kernel:</strong> $\ker N = \operatorname{span}\set{\mathbf{e}_3}$, $\ker N^2 = \operatorname{span}\set{\mathbf{e}_2, \mathbf{e}_3}$, $\ker N^3 = V$: tepat rantai $V_1 \subseteq V_2 \subseteq V_3$. Ini satu blok Jordan $3 \times 3$ untuk nilai eigen $1$.</li>
         </ul>
-        <p>Contoh kedua: $B = \begin{pmatrix} 2 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 3 \end{pmatrix}$ berpolinomial minimal $(t - 2)^2(t - 3)^2$. Dekomposisi primer (topik berikutnya) memberi $V = \ker(B - 2I)^2 \oplus \ker(B - 3I)^2 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2} \oplus \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_4}$; di tiap komponen $B - \lambda I$ nilpoten berindeks $2$, dan rantai kedua komponen digabung menjadi rantai global.</p>
+        <p>Contoh kedua di modul: $B = \begin{pmatrix} 2 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 3 \end{pmatrix}$, dengan $m_L = (t - 2)^2(t - 3)^2$. Terhadap urutan $(\mathbf{e}_2, \mathbf{e}_1, \mathbf{e}_4, \mathbf{e}_3)$ menjadi $\begin{pmatrix} 2 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 3 \end{pmatrix}$. Dekomposisi primer (topik berikutnya) memberi $V = \ker(B - 2I)^2 \oplus \ker(B - 3I)^2 = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_2} \oplus \operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_4}$; di tiap komponen $B - \lambda I$ nilpoten berindeks $2$, dan rantai kedua komponen digabung menjadi rantai global.</p>
       </div>
 
       <!-- ================= Kesalahan umum ================= -->
       <h2 id="kesalahan-umum">Kesalahan umum</h2>
       <ul>
-        <li><strong>Mengira bentuk segitiga tunggal.</strong> $\begin{pmatrix} 2 &amp; 0 \\ -1 &amp; 2 \end{pmatrix}$ dan $\begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 2 \end{pmatrix}$ similar (Latihan 2 dan penskalaan basis); bentuk segitiga satu kelas bisa banyak.</li>
-        <li><strong>Mencampur segitiga atas dan bawah.</strong> Pilih satu konvensi; membalik urutan basis menukar keduanya.</li>
+        <li><strong>Mengira bentuk segitiga tunggal.</strong> $\begin{pmatrix} 2 &amp; -1 \\ 0 &amp; 2 \end{pmatrix}$ (Latihan 2) dan $\begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}$ similar (ganti $\mathbf{b}_2$ dengan $-\mathbf{b}_2$); bentuk segitiga satu kelas bisa banyak.</li>
+        <li><strong>Mencampur segitiga atas dan bawah.</strong> Catatan ini memakai segitiga atas; modul memakai segitiga bawah. Membalik urutan basis menukar keduanya.</li>
         <li><strong>Menyegitigakan atas $\R$ tanpa memeriksa akar.</strong> Akar kompleks membuat penyegitigaan atas $\R$ mustahil.</li>
       </ul>
 
@@ -138,15 +145,15 @@
       </div>
 
       <div class="latihan">
-        <p>Segitigakan (konvensi segitiga bawah) $A = \begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 3 \end{pmatrix}$ mengikuti bukti Teorema 1.</p>
+        <p>Segitigakan $A = \begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 3 \end{pmatrix}$ mengikuti bukti Teorema 1.</p>
         <details class="pembahasan">
           <summary>Lihat pembahasan</summary>
           <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
           <ol>
             <li>$\det(tI - A) = (t - 1)(t - 3) + 1 = (t - 2)^2$: satu nilai eigen $2$. $A - 2I = \begin{pmatrix} -1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix}$, vektor eigen $\mathbf{v} = (1, 1)$; ruang eigennya berdimensi $1$, jadi $A$ tidak dapat didiagonalkan.</li>
-            <li>Lengkapi dengan $\mathbf{b}_1 = (1, 0)$ dan ambil $B = \set{\mathbf{b}_1, \mathbf{v}}$ (vektor eigen terakhir).</li>
-            <li>$A\mathbf{b}_1 = (1, -1) = 2\mathbf{b}_1 - \mathbf{v}$ dan $A\mathbf{v} = 2\mathbf{v}$.</li>
-            <li>$[A]_B = \begin{pmatrix} 2 &amp; 0 \\ -1 &amp; 2 \end{pmatrix}$, segitiga bawah dengan nilai eigen di diagonal. Dengan $P = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}$: $P^{-1}AP = [A]_B$.</li>
+            <li>Ambil $B = \set{\mathbf{v}, \mathbf{b}_2}$ dengan vektor eigen di depan dan $\mathbf{b}_2 = (1, 0)$.</li>
+            <li>$A\mathbf{v} = 2\mathbf{v}$ dan $A\mathbf{b}_2 = (1, -1) = -\mathbf{v} + 2\mathbf{b}_2$.</li>
+            <li>$[A]_B = \begin{pmatrix} 2 &amp; -1 \\ 0 &amp; 2 \end{pmatrix}$, segitiga atas dengan nilai eigen di diagonal. Dengan $P = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}$: $P^{-1}AP = [A]_B$.</li>
           </ol>
         </details>
       </div>
@@ -158,7 +165,7 @@
           <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
           <ol>
             <li>Jika $P^{-1}RP$ segitiga atas $\R$, diagonalnya nilai eigen real, jadi polinomial karakteristik $t^2 + 1$ punya akar real. Mustahil.</li>
-            <li>Secara geometris: bentuk segitiga butuh $H_2$ berdimensi $1$ yang invarian, yaitu garis yang dipetakan ke dirinya; rotasi $90^\circ$ tidak punya garis seperti itu.</li>
+            <li>Secara geometris: bentuk segitiga butuh $V_1$ berdimensi $1$ yang invarian, yaitu garis yang dipetakan ke dirinya; rotasi $90^\circ$ tidak punya garis seperti itu.</li>
             <li>Atas $\C$: nilai eigen $\pm i$ berbeda, jadi $R$ bahkan dapat didiagonalkan (topik Nilai Eigen, Latihan 2): $\operatorname{diag}(i, -i)$.</li>
           </ol>
         </details>
@@ -167,14 +174,14 @@
       <!-- ================= Ringkasan rumus ================= -->
       <h2 id="ringkasan-rumus">Ringkasan rumus</h2>
       <p>$$\begin{gathered}
-        V = H_1 \supseteq \cdots \supseteq H_n,\ \dim H_j = n - j + 1,\ L[H_j] \subseteq H_j \iff [L]_B \text{ segitiga}, \\
-        m_L \text{ terurai atas } F \Rightarrow [L]_B = \begin{pmatrix} A &amp; \mathbf{0} \\ * &amp; \lambda \end{pmatrix}, \qquad \det(tI - [L]_B) = \prod_i(t - a_{ii})
+        V_1 \subset \cdots \subset V_n = V,\ \dim V_j = j,\ L[V_j] \subseteq V_j \iff [L]_B \text{ segitiga atas}, \\
+        \mathcal{Z}(L) \subseteq F \Rightarrow [L]_B = \begin{pmatrix} \lambda &amp; * \\ \mathbf{0} &amp; A \end{pmatrix}, \qquad \det(tI - [L]_B) = \prod_i(t - a_{ii})
       \end{gathered}$$</p>
 
       <!-- ================= Sumber ================= -->
       <h2 id="sumber">Sumber</h2>
       <ul>
-        <li><code>sumber/aljabar-linier/7-Similaritas.md</code>, Bab 7, pengantar dan §7.1: Lemma 7.1.1, rantai kernel, Teorema 7.1.2, Contoh 7.1.3. File Markdown, tanpa nomor halaman.</li>
+        <li><code>sumber/aljabar-linier/7-Similaritas.md</code>, Bab 7, pengantar dan §7.1: Lemma 7.1.1, rantai kernel, Teorema 7.1.2, Contoh 7.1.3. Modul memakai segitiga bawah; di sini semua pernyataan dan contoh dialihkan ke segitiga atas (lihat catatan konvensi). File Markdown, tanpa nomor halaman.</li>
         <li><code>sumber/aljabar-linier/Pembahasan-Soal-soal.md</code>, §8.7.1 (Latihan 1).</li>
         <li>Akibat 1, Latihan 2–3, dan bagian "Kesalahan umum" ditulis oleh Claude.</li>
       </ul>

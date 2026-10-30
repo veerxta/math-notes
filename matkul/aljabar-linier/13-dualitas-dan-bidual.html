@@ -98,7 +98,7 @@
         <div class="box-title">Evaluasi basis dual (Modul, Contoh 3.1.8)</div>
         <p>$V = \operatorname{span}\set{\sin t, \cos t, e^t} \subseteq C(\R)$ dengan $B^* = \set{f_1, f_2, f_3}$. Untuk $\mathbf{v} = 2\sin t + 3\cos t - e^t$:</p>
         <p>$$f_1(\mathbf{v}) = 2, \qquad f_2(\mathbf{v}) = 3, \qquad f_3(\mathbf{v}) = -1.$$</p>
-        <p><span class="cek">[CEK: sumber menulis $f_3(\mathbf{v}) = 1$; karena koefisien $e^t$ adalah $-1$, seharusnya $f_3(\mathbf{v}) = -1$.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis $f_3(\mathbf{v}) = 1$; karena koefisien $e^t$ adalah $-1$, seharusnya $f_3(\mathbf{v}) = -1$.]</span></p>
       </div>
 
       <div class="box teorema">
@@ -122,7 +122,7 @@
         <div class="box-title">Dimensi tak hingga (Modul, Contoh 3.1.11)</div>
         <p>Untuk $B = \set{1, t, t^2, \dots} \subseteq \R[t]$ dengan $B^* = \set{f_0, f_1, \dots}$ ($f_k$ mengambil koefisien $t^k$), fungsional $f(p) = \int_0^1 p(t)\,dt$ memenuhi</p>
         <p>$$\int_0^1 (a_0 + a_1t + \dots + a_nt^n)\,dt = a_0 + \tfrac{1}{2}a_1 + \dots + \tfrac{1}{n+1}a_n,$$</p>
-        <p>sehingga secara formal $f = f_0 + \tfrac{1}{2}f_1 + \tfrac{1}{3}f_2 + \cdots$. Jumlah ini tak hingga, jadi $f \notin \operatorname{span}(B^*)$: di dimensi tak hingga, $B^*$ bebas linier tetapi tidak merentang $V^*$, dan karena itu bukan basis. <span class="cek">[CEK: sumber tetap menyebut $B^*$ "basis dual" di sini; dalam dimensi tak hingga istilah itu hanya berarti himpunan $\set{f_i}$ dengan $f_i(\mathbf{b}_j) = \delta_{ij}$, bukan basis $V^*$.]</span></p>
+        <p>sehingga secara formal $f = f_0 + \tfrac{1}{2}f_1 + \tfrac{1}{3}f_2 + \cdots$. Jumlah ini tak hingga, jadi $f \notin \operatorname{span}(B^*)$: di dimensi tak hingga, $B^*$ bebas linier tetapi tidak merentang $V^*$, dan karena itu bukan basis. <span class="koreksi">[Koreksi: sumber tetap menyebut $B^*$ "basis dual" di sini; dalam dimensi tak hingga istilah itu hanya berarti himpunan $\set{f_i}$ dengan $f_i(\mathbf{b}_j) = \delta_{ij}$, bukan basis $V^*$.]</span></p>
       </div>
 
       <h3>Hiperruang dan hiperbidang</h3>
@@ -158,7 +158,7 @@
           <li>Jadi ruang fungsional yang nol di $W$ berdimensi $\dim(V/W)^* = k$. Pilih basis $f_1, \dots, f_k$ (masing-masing tak nol, jadi $\ker f_i$ hiperruang) dan tulis $U = \bigcap_i \ker f_i \supseteq W$.</li>
           <li>$U$ adalah kernel dari $\mathbf{v} \mapsto (f_1(\mathbf{v}), \dots, f_k(\mathbf{v})) \in F^k$; karena $f_i$ bebas linier, pemetaan ini surjektif, jadi $\dim U = \dim V - k = \dim W$. Bersama $W \subseteq U$, diperoleh $W = U$.</li>
         </ol>
-        <p><span class="cek">[CEK: sumber menyatakan teorema untuk $V$ sebarang, tetapi langkah dimensi $\dim U = \dim V - k$ di buktinya hanya bermakna bila $V$ berdimensi hingga. Klaim "surjektif karena $f_i$ bebas linier" di langkah 3 juga tidak dibuktikan di sumber.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menyatakan teorema untuk $V$ sebarang, tetapi langkah dimensi $\dim U = \dim V - k$ di buktinya hanya bermakna bila $V$ berdimensi hingga. Klaim "surjektif karena $f_i$ bebas linier" di langkah 3 juga tidak dibuktikan di sumber.]</span></p>
       </details>
 
       <h3>Ruang bidual</h3>
@@ -214,7 +214,7 @@
         <div class="box-title">Rekonstruksi sinyal dari evaluasi fungsional (Modul, §3.1.21)</div>
         <p>Alat perekam (misalnya ECG) hanya mencatat beberapa nilai fungsional linier dari sinyal $f \in C([0, 1])$, seperti $f(t_i)$ atau $\int_0^1 f(t)\phi_i(t)\,dt$; masing-masing adalah elemen $C([0, 1])^*$. Dari nilai-nilai itu sinyal didekati dengan polinomial $f_N(t) = \sum_{k=0}^{N-1} c_kt^k$, memakai hasil kali dalam $\langle f, g \rangle = \int_0^1 f(t)g(t)\,dt$, misalnya untuk $f(t) = \sin(2\pi t) + 0{,}5\cos(6\pi t)$. Mutu rekonstruksi diukur dengan galat RMS:</p>
         <p>$$\text{RMS} = \sqrt{\frac{1}{b - a}\int_a^b \bigl(f(t) - f_N(t)\bigr)^2\,dt}.$$</p>
-        <p>Sumber menyediakan implementasinya (SciPy dan Matplotlib) di notebook Colab. <span class="cek">[CEK: (1) sumber mengambil $c_k = \langle f, t^k \rangle / \langle t^k, t^k \rangle$ sebagai "proyeksi ortogonal", padahal $\set{1, t, \dots, t^{N-1}}$ tidak ortogonal terhadap hasil kali dalam ini, sehingga rumus itu tidak memberi proyeksi ortogonal ke $P_{N-1}$ (perlu Gram–Schmidt atau persamaan normal). (2) Sumber menulis $C([0, 1]) \cong C([0, 1])^{**}$; untuk ruang berdimensi tak hingga, pemetaan kanonik hanya injektif (Teorema 5), tidak surjektif.]</span></p>
+        <p>Sumber menyediakan implementasinya (SciPy dan Matplotlib) di notebook Colab. <span class="koreksi">[Koreksi: (1) sumber mengambil $c_k = \langle f, t^k \rangle / \langle t^k, t^k \rangle$ sebagai "proyeksi ortogonal", padahal $\set{1, t, \dots, t^{N-1}}$ tidak ortogonal terhadap hasil kali dalam ini, sehingga rumus itu tidak memberi proyeksi ortogonal ke $P_{N-1}$ (perlu Gram–Schmidt atau persamaan normal). (2) Sumber menulis $C([0, 1]) \cong C([0, 1])^{**}$; untuk ruang berdimensi tak hingga, pemetaan kanonik hanya injektif (Teorema 5), tidak surjektif.]</span></p>
       </div>
 
       <!-- ================= Kesalahan umum ================= -->

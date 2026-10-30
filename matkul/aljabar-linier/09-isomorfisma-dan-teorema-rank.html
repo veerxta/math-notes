@@ -101,7 +101,7 @@
         <p><strong>(⇒)</strong> Misalkan $T$ isomorfisma dan $B = \set{\mathbf{v}_1, \dots, \mathbf{v}_n}$ basis $V$. Karena $T$ injektif, $T(B)$ bebas linier (Teorema 2.1.9), dan $T(\mathbf{v}_i)$ berbeda satu sama lain. Karena $T$ surjektif, $T(B)$ merentang $W$ (Teorema 2.1.10). Jadi $T(B)$ basis $W$.</p>
         <p><strong>(⇐)</strong> Misalkan $T(\mathbf{v}_1), \dots, T(\mathbf{v}_n)$ berbeda dan membentuk basis $W$. Surjektif: setiap $\mathbf{w} = \sum a_iT(\mathbf{v}_i) = T\bigl(\sum a_i\mathbf{v}_i\bigr)$. Injektif: jika $T\bigl(\sum a_i\mathbf{v}_i\bigr) = \sum a_iT(\mathbf{v}_i) = \mathbf{0}$, bebas linier memberi semua $a_i = 0$, jadi $\ker T = \set{\mathbf{0}}$.</p>
         <p><strong>Akibat.</strong> Jika $\dim V = \dim W = n$, pilih basis $\set{\mathbf{v}_i}$ dan $\set{\mathbf{w}_i}$ dan definisikan $T\bigl(\sum a_i\mathbf{v}_i\bigr) = \sum a_i\mathbf{w}_i$ (perluasan linier, terdefinisi karena koordinat tunggal). $T$ linier dan memetakan basis ke basis, jadi isomorfisma. Sebaliknya, isomorfisma memetakan basis $V$ ke basis $W$ dengan banyak anggota yang sama, jadi $\dim V = \dim W$.</p>
-        <p><span class="cek">[CEK: untuk arah (⇐), sumber memakai Teorema 2.1.9 dan 2.1.10, padahal kedua teorema itu menuntut hipotesis untuk <em>setiap</em> himpunan bebas linier/perentang, bukan satu basis saja. Bukti di atas memakai argumen langsung.]</span></p>
+        <p><span class="koreksi">[Koreksi: untuk arah (⇐), sumber memakai Teorema 2.1.9 dan 2.1.10, padahal kedua teorema itu menuntut hipotesis untuk <em>setiap</em> himpunan bebas linier/perentang, bukan satu basis saja. Bukti di atas memakai argumen langsung.]</span></p>
       </details>
 
       <h3>Teorema isomorfisma dan rank–nulitas</h3>
@@ -134,7 +134,7 @@
         <p>$$\operatorname{Im} \xi_{\sqrt{2}} = \Q[\sqrt{2}] = \set{a + b\sqrt{2} : a, b \in \Q}.$$</p>
         <p>Misalnya $5t^3 + 3t^2 + 2t - 7 \mapsto 5 \cdot 2\sqrt{2} + 3 \cdot 2 + 2\sqrt{2} - 7 = 12\sqrt{2} - 1$. Kernelnya memuat $t^2 - 2$; menurut sumber, kernel itu tepat semua kelipatan $t^2 - 2$ (ideal $\langle t^2 - 2 \rangle$). Teorema 2 memberi</p>
         <p>$$\Q[t]/\langle t^2 - 2 \rangle \cong \Q[\sqrt{2}]:$$</p>
-        <p>di ruang hasil bagi, $t$ "berperilaku seperti" $\sqrt{2}$. <span class="cek">[CEK: sumber menulis "$(\sqrt{2})^k$ kelipatan bilangan bulat dari $\sqrt{2}$ untuk setiap $k$" (salah untuk $k$ genap) dan "$\Q[\sqrt{2}] \subset \Q \subset \R$" (urutannya terbalik; yang benar $\Q \subset \Q[\sqrt{2}] \subset \R$). Klaim bahwa kernelnya tepat $\langle t^2 - 2 \rangle$ benar karena $t^2 - 2$ polinomial minimal $\sqrt{2}$ atas $\Q$, tetapi tidak dibuktikan di sumber.]</span></p>
+        <p>di ruang hasil bagi, $t$ "berperilaku seperti" $\sqrt{2}$. <span class="koreksi">[Koreksi: sumber menulis "$(\sqrt{2})^k$ kelipatan bilangan bulat dari $\sqrt{2}$ untuk setiap $k$" (salah untuk $k$ genap) dan "$\Q[\sqrt{2}] \subset \Q \subset \R$" (urutannya terbalik; yang benar $\Q \subset \Q[\sqrt{2}] \subset \R$). Klaim bahwa kernelnya tepat $\langle t^2 - 2 \rangle$ benar karena $t^2 - 2$ polinomial minimal $\sqrt{2}$ atas $\Q$, tetapi tidak dibuktikan di sumber.]</span></p>
       </div>
 
       <div class="box teorema">
@@ -228,7 +228,7 @@
         <div class="box-title">Sifat perkalian matriks (Modul, Teorema 2.5.15)</div>
         <p>Untuk matriks berukuran sesuai dan $c \in F$:</p>
         <p>$$c(AB) = (cA)B = A(cB), \qquad A(B + C) = AB + AC, \qquad (B + C)A = BA + CA.$$</p>
-        <p>Buktinya entri demi entri, misalnya $c\sum_k a_{ik}b_{kj} = \sum_k (ca_{ik})b_{kj} = \sum_k a_{ik}(cb_{kj})$. <span class="cek">[CEK: sumber mengambil $A \in M_{m,n}$ dan $B, C \in M_{n,r}$ untuk ketiga sifat; untuk sifat ketiga, $(B + C)A$ memerlukan ukuran lain, misalnya $B, C \in M_{k,m}$.]</span></p>
+        <p>Buktinya entri demi entri, misalnya $c\sum_k a_{ik}b_{kj} = \sum_k (ca_{ik})b_{kj} = \sum_k a_{ik}(cb_{kj})$. <span class="koreksi">[Koreksi: sumber mengambil $A \in M_{m,n}$ dan $B, C \in M_{n,r}$ untuk ketiga sifat; untuk sifat ketiga, $(B + C)A$ memerlukan ukuran lain, misalnya $B, C \in M_{k,m}$.]</span></p>
       </div>
 
       <div class="box definisi">

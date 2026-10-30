@@ -48,7 +48,7 @@
       <!-- ================= Materi ================= -->
       <h2 id="materi">Materi</h2>
       <p>Untuk matriks $A \in M_n(F)$ dan hasil kali titik, $A\mathbf{v} \cdot \mathbf{w} = (A\mathbf{v})^\dagger\mathbf{w} = \mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v} \cdot A^\dagger\mathbf{w}$. Pertanyaannya: untuk ruang hasil kali dalam sembarang $(V, \sigma)$ dan $L \in \mathcal{L}(V)$, adakah $L^\dagger$ dengan $\sigma(L^\dagger\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{v}, L\mathbf{w})$? Jawabannya memakai hubungan ruang dual dan hasil kali dalam (topik Dualitas dan Bidual), diperluas ke kasus Hermitian.</p>
-      <p><span class="cek">[CEK: pada pengantar §5.8 di sumber, rantai kesamaannya ditulis $\cdots = \mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w} = \mathbf{v} \cdot A\mathbf{w}$. Langkah $\mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w}$ hanya benar jika $A$ Hermitian; yang benar secara umum $A\mathbf{v} \cdot \mathbf{w} = \mathbf{v} \cdot A^\dagger\mathbf{w}$, seperti ditulis di atas.]</span></p>
+      <p><span class="koreksi">[Koreksi: pada pengantar §5.8 di sumber, rantai kesamaannya ditulis $\cdots = \mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w} = \mathbf{v} \cdot A\mathbf{w}$. Langkah $\mathbf{v}^\dagger A^\dagger\mathbf{w} = \mathbf{v}^\dagger A\mathbf{w}$ hanya benar jika $A$ Hermitian; yang benar secara umum $A\mathbf{v} \cdot \mathbf{w} = \mathbf{v} \cdot A^\dagger\mathbf{w}$, seperti ditulis di atas.]</span></p>
 
       <h3>Representasi Riesz</h3>
 
@@ -68,7 +68,7 @@
             $$\sigma(\mathbf{v}, \mathbf{w}) = \sum_{i,j}\overline{\bar{a}_i}\,w_j\,\sigma(\mathbf{e}_i, \mathbf{e}_j) = \sum_j a_jw_j = f(\mathbf{w}).$$
             (Atau: $\dim V = \dim V^*$, dan peta linier-konjugat yang injektif antara ruang berdimensi sama juga surjektif.)</li>
         </ol>
-        <p><span class="cek">[CEK: pada bukti konstruktif di sumber, koordinat ditulis $w_i = \sigma(\mathbf{w}, \mathbf{e}_i)$ dan diperoleh $\sigma(\mathbf{v}, \mathbf{w}) = \sum\bar{a}_iw_i$, lalu disamakan dengan $\sum a_iw_i$. Dengan konvensi linier di argumen kedua, $w_i = \sigma(\mathbf{e}_i, \mathbf{w})$ dan $\sigma(\mathbf{v}, \mathbf{w}) = \sum a_iw_i$; pilihan $\mathbf{v} = \sum\bar{a}_i\mathbf{e}_i$ tetap benar, hanya langkah perantaranya yang perlu dibetulkan seperti di atas.]</span></p>
+        <p><span class="koreksi">[Koreksi: pada bukti konstruktif di sumber, koordinat ditulis $w_i = \sigma(\mathbf{w}, \mathbf{e}_i)$ dan diperoleh $\sigma(\mathbf{v}, \mathbf{w}) = \sum\bar{a}_iw_i$, lalu disamakan dengan $\sum a_iw_i$. Dengan konvensi linier di argumen kedua, $w_i = \sigma(\mathbf{e}_i, \mathbf{w})$ dan $\sigma(\mathbf{v}, \mathbf{w}) = \sum a_iw_i$; pilihan $\mathbf{v} = \sum\bar{a}_i\mathbf{e}_i$ tetap benar, hanya langkah perantaranya yang perlu dibetulkan seperti di atas.]</span></p>
       </details>
 
       <h3>Operator adjoin</h3>
@@ -101,7 +101,7 @@
       <details class="bukti">
         <summary>Bukti</summary>
         <p>Dengan simetri Hermitian dua kali: $\sigma(L\mathbf{v}, \mathbf{w}) = \overline{\sigma(\mathbf{w}, L\mathbf{v})} = \overline{\sigma(L^\dagger\mathbf{w}, \mathbf{v})} = \sigma(\mathbf{v}, L^\dagger\mathbf{w})$.</p>
-        <p><span class="cek">[CEK: sumber menulis $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{w}, L\mathbf{v}) = \sigma(L^\dagger\mathbf{w}, \mathbf{v}) = \sigma(\mathbf{v}, L^\dagger\mathbf{w})$ tanpa konjugat; langkah-langkah itu hanya benar di ruang real, walaupun hasil akhirnya benar juga di ruang kompleks.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis $\sigma(L\mathbf{v}, \mathbf{w}) = \sigma(\mathbf{w}, L\mathbf{v}) = \sigma(L^\dagger\mathbf{w}, \mathbf{v}) = \sigma(\mathbf{v}, L^\dagger\mathbf{w})$ tanpa konjugat; langkah-langkah itu hanya benar di ruang real, walaupun hasil akhirnya benar juga di ruang kompleks.]</span></p>
       </details>
 
       <div class="box lemma">
@@ -147,7 +147,7 @@
         <p>Keadaan spin elektron diwakili subruang berdimensi satu di $\C^2$. Matriks Pauli</p>
         <p>$$\sigma_x = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}, \qquad \sigma_y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}, \qquad \sigma_z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}$$</p>
         <p>sekaligus swadjoin ($\sigma_k^\dagger = \sigma_k$) dan uniter ($\sigma_k^\dagger\sigma_k = \sigma_k^2 = I$).</p>
-        <p><span class="cek">[CEK: sumber menyebut operator swadjoin "merepresentasikan transisi antar keadaan spin". Dalam mekanika kuantum yang lazim, operator swadjoin mewakili <em>observabel</em> (besaran yang diukur), sedangkan perubahan/transisi keadaan diwakili operator uniter (lihat Real Problem di bawah dan topik Komputasi Kuantum). Pauli kebetulan keduanya.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menyebut operator swadjoin "merepresentasikan transisi antar keadaan spin". Dalam mekanika kuantum yang lazim, operator swadjoin mewakili <em>observabel</em> (besaran yang diukur), sedangkan perubahan/transisi keadaan diwakili operator uniter (lihat Real Problem di bawah dan topik Komputasi Kuantum). Pauli kebetulan keduanya.]</span></p>
       </div>
 
       <div class="box akibat">

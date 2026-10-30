@@ -47,7 +47,7 @@
       <!-- ================= Materi ================= -->
       <h2 id="materi">Materi</h2>
       <p>Ruang hasil kali dalam fungsi memindahkan geometri vektor ke fungsi: <strong>norma</strong> $\norm{f} = \sqrt{\langle f, f \rangle}$ mengukur "energi" fungsi, <strong>jarak</strong> $\norm{f - g}$ mengukur seberapa beda dua fungsi, dan $f \perp g$ jika $\langle f, g \rangle = 0$. Contoh utamanya: $L^2[a, b]$ (fungsi kuadrat-terintegralkan, dua fungsi dianggap sama bila berbeda hanya pada himpunan berukuran nol), sistem Fourier $\sin nx, \cos nx$ yang saling ortogonal di $[-\pi, \pi]$, dan ruang polinomial dengan hasil kali dalam berbobot $\int_{-1}^1 p(x)q(x)w(x)\,dx$, $w \gt 0$ (asal polinomial Legendre dan Chebyshev).</p>
-      <p><span class="cek">[CEK: pengantar §5.6 di sumber menulis hasil kali dalam $L^2$ sebagai $\int_a^b f\,\bar{g}$ (linier di argumen pertama), sedangkan persamaan 5.6.2 dan seluruh bab memakai $\int_a^b \bar{f}\,g$ (linier di argumen kedua). Halaman ini memakai konvensi bab, $\int \bar{f}g$.]</span></p>
+      <p><span class="koreksi">[Koreksi: pengantar §5.6 di sumber menulis hasil kali dalam $L^2$ sebagai $\int_a^b f\,\bar{g}$ (linier di argumen pertama), sedangkan persamaan 5.6.2 dan seluruh bab memakai $\int_a^b \bar{f}\,g$ (linier di argumen kedua). Halaman ini memakai konvensi bab, $\int \bar{f}g$.]</span></p>
 
       <h3>Fungsi kompleks peubah real</h3>
       <p>Fungsi kompleks $f \colon D \subseteq \C \to \C$ dengan $z = x + iy$ punya bagian real $\operatorname{Re} f(x, y)$ dan bagian imajiner $\operatorname{Im} f(x, y)$, masing-masing fungsi real dua peubah.</p>
@@ -153,7 +153,7 @@
           <li>Rekonstruksi ($a = s + d$, $b = s - d$): $[2{,}5;\ -1] \to [1{,}5;\ 3{,}5]$, lalu $\to [1, 2, 3, 4]$. Sinyal pulih sempurna.</li>
         </ol>
         <p>Agar transformasinya uniter (mempertahankan norma), tiap langkah memakai $\tfrac{a \pm b}{\sqrt{2}}$. Dengan normalisasi itu: level 1 memberi $\tfrac{3}{\sqrt{2}}, \tfrac{7}{\sqrt{2}}$ dan $-\tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}$; level 2 memberi $5$ dan $-2$. Hasilnya $\bigl[5;\ -2;\ -\tfrac{1}{\sqrt{2}};\ -\tfrac{1}{\sqrt{2}}\bigr]$, dan memang $25 + 4 + \tfrac{1}{2} + \tfrac{1}{2} = 30 = 1 + 4 + 9 + 16$.</p>
-        <p><span class="cek">[CEK: sumber menyebut $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$ sebagai vektor "setelah normalisasi sesuai faktor skala $\sqrt{2}$", lalu di kalimat berikutnya menyatakan bahwa itu versi tanpa normalisasi. Yang benar: $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$ tanpa normalisasi; versi ternormalisasi di atas dihitung oleh Claude.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menyebut $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$ sebagai vektor "setelah normalisasi sesuai faktor skala $\sqrt{2}$", lalu di kalimat berikutnya menyatakan bahwa itu versi tanpa normalisasi. Yang benar: $[2{,}5;\ -1;\ -0{,}5;\ -0{,}5]$ tanpa normalisasi; versi ternormalisasi di atas dihitung oleh Claude.]</span></p>
         <p><strong>Aplikasi:</strong> koefisien detail yang kecil bisa dibuang untuk kompresi (JPEG2000 memakai wavelet, bukan DCT seperti JPEG), dan wavelet dipakai untuk mendeteksi lonjakan pada sinyal medis (EEG, EKG).</p>
       </div>
 

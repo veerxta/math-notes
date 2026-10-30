@@ -69,7 +69,7 @@
           <li><strong>$V = K \oplus H$.</strong> Merentang: $\mathbf{v} = \mathbf{k} + (\mathbf{h}_0 + \mathbf{k}' + \mathbf{u}) = (\mathbf{k} + \mathbf{k}') + \mathbf{h}_0 + \mathbf{u}$. Langsung: jika $\mathbf{k} = \mathbf{h}_0 + \mathbf{u} \in K \cap H$, maka $\mathbf{k} \in H_1$ (karena $H \subseteq H_1$), jadi $\mathbf{k} \in K \cap H_1$, dan $\mathbf{h}_0 + \mathbf{u} - \mathbf{k} = \mathbf{0}$ dengan komponen di tiga suku jumlah langsung $H_1$; semuanya nol.</li>
           <li><strong>$H$ invarian.</strong> $L[U] \subseteq L[H_1] \subseteq H_0$ dan $L[H_0] \subseteq H_0$, jadi $L[H] \subseteq H_0 \subseteq H$.</li>
         </ol>
-        <p><span class="cek">[CEK: dua hal kecil dalam bukti sumber. Kasus dasar $\xi = 1$ disebut "benar secara vakum", padahal untuk $\xi = 1$ hipotesisnya bisa dipenuhi ($L^0\mathbf{x} = \mathbf{x} \ne \mathbf{0}$); kesimpulannya tetap benar karena setiap komplemen invarian terhadap $L = O$. Selain itu, sumber menyimpulkan $V = K \oplus (H_0 \oplus U)$ hanya dari $V = K + H_0 + U$, tanpa memeriksa irisannya; langkah (6) di atas melengkapinya.]</span></p>
+        <p><span class="koreksi">[Koreksi: dua hal kecil dalam bukti sumber. Kasus dasar $\xi = 1$ disebut "benar secara vakum", padahal untuk $\xi = 1$ hipotesisnya bisa dipenuhi ($L^0\mathbf{x} = \mathbf{x} \ne \mathbf{0}$); kesimpulannya tetap benar karena setiap komplemen invarian terhadap $L = O$. Selain itu, sumber menyimpulkan $V = K \oplus (H_0 \oplus U)$ hanya dari $V = K + H_0 + U$, tanpa memeriksa irisannya; langkah (6) di atas melengkapinya.]</span></p>
       </details>
 
       <h3>Contoh</h3>
@@ -93,7 +93,7 @@
           <li>$H_3 = \operatorname{span}\set{\mathbf{e}_2 + \mathbf{e}_4, \mathbf{e}_1 + \mathbf{e}_3}$ juga: $L(\mathbf{e}_2 + \mathbf{e}_4) = \mathbf{e}_1 + \mathbf{e}_3$ dan $L(\mathbf{e}_1 + \mathbf{e}_3) = \mathbf{0}$.</li>
         </ul>
         <p>Jadi komplemen-$L$ ada (Lemma 1) tetapi tidak tunggal: penguraian menjadi subruang siklik bisa dilakukan dengan banyak cara.</p>
-        <p><span class="cek">[CEK: sumber menulis $L(\mathbf{e}_3) = \mathbf{e}_4$ dan $L(\mathbf{e}_4) = \mathbf{0}$, padahal dari matriks $N$ (dan dari "$\ker L = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_3}$" di sumber sendiri) $L\mathbf{e}_4 = \mathbf{e}_3$ dan $L\mathbf{e}_3 = \mathbf{0}$. Akibatnya kesimpulan sumber terbalik: $\operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_1 + \mathbf{e}_4}$ yang ditolak sumber justru komplemen-$L$, sedangkan $\operatorname{span}\set{\mathbf{e}_1 + \mathbf{e}_3, \mathbf{e}_4}$ yang dipilih sumber <em>tidak</em> invarian ($L\mathbf{e}_4 = \mathbf{e}_3 \notin$ rentangnya). $H_3$ ditambahkan oleh Claude.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menulis $L(\mathbf{e}_3) = \mathbf{e}_4$ dan $L(\mathbf{e}_4) = \mathbf{0}$, padahal dari matriks $N$ (dan dari "$\ker L = \operatorname{span}\set{\mathbf{e}_1, \mathbf{e}_3}$" di sumber sendiri) $L\mathbf{e}_4 = \mathbf{e}_3$ dan $L\mathbf{e}_3 = \mathbf{0}$. Akibatnya kesimpulan sumber terbalik: $\operatorname{span}\set{\mathbf{e}_3, \mathbf{e}_1 + \mathbf{e}_4}$ yang ditolak sumber justru komplemen-$L$, sedangkan $\operatorname{span}\set{\mathbf{e}_1 + \mathbf{e}_3, \mathbf{e}_4}$ yang dipilih sumber <em>tidak</em> invarian ($L\mathbf{e}_4 = \mathbf{e}_3 \notin$ rentangnya). $H_3$ ditambahkan oleh Claude.]</span></p>
       </div>
 
       <div class="box contoh">
@@ -146,14 +146,14 @@
       </div>
 
       <div class="latihan">
-        <p>Untuk $N$ pada Latihan 1, tentukan $\mathbf{x}$ dengan $N^2\mathbf{x} \ne \mathbf{0}$ dan tulis matriks $N$ terhadap basis $\set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$.</p>
+        <p>Untuk $N$ pada Latihan 1, tentukan $\mathbf{x}$ dengan $N^2\mathbf{x} \ne \mathbf{0}$ dan tulis matriks $N$ terhadap basis $\set{N^2\mathbf{x}, N\mathbf{x}, \mathbf{x}}$.</p>
         <details class="pembahasan">
           <summary>Lihat pembahasan</summary>
           <p class="oleh-claude">Pembahasan oleh Claude — perlu dicek</p>
           <ol>
             <li>$\mathbf{x} = \mathbf{e}_3$: $N\mathbf{x} = (2, 3, 0)$, $N^2\mathbf{x} = (3, 0, 0) \ne \mathbf{0}$.</li>
-            <li>Terhadap $B = \set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$: $N$ memetakan vektor basis ke-$i$ ke vektor ke-$(i+1)$ dan yang terakhir ke $\mathbf{0}$.</li>
-            <li>Jadi $[N]_B = \begin{pmatrix} 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}$, matriks "sub-1" (topik berikutnya).</li>
+            <li>Terhadap $B = \set{N^2\mathbf{x}, N\mathbf{x}, \mathbf{x}}$: $N$ memetakan vektor basis pertama ke $\mathbf{0}$ dan vektor ke-$i$ ($i \ge 2$) ke vektor ke-$(i-1)$.</li>
+            <li>Jadi $[N]_B = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}$, matriks super-1 (topik berikutnya). Dengan urutan $\set{\mathbf{x}, N\mathbf{x}, N^2\mathbf{x}}$ diperoleh transposnya, matriks sub-1 yang dipakai modul.</li>
           </ol>
         </details>
       </div>

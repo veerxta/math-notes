@@ -115,7 +115,7 @@
           <li><strong>Jika $r = 1$.</strong> $t - \lambda$ dan $h$ tidak punya faktor bersama, jadi ada $a, b \in F[t]$ dengan $a(t)(t - \lambda) + b(t)h(t) = 1$. Untuk $\mathbf{v} \in V$: $\mathbf{v} = (L - \lambda I)a(L)\mathbf{v} + b(L)h(L)\mathbf{v}$. Suku pertama di citra; suku kedua di kernel karena $(L - \lambda I)b(L)h(L)\mathbf{v} = b(L)m_L(L)\mathbf{v} = \mathbf{0}$. Jadi kernel dan citra merentang $V$.</li>
           <li><strong>Jika $r \ge 2$.</strong> $(t - \lambda)^{r-1}h$ berderajat lebih kecil dari $m_L$, jadi tidak meniadakan $L$: ada $\mathbf{u}$ dengan $\mathbf{x} = (L - \lambda I)^{r-1}h(L)\mathbf{u} \ne \mathbf{0}$. Karena $r - 1 \ge 1$, $\mathbf{x} \in (L - \lambda I)[V]$, dan $(L - \lambda I)\mathbf{x} = m_L(L)\mathbf{u} = \mathbf{0}$, jadi $\mathbf{x} \in \ker(L - \lambda I)$. Irisannya tak trivial.</li>
         </ol>
-        <p><span class="cek">[CEK: bukti di sumber hanya memuat arah (2) dan mengklaim tanpa bukti bahwa $(t - \lambda)^r \mid m_L$ "jika dan hanya jika" ada $\mathbf{v}$ dengan $(L - \lambda I)^{r-1}\mathbf{v} \ne \mathbf{0}$ dan $(L - \lambda I)^r\mathbf{v} = \mathbf{0}$; arah (1) tidak dibuktikan. Bukti lengkap di atas ditulis oleh Claude.]</span></p>
+        <p><span class="koreksi">[Koreksi: bukti di sumber hanya memuat arah (2) dan mengklaim tanpa bukti bahwa $(t - \lambda)^r \mid m_L$ "jika dan hanya jika" ada $\mathbf{v}$ dengan $(L - \lambda I)^{r-1}\mathbf{v} \ne \mathbf{0}$ dan $(L - \lambda I)^r\mathbf{v} = \mathbf{0}$; arah (1) tidak dibuktikan. Bukti lengkap di atas ditulis oleh Claude.]</span></p>
       </details>
 
       <div class="box teorema">
@@ -160,7 +160,7 @@
           <li>$m_L(L|_W) = O$, jadi polinomial minimal $L|_W$ membagi $m_L$; akarnya $\mathcal{Z}(L) \setminus \set{\mu}$ (Lemma 2). Jadi polinomial minimal $L|_W$ adalah $\prod_{\lambda_i \ne \mu}(t - \lambda_i)$, dengan $k - 1$ faktor linier berbeda.</li>
           <li>Hipotesis induksi: $W$ punya basis vektor eigen $B_W$. Dengan basis $B_\mu$ untuk $V_\mu$, $B_W \cup B_\mu$ basis vektor eigen $V$ (karena jumlahnya langsung).</li>
         </ol>
-        <p><span class="cek">[CEK: pada langkah induksi, sumber merujuk "Lema 6.5.4" untuk $\mathcal{Z}(L|_W) = \mathcal{Z}(L) \setminus \set{\mu}$; yang tepat Lema 6.5.6 (Lemma 2 di halaman ini), sedangkan Lema 6.5.4 dipakai untuk $V = V_\mu \oplus W$.]</span></p>
+        <p><span class="koreksi">[Koreksi: pada langkah induksi, sumber merujuk "Lema 6.5.4" untuk $\mathcal{Z}(L|_W) = \mathcal{Z}(L) \setminus \set{\mu}$; yang tepat Lema 6.5.6 (Lemma 2 di halaman ini), sedangkan Lema 6.5.4 dipakai untuk $V = V_\mu \oplus W$.]</span></p>
       </details>
 
       <div class="box catatan">

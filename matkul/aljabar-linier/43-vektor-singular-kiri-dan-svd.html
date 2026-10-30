@@ -55,7 +55,7 @@
         <p>Misalkan $\sigma_1 \ge \cdots \ge \sigma_k \gt \sigma_{k+1} = \cdots = \sigma_n = 0$ nilai singular $A$ ($m \times n$) dengan vektor singular kanan $\mathbf{v}_1, \dots, \mathbf{v}_n$. Definisikan</p>
         <p>$$\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i, \qquad 1 \le i \le k,$$</p>
         <p>lalu pilih $\mathbf{u}_{k+1}, \dots, \mathbf{u}_m$ sehingga $\mathbf{u}_1, \dots, \mathbf{u}_m$ basis ortonormal $\R^m$. Vektor-vektor ini disebut <strong>vektor singular kiri</strong> (left singular vectors) $A$.</p>
-        <p><span class="cek">[CEK: di sumber, definisi ini dan Teorema 6.10.2 menulis "$\delta_1 \ge \cdots$ adalah nilai singular" (seharusnya $\sigma_i$; $\delta_i$ nilai eigen $A^TA$), "vektor singular kanan … bersesuaian dengan nilai eigen $\sigma_i$", Teorema 6.10.2 menyebut $\mathbf{v}_i$ "vektor singular kiri" (seharusnya kanan), butir (2) "basis ortonormal dari $L$" (seharusnya citra $L$), dan $V = [\mathbf{v}_1 \cdots \mathbf{v}_m]$ (seharusnya sampai $\mathbf{v}_n$). Di sini semuanya ditulis dengan notasi yang konsisten.]</span></p>
+        <p><span class="koreksi">[Koreksi: di sumber, definisi ini dan Teorema 6.10.2 menulis "$\delta_1 \ge \cdots$ adalah nilai singular" (seharusnya $\sigma_i$; $\delta_i$ nilai eigen $A^TA$), "vektor singular kanan … bersesuaian dengan nilai eigen $\sigma_i$", Teorema 6.10.2 menyebut $\mathbf{v}_i$ "vektor singular kiri" (seharusnya kanan), butir (2) "basis ortonormal dari $L$" (seharusnya citra $L$), dan $V = [\mathbf{v}_1 \cdots \mathbf{v}_m]$ (seharusnya sampai $\mathbf{v}_n$). Di sini semuanya ditulis dengan notasi yang konsisten.]</span></p>
       </div>
 
       <div class="box teorema">
@@ -80,7 +80,7 @@
           <li><strong>(3)</strong>: $\operatorname{Nul}A^T = (\operatorname{Col}A)^\perp$ (topik Teorema Fundamental), yaitu komplemen ortogonal $\operatorname{span}\set{\mathbf{u}_1, \dots, \mathbf{u}_k}$ di $\R^m$, yang direntang $\mathbf{u}_{k+1}, \dots, \mathbf{u}_m$.</li>
           <li><strong>(4)</strong>: $A\mathbf{v}_i = \mathbf{0}$ untuk $i \gt k$, dan $\dim\operatorname{Nul}A = n - k$ (teorema rank), jadi $\operatorname{Nul}A = \operatorname{span}\set{\mathbf{v}_{k+1}, \dots, \mathbf{v}_n}$. Lalu $\operatorname{Row}A = (\operatorname{Nul}A)^\perp = \operatorname{span}\set{\mathbf{v}_1, \dots, \mathbf{v}_k}$.</li>
         </ol>
-        <p><span class="cek">[CEK: bukti di sumber dimulai dengan "berdasarkan teorema dekomposisi nilai singular, terdapat $U, \Sigma, V$ dengan $A = U\Sigma V'$", yaitu mengasumsikan butir (5) yang hendak dibuktikan, lalu menurunkan butir lain darinya. Bukti di atas (ditulis oleh Claude) membangun $A = U\Sigma V^T$ dari konstruksi $\mathbf{u}_i = A\mathbf{v}_i/\sigma_i$.]</span></p>
+        <p><span class="koreksi">[Koreksi: bukti di sumber dimulai dengan "berdasarkan teorema dekomposisi nilai singular, terdapat $U, \Sigma, V$ dengan $A = U\Sigma V'$", yaitu mengasumsikan butir (5) yang hendak dibuktikan, lalu menurunkan butir lain darinya. Bukti di atas (ditulis oleh Claude) membangun $A = U\Sigma V^T$ dari konstruksi $\mathbf{u}_i = A\mathbf{v}_i/\sigma_i$.]</span></p>
       </details>
 
       <div class="box contoh">

@@ -85,7 +85,7 @@ v_rot = R * vector([x0, y0])   # vektor setelah dirotasi</code></pre>
         <div class="box-title">Perluasan ke tiga sektor (Modul, §2.8, model 3D)</div>
         <p>Dengan sektor ketiga (pertanian $z_t$), $A = \lambda R_z(\theta)$ dengan</p>
         <p>$$R_z(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{pmatrix}.$$</p>
-        <p>Sektor $x$ dan $y$ bertukar dominasi, sedangkan $z$ hanya diskalakan. Arah ideal $\mathbf{u} = (1, 1, 1)$, dengan $\operatorname{proj}_{\mathbf{u}}(\mathbf{v}_t) = \frac{\mathbf{v}_t \cdot \mathbf{u}}{3}\mathbf{u}$. <span class="cek">[CEK: tabel ringkasan sumber untuk model 3D menyebut "eigenvalue kompleks modulus 1"; selain pasangan kompleks $\lambda e^{\pm i\theta}$, $\lambda R_z(\theta)$ juga punya nilai eigen real $\lambda$ dengan vektor eigen $(0, 0, 1)$, jadi sumbu pertanian adalah arah tetap.]</span></p>
+        <p>Sektor $x$ dan $y$ bertukar dominasi, sedangkan $z$ hanya diskalakan. Arah ideal $\mathbf{u} = (1, 1, 1)$, dengan $\operatorname{proj}_{\mathbf{u}}(\mathbf{v}_t) = \frac{\mathbf{v}_t \cdot \mathbf{u}}{3}\mathbf{u}$. <span class="koreksi">[Koreksi: tabel ringkasan sumber untuk model 3D menyebut "eigenvalue kompleks modulus 1"; selain pasangan kompleks $\lambda e^{\pm i\theta}$, $\lambda R_z(\theta)$ juga punya nilai eigen real $\lambda$ dengan vektor eigen $(0, 0, 1)$, jadi sumbu pertanian adalah arah tetap.]</span></p>
       </div>
 
       <div class="box catatan">
@@ -102,7 +102,7 @@ v_rot = R * vector([x0, y0])   # vektor setelah dirotasi</code></pre>
         <p>PCA (principal component analysis) mencari rotasi dan penskalaan yang menaruh sebagian besar varians data pada beberapa sumbu pertama, lalu memproyeksikan data ke subruang berdimensi $K \lt N$ yang direntang vektor eigen terbesar matriks kovarians.</p>
         <p>Contoh paling sederhana: $T \colon \R^3 \to \R^2$, $T(x, y, z) = (x, y)$. Dari $T(\mathbf{e}_1) = (1, 0)$, $T(\mathbf{e}_2) = (0, 1)$, $T(\mathbf{e}_3) = (0, 0)$:</p>
         <p>$$[T] = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix},$$</p>
-        <p>yang "membuang" informasi di arah $z$. <span class="cek">[CEK: sumber menulis matriks ini sebagai $[T]_{E_3 \leftarrow E_2}$; dengan notasi topik sebelumnya, domain $\R^3$ dan kodomain $\R^2$ memberi $[T]_{E_2 \leftarrow E_3}$.]</span></p>
+        <p>yang "membuang" informasi di arah $z$. <span class="koreksi">[Koreksi: sumber menulis matriks ini sebagai $[T]_{E_3 \leftarrow E_2}$; dengan notasi topik sebelumnya, domain $\R^3$ dan kodomain $\R^2$ memberi $[T]_{E_2 \leftarrow E_3}$.]</span></p>
       </div>
 
       <div class="box contoh">

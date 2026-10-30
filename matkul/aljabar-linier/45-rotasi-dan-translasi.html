@@ -100,7 +100,7 @@
           <li>Matriks ortogonal $2 \times 2$ berdeterminan $1$ berbentuk $\begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix}$ dengan $a^2 + b^2 = 1$ (kolom pertama $(\cos\xi, \sin\xi)$, kolom kedua harus $(-\sin\xi, \cos\xi)$ agar ortonormal dan determinannya $1$), yaitu $R_\xi$.</li>
           <li>Karena $\operatorname{tr}$ invarian similaritas, $2\cos\xi = 2\cos\varphi$, jadi $\xi = \pm\varphi$. Jika $\det P = 1$, $P$ sendiri rotasi dan komutatif dengan $R_\varphi$, sehingga $\xi = \varphi$; jika $\det P = -1$ (misalnya $P = \operatorname{diag}(1, -1)$), $P^{-1}R_\varphi P = R_{-\varphi}$.</li>
         </ol>
-        <p><span class="cek">[CEK: di akhir bukti, sumber menyimpulkan bahwa sudut $\theta$ pada $[R_\varphi]_B$ "sama dengan $\varphi$ modulo $2\pi$". Itu hanya benar untuk basis ortonormal berorientasi positif: untuk $B = \set{\mathbf{e}_1, -\mathbf{e}_2}$, $[R_\varphi]_B = R_{-\varphi}$ (Latihan 1). Pernyataan "$[R_\varphi]_B$ matriks rotasi" sendiri tetap benar.]</span></p>
+        <p><span class="koreksi">[Koreksi: di akhir bukti, sumber menyimpulkan bahwa sudut $\theta$ pada $[R_\varphi]_B$ "sama dengan $\varphi$ modulo $2\pi$". Itu hanya benar untuk basis ortonormal berorientasi positif: untuk $B = \set{\mathbf{e}_1, -\mathbf{e}_2}$, $[R_\varphi]_B = R_{-\varphi}$ (Latihan 1). Pernyataan "$[R_\varphi]_B$ matriks rotasi" sendiri tetap benar.]</span></p>
       </details>
 
       <div class="box akibat">
@@ -111,7 +111,7 @@
       <details class="bukti">
         <summary>Bukti (konstruktif)</summary>
         <p>Pilih vektor satuan $\mathbf{u}$ dan $a = \mathbf{u} \cdot A\mathbf{u} \in [-1, 1]$, $b = \sqrt{1 - a^2}$. Jika $b \gt 0$, $\mathbf{w} = (A\mathbf{u} - a\mathbf{u})/b$ satuan dan ortogonal terhadap $\mathbf{u}$ (Gram–Schmidt pada $A\mathbf{u}$), dan $A\mathbf{u} = a\mathbf{u} + b\mathbf{w}$. $A\mathbf{w}$ satuan dan ortogonal terhadap $A\mathbf{u}$, jadi $A\mathbf{w} = \pm(-b\mathbf{u} + a\mathbf{w})$; $\det A = 1$ memilih tanda $+$. Terhadap $B = \set{\mathbf{u}, \mathbf{w}}$, $[A]_B = \begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix} = R_\varphi$ dengan $a = \cos\varphi$, $b = \sin\varphi$. Jika $b = 0$, $A\mathbf{u} = \pm\mathbf{u}$, dan $A = \pm I = R_0$ atau $R_\pi$.</p>
-        <p><span class="cek">[CEK: sumber menyatakan bahwa kasus $a = -1$ "tidak mungkin untuk rotasi (itu akan menjadi refleksi + negasi)". Padahal $A = -I = R_\pi$ adalah rotasi berdeterminan $1$ dengan $\mathbf{u} \cdot A\mathbf{u} = -1$; kasus ini ditangani langsung di atas.]</span></p>
+        <p><span class="koreksi">[Koreksi: sumber menyatakan bahwa kasus $a = -1$ "tidak mungkin untuk rotasi (itu akan menjadi refleksi + negasi)". Padahal $A = -I = R_\pi$ adalah rotasi berdeterminan $1$ dengan $\mathbf{u} \cdot A\mathbf{u} = -1$; kasus ini ditangani langsung di atas.]</span></p>
       </details>
 
       <h3>Rotasi di $\R^3$</h3>
