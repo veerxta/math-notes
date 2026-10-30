@@ -18,6 +18,7 @@
     terang: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>',
     gelap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.5 8.5 0 1 1 9.8 4a7.5 7.5 0 0 0 10.2 10.2z"/></svg>',
     atas: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>',
+    panah: '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="panah" d="M9.5 6l6 6-6 6"/></svg>',
     centang: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   };
 
@@ -53,7 +54,7 @@
   function urlTopik(m, t) { return AKAR + "matkul/" + m.slug + "/" + t.file; }
   function urlRingkasan(m) { return AKAR + "matkul/" + m.slug + "/ringkasan.html"; }
 
-  // Label bab sebelum topik yang memulai bab baru (field opsional `bab` di data.js).
+  // Label bab di daftar topik halaman matkul (field opsional `bab` di data.js; di sidebar bab menjadi dropdown).
   function labelBab(t) {
     return t.bab ? h("li", { class: "label-bab" }, t.bab) : null;
   }
@@ -251,34 +252,52 @@
     tombolTampil.addEventListener("click", function () { atur(false); tombolSembunyi.focus(); });
   }
 
+  // Sidebar bertingkat: matkul -> bab -> topik, masing-masing <details> yang dibuka dengan dipencet.
+  // Saat halaman dimuat, hanya matkul dan bab yang memuat halaman ini yang terbuka.
   function itemMatkul(m) {
     var aktif = m === MATKUL;
     var total = m.topik.length;
-    var li = h("li", { class: aktif ? "nav-matkul aktif" : "nav-matkul", style: "--aksen: " + m.aksen }, [
-      h("a", { href: urlMatkul(m), "aria-current": aktif && FILE === "index.html" ? "page" : null }, [
-        h("span", { class: "titik", "aria-hidden": "true" }),
-        h("span", { class: "nama" }, m.nama),
-        total ? h("span", { class: "hitung", "data-slug": m.slug, title: "Sudah dipelajari" }, jumlahSelesai(m) + "/" + total) : null,
-      ]),
-    ]);
+    var li = h("li", { class: aktif ? "nav-matkul aktif" : "nav-matkul", style: "--aksen: " + m.aksen });
+    var isiBaris = [
+      h("span", { class: "titik", "aria-hidden": "true" }),
+      h("span", { class: "nama" }, m.nama),
+      total ? h("span", { class: "hitung", "data-slug": m.slug, title: "Sudah dipelajari" }, jumlahSelesai(m) + "/" + total) : null,
+    ];
 
-    // Topik hanya ditampilkan untuk matkul yang sedang dibuka.
-    if (aktif && (total || m.ringkasan)) {
-      var ol = h("ol", { class: "sidebar-topik" }, [].concat.apply([], m.topik.map(function (t, i) {
-        return [labelBab(t), h("li", null, h("a", { href: urlTopik(m, t), "aria-current": t === TOPIK ? "page" : null }, [
-          h("span", { class: "no" }, nomor(t, i)),
-          h("span", { class: "judul" }, t.judul),
-          tandaSelesai({ "data-topik": t.file, hidden: !sudah(m, t) }),
-        ]))];
-      })));
-      if (m.ringkasan) {
-        ol.append(h("li", null, h("a", { href: urlRingkasan(m), "aria-current": FILE === "ringkasan.html" ? "page" : null }, [
-          h("span", { class: "no" }, "∑"),
-          h("span", { class: "judul" }, "Ringkasan"),
-        ])));
-      }
-      li.append(ol);
+    // Matkul tanpa isi: cukup tautan ke halaman matkulnya.
+    if (!total && !m.ringkasan) {
+      li.append(h("a", { href: urlMatkul(m), "aria-current": aktif && FILE === "index.html" ? "page" : null }, isiBaris));
+      return li;
     }
+
+    var ol = h("ol", { class: "sidebar-topik", "data-slug": m.slug }, [
+      h("li", null, h("a", { class: "semua-topik", href: urlMatkul(m), "aria-current": aktif && FILE === "index.html" ? "page" : null }, "Semua topik")),
+    ]);
+    var grup = null;
+    m.topik.forEach(function (t, i) {
+      var item = h("li", null, h("a", { href: urlTopik(m, t), "aria-current": aktif && t === TOPIK ? "page" : null }, [
+        h("span", { class: "no" }, nomor(t, i)),
+        h("span", { class: "judul" }, t.judul),
+        tandaSelesai({ "data-topik": t.file, hidden: !sudah(m, t) }),
+      ]));
+      if (t.bab) {
+        grup = h("ol", { class: "bab-topik" });
+        var bab = h("details", { class: "nav-bab" }, [h("summary", null, [h("span", { class: "nama" }, t.bab), svg("panah")]), grup]);
+        ol.append(h("li", null, bab));
+      }
+      if (aktif && t === TOPIK && grup) grup.parentNode.open = true;
+      (grup || ol).append(item);
+    });
+    if (m.ringkasan) {
+      ol.append(h("li", null, h("a", { href: urlRingkasan(m), "aria-current": aktif && FILE === "ringkasan.html" ? "page" : null }, [
+        h("span", { class: "no" }, "∑"),
+        h("span", { class: "judul" }, "Ringkasan"),
+      ])));
+    }
+
+    var d = h("details", { class: "nav-grup" }, [h("summary", null, isiBaris.concat(svg("panah"))), ol]);
+    d.open = aktif;
+    li.append(d);
     return li;
   }
 
@@ -403,7 +422,7 @@
   }
 
   function perbaruiTandaSidebar() {
-    document.querySelectorAll(".sidebar-topik .tanda[data-topik]").forEach(function (s) {
+    document.querySelectorAll('.sidebar-topik[data-slug="' + MATKUL.slug + '"] .tanda[data-topik]').forEach(function (s) {
       var t = MATKUL.topik.find(function (x) { return x.file === s.getAttribute("data-topik"); });
       s.hidden = !(t && sudah(MATKUL, t));
     });

@@ -443,7 +443,47 @@ svg .penuh { fill: currentColor; stroke: none; }
   font-size: 0.78rem;
   font-variant-numeric: tabular-nums;
 }
-.nav-matkul.aktif > a { font-weight: 650; }
+.nav-matkul.aktif > a, .nav-matkul.aktif > .nav-grup > summary { font-weight: 650; }
+
+/* Dropdown sidebar: matkul (.nav-grup) dan bab (.nav-bab) memakai <details>. */
+.sidebar-nav summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--sentuh);
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--teks);
+  list-style: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.sidebar-nav summary::-webkit-details-marker { display: none; }
+.sidebar-nav summary:hover { background: var(--sorot); }
+.sidebar-nav summary svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--teks-redup);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 150ms ease-out;
+}
+.sidebar-nav details[open] > summary svg { transform: rotate(90deg); }
+.nav-bab > summary {
+  min-height: 40px;
+  color: var(--teks-redup);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+.nav-bab > summary .nama { flex: 1; }
+.nav-bab[open] > summary { color: var(--teks); }
+.sidebar-nav .bab-topik { margin: 0 0 4px 10px; }
+.sidebar-topik .semua-topik { color: var(--teks-redup); }
 
 .sidebar-nav .sidebar-topik {
   margin: 2px 0 8px 14px;
@@ -457,14 +497,6 @@ svg .penuh { fill: currentColor; stroke: none; }
   font-variant-numeric: tabular-nums;
 }
 .sidebar-topik .judul { flex: 1; }
-.sidebar-topik .label-bab {
-  margin: 0.7rem 10px 0.15rem;
-  color: var(--teks-redup);
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.04em;
-}
-.sidebar-topik .label-bab:first-child { margin-top: 0.3rem; }
 
 .tanda { display: inline-flex; color: var(--c-contoh); }
 .tanda svg { width: 16px; height: 16px; stroke-width: 2.4; }
