@@ -7,7 +7,7 @@
   <title>Komponen · Math Notes</title>
   <meta name="theme-color" content="#F7F4EC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1C1D1F" media="(prefers-color-scheme: dark)">
-  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema)}catch(e){}</script>
+  <script>try{var mnTema=localStorage.getItem("mn-tema");if(mnTema==="terang"||mnTema==="gelap")document.documentElement.setAttribute("data-tema",mnTema);if(localStorage.getItem("mn-sidebar")==="tutup")document.documentElement.classList.add("sidebar-tutup")}catch(e){}</script>
   <link rel="preload" href="assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
@@ -292,6 +292,7 @@ print(biseksi(lambda x: x**2 - 2, 1, 2))  # ≈ 1.414214</code></pre>
             <tr><td><code>.progres-total</code>, <code>.daftar-matkul</code></td><td>Progres dan kartu matkul di beranda, diisi main.js</td></tr>
             <tr><td><code>.progres-matkul</code>, <code>.daftar-topik</code></td><td>Progres dan daftar topik di halaman matkul, diisi main.js</td></tr>
             <tr><td><code>.label-bab</code></td><td>Label bab di daftar topik dan sidebar, dibuat main.js dari field <code>bab</code> di data.js (ditulis pada topik pertama tiap bab)</td></tr>
+            <tr><td><code>.tombol-sembunyi</code>, <code>.tombol-tampil</code>, <code>.sidebar-tutup</code></td><td>Menyembunyikan sidebar di layar lebar (≥1024 px), dibuat main.js. Kelas <code>.sidebar-tutup</code> di <code>&lt;html&gt;</code> dipasang skrip di <code>&lt;head&gt;</code> dari localStorage <code>mn-sidebar</code> agar tata letak tidak melompat; skrip itu ada di <code>_templates/topik.html</code></td></tr>
             <tr><td><code>.kosong</code></td><td>Keterangan saat daftar masih kosong</td></tr>
             <tr><td><code>.lewati</code>, <code>.sr-only</code></td><td>Tautan "Langsung ke isi" dan teks khusus pembaca layar</td></tr>
           </tbody>

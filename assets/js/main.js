@@ -9,11 +9,13 @@
   var DATA = window.MATH_NOTES || { matkul: [], lainnya: [] };
   var KUNCI_TEMA = "mn-tema";
   var KUNCI_PROGRES = "mn-progres";
+  var KUNCI_SIDEBAR = "mn-sidebar";
   var html = document.documentElement;
   var LEBAR = window.matchMedia("(min-width: 1024px)");
 
   var IKON = {
     menu: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+    panel: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M9.5 4.5v15"/></svg>',
     tutup: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     otomatis: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path class="penuh" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>',
     terang: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>',
@@ -187,6 +189,21 @@
       "aria-expanded": "false",
     }, svg("menu"));
     var tombolTutup = h("button", { type: "button", class: "ikon tombol-tutup", "aria-label": "Tutup menu" }, svg("tutup"));
+    // Layar lebar: sidebar bisa disembunyikan; tombolTampil muncul di kiri atas saat tersembunyi.
+    var tombolSembunyi = h("button", {
+      type: "button",
+      class: "ikon tombol-sembunyi",
+      "aria-label": "Sembunyikan sidebar",
+      title: "Sembunyikan sidebar",
+      "aria-controls": "sidebar",
+    }, svg("panel"));
+    var tombolTampil = h("button", {
+      type: "button",
+      class: "ikon tombol-tampil",
+      "aria-label": "Tampilkan sidebar",
+      title: "Tampilkan sidebar",
+      "aria-controls": "sidebar",
+    }, svg("panel"));
 
     var bar = h("header", { class: "bar-atas" }, [
       tombolMenu,
@@ -207,6 +224,7 @@
           "Math Notes",
         ]),
         tombolTutup,
+        tombolSembunyi,
       ]),
       h("nav", { class: "sidebar-nav", "aria-label": "Navigasi utama" }, [
         h("a", { href: urlBeranda(), "aria-current": PATH === "index.html" ? "page" : null }, "Beranda"),
@@ -217,8 +235,25 @@
     ]);
 
     var overlay = h("div", { class: "overlay" });
-    utama.before(bar, sidebar, overlay);
+    utama.before(bar, sidebar, overlay, tombolTampil);
     pasangLaci(sidebar, overlay, tombolMenu, tombolTutup);
+    pasangSembunyi(tombolSembunyi, tombolTampil);
+  }
+
+  // Kelas sidebar-tutup sudah dipasang skrip di <head> (dari localStorage) agar tata letak tidak melompat.
+  function pasangSembunyi(tombolSembunyi, tombolTampil) {
+    function atur(tutup) {
+      html.classList.toggle("sidebar-tutup", tutup);
+      tombolSembunyi.setAttribute("aria-expanded", String(!tutup));
+      tombolTampil.setAttribute("aria-expanded", String(!tutup));
+      try {
+        if (tutup) localStorage.setItem(KUNCI_SIDEBAR, "tutup");
+        else localStorage.removeItem(KUNCI_SIDEBAR);
+      } catch (e) { /* localStorage tidak tersedia: pilihan hanya berlaku di halaman ini */ }
+    }
+    atur(html.classList.contains("sidebar-tutup"));
+    tombolSembunyi.addEventListener("click", function () { atur(true); tombolTampil.focus(); });
+    tombolTampil.addEventListener("click", function () { atur(false); tombolSembunyi.focus(); });
   }
 
   function itemMatkul(m) {
