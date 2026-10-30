@@ -80,6 +80,7 @@ Urutan bagian (lewati yang tidak relevan):
 ## Git
 - Setelah satu tugas selesai dan dicek: `git add`, commit dengan pesan Bahasa Inggris yang jelas, lalu `git push` ke `origin main`.
 - Contoh pesan: "Add Calculus 2: Topic 03 Partial Integrals".
+- Commit atas nama akun `veerxta` (diatur di `git config` lokal repo ini). Jangan tambahkan baris `Co-Authored-By` (termasuk untuk Claude) atau atribusi lain di pesan commit.
 - Sebelum commit: pastikan tidak ada file dari `sumber/` dan tidak ada file lebih dari 5 MB.
 - Jangan force push dan jangan menulis ulang riwayat.
 
