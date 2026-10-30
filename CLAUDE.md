@@ -14,13 +14,13 @@
 - Hosting: GitHub Pages dari branch `main`, folder root. Ada file `.nojekyll`.
 
 ## Struktur
-- `index.html` — beranda: kartu matkul + progres.
+- `index.html` — beranda: kartu matkul.
 - `matkul/<slug>/index.html` — daftar topik satu matkul.
 - `matkul/<slug>/NN-judul-topik.html` — satu halaman per topik; NN = urutan dua digit.
 - `matkul/<slug>/ringkasan.html` — ringkasan/cheat sheet matkul.
 - `assets/css/style.css` — satu-satunya file CSS.
 - `assets/js/data.js` — daftar matkul dan topik; satu-satunya sumber navigasi.
-- `assets/js/main.js` — sidebar, breadcrumb, daftar isi, tema, progres, sebelumnya/berikutnya.
+- `assets/js/main.js` — sidebar, breadcrumb, daftar isi, tema, sebelumnya/berikutnya.
 - `_templates/topik.html` — kerangka halaman topik; halaman baru selalu disalin dari sini.
 - `komponen.html` — contoh semua komponen; perbarui bila komponen berubah.
 
@@ -28,7 +28,7 @@
 - Daftar matkul/topik HANYA di `data.js`, sebagai variabel global (bukan JSON + fetch), supaya tetap jalan saat file dibuka langsung tanpa server.
 - Setiap menambah, menghapus, atau mengganti nama halaman: perbarui `data.js` saja. Daftar topik di `matkul/<slug>/index.html` dibuat otomatis oleh `main.js`.
 - Semua tautan dan path aset relatif (tanpa awalan `/`), karena situs berada di subfolder `/math-notes/`.
-- Progres "Sudah dipelajari" dan pilihan tema disimpan di localStorage.
+- Pilihan tema (dan sidebar tersembunyi) disimpan di localStorage. Tidak ada pelacakan progres belajar.
 
 ## Halaman topik
 Urutan bagian (lewati yang tidak relevan):
@@ -40,7 +40,7 @@ Urutan bagian (lewati yang tidak relevan):
 6. Latihan soal dengan pembahasan tersembunyi.
 7. Ringkasan rumus.
 8. Sumber: nama file, bab, halaman.
-9. Navigasi: sebelumnya · centang "Sudah dipelajari" · berikutnya.
+9. Navigasi: sebelumnya · berikutnya.
 
 ## Komponen
 - Kotak: `<div class="box definisi">`; varian lain: `teorema`, `lemma`, `proposisi`, `akibat`, `contoh`, `catatan`, `peringatan`. Judul kotak di `<div class="box-title">`.

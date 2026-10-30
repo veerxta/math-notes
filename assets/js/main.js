@@ -8,7 +8,6 @@
 
   var DATA = window.MATH_NOTES || { matkul: [], lainnya: [] };
   var KUNCI_TEMA = "mn-tema";
-  var KUNCI_PROGRES = "mn-progres";
   var KUNCI_SIDEBAR = "mn-sidebar";
   var html = document.documentElement;
   var LEBAR = window.matchMedia("(min-width: 1024px)");
@@ -19,7 +18,6 @@
     gelap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.5 8.5 0 1 1 9.8 4a7.5 7.5 0 0 0 10.2 10.2z"/></svg>',
     atas: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>',
     panah: '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="panah" d="M9.5 6l6 6-6 6"/></svg>',
-    centang: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   };
 
   /* ---------- Lokasi: akar situs dan halaman aktif ---------- */
@@ -87,44 +85,10 @@
     return t.content.firstChild;
   }
 
-  function tandaSelesai(atribut) {
-    return h("span", Object.assign({ class: "tanda", title: "Sudah dipelajari" }, atribut), [
-      svg("centang"),
-      h("span", { class: "sr-only" }, "(sudah dipelajari)"),
-    ]);
-  }
+  // Data progres "Sudah dipelajari" dari versi lama tidak dipakai lagi.
+  try { localStorage.removeItem("mn-progres"); } catch (e) { /* abaikan */ }
 
-  function bilah(selesai, total) {
-    var persen = total ? Math.round((selesai / total) * 100) : 0;
-    return h("span", { class: "bilah", "aria-hidden": "true" }, h("span", { style: "width: " + persen + "%" }));
-  }
-
-  /* ---------- Progres "Sudah dipelajari" (localStorage) ---------- */
-
-  var PROGRES = (function () {
-    try {
-      var v = JSON.parse(localStorage.getItem(KUNCI_PROGRES));
-      return v && typeof v === "object" ? v : {};
-    } catch (e) {
-      return {};
-    }
-  })();
-
-  function kunci(m, t) { return m.slug + "/" + t.file; }
-  function sudah(m, t) { return Boolean(PROGRES[kunci(m, t)]); }
-  function jumlahSelesai(m) { return m.topik.filter(function (t) { return sudah(m, t); }).length; }
-
-  function simpanSelesai(m, t, ya) {
-    if (ya) PROGRES[kunci(m, t)] = new Date().toISOString().slice(0, 10);
-    else delete PROGRES[kunci(m, t)];
-    try {
-      localStorage.setItem(KUNCI_PROGRES, JSON.stringify(PROGRES));
-    } catch (e) {
-      /* penyimpanan tidak tersedia: centang hanya berlaku sampai halaman ditutup */
-    }
-  }
-
-  /* ---------- Tema: Otomatis -> Terang -> Gelap ---------- */
+  /* ---------- Tema: Terang <-> Gelap ---------- */
 
   // Hanya dua mode, tidak mengikuti pengaturan perangkat; bawaan terang.
   var NAMA_TEMA = { terang: "Terang", gelap: "Gelap" };
@@ -261,7 +225,6 @@
     var isiBaris = [
       h("span", { class: "titik", "aria-hidden": "true" }),
       h("span", { class: "nama" }, m.nama),
-      total ? h("span", { class: "hitung", "data-slug": m.slug, title: "Sudah dipelajari" }, jumlahSelesai(m) + "/" + total) : null,
     ];
 
     // Matkul tanpa isi: cukup tautan ke halaman matkulnya.
@@ -278,7 +241,6 @@
       var item = h("li", null, h("a", { href: urlTopik(m, t), "aria-current": aktif && t === TOPIK ? "page" : null }, [
         h("span", { class: "no" }, nomor(t, i)),
         h("span", { class: "judul" }, t.judul),
-        tandaSelesai({ "data-topik": t.file, hidden: !sudah(m, t) }),
       ]));
       if (t.bab) {
         grup = h("ol", { class: "bab-topik" });
@@ -386,7 +348,7 @@
     return id;
   }
 
-  /* ---------- Sebelumnya · Sudah dipelajari · Berikutnya ---------- */
+  /* ---------- Sebelumnya · Berikutnya ---------- */
 
   function isiNavTopik() {
     var nav = document.querySelector(".nav-topik");
@@ -399,18 +361,10 @@
     var sebelum = MATKUL.topik[INDEKS - 1];
     var sesudah = MATKUL.topik[INDEKS + 1];
 
-    var kotak = h("input", { type: "checkbox", id: "tandai-selesai" });
-    kotak.checked = sudah(MATKUL, TOPIK);
-    kotak.addEventListener("change", function () {
-      simpanSelesai(MATKUL, TOPIK, kotak.checked);
-      perbaruiTandaSidebar();
-    });
-
     nav.replaceChildren(
       sebelum
         ? tautanNav("sebelumnya", "← Sebelumnya", sebelum.judul, urlTopik(MATKUL, sebelum))
         : tautanNav("sebelumnya", "← Kembali ke", "Daftar topik", urlMatkul(MATKUL)),
-      h("label", { class: "tandai", for: "tandai-selesai" }, [kotak, h("span", null, "Sudah dipelajari")]),
       sesudah
         ? tautanNav("berikutnya", "Berikutnya →", sesudah.judul, urlTopik(MATKUL, sesudah))
         : tautanNav("berikutnya", "Kembali ke →", "Daftar topik", urlMatkul(MATKUL))
@@ -421,41 +375,19 @@
     return h("a", { class: kelas, href: url }, [h("span", { class: "arah" }, arah), h("span", { class: "judul" }, judul)]);
   }
 
-  function perbaruiTandaSidebar() {
-    document.querySelectorAll('.sidebar-topik[data-slug="' + MATKUL.slug + '"] .tanda[data-topik]').forEach(function (s) {
-      var t = MATKUL.topik.find(function (x) { return x.file === s.getAttribute("data-topik"); });
-      s.hidden = !(t && sudah(MATKUL, t));
-    });
-    var hitung = document.querySelector('.hitung[data-slug="' + MATKUL.slug + '"]');
-    if (hitung) hitung.textContent = jumlahSelesai(MATKUL) + "/" + MATKUL.topik.length;
-  }
-
-  /* ---------- Beranda: kartu matkul + progres ---------- */
+  /* ---------- Beranda: kartu matkul ---------- */
 
   function isiBeranda() {
     var daftar = document.querySelector(".daftar-matkul");
     if (!daftar) return;
 
-    var semua = 0;
-    var selesai = 0;
     daftar.replaceChildren.apply(daftar, DATA.matkul.map(function (m) {
       var n = m.topik.length;
-      var s = jumlahSelesai(m);
-      semua += n;
-      selesai += s;
       return h("li", { class: "kartu-matkul", style: "--aksen: " + m.aksen }, h("a", { href: urlMatkul(m) }, [
         h("span", { class: "kartu-nama" }, m.nama),
-        h("span", { class: "kartu-info" }, n ? s + " dari " + n + " topik dipelajari" : "Belum ada topik"),
-        bilah(s, n),
+        h("span", { class: "kartu-info" }, n ? n + " topik" : "Belum ada topik"),
       ]));
     }));
-
-    var ringkas = document.querySelector(".progres-total");
-    if (ringkas) {
-      ringkas.textContent = semua
-        ? "Progres: " + selesai + " dari " + semua + " topik sudah dipelajari."
-        : "Belum ada topik.";
-    }
   }
 
   /* ---------- Halaman matkul: daftar topik dari data.js ---------- */
@@ -464,16 +396,10 @@
     var daftar = document.querySelector(".daftar-topik");
     if (!daftar || !MATKUL) return;
 
-    var progres = document.querySelector(".progres-matkul");
-    var n = MATKUL.topik.length;
-    if (!n && !MATKUL.ringkasan) {
+    if (!MATKUL.topik.length && !MATKUL.ringkasan) {
       daftar.replaceWith(h("p", { class: "kosong" }, "Belum ada topik."));
-      if (progres) progres.remove();
       return;
     }
-
-    var s = jumlahSelesai(MATKUL);
-    if (progres) progres.replaceChildren(s + " dari " + n + " topik sudah dipelajari.", bilah(s, n));
 
     var item = [];
     MATKUL.topik.forEach(function (t, i) {
@@ -481,7 +407,6 @@
       item.push(h("li", null, h("a", { href: urlTopik(MATKUL, t) }, [
         h("span", { class: "no" }, nomor(t, i)),
         h("span", { class: "judul" }, t.judul),
-        sudah(MATKUL, t) ? tandaSelesai() : null,
       ])));
     });
     if (MATKUL.ringkasan) {

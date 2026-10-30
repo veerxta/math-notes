@@ -287,9 +287,9 @@ print(biseksi(lambda x: x**2 - 2, 1, 2))  # ≈ 1.414214</code></pre>
             <tr><td><code>.intisari</code></td><td>Daftar 3–5 poin yang harus dikuasai</td></tr>
             <tr><td><code>.breadcrumb</code></td><td>Wadah breadcrumb, diisi main.js</td></tr>
             <tr><td><code>.daftar-isi</code></td><td>Wadah daftar isi dari h2/h3, diisi main.js</td></tr>
-            <tr><td><code>.nav-topik</code></td><td>Sebelumnya · Sudah dipelajari · Berikutnya, diisi main.js</td></tr>
-            <tr><td><code>.progres-total</code>, <code>.daftar-matkul</code></td><td>Progres dan kartu matkul di beranda, diisi main.js</td></tr>
-            <tr><td><code>.progres-matkul</code>, <code>.daftar-topik</code></td><td>Progres dan daftar topik di halaman matkul, diisi main.js</td></tr>
+            <tr><td><code>.nav-topik</code></td><td>Sebelumnya · Berikutnya, diisi main.js</td></tr>
+            <tr><td><code>.daftar-matkul</code></td><td>Kartu matkul di beranda (nama dan jumlah topik), diisi main.js</td></tr>
+            <tr><td><code>.daftar-topik</code></td><td>Daftar topik di halaman matkul, diisi main.js</td></tr>
             <tr><td><code>.label-bab</code></td><td>Label bab di daftar topik halaman matkul, dibuat main.js dari field <code>bab</code> di data.js (ditulis pada topik pertama tiap bab)</td></tr>
             <tr><td><code>.nav-grup</code>, <code>.nav-bab</code>, <code>.bab-topik</code>, <code>.semua-topik</code></td><td>Sidebar bertingkat, dibuat main.js: matkul (<code>details.nav-grup</code>) → bab (<code>details.nav-bab</code>, dari field <code>bab</code>) → topik (<code>ol.bab-topik</code>). Semua tertutup sampai dipencet, kecuali matkul dan bab yang memuat halaman yang sedang dibuka. <code>.semua-topik</code> menuju halaman daftar topik matkul</td></tr>
             <tr><td><code>.tombol-sembunyi</code>, <code>.tombol-tampil</code>, <code>.sidebar-tutup</code></td><td>Menyembunyikan sidebar di layar lebar (≥1024 px), dibuat main.js. Kelas <code>.sidebar-tutup</code> di <code>&lt;html&gt;</code> dipasang skrip di <code>&lt;head&gt;</code> dari localStorage <code>mn-sidebar</code> agar tata letak tidak melompat; skrip itu ada di <code>_templates/topik.html</code></td></tr>
