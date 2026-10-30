@@ -14,9 +14,7 @@
   var LEBAR = window.matchMedia("(min-width: 1024px)");
 
   var IKON = {
-    menu: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
     panel: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M9.5 4.5v15"/></svg>',
-    tutup: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     otomatis: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path class="penuh" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>',
     terang: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>',
     gelap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.5 8.5 0 1 1 9.8 4a7.5 7.5 0 0 0 10.2 10.2z"/></svg>',
@@ -187,8 +185,9 @@
       "aria-label": "Buka menu",
       "aria-controls": "sidebar",
       "aria-expanded": "false",
-    }, svg("menu"));
-    var tombolTutup = h("button", { type: "button", class: "ikon tombol-tutup", "aria-label": "Tutup menu" }, svg("tutup"));
+    }, svg("panel"));
+    var tombolTutup = h("button", { type: "button", class: "ikon tombol-tutup", "aria-label": "Tutup menu" }, svg("panel"));
+    // Keempat tombol buka/tutup sidebar (HP dan layar lebar) memakai ikon dan gaya yang sama.
     // Layar lebar: sidebar bisa disembunyikan; tombolTampil muncul di kiri atas saat tersembunyi.
     var tombolSembunyi = h("button", {
       type: "button",
