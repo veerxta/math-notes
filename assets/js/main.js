@@ -15,7 +15,6 @@
 
   var IKON = {
     panel: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M9.5 4.5v15"/></svg>',
-    otomatis: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path class="penuh" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>',
     terang: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>',
     gelap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.5 8.5 0 1 1 9.8 4a7.5 7.5 0 0 0 10.2 10.2z"/></svg>',
     atas: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>',
@@ -126,24 +125,22 @@
 
   /* ---------- Tema: Otomatis -> Terang -> Gelap ---------- */
 
-  var URUTAN_TEMA = ["otomatis", "terang", "gelap"];
-  var NAMA_TEMA = { otomatis: "Otomatis", terang: "Terang", gelap: "Gelap" };
+  // Hanya dua mode, tidak mengikuti pengaturan perangkat; bawaan terang.
+  var NAMA_TEMA = { terang: "Terang", gelap: "Gelap" };
   var tombolTema = [];
 
   function temaAktif() {
     var t = html.getAttribute("data-tema");
-    return t === "terang" || t === "gelap" ? t : "otomatis";
+    return t === "gelap" ? "gelap" : "terang";
   }
 
   function pasangTema(tema) {
     try {
-      if (tema === "otomatis") localStorage.removeItem(KUNCI_TEMA);
-      else localStorage.setItem(KUNCI_TEMA, tema);
+      localStorage.setItem(KUNCI_TEMA, tema);
     } catch (e) {
       /* tetap berlaku untuk halaman ini */
     }
-    if (tema === "otomatis") html.removeAttribute("data-tema");
-    else html.setAttribute("data-tema", tema);
+    html.setAttribute("data-tema", tema);
     perbaruiTema();
   }
 
@@ -166,8 +163,7 @@
   function buatTombolTema(denganTeks) {
     var b = h("button", { type: "button", class: denganTeks ? "tombol-tema" : "tombol-tema ikon" });
     b.addEventListener("click", function () {
-      var i = URUTAN_TEMA.indexOf(temaAktif());
-      pasangTema(URUTAN_TEMA[(i + 1) % URUTAN_TEMA.length]);
+      pasangTema(temaAktif() === "gelap" ? "terang" : "gelap");
     });
     tombolTema.push(b);
     return b;
@@ -530,5 +526,4 @@
   pasangKeAtas();
   pasangCetak();
   perbaruiTema();
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", perbaruiTema);
 })();

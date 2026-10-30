@@ -2,8 +2,9 @@
    Math Notes: satu-satunya file CSS.
    Urutan: font · token · dasar · tata letak · navigasi · halaman topik ·
            komponen · beranda dan matkul · utilitas · cetak.
-   Warna memakai light-dark(): mode mengikuti sistem, dan bisa dipaksa lewat
-   atribut data-tema="terang" / "gelap" di <html> (dipasang oleh main.js).
+   Warna memakai light-dark(). Hanya dua mode, dipilih lewat atribut
+   data-tema="terang" / "gelap" di <html> (skrip di <head> dan main.js);
+   bawaan terang, tidak mengikuti pengaturan perangkat.
    ========================================================================== */
 
 /* ---------- Font lokal (variable, woff2) ---------- */
@@ -60,7 +61,7 @@
 /* ---------- Token: light-dark(terang, gelap) ---------- */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   --latar: light-dark(#F7F4EC, #1C1D1F);
   --latar-sidebar: light-dark(#EFEADF, #222326);

@@ -63,7 +63,7 @@ Urutan bagian (lewati yang tidak relevan):
 
 ## Desain
 - Nuansa kertas yang tenang. Terang: latar krem lembut, teks hampir hitam. Gelap: abu sangat gelap, teks abu terang. Hindari putih murni dan hitam pekat.
-- Mode gelap mengikuti pengaturan sistem dan bisa diganti manual.
+- Hanya dua mode: terang (bawaan) dan gelap, diganti manual lewat tombol tema. Tidak mengikuti pengaturan perangkat.
 - Teks: serif yang nyaman (mis. Source Serif 4), 17–18 px, line-height 1.7. Judul dan UI: sans (mis. Inter).
 - Lebar teks maksimal ±70 karakter. Di HP: lebar penuh dengan margin 16 px.
 - Rumus display yang panjang di-scroll horizontal di dalam kotaknya; halaman tidak boleh bergeser horizontal.
