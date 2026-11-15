@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Template Bab Mata Kuliah — Math Notes S1 Matematika.">
+  <meta name="theme-color" content="#2563eb">
+  <title>[Bab XX: Judul Bab] — [Nama Mata Kuliah] | Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!--
+    MASTER TEMPLATE CATATAN MATA KULIAH
+    Cara Pakai:
+    1. Salin file ini ke dalam folder: courses/<nama-matkul>/<nama-bab>.html
+       (Contoh: courses/analisis-real/01-sistem-bilangan-real.html)
+    2. Path relatif ../../assets/... dan ../../index.html akan otomatis bekerja.
+  -->
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX v0.16.11 via CDN jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi Kiri -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Bab dan Sub-bab">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <!-- 1. Navigasi Kembali ke Dashboard & Indeks Mata Kuliah -->
+      <nav class="nav-section" aria-label="Navigasi Utama">
+        <div class="nav-section-title">Navigasi Utama</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Kembali ke Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link">
+              <span>📚</span>
+              <span>Daftar Isi Mata Kuliah</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 2. Daftar Bab Mata Kuliah -->
+      <nav class="nav-section" aria-label="Daftar Bab Mata Kuliah">
+        <div class="nav-section-title">Daftar Bab</div>
+        <ul class="nav-list">
+          <li>
+            <a href="bab-01.html" class="nav-link">
+              <span>01.</span>
+              <span>Fondasi &amp; Aksioma</span>
+            </a>
+          </li>
+          <li>
+            <a href="bab-02.html" class="nav-link active" aria-current="page">
+              <span>02.</span>
+              <span>Deret &amp; Integral Tak Wajar</span>
+            </a>
+          </li>
+          <li>
+            <a href="bab-03.html" class="nav-link">
+              <span>03.</span>
+              <span>Kekonvergenan Seragam</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 3. Daftar Sub-Bab Halaman Aktif -->
+      <nav class="nav-section" aria-label="Sub-Bab Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#definisi-dasar" class="nav-link">
+              <span>§2.1</span>
+              <span>Definisi Dasar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#teorema-utama" class="nav-link">
+              <span>§2.2</span>
+              <span>Teorema &amp; Rumus Panjang</span>
+            </a>
+          </li>
+          <li>
+            <a href="#pembuktian" class="nav-link">
+              <span>§2.3</span>
+              <span>Pembuktian Formal</span>
+            </a>
+          </li>
+          <li>
+            <a href="#latihan-soal" class="nav-link">
+              <span>§2.4</span>
+              <span>Latihan Soal</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        Template Master Bab Mata Kuliah<br>
+        KaTeX v0.16.11 • Responsif 393px
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Layar HP -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Konten Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a>
+            <span>/</span>
+            <a href="index.html">Mata Kuliah</a>
+            <span>/</span>
+            <strong>Bab 02</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <!-- Header Bab -->
+        <header class="page-header">
+          <span class="page-badge">Bab 02 • Contoh Template Bab</span>
+          <h1>Deret Taylor, Transformasi Fourier, dan Integral Tak Wajar</h1>
+          <p class="page-subtitle">
+            Halaman ini adalah <em>Master Template</em> standar penulisan bab mata kuliah. Mendukung notasi inline seperti $f : \mathbb{R} \to \mathbb{C}$ maupun \(\forall \varepsilon > 0\), serta blok persamaan panjang yang dapat di-scroll horizontal pada layar ponsel (~393px).
+          </p>
+        </header>
+
+        <!-- Sub-Bab 1: Definisi -->
+        <section id="definisi-dasar" aria-labelledby="heading-definisi">
+          <h2 id="heading-definisi">2.1 Definisi Dasar</h2>
+          <p>
+            Sebelum membahas ekspansi asimtotik dan identitas parseval, kita merumuskan definisi kekonvergenan deret fungsi serta transformasi Fourier pada ruang $L^1(\mathbb{R})$.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.1 (Transformasi Fourier pada \(L^1(\mathbb{R})\))</span>
+            <p>
+              Misalkan $f : \mathbb{R} \to \mathbb{C}$ adalah fungsi terintegral Lebesgue pada garis real sedemikian sehingga \(\int_{-\infty}^{\infty} |f(x)| \, dx < \infty\). Transformasi Fourier dari $f$, dinotasikan sebagai $\hat{f}(\xi)$, didefinisikan untuk setiap frekuensi $\xi \in \mathbb{R}$ oleh integral:
+            </p>
+            $$\hat{f}(\xi) = \int_{-\infty}^{\infty} f(x) \, e^{-2\pi i x \xi} \, dx$$
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema 2.2 (Keterbatasan Seragam Transformasi Fourier)</span>
+            <p>
+              Untuk setiap fungsi $f \in L^1(\mathbb{R})$, transformasi Fourier $\hat{f}$ terbatas secara seragam pada $\mathbb{R}$ dengan batas atas norma $\|\hat{f}\|_\infty \le \|f\|_{L^1}$.
+            </p>
+          </div>
+        </section>
+
+        <!-- Sub-Bab 2: Teorema dengan Rumus Panjang (Tes Scroll Horizontal 393px) -->
+        <section id="teorema-utama" aria-labelledby="heading-teorema">
+          <h2 id="heading-teorema">2.2 Teorema Utama (Uji Scroll Horizontal Layar 393px)</h2>
+          <p>
+            Rumus blok di bawah ini sengaja memuat ekspansi deret dan integral panjang untuk memastikan aturan <code>.katex-display</code> mengaktifkan scroll horizontal yang mulus di layar Google Pixel 5 tanpa merusak lebar kontainer utama:
+          </p>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 2.3 (Ekspansi Deret Taylor–Maclaurin &amp; Identitas Integral Euler–Maclaurin)</span>
+            <p>
+              Misalkan $f \in C^{\infty}(\mathbb{R})$ adalah fungsi mulus dan analitik pada persekitaran titik asal. Maka ekspansi deret tak hingga serta rumus penjumlahan integral Euler–Maclaurin memenuhi identitas:
+            </p>
+            $$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f^{(3)}(0)}{3!}x^3 + \frac{f^{(4)}(0)}{4!}x^4 + \cdots + \frac{1}{(k-1)!} \int_{0}^{x} (x - t)^{k-1} f^{(k)}(t) \, dt$$
+            <p>
+              Lebih lanjut, untuk deret Riemann $\zeta(s)$ dan integral Gaussian tergeneralisasi pada domain kompleks $\operatorname{Re}(s) > 1$, berlaku hubungan:
+            </p>
+            \[\Gamma(s)\,\zeta(s) = \int_{0}^{\infty} \frac{x^{s-1}}{e^x - 1} \, dx = \int_{0}^{\infty} x^{s-1} \left( \sum_{n=1}^{\infty} e^{-nx} \right) dx = \sum_{n=1}^{\infty} \int_{0}^{\infty} x^{s-1} e^{-nx} \, dx = \sum_{n=1}^{\infty} \frac{\Gamma(s)}{n^s}\]
+          </div>
+        </section>
+
+        <!-- Sub-Bab 3: Pembuktian Formal -->
+        <section id="pembuktian" aria-labelledby="heading-bukti">
+          <h2 id="heading-bukti">2.3 Pembuktian Formal</h2>
+          <p>
+            Blok <code>.math-box.proof</code> secara otomatis menambahkan garis tepi kiri tipis dan simbol akhir bukti Q.E.D. (<code>∎</code>) di pojok kanan bawah:
+          </p>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 2.3.</span>
+            <p>
+              Dengan menerapkan pengintegralan parsial berulang kali pada suku sisa integral $R_k(x) = \frac{1}{(k-1)!} \int_{0}^{x} (x - t)^{k-1} f^{(k)}(t) \, dt$, diperoleh hubungan rekursif:
+            </p>
+            $$R_k(x) = -\left[ \frac{(x-t)^k}{k!} f^{(k)}(t) \right]_{t=0}^{t=x} + \frac{1}{k!} \int_{0}^{x} (x - t)^k f^{(k+1)}(t) \, dt = \frac{f^{(k)}(0)}{k!} x^k + R_{k+1}(x)$$
+            <p>
+              Selanjutnya, untuk integral $\Gamma(s)\zeta(s)$, karena $\sum_{n=1}^{\infty} e^{-nx} = \frac{1}{e^x - 1}$ konvergen monoton pada $(0, \infty)$ dan suku-sukunya tak-negatif, Teorema Kekonvergenan Monoton Lebesgue mengizinkan pertukaran tanda jumlah dan integral. Substitusi $u = nx$ menghasilkan $\int_{0}^{\infty} x^{s-1} e^{-nx} \, dx = n^{-s} \Gamma(s)$.
+            </p>
+          </div>
+        </section>
+
+        <!-- Sub-Bab 4: Latihan Soal & Spoiler Pembahasan -->
+        <section id="latihan-soal" aria-labelledby="heading-latihan">
+          <h2 id="heading-latihan">2.4 Latihan Soal</h2>
+          <p>
+            Kerjakan soal berikut secara mandiri terlebih dahulu sebelum membuka bagian pembahasan di bawahnya:
+          </p>
+
+          <p>
+            <strong>Soal 2.1.</strong> Hitunglah nilai eksak dari deret tak hingga $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n(n+1)(n+2)}$ dengan menggunakan dekomposisi pecahan parsial dan sifat deret teleskopik!
+          </p>
+
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                <strong>Langkah 1 (Pecahan Parsial):</strong> Kita dapat menguraikan suku umum $a_n$ menjadi selisih dua suku berurutan:
+              </p>
+              $$\frac{1}{n(n+1)(n+2)} = \frac{1}{2} \left( \frac{1}{n(n+1)} - \frac{1}{(n+1)(n+2)} \right)$$
+              <p>
+                <strong>Langkah 2 (Jumlah Parsial ke-$N$):</strong> Jumlah parsial $S_N = \sum_{n=1}^{N} a_n$ bersifat teleskopik sehingga suku-suku tengah saling menghilangkan:
+              </p>
+              \[S_N = \frac{1}{2} \sum_{n=1}^{N} \left( \frac{1}{n(n+1)} - \frac{1}{(n+1)(n+2)} \right) = \frac{1}{2} \left( \frac{1}{1 \cdot 2} - \frac{1}{(N+1)(N+2)} \right)\]
+              <p>
+                <strong>Langkah 3 (Limit $N \to \infty$):</strong> Mengambil limit $N \to \infty$, karena $\lim_{N \to \infty} \frac{1}{(N+1)(N+2)} = 0$, kita peroleh:
+              </p>
+              $$\sum_{n=1}^{\infty} \frac{1}{n(n+1)(n+2)} = \lim_{N \to \infty} S_N = \frac{1}{2} \left( \frac{1}{2} - 0 \right) = \frac{1}{4}$$
+            </div>
+          </details>
+        </section>
+
+        <!-- Navigasi Bab Sebelumnya & Bab Selanjutnya -->
+        <nav class="chapter-pagination" aria-label="Navigasi Antar Bab">
+          <a href="bab-01.html" class="chapter-nav-link prev">
+            <span class="chapter-nav-label">← Bab Sebelumnya</span>
+            <span class="chapter-nav-title">Bab 01: Fondasi &amp; Aksioma</span>
+          </a>
+
+          <a href="bab-03.html" class="chapter-nav-link next">
+            <span class="chapter-nav-label">Bab Selanjutnya →</span>
+            <span class="chapter-nav-title">Bab 03: Kekonvergenan Seragam</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>

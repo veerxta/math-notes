@@ -1,0 +1,32 @@
+{
+  "name": "Math Notes — Catatan Kuliah S1 Matematika",
+  "short_name": "Math Notes",
+  "description": "Catatan kuliah S1 Matematika (Analisis Real & Aljabar Linear) — Offline-First PWA.",
+  "lang": "id",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#faf8f5",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

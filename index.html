@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="./sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard utama catatan kuliah S1 Matematika — Analisis Real dan Aljabar Linear.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Math Notes — Dashboard S1 Matematika</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- KaTeX untuk Render Notasi Matematika -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Utama">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-section" aria-label="Menu Utama">
+        <div class="nav-section-title">Ringkasan</div>
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>🏠</span>
+              <span>Dashboard Utama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Daftar Mata Kuliah">
+        <div class="nav-section-title">Mata Kuliah</div>
+        <ul class="nav-list">
+          <li>
+            <a href="courses/analisis-real/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Analisis Real</span>
+            </a>
+          </li>
+          <li>
+            <a href="courses/aljabar-linear/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Aljabar Linear</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        Program Studi S1 Matematika<br>
+        HTML5 • Vanilla CSS • Vanilla JS
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <strong>Math Notes</strong> <span>/</span> Dashboard
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">Arsip Perkuliahan</span>
+          <h1>Math Notes</h1>
+          <p class="page-subtitle">
+            Dokumentasi terstruktur catatan kuliah, aksioma, teorema, dan pembuktian formal untuk program studi <strong>S1 Matematika</strong>. Dirancang agar nyaman dibaca berjam-jam di layar desktop maupun ponsel.
+          </p>
+        </header>
+
+        <section aria-labelledby="courses-heading">
+          <h2 id="courses-heading">Daftar Mata Kuliah</h2>
+          <p>Pilih mata kuliah di bawah ini untuk membuka daftar isi bab, rangkuman konsep, serta latihan pembuktian:</p>
+
+          <div class="course-grid">
+            <a href="courses/analisis-real/index.html" class="course-card">
+              <div>
+                <div class="course-card-code">MAT-201 • Analisis</div>
+                <h3 class="course-card-title">Analisis Real</h3>
+                <p class="course-card-desc">
+                  Konstruksi aksiomatik bilangan real $\mathbb{R}$, sifat kelengkapan (supremum &amp; infimum), kekonvergenan barisan Cauchy, topologi garis real, dan kekontinuan fungsi.
+                </p>
+              </div>
+              <div class="course-card-footer">
+                <span>Buka Daftar Isi</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+
+            <a href="courses/aljabar-linear/index.html" class="course-card">
+              <div>
+                <div class="course-card-code">MAT-102 • Aljabar</div>
+                <h3 class="course-card-title">Aljabar Linear</h3>
+                <p class="course-card-desc">
+                  Sistem persamaan linear, ruang vektor atas lapangan $\mathbb{F}$, kebebasan linear, basis dan dimensi, transformasi linear, determinan, serta nilai dan vektor eigen.
+                </p>
+              </div>
+              <div class="course-card-footer">
+                <span>Buka Daftar Isi</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section aria-labelledby="design-preview-heading">
+          <h2 id="design-preview-heading">Panduan Komponen Catatan</h2>
+          <p>
+            Setiap catatan mata kuliah menggunakan blok semantik berikut untuk membedakan status logika pernyataan matematika:
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.1 (Batas Atas dan Supremum)</span>
+            <p>
+              Misalkan $S$ adalah himpunan bagian tak kosong dari $\mathbb{R}$. Bilangan real $u \in \mathbb{R}$ disebut <em>batas atas</em> dari $S$ jika $x \le u$ untuk setiap $x \in S$. Batas atas terkecil dari $S$ disebut <strong>supremum</strong> dan dinotasikan dengan $\sup S$.
+            </p>
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema 1.2 (Karakterisasi $\varepsilon$ untuk Supremum)</span>
+            <p>
+              Misalkan $u$ adalah batas atas dari himpunan tak kosong $S \subseteq \mathbb{R}$. Maka $u = \sup S$ jika dan hanya jika untuk setiap $\varepsilon > 0$ terdapat $s_\varepsilon \in S$ sedemikian sehingga $u - \varepsilon < s_\varepsilon$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.3 (Ketaksamaan Cauchy–Schwarz)</span>
+            <p>
+              Untuk sembarang ruang hasil kali dalam $V$ atas $\mathbb{R}$ dan setiap vektor $u, v \in V$, berlaku:
+            </p>
+            $$|\langle u, v \rangle| \le \|u\| \, \|v\| = \sqrt{\langle u, u \rangle} \sqrt{\langle v, v \rangle}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti.</span>
+            <p>
+              Jika $v = 0$, kedua ruas bernilai $0$ sehingga ketaksamaan berlaku secara trivial. Untuk $v \neq 0$ dan sembarang skalar $t \in \mathbb{R}$, kepositifan hasil kali dalam memberikan $0 \le \|u - tv\|^2 = \|u\|^2 - 2t\langle u, v \rangle + t^2\|v\|^2$. Substitusi $t = \frac{\langle u, v \rangle}{\|v\|^2}$ menghasilkan $|\langle u, v \rangle|^2 \le \|u\|^2 \|v\|^2$.
+            </p>
+          </div>
+
+          <details class="exercise-spoiler">
+            <summary>Latihan 1.1 — Tunjukkan bahwa $\sup\{1 - \frac{1}{n} : n \in \mathbb{N}\} = 1$</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Karena $\frac{1}{n} > 0$ untuk semua $n \in \mathbb{N}$, berlaku $1 - \frac{1}{n} < 1$, sehingga $1$ adalah batas atas. Ambil sembarang $\varepsilon > 0$. Berdasarkan Sifat Archimedes, terdapat $n_0 \in \mathbb{N}$ sehingga $\frac{1}{n_0} < \varepsilon$, yang ekuivalen dengan $1 - \varepsilon < 1 - \frac{1}{n_0}$. Jadi $\sup S = 1$.
+              </p>
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

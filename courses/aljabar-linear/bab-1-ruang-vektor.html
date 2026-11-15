@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bab 1: Ruang Vektor — Aksioma, Sifat Aljabar, Kombinasi Linier, Subruang, Span, Kebebasan Linier, Basis, Dimensi, dan Perubahan Basis.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Bab 1: Ruang Vektor — Aljabar Linear | Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX v0.16.11 via CDN jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi Kiri -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Bab dan Sub-bab">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <!-- 1. Navigasi Kembali ke Dashboard & Indeks Mata Kuliah -->
+      <nav class="nav-section" aria-label="Navigasi Utama">
+        <div class="nav-section-title">Navigasi Utama</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Kembali ke Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link">
+              <span>📚</span>
+              <span>Daftar Isi Aljabar Linear</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 2. Daftar Bab Mata Kuliah -->
+      <nav class="nav-section" aria-label="Daftar Bab Aljabar Linear">
+        <div class="nav-section-title">Daftar Bab</div>
+        <ul class="nav-list">
+          <li>
+            <a href="bab-1-ruang-vektor.html" class="nav-link active" aria-current="page">
+              <span>01.</span>
+              <span>Ruang Vektor</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 3. Daftar Sub-Bab Halaman Aktif -->
+      <nav class="nav-section" aria-label="Sub-Bab Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#evolusi-dan-definisi" class="nav-link">
+              <span>§1.1</span>
+              <span>Evolusi &amp; Definisi Ruang Vektor</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contoh-ruang-vektor" class="nav-link">
+              <span>§1.1.4</span>
+              <span>Contoh &amp; Deret Fourier</span>
+            </a>
+          </li>
+          <li>
+            <a href="#sifat-dasar" class="nav-link">
+              <span>§1.1.5</span>
+              <span>Sifat Aljabar Ruang Vektor</span>
+            </a>
+          </li>
+          <li>
+            <a href="#kombinasi-dan-subruang" class="nav-link">
+              <span>§1.2</span>
+              <span>Kombinasi Linier, Subruang &amp; Span</span>
+            </a>
+          </li>
+          <li>
+            <a href="#kebebasan-linier" class="nav-link">
+              <span>§1.2.11</span>
+              <span>Kebebasan Linier</span>
+            </a>
+          </li>
+          <li>
+            <a href="#basis-dan-dimensi" class="nav-link">
+              <span>§1.3</span>
+              <span>Basis, Dimensi &amp; Steinitz</span>
+            </a>
+          </li>
+          <li>
+            <a href="#perubahan-basis" class="nav-link">
+              <span>§1.4</span>
+              <span>Perubahan Basis &amp; Matriks Transisi</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT-102 • Aljabar Linear<br>
+        Bab 1: Ruang Vektor
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Layar HP -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Konten Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a>
+            <span>/</span>
+            <a href="index.html">Aljabar Linear</a>
+            <span>/</span>
+            <strong>Bab 1: Ruang Vektor</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT-102 • Bab 01</span>
+          <h1>1. Ruang Vektor</h1>
+          <p class="page-subtitle">
+            Kajian menyeluruh mulai dari evolusi historis dan definisi aksiomatik ruang vektor atas lapangan $F$, contoh-contoh ruang abstrak (polinomial, matriks, fungsi, barisan, hingga Deret Fourier), kombinasi linier, subruang, rentang (<em>span</em>), kebebasan linier, basis dan dimensi, hingga matriks transisi perubahan basis.
+          </p>
+        </header>
+
+        <!-- ================================================================
+             SUB-BAB 1.1: EVOLUSI & DEFINISI RUANG VEKTOR
+             ================================================================ -->
+        <section id="evolusi-dan-definisi" aria-labelledby="heading-1-1">
+          <h2 id="heading-1-1">1.1 Evolusi Konsep Ruang Vektor dari Era Klasik hingga Komputasi Kuantum</h2>
+
+          <h3>1.1.1 Pendahuluan Historis: Asal-usul Ruang Vektor</h3>
+          <p>
+            Konsep ruang vektor tidak muncul secara tiba-tiba, melainkan hasil dari perjalanan panjang dalam sejarah matematika. Pada masa Yunani Kuno, pemikiran geometri Euklides telah mengilhami gagasan tentang ruang dan arah, meski belum dilengkapi dengan representasi aljabar. Sistem koordinat Cartesian yang diperkenalkan oleh <strong>René Descartes</strong> pada abad ke-17 menjadi tonggak penting, karena menghubungkan konsep geometri dengan bilangan dan persamaan.
+          </p>
+          <p>
+            Perkembangan signifikan terjadi pada abad ke-19 melalui kontribusi <strong>Hermann Grassmann</strong> dalam <em>Ausdehnungslehre</em> (Teori Ekspansi), di mana ia memperkenalkan ide penjumlahan dan perkalian arah dalam ruang berdimensi sembarang. Inilah cikal bakal struktur yang kita kenal sebagai ruang vektor. Kemudian, <strong>Giuseppe Peano</strong> memformalkan aksioma ruang vektor yang berlaku universal hingga kini.
+          </p>
+          <p>
+            Ruang vektor berasal dari geometri afin melalui pengenalan koordinat dalam bidang atau ruang tiga dimensi. Sekitar tahun 1636, matematikawan Prancis René Descartes dan Pierre de Fermat mendirikan geometri analitik dengan mengidentifikasi solusi persamaan dua variabel dengan titik-titik pada kurva bidang. Untuk mencapai solusi geometris tanpa menggunakan koordinat, Bolzano pada tahun 1804 memperkenalkan operasi tertentu pada titik, garis, dan bidang yang merupakan pendahulu vektor. Möbius (1827) memperkenalkan gagasan koordinat barisentrik, sedangkan Bellavitis (1833) memperkenalkan relasi ekuivalensi pada segmen garis berarah yang memiliki panjang dan arah yang sama yang disebutnya <em>ekuipolensi</em>. Vektor Euklides kemudian menjadi kelas ekuivalensi dari relasi tersebut.
+          </p>
+          <p>
+            Vektor dipertimbangkan kembali dengan penyajian bilangan kompleks oleh Argand dan Hamilton serta lahirnya kuaternion oleh Hamilton. Objek-objek tersebut merupakan elemen dalam $\mathbb{R}^2$ dan $\mathbb{R}^4$; perlakuan menggunakan kombinasi linier berawal dari Laguerre pada tahun 1867, yang juga mendefinisikan sistem persamaan linier.
+          </p>
+          <p>
+            Pada tahun 1857, Cayley memperkenalkan notasi matriks yang memungkinkan harmonisasi dan penyederhanaan peta linier. Sekitar waktu yang sama, Grassmann mempelajari kalkulus barisentrik yang diprakarsai oleh Möbius dan membayangkan himpunan objek abstrak yang dilengkapi operasi aljabar, lengkap dengan konsep kebebasan linier, dimensi, dan hasil kali skalar. Karya Grassmann tahun 1844 melampaui kerangka ruang vektor karena pertimbangannya tentang perkalian membawanya pada struktur yang kini disebut aljabar. Matematikawan Italia Peano adalah orang pertama yang memberikan definisi modern tentang ruang vektor dan peta linier pada tahun 1888 (saat itu ia menyebutnya "sistem linier"), yang memungkinkan ruang berdimensi tak hingga. Pada tahun 1897, Salvatore Pincherle mengadopsi aksioma Peano dan membuat terobosan awal ke dalam teori ruang vektor berdimensi tak hingga.
+          </p>
+          <p>
+            Perkembangan penting berikutnya muncul dari konstruksi ruang fungsi oleh Henri Lebesgue, yang kemudian diformalkan oleh Banach dan Hilbert sekitar tahun 1920. Pada masa itu, aljabar dan bidang baru analisis fungsional mulai berinteraksi, terutama melalui konsep ruang fungsi $p$-<em>integrable</em> yang dinotasikan sebagai:
+          </p>
+          $$L^{p} = \left\{ f : \mathbb{R} \to \mathbb{C} \;\middle|\; \int_{\mathbb{R}} |f(x)|^p \, dx &lt; \infty \right\}$$
+          <p>
+            serta <strong>ruang Hilbert</strong>.
+          </p>
+
+          <h3>1.1.2 Definisi Aksiomatik Ruang Vektor</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.1.2 (Ruang Vektor atas Lapangan $F$)</span>
+            <p>
+              <strong>Ruang vektor</strong> adalah himpunan tak kosong $V$ yang dilengkapi dua operasi: penjumlahan vektor ($+ : V \times V \to V$) dan perkalian skalar dari suatu lapangan $F$ dengan vektor ($\cdot : F \times V \to V$), yang memenuhi aksioma berikut untuk sebarang $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ dan $a, b \in F$:
+            </p>
+            <ol>
+              <li><strong>Tertutup terhadap penjumlahan (A0):</strong> $\mathbf{u} + \mathbf{v} \in V$.</li>
+              <li><strong>Asosiativitas penjumlahan (A2):</strong> $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$.</li>
+              <li><strong>Elemen identitas penjumlahan / vektor nol (A3):</strong> Terdapat $\mathbf{0} \in V$ sehingga $\mathbf{0} + \mathbf{u} = \mathbf{u} = \mathbf{u} + \mathbf{0}$.</li>
+              <li><strong>Elemen invers penjumlahan (A4):</strong> Untuk setiap $\mathbf{u} \in V$, terdapat $-\mathbf{u} \in V$ sehingga $-\mathbf{u} + \mathbf{u} = \mathbf{0} = \mathbf{u} + (-\mathbf{u})$.</li>
+              <li><strong>Komutativitas penjumlahan (A1):</strong> $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$.</li>
+              <li><strong>Tertutup terhadap perkalian skalar (S1) &amp; Asosiativitas skalar (S2):</strong> $a\mathbf{v} \in V$ dan $(ab)\mathbf{u} = a(b\mathbf{u})$.</li>
+              <li><strong>Distributivitas perkalian skalar (S3 &amp; S4):</strong> $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$ dan $(a + b)\mathbf{u} = a\mathbf{u} + b\mathbf{u}$.</li>
+              <li><strong>Identitas skalar (S5):</strong> Elemen satuan $1_F \in F$ memenuhi $1_F \mathbf{u} = \mathbf{u}$.</li>
+            </ol>
+          </div>
+
+          <p>
+            <strong>Catatan Struktur Aljabar:</strong> Ketika kita menyebut <strong>ruang vektor</strong> $V$, di dalamnya selalu melekat himpunan <strong>lapangan</strong> $F$ sebagai skalar, sehingga penyebutan lengkapnya adalah <strong>ruang vektor $V$ atas lapangan $F$</strong>. Himpunan $V$ bersama operasi penjumlahan $+$ yang memenuhi aksioma (1) s/d (5) membentuk sebuah <strong>grup komutatif (Abelian)</strong> $(V, +)$. Dengan demikian, setiap ruang vektor terdiri atas grup komutatif $(V, +)$ dan lapangan skalar $(F, +, \times)$ yang berinteraksi melalui aksioma perkalian skalar.
+          </p>
+          <p>
+            Di luar ruang vektor klasik $\mathbb{R}^n$, konsep ini meluas ke ruang atas lapangan $\mathbb{Q}$ atau $\mathbb{Z}_p$, ruang matriks, ruang polinomial, hingga ruang solusi persamaan diferensial. Berikut implementasi verifikasi contoh-contohnya menggunakan SageMath:
+          </p>
+<pre><code>Q2 = QQ^2
+Z5 = GF(5)
+u = vector(QQ, [4, 3]).column()
+v = vector(Z5, [4, 3]).column()
+
+Z3 = GF(3)
+MZ3 = MatrixSpace(Z3, 2, 2)
+A = matrix(Z3, [[1, 2], [2, 2]])
+a = A in MZ3
+P.&lt;x&gt; = GF(5)[]
+q = P(x^2 - 2*x - 4)
+b = q in P
+var('x')
+y = function('y')(x)
+pd = desolve(diff(y, x, 2) + diff(y, x) + y == 0, y)
+
+pretty_print(html(r"Himpunan $\mathbb{Q}^2$ : %s" % Q2))
+pretty_print(html(r"Himpunan $\mathbb{Z}_{5}^2$ : %s" % (Z5^2)))
+pretty_print(html(r"Himpunan $M_{2\times 2}(\mathbb{Z}_3)$ : %s" % MZ3))
+pretty_print(html(r"Himpunan polinomial $P(\mathbb{Z}_5)$ : %s" % P))
+pretty_print(html(r"$\mathbf{u} = %s \in \mathbb{Q}^2$" % latex(u)))
+pretty_print(html(r"$\mathbf{v} = %s \in \mathbb{Z}_{5}^2$" % latex(v)))
+pretty_print(html(r"Apakah $\mathbf{u} \neq \mathbf{v}? %s$" % latex(u != v)))
+pretty_print(html(r"$A = %s$" % latex(A)))
+pretty_print(html(r"Apakah $A \in M_{2\times 2}(\mathbb{Z}_3)? %s$" % latex(a)))
+pretty_print(html(r"$q(x) = %s$" % latex(q)))
+pretty_print(html(r"Apakah $q(x) \in P(\mathbb{Z}_5)? %s$" % latex(b)))
+pretty_print(html(r"Himpunan penyelesaian dari $\frac{d^2f}{dx^2} + \frac{df}{dx} + f = 0$ adalah :"))
+pretty_print(html(r"$V = \left\{ f(x) = %s \mid K_1, K_2 \in \mathbb{R} \right\}$" % latex(pd)))</code></pre>
+
+          <h3>1.1.3 Era Informasi: Ruang Vektor dalam Sains dan Teknologi</h3>
+          <p>
+            Memasuki abad ke-20 dan ke-21, ruang vektor menjadi bahasa utama dalam komputasi dan pemodelan sistem. Data dalam pembelajaran mesin (<em>machine learning</em>), kriptografi, dan pengolahan sinyal digital semuanya direpresentasikan sebagai vektor berdimensi tinggi. Konsep penting seperti <strong>transformasi linier</strong> (memetakan antar-ruang secara sistematis), <strong>basis dan dimensi</strong> (minimalisasi redundansi dalam representasi data), serta <strong>eigenvektor dan nilai eigen</strong> (analisis stabilitas, kompresi data, dan peramalan sistem) seluruhnya berdiri kokoh di atas fondasi ruang vektor.
+          </p>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.1.4: CONTOH RUANG VEKTOR & DERET FOURIER
+             ================================================================ -->
+        <section id="contoh-ruang-vektor" aria-labelledby="heading-1-1-4">
+          <h2 id="heading-1-1-4">1.1.4 Contoh-Contoh Ruang Vektor Abstrak &amp; Analisis Deret Fourier</h2>
+
+          <h3>1. Ruang Polinomial $P_n(F)$</h3>
+          <p>
+            $P_n(F)$ adalah himpunan semua polinomial berderajat paling banyak $n$ dengan koefisien dari lapangan $F$ (misalnya $\mathbb{R}$ atau $\mathbb{C}$). Setiap elemennya berbentuk:
+          </p>
+          $$p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0, \qquad a_0, a_1, \dots, a_n \in F$$
+          <ul>
+            <li><strong>Penjumlahan Vektor:</strong> Dilakukan dengan menjumlahkan koefisien suku berderajat sama: $$(p+q)(x) = (a_n+b_n)x^n + \dots + (a_0+b_0)$$</li>
+            <li><strong>Perkalian Skalar:</strong> Untuk $c \in F$, setiap koefisien dikalikan dengan $c$: $$(cp)(x) = (ca_n)x^n + \dots + (ca_0)$$</li>
+            <li><strong>Vektor Nol:</strong> Polinomial nol $0(x) = 0x^n + \dots + 0x + 0$.</li>
+            <li><strong>Basis &amp; Dimensi:</strong> Basis standarnya adalah $\{1, x, x^2, \dots, x^n\}$, sehingga $P_n(F)$ berdimensi $n+1$. Contohnya $3x^2 - 5x + 1 \in P_2(\mathbb{R})$.</li>
+            <li><strong>Aplikasi:</strong> Aproksimasi fungsi &amp; interpolasi di analisis numerik, desain filter pada rekayasa kontrol, serta kurva Bézier dan NURBS pada grafika komputer 3D.</li>
+          </ul>
+
+          <h3>2. Ruang Matriks $M_{m \times n}(F)$</h3>
+          <p>
+            $M_{m \times n}(F)$ adalah himpunan semua matriks berukuran $m \times n$ dengan entri dari lapangan $F$.
+          </p>
+          <ul>
+            <li><strong>Penjumlahan Vektor &amp; Perkalian Skalar:</strong> Dilakukan entri-demi-entri: jika $A = [a_{ij}]$ dan $B = [b_{ij}]$, maka $A+B = [a_{ij}+b_{ij}]$ dan $cA = [ca_{ij}]$ untuk $c \in F$.</li>
+            <li><strong>Vektor Nol:</strong> Matriks nol $O_{m \times n}$ dengan seluruh entri bernilai $0$.</li>
+            <li><strong>Basis &amp; Dimensi:</strong> Terdiri dari matriks $E_{ij}$ yang bernilai $1$ pada posisi $(i, j)$ dan $0$ di tempat lain, sehingga $\dim(M_{m \times n}(F)) = m \cdot n$. Contoh pada $M_{2 \times 2}(\mathbb{R})$:
+              $$A = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix} \quad \text{dan} \quad \frac{1}{2}A = \begin{pmatrix} \frac{1}{2} &amp; 1 \\ \frac{3}{2} &amp; 2 \end{pmatrix}$$
+            </li>
+            <li><strong>Aplikasi:</strong> Transformasi geometri 2D/3D (translasi, rotasi, skala), matriks ketetanggaan (<em>adjacency matrix</em>) pada teori graf dan jaringan komputer, model input-output Leontief dalam ekonomi, serta regresi linier berganda dalam statistika.</li>
+          </ul>
+
+          <h3>3. Ruang Fungsi $F(S, F)$</h3>
+          <p>
+            $F(S, F) = \{f : S \to F\}$ adalah himpunan semua fungsi dari suatu himpunan tak kosong $S$ (misalnya interval $[a, b]$ atau $\mathbb{Z}$) ke lapangan $F$.
+          </p>
+          <ul>
+            <li><strong>Operasi Titik-demi-Titik (<em>Pointwise</em>):</strong> $(f+g)(x) = f(x) + g(x)$ dan $(cf)(x) = c \cdot f(x)$ untuk setiap $x \in S$.</li>
+            <li><strong>Vektor Nol:</strong> Fungsi konstan nol $z(x) = 0$ untuk semua $x \in S$.</li>
+            <li><strong>Dimensi &amp; Contoh:</strong> Umumnya <strong>berdimensi tak hingga</strong> jika $S$ tak hingga. Contoh subruang pentingnya adalah $C[a,b]$ (fungsi kontinu pada $[a,b]$) dan $C^\infty(\mathbb{R})$ (fungsi terdiferensialkan tak hingga kali pada $\mathbb{R}$).</li>
+            <li><strong>Aplikasi:</strong> Analisis fungsional, ruang solusi persamaan diferensial, pemodelan sinyal suara/citra, serta fungsi gelombang dalam mekanika kuantum (ruang Hilbert).</li>
+          </ul>
+
+          <h3>4. Ruang Barisan Real Tak Hingga $s$</h3>
+          <p>
+            Ruang $s$ adalah himpunan semua barisan bilangan real tak hingga $(x_1, x_2, x_3, \dots)$ dengan $x_i \in \mathbb{R}$.
+          </p>
+          <ul>
+            <li><strong>Operasi Suku-demi-Suku:</strong>
+              $$(x_1, x_2, \dots) + (y_1, y_2, \dots) = (x_1+y_1, x_2+y_2, \dots), \qquad c(x_1, x_2, \dots) = (cx_1, cx_2, \dots)$$
+            </li>
+            <li><strong>Vektor Nol &amp; Dimensi:</strong> Barisan nol $(0, 0, 0, \dots)$; ruang ini <strong>berdimensi tak hingga</strong>. Contoh elemennya adalah $(1, 1/2, 1/3, \dots)$ atau $(1, 2, 4, 8, \dots)$.</li>
+            <li><strong>Aplikasi:</strong> Barisan koefisien Deret Fourier, model dinamis dalam ekonomi, serta koefisien ekspansi seri dalam fisika.</li>
+          </ul>
+
+          <p>
+            Memahami bahwa ruang vektor jauh lebih luas daripada sekadar $\mathbb{R}^n$ memungkinkan kita memakai satu kerangka alat yang sama (basis, dimensi, transformasi linier, nilai eigen) untuk polinomial, matriks, fungsi, hingga barisan. Salah satu jembatan paling indah antara ruang fungsi dan ruang barisan adalah <strong>Analisis Deret Fourier</strong>.
+          </p>
+
+          <h3>Studi Kasus: Gelombang Kotak (<em>Square Wave</em>) &amp; Deret Fourier</h3>
+          <p>
+            Dalam elektronika digital (sinyal <em>clock</em>) dan fisika, <strong>gelombang kotak periodik</strong> berpindah antara $+1$ dan $-1$ dengan periode $2\pi$:
+          </p>
+          $$f(t) = \begin{cases} 1, &amp; \text{untuk } 0 \le t &lt; \pi \\ -1, &amp; \text{untuk } \pi \le t &lt; 2\pi \end{cases}, \qquad f(t + 2\pi) = f(t)$$
+          <p>
+            Walaupun fungsi ini "tajam" dan tak kontinu di kelipatan $\pi$, Deret Fourier merepresentasikan fungsi periodik $f(t)$ sebagai kombinasi linier tak hingga dari fungsi harmonik mulus $\cos(nt)$ dan $\sin(nt)$:
+          </p>
+          $$f(t) = a_0 + \sum_{n=1}^{\infty} \bigl(a_n \cos(nt) + b_n \sin(nt)\bigr)$$
+          <p>
+            Karena gelombang kotak simetris di sekitar sumbu horizontal dan merupakan fungsi ganjil, perhitungan integral koefisien Fourier menghasilkan $a_0 = 0$, $a_n = 0$ untuk semua $n \ge 1$, serta koefisien sinus:
+          </p>
+          $$b_n = \begin{cases} \dfrac{4}{n\pi}, &amp; \text{jika } n \text{ ganjil} \\[6pt] 0, &amp; \text{jika } n \text{ genap} \end{cases}$$
+          <p>
+            Dengan demikian, kita memperoleh barisan koefisien Fourier yang menjadi elemen dalam ruang barisan $s$ (bahkan berada di ruang $\ell^2$):
+          </p>
+          $$\begin{aligned}
+          b_1 &amp;= \frac{4}{1\pi} = \frac{4}{\pi}, \quad b_2 = 0, \quad b_3 = \frac{4}{3\pi}, \quad b_4 = 0, \quad b_5 = \frac{4}{5\pi}, \dots \\
+          (b_n)_{n=1}^{\infty} &amp;= \left( \frac{4}{\pi},\; 0,\; \frac{4}{3\pi},\; 0,\; \frac{4}{5\pi},\; 0,\; \frac{4}{7\pi},\; \dots \right) \in s
+          \end{aligned}$$
+          <p>
+            Representasi deret tak hingga bagi gelombang kotak menjadi:
+          </p>
+          $$\begin{aligned}
+          f(t) &amp;= \frac{4}{\pi} \sin(t) + \frac{4}{3\pi} \sin(3t) + \frac{4}{5\pi} \sin(5t) + \frac{4}{7\pi} \sin(7t) + \dots \\
+               &amp;= \sum_{k=0}^{\infty} \frac{4}{(2k+1)\pi} \sin\bigl((2k+1)t\bigr)
+          \end{aligned}$$
+          <p>
+            <strong>Makna Nyata &amp; Aplikasi:</strong> Semakin banyak suku harmonik ganjil yang dijumlahkan, semakin datar puncak dan lembah aproksimasinya mendekati gelombang kotak ideal (dengan <em>Gibbs phenomenon</em> berupa <em>overshoot</em> di sekitar titik diskontinuitas). Prinsip pengubahan fungsi ke basis frekuensi ini menjadi dasar <em>audio equalizer</em> (mengatur bobot koefisien frekuensi rendah/tinggi), kompresi citra JPEG dan audio MP3 (via <em>Discrete Cosine Transform</em> yang membuang koefisien kecil), serta analisis getaran mesin untuk mendeteksi frekuensi dominan. Berikut program interaktif SageMath untuk memvisualisasikannya:
+          </p>
+<pre><code>var('x')
+
+def square_wave(t, T=2*pi):
+    t = (float(t) + float(T)/2) % float(T) - float(T)/2
+    return 1 if t &gt;= 0 else -1
+
+def fourier_square(t, N, smooth=None):
+    return sum(
+        (4/(n*pi)) *
+        ((sin(pi*n/(2*N+1))/(pi*n/(2*N+1))) if smooth == 'lanczos' else 1) *
+        sin(n*t)
+        for n in [2*k+1 for k in range(N)]
+    )
+
+@interact
+def plot_fourier(N=slider(1, 100, 1, default=50, label="Jumlah Suku (N)"),
+                 Smooth=selector([('None', None), ('Lanczos', 'lanczos')],
+                                 default=None, label="Penghalusan")):
+    tmin, tmax = -3*pi, 3*pi
+    p1 = plot(lambda t: square_wave(t), (x, tmin, tmax),
+              color='red', linestyle='--', thickness=1.5,
+              legend_label='Gelombang Kotak', plot_points=1000)
+    p2 = plot(fourier_square(x, N, Smooth), (x, tmin, tmax),
+              color='blue', thickness=2,
+              legend_label=f'Fourier ({N}, {Smooth or "None"})',
+              plot_points=2000)
+    (p1 + p2).show(ymin=-1.5, ymax=1.5, title="Aproksimasi Gelombang Kotak", legend_loc='upper right')
+    print(f"N = {N}, Smoothing = {Smooth or 'None'}")</code></pre>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.1.5: TEOREMA SIFAT-SIFAT DASAR RUANG VEKTOR
+             ================================================================ -->
+        <section id="sifat-dasar" aria-labelledby="heading-1-1-5">
+          <h2 id="heading-1-1-5">1.1.5 Sifat-Sifat Dasar Aljabar Ruang Vektor</h2>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.1.5 (Sifat Unik &amp; Aljabar Dasar dalam Ruang Vektor)</span>
+            <p>Misalkan $V$ adalah ruang vektor atas lapangan $F$. Maka berlaku sifat-sifat berikut:</p>
+            <ol>
+              <li>Vektor nol $\mathbf{0}$ di dalam $V$ adalah tunggal.</li>
+              <li>Untuk setiap vektor $\mathbf{v} \in V$, invers penjumlahannya ($-\mathbf{v}$) adalah tunggal.</li>
+              <li>Untuk setiap vektor $\mathbf{v} \in V$, berlaku $0 \cdot \mathbf{v} = \mathbf{0}$ (dengan $0 \in F$ adalah identitas penjumlahan skalar).</li>
+              <li>Untuk setiap skalar $a \in F$, berlaku $a \cdot \mathbf{0} = \mathbf{0}$.</li>
+              <li>Untuk setiap vektor $\mathbf{v} \in V$, berlaku $(-1) \cdot \mathbf{v} = -\mathbf{v}$.</li>
+              <li>Jika $a \in F$ dan $\mathbf{v} \in V$ memenuhi $a \cdot \mathbf{v} = \mathbf{0}$, maka $a = 0$ atau $\mathbf{v} = \mathbf{0}$.</li>
+            </ol>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.1.5 (Penjabaran Langkah Demi Langkah).</span>
+            <ol>
+              <li>
+                <strong>Ketunggalan vektor nol:</strong> Misalkan terdapat dua vektor nol di $V$, yakni $\mathbf{0}_1$ dan $\mathbf{0}_2$. Berdasarkan aksioma identitas penjumlahan, untuk setiap $\mathbf{v} \in V$ berlaku (i) $\mathbf{v} + \mathbf{0}_1 = \mathbf{v}$ dan (ii) $\mathbf{v} + \mathbf{0}_2 = \mathbf{v}$. Pilih $\mathbf{v} = \mathbf{0}_1$ pada (ii) dan $\mathbf{v} = \mathbf{0}_2$ pada (i):
+                $$\mathbf{0}_1 = \mathbf{0}_1 + \mathbf{0}_2 = \mathbf{0}_2 + \mathbf{0}_1 = \mathbf{0}_2$$
+                di mana kesamaan tengah menggunakan sifat komutativitas penjumlahan vektor. Jadi $\mathbf{0}_1 = \mathbf{0}_2$.
+              </li>
+              <li>
+                <strong>Ketunggalan invers penjumlahan:</strong> Misalkan suatu $\mathbf{v} \in V$ memiliki dua invers penjumlahan, $\mathbf{w}_1$ dan $\mathbf{w}_2$, sehingga $\mathbf{v} + \mathbf{w}_1 = \mathbf{0}$ dan $\mathbf{v} + \mathbf{w}_2 = \mathbf{0}$. Dengan menerapkan aksioma ruang vektor secara berurutan:
+                $$\begin{aligned}
+                \mathbf{w}_1 &amp;= \mathbf{w}_1 + \mathbf{0} &amp;&amp;\text{(identitas penjumlahan)} \\
+                &amp;= \mathbf{w}_1 + (\mathbf{v} + \mathbf{w}_2) &amp;&amp;\text{(substitusi } \mathbf{v} + \mathbf{w}_2 = \mathbf{0}\text{)} \\
+                &amp;= (\mathbf{w}_1 + \mathbf{v}) + \mathbf{w}_2 &amp;&amp;\text{(asosiativitas penjumlahan)} \\
+                &amp;= (\mathbf{v} + \mathbf{w}_1) + \mathbf{w}_2 &amp;&amp;\text{(komutativitas penjumlahan)} \\
+                &amp;= \mathbf{0} + \mathbf{w}_2 = \mathbf{w}_2 &amp;&amp;\text{(invers \&amp; identitas penjumlahan)}
+                \end{aligned}$$
+                Jadi invers penjumlahan $-\mathbf{v}$ tunggal.
+              </li>
+              <li>
+                <strong>Perkalian skalar nol $0 \cdot \mathbf{v} = \mathbf{0}$:</strong> Dalam lapangan $F$, berlaku $0 = 0 + 0$. Kalikan dengan $\mathbf{v}$ dan gunakan distributivitas:
+                $$0 \cdot \mathbf{v} = (0 + 0) \cdot \mathbf{v} = 0 \cdot \mathbf{v} + 0 \cdot \mathbf{v}$$
+                Tambahkan invers penjumlahan $-(0 \cdot \mathbf{v})$ pada kedua ruas:
+                $$\begin{aligned}
+                0 \cdot \mathbf{v} + \bigl(-(0 \cdot \mathbf{v})\bigr) &amp;= (0 \cdot \mathbf{v} + 0 \cdot \mathbf{v}) + \bigl(-(0 \cdot \mathbf{v})\bigr) \\
+                \mathbf{0} &amp;= 0 \cdot \mathbf{v} + \Bigl(0 \cdot \mathbf{v} + \bigl(-(0 \cdot \mathbf{v})\bigr)\Bigr) &amp;&amp;\text{(asosiativitas)} \\
+                \mathbf{0} &amp;= 0 \cdot \mathbf{v} + \mathbf{0} = 0 \cdot \mathbf{v} &amp;&amp;\text{(invers \&amp; identitas)}
+                \end{aligned}$$
+              </li>
+              <li>
+                <strong>Perkalian skalar dengan vektor nol $a \cdot \mathbf{0} = \mathbf{0}$:</strong> Karena $\mathbf{0} = \mathbf{0} + \mathbf{0}$ di $V$, distributivitas perkalian skalar terhadap penjumlahan vektor menghasilkan:
+                $$a \cdot \mathbf{0} = a \cdot (\mathbf{0} + \mathbf{0}) = a \cdot \mathbf{0} + a \cdot \mathbf{0}$$
+                Tambahkan invers penjumlahan $-(a \cdot \mathbf{0})$ pada kedua ruas:
+                $$\begin{aligned}
+                a \cdot \mathbf{0} + \bigl(-(a \cdot \mathbf{0})\bigr) &amp;= (a \cdot \mathbf{0} + a \cdot \mathbf{0}) + \bigl(-(a \cdot \mathbf{0})\bigr) \\
+                \mathbf{0} &amp;= a \cdot \mathbf{0} + \Bigl(a \cdot \mathbf{0} + \bigl(-(a \cdot \mathbf{0})\bigr)\Bigr) \\
+                \mathbf{0} &amp;= a \cdot \mathbf{0} + \mathbf{0} = a \cdot \mathbf{0}
+                \end{aligned}$$
+              </li>
+              <li>
+                <strong>Sifat $(-1) \cdot \mathbf{v} = -\mathbf{v}$:</strong> Cukup dibuktikan bahwa $\mathbf{v} + (-1) \cdot \mathbf{v} = \mathbf{0}$, lalu gunakan ketunggalan invers pada poin (2):
+                $$\begin{aligned}
+                \mathbf{v} + (-1) \cdot \mathbf{v} &amp;= 1 \cdot \mathbf{v} + (-1) \cdot \mathbf{v} &amp;&amp;\text{(aksioma identitas skalar S5)} \\
+                &amp;= \bigl(1 + (-1)\bigr) \cdot \mathbf{v} &amp;&amp;\text{(distributivitas S4)} \\
+                &amp;= 0 \cdot \mathbf{v} &amp;&amp;\text{(invers penjumlahan di } F\text{)} \\
+                &amp;= \mathbf{0} &amp;&amp;\text{(berdasarkan poin 3)}
+                \end{aligned}$$
+                Karena invers penjumlahan $\mathbf{v}$ adalah tunggal, maka $(-1) \cdot \mathbf{v} = -\mathbf{v}$.
+              </li>
+              <li>
+                <strong>Sifat faktor nol $a \cdot \mathbf{v} = \mathbf{0} \implies a = 0$ atau $\mathbf{v} = \mathbf{0}$:</strong> Kita bagi menjadi dua kasus:
+                <ul>
+                  <li><em>Kasus 1 ($a \neq 0$):</em> Karena $F$ lapangan, $a$ memiliki invers perkalian $a^{-1} \in F$. Kalikan kedua ruas $a \cdot \mathbf{v} = \mathbf{0}$ dengan $a^{-1}$:
+                    $$\begin{aligned}
+                    a^{-1} \cdot (a \cdot \mathbf{v}) &amp;= a^{-1} \cdot \mathbf{0} \\
+                    (a^{-1} \cdot a) \cdot \mathbf{v} &amp;= \mathbf{0} &amp;&amp;\text{(asosiativitas skalar S2 \&amp; poin 4)} \\
+                    1 \cdot \mathbf{v} &amp;= \mathbf{0} \implies \mathbf{v} = \mathbf{0} &amp;&amp;\text{(invers perkalian \&amp; S5)}
+                    \end{aligned}$$
+                  </li>
+                  <li><em>Kasus 2 ($\mathbf{v} \neq \mathbf{0}$):</em> Menurut kontraposisi Kasus 1, satu-satunya kemungkinan agar $a \cdot \mathbf{v} = \mathbf{0}$ terpenuhi adalah $a = 0$.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <p>
+            Keenam sifat ini sangat penting karena menjamin bahwa manipulasi aljabar dalam ruang vektor abstrak berjalan secara konsisten dan logis seperti aljabar bilangan biasa.
+          </p>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.2: KOMBINASI LINIER, SUBRUANG, DAN RENTANG (SPAN)
+             ================================================================ -->
+        <section id="kombinasi-dan-subruang" aria-labelledby="heading-1-2">
+          <h2 id="heading-1-2">1.2 Kombinasi Linier, Subruang, Rentang (<em>Span</em>), dan Kebebasan Linier</h2>
+          <p>
+            Setelah memahami aksioma ruang vektor, kita mendalami tiga konsep utama untuk membangun dan menganalisis struktur internal ruang vektor: <strong>kombinasi linier</strong>, <strong>rentang (<em>span</em>)</strong>, dan <strong>kebebasan linier</strong>.
+          </p>
+
+          <h3>1.2.1 Kombinasi Linier</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.2.1 (Kombinasi Linier)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor atas lapangan $F$, dan $S = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\}$ adalah himpunan vektor di $V$. Sebuah vektor $\mathbf{w} \in V$ disebut <strong>kombinasi linier</strong> dari vektor-vektor dalam $S$ jika terdapat skalar $c_1, c_2, \dots, c_k \in F$ sedemikian sehingga:
+            </p>
+            $$\mathbf{w} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_k \mathbf{v}_k$$
+          </div>
+
+          <p>
+            <strong>Contoh 1.2.2 (Ruang Polinomial $P_2(\mathbb{R})$).</strong> Misalkan $P_2(\mathbb{R})$ adalah ruang vektor semua polinomial berderajat paling banyak $2$ dengan koefisien riil, dan diberikan $S = \{x^2, x, 1\}$. Apakah polinomial $p(x) = 3x^2 - 2x + 5$ merupakan kombinasi linier dari vektor-vektor di $S$?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Kita cari skalar $c_1, c_2, c_3 \in \mathbb{R}$ sedemikian sehingga:</p>
+              $$3x^2 - 2x + 5 = c_1(x^2) + c_2(x) + c_3(1)$$
+              <p>Dengan menyamakan koefisien suku berderajat sama di kedua ruas, diperoleh:</p>
+              <ul>
+                <li>Koefisien $x^2$: $c_1 = 3$</li>
+                <li>Koefisien $x$: $c_2 = -2$</li>
+                <li>Konstanta: $c_3 = 5$</li>
+              </ul>
+              <p>Karena solusi skalarnya ada, maka $p(x) = 3x^2 - 2x + 5$ merupakan kombinasi linier dari $\{x^2, x, 1\}$.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.2.3 (Ruang Matriks $M_{2 \times 2}(\mathbb{R})$).</strong> Diberikan himpunan matriks
+            $$S = \left\{ \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}, \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}, \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}, \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \right\} \subset M_{2 \times 2}(\mathbb{R}).$$
+            Apakah matriks $A = \begin{pmatrix} 2 &amp; -1 \\ 3 &amp; 4 \end{pmatrix}$ merupakan kombinasi linier dari vektor-vektor di $S$?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Kita perlu menentukan $c_1, c_2, c_3, c_4 \in \mathbb{R}$ yang memenuhi:</p>
+              $$\begin{pmatrix} 2 &amp; -1 \\ 3 &amp; 4 \end{pmatrix} = c_1 \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} + c_2 \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} + c_3 \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} + c_4 \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} c_1 &amp; c_2 \\ c_3 &amp; c_4 \end{pmatrix}$$
+              <p>Menyamakan entri yang bersesuaian menghasilkan $c_1 = 2$, $c_2 = -1$, $c_3 = 3$, dan $c_4 = 4$. Jadi, matriks $A$ merupakan kombinasi linier dari himpunan $S$.</p>
+            </div>
+          </details>
+
+          <h3>1.2.4 Subruang Vektor &amp; Kriteria Uji Subruang</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.2.4 (Subruang Vektor)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor atas lapangan $F$. Himpunan bagian tak-kosong $W \subseteq V$ ($W \neq \emptyset$) disebut <strong>subruang vektor</strong> dari $V$ jika $W$ itu sendiri merupakan ruang vektor terhadap operasi penjumlahan vektor dan perkalian skalar yang diwarisi dari $V$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.2.5 (Kriteria Uji Subruang / <em>Subspace Test</em>)</span>
+            <p>
+              Himpunan bagian tak-kosong $W$ dari ruang vektor $V$ atas lapangan $F$ adalah subruang dari $V$ <strong>jika dan hanya jika</strong> $W$ tertutup terhadap penjumlahan vektor dan perkalian skalar:
+            </p>
+            <ol>
+              <li>Untuk setiap $\mathbf{u}, \mathbf{v} \in W$, berlaku $\mathbf{u} + \mathbf{v} \in W$.</li>
+              <li>Untuk setiap $c \in F$ dan $\mathbf{u} \in W$, berlaku $c\mathbf{u} \in W$.</li>
+            </ol>
+            <p><em>Catatan:</em> Syarat $\mathbf{0} \in W$ otomatis terpenuhi oleh (2) dan $W \neq \emptyset$ dengan memilih $c = 0$, karena $0 \cdot \mathbf{u} = \mathbf{0} \in W$.</p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.2.5.</span>
+            <p><strong>Arah ($\implies$): Jika $W$ adalah subruang, maka $W$ memenuhi kedua kriteria.</strong></p>
+            <p>
+              Karena $W$ adalah ruang vektor, $W$ harus memenuhi seluruh aksioma ruang vektor, khususnya tertutup terhadap penjumlahan (A0) dan perkalian skalar (S1), serta mengandung $\mathbf{0}$ sehingga $W \neq \emptyset$.
+            </p>
+            <p><strong>Arah ($\impliedby$): Jika $W \neq \emptyset$ memenuhi kedua kriteria, maka $W$ adalah subruang.</strong></p>
+            <ul>
+              <li><strong>Aksioma tertutup (A0) &amp; (S1):</strong> Langsung dipenuhi oleh asumsi (1) dan (2).</li>
+              <li><strong>Aksioma identitas nol (A3):</strong> Karena $W \neq \emptyset$, ambil sebarang $\mathbf{u} \in W$. Dengan syarat (2) untuk $c = 0 \in F$, diperoleh $0 \cdot \mathbf{u} = \mathbf{0} \in W$.</li>
+              <li><strong>Aksioma invers penjumlahan (A4):</strong> Untuk setiap $\mathbf{u} \in W$, pilih $c = -1 \in F$ pada syarat (2), sehingga $(-1)\mathbf{u} = -\mathbf{u} \in W$.</li>
+              <li><strong>Aksioma (A1), (A2), (S2), (S3), (S4), (S5):</strong> Komutativitas, asosiativitas, distributivitas, dan identitas skalar berlaku untuk semua elemen $V$, sehingga otomatis diwarisi oleh setiap elemen di $W \subseteq V$.</li>
+            </ul>
+            <p>Karena kedelapan aksioma terpenuhi, maka $W$ adalah subruang dari $V$.</p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.2.6 (Subruang dalam $M_{2 \times 2}(\mathbb{R})$).</strong> Misalkan $V = M_{2 \times 2}(\mathbb{R})$ dan $W$ adalah himpunan semua matriks diagonal $2 \times 2$:
+            $$W = \left\{ \begin{pmatrix} a &amp; 0 \\ 0 &amp; b \end{pmatrix} \;\middle|\; a, b \in \mathbb{R} \right\}$$
+            Apakah $W$ merupakan subruang dari $M_{2 \times 2}(\mathbb{R})$?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <ol>
+                <li><strong>$W$ tak-kosong:</strong> Ambil $a = 0, b = 0$, maka matriks nol $\begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} \in W$, sehingga $W \neq \emptyset$.</li>
+                <li><strong>Tertutup terhadap penjumlahan:</strong> Ambil sebarang $\mathbf{A} = \begin{pmatrix} a_1 &amp; 0 \\ 0 &amp; b_1 \end{pmatrix} \in W$ dan $\mathbf{B} = \begin{pmatrix} a_2 &amp; 0 \\ 0 &amp; b_2 \end{pmatrix} \in W$ dengan $a_1, b_1, a_2, b_2 \in \mathbb{R}$. Jumlahnya adalah:
+                  $$\mathbf{A} + \mathbf{B} = \begin{pmatrix} a_1 + a_2 &amp; 0 \\ 0 &amp; b_1 + b_2 \end{pmatrix} \in W$$
+                  karena $a_1 + a_2 \in \mathbb{R}$, $b_1 + b_2 \in \mathbb{R}$, dan entri luar diagonal tetap $0$.
+                </li>
+                <li><strong>Tertutup terhadap perkalian skalar:</strong> Untuk sebarang $c \in \mathbb{R}$ dan $\mathbf{A} \in W$:
+                  $$c\mathbf{A} = c\begin{pmatrix} a_1 &amp; 0 \\ 0 &amp; b_1 \end{pmatrix} = \begin{pmatrix} ca_1 &amp; 0 \\ 0 &amp; cb_1 \end{pmatrix} \in W$$
+                  karena $ca_1, cb_1 \in \mathbb{R}$.
+                </li>
+              </ol>
+              <p>Karena ketiga syarat terpenuhi, $W$ adalah <strong>subruang</strong> dari $M_{2 \times 2}(\mathbb{R})$.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.2.7 (Bukan Subruang dalam $P_2(\mathbb{R})$).</strong> Misalkan $V = P_2(\mathbb{R})$ dan $W = \{p(x) \in P_2(\mathbb{R}) \mid p(0) = 1\}$. Apakah $W$ merupakan subruang dari $P_2(\mathbb{R})$?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Meskipun $W \neq \emptyset$ (contoh: $p(x) = x^2 + 1 \in W$ karena $p(0) = 1$), periksa keberadaan vektor nol $q(x) = 0$:</p>
+              <p>Agar $q(x) \in W$, haruslah $q(0) = 1$. Padahal $q(0) = 0 \neq 1$. Karena vektor nol tidak berada di dalam $W$, maka $W$ <strong>bukan subruang</strong> dari $P_2(\mathbb{R})$.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Masalah Nyata 1.2.A (Grafika &amp; Citra Digital: Subruang Grayscale dalam RGB).</strong> Dalam pengolahan citra, ruang warna RGB direpresentasikan sebagai $V = \mathbb{R}^3$. Himpunan warna <em>grayscale</em> didefinisikan sebagai $W = \{(r, g, b) \in \mathbb{R}^3 \mid r = g = b\}$. Apakah $W$ merupakan subruang dari $V$, dan apa implikasinya terhadap kompresi memori?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <ol>
+                <li><strong>Tak-kosong:</strong> $(0, 0, 0) \in W$ karena $0 = 0 = 0$.</li>
+                <li><strong>Tertutup penjumlahan:</strong> Ambil $\mathbf{u} = (a, a, a) \in W$ dan $\mathbf{v} = (b, b, b) \in W$. Maka $\mathbf{u} + \mathbf{v} = (a+b, a+b, a+b) \in W$ karena ketiga komponen tetap sama.</li>
+                <li><strong>Tertutup perkalian skalar:</strong> Untuk $c \in \mathbb{R}$, berlaku $c\mathbf{u} = (ca, ca, ca) \in W$.</li>
+              </ol>
+              <p>Berdasarkan Teorema 1.2.5, $W$ adalah subruang dari $\mathbb{R}^3$. Karena $W = \operatorname{span}\{(1,1,1)\}$, dimensinya adalah $1$, sehingga citra <em>grayscale</em> hanya membutuhkan $\frac{1}{3}$ memori dibanding citra RGB penuh (fondasi format JPEG grayscale).</p>
+            </div>
+          </details>
+
+          <h3>1.2.8 Rentang (<em>Span</em>)</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.2.8 (Rentang / <em>Span</em>)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor atas lapangan $F$ dan $S = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\} \subseteq V$. <strong>Rentang (<em>span</em>)</strong> dari $S$, dinotasikan $\operatorname{span}(S)$ atau $\operatorname{span}\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$, adalah himpunan semua kombinasi linier dari vektor-vektor di $S$:
+            </p>
+            $$\boxed{\operatorname{span}(S) = \{c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_k \mathbf{v}_k \mid c_i \in F \text{ untuk } i = 1, \dots, k\}}$$
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.2.9 (Rentang Adalah Subruang Vektor)</span>
+            <p>Untuk setiap himpunan vektor $S \subseteq V$, $\operatorname{span}(S)$ merupakan subruang vektor dari $V$.</p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.2.9.</span>
+            <p>Misalkan $S = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\}$. Kita uji tiga syarat subruang:</p>
+            <ol>
+              <li>
+                <strong>Tak-kosong:</strong> Pilih semua skalar $c_1 = c_2 = \dots = c_k = 0 \in F$. Maka:
+                $$0 \cdot \mathbf{v}_1 + 0 \cdot \mathbf{v}_2 + \dots + 0 \cdot \mathbf{v}_k = \mathbf{0} + \mathbf{0} + \dots + \mathbf{0} = \mathbf{0} \in \operatorname{span}(S)$$
+              </li>
+              <li>
+                <strong>Tertutup terhadap penjumlahan:</strong> Misalkan $\mathbf{u}, \mathbf{w} \in \operatorname{span}(S)$, maka ada skalar $a_1, \dots, a_k \in F$ dan $b_1, \dots, b_k \in F$ sehingga $\mathbf{u} = a_1\mathbf{v}_1 + \dots + a_k\mathbf{v}_k$ dan $\mathbf{w} = b_1\mathbf{v}_1 + \dots + b_k\mathbf{v}_k$. Jumlahnya:
+                $$\begin{aligned}
+                \mathbf{u} + \mathbf{w} &amp;= (a_1 \mathbf{v}_1 + \dots + a_k \mathbf{v}_k) + (b_1 \mathbf{v}_1 + \dots + b_k \mathbf{v}_k) \\
+                &amp;= (a_1 + b_1)\mathbf{v}_1 + \dots + (a_k + b_k)\mathbf{v}_k \in \operatorname{span}(S)
+                \end{aligned}$$
+                karena setiap $a_i + b_i \in F$.
+              </li>
+              <li>
+                <strong>Tertutup terhadap perkalian skalar:</strong> Untuk $\mathbf{u} \in \operatorname{span}(S)$ dan $c \in F$:
+                $$c\mathbf{u} = c(a_1\mathbf{v}_1 + \dots + a_k\mathbf{v}_k) = (ca_1)\mathbf{v}_1 + \dots + (ca_k)\mathbf{v}_k \in \operatorname{span}(S)$$
+                karena setiap $ca_i \in F$.
+              </li>
+            </ol>
+            <p>Jadi $\operatorname{span}(S)$ adalah subruang dari $V$.</p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.2.10 (Rentang di Ruang Fungsi Kontinu $C(\mathbb{R})$).</strong> Diberikan $S = \{\sin(x), \cos(x)\} \subset C(\mathbb{R})$. Deskripsikan himpunan $\operatorname{span}(S)$ dan periksa apakah $2\sin(x) - 5\cos(x)$, $x^2$, atau $e^x$ berada di dalamnya.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                $\operatorname{span}(S)$ adalah subruang dari $C(\mathbb{R})$ yang berisi semua fungsi gelombang harmonik berbentuk $f(x) = c_1 \sin(x) + c_2 \cos(x)$ dengan $c_1, c_2 \in \mathbb{R}$. Fungsi $2\sin(x) - 5\cos(x)$ jelas berada di $\operatorname{span}(S)$ (dengan $c_1 = 2, c_2 = -5$). Sebaliknya, $x^2$ dan $e^x$ tidak berada di $\operatorname{span}(S)$ karena keduanya tidak periodik dan tidak dapat ditulis sebagai kombinasi linier dari $\sin(x)$ dan $\cos(x)$ untuk semua $x \in \mathbb{R}$.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.2.11: KEBEBASAN LINIER
+             ================================================================ -->
+        <section id="kebebasan-linier" aria-labelledby="heading-1-2-11">
+          <h2 id="heading-1-2-11">1.2.11 Kebebasan Linier (<em>Linear Independence</em>)</h2>
+          <p>
+            Bebas linier menentukan apakah sekumpulan vektor bersifat <em>minimal</em> atau mengandung vektor yang berlebihan (redundan). Jika suatu himpunan bebas linier, setiap vektor memberikan arah/informasi baru sehingga tidak ada vektor yang dapat dibentuk dari kombinasi linier vektor-vektor lainnya.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.2.11 (Bebas Linier &amp; Bergantung Linier)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor atas lapangan $F$ dan $S = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\} \subseteq V$. Himpunan $S$ dikatakan <strong>bebas linier</strong> (<em>linearly independent</em>) jika persamaan homogen:
+            </p>
+            $$c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_k \mathbf{v}_k = \mathbf{0}$$
+            <p>
+              hanya memiliki solusi trivial, yaitu $c_1 = c_2 = \dots = c_k = 0$. Jika terdapat setidaknya satu skalar $c_i \neq 0$ yang memenuhi persamaan tersebut, maka $S$ dikatakan <strong>bergantung linier</strong> (<em>linearly dependent</em>).
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.2.12 (Karakterisasi Ketergantungan Linier)</span>
+            <p>
+              Suatu himpunan vektor $S = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\}$ ($k \ge 2$) di $V$ adalah <strong>bergantung linier</strong> jika dan hanya jika setidaknya salah satu vektor di $S$ merupakan kombinasi linier dari vektor-vektor lainnya di $S$.
+            </p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.2.12.</span>
+            <p><strong>Bagian 1 ($\implies$): Jika $S$ bergantung linier, salah satu vektor adalah kombinasi linier yang lain.</strong></p>
+            <p>
+              Karena $S$ bergantung linier, terdapat skalar $c_1, \dots, c_k \in F$ yang tidak semuanya nol sehingga $c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k = \mathbf{0}$. Pilih indeks $j$ sedemikian sehingga $c_j \neq 0$. Pindahkan suku $c_j\mathbf{v}_j$:
+            </p>
+            $$c_j \mathbf{v}_j = -c_1 \mathbf{v}_1 - \dots - c_{j-1}\mathbf{v}_{j-1} - c_{j+1}\mathbf{v}_{j+1} - \dots - c_k \mathbf{v}_k$$
+            <p>Karena $c_j \neq 0$ di lapangan $F$, kalikan kedua ruas dengan invers $c_j^{-1}$:</p>
+            $$\mathbf{v}_j = -\frac{c_1}{c_j}\mathbf{v}_1 - \dots - \frac{c_{j-1}}{c_j}\mathbf{v}_{j-1} - \frac{c_{j+1}}{c_j}\mathbf{v}_{j+1} - \dots - \frac{c_k}{c_j}\mathbf{v}_k$$
+            <p>Jadi $\mathbf{v}_j$ adalah kombinasi linier dari vektor-vektor lainnya di $S$.</p>
+
+            <p><strong>Bagian 2 ($\impliedby$): Jika salah satu vektor adalah kombinasi linier yang lain, maka $S$ bergantung linier.</strong></p>
+            <p>
+              Misalkan $\mathbf{v}_j$ dapat ditulis sebagai kombinasi linier vektor-vektor lain di $S$:
+            </p>
+            $$\mathbf{v}_j = d_1\mathbf{v}_1 + \dots + d_{j-1}\mathbf{v}_{j-1} + d_{j+1}\mathbf{v}_{j+1} + \dots + d_k\mathbf{v}_k$$
+            <p>Kurangkan $\mathbf{v}_j$ pada kedua ruas:</p>
+            $$\mathbf{0} = d_1\mathbf{v}_1 + \dots + d_{j-1}\mathbf{v}_{j-1} + (-1)\mathbf{v}_j + d_{j+1}\mathbf{v}_{j+1} + \dots + d_k\mathbf{v}_k$$
+            <p>
+              Karena koefisien $\mathbf{v}_j$ adalah $-1 \neq 0$, persamaan menghasilkan kombinasi non-trivial untuk $\mathbf{0}$, sehingga $S$ bergantung linier.
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.2.13 (Kebebasan Linier di $P_2(\mathbb{R})$).</strong> Periksa apakah himpunan $S = \{1, x, x^2\}$ bebas linier di dalam $P_2(\mathbb{R})$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Tinjau persamaan $c_1(1) + c_2(x) + c_3(x^2) = \mathbf{0}$, di mana vektor nol di $P_2(\mathbb{R})$ adalah polinomial nol $0x^2 + 0x + 0$:</p>
+              $$c_1 + c_2 x + c_3 x^2 = 0 + 0x + 0x^2$$
+              <p>Agar kedua polinomial identik, koefisien suku berderajat sama harus sama, sehingga $c_1 = 0, c_2 = 0, c_3 = 0$. Karena hanya solusi trivial yang memenuhi, maka $S = \{1, x, x^2\}$ <strong>bebas linier</strong>.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.2.14 (Ketergantungan Linier di Ruang Fungsi $F(\mathbb{R})$).</strong> Selidiki apakah $S = \{e^x, e^{-x}, \sinh(x)\}$ bebas linier di ruang fungsi $F(\mathbb{R})$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Berdasarkan definisi fungsi sinus hiperbolik, $\sinh(x) = \dfrac{e^x - e^{-x}}{2}$. Persamaan ini dapat disusun ulang menjadi:</p>
+              $$\frac{1}{2} e^x - \frac{1}{2} e^{-x} - 1 \cdot \sinh(x) = 0$$
+              <p>Diperoleh koefisien tak-nol $c_1 = \frac{1}{2}$, $c_2 = -\frac{1}{2}$, dan $c_3 = -1$ yang menghasilkan fungsi nol. Jadi $S = \{e^x, e^{-x}, \sinh(x)\}$ <strong>bergantung linier</strong>.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.2.15 (Bebas Linier di $M_{2 \times 2}(\mathbb{R})$).</strong> Periksa kebebasan linier himpunan matriks berikut:
+            $$S = \left\{ M_1 = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix},\; M_2 = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix},\; M_3 = \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix},\; M_4 = \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \right\}$$
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Bentuk kombinasi linier sama dengan matriks nol $O_{2 \times 2}$:</p>
+              $$c_1 \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} + c_2 \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} + c_3 \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} + c_4 \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} c_1 &amp; c_2 \\ c_3 &amp; c_4 \end{pmatrix} = \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}$$
+              <p>Diperoleh $c_1 = c_2 = c_3 = c_4 = 0$ sebagai solusi tunggal. Jadi himpunan $S$ <strong>bebas linier</strong>.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Masalah Nyata 1.2.B (Deteksi Fitur Redundan / Multikolinearitas di Machine Learning).</strong> Suatu dataset memiliki 3 vektor fitur: $\mathbf{v}_1 = (1, 2)$, $\mathbf{v}_2 = (2, 4)$, dan $\mathbf{v}_3 = (1, 0)$. Tentukan apakah ada fitur yang redundan (bergantung linier) yang dapat dibuang tanpa mengurangi rentang informasi!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Uji persamaan $c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + c_3\mathbf{v}_3 = \mathbf{0}$:</p>
+              $$c_1\begin{pmatrix} 1 \\ 2 \end{pmatrix} + c_2\begin{pmatrix} 2 \\ 4 \end{pmatrix} + c_3\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \begin{cases} c_1 + 2c_2 + c_3 = 0 \\ 2c_1 + 4c_2 = 0 \end{cases}$$
+              <p>Dari persamaan kedua diperoleh $c_1 = -2c_2$. Pilih $c_2 = 1$ dan $c_3 = 0$, sehingga $c_1 = -2$ adalah solusi non-trivial ($-2\mathbf{v}_1 + 1\mathbf{v}_2 + 0\mathbf{v}_3 = \mathbf{0}$). Menurut Teorema 1.2.12, himpunan fitur tersebut <strong>bergantung linier</strong> dengan $\mathbf{v}_2 = 2\mathbf{v}_1$. Dalam pembelajaran mesin, fenomena ini disebut <strong>multikolinearitas</strong>: fitur $\mathbf{v}_2$ dapat dibuang untuk mencegah <em>overfitting</em> sambil tetap merentang $\mathbb{R}^2$ dengan basis $\{\mathbf{v}_1, \mathbf{v}_3\}$.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Ringkasan §1.2:</strong> Subruang mengidentifikasi ruang vektor yang lebih kecil di dalam ruang induk, kombinasi linier membangun vektor baru, rentang (<em>span</em>) membentuk subruang terkecil yang memuat suatu himpunan vektor, dan kebebasan linier menguji ketiadaan redundansi. Keempatnya menjadi pijakan untuk membahas <strong>basis</strong> dan <strong>dimensi</strong>.
+          </p>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.3: BASIS DAN DIMENSI DALAM RUANG VEKTOR
+             ================================================================ -->
+        <section id="basis-dan-dimensi" aria-labelledby="heading-1-3">
+          <h2 id="heading-1-3">1.3 Basis dan Dimensi dalam Ruang Vektor</h2>
+          <p>
+            Konsep <strong>basis</strong> dan <strong>dimensi</strong> adalah inti studi aljabar linier. Basis menyediakan himpunan vektor "minimal" yang mampu membangun seluruh ruang sekaligus menjembatani ruang vektor abstrak menuju koordinat numerik yang konkret, sedangkan dimensi mengukur "ukuran intrinsik" ruang tersebut.
+          </p>
+
+          <h3>1.3.1 Basis &amp; Teorema Representasi Tunggal</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.3.1 (Basis Ruang Vektor)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor atas lapangan $F$. Himpunan vektor $B = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\} \subseteq V$ disebut <strong>basis</strong> untuk $V$ jika $B$ memenuhi dua syarat:
+            </p>
+            <ol>
+              <li>$B$ <strong>bebas linier</strong> (<em>linearly independent</em>).</li>
+              <li>$B$ <strong>merentang</strong> $V$, yaitu $\operatorname{span}(B) = V$.</li>
+            </ol>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.3.2 (Representasi Koordinat Tunggal)</span>
+            <p>
+              Jika $B = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ adalah basis untuk ruang vektor $V$, maka setiap vektor $\mathbf{v} \in V$ dapat dinyatakan secara <strong>tunggal</strong> sebagai kombinasi linier dari vektor-vektor di $B$:
+            </p>
+            $$\mathbf{v} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_n \mathbf{v}_n$$
+            <p>
+              Skalar-skalar tunggal $c_1, c_2, \dots, c_n \in F$ ini disebut <strong>koordinat</strong> dari $\mathbf{v}$ relatif terhadap basis $B$, dan ditulis sebagai vektor kolom:
+            </p>
+            $$[\mathbf{v}]_B = \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.3.2.</span>
+            <p>
+              <strong>Keberadaan:</strong> Karena $\operatorname{span}(B) = V$ (syarat kedua basis), setiap $\mathbf{v} \in V$ pasti dapat ditulis sebagai kombinasi linier $\mathbf{v} = c_1\mathbf{v}_1 + \dots + c_n\mathbf{v}_n$ untuk suatu $c_1, \dots, c_n \in F$.
+            </p>
+            <p><strong>Ketunggalan:</strong> Andaikan terdapat dua representasi kombinasi linier bagi $\mathbf{v}$:</p>
+            $$\mathbf{v} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_n \mathbf{v}_n \quad \text{dan} \quad \mathbf{v} = d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2 + \dots + d_n \mathbf{v}_n$$
+            <p>Kurangkan persamaan kedua dari persamaan pertama:</p>
+            $$\mathbf{0} = \mathbf{v} - \mathbf{v} = (c_1 - d_1)\mathbf{v}_1 + (c_2 - d_2)\mathbf{v}_2 + \dots + (c_n - d_n)\mathbf{v}_n$$
+            <p>
+              Karena $B$ bebas linier (syarat pertama basis), satu-satunya solusi persamaan homogen tersebut adalah seluruh koefisien bernilai nol:
+            </p>
+            $$c_1 - d_1 = 0, \; c_2 - d_2 = 0, \; \dots, \; c_n - d_n = 0 \implies c_1 = d_1, \; c_2 = d_2, \; \dots, \; c_n = d_n$$
+            <p>Jadi representasi koordinat $\mathbf{v}$ terhadap $B$ adalah tunggal.</p>
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema Zorn (Alat Teori Himpunan untuk Ruang Berdimensi Sembarang)</span>
+            <p>
+              Misalkan $P$ adalah himpunan tak kosong terurut parsial (<em>poset</em>) sedemikian sehingga setiap rantai (himpunan bagian terurut total) di dalam $P$ memiliki batas atas di $P$. Maka $P$ memiliki setidaknya satu elemen maksimal.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.3.3 (Perluasan Himpunan Bebas Linier &amp; Pemangkasan Himpunan Perentang)</span>
+            <p>Misalkan $V$ adalah ruang vektor atas lapangan $\mathbb{F}$. Maka berlaku:</p>
+            <ol type="a">
+              <li>Setiap himpunan bebas linier dalam $V$ merupakan himpunan bagian dari suatu basis $V$.</li>
+              <li>Setiap himpunan yang merentang $V$ memiliki himpunan bagian yang merupakan basis dari $V$.</li>
+            </ol>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.3.3.</span>
+            <p><strong>Bagian (a) — Memperluas himpunan bebas linier menjadi basis:</strong></p>
+            <p>
+              Misalkan $S \subseteq V$ bebas linier. Jika $\operatorname{span}(S) = V$, maka $S$ sendiri adalah basis dan selesai. Jika belum, definisikan keluarga himpunan:
+            </p>
+            $$\mathcal{L} = \{ T \subseteq V \mid S \subseteq T \text{ dan } T \text{ bebas linier} \}$$
+            <p>
+              Urutkan $\mathcal{L}$ secara parsial dengan relasi inklusi himpunan ($\subseteq$). Untuk setiap rantai $\{T_\alpha\} \subseteq \mathcal{L}$, gabungannya $T = \bigcup_\alpha T_\alpha$ merupakan batas atas di $\mathcal{L}$ karena memuat $S$ dan tetap bebas linier (setiap kombinasi linier berhingga melibatkan elemen dari salah satu $T_\alpha$ yang bebas linier). Berdasarkan Lema Zorn, $\mathcal{L}$ memiliki elemen maksimal $B$.
+            </p>
+            <p>
+              <strong>Klaim: $B$ merentang $V$.</strong> Andaikan tidak, maka ada $\mathbf{v} \in V \setminus \operatorname{span}(B)$. Akibatnya $B \cup \{\mathbf{v}\}$ tetap bebas linier dan memuat $S$, sehingga $B \cup \{\mathbf{v}\} \in \mathcal{L}$ yang lebih besar dari $B$ — kontradiksi terhadap kemaksimalan $B$. Jadi $B$ bebas linier dan merentang $V$, yakni basis yang memuat $S$.
+            </p>
+            <p><strong>Bagian (b) — Mengurangi himpunan perentang menjadi basis:</strong></p>
+            <p>
+              Misalkan $S \subseteq V$ merentang $V$ ($\operatorname{span}(S) = V$). Lakukan proses pemangkasan (<em>reduction</em>): mulai dari $S_0 = S$. Selama $S_i$ masih bergantung linier, menurut Teorema 1.2.12 terdapat elemen redundan $\mathbf{s} \in S_i$ yang merupakan kombinasi linier elemen lain; buang $\mathbf{s}$ sehingga $S_{i+1} = S_i \setminus \{\mathbf{s}\}$ tetap merentang $V$. Untuk ruang berdimensi hingga proses ini berhenti dalam langkah berhingga (dan secara umum dengan Lema Zorn pada keluarga himpunan bagian bebas linier dari $S$), menghasilkan $B \subseteq S$ yang bebas linier sekaligus merentang $V$. Jadi $B$ adalah basis $V$.
+            </p>
+          </div>
+          <p>
+            <strong>Kesimpulan:</strong> Teorema 1.3.3 menjamin bahwa <em>setiap ruang vektor memiliki basis</em>: himpunan bebas linier dapat diperluas menjadi basis, sedangkan himpunan perentang dapat dipangkas menjadi basis.
+          </p>
+
+          <p id="BasisBPn">
+            <strong>Contoh 1.3.4 (Basis Baku untuk $P_n(\mathbb{R})$).</strong> Tunjukkan bahwa himpunan $B = \{1, x, x^2, \dots, x^n\}$ merupakan basis baku untuk ruang polinomial $P_n(\mathbb{R})$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <ol>
+                <li><strong>Bebas linier:</strong> Jika $c_0(1) + c_1 x + c_2 x^2 + \dots + c_n x^n = 0$ sebagai polinomial nol untuk semua $x \in \mathbb{R}$, maka seluruh koefisiennya wajib nol: $c_0 = c_1 = \dots = c_n = 0$.</li>
+                <li><strong>Merentang $P_n(\mathbb{R})$:</strong> Setiap polinomial $p(x) \in P_n(\mathbb{R})$ berbentuk $a_0 + a_1 x + \dots + a_n x^n$, yang langsung merupakan kombinasi linier dari elemen $B$.</li>
+              </ol>
+              <p>Karena bebas linier dan merentang, $B$ adalah basis untuk $P_n(\mathbb{R})$.</p>
+            </div>
+          </details>
+
+          <p id="BSRMn">
+            <strong>Contoh 1.3.5 (Basis Standar untuk $M_{m \times n}(\mathbb{R})$).</strong> Tunjukkan bagaimana matriks $E_{ij}$ (bernilai $1$ pada baris $i$ kolom $j$ dan $0$ di entri lain) membentuk basis standar untuk $M_{2 \times 2}(\mathbb{R})$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Untuk $M_{2 \times 2}(\mathbb{R})$, himpunan basis standarnya adalah:</p>
+              $$B = \left\{ \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}, \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}, \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}, \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \right\}$$
+              <p>Setiap matriks $A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \in M_{2 \times 2}(\mathbb{R})$ dapat dinyatakan sebagai:</p>
+              $$A = a\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} + b\begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} + c\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} + d\begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}$$
+              <p>Ini menunjukkan $B$ merentang $M_{2 \times 2}(\mathbb{R})$, dan jika $A = O_{2 \times 2}$ maka $a = b = c = d = 0$, membuktikan kebebasan liniernya.</p>
+            </div>
+          </details>
+
+          <h3>1.3.6 Dimensi &amp; Teorema Pertukaran Steinitz</h3>
+          <p>
+            Dimensi adalah ukuran intrinsik ruang vektor yang menyatakan jumlah minimum informasi (vektor basis independen) pembangun ruang, dan nilainya tidak bergantung pada pemilihan basis.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.3.6 (Dimensi Ruang Vektor)</span>
+            <p>
+              Jika ruang vektor $V$ memiliki suatu basis yang terdiri dari $n$ vektor, maka <strong>dimensi</strong> dari $V$ adalah $n$, dinotasikan $\dim(V) = n$ (<em>berdimensi hingga</em>). Untuk ruang nol $\{\mathbf{0}\}$, basisnya $\emptyset$ sehingga $\dim(\{\mathbf{0}\}) = 0$. Jika $V$ tidak memiliki basis dengan jumlah vektor berhingga, maka $V$ dikatakan <strong>berdimensi tak hingga</strong> ($\dim(V) = \infty$).
+            </p>
+          </div>
+
+          <div class="math-box theorem" id="TPS">
+            <span class="math-box-title">Teorema 1.3.7 (Teorema Pertukaran Steinitz / <em>Steinitz Exchange Theorem</em>)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor atas lapangan $F$. Jika $S = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_m\}$ adalah himpunan vektor yang <strong>bebas linier</strong> di $V$, dan $T = \{\mathbf{w}_1, \mathbf{w}_2, \dots, \mathbf{w}_n\}$ adalah himpunan vektor yang <strong>merentang</strong> $V$ ($\operatorname{span}(T) = V$), maka:
+            </p>
+            $$m \le n$$
+            <p>
+              Lebih lanjut, tepat $m$ vektor di $T$ dapat digantikan oleh seluruh vektor dari $S$ sehingga (setelah pengurutan ulang vektor di $T$) himpunan baru:
+            </p>
+            $$T' = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_m, \mathbf{w}_{m+1}, \dots, \mathbf{w}_n\}$$
+            <p>tetap merentang $V$.</p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.3.7 (Konstruksi Pertukaran Iteratif &amp; Kontradiksi).</span>
+            <p><strong>Bagian 1: Membuktikan $m \le n$.</strong></p>
+            <p>
+              Andaikan sebaliknya bahwa $m &gt; n$. Karena $\operatorname{span}(T) = V$, vektor $\mathbf{v}_1 \in S$ dapat ditulis sebagai kombinasi linier vektor-vektor di $T$:
+            </p>
+            $$\mathbf{v}_1 = a_1\mathbf{w}_1 + a_2\mathbf{w}_2 + \dots + a_n\mathbf{w}_n$$
+            <p>
+              Karena $S$ bebas linier, $\mathbf{v}_1 \neq \mathbf{0}$, sehingga minimal satu skalar $a_j \neq 0$. Tanpa mengurangi keumuman, urutkan $T$ agar $a_1 \neq 0$. Bagi dengan $a_1$:
+            </p>
+            $$\mathbf{w}_1 = \frac{1}{a_1}\mathbf{v}_1 - \frac{a_2}{a_1}\mathbf{w}_2 - \dots - \frac{a_n}{a_1}\mathbf{w}_n$$
+            <p>
+              Oleh karena itu, himpunan $T_1 = \{\mathbf{v}_1, \mathbf{w}_2, \dots, \mathbf{w}_n\}$ tetap merentang $V$ (setiap kemunculan $\mathbf{w}_1$ dapat disubstitusi oleh kombinasi di atas).
+            </p>
+            <p>
+              Lakukan iterasi: pada langkah ke-2, tulis $\mathbf{v}_2$ dalam $T_1$:
+            </p>
+            $$\mathbf{v}_2 = b_1\mathbf{v}_1 + b_2\mathbf{w}_2 + \dots + b_n\mathbf{w}_n$$
+            <p>
+              Koefisien $b_2, \dots, b_n$ tidak mungkin semuanya nol (sebab jika nol semua, maka $\mathbf{v}_2 = b_1\mathbf{v}_1$ yang bertentangan dengan kebebasan linier $S$). Urutkan ulang sisa vektor $\mathbf{w}_j$ agar $b_2 \neq 0$, nyatakan $\mathbf{w}_2$ sebagai:
+            </p>
+            $$\mathbf{w}_2 = -\frac{b_1}{b_2}\mathbf{v}_1 + \frac{1}{b_2}\mathbf{v}_2 - \frac{b_3}{b_2}\mathbf{w}_3 - \dots - \frac{b_n}{b_2}\mathbf{w}_n$$
+            <p>
+              sehingga $T_2 = \{\mathbf{v}_1, \mathbf{v}_2, \mathbf{w}_3, \dots, \mathbf{w}_n\}$ tetap merentang $V$. Ulangi proses ini hingga $n$ langkah sampai seluruh elemen $T$ tergantikan, menghasilkan himpunan perentang $T_n = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$.
+            </p>
+            <p>
+              Karena kita mengandaikan $m &gt; n$, masih ada vektor $\mathbf{v}_{n+1} \in S$. Karena $\operatorname{span}(T_n) = V$, terdapat skalar $c_1, \dots, c_n \in F$ sehingga:
+            </p>
+            $$\mathbf{v}_{n+1} = c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \dots + c_n\mathbf{v}_n \implies c_1\mathbf{v}_1 + \dots + c_n\mathbf{v}_n + (-1)\mathbf{v}_{n+1} = \mathbf{0}$$
+            <p>
+              Karena koefisien $\mathbf{v}_{n+1}$ adalah $-1 \neq 0$, himpunan bagian $\{\mathbf{v}_1, \dots, \mathbf{v}_{n+1}\} \subseteq S$ bergantung linier — kontradiksi dengan asumsi $S$ bebas linier. Jadi wajib $m \le n$.
+            </p>
+            <p><strong>Bagian 2: Pertukaran $m$ vektor.</strong></p>
+            <p>
+              Karena $m \le n$, proses iteratif yang sama berhenti tepat pada langkah ke-$m$, menggantikan $m$ vektor pertama dari $T$ sehingga $T' = T_m = \{\mathbf{v}_1, \dots, \mathbf{v}_m, \mathbf{w}_{m+1}, \dots, \mathbf{w}_n\}$ masih merentang $V$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.3.8 (Ukuran Basis yang Konsisten / Invariansi Dimensi)</span>
+            <p>Jika $V$ adalah ruang vektor berdimensi hingga, maka setiap basis untuk $V$ memiliki jumlah vektor yang sama.</p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.3.8.</span>
+            <p>
+              Misalkan $B_1 = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ dan $B_2 = \{\mathbf{w}_1, \dots, \mathbf{w}_m\}$ adalah dua basis untuk $V$.
+            </p>
+            <ul>
+              <li>Karena $B_2$ bebas linier dan $B_1$ merentang $V$, Teorema Pertukaran Steinitz (1.3.7) memberikan $m \le n$.</li>
+              <li>Secara simetris, karena $B_1$ bebas linier dan $B_2$ merentang $V$, Teorema Pertukaran Steinitz juga memberikan $n \le m$.</li>
+            </ul>
+            <p>Dari $m \le n$ dan $n \le m$, disimpulkan bahwa $n = m$.</p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.3.9 (Dimensi Ruang Polinomial $P_n(\mathbb{R})$).</strong> Berdasarkan Contoh 1.3.4, tentukan $\dim(P_n(\mathbb{R}))$, serta nilai dimensi untuk $P_0(\mathbb{R})$, $P_1(\mathbb{R})$, dan $P_2(\mathbb{R})$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Basis baku $B = \{1, x, x^2, \dots, x^n\}$ memiliki tepat $n + 1$ elemen. Oleh karena itu, $\dim(P_n(\mathbb{R})) = n + 1$. Secara khusus:</p>
+              <ul>
+                <li>$\dim(P_0(\mathbb{R})) = 1$ dengan basis $\{1\}$</li>
+                <li>$\dim(P_1(\mathbb{R})) = 2$ dengan basis $\{1, x\}$</li>
+                <li>$\dim(P_2(\mathbb{R})) = 3$ dengan basis $\{1, x, x^2\}$</li>
+              </ul>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.3.10 (Dimensi Ruang Matriks $M_{m \times n}(\mathbb{R})$).</strong> Tentukan dimensi umum $M_{m \times n}(\mathbb{R})$, serta secara khusus dimensi dari $M_{2 \times 2}(\mathbb{R})$ dan $M_{3 \times 2}(\mathbb{R})$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Berdasarkan Contoh 1.3.5, basis standar $M_{m \times n}(\mathbb{R})$ terdiri dari matriks $E_{ij}$ untuk $1 \le i \le m$ dan $1 \le j \le n$, yang jumlahnya adalah $m \cdot n$. Jadi $\dim(M_{m \times n}(\mathbb{R})) = m \cdot n$, sehingga $\dim(M_{2 \times 2}(\mathbb{R})) = 4$ dan $\dim(M_{3 \times 2}(\mathbb{R})) = 6$.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.3.11 (Ruang Berdimensi Tak Hingga).</strong> Mengapa ruang semua polinomial tanpa batasan derajat $P(\mathbb{R})$ dan ruang fungsi kontinu $C(\mathbb{R})$ berdimensi tak hingga?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Basis bagi $P(\mathbb{R})$ adalah $B = \{1, x, x^2, x^3, \dots\}$ yang memuat tak hingga banyak polinomial bebas linier, sehingga $\dim(P(\mathbb{R})) = \infty$. Demikian pula, $P(\mathbb{R}) \subset C(\mathbb{R})$ memuat himpunan bebas linier tak hingga, sehingga $C(\mathbb{R})$ juga berdimensi tak hingga.
+              </p>
+            </div>
+          </details>
+
+          <div class="math-box theorem" id="HBLM">
+            <span class="math-box-title">Teorema 1.3.12 (Himpunan Bebas Linier Maksimal &amp; Perentang Minimal)</span>
+            <p>Misalkan $V$ adalah ruang vektor berdimensi $n$ ($\dim(V) = n$). Maka:</p>
+            <ol>
+              <li>Setiap himpunan bebas linier di $V$ yang berisi $n$ vektor otomatis merupakan basis untuk $V$.</li>
+              <li>Setiap himpunan perentang di $V$ yang berisi $n$ vektor otomatis merupakan basis untuk $V$.</li>
+            </ol>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.3.12.</span>
+            <p><strong>Bagian 1:</strong> Misalkan $S = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ bebas linier di $V$. Andaikan $\operatorname{span}(S) \neq V$, maka ada $\mathbf{w} \in V \setminus \operatorname{span}(S)$. Himpunan $S' = \{\mathbf{v}_1, \dots, \mathbf{v}_n, \mathbf{w}\}$ menjadi bebas linier dengan $n + 1$ vektor. Padahal $V$ punya basis berisi $n$ vektor (yang merentang $V$), sehingga menurut Teorema Pertukaran Steinitz (1.3.7) tidak boleh ada himpunan bebas linier dengan $n + 1 &gt; n$ vektor. Kontradiksi. Jadi $\operatorname{span}(S) = V$, sehingga $S$ basis.</p>
+            <p><strong>Bagian 2:</strong> Misalkan $T = \{\mathbf{w}_1, \dots, \mathbf{w}_n\}$ merentang $V$. Andaikan $T$ bergantung linier. Menurut Teorema 1.2.12, ada suatu $\mathbf{w}_k \in T$ yang merupakan kombinasi linier vektor lainnya, sehingga membuangnya menghasilkan $T' = T \setminus \{\mathbf{w}_k\}$ berisi $n - 1$ vektor yang masih merentang $V$. Namun sebuah basis di $V$ memiliki $n$ vektor bebas linier; menurut Teorema Steinitz haruslah $n \le n - 1$, suatu kontradiksi. Jadi $T$ bebas linier dan merupakan basis.</p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.3.13 (Dimensi Subruang)</span>
+            <p>
+              Jika $W$ adalah subruang dari ruang vektor berdimensi hingga $V$, maka $\dim(W) \le \dim(V)$. Lebih lanjut, $\dim(W) = \dim(V)$ jika dan hanya jika $W = V$.
+            </p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.3.13.</span>
+            <p>
+              Misalkan $\dim(V) = n$. Jika $W = \{\mathbf{0}\}$, maka $\dim(W) = 0 \le n$. Jika $W \neq \{\mathbf{0}\}$, pilih $\mathbf{w}_1 \in W \setminus \{\mathbf{0}\}$. Selama $\operatorname{span}(\{\mathbf{w}_1, \dots, \mathbf{w}_k\}) \neq W$, kita dapat terus memilih $\mathbf{w}_{k+1} \in W \setminus \operatorname{span}(\{\mathbf{w}_1, \dots, \mathbf{w}_k\})$ sehingga tetap bebas linier. Karena semua vektor berada di $V$ dan himpunan bebas linier di $V$ paling banyak berjumlah $n$ (Teorema 1.3.7), proses berhenti pada $k \le n$ langkah, menghasilkan basis $B_W$ untuk $W$ dengan $\dim(W) = k \le n = \dim(V)$.
+            </p>
+            <p>
+              <strong>Arah ($\implies$):</strong> Jika $\dim(W) = \dim(V) = n$, basis $B_W = \{\mathbf{w}_1, \dots, \mathbf{w}_n\}$ adalah himpunan bebas linier berisi $n$ vektor di $V$. Menurut Teorema 1.3.12, $B_W$ juga merupakan basis bagi $V$, sehingga setiap vektor di $V$ adalah kombinasi linier dari elemen $B_W \subseteq W$, berakibat $V \subseteq W$. Karena $W \subseteq V$, disimpulkan $W = V$.
+            </p>
+            <p><strong>Arah ($\impliedby$):</strong> Jika $W = V$, maka jelas $\dim(W) = \dim(V)$.</p>
+          </div>
+
+          <p>
+            <strong>Masalah Nyata 1.3.A (Dimensi Ruang Solusi Persamaan Diferensial Model Getaran).</strong> Model gerak pegas teredam dinyatakan oleh persamaan diferensial linier $y'' - 3y' + 2y = 0$. Tentukan basis dan dimensi ruang solusinya, lalu jelaskan mengapa nilai dimensi ini penting untuk memprediksi sistem!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Persamaan karakteristiknya adalah $r^2 - 3r + 2 = 0 \implies (r - 1)(r - 2) = 0$, sehingga akarnya $r_1 = 1$ dan $r_2 = 2$. Solusi umumnya berbentuk $y(x) = C_1 e^x + C_2 e^{2x}$.
+              </p>
+              <ol>
+                <li><strong>Bebas linier:</strong> Uji $c_1 e^x + c_2 e^{2x} = 0$ untuk semua $x \in \mathbb{R}$. Bagi kedua ruas dengan $e^x &gt; 0$ sehingga $c_1 + c_2 e^x = 0$. Turunkan terhadap $x$ menghasilkan $c_2 e^x = 0 \implies c_2 = 0$, yang langsung memberi $c_1 = 0$.</li>
+                <li><strong>Merentang:</strong> Setiap solusi persamaan diferensial homogen orde-2 ini merupakan kombinasi linier dari $e^x$ dan $e^{2x}$.</li>
+              </ol>
+              <p>
+                Jadi $B = \{e^x, e^{2x}\}$ adalah basis dan $\dim(W) = 2$. Sesuai Teorema 1.3.2 (Representasi Tunggal), vektor koordinat $[\mathbf{y}]_B = \begin{pmatrix} C_1 \\ C_2 \end{pmatrix}$ tunggal, yang bermakna kita membutuhkan tepat $2$ kondisi awal (posisi dan kecepatan awal) untuk memprediksi lintasan sistem secara deterministik.
+              </p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Ringkasan §1.3:</strong> Basis memberikan himpunan vektor minimal pembentuk ruang dengan koordinat tunggal, sementara dimensi menyediakan ukuran intrinsik ruang vektor yang tidak bergantung pada pilihan basis.
+          </p>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.4: PERUBAHAN BASIS DALAM RUANG VEKTOR
+             ================================================================ -->
+        <section id="perubahan-basis" aria-labelledby="heading-1-4">
+          <h2 id="heading-1-4">1.4 Perubahan Basis dalam Ruang Vektor</h2>
+          <p>
+            Dalam banyak penerapan, suatu masalah aljabar atau geometri menjadi jauh lebih sederhana apabila kita mengganti sistem koordinat dari satu basis ke basis lainnya. Alat utama untuk melakukan konversi koordinat antar-basis secara sistematis adalah <strong>matriks transisi</strong> (<em>change of basis matrix</em>).
+          </p>
+
+          <h3>1.4.1 Matriks Transisi &amp; Formula Koordinat</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.4.1 (Matriks Transisi dari Basis $B$ ke Basis $C$)</span>
+            <p>
+              Misalkan $V$ adalah ruang vektor berdimensi $n$, serta $B = \{\mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n\}$ dan $C = \{\mathbf{c}_1, \mathbf{c}_2, \dots, \mathbf{c}_n\}$ adalah dua basis terurut bagi $V$. <strong>Matriks transisi dari basis $B$ ke basis $C$</strong>, dinotasikan $P_{C \leftarrow B}$ (atau $_C P_B$, $[I]_{C \leftarrow B}$, $[I]_{B}^{C}$), adalah matriks $n \times n$ yang kolom ke-$j$-nya berupa vektor koordinat dari $\mathbf{b}_j$ relatif terhadap basis $C$:
+            </p>
+            $$P_{C \leftarrow B} = \begin{pmatrix} [\mathbf{b}_1]_C &amp; [\mathbf{b}_2]_C &amp; \dots &amp; [\mathbf{b}_n]_C \end{pmatrix}$$
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.4.2 (Formula Transformasi Koordinat)</span>
+            <p>
+              Jika $\mathbf{v} \in V$ memiliki vektor koordinat $[\mathbf{v}]_B$ relatif terhadap basis $B$, maka vektor koordinatnya relatif terhadap basis $C$, yaitu $[\mathbf{v}]_C$, dihitung dengan perkalian matriks:
+            </p>
+            $$\boxed{[\mathbf{v}]_C = P_{C \leftarrow B} [\mathbf{v}]_B}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.4.2.</span>
+            <p>
+              Misalkan koordinat $\mathbf{v}$ terhadap basis $B$ adalah $[\mathbf{v}]_B = \begin{pmatrix} k_1 \\ k_2 \\ \vdots \\ k_n \end{pmatrix}$, yang artinya:
+            </p>
+            $$\mathbf{v} = k_1\mathbf{b}_1 + k_2\mathbf{b}_2 + \dots + k_n\mathbf{b}_n$$
+            <p>
+              Selanjutnya, nyatakan setiap vektor basis $\mathbf{b}_j \in B$ sebagai kombinasi linier dari vektor-vektor basis $C = \{\mathbf{c}_1, \dots, \mathbf{c}_n\}$:
+            </p>
+            $$\mathbf{b}_j = c_{1j}\mathbf{c}_1 + c_{2j}\mathbf{c}_2 + \dots + c_{nj}\mathbf{c}_n \implies [\mathbf{b}_j]_C = \begin{pmatrix} c_{1j} \\ c_{2j} \\ \vdots \\ c_{nj} \end{pmatrix}$$
+            <p>Substitusikan ekspresi tiap $\mathbf{b}_j$ ke dalam $\mathbf{v}$ dan kelompokkan menurut vektor basis $\mathbf{c}_i$:</p>
+            $$\begin{aligned}
+            \mathbf{v} &amp;= k_1(c_{11}\mathbf{c}_1 + \dots + c_{n1}\mathbf{c}_n) + k_2(c_{12}\mathbf{c}_1 + \dots + c_{n2}\mathbf{c}_n) + \dots + k_n(c_{1n}\mathbf{c}_1 + \dots + c_{nn}\mathbf{c}_n) \\
+            &amp;= (c_{11}k_1 + c_{12}k_2 + \dots + c_{1n}k_n)\mathbf{c}_1 + \dots + (c_{n1}k_1 + c_{n2}k_2 + \dots + c_{nn}k_n)\mathbf{c}_n
+            \end{aligned}$$
+            <p>Berdasarkan ketunggalan koordinat pada Teorema 1.3.2, koordinat $\mathbf{v}$ relatif terhadap $C$ adalah:</p>
+            $$[\mathbf{v}]_C = \begin{pmatrix} c_{11}k_1 + c_{12}k_2 + \dots + c_{1n}k_n \\ c_{21}k_1 + c_{22}k_2 + \dots + c_{2n}k_n \\ \vdots \\ c_{n1}k_1 + c_{n2}k_2 + \dots + c_{nn}k_n \end{pmatrix} = \begin{pmatrix} c_{11} &amp; c_{12} &amp; \dots &amp; c_{1n} \\ c_{21} &amp; c_{22} &amp; \dots &amp; c_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ c_{n1} &amp; c_{n2} &amp; \dots &amp; c_{nn} \end{pmatrix} \begin{pmatrix} k_1 \\ k_2 \\ \vdots \\ k_n \end{pmatrix} = P_{C \leftarrow B} [\mathbf{v}]_B$$
+          </div>
+
+          <p>
+            <strong>Contoh 1.4.3 (Perubahan Basis dalam $\mathbb{R}^2$).</strong> Diketahui $E = \{\mathbf{e}_1 = (1, 0),\, \mathbf{e}_2 = (0, 1)\}$ adalah basis standar $\mathbb{R}^2$ dan $B = \{\mathbf{b}_1 = (1, 1),\, \mathbf{b}_2 = (-1, 1)\}$ adalah basis lain. Tentukan matriks transisi $P_{E \leftarrow B}$ dan $P_{B \leftarrow E}$, lalu hitung serta verifikasi koordinat $[\mathbf{v}]_B$ untuk vektor $\mathbf{v} = (3, 4)$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>1. Mencari $P_{E \leftarrow B}$:</strong> Karena $E$ basis standar, koordinat $[\mathbf{b}_j]_E$ sama dengan komponen $\mathbf{b}_j$ itu sendiri:</p>
+              $$[\mathbf{b}_1]_E = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad [\mathbf{b}_2]_E = \begin{pmatrix} -1 \\ 1 \end{pmatrix} \implies P_{E \leftarrow B} = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$$
+
+              <p><strong>2. Mencari $P_{B \leftarrow E}$:</strong> Nyatakan $\mathbf{e}_1$ dan $\mathbf{e}_2$ sebagai kombinasi linier dari $\mathbf{b}_1$ dan $\mathbf{b}_2$:</p>
+              $$\begin{pmatrix} 1 \\ 0 \end{pmatrix} = c_1\begin{pmatrix} 1 \\ 1 \end{pmatrix} + c_2\begin{pmatrix} -1 \\ 1 \end{pmatrix} \implies \begin{cases} c_1 - c_2 = 1 \\ c_1 + c_2 = 0 \end{cases} \implies c_1 = \frac{1}{2}, \; c_2 = -\frac{1}{2}$$
+              $$\begin{pmatrix} 0 \\ 1 \end{pmatrix} = d_1\begin{pmatrix} 1 \\ 1 \end{pmatrix} + d_2\begin{pmatrix} -1 \\ 1 \end{pmatrix} \implies \begin{cases} d_1 - d_2 = 0 \\ d_1 + d_2 = 1 \end{cases} \implies d_1 = \frac{1}{2}, \; d_2 = \frac{1}{2}$$
+              <p>Sehingga diperoleh:</p>
+              $$[\mathbf{e}_1]_B = \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix}, \quad [\mathbf{e}_2]_B = \begin{pmatrix} 1/2 \\ 1/2 \end{pmatrix} \implies P_{B \leftarrow E} = \begin{pmatrix} 1/2 &amp; 1/2 \\ -1/2 &amp; 1/2 \end{pmatrix}$$
+
+              <p><strong>3. Menghitung $[\mathbf{v}]_B$ untuk $\mathbf{v} = (3, 4)$ dan verifikasi:</strong></p>
+              $$\begin{aligned}
+              [\mathbf{v}]_B &amp;= P_{B \leftarrow E}[\mathbf{v}]_E = \begin{pmatrix} 1/2 &amp; 1/2 \\ -1/2 &amp; 1/2 \end{pmatrix}\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} 3/2 + 4/2 \\ -3/2 + 4/2 \end{pmatrix} = \begin{pmatrix} 7/2 \\ 1/2 \end{pmatrix}
+              \end{aligned}$$
+              <p>Cek rekonstruksi: $\frac{7}{2}\begin{pmatrix} 1 \\ 1 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 7/2 - 1/2 \\ 7/2 + 1/2 \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$ (konsisten!).</p>
+
+              <p><strong>Verifikasi Komputasi &amp; Plot dengan SageMath:</strong></p>
+<pre><code>V = QQ^2
+b1 = vector(QQ, [1, 0])
+b2 = vector(QQ, [0, 1])
+B = matrix([b1, b2])
+a1 = vector(QQ, [1, 1])
+a2 = vector(QQ, [-1, 1])
+B1 = matrix([a1, a2])
+
+VB = V.subspace_with_basis(B)
+VB1 = V.subspace_with_basis(B1)
+x, y = var('x,y')
+iden(x, y) = [x, y]
+S = linear_transformation(VB, VB1, iden)
+S1 = linear_transformation(VB1, VB, iden)
+M = S.matrix(side='right')
+M1 = S1.matrix(side='right')
+v = vector(QQ, [3, 4])
+h = M * v.column()
+
+x1 = v[0]*b1.column(); v0 = v[0]; bc1 = b1.column()
+x2 = v[1]*b2.column(); v1 = v[1]; bc2 = b2.column()
+a = x1 + x2
+y1 = h[0][0]*a1.column(); h0 = h[0][0]; ac1 = a1.column()
+y2 = h[1][0]*a2.column(); h1 = h[1][0]; ac2 = a2.column()
+b = y1 + y2
+ap = (a == b)
+
+g = plot([])
+g += arrow((0,-10),(0,10),width=3) + arrow((-10,0),(10,0),width=3)
+g += arrow((0,0),(3,4),color="green",width=3)
+g += arrow((10,-10),(-10,10),color="red",width=3,linestyle='-.')
+g += arrow((-10,-10),(10,10),color="red",width=3,linestyle='-.')
+g += text(r"$c_1\mathbf{e}_1$",(10,1.3),fontsize=13) + text(r"$c_2\mathbf{e}_2$",(1.3,10),fontsize=13)
+g += text(r"$k_1\mathbf{b}_1$",(10,8),fontsize=13,color="red") + text(r"$k_2\mathbf{b}_2$",(-8,9.5),fontsize=13,color="red")
+g += text(r"$\mathbf{v}$",(3.1,4.2),fontsize=15,color="green")
+
+pretty_print(html(r"$E = \left\{%s,%s\right\}$" % (latex(b1.column()), latex(b2.column()))))
+pretty_print(html(r"$B = \left\{%s,%s\right\}$" % (latex(a1.column()), latex(a2.column()))))
+pretty_print(html(r"Matriks Transisi $[I]_{E}^{B} = %s$" % latex(M)))
+pretty_print(html(r"$[\mathbf{v}]_E = %s$" % latex(v.column())))
+pretty_print(html(r"$[\mathbf{v}]_{B} = [I]_{E}^{B} [\mathbf{v}]_E = %s %s = %s$" % (latex(M), latex(v.column()), latex(h))))
+pretty_print(html(r"Apakah: $%s %s + %s %s = %s %s + %s %s$ ? $%s$" % (latex(v0), latex(bc1), latex(v1), latex(bc2), latex(h0), latex(ac1), latex(h1), latex(ac2), latex(ap))))
+pretty_print(html(r"Matriks Transisi $[I]_{B}^{E} = %s$" % latex(M1)))
+pretty_print(html(r"Matriks Invers Transisi: $\left([I]_{E}^{B}\right)^{-1} = %s$" % latex(~M)))
+pretty_print(html(r"Apakah: $[I]_{B}^{E} = \left([I]_{E}^{B}\right)^{-1}$ ? $%s$" % latex(M1 == ~M)))
+pretty_print(html(r"$[\mathbf{v}]_{E} = [I]_{B}^{E} [\mathbf{v}]_{B} = %s %s = %s$" % (latex(M1), latex(h), latex(v.column()))))
+display(html(r"&lt;h3&gt;Gambar $\mathbf{v}=(3,4)$ relatif thd. $\{e_1,e_2\}$ dan $\{b_1,b_2\}$:&lt;/h3&gt;"))
+g.show(axes=True, gridlines=True, ticks=[1,1], figsize=4.85)</code></pre>
+            </div>
+          </details>
+
+          <p>
+            <strong>Masalah Nyata 1.4.A (Game Engine: Transformasi <em>World Space</em> ke <em>Camera Space</em>).</strong> Posisi musuh pada <em>world space</em> (basis standar $E$) berada di $\mathbf{v} = (3, 4)$. Kamera dimiringkan $45^\circ$ dengan vektor basis lokal $B = \{(1, 1),\, (-1, 1)\}$. Tentukan koordinat musuh pada layar kamera!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Matriks transisi dari basis kamera ke dunia adalah $P_{E \leftarrow B} = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$, sehingga inversnya adalah $P_{B \leftarrow E} = (P_{E \leftarrow B})^{-1} = \begin{pmatrix} 1/2 &amp; 1/2 \\ -1/2 &amp; 1/2 \end{pmatrix}$:</p>
+              $$[\mathbf{v}]_B = P_{B \leftarrow E}[\mathbf{v}]_E = \begin{pmatrix} 1/2 &amp; 1/2 \\ -1/2 &amp; 1/2 \end{pmatrix}\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} 3.5 \\ 0.5 \end{pmatrix}$$
+              <p><strong>Interpretasi:</strong> Dari sudut pandang kamera, musuh berada $3.5$ unit di depan (sumbu arah pandang) dan $0.5$ unit di sisi kanan. Transformasi perubahan basis ini dijalankan di setiap <em>frame</em> pada engine 3D seperti Unity maupun Unreal Engine.</p>
+            </div>
+          </details>
+
+          <h3>1.4.4 Sifat-Sifat Matriks Transisi</h3>
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.4.4 (Hubungan Invers Matriks Transisi)</span>
+            <p>
+              Jika $P_{C \leftarrow B}$ adalah matriks transisi dari basis $B$ ke basis $C$, maka matriks tersebut selalu dapat dibalik (<em>invertible</em>) dan matriks transisi baliknya dari basis $C$ ke basis $B$ adalah inversnya:
+            </p>
+            $$P_{B \leftarrow C} = (P_{C \leftarrow B})^{-1}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.4.4.</span>
+            <p>
+              Untuk setiap vektor $\mathbf{v} \in V$, menurut Teorema 1.4.2 berlaku $[\mathbf{v}]_C = P_{C \leftarrow B}[\mathbf{v}]_B$ dan $[\mathbf{v}]_B = P_{B \leftarrow C}[\mathbf{v}]_C$. Substitusikan persamaan pertama ke kedua:
+            </p>
+            $$[\mathbf{v}]_B = P_{B \leftarrow C}\bigl(P_{C \leftarrow B}[\mathbf{v}]_B\bigr) = (P_{B \leftarrow C} P_{C \leftarrow B})[\mathbf{v}]_B$$
+            <p>
+              Karena kesamaan ini berlaku untuk semua $[\mathbf{v}]_B \in F^n$ (termasuk vektor basis standar $F^n$), maka $(P_{B \leftarrow C} P_{C \leftarrow B}) = I_n$. Demikian pula $P_{C \leftarrow B} P_{B \leftarrow C} = I_n$, sehingga $P_{B \leftarrow C} = (P_{C \leftarrow B})^{-1}$.
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.4.5 (Verifikasi Invers Matriks Transisi $2 \times 2$).</strong> Hitung $(P_{E \leftarrow B})^{-1}$ secara langsung untuk $P_{E \leftarrow B} = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}$ dari Contoh 1.4.3 dan bandingkan dengan $P_{B \leftarrow E}$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Gunakan rumus invers matriks $2 \times 2$, $\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix}$:</p>
+              $$\det(P_{E \leftarrow B}) = (1)(1) - (-1)(1) = 1 + 1 = 2$$
+              $$(P_{E \leftarrow B})^{-1} = \frac{1}{2}\begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix} = \begin{pmatrix} 1/2 &amp; 1/2 \\ -1/2 &amp; 1/2 \end{pmatrix} = P_{B \leftarrow E}$$
+              <p>Hasilnya persis sama dengan perhitungan sistem persamaan sebelumnya.</p>
+            </div>
+          </details>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.4.6 (Transisi Berantai / Komposisi Basis)</span>
+            <p>
+              Misalkan $A, B, C$ adalah tiga basis untuk ruang vektor $V$. Matriks transisi dari basis $B$ ke basis $A$ dapat diperoleh dengan mengalikan matriks transisi dari $B$ ke $C$ dan dari $C$ ke $A$:
+            </p>
+            $$P_{A \leftarrow B} = P_{A \leftarrow C} P_{C \leftarrow B}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.4.6.</span>
+            <p>
+              Untuk sembarang $\mathbf{v} \in V$, berlaku $[\mathbf{v}]_A = P_{A \leftarrow C}[\mathbf{v}]_C$ dan $[\mathbf{v}]_C = P_{C \leftarrow B}[\mathbf{v}]_B$. Substitusikan persamaan kedua ke pertama:
+            </p>
+            $$\begin{aligned}
+            [\mathbf{v}]_A &amp;= P_{A \leftarrow C}\bigl(P_{C \leftarrow B}[\mathbf{v}]_B\bigr) \\
+            &amp;= (P_{A \leftarrow C} P_{C \leftarrow B})[\mathbf{v}]_B
+            \end{aligned}$$
+            <p>
+              Di sisi lain, $[\mathbf{v}]_A = P_{A \leftarrow B}[\mathbf{v}]_B$. Karena kesamaan berlaku untuk seluruh $[\mathbf{v}]_B \in F^n$ dan koordinat bersifat tunggal, maka $P_{A \leftarrow B} = P_{A \leftarrow C} P_{C \leftarrow B}$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.4.7 (Perubahan Basis ke dan dari Basis Standar $\mathbb{R}^n$)</span>
+            <p>
+              Jika $E$ adalah basis standar untuk $\mathbb{R}^n$ dan $B = \{\mathbf{b}_1, \dots, \mathbf{b}_n\}$ adalah basis lain untuk $\mathbb{R}^n$, maka:
+            </p>
+            <ol>
+              <li>$P_{E \leftarrow B} = \begin{pmatrix} \mathbf{b}_1 &amp; \mathbf{b}_2 &amp; \dots &amp; \mathbf{b}_n \end{pmatrix}$ (kolom-kolomnya adalah vektor basis $\mathbf{b}_j$ itu sendiri).</li>
+              <li>$P_{B \leftarrow E} = (P_{E \leftarrow B})^{-1}$.</li>
+            </ol>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 1.4.7.</span>
+            <p>
+              Bagian (1) mengikuti langsung dari Definisi 1.4.1, karena koordinat $[\mathbf{b}_j]_E$ relatif terhadap basis standar $E$ identik dengan komponen vektor kolom $\mathbf{b}_j$ sendiri. Bagian (2) mengikuti langsung dari Teorema 1.4.4 mengenai hubungan invers matriks transisi.
+            </p>
+          </div>
+
+          <h3>1.4.8 Contoh Lanjutan &amp; Aplikasi Komputasi</h3>
+
+          <p>
+            <strong>Contoh 1.4.8 (Perubahan Basis dalam $P_1(\mathbb{R})$).</strong> Pada $V = P_1(\mathbb{R})$, diberikan basis baku $E = \{1, x\}$ dan basis lain $B = \{1 + x,\, 1 - x\}$. Tentukan $P_{E \leftarrow B}$, $P_{B \leftarrow E}$, serta koordinat polinomial $p(x) = 3 + 5x$ terhadap basis $B$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>1. Matriks $P_{E \leftarrow B}$:</strong> Nyatakan elemen $B$ terhadap basis baku $E = \{1, x\}$:</p>
+              <ul>
+                <li>$1 + x = 1 \cdot (1) + 1 \cdot (x) \implies [\mathbf{b}_1]_E = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$</li>
+                <li>$1 - x = 1 \cdot (1) + (-1) \cdot (x) \implies [\mathbf{b}_2]_E = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$</li>
+              </ul>
+              $$P_{E \leftarrow B} = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}$$
+
+              <p><strong>2. Matriks $P_{B \leftarrow E}$:</strong> Gunakan Teorema 1.4.7:</p>
+              $$\det(P_{E \leftarrow B}) = (1)(-1) - (1)(1) = -2 \implies P_{B \leftarrow E} = \frac{1}{-2}\begin{pmatrix} -1 &amp; -1 \\ -1 &amp; 1 \end{pmatrix} = \begin{pmatrix} 1/2 &amp; 1/2 \\ 1/2 &amp; -1/2 \end{pmatrix}$$
+
+              <p><strong>3. Koordinat $[p(x)]_B$ untuk $p(x) = 3 + 5x$:</strong> Diketahui $[p(x)]_E = \begin{pmatrix} 3 \\ 5 \end{pmatrix}$, maka:</p>
+              $$\begin{aligned}
+              [p(x)]_B &amp;= P_{B \leftarrow E}[p(x)]_E = \begin{pmatrix} 1/2 &amp; 1/2 \\ 1/2 &amp; -1/2 \end{pmatrix}\begin{pmatrix} 3 \\ 5 \end{pmatrix} \\
+              &amp;= \begin{pmatrix} (1/2)(3) + (1/2)(5) \\ (1/2)(3) - (1/2)(5) \end{pmatrix} = \begin{pmatrix} 8/2 \\ -2/2 \end{pmatrix} = \begin{pmatrix} 4 \\ -1 \end{pmatrix}
+              \end{aligned}$$
+              <p><strong>Cek:</strong> $4(1 + x) + (-1)(1 - x) = 4 + 4x - 1 + x = 3 + 5x$ (benar!).</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.4.9 (Matriks Transisi $[I]_B^{B'}$ Antara Dua Basis Tak Standar di $\mathbb{R}^2$).</strong> Diberikan $V = \mathbb{R}^2$ dengan basis terurut
+            $$B = \left\{ \mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix},\; \mathbf{v}_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix} \right\} \quad \text{dan} \quad B' = \left\{ \mathbf{u}_1 = \begin{bmatrix} 2 \\ -1 \end{bmatrix},\; \mathbf{u}_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix} \right\}.$$
+            (a) Tentukan matriks transisi $[I]_B^{B'}$ dari $B$ ke $B'$. (b) Jika $[\mathbf{v}]_B = \begin{bmatrix} 3 \\ -2 \end{bmatrix}$, tentukan $[\mathbf{v}]_{B'}$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                <strong>(a) Mencari $[I]_B^{B'}$:</strong> Kolom matriks transisi adalah $[\mathbf{v}_1]_{B'}$ dan $[\mathbf{v}_2]_{B'}$, yang diperoleh dari menyelesaikan persamaan kombinasi linier terhadap $B'$:
+              </p>
+              $$c_1\begin{bmatrix} 2 \\ -1 \end{bmatrix} + c_2\begin{bmatrix} -1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix} \quad \text{dan} \quad d_1\begin{bmatrix} 2 \\ -1 \end{bmatrix} + d_2\begin{bmatrix} -1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+              <ul>
+                <li>Untuk $\mathbf{v}_1$: $2c_1 - c_2 = 1$ dan $-c_1 + c_2 = 1$. Jumlahkan kedua persamaan: $c_1 = 2$, lalu substitusi memberi $c_2 = 1 + c_1 = 3$. Jadi $[\mathbf{v}_1]_{B'} = \begin{bmatrix} 2 \\ 3 \end{bmatrix}$.</li>
+                <li>Untuk $\mathbf{v}_2$: $2d_1 - d_2 = 1$ dan $-d_1 + d_2 = -1$. Jumlahkan kedua persamaan: $d_1 = 0$, lalu substitusi memberi $d_2 = -1$. Jadi $[\mathbf{v}_2]_{B'} = \begin{bmatrix} 0 \\ -1 \end{bmatrix}$.</li>
+              </ul>
+              <p>Maka matriks transisinya adalah:</p>
+              $$[I]_B^{B'} = \begin{bmatrix} 2 &amp; 0 \\ 3 &amp; -1 \end{bmatrix}$$
+
+              <p><strong>(b) Menghitung $[\mathbf{v}]_{B'}$:</strong></p>
+              $$[\mathbf{v}]_{B'} = [I]_B^{B'} [\mathbf{v}]_B = \begin{bmatrix} 2 &amp; 0 \\ 3 &amp; -1 \end{bmatrix}\begin{bmatrix} 3 \\ -2 \end{bmatrix} = \begin{bmatrix} 6 \\ 11 \end{bmatrix}$$
+              <p>Verifikasi bahwa kedua koordinat merepresentasikan vektor yang sama:</p>
+              $$3\begin{bmatrix} 1 \\ 1 \end{bmatrix} - 2\begin{bmatrix} 1 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 5 \end{bmatrix} = 6\begin{bmatrix} 2 \\ -1 \end{bmatrix} + 11\begin{bmatrix} -1 \\ 1 \end{bmatrix}$$
+
+              <p><strong>Verifikasi Komputasi dengan SageMath:</strong></p>
+<pre><code>V = QQ^2
+b1 = vector(QQ, [1, 1]); b2 = vector(QQ, [1, -1])
+B = matrix([b1, b2])
+a1 = vector(QQ, [2, -1]); a2 = vector(QQ, [-1, 1])
+B1 = matrix([a1, a2])
+
+VB = V.subspace_with_basis(B)
+VB1 = V.subspace_with_basis(B1)
+x, y = var('x,y')
+iden(x, y) = [x, y]
+S = linear_transformation(VB, VB1, iden)
+M = S.matrix(side='right')
+v = vector(QQ, [3, -2])
+h = M * v.column()
+
+a = v[0]*b1.column() + v[1]*b2.column()
+b = h[0][0]*a1.column() + h[1][0]*a2.column()
+ap = (a == b)
+
+pretty_print(html(r"$B = \left\{%s,%s\right\}$" % (latex(b1.column()), latex(b2.column()))))
+pretty_print(html(r"$B' = \left\{%s,%s\right\}$" % (latex(a1.column()), latex(a2.column()))))
+pretty_print(html(r"Matriks Transisi $[I]_{B}^{B'} = %s$" % latex(M)))
+pretty_print(html(r"$[\mathbf{v}]_B = %s$" % latex(v.column())))
+pretty_print(html(r"$[\mathbf{v}]_{B'} = [I]_{B}^{B'} [\mathbf{v}]_B = %s %s = %s$" % (latex(M), latex(v.column()), latex(h))))
+pretty_print(html(r"Verifikasi kesamaan vektor: $%s$" % latex(ap)))</code></pre>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.4.10 (Perubahan Basis di $P_2(x)$ menuju Basis Newton).</strong> Misalkan ruang vektor $V = P_2(\mathbb{R})$ dengan basis terurut:
+            $$B = \{1,\; x,\; x^2\} \quad \text{dan} \quad B' = \{1,\; 1+x,\; 1+x+x^2\}.$$
+            (a) Tentukan matriks transisi $[I]_B^{B'}$. (b) Jika $p(x) = 3 - x + 2x^2 \in P_2(\mathbb{R})$, tentukan $[p(x)]_{B'}$!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>(a) Menentukan $[I]_B^{B'}$:</strong> Nyatakan masing-masing elemen $B$ dalam basis $B'$:</p>
+              <ul>
+                <li><strong>Kolom 1 ($1$):</strong> $a_1(1) + a_2(1+x) + a_3(1+x+x^2) = 1$. Bandingkan koefisien $x^2, x, 1$: $a_3 = 0$, $a_2 + a_3 = 0 \implies a_2 = 0$, $a_1 + a_2 + a_3 = 1 \implies a_1 = 1$. Jadi $[1]_{B'} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$.</li>
+                <li><strong>Kolom 2 ($x$):</strong> $b_1(1) + b_2(1+x) + b_3(1+x+x^2) = x$. Diperoleh $b_3 = 0$, $b_2 = 1$, dan $b_1 + 1 = 0 \implies b_1 = -1$. Jadi $[x]_{B'} = \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}$.</li>
+                <li><strong>Kolom 3 ($x^2$):</strong> $c_1(1) + c_2(1+x) + c_3(1+x+x^2) = x^2$. Diperoleh $c_3 = 1$, $c_2 + 1 = 0 \implies c_2 = -1$, dan $c_1 - 1 + 1 = 0 \implies c_1 = 0$. Jadi $[x^2]_{B'} = \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$.</li>
+              </ul>
+              $$[I]_B^{B'} = \begin{bmatrix} 1 &amp; -1 &amp; 0 \\ 0 &amp; 1 &amp; -1 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}$$
+
+              <p><strong>(b) Menghitung $[p(x)]_{B'}$:</strong> Karena $B$ basis standar $P_2(\mathbb{R})$, maka $[p(x)]_B = \begin{bmatrix} 3 \\ -1 \\ 2 \end{bmatrix}$, sehingga:</p>
+              $$[p(x)]_{B'} = \begin{bmatrix} 1 &amp; -1 &amp; 0 \\ 0 &amp; 1 &amp; -1 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\begin{bmatrix} 3 \\ -1 \\ 2 \end{bmatrix} = \begin{bmatrix} 3 - (-1) \\ -1 - 2 \\ 2 \end{bmatrix} = \begin{bmatrix} 4 \\ -3 \\ 2 \end{bmatrix}$$
+              <p>Verifikasi: $4(1) - 3(1+x) + 2(1+x+x^2) = 4 - 3 - 3x + 2 + 2x + 2x^2 = 3 - x + 2x^2$.</p>
+
+              <p><strong>Verifikasi Komputasi dengan SageMath:</strong></p>
+<pre><code>V = QQ^3
+R.&lt;x&gt; = QQ[]
+Ba = [1, x, x^2]
+Ba1 = [1, 1+x, 1+x+x^2]
+
+B = matrix(QQ, [[1,0,0], [0,1,0], [0,0,1]])
+e1 = vector(QQ, [1,0,0]); e2 = vector(QQ, [0,1,0]); e3 = vector(QQ, [0,0,1])
+
+B1 = matrix(QQ, [[1,0,0], [1,1,0], [1,1,1]])
+VB = V.subspace_with_basis(B)
+VB1 = V.subspace_with_basis(B1)
+
+k1 = VB1.coordinate_vector(e1)
+k2 = VB1.coordinate_vector(e2)
+k3 = VB1.coordinate_vector(e3)
+M = matrix([k1, k2, k3])
+v = vector(QQ, [3, -1, 2])
+p = 3 - x + 2*x^2
+ap = R(3 - x + 2*x^2) == R(4*1 + (-3)*(1+x) + 2*(1+x+x^2))
+
+pretty_print(html(r"$B = %s$" % latex(Ba)))
+pretty_print(html(r"$B' = %s$" % latex(Ba1)))
+pretty_print(html(r"$p(x) = %s$" % latex(p)))
+pretty_print(html(r"$[p(x)]_B = %s$" % latex(v.column())))
+pretty_print(html(r"Matriks Transisi $[I]_{B}^{B'} = %s$" % latex(M.transpose())))
+pretty_print(html(r"$[p(x)]_{B'} = [I]_{B}^{B'} [p(x)]_{B} = %s %s = %s$" % (latex(M.transpose()), latex(v.column()), latex(M.transpose()*v.column()))))
+pretty_print(html("Apakah: $3 - x + 2x^2 = 4 - 3(1+x) + 2(1+x+x^2)$ ? $%s$" % latex(ap)))</code></pre>
+            </div>
+          </details>
+
+          <p>
+            <strong>Masalah Nyata 1.4.B (Data Science &amp; IoT: Kompresi Polinomial Sensor dengan Basis Newton).</strong> Sebuah sensor IoT mengirimkan kurva kalibrasi sebagai $p(x) = 3 - x + 2x^2$ pada basis baku $B = \{1, x, x^2\}$. Untuk transmisi hemat <em>bandwidth</em> dan kestabilan numerik, sistem beralih ke basis Newton $B' = \{1,\, 1+x,\, 1+x+x^2\}$. Tentukan koefisien transmisi yang baru $[p]_{B'}$ serta implementasi interaktif verifikasinya!
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan</summary>
+            <div class="exercise-spoiler-body">
+              <p>Menggunakan matriks transisi $[I]_B^{B'} = \begin{pmatrix} 1 &amp; -1 &amp; 0 \\ 0 &amp; 1 &amp; -1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}$ dari Contoh 1.4.10:</p>
+              $$[p]_{B'} = [I]_B^{B'}[p]_B = \begin{pmatrix} 1 &amp; -1 &amp; 0 \\ 0 &amp; 1 &amp; -1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\begin{pmatrix} 3 \\ -1 \\ 2 \end{pmatrix} = \begin{pmatrix} 4 \\ -3 \\ 2 \end{pmatrix}$$
+              <p>
+                Verifikasi: $4(1) - 3(1+x) + 2(1+x+x^2) = 3 - x + 2x^2$. Pemilihan basis yang tepat membuat energi koefisien lebih terkompresi dan mengurangi galat pemotongan (<em>thresholding</em>), yang menjadi prinsip dasar <em>Compressed Sensing</em> pada perangkat IoT.
+              </p>
+<pre><code>R.&lt;x&gt; = QQ[]
+p = 3 - x + 2*x^2
+B_prime = [R(1), R(1+x), R(1+x+x^2)]
+
+c_true = vector(QQ, [4, -3, 2])
+print(f"Koefisien yang benar: {c_true}")
+print(f"Verifikasi: {sum(c*b for c, b in zip(c_true, B_prime))}")
+
+@interact
+def cek_koefisien(c0=slider(-5, 5, 1, 4, label="c0"),
+                  c1=slider(-5, 5, 1, -3, label="c1"),
+                  c2=slider(-5, 5, 1, 2, label="c2")):
+    coeff = [c0, c1, c2]
+    rekonstruksi = sum(QQ(c)*b for c, b in zip(coeff, B_prime))
+    selisih = p - rekonstruksi
+    is_same = (p == rekonstruksi)
+
+    pretty_print(html(r"$p(x) = %s$" % latex(p)))
+    pretty_print(html(r"$\sum c_i b_i = %s(1) + (%s)(1+x) + %s(1+x+x^2) = %s$" % (c0, c1, c2, latex(rekonstruksi))))
+    if is_same:
+        pretty_print(html(r"&lt;b style='color:green'&gt;✓ Representasi benar: p dapat dinyatakan dalam basis B' dengan koefisien tersebut.&lt;/b&gt;"))
+    else:
+        pretty_print(html(r"&lt;b style='color:red'&gt;✗ Representasi salah. Selisih = %s. Coba lagi!&lt;/b&gt;" % latex(selisih)))</code></pre>
+            </div>
+          </details>
+
+          <p>
+            <strong>Ringkasan §1.4:</strong> Perubahan basis memungkinkan vektor diekspresikan dalam berbagai sistem koordinat menggunakan matriks transisi. Sifat invers dan komposisi berantainya menjamin konversi bolak-balik yang konsisten, serta menjadi kunci untuk topik lanjutan seperti representasi matriks transformasi linier, diagonalisasi, dan nilai eigen.
+          </p>
+        </section>
+
+        <!-- Navigasi Bawah Halaman -->
+        <nav class="chapter-pagination" aria-label="Navigasi Antar Bab">
+          <a href="index.html" class="chapter-nav-link prev">
+            <span class="chapter-nav-label">← Kembali ke Daftar Isi</span>
+            <span class="chapter-nav-title">Aljabar Linear (Indeks Mata Kuliah)</span>
+          </a>
+
+          <a href="index.html#daftar-isi" class="chapter-nav-link next">
+            <span class="chapter-nav-label">Silabus Selanjutnya →</span>
+            <span class="chapter-nav-title">Bab 02: Ruang Vektor &amp; Subruang (Segera)</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>
