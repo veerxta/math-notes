@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dashboard utama catatan kuliah S1 Matematika — Analisis Real dan Aljabar Linear.">
+  <meta name="description" content="Dashboard utama catatan kuliah S1 Matematika — Linear Algebra, Multivariable Calculus, Systems Mathematics, Numerical Methods, Operations Research 1, dan Simulation Techniques.">
   <meta name="theme-color" content="#2563eb">
   <title>Math Notes — Dashboard S1 Matematika</title>
 
@@ -59,15 +59,39 @@
         <div class="nav-section-title">Mata Kuliah</div>
         <ul class="nav-list">
           <li>
-            <a href="courses/analisis-real/index.html" class="nav-link">
-              <span>📐</span>
-              <span>Analisis Real</span>
+            <a href="courses/linear-algebra/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
             </a>
           </li>
           <li>
-            <a href="courses/aljabar-linear/index.html" class="nav-link">
-              <span>🔢</span>
-              <span>Aljabar Linear</span>
+            <a href="courses/multivariable-calculus/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="courses/systems-mathematics/index.html" class="nav-link">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="courses/numerical-methods/index.html" class="nav-link">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="courses/operations-research-1/index.html" class="nav-link">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="courses/simulation-techniques/index.html" class="nav-link">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
             </a>
           </li>
         </ul>
@@ -115,12 +139,12 @@
           <p>Pilih mata kuliah di bawah ini untuk membuka daftar isi bab, rangkuman konsep, serta latihan pembuktian:</p>
 
           <div class="course-grid">
-            <a href="courses/analisis-real/index.html" class="course-card">
+            <a href="courses/linear-algebra/index.html" class="course-card">
               <div>
-                <div class="course-card-code">MAT-201 • Analisis</div>
-                <h3 class="course-card-title">Analisis Real</h3>
+                <div class="course-card-code">MAT • Aljabar</div>
+                <h3 class="course-card-title">Linear Algebra</h3>
                 <p class="course-card-desc">
-                  Konstruksi aksiomatik bilangan real $\mathbb{R}$, sifat kelengkapan (supremum &amp; infimum), kekonvergenan barisan Cauchy, topologi garis real, dan kekontinuan fungsi.
+                  Ruang vektor atas lapangan $F$, transformasi linear, ruang dual, pemetaan multilinear, ruang hasil kali dalam ($\langle u, v \rangle$), operator linear, dan similaritas matriks.
                 </p>
               </div>
               <div class="course-card-footer">
@@ -129,12 +153,68 @@
               </div>
             </a>
 
-            <a href="courses/aljabar-linear/index.html" class="course-card">
+            <a href="courses/multivariable-calculus/index.html" class="course-card">
               <div>
-                <div class="course-card-code">MAT-102 • Aljabar</div>
-                <h3 class="course-card-title">Aljabar Linear</h3>
+                <div class="course-card-code">MAT • Analisis &amp; Kalkulus</div>
+                <h3 class="course-card-title">Multivariable Calculus</h3>
                 <p class="course-card-desc">
-                  Sistem persamaan linear, ruang vektor atas lapangan $\mathbb{F}$, kebebasan linear, basis dan dimensi, transformasi linear, determinan, serta nilai dan vektor eigen.
+                  Fungsi peubah banyak, turunan parsial dan gradien ($\nabla f$), optimasi berkendala pengali Lagrange, integral lipat, serta Teorema Green, Stokes, dan Divergensi Gauss.
+                </p>
+              </div>
+              <div class="course-card-footer">
+                <span>Buka Daftar Isi</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+
+            <a href="courses/systems-mathematics/index.html" class="course-card">
+              <div>
+                <div class="course-card-code">MAT • Sistem Dinamik</div>
+                <h3 class="course-card-title">Systems Mathematics</h3>
+                <p class="course-card-desc">
+                  Pemodelan ruang keadaan ($\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$), matriks eksponensial $e^{At}$, analisis kestabilan Lyapunov, serta keterkontrolan dan keteramatan Kalman.
+                </p>
+              </div>
+              <div class="course-card-footer">
+                <span>Buka Daftar Isi</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+
+            <a href="courses/numerical-methods/index.html" class="course-card">
+              <div>
+                <div class="course-card-code">MAT • Komputasi Ilmiah</div>
+                <h3 class="course-card-title">Numerical Methods</h3>
+                <p class="course-card-desc">
+                  Analisis galat titik kambang, akar persamaan non-linier (Newton–Raphson), dekomposisi $LU$ &amp; metode iteratif, interpolasi polinomial, serta kuadratur dan Runge–Kutta PDB.
+                </p>
+              </div>
+              <div class="course-card-footer">
+                <span>Buka Daftar Isi</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+
+            <a href="courses/operations-research-1/index.html" class="course-card">
+              <div>
+                <div class="course-card-code">MAT • Optimasi</div>
+                <h3 class="course-card-title">Operations Research 1</h3>
+                <p class="course-card-desc">
+                  Formulasi pemrograman linear, analisis himpunan konveks polihedral, algoritma Simpleks (Dua Fase &amp; Big-$M$), teori dualitas, analisis sensitivitas, dan transportasi.
+                </p>
+              </div>
+              <div class="course-card-footer">
+                <span>Buka Daftar Isi</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+
+            <a href="courses/simulation-techniques/index.html" class="course-card">
+              <div>
+                <div class="course-card-code">MAT • Pemodelan Stokastik</div>
+                <h3 class="course-card-title">Simulation Techniques</h3>
+                <p class="course-card-desc">
+                  Simulasi kejadian diskrit (DES), pembangkit bilangan acak semu (LCG), transformasi invers &amp; <em>rejection sampling</em>, metode Monte Carlo, reduksi variansi, dan sistem antrean $M/M/1$.
                 </p>
               </div>
               <div class="course-card-footer">

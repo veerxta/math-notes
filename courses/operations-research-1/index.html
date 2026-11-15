@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Operations Research 1 (Riset Operasi I) — S1 Matematika.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Operations Research 1 — Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX untuk Render Notasi Matematika -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Utama">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-section" aria-label="Menu Utama">
+        <div class="nav-section-title">Ringkasan</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Dashboard Utama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Daftar Mata Kuliah">
+        <div class="nav-section-title">Mata Kuliah</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../linear-algebra/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
+            </a>
+          </li>
+          <li>
+            <a href="../multivariable-calculus/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="../systems-mathematics/index.html" class="nav-link">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../numerical-methods/index.html" class="nav-link">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="../simulation-techniques/index.html" class="nav-link">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#daftar-isi" class="nav-link"><span>1.</span><span>Daftar Isi Bab</span></a></li>
+          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Dualitas Pemrograman Linear</span></a></li>
+          <li><a href="#latihan-awal" class="nav-link"><span>3.</span><span>Latihan Pemahaman</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Operations Research 1<br>
+        Referensi: Bazaraa, Winston, Taha
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Operations Research 1</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Optimasi &amp; Pemrograman Linear</span>
+          <h1>Operations Research 1</h1>
+          <p class="page-subtitle">
+            Pemodelan optimasi deterministik: formulasi pemrograman linear, geometri himpunan konveks polihedral, algoritma Simpleks, teori dualitas, analisis sensitivitas, dan transportasi.
+          </p>
+        </header>
+
+        <section id="daftar-isi" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">Daftar Isi Perkuliahan</h2>
+          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Operations Research 1:</p>
+
+          <ul class="toc-list">
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 01</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Formulasi Pemrograman Linier &amp; Solusi Grafik</h3>
+                <p class="toc-chapter-summary">Variabel keputusan, fungsi tujuan, kendala pertidaksamaan, daerah layak, serta bentuk standar dengan variabel <em>slack</em> dan <em>surplus</em>.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 02</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Analisis Konveks &amp; Titik Ekstrem Polihedral</h3>
+                <p class="toc-chapter-summary">Himpunan konveks, polihedron, solusi layak basis (BFS), dan Teorema Fundamental Pemrograman Linear.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 03</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Algoritma Simpleks &amp; Metode Dua Fase / Big-$M$</h3>
+                <p class="toc-chapter-summary">Tabel simpleks, aturan variabel masuk &amp; keluar, degenerasi, metode Dua Fase, serta deteksi solusi tak terbatas atau tak layak.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 04</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Teori Dualitas &amp; Analisis Sensitivitas</h3>
+                <p class="toc-chapter-summary">Pasangan Primal–Dual, Dualitas Lemah &amp; Kuat, <em>Complementary Slackness</em>, harga bayangan (<em>shadow price</em>), dan perubahan koefisien.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 05</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Masalah Transportasi &amp; Penugasan</h3>
+                <p class="toc-chapter-summary">Solusi awal (Northwest Corner, Vogel/VAM), metode MODI ($u_i + v_j$), dan algoritma Hungarian untuk masalah penugasan.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+          </ul>
+        </section>
+
+        <section id="ringkasan-awal" aria-labelledby="preview-heading">
+          <h2 id="preview-heading">Cuplikan Konsep Inti: Dualitas Pemrograman Linear</h2>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi (Pasangan Masalah Primal dan Dual)</span>
+            <p>
+              Diberikan $A \in \mathbb{R}^{m\times n}$, $\mathbf{c} \in \mathbb{R}^n$, dan $\mathbf{b} \in \mathbb{R}^m$. Masalah <strong>Primal (P)</strong> dan pasangannya <strong>Dual (D)</strong> dalam bentuk kanonik didefinisikan sebagai:
+            </p>
+            $$\text{(P): } \max \mathbf{c}^T \mathbf{x} \;\text{ s.t. }\; A\mathbf{x} \le \mathbf{b},\; \mathbf{x} \ge \mathbf{0} \qquad \Longleftrightarrow \qquad \text{(D): } \min \mathbf{b}^T \mathbf{y} \;\text{ s.t. }\; A^T\mathbf{y} \ge \mathbf{c},\; \mathbf{y} \ge \mathbf{0}$$
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema (Teorema Dualitas Lemah / <em>Weak Duality</em>)</span>
+            <p>
+              Untuk sembarang solusi layak $\mathbf{x}$ pada Primal (P) dan sembarang solusi layak $\mathbf{y}$ pada Dual (D), nilai objektif Primal tidak pernah melampaui nilai objektif Dual:
+            </p>
+            $$\mathbf{c}^T \mathbf{x} \le \mathbf{b}^T \mathbf{y}$$
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema (Dualitas Kuat &amp; <em>Complementary Slackness</em>)</span>
+            <p>
+              Jika masalah Primal (P) memiliki solusi optimal berhingga $\mathbf{x}^*$, maka Dual (D) juga memiliki solusi optimal $\mathbf{y}^*$ dengan nilai objektif sama, $\mathbf{c}^T \mathbf{x}^* = \mathbf{b}^T \mathbf{y}^*$. Selain itu, pasangan layak $(\mathbf{x}, \mathbf{y})$ bersifat optimal jika dan hanya jika berlaku kondisi kelonggaran komplementer:
+            </p>
+            $$(\mathbf{b} - A\mathbf{x})^T \mathbf{y} = 0 \quad \text{dan} \quad (A^T\mathbf{y} - \mathbf{c})^T \mathbf{x} = 0$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti (Dualitas Lemah).</span>
+            <p>
+              Karena $\mathbf{x} \ge \mathbf{0}$ dan $A^T\mathbf{y} \ge \mathbf{c}$, perkalian dalam memberikan $\mathbf{c}^T \mathbf{x} \le (A^T\mathbf{y})^T \mathbf{x} = \mathbf{y}^T A\mathbf{x}$. Di sisi lain, karena $\mathbf{y} \ge \mathbf{0}$ dan $A\mathbf{x} \le \mathbf{b}$, diperoleh $\mathbf{y}^T A\mathbf{x} \le \mathbf{y}^T \mathbf{b} = \mathbf{b}^T \mathbf{y}$. Menggabungkan kedua ketaksamaan memberi $\mathbf{c}^T \mathbf{x} \le \mathbf{b}^T \mathbf{y}$.
+            </p>
+          </div>
+        </section>
+
+        <section id="latihan-awal" aria-labelledby="exercise-heading">
+          <h2 id="exercise-heading">Latihan Pemahaman Mandiri</h2>
+
+          <details class="exercise-spoiler">
+            <summary>Soal — Susunlah masalah Dual dari program linear: $\max Z = 3x_1 + 5x_2$ dengan kendala $x_1 + 2x_2 \le 6$, $2x_1 + x_2 \le 8$, dan $x_1, x_2 \ge 0$!</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Diidentifikasi $\mathbf{c} = \begin{bmatrix} 3 \\ 5 \end{bmatrix}$, $\mathbf{b} = \begin{bmatrix} 6 \\ 8 \end{bmatrix}$, dan $A = \begin{bmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{bmatrix}$. Dengan variabel dual $y_1, y_2 \ge 0$:
+              </p>
+              $$\min W = 6y_1 + 8y_2 \quad \text{terhadap kendala} \quad \begin{cases} y_1 + 2y_2 \ge 3 \\ 2y_1 + y_2 \ge 5 \\ y_1, y_2 \ge 0 \end{cases}$$
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Numerical Methods (Metode Numerik) — S1 Matematika.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Numerical Methods — Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX untuk Render Notasi Matematika -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Utama">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-section" aria-label="Menu Utama">
+        <div class="nav-section-title">Ringkasan</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Dashboard Utama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Daftar Mata Kuliah">
+        <div class="nav-section-title">Mata Kuliah</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../linear-algebra/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
+            </a>
+          </li>
+          <li>
+            <a href="../multivariable-calculus/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="../systems-mathematics/index.html" class="nav-link">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="../operations-research-1/index.html" class="nav-link">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="../simulation-techniques/index.html" class="nav-link">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#daftar-isi" class="nav-link"><span>1.</span><span>Daftar Isi Bab</span></a></li>
+          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Konvergensi Newton–Raphson</span></a></li>
+          <li><a href="#latihan-awal" class="nav-link"><span>3.</span><span>Latihan Pemahaman</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Numerical Methods<br>
+        Referensi: Burden–Faires, Chapra
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Numerical Methods</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Komputasi Ilmiah &amp; Analisis Numerik</span>
+          <h1>Numerical Methods</h1>
+          <p class="page-subtitle">
+            Algoritma penyelesaian masalah matematika secara numerik: analisis galat, pencarian akar non-linier, aljabar linear numerik, interpolasi polinomial, kuadratur, serta solusi PDB.
+          </p>
+        </header>
+
+        <section id="daftar-isi" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">Daftar Isi Perkuliahan</h2>
+          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Numerical Methods:</p>
+
+          <ul class="toc-list">
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 01</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Analisis Galat &amp; Aritmetika Titik Kambang</h3>
+                <p class="toc-chapter-summary">Galat mutlak dan relatif, galat pemotongan deret Taylor, pembulatan IEEE 754, serta bilangan kondisi masalah.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 02</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Akar Persamaan Non-Linier</h3>
+                <p class="toc-chapter-summary">Metode Bagi-Dua (<em>Bisection</em>), Regula Falsi, Iterasi Titik Tetap, metode Secant, dan analisis konvergensi Newton–Raphson.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 03</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Sistem Persamaan Linier Numerik</h3>
+                <p class="toc-chapter-summary">Eliminasi Gauss dengan <em>pivoting</em> parsial, dekomposisi $LU$ &amp; Cholesky, serta metode iteratif Jacobi dan Gauss–Seidel.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 04</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Interpolasi Polinomial</h3>
+                <p class="toc-chapter-summary">Polinomial interpolasi Lagrange, selisih terbagi Newton, batas galat interpolasi, fenomena Runge, serta spline kubik.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 05</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Kuadratur Numerik &amp; Metode Runge–Kutta PDB</h3>
+                <p class="toc-chapter-summary">Aturan Trapesium, Simpson 1/3, kuadratur Gauss–Legendre, metode Euler, serta Runge–Kutta orde 4 (RK4) untuk persamaan diferensial biasa.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+          </ul>
+        </section>
+
+        <section id="ringkasan-awal" aria-labelledby="preview-heading">
+          <h2 id="preview-heading">Cuplikan Konsep Inti: Metode Newton–Raphson</h2>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi (Orde Konvergensi Barisan Numerik)</span>
+            <p>
+              Misalkan $\{p_n\}$ konvergen ke akar $p$ dengan $p_n \neq p$. Barisan dikatakan konvergen dengan <strong>orde $\alpha \ge 1$</strong> jika terdapat konstanta galat asimtotik $\lambda &gt; 0$ sedemikian sehingga:
+            </p>
+            $$\lim_{n \to \infty} \frac{|p_{n+1} - p|}{|p_n - p|^\alpha} = \lambda$$
+            <p>Untuk $\alpha = 1$ ($\lambda &lt; 1$) disebut <em>konvergensi linear</em>, dan untuk $\alpha = 2$ disebut <em>konvergensi kuadratik</em>.</p>
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema (Rumus Iterasi Newton–Raphson)</span>
+            <p>
+              Jika $f \in C^1([a,b])$ dan $f'(p_n) \neq 0$, aproksimasi garis singgung di sekitar $p_n$ menghasilkan iterasi Newton–Raphson:
+            </p>
+            $$p_{n+1} = p_n - \frac{f(p_n)}{f'(p_n)}, \qquad n = 0, 1, 2, \dots$$
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema (Konvergensi Kuadratik Newton–Raphson)</span>
+            <p>
+              Misalkan $f \in C^2([a,b])$ dengan $p \in (a,b)$ adalah akar sederhana ($f(p) = 0$ dan $f'(p) \neq 0$). Maka terdapat $\delta &gt; 0$ sehingga untuk setiap tebakan awal $p_0 \in [p - \delta, p + \delta]$, metode Newton–Raphson konvergen secara <strong>kuadratik</strong> ke $p$:
+            </p>
+            $$\lim_{n \to \infty} \frac{|p_{n+1} - p|}{|p_n - p|^2} = \frac{|f''(p)|}{2|f'(p)|}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Sketsa (Ekspansi Taylor).</span>
+            <p>
+              Ekspansi Taylor orde-2 dari $f(p)$ di sekitar $p_n$ memberi $0 = f(p) = f(p_n) + f'(p_n)(p - p_n) + \frac{f''(\xi_n)}{2}(p - p_n)^2$ untuk suatu $\xi_n$ di antara $p$ dan $p_n$. Bagi kedua ruas dengan $f'(p_n)$ dan substitusikan $p_{n+1} = p_n - \frac{f(p_n)}{f'(p_n)}$:
+            </p>
+            $$p - p_{n+1} = -\frac{f''(\xi_n)}{2f'(p_n)}(p - p_n)^2 \implies \lim_{n \to \infty} \frac{|p_{n+1} - p|}{|p_n - p|^2} = \frac{|f''(p)|}{2|f'(p)|}$$
+          </div>
+        </section>
+
+        <section id="latihan-awal" aria-labelledby="exercise-heading">
+          <h2 id="exercise-heading">Latihan Pemahaman Mandiri</h2>
+
+          <details class="exercise-spoiler">
+            <summary>Soal — Hitung dua iterasi pertama metode Newton–Raphson untuk menghampiri $\sqrt{2}$ dari $f(x) = x^2 - 2 = 0$ dengan $p_0 = 1$!</summary>
+            <div class="exercise-spoiler-body">
+              <p>Diketahui $f(x) = x^2 - 2$ dan $f'(x) = 2x$, sehingga rumus iterasinya $p_{n+1} = p_n - \frac{p_n^2 - 2}{2p_n} = \frac{1}{2}\left(p_n + \frac{2}{p_n}\right)$.</p>
+              <ul>
+                <li>Iterasi ke-1 ($p_0 = 1$): $p_1 = \frac{1}{2}\left(1 + \frac{2}{1}\right) = \frac{3}{2} = 1{,}5$.</li>
+                <li>Iterasi ke-2 ($p_1 = 1{,}5$): $p_2 = \frac{1}{2}\left(\frac{3}{2} + \frac{4}{3}\right) = \frac{17}{12} \approx 1{,}41667$.</li>
+              </ul>
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>

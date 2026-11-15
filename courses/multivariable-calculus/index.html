@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Multivariable Calculus (Kalkulus Peubah Banyak) — S1 Matematika.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Multivariable Calculus — Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX untuk Render Notasi Matematika -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Utama">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-section" aria-label="Menu Utama">
+        <div class="nav-section-title">Ringkasan</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Dashboard Utama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Daftar Mata Kuliah">
+        <div class="nav-section-title">Mata Kuliah</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../linear-algebra/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="../systems-mathematics/index.html" class="nav-link">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../numerical-methods/index.html" class="nav-link">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="../operations-research-1/index.html" class="nav-link">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="../simulation-techniques/index.html" class="nav-link">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#daftar-isi" class="nav-link"><span>1.</span><span>Daftar Isi Bab</span></a></li>
+          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Gradien &amp; Teorema Stokes</span></a></li>
+          <li><a href="#latihan-awal" class="nav-link"><span>3.</span><span>Latihan Pemahaman</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Multivariable Calculus<br>
+        Referensi: Marsden–Tromba, Stewart
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Multivariable Calculus</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Analisis &amp; Kalkulus Vektor</span>
+          <h1>Multivariable Calculus</h1>
+          <p class="page-subtitle">
+            Diferensial fungsi bernilai skalar dan vektor pada $\mathbb{R}^n$, vektor gradien, optimasi berkendala pengali Lagrange, integral lipat, serta teorema integral kalkulus vektor.
+          </p>
+        </header>
+
+        <section id="daftar-isi" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">Daftar Isi Perkuliahan</h2>
+          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Multivariable Calculus:</p>
+
+          <ul class="toc-list">
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 01</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Fungsi Peubah Banyak &amp; Limit</h3>
+                <p class="toc-chapter-summary">Geometri ruang $\mathbb{R}^n$, permukaan tingkat, topologi himpunan terbuka/tertutup, serta limit dan kekontinuan multi-arah.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 02</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Turunan Parsial &amp; Vektor Gradien ($\nabla f$)</h3>
+                <p class="toc-chapter-summary">Keterdiferensialan total, matriks Jacobian, aturan rantai multivariabel, dan turunan berarah.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 03</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Optimasi &amp; Pengali Lagrange</h3>
+                <p class="toc-chapter-summary">Titik kritis, uji turunan kedua melalui matriks Hessian, ekstremum pada domain kompak, serta optimasi berkendala $\nabla f = \lambda \nabla g$.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 04</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Integral Lipat Dua &amp; Tiga</h3>
+                <p class="toc-chapter-summary">Teorema Fubini, koordinat polar, silinder, dan bola, serta teorema perubahan variabel menggunakan determinan Jacobian.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 05</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Kalkulus Vektor (Green, Stokes, &amp; Divergensi Gauss)</h3>
+                <p class="toc-chapter-summary">Medan vektor konservatif, integral garis dan permukaan, rotasi ($\nabla \times \mathbf{F}$), divergensi ($\nabla \cdot \mathbf{F}$), serta teorema fundamental kalkulus vektor.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+          </ul>
+        </section>
+
+        <section id="ringkasan-awal" aria-labelledby="preview-heading">
+          <h2 id="preview-heading">Cuplikan Konsep Inti: Gradien &amp; Teorema Stokes</h2>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi (Vektor Gradien dan Turunan Berarah)</span>
+            <p>
+              Misalkan $f : U \subseteq \mathbb{R}^n \to \mathbb{R}$ terdiferensialkan pada himpunan terbuka $U$. <strong>Vektor gradien</strong> $\nabla f(\mathbf{x})$ didefinisikan sebagai vektor turunan parsial pertama:
+            </p>
+            $$\nabla f(\mathbf{x}) = \left( \frac{\partial f}{\partial x_1}(\mathbf{x}),\, \frac{\partial f}{\partial x_2}(\mathbf{x}),\, \dots,\, \frac{\partial f}{\partial x_n}(\mathbf{x}) \right)$$
+            <p>
+              Untuk vektor satuan $\mathbf{u} \in \mathbb{R}^n$ ($\|\mathbf{u}\| = 1$), turunan berarah $f$ searah $\mathbf{u}$ adalah $D_{\mathbf{u}} f(\mathbf{x}) = \nabla f(\mathbf{x}) \cdot \mathbf{u}$.
+            </p>
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema (Arah Kenaikan Maksimum)</span>
+            <p>
+              Jika $\nabla f(\mathbf{x}_0) \neq \mathbf{0}$, maka laju perubahan terbesar fungsi $f$ di $\mathbf{x}_0$ terjadi pada arah vektor satuan $\mathbf{u} = \frac{\nabla f(\mathbf{x}_0)}{\|\nabla f(\mathbf{x}_0)\|}$, dengan nilai maksimum sebesar $\|\nabla f(\mathbf{x}_0)\|$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema (Teorema Stokes &amp; Teorema Divergensi Gauss)</span>
+            <p>
+              Misalkan $S$ adalah permukaan terorientasi mulus sebagian dengan batas kurva tertutup sederhana $\partial S$ berorientasi positif, dan $\mathbf{F}$ medan vektor $C^1$. Maka berlaku <strong>Teorema Stokes</strong>:
+            </p>
+            $$\iint_{S} (\nabla \times \mathbf{F}) \cdot d\mathbf{S} = \oint_{\partial S} \mathbf{F} \cdot d\mathbf{r}$$
+            <p>
+              Secara paralel, untuk volume tertutup $E \subset \mathbb{R}^3$ dengan permukaan batas terorientasi keluar $\partial E$, berlaku <strong>Teorema Divergensi Gauss</strong>:
+            </p>
+            $$\iiint_{E} (\nabla \cdot \mathbf{F}) \, dV = \oiint_{\partial E} \mathbf{F} \cdot d\mathbf{S}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Sketsa (Lema Arah Kenaikan Maksimum).</span>
+            <p>
+              Berdasarkan definisi hasil kali titik di $\mathbb{R}^n$ dan sudut $\theta$ antara $\nabla f(\mathbf{x}_0)$ dan $\mathbf{u}$ (dengan $\|\mathbf{u}\| = 1$), diperoleh $D_{\mathbf{u}} f(\mathbf{x}_0) = \|\nabla f(\mathbf{x}_0)\| \, \|\mathbf{u}\| \cos\theta = \|\nabla f(\mathbf{x}_0)\| \cos\theta$. Nilai maksimum $\cos\theta = 1$ tercapai tepat saat $\theta = 0$, yakni ketika $\mathbf{u}$ searah dengan $\nabla f(\mathbf{x}_0)$.
+            </p>
+          </div>
+        </section>
+
+        <section id="latihan-awal" aria-labelledby="exercise-heading">
+          <h2 id="exercise-heading">Latihan Pemahaman Mandiri</h2>
+
+          <details class="exercise-spoiler">
+            <summary>Soal — Tentukan nilai maksimum turunan berarah fungsi $f(x, y) = x^2 e^y$ di titik $(2, 0)$!</summary>
+            <div class="exercise-spoiler-body">
+              <p>Hitung turunan parsial pertama dari $f(x, y) = x^2 e^y$:</p>
+              $$\frac{\partial f}{\partial x} = 2xe^y, \qquad \frac{\partial f}{\partial y} = x^2 e^y$$
+              <p>Evaluasi di $(2, 0)$: $\nabla f(2, 0) = (2(2)e^0,\, 2^2 e^0) = (4, 4)$.</p>
+              <p>Maka nilai maksimum turunan berarah di $(2, 0)$ adalah $\|\nabla f(2, 0)\| = \sqrt{4^2 + 4^2} = 4\sqrt{2}$.</p>
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>

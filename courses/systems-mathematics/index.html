@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Systems Mathematics (Matematika Sistem) — S1 Matematika.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Systems Mathematics — Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX untuk Render Notasi Matematika -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Utama">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-section" aria-label="Menu Utama">
+        <div class="nav-section-title">Ringkasan</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Dashboard Utama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Daftar Mata Kuliah">
+        <div class="nav-section-title">Mata Kuliah</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../linear-algebra/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
+            </a>
+          </li>
+          <li>
+            <a href="../multivariable-calculus/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../numerical-methods/index.html" class="nav-link">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="../operations-research-1/index.html" class="nav-link">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="../simulation-techniques/index.html" class="nav-link">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#daftar-isi" class="nav-link"><span>1.</span><span>Daftar Isi Bab</span></a></li>
+          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Ruang Keadaan &amp; Kalman</span></a></li>
+          <li><a href="#latihan-awal" class="nav-link"><span>3.</span><span>Latihan Pemahaman</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Systems Mathematics<br>
+        Referensi: Hespanha, Luenberger, Sontag
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Systems Mathematics</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Pemodelan Sistem Dinamik &amp; Kontrol</span>
+          <h1>Systems Mathematics</h1>
+          <p class="page-subtitle">
+            Teori matematis sistem dinamik waktu kontinu dan diskrit, representasi ruang keadaan (<em>state-space</em>), matriks eksponensial, kestabilan Lyapunov, serta keterkontrolan dan keteramatan.
+          </p>
+        </header>
+
+        <section id="daftar-isi" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">Daftar Isi Perkuliahan</h2>
+          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Systems Mathematics:</p>
+
+          <ul class="toc-list">
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 01</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Pemodelan Sistem Dinamik &amp; Representasi Ruang Keadaan</h3>
+                <p class="toc-chapter-summary">Konsep keadaan (<em>state</em>), sistem LTI waktu kontinu dan diskrit, linearisasi di sekitar titik ekuilibrium, dan fungsi transfer.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 02</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Sistem Persamaan Diferensial Linier ($\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$)</h3>
+                <p class="toc-chapter-summary">Struktur ruang solusi homogen, potret fase di bidang $\mathbb{R}^2$, dan respons sistem terhadap masukan luar.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 03</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Matriks Eksponensial $e^{At}$ &amp; Solusi Umum</h3>
+                <p class="toc-chapter-summary">Konvergensi deret matriks $e^{At}$, metode diagonalisasi dan bentuk Jordan, Teorema Cayley–Hamilton, serta rumus variasi parameter.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 04</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Kestabilan Lyapunov &amp; Kriteria Nilai Eigen</h3>
+                <p class="toc-chapter-summary">Kestabilan asimtotik lokal/global, fungsi energi Lyapunov, dan persamaan Lyapunov $A^T P + PA = -Q$.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 05</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Keterkontrolan &amp; Keteramatan Kalman</h3>
+                <p class="toc-chapter-summary">Matriks keterkontrolan $\mathcal{C}$, matriks keteramatan $\mathcal{O}$, uji peringkat Kalman, dan penempatan kutub (<em>pole placement</em>).</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+          </ul>
+        </section>
+
+        <section id="ringkasan-awal" aria-labelledby="preview-heading">
+          <h2 id="preview-heading">Cuplikan Konsep Inti: Solusi Ruang Keadaan &amp; Kalman</h2>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi (Sistem Linear Invarian Waktu / LTI)</span>
+            <p>
+              Sistem LTI waktu kontinu dengan vektor keadaan $\mathbf{x}(t) \in \mathbb{R}^n$, masukan $\mathbf{u}(t) \in \mathbb{R}^m$, dan keluaran $\mathbf{y}(t) \in \mathbb{R}^p$ dimodelkan sebagai:
+            </p>
+            $$\dot{\mathbf{x}}(t) = A\mathbf{x}(t) + B\mathbf{u}(t), \qquad \mathbf{y}(t) = C\mathbf{x}(t) + D\mathbf{u}(t)$$
+            <p>dengan $A \in \mathbb{R}^{n\times n}$, $B \in \mathbb{R}^{n\times m}$, $C \in \mathbb{R}^{p\times n}$, dan $D \in \mathbb{R}^{p\times m}$.</p>
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema (Sifat Dasar Matriks Eksponensial)</span>
+            <p>
+              Untuk sembarang matriks $A \in \mathbb{R}^{n \times n}$, deret $e^{At} = \sum_{k=0}^{\infty} \frac{(At)^k}{k!}$ konvergen mutlak untuk semua $t \in \mathbb{R}$ dan memenuhi $\frac{d}{dt} e^{At} = A e^{At} = e^{At} A$ serta $e^{A \cdot 0} = I_n$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema (Kriteria Keterkontrolan Kalman)</span>
+            <p>
+              Pasangan $(A, B)$ bersifat terkontrol penuh (<em>controllable</em>) jika dan hanya jika matriks keterkontrolan Kalman:
+            </p>
+            $$\mathcal{C} = \begin{bmatrix} B &amp; AB &amp; A^2B &amp; \cdots &amp; A^{n-1}B \end{bmatrix} \in \mathbb{R}^{n \times nm}$$
+            <p>memiliki peringkat penuh baris, yakni $\operatorname{rank}(\mathcal{C}) = n$.</p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti (Solusi Eksplisit Persamaan Keadaan).</span>
+            <p>
+              Kalikan kedua ruas $\dot{\mathbf{x}}(t) - A\mathbf{x}(t) = B\mathbf{u}(t)$ dari kiri dengan faktor integrasi $e^{-At}$:
+            </p>
+            $$\frac{d}{dt}\bigl(e^{-At}\mathbf{x}(t)\bigr) = e^{-At}\dot{\mathbf{x}}(t) - e^{-At}A\mathbf{x}(t) = e^{-At}B\mathbf{u}(t)$$
+            <p>
+              Integralkan dari $0$ hingga $t$, lalu kalikan kedua ruas dengan $e^{At}$ untuk memperoleh solusi total:
+            </p>
+            $$\mathbf{x}(t) = e^{At}\mathbf{x}(0) + \int_{0}^{t} e^{A(t-\tau)}B\mathbf{u}(\tau) \, d\tau$$
+          </div>
+        </section>
+
+        <section id="latihan-awal" aria-labelledby="exercise-heading">
+          <h2 id="exercise-heading">Latihan Pemahaman Mandiri</h2>
+
+          <details class="exercise-spoiler">
+            <summary>Soal — Uji apakah sistem dengan $A = \begin{bmatrix} 0 &amp; 1 \\ -2 &amp; -3 \end{bmatrix}$ dan $B = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$ terkontrol penuh!</summary>
+            <div class="exercise-spoiler-body">
+              <p>Hitung $AB$ dan susun matriks keterkontrolan $\mathcal{C} = \begin{bmatrix} B &amp; AB \end{bmatrix}$ ($n = 2$):</p>
+              $$AB = \begin{bmatrix} 0 &amp; 1 \\ -2 &amp; -3 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ -3 \end{bmatrix} \implies \mathcal{C} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; -3 \end{bmatrix}$$
+              <p>Karena $\det(\mathcal{C}) = (0)(-3) - (1)(1) = -1 \neq 0$, maka $\operatorname{rank}(\mathcal{C}) = 2 = n$. Sistem <strong>terkontrol penuh</strong>.</p>
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>

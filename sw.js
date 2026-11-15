@@ -8,7 +8,7 @@
 
 'use strict';
 
-const STATIC_CACHE = 'math-notes-static-v1';
+const STATIC_CACHE = 'math-notes-static-v2';
 const CDN_CACHE = 'math-notes-cdn-v1';
 const ACTIVE_CACHES = [STATIC_CACHE, CDN_CACHE];
 
@@ -21,9 +21,13 @@ const LOCAL_ASSETS = [
   './assets/icons/icon.svg',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
-  './courses/analisis-real/index.html',
-  './courses/aljabar-linear/index.html',
-  './courses/aljabar-linear/bab-1-ruang-vektor.html'
+  './courses/linear-algebra/index.html',
+  './courses/linear-algebra/bab-1-ruang-vektor.html',
+  './courses/multivariable-calculus/index.html',
+  './courses/systems-mathematics/index.html',
+  './courses/numerical-methods/index.html',
+  './courses/operations-research-1/index.html',
+  './courses/simulation-techniques/index.html'
 ];
 
 const CDN_ASSETS = [

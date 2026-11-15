@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Simulation Techniques (Teknik Simulasi) — S1 Matematika.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Simulation Techniques — Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- KaTeX untuk Render Notasi Matematika -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Utama">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav-section" aria-label="Menu Utama">
+        <div class="nav-section-title">Ringkasan</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Dashboard Utama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Daftar Mata Kuliah">
+        <div class="nav-section-title">Mata Kuliah</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../linear-algebra/index.html" class="nav-link">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
+            </a>
+          </li>
+          <li>
+            <a href="../multivariable-calculus/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="../systems-mathematics/index.html" class="nav-link">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../numerical-methods/index.html" class="nav-link">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="../operations-research-1/index.html" class="nav-link">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#daftar-isi" class="nav-link"><span>1.</span><span>Daftar Isi Bab</span></a></li>
+          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Pembangkitan Variabel Acak</span></a></li>
+          <li><a href="#latihan-awal" class="nav-link"><span>3.</span><span>Latihan Pemahaman</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Simulation Techniques<br>
+        Referensi: Ross, Law–Kelton
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Simulation Techniques</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Pemodelan Stokastik &amp; Monte Carlo</span>
+          <h1>Simulation Techniques</h1>
+          <p class="page-subtitle">
+            Teknik simulasi komputer untuk sistem stokastik: simulasi kejadian diskrit, pembangkit bilangan acak semu, simulasi variabel acak, metode Monte Carlo, reduksi variansi, dan sistem antrean.
+          </p>
+        </header>
+
+        <section id="daftar-isi" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">Daftar Isi Perkuliahan</h2>
+          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Simulation Techniques:</p>
+
+          <ul class="toc-list">
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 01</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Prinsip Pemodelan &amp; Simulasi Kejadian Diskrit (DES)</h3>
+                <p class="toc-chapter-summary">Klasifikasi sistem statis vs dinamis, daftar kejadian masa depan (FEL), dan mekanisme pemajuan waktu <em>next-event</em>.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 02</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Pembangkit Bilangan Acak Semu (PRNG / LCG) &amp; Uji Statistik</h3>
+                <p class="toc-chapter-summary"><em>Linear Congruential Generator</em> ($X_{n+1} \equiv (aX_n + c) \bmod m$), Teorema Hull–Dobell, uji Kolmogorov–Smirnov, dan uji autokorelasi.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 03</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Pembangkitan Variabel Acak</h3>
+                <p class="toc-chapter-summary">Metode Transformasi Invers ($X = F^{-1}(U)$), metode Penerimaan–Penolakan (<em>Acceptance–Rejection</em>), serta transformasi Box–Muller untuk distribusi Normal.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 04</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Simulasi Monte Carlo &amp; Teknik Reduksi Variansi</h3>
+                <p class="toc-chapter-summary">Estimasi integral dan probabilitas berdimensi tinggi, variabel antitetik, variabel kontrol, serta <em>importance sampling</em>.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 05</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Pemodelan Sistem Antrean ($M/M/1$) &amp; Analisis Output</h3>
+                <p class="toc-chapter-summary">Simulasi sistem antrean server tunggal/ganda, hukum Little ($L = \lambda W$), periode pemanasan, serta selang kepercayaan output simulasi.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+          </ul>
+        </section>
+
+        <section id="ringkasan-awal" aria-labelledby="preview-heading">
+          <h2 id="preview-heading">Cuplikan Konsep Inti: Transformasi Invers</h2>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi (<em>Linear Congruential Generator</em> / LCG)</span>
+            <p>
+              Pembangkit kongruen linier menghasilkan barisan bilangan bulat semu-acak $\{X_n\}$ dengan modulus $m &gt; 0$, pengali $a$, konstanta $c$, dan benih awal $X_0$:
+            </p>
+            $$X_{n+1} = (a X_n + c) \bmod m, \qquad U_n = \frac{X_n}{m} \in [0, 1)$$
+          </div>
+
+          <div class="math-box lemma">
+            <span class="math-box-title">Lema (Invers Tergeneralisasi dari CDF)</span>
+            <p>
+              Untuk sebarang fungsi distribusi kumulatif (CDF) $F(x)$ yang tak-turun dan kontinu kanan, invers tergeneralisasinya didefinisikan untuk $u \in (0, 1)$ sebagai:
+            </p>
+            $$F^{-1}(u) = \inf \{x \in \mathbb{R} : F(x) \ge u\}$$
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema (Metode Transformasi Invers)</span>
+            <p>
+              Misalkan $U \sim \operatorname{Uniform}(0, 1)$ dan $F$ adalah sebarang fungsi distribusi kumulatif (CDF) kontinu naik tegas. Jika didefinisikan variabel acak $X = F^{-1}(U)$, maka $X$ berdistribusi sesuai $F$, yakni:
+            </p>
+            $$P(X \le x) = F(x) \qquad \forall x \in \mathbb{R}$$
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti.</span>
+            <p>
+              Karena $F$ kontinu dan naik tegas (atau melalui sifat invers tergeneralisasi $F^{-1}(u) \le x \iff u \le F(x)$), untuk sembarang $x \in \mathbb{R}$ berlaku:
+            </p>
+            $$P(X \le x) = P\bigl(F^{-1}(U) \le x\bigr) = P\bigl(U \le F(x)\bigr) = F(x)$$
+            <p>karena $U \sim \operatorname{Uniform}(0, 1)$ memenuhi $P(U \le p) = p$ untuk setiap $p \in [0, 1]$.</p>
+          </div>
+        </section>
+
+        <section id="latihan-awal" aria-labelledby="exercise-heading">
+          <h2 id="exercise-heading">Latihan Pemahaman Mandiri</h2>
+
+          <details class="exercise-spoiler">
+            <summary>Soal — Turunkan rumus pembangkitan variabel acak $X \sim \operatorname{Eksponensial}(\lambda)$ dari $U \sim \operatorname{Uniform}(0, 1)$!</summary>
+            <div class="exercise-spoiler-body">
+              <p>Fungsi distribusi kumulatif (CDF) distribusi Eksponensial untuk $x \ge 0$ adalah $F(x) = 1 - e^{-\lambda x}$. Tetapkan $u = F(x)$ lalu selesaikan untuk $x$:</p>
+              $$u = 1 - e^{-\lambda x} \implies e^{-\lambda x} = 1 - u \implies x = -\frac{1}{\lambda}\ln(1 - u)$$
+              <p>Karena $1 - U$ juga berdistribusi $\operatorname{Uniform}(0, 1)$, kita dapat langsung membangkitkan $X = -\frac{1}{\lambda}\ln(U)$.</p>
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script Aplikasi Utama -->
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>

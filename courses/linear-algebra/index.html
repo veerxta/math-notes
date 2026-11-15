@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Aljabar Linear — S1 Matematika.">
+  <meta name="description" content="Daftar Isi dan Catatan Mata Kuliah Linear Algebra (Aljabar Linear) — S1 Matematika.">
   <meta name="theme-color" content="#2563eb">
-  <title>Aljabar Linear — Math Notes</title>
+  <title>Linear Algebra — Math Notes</title>
 
   <!-- PWA Manifest & Ikon -->
   <link rel="manifest" href="../../manifest.json">
@@ -59,32 +59,56 @@
         <div class="nav-section-title">Mata Kuliah</div>
         <ul class="nav-list">
           <li>
-            <a href="../analisis-real/index.html" class="nav-link">
-              <span>📐</span>
-              <span>Analisis Real</span>
+            <a href="index.html" class="nav-link active" aria-current="page">
+              <span>🔢</span>
+              <span>Linear Algebra</span>
             </a>
           </li>
           <li>
-            <a href="index.html" class="nav-link active" aria-current="page">
-              <span>🔢</span>
-              <span>Aljabar Linear</span>
+            <a href="../multivariable-calculus/index.html" class="nav-link">
+              <span>📐</span>
+              <span>Multivariable Calculus</span>
+            </a>
+          </li>
+          <li>
+            <a href="../systems-mathematics/index.html" class="nav-link">
+              <span>⚙️</span>
+              <span>Systems Mathematics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../numerical-methods/index.html" class="nav-link">
+              <span>💻</span>
+              <span>Numerical Methods</span>
+            </a>
+          </li>
+          <li>
+            <a href="../operations-research-1/index.html" class="nav-link">
+              <span>📈</span>
+              <span>Operations Research 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="../simulation-techniques/index.html" class="nav-link">
+              <span>🎲</span>
+              <span>Simulation Techniques</span>
             </a>
           </li>
         </ul>
       </nav>
 
-      <nav class="nav-section" aria-label="Navigasi Bab Aljabar Linear">
-        <div class="nav-section-title">Bab Aljabar Linear</div>
+      <nav class="nav-section" aria-label="Navigasi Bab Linear Algebra">
+        <div class="nav-section-title">Bab Linear Algebra</div>
         <ul class="nav-list">
           <li><a href="bab-1-ruang-vektor.html" class="nav-link"><span>📖</span><span>Bab 01: Ruang Vektor</span></a></li>
           <li><a href="#daftar-isi" class="nav-link"><span>1.</span><span>Daftar Isi Bab</span></a></li>
-          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Ruang Vektor &amp; Peta Linear</span></a></li>
+          <li><a href="#ringkasan-awal" class="nav-link"><span>2.</span><span>Cuplikan Peta Linear</span></a></li>
           <li><a href="#latihan-awal" class="nav-link"><span>3.</span><span>Latihan Pemahaman</span></a></li>
         </ul>
       </nav>
 
       <div class="sidebar-footer">
-        MAT-102 • Aljabar Linear<br>
+        MAT • Linear Algebra<br>
         Referensi: Axler, Friedberg–Insel–Spence
       </div>
     </aside>
@@ -101,7 +125,7 @@
             <span>Menu</span>
           </button>
           <div class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Aljabar Linear</strong>
+            <a href="../../index.html">Dashboard</a> <span>/</span> <strong>Linear Algebra</strong>
           </div>
         </div>
 
@@ -113,16 +137,16 @@
 
       <main class="content-container">
         <header class="page-header">
-          <span class="page-badge">MAT-102 • Mata Kuliah Wajib</span>
-          <h1>Aljabar Linear</h1>
+          <span class="page-badge">MAT • Aljabar &amp; Struktur Linear</span>
+          <h1>Linear Algebra</h1>
           <p class="page-subtitle">
-            Struktur ruang vektor atas lapangan $\mathbb{F}$, kebebasan linear, basis dan dimensi, transformasi linear, teorema rank-nulitas, determinan, serta teori spektral operator linear.
+            Kajian terstruktur mengenai ruang vektor atas lapangan $F$, transformasi linear, ruang dual, pemetaan multilinear, ruang hasil kali dalam, operator linear, serta similaritas matriks.
           </p>
         </header>
 
         <section id="daftar-isi" aria-labelledby="toc-heading">
           <h2 id="toc-heading">Daftar Isi Perkuliahan</h2>
-          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Aljabar Linear:</p>
+          <p>Berikut adalah struktur silabus dan rencana bab catatan mata kuliah Linear Algebra:</p>
 
           <ul class="toc-list">
             <li class="toc-item">
@@ -137,8 +161,8 @@
             <li class="toc-item">
               <span class="toc-chapter-num">Bab 02</span>
               <div class="toc-chapter-info">
-                <h3 class="toc-chapter-title">Ruang Vektor dan Subruang</h3>
-                <p class="toc-chapter-summary">Aksioma ruang vektor atas lapangan $\mathbb{F}$, kriteria subruang, jumlah langsung ($U \oplus W$), rentang, dan kebebasan linear.</p>
+                <h3 class="toc-chapter-title">Transformasi Linier</h3>
+                <p class="toc-chapter-summary">Pemetaan linear antar-ruang vektor, kernel ($\ker T$), jangkauan ($\operatorname{Im} T$), Teorema Dimensi (Rank–Nullity), isomorfisma, dan representasi matriks.</p>
               </div>
               <span class="toc-status">Terjadwal</span>
             </li>
@@ -146,8 +170,8 @@
             <li class="toc-item">
               <span class="toc-chapter-num">Bab 03</span>
               <div class="toc-chapter-info">
-                <h3 class="toc-chapter-title">Basis dan Dimensi</h3>
-                <p class="toc-chapter-summary">Teorema pereduksian rentang, teorema perluasan himpunan bebas linear, ketunggalan dimensi, dan koordinat vektor.</p>
+                <h3 class="toc-chapter-title">Ruang Dual</h3>
+                <p class="toc-chapter-summary">Fungsional linear, ruang dual $V^*$, basis dual, pemetaan transposisi ($T^t$), anihilator, dan isomorfisma kanonik menuju dual ganda $V^{**}$.</p>
               </div>
               <span class="toc-status">Terjadwal</span>
             </li>
@@ -155,8 +179,8 @@
             <li class="toc-item">
               <span class="toc-chapter-num">Bab 04</span>
               <div class="toc-chapter-info">
-                <h3 class="toc-chapter-title">Transformasi Linear dan Representasi Matriks</h3>
-                <p class="toc-chapter-summary">Kernel ($\ker T$), jangkauan ($\operatorname{Im} T$), Teorema Dimensi (Rank–Nullity), isomorfisma ruang vektor, dan perubahan basis.</p>
+                <h3 class="toc-chapter-title">Pemetaan Multilinear</h3>
+                <p class="toc-chapter-summary">Bentuk bilinear, multilinearitas, fungsi alternasi, determinan sebagai bentuk-$n$ alternasi, serta pengenalan produk tensor.</p>
               </div>
               <span class="toc-status">Terjadwal</span>
             </li>
@@ -164,8 +188,35 @@
             <li class="toc-item">
               <span class="toc-chapter-num">Bab 05</span>
               <div class="toc-chapter-info">
-                <h3 class="toc-chapter-title">Nilai Eigen, Vektor Eigen, dan Diagonalisasi</h3>
-                <p class="toc-chapter-summary">Polinomial karakteristik, subruang invearian, ruang eigen, diagonalisasi operator, dan Teorema Cayley–Hamilton.</p>
+                <h3 class="toc-chapter-title">Ruang Hasil Kali Dalam</h3>
+                <p class="toc-chapter-summary">Aksioma hasil kali dalam $\langle u, v \rangle$, ketaksamaan Cauchy–Schwarz, ortogonalitas, proses ortonormalisasi Gram–Schmidt, dan komplemen ortogonal.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 06</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Riwayat Operator Linier</h3>
+                <p class="toc-chapter-summary">Operator adjoin ($T^*$), operator self-adjoint, uniter/ortogonal, normal, subruang invarian, dan Teorema Spektral.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Bab 07</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Similaritas</h3>
+                <p class="toc-chapter-summary">Matriks serupa ($B = P^{-1}AP$), polinomial karakteristik &amp; minimal, diagonalisasi, Teorema Cayley–Hamilton, dan bentuk kanonik Jordan.</p>
+              </div>
+              <span class="toc-status">Terjadwal</span>
+            </li>
+
+            <li class="toc-item">
+              <span class="toc-chapter-num">Lampiran</span>
+              <div class="toc-chapter-info">
+                <h3 class="toc-chapter-title">Pembahasan Soal-Soal</h3>
+                <p class="toc-chapter-summary">Kumpulan latihan pembuktian terpadu dan soal ujian dari Bab 01 hingga Bab 07 beserta langkah penyelesaiannya.</p>
               </div>
               <span class="toc-status">Terjadwal</span>
             </li>
@@ -176,7 +227,7 @@
           <h2 id="preview-heading">Cuplikan Konsep Inti: Peta Linear</h2>
 
           <div class="math-box definition">
-            <span class="math-box-title">Definisi 4.1 (Transformasi Linear, Kernel, dan Image)</span>
+            <span class="math-box-title">Definisi 2.1 (Transformasi Linear, Kernel, dan Image)</span>
             <p>
               Misalkan $V$ dan $W$ adalah ruang vektor atas lapangan $\mathbb{F}$. Pemetaan $T : V \to W$ disebut <strong>transformasi linear</strong> jika untuk semua $u, v \in V$ dan $\alpha \in \mathbb{F}$ berlaku $T(\alpha u + v) = \alpha T(u) + T(v)$. Ruang nol (kernel) dan jangkauan (image) didefinisikan sebagai:
             </p>
@@ -184,14 +235,14 @@
           </div>
 
           <div class="math-box lemma">
-            <span class="math-box-title">Lema 4.2 (Karakterisasi Injektivitas Peta Linear)</span>
+            <span class="math-box-title">Lema 2.2 (Karakterisasi Injektivitas Peta Linear)</span>
             <p>
               Transformasi linear $T : V \to W$ bersifat injektif (satu-satu) jika dan hanya jika $\ker(T) = \{0_V\}$.
             </p>
           </div>
 
           <div class="math-box theorem">
-            <span class="math-box-title">Teorema 4.3 (Teorema Dimensi / Rank–Nullity)</span>
+            <span class="math-box-title">Teorema 2.3 (Teorema Dimensi / Rank–Nullity)</span>
             <p>
               Misalkan $V$ adalah ruang vektor berdimensi hingga dan $T : V \to W$ adalah transformasi linear. Maka $\ker(T)$ dan $\operatorname{Im}(T)$ berdimensi hingga, serta memenuhi persamaan:
             </p>
@@ -210,7 +261,7 @@
           <h2 id="exercise-heading">Latihan Pembuktian Mandiri</h2>
 
           <details class="exercise-spoiler">
-            <summary>Soal 4.1 — Misalkan $T : \mathbb{R}^5 \to \mathbb{R}^3$ adalah transformasi linear surjektif. Tentukan $\dim(\ker T)$</summary>
+            <summary>Soal 2.1 — Misalkan $T : \mathbb{R}^5 \to \mathbb{R}^3$ adalah transformasi linear surjektif. Tentukan $\dim(\ker T)$</summary>
             <div class="exercise-spoiler-body">
               <p>
                 Karena $T$ surjektif, maka $\operatorname{Im}(T) = \mathbb{R}^3$, sehingga $\dim(\operatorname{Im} T) = 3$. Berdasarkan Teorema Rank–Nullity:
