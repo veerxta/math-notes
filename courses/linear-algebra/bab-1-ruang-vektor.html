@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Bab 1: Ruang Vektor — Aksioma, Sifat Aljabar, Kombinasi Linier, Subruang, Span, Kebebasan Linier, Basis, Dimensi, dan Perubahan Basis.">
   <meta name="theme-color" content="#2563eb">
-  <title>Bab 1: Ruang Vektor — Aljabar Linear | Math Notes</title>
+  <title>Bab 1: Ruang Vektor — Linear Algebra | Math Notes</title>
 
   <!-- PWA Manifest & Ikon -->
   <link rel="manifest" href="../../manifest.json">
@@ -14,6 +14,7 @@
 
   <!-- Stylesheet Utama -->
   <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/app.js"></script>
 
   <!-- KaTeX v0.16.11 via CDN jsDelivr -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
@@ -22,7 +23,9 @@
     onload="renderMathInElement(document.body, {
       delimiters: [
         { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false }
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
       ],
       throwOnError: false
     });"></script>
@@ -54,14 +57,14 @@
           <li>
             <a href="index.html" class="nav-link">
               <span>📚</span>
-              <span>Daftar Isi Aljabar Linear</span>
+              <span>Daftar Isi Linear Algebra</span>
             </a>
           </li>
         </ul>
       </nav>
 
       <!-- 2. Daftar Bab Mata Kuliah -->
-      <nav class="nav-section" aria-label="Daftar Bab Aljabar Linear">
+      <nav class="nav-section" aria-label="Daftar Bab Linear Algebra">
         <div class="nav-section-title">Daftar Bab</div>
         <ul class="nav-list">
           <li>
@@ -123,7 +126,7 @@
       </nav>
 
       <div class="sidebar-footer">
-        MAT-102 • Aljabar Linear<br>
+        MAT • Linear Algebra<br>
         Bab 1: Ruang Vektor
       </div>
     </aside>
@@ -142,7 +145,7 @@
           <div class="breadcrumbs" aria-label="Breadcrumb">
             <a href="../../index.html">Dashboard</a>
             <span>/</span>
-            <a href="index.html">Aljabar Linear</a>
+            <a href="index.html">Linear Algebra</a>
             <span>/</span>
             <strong>Bab 1: Ruang Vektor</strong>
           </div>
@@ -156,7 +159,7 @@
 
       <main class="content-container">
         <header class="page-header">
-          <span class="page-badge">MAT-102 • Bab 01</span>
+          <span class="page-badge">MAT • Linear Algebra • Bab 01</span>
           <h1>1. Ruang Vektor</h1>
           <p class="page-subtitle">
             Kajian menyeluruh mulai dari evolusi historis dan definisi aksiomatik ruang vektor atas lapangan $F$, contoh-contoh ruang abstrak (polinomial, matriks, fungsi, barisan, hingga Deret Fourier), kombinasi linier, subruang, rentang (<em>span</em>), kebebasan linier, basis dan dimensi, hingga matriks transisi perubahan basis.
@@ -201,10 +204,10 @@
             </p>
             <ol>
               <li><strong>Tertutup terhadap penjumlahan (A0):</strong> $\mathbf{u} + \mathbf{v} \in V$.</li>
+              <li><strong>Komutativitas penjumlahan (A1):</strong> $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$.</li>
               <li><strong>Asosiativitas penjumlahan (A2):</strong> $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$.</li>
               <li><strong>Elemen identitas penjumlahan / vektor nol (A3):</strong> Terdapat $\mathbf{0} \in V$ sehingga $\mathbf{0} + \mathbf{u} = \mathbf{u} = \mathbf{u} + \mathbf{0}$.</li>
               <li><strong>Elemen invers penjumlahan (A4):</strong> Untuk setiap $\mathbf{u} \in V$, terdapat $-\mathbf{u} \in V$ sehingga $-\mathbf{u} + \mathbf{u} = \mathbf{0} = \mathbf{u} + (-\mathbf{u})$.</li>
-              <li><strong>Komutativitas penjumlahan (A1):</strong> $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$.</li>
               <li><strong>Tertutup terhadap perkalian skalar (S1) &amp; Asosiativitas skalar (S2):</strong> $a\mathbf{v} \in V$ dan $(ab)\mathbf{u} = a(b\mathbf{u})$.</li>
               <li><strong>Distributivitas perkalian skalar (S3 &amp; S4):</strong> $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$ dan $(a + b)\mathbf{u} = a\mathbf{u} + b\mathbf{u}$.</li>
               <li><strong>Identitas skalar (S5):</strong> Elemen satuan $1_F \in F$ memenuhi $1_F \mathbf{u} = \mathbf{u}$.</li>
@@ -809,7 +812,7 @@ def plot_fourier(N=slider(1, 100, 1, default=50, label="Jumlah Suku (N)"),
 
           <div class="math-box theorem">
             <span class="math-box-title">Teorema 1.3.3 (Perluasan Himpunan Bebas Linier &amp; Pemangkasan Himpunan Perentang)</span>
-            <p>Misalkan $V$ adalah ruang vektor atas lapangan $\mathbb{F}$. Maka berlaku:</p>
+            <p>Misalkan $V$ adalah ruang vektor atas lapangan $F$. Maka berlaku:</p>
             <ol type="a">
               <li>Setiap himpunan bebas linier dalam $V$ merupakan himpunan bagian dari suatu basis $V$.</li>
               <li>Setiap himpunan yang merentang $V$ memiliki himpunan bagian yang merupakan basis dari $V$.</li>
@@ -1420,19 +1423,16 @@ def cek_koefisien(c0=slider(-5, 5, 1, 4, label="c0"),
         <nav class="chapter-pagination" aria-label="Navigasi Antar Bab">
           <a href="index.html" class="chapter-nav-link prev">
             <span class="chapter-nav-label">← Kembali ke Daftar Isi</span>
-            <span class="chapter-nav-title">Aljabar Linear (Indeks Mata Kuliah)</span>
+            <span class="chapter-nav-title">Linear Algebra (Indeks Mata Kuliah)</span>
           </a>
 
           <a href="index.html#daftar-isi" class="chapter-nav-link next">
             <span class="chapter-nav-label">Silabus Selanjutnya →</span>
-            <span class="chapter-nav-title">Bab 02: Ruang Vektor &amp; Subruang (Segera)</span>
+            <span class="chapter-nav-title">Bab 02: Transformasi Linier (Segera)</span>
           </a>
         </nav>
       </main>
     </div>
   </div>
-
-  <!-- Script Aplikasi Utama -->
-  <script src="../../assets/js/app.js"></script>
 </body>
 </html>

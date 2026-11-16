@@ -8,7 +8,7 @@
 
 'use strict';
 
-const STATIC_CACHE = 'math-notes-static-v2';
+const STATIC_CACHE = 'math-notes-static-v3';
 const CDN_CACHE = 'math-notes-cdn-v1';
 const ACTIVE_CACHES = [STATIC_CACHE, CDN_CACHE];
 
@@ -83,21 +83,116 @@ self.addEventListener('activate', function (event) {
 });
 
 /**
+ * Mencocokkan request di cache dengan mengabaikan query string,
+ * serta menangani path direktori yang berakhiran '/' menuju 'index.html'.
+ */
+async function matchInCache(cache, request) {
+  const directMatch = await cache.match(request, { ignoreSearch: true });
+  if (directMatch) {
+    return directMatch;
+  }
+
+  try {
+    const url = new URL(request.url);
+    if (url.pathname.endsWith('/')) {
+      const indexUrl = new URL(url.pathname + 'index.html', url.origin);
+      return await cache.match(indexUrl.href, { ignoreSearch: true });
+    }
+  } catch (_) {
+    // Abaikan jika URL tidak valid
+  }
+
+  return null;
+}
+
+/**
+ * Halaman HTML5 standalone saat navigasi gagal dalam kondisi offline
+ */
+function offlineFallbackResponse() {
+  const html = `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline — Math Notes</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #faf8f5;
+      color: #1e2024;
+    }
+    @media (prefers-color-scheme: dark) {
+      body { background: #121418; color: #e5e7eb; }
+      .card { background: #1e222a; border-color: #2b303c; }
+      p { color: #adb5bd; }
+    }
+    .card {
+      max-width: 460px;
+      padding: 1.75rem;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid #dfdbd2;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    }
+    h1 { margin: 0 0 0.75rem; font-size: 1.35rem; }
+    p { margin: 0 0 1.25rem; line-height: 1.6; color: #4a4f58; }
+    button {
+      background: #2563eb;
+      color: #ffffff;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Halaman Belum Tersedia Offline</h1>
+    <p>Koneksi internet sedang terputus dan halaman ini belum tersimpan di cache lokal Math Notes.</p>
+    <button type="button" onclick="history.back()">← Kembali ke Halaman Sebelumnya</button>
+  </main>
+</body>
+</html>`;
+
+  return new Response(html, {
+    status: 503,
+    statusText: 'Service Unavailable',
+    headers: { 'Content-Type': 'text/html; charset=utf-8' }
+  });
+}
+
+/**
  * Cache-First untuk cdn.jsdelivr.net (KaTeX CSS, JS, dan font .woff2)
  */
 async function cacheFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
-  const cachedResponse = await cache.match(request);
+  const cachedResponse = await cache.match(request, { ignoreSearch: true });
 
   if (cachedResponse) {
     return cachedResponse;
   }
 
-  const networkResponse = await fetch(request);
-  if (networkResponse && (networkResponse.ok || networkResponse.type === 'opaque')) {
-    await cache.put(request, networkResponse.clone());
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse && (networkResponse.ok || networkResponse.type === 'opaque')) {
+      await cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  } catch (_) {
+    return new Response('', {
+      status: 504,
+      statusText: 'Offline'
+    });
   }
-  return networkResponse;
 }
 
 /**
@@ -106,12 +201,14 @@ async function cacheFirst(request, cacheName) {
 async function staleWhileRevalidate(event, cacheName) {
   const request = event.request;
   const cache = await caches.open(cacheName);
-  const cachedResponse = await cache.match(request);
+  const cachedResponse = await matchInCache(cache, request);
 
   const networkPromise = fetch(request)
     .then(function (networkResponse) {
       if (networkResponse && networkResponse.ok) {
-        cache.put(request, networkResponse.clone());
+        return cache.put(request, networkResponse.clone()).then(function () {
+          return networkResponse;
+        });
       }
       return networkResponse;
     })
@@ -131,10 +228,7 @@ async function staleWhileRevalidate(event, cacheName) {
   }
 
   if (request.mode === 'navigate') {
-    const fallback = await cache.match('./index.html');
-    if (fallback) {
-      return fallback;
-    }
+    return offlineFallbackResponse();
   }
 
   return new Response('Offline — konten belum tersimpan di cache.', {

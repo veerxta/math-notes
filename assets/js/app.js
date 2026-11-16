@@ -36,6 +36,11 @@
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
 
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', theme === 'dark' ? '#121418' : '#2563eb');
+    }
+
     const toggleButtons = document.querySelectorAll('[data-theme-toggle], #theme-toggle');
     toggleButtons.forEach(function (btn) {
       const isDark = theme === 'dark';
