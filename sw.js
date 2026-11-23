@@ -8,7 +8,7 @@
 
 'use strict';
 
-const STATIC_CACHE = 'math-notes-static-v3';
+const STATIC_CACHE = 'math-notes-static-v4';
 const CDN_CACHE = 'math-notes-cdn-v1';
 const ACTIVE_CACHES = [STATIC_CACHE, CDN_CACHE];
 
@@ -24,6 +24,9 @@ const LOCAL_ASSETS = [
   './courses/linear-algebra/index.html',
   './courses/linear-algebra/bab-1-ruang-vektor.html',
   './courses/multivariable-calculus/index.html',
+  './courses/multivariable-calculus/bab-1-fungsi-dua-peubah-dan-limit.html',
+  './courses/multivariable-calculus/bab-2-turunan-parsial-dan-aplikasinya.html',
+  './courses/multivariable-calculus/bab-3-integral-lipat-dan-aplikasinya.html',
   './courses/systems-mathematics/index.html',
   './courses/numerical-methods/index.html',
   './courses/operations-research-1/index.html',

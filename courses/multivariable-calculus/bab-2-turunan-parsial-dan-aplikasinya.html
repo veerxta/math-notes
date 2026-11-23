@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bab 2: Turunan Parsial dan Aplikasinya — Turunan Parsial Tingkat Tinggi, Diferensial Total, Aturan Rantai, Jacobian, Fungsi Homogen, Bidang Singgung, Deret Taylor, Nilai Ekstrim, Pengali Lagrange, Latihan Soal, dan Test Formatif 2.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Bab 2: Turunan Parsial &amp; Aplikasinya — Multivariable Calculus | Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet & Core Script (di head untuk mencegah FOUC) -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/app.js"></script>
+
+  <!-- KaTeX v0.16.11 via CDN jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi Kiri -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Bab dan Sub-bab">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <!-- 1. Navigasi Utama -->
+      <nav class="nav-section" aria-label="Navigasi Utama">
+        <div class="nav-section-title">Navigasi Utama</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Kembali ke Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link">
+              <span>📚</span>
+              <span>Daftar Isi Multivariable Calculus</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 2. Daftar Bab -->
+      <nav class="nav-section" aria-label="Daftar Bab Multivariable Calculus">
+        <div class="nav-section-title">Daftar Bab</div>
+        <ul class="nav-list">
+          <li>
+            <a href="bab-1-fungsi-dua-peubah-dan-limit.html" class="nav-link">
+              <span>01.</span>
+              <span>Fungsi Dua Peubah &amp; Limit</span>
+            </a>
+          </li>
+          <li>
+            <a href="bab-2-turunan-parsial-dan-aplikasinya.html" class="nav-link active" aria-current="page">
+              <span>02.</span>
+              <span>Turunan Parsial &amp; Aplikasinya</span>
+            </a>
+          </li>
+          <li>
+            <a href="bab-3-integral-lipat-dan-aplikasinya.html" class="nav-link">
+              <span>03.</span>
+              <span>Integral Lipat &amp; Aplikasinya</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 3. Daftar Sub-Bab Halaman Aktif -->
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#turunan-parsial" class="nav-link"><span>§2.1</span><span>Turunan Parsial &amp; Orde Tinggi</span></a></li>
+          <li><a href="#diferensial-total" class="nav-link"><span>§2.2</span><span>Diferensial Total &amp; Hampiran</span></a></li>
+          <li><a href="#aturan-rantai-implisit" class="nav-link"><span>§2.3</span><span>Aturan Rantai, Implisit &amp; Euler</span></a></li>
+          <li><a href="#garis-bidang-singgung" class="nav-link"><span>§2.4</span><span>Garis &amp; Bidang Singgung</span></a></li>
+          <li><a href="#deret-taylor" class="nav-link"><span>§2.5</span><span>Deret Taylor &amp; Maclaurin</span></a></li>
+          <li><a href="#nilai-ekstrim" class="nav-link"><span>§2.6</span><span>Nilai Ekstrim &amp; Lagrange</span></a></li>
+          <li><a href="#latihan-soal" class="nav-link"><span>§2.7</span><span>Latihan Soal (1–50)</span></a></li>
+          <li><a href="#test-formatif" class="nav-link"><span>§2.8</span><span>Test Formatif 2</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Multivariable Calculus<br>
+        Bab 2: Turunan Parsial &amp; Aplikasinya
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Layar Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Konten Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a>
+            <span>/</span>
+            <a href="index.html">Multivariable Calculus</a>
+            <span>/</span>
+            <strong>Bab 2: Turunan Parsial &amp; Aplikasinya</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Multivariable Calculus • Bab 02</span>
+          <h1>2. Turunan Parsial dan Aplikasinya</h1>
+          <p class="page-subtitle">
+            Turunan parsial orde pertama dan tingkat tinggi, diferensial total dan hampiran linear, aturan rantai, fungsi implisit dan Jacobian, fungsi homogen, geometri garis dan bidang singgung, ekspansi deret Taylor–Maclaurin dua peubah, hingga optimasi bebas dan terkendala metode pengali Lagrange.
+          </p>
+        </header>
+
+        <div class="math-box note">
+          <span class="math-box-title">Kompetensi Dasar</span>
+          <ul>
+            <li>Mendefinisikan turunan parsial fungsi lebih dari satu variabel bebas, menjelaskan sifat-sifatnya, serta menghitung derivatif parsial, aturan rantai, dan turunan implisitnya.</li>
+            <li>Mengaplikasikan turunan parsial pada masalah hampiran (diferensial total), geometri kurva dan permukaan ruang, deret Taylor dan Maclaurin, serta penentuan nilai optimum bebas maupun terkendala.</li>
+          </ul>
+        </div>
+
+        <!-- ================================================================
+             SUB-BAB 2.1: TURUNAN PARSIAL & DERIVATIF TINGKAT TINGGI
+             ================================================================ -->
+        <section id="turunan-parsial" aria-labelledby="heading-2-1">
+          <h2 id="heading-2-1">2.1 Turunan Parsial &amp; Derivatif Tingkat Tinggi</h2>
+          <p>
+            Turunan fungsi lebih dari satu peubah bebas merupakan perluasan dari turunan fungsi satu peubah bebas. Untuk menurunkan $z = f(x, y)$ terhadap salah satu variabel bebasnya, variabel bebas lainnya diperlakukan sebagai konstanta.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.1 (Turunan Parsial Pertama)</span>
+            <p>
+              Turunan parsial $f$ terhadap $x$ di titik $(x_0, y_0)$, dinyatakan sebagai $\left.\dfrac{\partial f}{\partial x}\right|_{(x_0,y_0)}$ atau $f_x(x_0, y_0)$, didefinisikan oleh:
+            </p>
+            $$\left.\frac{\partial f}{\partial x}\right|_{(x_0,y_0)} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x,\, y_0) - f(x_0, y_0)}{\Delta x}$$
+            <p>
+              Sebaliknya, turunan parsial $f$ terhadap $y$ di titik $(x_0, y_0)$, dinyatakan sebagai $\left.\dfrac{\partial f}{\partial y}\right|_{(x_0,y_0)}$ atau $f_y(x_0, y_0)$, didefinisikan oleh:
+            </p>
+            $$\left.\frac{\partial f}{\partial y}\right|_{(x_0,y_0)} = \lim_{\Delta y \to 0} \frac{f(x_0,\, y_0 + \Delta y) - f(x_0, y_0)}{\Delta y}$$
+            <p>
+              jika masing-masing limit tersebut ada.
+            </p>
+          </div>
+
+          <h3>Interpretasi Geometris Turunan Parsial</h3>
+          <p>
+            Misalkan permukaan benda $z = f(x, y)$ memuat titik $P(x_1, y_1, f(x_1, y_1))$:
+          </p>
+          <ul>
+            <li>Bidang datar $y = y_1$ (sejajar bidang $xoz$) memotong permukaan $z = f(x, y)$ menurut kurva $k_2$ dengan persamaan $z = f(x, y_1)$. Turunan parsial $f_x(x_1, y_1) = \left.\frac{\partial z}{\partial x}\right|_{(x_1, y_1)} = \tan \alpha$ adalah kemiringan garis singgung kurva $k_2$ di titik $P$ terhadap arah sumbu-$x$ positif.</li>
+            <li>Bidang datar $x = x_1$ (sejajar bidang $yoz$) memotong permukaan $z = f(x, y)$ menurut kurva $k_1$ dengan persamaan $z = f(x_1, y)$. Turunan parsial $f_y(x_1, y_1) = \left.\frac{\partial z}{\partial y}\right|_{(x_1, y_1)} = \tan \beta$ adalah kemiringan garis singgung kurva $k_1$ di titik $P$ terhadap arah sumbu-$y$ positif.</li>
+          </ul>
+
+          <figure class="math-figure">
+            <svg viewBox="0 0 420 245" role="img" aria-label="Gambar 2.1: Interpretasi geometris turunan parsial pada permukaan z = f(x, y)">
+              <!-- Sumbu -->
+              <line x1="95" y1="190" x2="95" y2="22" stroke="var(--text-secondary)" stroke-width="1.4"/>
+              <line x1="95" y1="190" x2="365" y2="190" stroke="var(--text-secondary)" stroke-width="1.4"/>
+              <line x1="95" y1="190" x2="35" y2="232" stroke="var(--text-secondary)" stroke-width="1.4"/>
+              <text x="102" y="28" font-size="11" fill="var(--text-secondary)">z</text>
+              <text x="372" y="194" font-size="11" fill="var(--text-secondary)">y</text>
+              <text x="24" y="236" font-size="11" fill="var(--text-secondary)">x</text>
+
+              <!-- Permukaan z = f(x,y) -->
+              <path d="M 108 110 C 175 65, 275 55, 345 95 L 300 152 C 235 120, 145 130, 75 162 Z" fill="var(--accent-primary-soft)" stroke="var(--border-color)" stroke-width="1.5"/>
+
+              <!-- Kurva k1 (x = x1, sejajar bidang yoz) -->
+              <path d="M 122 122 Q 210 82 315 112" fill="none" stroke="var(--def-border)" stroke-width="2.2"/>
+              <text x="318" y="114" font-size="11" font-weight="600" fill="var(--def-title)">k₁ (x = x₁)</text>
+
+              <!-- Kurva k2 (y = y1, sejajar bidang xoz) -->
+              <path d="M 248 76 Q 210 100 170 144" fill="none" stroke="var(--thm-border)" stroke-width="2.2"/>
+              <text x="252" y="74" font-size="11" font-weight="600" fill="var(--thm-title)">k₂ (y = y₁)</text>
+
+              <!-- Titik P dan Garis Singgung -->
+              <circle cx="212" cy="99" r="4" fill="var(--text-primary)"/>
+              <text x="218" y="92" font-size="11" font-weight="700" fill="var(--text-primary)">P(x₁, y₁, z₁)</text>
+
+              <!-- Garis singgung kurva k1 (f_y = tan beta) -->
+              <line x1="152" y1="111" x2="275" y2="87" stroke="var(--def-border)" stroke-width="1.8" stroke-dasharray="4 2"/>
+              <text x="278" y="88" font-size="10.5" fill="var(--def-title)">tan β = f_y</text>
+
+              <!-- Garis singgung kurva k2 (f_x = tan alpha) -->
+              <line x1="238" y1="73" x2="182" y2="129" stroke="var(--thm-border)" stroke-width="1.8" stroke-dasharray="4 2"/>
+              <text x="122" y="142" font-size="10.5" fill="var(--thm-title)">tan α = f_x</text>
+
+              <!-- Proyeksi di bidang xy -->
+              <line x1="212" y1="99" x2="212" y2="205" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="3 3"/>
+              <circle cx="212" cy="205" r="2.8" fill="var(--text-muted)"/>
+              <text x="220" y="216" font-size="10" fill="var(--text-muted)">(x₁, y₁)</text>
+            </svg>
+            <figcaption>Gambar 2.1: Kurva irisan $k_1$ ($x = x_1$) dengan kemiringan garis singgung $f_y = \tan\beta$ dan kurva irisan $k_2$ ($y = y_1$) dengan kemiringan $f_x = \tan\alpha$.</figcaption>
+          </figure>
+
+          <h3>Derivatif Parsial Tingkat Tinggi</h3>
+          <p>
+            Dari $z = f(x, y)$, turunan parsial pertama $\frac{\partial z}{\partial x}$ dan $\frac{\partial z}{\partial y}$ umumnya masih merupakan fungsi dari $x$ dan $y$, sehingga dapat diturunkan kembali menjadi turunan parsial kedua:
+          </p>
+          $$\frac{\partial}{\partial x}\!\left(\frac{\partial z}{\partial x}\right) = \frac{\partial^2 z}{\partial x^2} = f_{xx}, \qquad \frac{\partial}{\partial y}\!\left(\frac{\partial z}{\partial y}\right) = \frac{\partial^2 z}{\partial y^2} = f_{yy}$$
+          $$\frac{\partial}{\partial x}\!\left(\frac{\partial z}{\partial y}\right) = \frac{\partial^2 z}{\partial x\,\partial y} = f_{yx}, \qquad \frac{\partial}{\partial y}\!\left(\frac{\partial z}{\partial x}\right) = \frac{\partial^2 z}{\partial y\,\partial x} = f_{xy}$$
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 2.1 (Clairaut–Schwarz / Kesamaan Turunan Campuran)</span>
+            <p>
+              Apabila $z = f(x, y)$ memiliki turunan parsial kedua campuran $f_{xy}$ dan $f_{yx}$ yang kontinu pada suatu daerah terbuka yang memuat $(x, y)$, maka urutan diferensiasi tidak memengaruhi hasil:
+              $$\frac{\partial^2 z}{\partial x\,\partial y} = \frac{\partial^2 z}{\partial y\,\partial x} \quad \Longleftrightarrow \quad f_{xy}(x, y) = f_{yx}(x, y).$$
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 2.1 (Menghitung Turunan Parsial Pertama).</strong>
+            <br>(a) Jika $f(x, y) = x^2 y + 3y^3$, carilah $f_x(1, 2)$ dan $f_y(1, 2)$.
+            <br>(b) Jika $f(x, y) = x^2 \sin(xy^2)$, carilah $f_x(1, 2)$ dan $f_y(1, 2)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.1</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>(a)</strong> Turunan parsial $f(x, y) = x^2 y + 3y^3$ adalah:</p>
+              $$f_x(x, y) = 2xy \implies f_x(1, 2) = 2(1)(2) = 4$$
+              $$f_y(x, y) = x^2 + 9y^2 \implies f_y(1, 2) = 1^2 + 9(2)^2 = 37$$
+
+              <p><strong>(b)</strong> Menggunakan aturan perkalian dan aturan rantai untuk $z = x^2 \sin(xy^2)$:</p>
+              $$\begin{aligned}
+              \frac{\partial z}{\partial x} &amp;= x^2 \frac{\partial \sin(xy^2)}{\partial x} + \sin(xy^2)\frac{\partial x^2}{\partial x} \\
+              &amp;= x^2 \cos(xy^2)\cdot y^2 + 2x\sin(xy^2) = x^2 y^2 \cos(xy^2) + 2x\sin(xy^2) \\[6pt]
+              \frac{\partial z}{\partial y} &amp;= x^2 \frac{\partial \sin(xy^2)}{\partial y} = x^2 \cos(xy^2)\cdot 2xy = 2x^3 y \cos(xy^2)
+              \end{aligned}$$
+              <p>Substitusikan titik $(1, 2)$ (sehingga $xy^2 = 1 \cdot 2^2 = 4$):</p>
+              $$f_x(1, 2) = 4\cos 4 + 2\sin 4, \qquad f_y(1, 2) = 4\cos 4.$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.2 (Turunan Parsial Tingkat Dua dan Verifikasi Clairaut).</strong>
+            Carilah $z_x$, $z_y$, $z_{xx}$, $z_{xy}$, $z_{yx}$, dan $z_{yy}$ dari fungsi:
+            $$z = xe^y - \sin\!\left(\frac{x}{y}\right) + x^3 y^2.$$
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.2</summary>
+            <div class="exercise-spoiler-body">
+              $$\begin{aligned}
+              z_x &amp;= \frac{\partial z}{\partial x} = e^y - \frac{1}{y}\cos\!\left(\frac{x}{y}\right) + 3x^2 y^2 \\[4pt]
+              z_y &amp;= \frac{\partial z}{\partial y} = xe^y + \frac{x}{y^2}\cos\!\left(\frac{x}{y}\right) + 2x^3 y \\[4pt]
+              z_{xx} &amp;= \frac{\partial^2 z}{\partial x^2} = \frac{1}{y^2}\sin\!\left(\frac{x}{y}\right) + 6xy^2 \\[4pt]
+              z_{yy} &amp;= \frac{\partial^2 z}{\partial y^2} = xe^y - \frac{2x}{y^3}\cos\!\left(\frac{x}{y}\right) + \frac{x^2}{y^4}\sin\!\left(\frac{x}{y}\right) + 2x^3 \\[4pt]
+              z_{xy} &amp;= \frac{\partial^2 z}{\partial y\,\partial x} = e^y + \frac{1}{y^2}\cos\!\left(\frac{x}{y}\right) - \frac{x}{y^3}\sin\!\left(\frac{x}{y}\right) + 6x^2 y \\[4pt]
+              z_{yx} &amp;= \frac{\partial^2 z}{\partial x\,\partial y} = e^y + \frac{1}{y^2}\cos\!\left(\frac{x}{y}\right) - \frac{x}{y^3}\sin\!\left(\frac{x}{y}\right) + 6x^2 y
+              \end{aligned}$$
+              <p>Tampak jelas bahwa untuk $y \neq 0$ berlaku $z_{xy} = z_{yx}$.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.2: DIFERENSIAL TOTAL & HAMPIRAN
+             ================================================================ -->
+        <section id="diferensial-total" aria-labelledby="heading-2-2">
+          <h2 id="heading-2-2">2.2 Diferensial Total, Diferensial Tingkat-$n$, dan Hampiran</h2>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.2 (Diferensial Total $dz$)</span>
+            <p>
+              Jika diketahui fungsi $z = f(x, y)$ yang terdiferensialkan, maka <strong>diferensial total</strong> dari $z$ didefinisikan sebagai:
+              $$dz = f_x(x, y)\,dx + f_y(x, y)\,dy = \frac{\partial z}{\partial x}\,dx + \frac{\partial z}{\partial y}\,dy.$$
+            </p>
+          </div>
+
+          <h3>Diferensial Tingkat-$n$</h3>
+          <p>
+            Dengan memperlakukan $dx$ dan $dy$ sebagai inkremen konstan variabel bebas, dapat dibentuk diferensial tingkat dua, tingkat tiga, hingga tingkat-$n$:
+          </p>
+          $$\begin{aligned}
+          d^2 z &amp;= f_{xx}\,dx^2 + 2f_{xy}\,dx\,dy + f_{yy}\,dy^2 = \left(\frac{\partial}{\partial x}dx + \frac{\partial}{\partial y}dy\right)^2 f(x, y) \\[6pt]
+          d^3 z &amp;= f_{xxx}\,dx^3 + 3f_{xxy}\,dx^2 dy + 3f_{xyy}\,dx\,dy^2 + f_{yyy}\,dy^3 = \left(\frac{\partial}{\partial x}dx + \frac{\partial}{\partial y}dy\right)^3 f(x, y) \\[6pt]
+          d^n z &amp;= \left(\frac{\partial}{\partial x}dx + \frac{\partial}{\partial y}dy\right)^n f(x, y)
+          \end{aligned}$$
+
+          <p>
+            <strong>Contoh 2.3 (Menghitung $dz$ dan $d^2 z$).</strong>
+            <br>(a) Tentukan $dz$ dan $d^2 z$ untuk $z = 3xy + 5xy^2$.
+            <br>(b) Tentukan $dz$ dan $d^2 z$ untuk $z = (6x^2 - 2y)^2 + 4xy^2$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.3</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>(a)</strong> $z = 3xy + 5xy^2$:</p>
+              $$dz = (3y + 5y^2)\,dx + (3x + 10xy)\,dy$$
+              $$d^2 z = 0\,dx^2 + 2(3 + 10y)\,dx\,dy + 10x\,dy^2 = 2(3 + 10y)\,dx\,dy + 10x\,dy^2$$
+
+              <p><strong>(b)</strong> $z = (6x^2 - 2y)^2 + 4xy^2$:</p>
+              $$\begin{aligned}
+              dz &amp;= \bigl[2(6x^2 - 2y)(12x) + 4y^2\bigr]dx + \bigl[2(6x^2 - 2y)(-2) + 8xy\bigr]dy \\
+              &amp;= \bigl[48(3x^3 - xy) + 4y^2\bigr]dx + 8\bigl[xy - (3x^2 - y)\bigr]dy \\[4pt]
+              d^2 z &amp;= 48(9x^2 - y)\,dx^2 + 16(y - 6x)\,dx\,dy + 8(x + 1)\,dy^2
+              \end{aligned}$$
+            </div>
+          </details>
+
+          <h3>Aplikasi Diferensial untuk Nilai Hampiran</h3>
+          <p>
+            Untuk perubahan $|\Delta x|$ dan $|\Delta y|$ yang cukup kecil, pertambahan nilai fungsi $\Delta z = f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0)$ dapat dihampiri menggunakan diferensial total dengan mengambil $dx = \Delta x$ dan $dy = \Delta y$:
+            $$\Delta z \approx dz = \frac{\partial z}{\partial x}\Delta x + \frac{\partial z}{\partial y}\Delta y.$$
+            Demikian pula untuk fungsi tiga peubah $F = W(x, y, z)$:
+            $$\Delta F \approx dF = \frac{\partial W}{\partial x}\Delta x + \frac{\partial W}{\partial y}\Delta y + \frac{\partial W}{\partial z}\Delta z.$$
+          </p>
+
+          <p>
+            <strong>Contoh 2.4 (Nilai Hampiran Akar Kuadrat).</strong>
+            Hitunglah nilai hampiran dari $\sqrt{(3{,}1)^2 + (4{,}02)^2}$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.4</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Pandang fungsi $z = \sqrt{x^2 + y^2}$ di titik dasar $(x_0, y_0) = (3, 4)$ dengan $\Delta x = 0{,}1$ dan $\Delta y = 0{,}02$. Nilai awal fungsi adalah $z_0 = \sqrt{3^2 + 4^2} = 5$. Diferensial totalnya:
+              </p>
+              $$dz = \frac{x}{\sqrt{x^2 + y^2}}\,dx + \frac{y}{\sqrt{x^2 + y^2}}\,dy$$
+              $$\Delta z \approx dz = \frac{3}{5}(0{,}1) + \frac{4}{5}(0{,}02) = 0{,}06 + 0{,}016 = 0{,}076.$$
+              <p>Jadi nilai hampirannya adalah $\sqrt{(3{,}1)^2 + (4{,}02)^2} \approx z_0 + \Delta z = 5 + 0{,}076 = 5{,}076$.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.3: ATURAN RANTAI, FUNGSI IMPLISIT, JACOBIAN & HOMOGEN
+             ================================================================ -->
+        <section id="aturan-rantai-implisit" aria-labelledby="heading-2-3">
+          <h2 id="heading-2-3">2.3 Aturan Rantai, Turunan Fungsi Implisit, Jacobian &amp; Fungsi Homogen</h2>
+
+          <h3>Aturan Rantai (<em>Chain Rule</em>)</h3>
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 2.2 (Aturan Rantai Multivariabel)</span>
+            <ol>
+              <li>
+                Jika $z = f(x, y)$ terdiferensialkan dengan $x = x(t)$ dan $y = y(t)$ terdiferensialkan terhadap $t$, maka:
+                $$\frac{dz}{dt} = \frac{\partial z}{\partial x}\frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt}.$$
+              </li>
+              <li>
+                Jika $z = f(x, y)$ dengan $y$ merupakan fungsi dari $x$, maka turunan total terhadap $x$ adalah:
+                $$\frac{dz}{dx} = \frac{\partial z}{\partial x} + \frac{\partial z}{\partial y}\frac{dy}{dx}.$$
+              </li>
+              <li>
+                Jika $z = f(x, y)$ dengan $x = p(r, s)$ dan $y = q(r, s)$, maka:
+                $$\frac{\partial z}{\partial r} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial r} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial r}, \qquad \frac{\partial z}{\partial s} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial s}.$$
+              </li>
+            </ol>
+          </div>
+
+          <h3>Turunan Fungsi Implisit &amp; Determinan Jacobian</h3>
+          <ul>
+            <li>
+              <strong>Satu Persamaan Dua Peubah $f(x, y) = 0$:</strong>
+              $$\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y}\frac{dy}{dx} = 0 \implies \frac{dy}{dx} = -\frac{\partial f / \partial x}{\partial f / \partial y} \quad \left(\frac{\partial f}{\partial y} \neq 0\right).$$
+              Untuk turunan kedua dan lebih tinggi, diferensialkan kembali persamaan di ruas kiri ($\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y}\frac{dy}{dx} = 0$) secara penuh terhadap $x$.
+            </li>
+            <li>
+              <strong>Satu Persamaan Tiga Peubah $F(x, y, z) = 0$:</strong>
+              $$\frac{\partial z}{\partial x} = -\frac{\partial F / \partial x}{\partial F / \partial z}, \qquad \frac{\partial z}{\partial y} = -\frac{\partial F / \partial y}{\partial F / \partial z} \quad \left(\frac{\partial F}{\partial z} \neq 0\right).$$
+            </li>
+            <li>
+              <strong>Sistem Dua Persamaan Implisit $F(x, y, z) = 0$ dan $G(x, y, z) = 0$:</strong>
+              Dengan menurunkan kedua persamaan terhadap $x$ dan menerapkan Aturan Cramer diperoleh:
+              $$\frac{dy}{dx} = -\frac{\begin{vmatrix} F_x &amp; F_z \\ G_x &amp; G_z \end{vmatrix}}{\begin{vmatrix} F_y &amp; F_z \\ G_y &amp; G_z \end{vmatrix}}, \qquad \frac{dz}{dx} = -\frac{\begin{vmatrix} F_y &amp; F_x \\ G_y &amp; G_x \end{vmatrix}}{\begin{vmatrix} F_y &amp; F_z \\ G_y &amp; G_z \end{vmatrix}} \qquad \left(\begin{vmatrix} F_y &amp; F_z \\ G_y &amp; G_z \end{vmatrix} \neq 0\right).$$
+            </li>
+            <li>
+              <strong>Sistem Empat Peubah $F(x, y, z, w) = 0$ dan $G(x, y, z, w) = 0$:</strong>
+              Diferensiasi parsial terhadap $x$ (dengan $y$ konstan) memberi sistem linear dalam $\frac{\partial z}{\partial x}, \frac{\partial w}{\partial x}$:
+              $$F_x + F_z z_x + F_w w_x = 0, \qquad G_x + G_z z_x + G_w w_x = 0,$$
+              yang diselesaikan melalui Aturan Cramer; cara serupa berlaku untuk $\frac{\partial z}{\partial y}, \frac{\partial w}{\partial y}$ dengan menurunkan terhadap $y$.
+            </li>
+          </ul>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.3 (Determinan Jacobian)</span>
+            <p>
+              Determinan matriks turunan parsial pertama untuk fungsi $(F, G)$ terhadap peubah $(y, z)$ disebut <strong>Jacobian</strong> dan dinotasikan sebagai:
+              $$J = \frac{\partial(F, G)}{\partial(y, z)} = \begin{vmatrix} \dfrac{\partial F}{\partial y} &amp; \dfrac{\partial F}{\partial z} \\[8pt] \dfrac{\partial G}{\partial y} &amp; \dfrac{\partial G}{\partial z} \end{vmatrix}.$$
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 2.3 (Sifat-Sifat Jacobian)</span>
+            <ol>
+              <li>
+                <strong>Aturan Rantai Jacobian:</strong> Jika $u(x, y)$ dan $v(x, y)$ bergantung pada $x(r, s)$ dan $y(r, s)$, maka:
+                $$\frac{\partial(u, v)}{\partial(r, s)} = \frac{\partial(u, v)}{\partial(x, y)} \cdot \frac{\partial(x, y)}{\partial(r, s)}.$$
+              </li>
+              <li>
+                <strong>Sifat Invers Jacobian:</strong> Jika relasi $u = f(x, y),\, v = g(x, y)$ mempunyai balikan $x = F(u, v),\, y = G(u, v)$, maka:
+                $$\frac{\partial(u, v)}{\partial(x, y)} = \frac{1}{\dfrac{\partial(x, y)}{\partial(u, v)}}.$$
+              </li>
+            </ol>
+          </div>
+
+          <p>
+            <strong>Contoh 2.5 (Aturan Rantai Satu Parameter).</strong>
+            Diketahui $z = x^2 (y - 1)^3$ dengan $x = 2t^3$ dan $y = 3t^2$. Hitunglah nilai $\dfrac{dz}{dt}$ saat $t = 1$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.5</summary>
+            <div class="exercise-spoiler-body">
+              <p>Pada saat $t = 1$, diperoleh $x = 2$ dan $y = 3$, serta $\frac{dx}{dt} = 6t^2$ dan $\frac{dy}{dt} = 6t$. Maka:</p>
+              $$\begin{aligned}
+              \frac{dz}{dt} &amp;= \frac{\partial z}{\partial x}\frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt} \\
+              &amp;= 2x(y - 1)^3 (6t^2) + 3x^2(y - 1)^2 (6t) \\[4pt]
+              \left.\frac{dz}{dt}\right|_{t=1} &amp;= 2(2)(2)^3(6) + 3(2)^2(2)^2(6) = 192 + 288 = 480.
+              \end{aligned}$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.6 (Aturan Rantai Orde Pertama dan Kedua).</strong>
+            Dapatkan $\dfrac{\partial z}{\partial s}$ dan $\dfrac{\partial^2 z}{\partial s^2}$ jika $z = (x - 1)^2 y^3$ dengan $x = s + t$ dan $y = st$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.6</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>(a)</strong> Karena $\frac{\partial x}{\partial s} = 1$ dan $\frac{\partial y}{\partial s} = t$:</p>
+              $$\begin{aligned}
+              \frac{\partial z}{\partial s} &amp;= 2(x - 1)y^3(1) + 3(x - 1)^2 y^2 (t) = (x - 1)y^2 \bigl[2y + 3(x - 1)t\bigr] \\
+              &amp;= (s + t - 1) s^2 t^3 \bigl[5s + 3(t - 1)\bigr].
+              \end{aligned}$$
+              <p>
+                <strong>(b)</strong> Secara umum, $\frac{\partial^2 z}{\partial s^2} = z_{xx}\!\left(\frac{\partial x}{\partial s}\right)^2 + 2z_{xy}\frac{\partial x}{\partial s}\frac{\partial y}{\partial s} + z_{yy}\!\left(\frac{\partial y}{\partial s}\right)^2 + z_x\frac{\partial^2 x}{\partial s^2} + z_y\frac{\partial^2 y}{\partial s^2}$. Karena $x$ dan $y$ linear terhadap $s$, suku $\frac{\partial^2 x}{\partial s^2} = \frac{\partial^2 y}{\partial s^2} = 0$, sehingga:
+              </p>
+              $$\begin{aligned}
+              \frac{\partial^2 z}{\partial s^2} &amp;= 2y^3(1)^2 + 2\cdot 6(x - 1)y^2(1)(t) + 6(x - 1)^2 y (t^2) \\
+              &amp;= 2y^3 + 6(x - 1)yt\bigl[2y + (x - 1)t\bigr].
+              \end{aligned}$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.7 (Bukti Rumus Turunan Kedua Fungsi Implisit).</strong>
+            Buktikan bahwa jika $f(x, y) = 0$ mendefinisikan $y$ secara implisit sebagai fungsi $x$ (dengan $f_y \neq 0$), maka:
+            $$\frac{d^2 y}{dx^2} = -\left[\frac{f_{xx}(f_y)^2 - 2f_{xy} f_x f_y + f_{yy}(f_x)^2}{(f_y)^3}\right].$$
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.7</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Dari $df = f_x\,dx + f_y\,dy = 0$ diperoleh $g(x, y(x)) = f_x + f_y\frac{dy}{dx} = 0$, sehingga $\frac{dy}{dx} = -\frac{f_x}{f_y}$. Turunkan $g(x, y(x)) = 0$ secara total terhadap $x$:
+              </p>
+              $$\frac{d}{dx}\!\left(f_x + f_y \frac{dy}{dx}\right) = \left(f_{xx} + f_{xy}\frac{dy}{dx}\right) + \left(f_{yx} + f_{yy}\frac{dy}{dx}\right)\frac{dy}{dx} + f_y\frac{d^2 y}{dx^2} = 0.$$
+              <p>Karena $f_{yx} = f_{xy}$, substitusikan $\frac{dy}{dx} = -\frac{f_x}{f_y}$:</p>
+              $$f_y\frac{d^2 y}{dx^2} = -\left[f_{xx} + 2f_{xy}\!\left(-\frac{f_x}{f_y}\right) + f_{yy}\!\left(-\frac{f_x}{f_y}\right)^2\right] = -\frac{f_{xx}f_y^2 - 2f_{xy}f_x f_y + f_{yy}f_x^2}{f_y^2}.$$
+              <p>Bagi kedua ruas dengan $f_y$ sehingga terbukti rumus yang diinginkan.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.8 (Turunan Kedua Fungsi Implisit).</strong>
+            Dapatkan $\dfrac{dy}{dx}$ dan $\dfrac{d^2 y}{dx^2}$ untuk fungsi implisit $y - e^y \cos x = 0$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.8</summary>
+            <div class="exercise-spoiler-body">
+              <p>Misalkan $f(x, y) = y - e^y\cos x = 0$. Maka $f_x = e^y\sin x$ dan $f_y = 1 - e^y\cos x$, sehingga:</p>
+              $$\frac{dy}{dx} = -\frac{e^y\sin x}{1 - e^y\cos x}.$$
+              <p>Selanjutnya, $f_{xx} = e^y\cos x$, $f_{yy} = -e^y\cos x$, dan $f_{xy} = e^y\sin x$. Substitusi ke rumus Contoh 2.7:</p>
+              $$\begin{aligned}
+              \frac{d^2 y}{dx^2} &amp;= -\frac{e^y\cos x(1 - e^y\cos x)^2 - 2e^{2y}\sin^2 x(1 - e^y\cos x) - e^y\cos x(e^{2y}\sin^2 x)}{(1 - e^y\cos x)^3} \\
+              &amp;= -\frac{e^y\cos x - 2e^{2y}(\cos^2 x + \sin^2 x) + e^{3y}\cos x(\cos^2 x + \sin^2 x)}{(1 - e^y\cos x)^3} \\
+              &amp;= -\frac{e^y\cos x - 2e^{2y} + e^{3y}\cos x}{(1 - e^y\cos x)^3}.
+              \end{aligned}$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.9 (Implisit Tiga Peubah $F(x, y, z) = 0$).</strong>
+            Diketahui $xyz - \cos(x + y + z) = 0$ mendefinisikan $z = f(x, y)$. Tentukan diferensial total $dz$ serta $\dfrac{\partial z}{\partial x}$ dan $\dfrac{\partial z}{\partial y}$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.9</summary>
+            <div class="exercise-spoiler-body">
+              <p>Misalkan $F(x, y, z) = xyz - \cos(x + y + z) = 0$. Diferensial totalnya $dF = 0$ memberi:</p>
+              $$\bigl(yz + \sin(x + y + z)\bigr)dx + \bigl(xz + \sin(x + y + z)\bigr)dy + \bigl(xy + \sin(x + y + z)\bigr)dz = 0$$
+              $$dz = -\frac{yz + \sin(x + y + z)}{xy + \sin(x + y + z)}\,dx - \frac{xz + \sin(x + y + z)}{xy + \sin(x + y + z)}\,dy.$$
+              <p>Dari koefisien $dx$ dan $dy$ diperoleh:</p>
+              $$\frac{\partial z}{\partial x} = -\frac{yz + \sin(x + y + z)}{xy + \sin(x + y + z)}, \qquad \frac{\partial z}{\partial y} = -\frac{xz + \sin(x + y + z)}{xy + \sin(x + y + z)}.$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.10 (Sistem Persamaan Implisit dengan Aturan Cramer).</strong>
+            Diketahui sistem persamaan $\begin{cases} u^2 - v = 3x + y \\ u - 2v^2 = x - 2y \end{cases}$. Tentukan $\dfrac{\partial u}{\partial x}, \dfrac{\partial v}{\partial x}, \dfrac{\partial u}{\partial y}$, dan $\dfrac{\partial v}{\partial y}$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.10</summary>
+            <div class="exercise-spoiler-body">
+              <p>Turunkan kedua persamaan secara parsial terhadap $x$:</p>
+              $$\begin{cases} 2u\dfrac{\partial u}{\partial x} - \dfrac{\partial v}{\partial x} = 3 \\[6pt] \dfrac{\partial u}{\partial x} - 4v\dfrac{\partial v}{\partial x} = 1 \end{cases}$$
+              $$\frac{\partial u}{\partial x} = \frac{\begin{vmatrix} 3 &amp; -1 \\ 1 &amp; -4v \end{vmatrix}}{\begin{vmatrix} 2u &amp; -1 \\ 1 &amp; -4v \end{vmatrix}} = \frac{-12v + 1}{-8uv + 1}, \qquad \frac{\partial v}{\partial x} = \frac{\begin{vmatrix} 2u &amp; 3 \\ 1 &amp; 1 \end{vmatrix}}{\begin{vmatrix} 2u &amp; -1 \\ 1 &amp; -4v \end{vmatrix}} = \frac{2u - 3}{-8uv + 1}.$$
+
+              <p>Turunkan kedua persamaan secara parsial terhadap $y$:</p>
+              $$\begin{cases} 2u\dfrac{\partial u}{\partial y} - \dfrac{\partial v}{\partial y} = 1 \\[6pt] \dfrac{\partial u}{\partial y} - 4v\dfrac{\partial v}{\partial y} = -2 \end{cases}$$
+              $$\frac{\partial u}{\partial y} = \frac{\begin{vmatrix} 1 &amp; -1 \\ -2 &amp; -4v \end{vmatrix}}{\begin{vmatrix} 2u &amp; -1 \\ 1 &amp; -4v \end{vmatrix}} = \frac{-4v - 2}{-8uv + 1}, \qquad \frac{\partial v}{\partial y} = \frac{\begin{vmatrix} 2u &amp; 1 \\ 1 &amp; -2 \end{vmatrix}}{\begin{vmatrix} 2u &amp; -1 \\ 1 &amp; -4v \end{vmatrix}} = \frac{-4u - 1}{-8uv + 1} = \frac{4u + 1}{8uv - 1}.$$
+
+              <div class="math-box note">
+                <span class="math-box-title">Catatan Koreksi Matematis</span>
+                <p>
+                  Pada draf diktat mentah, rumus $\frac{\partial v}{\partial y}$ sempat tertukar (tersalin dari determinan $\frac{\partial u}{\partial y}$). Hasil yang benar menurut Aturan Cramer adalah $\frac{-4u - 1}{-8uv + 1} = \frac{4u + 1}{8uv - 1}$.
+                </p>
+              </div>
+            </div>
+          </details>
+
+          <h3>Fungsi Homogen &amp; Teorema Euler</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.4 (Fungsi Homogen Derajat $n$)</span>
+            <p>
+              Suatu fungsi $f(x, y)$ dikatakan <strong>homogen berderajat $n$</strong> apabila untuk setiap skalar $\lambda &gt; 0$ (atau $\lambda$ pada domain yang sesuai) berlaku:
+              $$f(\lambda x, \lambda y) = \lambda^n f(x, y).$$
+            </p>
+          </div>
+
+          <p><strong>Contoh 2.11 (Menguji Derajat Kehomogenan Fungsi).</strong></p>
+          <ol type="a">
+            <li>$f(x, y) = x^4 + x^3 y \implies f(\lambda x, \lambda y) = \lambda^4(x^4 + x^3 y) = \lambda^4 f(x, y)$ (homogen derajat $4$).</li>
+            <li>$f(x, y) = e^{x/y} + \tan\frac{x}{y} \implies f(\lambda x, \lambda y) = \lambda^0 f(x, y)$ (homogen derajat $0$).</li>
+            <li>$f(x, y) = x\ln\frac{x}{y} + \frac{y^2}{x}\arcsin\frac{x}{y} \implies f(\lambda x, \lambda y) = \lambda x\ln\frac{\lambda x}{\lambda y} + \frac{\lambda^2 y^2}{\lambda x}\arcsin\frac{\lambda x}{\lambda y} = \lambda f(x, y)$ (homogen derajat $1$).</li>
+          </ol>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 2.4 (Teorema Euler untuk Fungsi Homogen)</span>
+            <p>
+              Jika $z = f(x, y)$ terdiferensialkan dan homogen berderajat $n$ dalam $x$ dan $y$, maka berlaku identitas Euler:
+              $$x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n z.$$
+            </p>
+          </div>
+
+          <div class="math-box proof">
+            <span class="math-box-title">Bukti Teorema 2.4.</span>
+            <p>
+              Tetapkan $u = \lambda x$ dan $v = \lambda y$, lalu diferensialkan identitas kehomogenan $f(\lambda x, \lambda y) = \lambda^n f(x, y)$ terhadap $\lambda$ menggunakan Aturan Rantai:
+              $$\frac{\partial f}{\partial u}\frac{du}{d\lambda} + \frac{\partial f}{\partial v}\frac{dv}{d\lambda} = n \lambda^{n-1} f(x, y) \implies x f_u(\lambda x, \lambda y) + y f_v(\lambda x, \lambda y) = n \lambda^{n-1} f(x, y).$$
+              Dengan mengambil $\lambda = 1$, diperoleh $x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n f(x, y) = nz$. (Untuk polinomial homogen $z = \sum_i a_i x^{\alpha_i} y^{\beta_i}$ dengan $\alpha_i + \beta_i = n$, hal ini juga tampak langsung karena $x z_x + y z_y = \sum_i (\alpha_i + \beta_i)a_i x^{\alpha_i} y^{\beta_i} = nz$.)
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 2.12.</strong> Jika $z$ homogen derajat $n$ dalam $x, y$, buktikan $x\dfrac{\partial^2 z}{\partial x^2} + y\dfrac{\partial^2 z}{\partial x\,\partial y} = (n - 1)\dfrac{\partial z}{\partial x}$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.12</summary>
+            <div class="exercise-spoiler-body">
+              <p>Dari Teorema Euler $x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz$, turunkan kedua ruas secara parsial terhadap $x$:</p>
+              $$\frac{\partial z}{\partial x} + x\frac{\partial^2 z}{\partial x^2} + y\frac{\partial^2 z}{\partial x\,\partial y} = n\frac{\partial z}{\partial x} \implies x\frac{\partial^2 z}{\partial x^2} + y\frac{\partial^2 z}{\partial x\,\partial y} = (n - 1)\frac{\partial z}{\partial x}.$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.13.</strong> Jika $u = \arctan\!\left(\dfrac{x^3 + y^3}{x - y}\right)$, buktikan $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = \sin 2u$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.13</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Misalkan $z = \tan u = \frac{x^3 + y^3}{x - y}$. Karena $z(\lambda x, \lambda y) = \lambda^2 z(x, y)$, maka $z$ homogen derajat $2$, sehingga menurut Teorema Euler $x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = 2z$. Dengan $\frac{\partial z}{\partial x} = \sec^2 u\,\frac{\partial u}{\partial x}$ dan $\frac{\partial z}{\partial y} = \sec^2 u\,\frac{\partial u}{\partial y}$:
+              </p>
+              $$\sec^2 u \left(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y}\right) = 2\tan u \implies x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = \frac{2\tan u}{\sec^2 u} = 2\sin u\cos u = \sin 2u.$$
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.4: GARIS & BIDANG SINGGUNG SERTA NORMAL
+             ================================================================ -->
+        <section id="garis-bidang-singgung" aria-labelledby="heading-2-4">
+          <h2 id="heading-2-4">2.4 Garis Singgung &amp; Bidang Normal pada Kurva Ruang serta Bidang Singgung &amp; Garis Normal pada Permukaan</h2>
+
+          <h3>Kurva Ruang: Garis Singgung dan Bidang Normal</h3>
+          <p>
+            Pandang kurva ruang $C$ dengan persamaan parametrik $x = f(t),\, y = g(t),\, z = h(t)$ yang terdiferensialkan, dinyatakan oleh vektor posisi $\mathbf{R}(t) = x(t)\mathbf{i} + y(t)\mathbf{j} + z(t)\mathbf{k}$. Di titik $P_0(x_0, y_0, z_0)$ saat $t = t_0$, vektor singgungnya adalah $\mathbf{R}'(t_0) = x'(t_0)\mathbf{i} + y'(t_0)\mathbf{j} + z'(t_0)\mathbf{k}$.
+          </p>
+          <ul>
+            <li>Setiap titik $(x, y, z)$ pada <strong>garis singgung</strong> memenuhi $(\mathbf{r} - \mathbf{r}_0) \times \mathbf{R}'(t_0) = \mathbf{0}$.</li>
+            <li>Setiap titik $(x, y, z)$ pada <strong>bidang normal</strong> (tegak lurus terhadap $\mathbf{R}'(t_0)$) memenuhi $(\mathbf{r} - \mathbf{r}_0) \cdot \mathbf{R}'(t_0) = 0$.</li>
+          </ul>
+
+          <figure class="math-figure">
+            <svg viewBox="0 0 640 220" role="img" aria-label="Gambar 2.2 dan 2.3: Garis singgung dan bidang normal kurva ruang serta bidang singgung dan garis normal permukaan">
+              <!-- Kiri: Kurva Ruang -->
+              <g transform="translate(15, 10)">
+                <text x="145" y="14" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--text-primary)">Kurva Ruang C</text>
+                <path d="M 40 165 C 95 160, 130 95, 195 90 C 235 86, 260 120, 278 145" fill="none" stroke="var(--text-primary)" stroke-width="2.3"/>
+                <!-- Bidang normal di P0 -->
+                <polygon points="150,42 205,58 188,162 133,146" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="1.6"/>
+                <!-- Vektor singgung -->
+                <line x1="170" y1="102" x2="255" y2="78" stroke="var(--thm-border)" stroke-width="2.4"/>
+                <polygon points="262,76 250,74 253,84" fill="var(--thm-border)"/>
+                <circle cx="170" cy="102" r="4" fill="var(--accent-primary)"/>
+                <text x="152" y="122" font-size="11" font-weight="700" fill="var(--text-primary)">P₀</text>
+                <text x="242" y="68" font-size="10.5" font-weight="600" fill="var(--thm-title)">R'(t₀) (Vektor Singgung)</text>
+                <text x="165" y="182" text-anchor="middle" font-size="10.5" fill="var(--accent-primary)">Bidang Normal ⊥ R'(t₀)</text>
+              </g>
+
+              <line x1="320" y1="20" x2="320" y2="200" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="5 5"/>
+
+              <!-- Kanan: Permukaan Lengkung -->
+              <g transform="translate(335, 10)">
+                <text x="145" y="14" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--text-primary)">Permukaan Lengkung F(x,y,z) = 0</text>
+                <!-- Permukaan lengkung -->
+                <path d="M 45 155 Q 145 90 250 155 C 258 172 248 188 225 186 Q 145 135 65 186 C 42 188 38 172 45 155 Z" fill="var(--lem-bg)" stroke="var(--lem-border)" stroke-width="1.8"/>
+                <!-- Bidang singgung -->
+                <polygon points="75,112 205,94 235,128 105,146" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="1.6"/>
+                <!-- Vektor Normal ∇F -->
+                <line x1="150" y1="120" x2="150" y2="42" stroke="var(--thm-border)" stroke-width="2.4"/>
+                <polygon points="150,34 145,45 155,45" fill="var(--thm-border)"/>
+                <circle cx="150" cy="120" r="4" fill="var(--text-primary)"/>
+                <text x="160" y="54" font-size="10.5" font-weight="600" fill="var(--thm-title)">∇F|ₚ₀ (Vektor Normal)</text>
+                <text x="160" y="118" font-size="11" font-weight="700" fill="var(--text-primary)">P₀</text>
+                <text x="200" y="144" font-size="10" fill="var(--accent-primary)">Bidang Singgung</text>
+              </g>
+            </svg>
+            <figcaption>Gambar 2.2 (kiri): Garis singgung dan bidang normal pada kurva ruang. Gambar 2.3 (kanan): Vektor normal $\nabla F|_{P_0}$ tegak lurus bidang singgung permukaan di $P_0$.</figcaption>
+          </figure>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Rumus Garis Singgung &amp; Bidang Normal Kurva Ruang di $P_0(x_0, y_0, z_0)$</span>
+            <p><strong>1. Bentuk Parametrik</strong> $x = f(t),\, y = g(t),\, z = h(t)$ di $t = t_0$:</p>
+            $$\text{Garis singgung: } \frac{x - x_0}{x'(t_0)} = \frac{y - y_0}{y'(t_0)} = \frac{z - z_0}{z'(t_0)}, \qquad \text{Bidang normal: } x'(t_0)(x - x_0) + y'(t_0)(y - y_0) + z'(t_0)(z - z_0) = 0.$$
+            <p><strong>2. Bentuk Implisit</strong> perpotongan dua permukaan $F(x, y, z) = 0$ dan $G(x, y, z) = 0$ (koefisien arahnya $\mathbf{v} = \nabla F|_{P_0} \times \nabla G|_{P_0}$):</p>
+            $$\text{Garis singgung: } \frac{x - x_0}{\begin{vmatrix} F_y &amp; F_z \\ G_y &amp; G_z \end{vmatrix}_{P_0}} = \frac{y - y_0}{\begin{vmatrix} F_z &amp; F_x \\ G_z &amp; G_x \end{vmatrix}_{P_0}} = \frac{z - z_0}{\begin{vmatrix} F_x &amp; F_y \\ G_x &amp; G_y \end{vmatrix}_{P_0}},$$
+            $$\text{Bidang normal: } (x - x_0)\begin{vmatrix} F_y &amp; F_z \\ G_y &amp; G_z \end{vmatrix}_{P_0} + (y - y_0)\begin{vmatrix} F_z &amp; F_x \\ G_z &amp; G_x \end{vmatrix}_{P_0} + (z - z_0)\begin{vmatrix} F_x &amp; F_y \\ G_x &amp; G_y \end{vmatrix}_{P_0} = 0.$$
+          </div>
+
+          <p>
+            <strong>Contoh 2.14 (Garis Singgung Helix &amp; Bidang Normal Kurva Implisit).</strong>
+            <br>(a) Dapatkan persamaan garis singgung pada kurva helix $x = a\cos t,\, y = a\sin t,\, z = at$ saat $t_0 = \frac{\pi}{6}$.
+            <br>(b) Dapatkan persamaan bidang normal dari kurva perpotongan $x^2 + y^2 + z^2 = 14$ dan $x + y + z = 6$ di titik $(1, 2, 3)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.14</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                <strong>(a)</strong> Pada $t_0 = \frac{\pi}{6}$, titiknya adalah $P_0\!\left(\frac{\sqrt{3}}{2}a,\, \frac{1}{2}a,\, \frac{\pi}{6}a\right)$ dengan vektor singgung $x' = -\frac{1}{2}a,\, y' = \frac{\sqrt{3}}{2}a,\, z' = a$. Jadi persamaan garis singgungnya:
+              </p>
+              $$\frac{x - \frac{\sqrt{3}}{2}a}{-\frac{1}{2}a} = \frac{y - \frac{1}{2}a}{\frac{\sqrt{3}}{2}a} = \frac{z - \frac{\pi}{6}a}{a},$$
+              atau dalam bentuk irisan dua bidang: $2x + z = \left(\frac{\pi}{6} + \sqrt{3}\right)a$ dan $2y - \sqrt{3}z = \left(1 - \frac{\sqrt{3}}{6}\pi\right)a$.
+
+              <p>
+                <strong>(b)</strong> Misalkan $F = x^2 + y^2 + z^2 - 14$ dan $G = x + y + z - 6$. Di titik $P_0(1, 2, 3)$:
+              </p>
+              $$\begin{vmatrix} 2y &amp; 2z \\ 1 &amp; 1 \end{vmatrix}_{(1,2,3)} = -2, \qquad \begin{vmatrix} 2z &amp; 2x \\ 1 &amp; 1 \end{vmatrix}_{(1,2,3)} = 4, \qquad \begin{vmatrix} 2x &amp; 2y \\ 1 &amp; 1 \end{vmatrix}_{(1,2,3)} = -2.$$
+              <p>Maka persamaan <strong>bidang normalnya</strong> di $(1, 2, 3)$ adalah:</p>
+              $$-2(x - 1) + 4(y - 2) - 2(z - 3) = 0 \quad \Longleftrightarrow \quad x - 2y + z = 0.$$
+            </div>
+          </details>
+
+          <h3>Bidang Lengkung (Permukaan): Bidang Singgung dan Garis Normal</h3>
+          <p>
+            Untuk permukaan $S$ berbentuk $F(x, y, z) = 0$, vektor gradien $\nabla F = \frac{\partial F}{\partial x}\mathbf{i} + \frac{\partial F}{\partial y}\mathbf{j} + \frac{\partial F}{\partial z}\mathbf{k}$ memenuhi $\nabla F \cdot d\mathbf{R} = dF = 0$, yang menunjukkan bahwa $\nabla F|_{P_0}$ selalu tegak lurus terhadap setiap vektor singgung $d\mathbf{R}$ di titik $P_0(x_0, y_0, z_0)$ pada $S$—sehingga $\nabla F|_{P_0}$ merupakan <strong>vektor normal</strong> permukaan.
+          </p>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Rumus Bidang Singgung &amp; Garis Normal Permukaan di $P_0(x_0, y_0, z_0)$</span>
+            <p><strong>1. Bentuk Implisit</strong> $F(x, y, z) = 0$ (dengan $\nabla F|_{P_0} \neq \mathbf{0}$):</p>
+            $$\text{Bidang singgung: } F_x(P_0)(x - x_0) + F_y(P_0)(y - y_0) + F_z(P_0)(z - z_0) = 0,$$
+            $$\text{Garis normal: } \frac{x - x_0}{F_x(P_0)} = \frac{y - y_0}{F_y(P_0)} = \frac{z - z_0}{F_z(P_0)}.$$
+            <p><strong>2. Bentuk Eksplisit</strong> $z = f(x, y)$ (dengan memandang $F(x, y, z) = f(x, y) - z = 0$):</p>
+            $$\text{Bidang singgung: } f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0) - (z - z_0) = 0,$$
+            $$\text{Garis normal: } \frac{x - x_0}{f_x(x_0, y_0)} = \frac{y - y_0}{f_y(x_0, y_0)} = \frac{z - z_0}{-1}.$$
+          </div>
+
+          <p>
+            <strong>Contoh 2.15.</strong> Dapatkan persamaan bidang singgung dan garis normal pada elipsoida $x^2 + 9y^2 + z^2 = 61$ di titik $P(4, 2, -3)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.15</summary>
+            <div class="exercise-spoiler-body">
+              <p>Dengan $F(x, y, z) = x^2 + 9y^2 + z^2 - 61$, diperoleh $F_x(P) = 8$, $F_y(P) = 36$, dan $F_z(P) = -6$.</p>
+              <ul>
+                <li><strong>Bidang singgung:</strong> $8(x - 4) + 36(y - 2) - 6(z + 3) = 0$ (atau $4x + 18y - 3z = 61$).</li>
+                <li><strong>Garis normal:</strong> $\dfrac{x - 4}{8} = \dfrac{y - 2}{36} = \dfrac{z + 3}{-6}$.</li>
+              </ul>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.16.</strong> Tunjukkan bahwa kedua permukaan $2x^2 + 2y^2 - z^2 = 25$ dan $x^2 + y^2 = 5z$ saling bersinggungan di titik $(4, 3, 5)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.16</summary>
+            <div class="exercise-spoiler-body">
+              <p>Titik $(4, 3, 5)$ terletak pada kedua permukaan. Hitung gradien masing-masing permukaan di $(4, 3, 5)$:</p>
+              <ul>
+                <li>Untuk $F(x, y, z) = 2x^2 + 2y^2 - z^2 - 25$: $\nabla F(4, 3, 5) = (16,\, 12,\, -10)$, bidang singgung: $16(x - 4) + 12(y - 3) - 10(z - 5) = 0$.</li>
+                <li>Untuk $G(x, y, z) = x^2 + y^2 - 5z$: $\nabla G(4, 3, 5) = (8,\, 6,\, -5)$, bidang singgung: $8(x - 4) + 6(y - 3) - 5(z - 5) = 0$.</li>
+              </ul>
+              <p>Karena $\nabla F(4,3,5) = 2\nabla G(4,3,5)$, kedua bidang singgungnya berimpit, sehingga kedua permukaan saling bersinggungan di $(4, 3, 5)$.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.5: DERET TAYLOR & MACLAURIN
+             ================================================================ -->
+        <section id="deret-taylor" aria-labelledby="heading-2-5">
+          <h2 id="heading-2-5">2.5 Deret Taylor dan Deret Maclaurin Fungsi Dua Peubah</h2>
+          <p>
+            Permasalahan fungsi tak linear $z = F(x, y)$ sering kali dapat dihampiri menjadi bentuk polinomial maupun fungsi linear di sekitar titik tertentu $(a, b)$ menggunakan ekspansi deret Taylor.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.5 (Deret Taylor dan Deret Maclaurin Dua Peubah)</span>
+            <p><strong>Deret Taylor</strong> dari $F(x, y)$ di sekitar titik $(a, b)$ adalah:</p>
+            $$\begin{aligned}
+            F(x, y) &amp;= F(a, b) + \bigl[F_x(a, b)(x - a) + F_y(a, b)(y - b)\bigr] \\
+            &amp;\quad + \frac{1}{2!}\bigl[F_{xx}(a, b)(x - a)^2 + 2F_{xy}(a, b)(x - a)(y - b) + F_{yy}(a, b)(y - b)^2\bigr] \\
+            &amp;\quad + \frac{1}{3!}\bigl[F_{xxx}(a, b)(x - a)^3 + 3F_{xxy}(a, b)(x - a)^2(y - b) + 3F_{xyy}(a, b)(x - a)(y - b)^2 + F_{yyy}(a, b)(y - b)^3\bigr] + \cdots \\
+            &amp;= \sum_{n=0}^{\infty} \frac{1}{n!}\left[(x - a)\frac{\partial}{\partial x} + (y - b)\frac{\partial}{\partial y}\right]^n F(a, b).
+            \end{aligned}$$
+            <p>
+              <strong>Deret Maclaurin</strong> adalah kasus khusus deret Taylor di sekitar titik $(0, 0)$:
+              $$F(x, y) = \sum_{n=0}^{\infty} \frac{1}{n!}\left[x\frac{\partial}{\partial x} + y\frac{\partial}{\partial y}\right]^n F(0, 0).$$
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 2.17 (Ekspansi Deret Taylor di Titik $(1, 1)$).</strong>
+            Ekspansikan $F(x, y) = \arctan\dfrac{x}{y}$ di sekitar titik $(1, 1)$ hingga suku berderajat dua.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.17</summary>
+            <div class="exercise-spoiler-body">
+              <p>Hitung nilai fungsi dan turunan parsial hingga orde dua di $(1, 1)$:</p>
+              $$\begin{aligned}
+              F(x, y) &amp;= \arctan\frac{x}{y} &amp;\implies F(1, 1) &amp;= \frac{\pi}{4} \\
+              F_x(x, y) &amp;= \frac{y}{x^2 + y^2} &amp;\implies F_x(1, 1) &amp;= \frac{1}{2} \\
+              F_y(x, y) &amp;= \frac{-x}{x^2 + y^2} &amp;\implies F_y(1, 1) &amp;= -\frac{1}{2} \\
+              F_{xx}(x, y) &amp;= \frac{-2xy}{(x^2 + y^2)^2} &amp;\implies F_{xx}(1, 1) &amp;= -\frac{1}{2} \\
+              F_{xy}(x, y) &amp;= \frac{x^2 - y^2}{(x^2 + y^2)^2} &amp;\implies F_{xy}(1, 1) &amp;= 0 \\
+              F_{yy}(x, y) &amp;= \frac{2xy}{(x^2 + y^2)^2} &amp;\implies F_{yy}(1, 1) &amp;= \frac{1}{2}
+              \end{aligned}$$
+              <p>Substitusikan ke rumus deret Taylor di $(1, 1)$:</p>
+              $$\begin{aligned}
+              \arctan\frac{x}{y} &amp;= \frac{\pi}{4} + \frac{1}{2}(x - 1) - \frac{1}{2}(y - 1) + \frac{1}{2!}\left\{-\frac{1}{2}(x - 1)^2 + \frac{1}{2}(y - 1)^2\right\} + \cdots \\
+              &amp;= \frac{\pi}{4} + \frac{1}{2}(x - 1) - \frac{1}{2}(y - 1) - \frac{1}{4}(x - 1)^2 + \frac{1}{4}(y - 1)^2 + \cdots
+              \end{aligned}$$
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.6: NILAI EKSTRIM FUNGSI & METODE PENGALI LAGRANGE
+             ================================================================ -->
+        <section id="nilai-ekstrim" aria-labelledby="heading-2-6">
+          <h2 id="heading-2-6">2.6 Nilai Ekstrim Fungsi &amp; Metode Pengali Lagrange</h2>
+          <p>
+            Untuk mencari nilai ekstrim $z = f(x, y)$ pada domain $D$, kita terlebih dahulu menentukan <strong>titik-titik kritis</strong> yang terdiri atas tiga kemungkinan jenis:
+          </p>
+          <ol>
+            <li><strong>Titik Batas (Titik Biasa):</strong> titik $(x_0, y_0)$ yang terletak pada batas (<em>boundary</em>) himpunan $D$.</li>
+            <li><strong>Titik Stasioner:</strong> titik dalam $D$ yang memenuhi $\dfrac{\partial f}{\partial x}(x_0, y_0) = \dfrac{\partial f}{\partial y}(x_0, y_0) = 0$.</li>
+            <li><strong>Titik Singular:</strong> titik dalam $D$ tempat $f$ tidak terdiferensialkan (salah satu atau kedua turunan parsial $f_x(x_0, y_0), f_y(x_0, y_0)$ tidak ada).</li>
+          </ol>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 2.5 (Uji Turunan Parsial Kedua untuk Ekstrim Relatif)</span>
+            <p>
+              Misalkan $z = f(x, y)$ memiliki turunan parsial kedua yang kontinu pada persekitaran titik stasioner $(x_0, y_0)$ dengan $f_x(x_0, y_0) = f_y(x_0, y_0) = 0$, dan definisikan diskriminan Hessian:
+              $$\Delta = f_{xx}(x_0, y_0)\,f_{yy}(x_0, y_0) - \bigl[f_{xy}(x_0, y_0)\bigr]^2.$$
+            </p>
+            <ol>
+              <li>Jika $\Delta &gt; 0$ dan $f_{xx}(x_0, y_0) &lt; 0$, maka $f(x_0, y_0)$ adalah <strong>maksimum lokal</strong>.</li>
+              <li>Jika $\Delta &gt; 0$ dan $f_{xx}(x_0, y_0) &gt; 0$, maka $f(x_0, y_0)$ adalah <strong>minimum lokal</strong>.</li>
+              <li>Jika $\Delta &lt; 0$, maka $(x_0, y_0, f(x_0, y_0))$ adalah <strong>titik pelana</strong> (<em>saddle point</em>).</li>
+              <li>Jika $\Delta = 0$, pengujian tidak memberikan kesimpulan (perlu uji orde lebih tinggi atau analisis langsung).</li>
+            </ol>
+          </div>
+
+          <p>
+            <strong>Contoh 2.18.</strong> Tentukan nilai ekstrim fungsi $z = 3x^2 + y^2 - 9x + 4y$ beserta tafsiran geometrinya.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.18</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Syarat stasioner: $f_x = 6x - 9 = 0 \implies x_0 = \frac{3}{2}$ dan $f_y = 2y + 4 = 0 \implies y_0 = -2$. Di titik kritis $(\frac{3}{2}, -2)$:
+                $$f_{xx} = 6, \qquad f_{xy} = 0, \qquad f_{yy} = 2 \implies \Delta = (6)(2) - 0 = 12 &gt; 0, \; f_{xx} &gt; 0.$$
+                Jadi terjadi <strong>minimum lokal</strong> (sekaligus global) di $(\frac{3}{2}, -2)$ sebesar $z_{\min} = -\frac{43}{4} = -10{,}75$. Secara geometris, melengkapkan kuadrat memberi $z = 3\!\left(x - \frac{3}{2}\right)^2 + (y + 2)^2 - \frac{43}{4}$, yaitu paraboloida eliptik terbuka ke atas dengan puncak di $(\frac{3}{2}, -2, -10{,}75)$.
+              </p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.19 (Jarak Minimum dari Titik Asal ke Permukaan).</strong>
+            Tentukan jarak minimum antara titik asal $(0, 0, 0)$ dan permukaan $z^2 = x^2 y + 4$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.19</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Meminimumkan jarak $d = \sqrt{x^2 + y^2 + z^2}$ setara dengan meminimumkan kuadrat jarak $F(x, y) = x^2 + y^2 + x^2 y + 4$.
+                $$F_x = 2x + 2xy = 2x(1 + y) = 0 \implies x = 0 \text{ atau } y = -1, \qquad F_y = 2y + x^2 = 0.$$
+                Diperoleh tiga titik kritis: $(0, 0)$, $(\sqrt{2}, -1)$, dan $(-\sqrt{2}, -1)$. Dengan $F_{xx} = 2 + 2y,\, F_{xy} = 2x,\, F_{yy} = 2$:
+              </p>
+              <ul>
+                <li>Di $(0, 0)$: $\Delta = (2)(2) - 0 = 4 &gt; 0$ dan $F_{xx}(0,0) = 2 &gt; 0 \implies$ <strong>minimum</strong> dengan $d^2 = 4$, sehingga jarak minimum $d = 2$ satuan.</li>
+                <li>Di $(\pm\sqrt{2}, -1)$: $\Delta = (0)(2) - (\pm 2\sqrt{2})^2 = -8 &lt; 0 \implies$ <strong>titik pelana</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <h3>Nilai Ekstrim Fungsi Implisit $F(x, y, z) = 0$</h3>
+          <p>
+            Jika $z = f(x, y)$ diberikan secara implisit oleh $F(x, y, z) = 0$ dengan $F_z \neq 0$, syarat perlu titik stasioner $z_x = z_y = 0$ setara dengan $F_x = 0$ dan $F_y = 0$ bersama $F(x, y, z) = 0$. Penurunan lanjut di titik stasioner (tempat $z_x = z_y = 0$) memberikan:
+            $$z_{xx} = -\frac{F_{xx}}{F_z}, \qquad z_{xy} = -\frac{F_{xy}}{F_z}, \qquad z_{yy} = -\frac{F_{yy}}{F_z}, \qquad \Delta = z_{xx}z_{yy} - (z_{xy})^2 = \frac{F_{xx}F_{yy} - (F_{xy})^2}{F_z^2}.$$
+            Karena $F_z^2 &gt; 0$, tanda $\Delta$ sama dengan tanda $\Delta_F = F_{xx}F_{yy} - (F_{xy})^2$, sedangkan jenis minimum/maksimum ditentukan oleh tanda $z_{xx} = -\frac{F_{xx}}{F_z}$.
+          </p>
+
+          <p>
+            <strong>Contoh 2.20.</strong> Tentukan nilai ekstrim $z$ dari persamaan implisit $x^2 + y^2 + 2z^2 - 6xz - 8yz + 23 = 0$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.20</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Dari $F(x, y, z) = x^2 + y^2 + 2z^2 - 6xz - 8yz + 23 = 0$, turunan pertamanya adalah $F_x = 2x - 6z$, $F_y = 2y - 8z$, $F_z = 4z - 6x - 8y$, sedangkan turunan keduanya $F_{xx} = 2,\, F_{yy} = 2,\, F_{xy} = 0$. Syarat $F_x = F_y = 0$ memberi $x = 3z$ dan $y = 4z$. Substitusikan ke $F = 0$:
+                $$9z^2 + 16z^2 + 2z^2 - 18z^2 - 32z^2 + 23 = 0 \implies -23z^2 + 23 = 0 \implies z = \pm 1.$$
+              </p>
+              <ul>
+                <li>Untuk $z = 1$, titik kritis $(3, 4, 1)$: $F_z(3, 4, 1) = 4 - 18 - 32 = -46 \neq 0$, $\Delta_F = 4 &gt; 0$, dan $z_{xx} = -\frac{2}{-46} = \frac{1}{23} &gt; 0 \implies$ <strong>minimum relatif</strong> $z_{\min} = 1$.</li>
+                <li>Untuk $z = -1$, titik kritis $(-3, -4, -1)$: $F_z(-3, -4, -1) = -4 + 18 + 32 = +46 \neq 0$, $\Delta_F = 4 &gt; 0$, dan $z_{xx} = -\frac{2}{46} = -\frac{1}{23} &lt; 0 \implies$ <strong>maksimum relatif</strong> $z_{\max} = -1$.</li>
+              </ul>
+            </div>
+          </details>
+
+          <h3>Titik Kritis Singular</h3>
+          <p>
+            <strong>Contoh 2.21 &amp; 2.22 (Fungsi dengan Titik Singular di $(0, 0)$).</strong>
+            Selidiki ekstrim fungsi (a) $f(x, y) = |x| + |y|$ dan (b) $f(x, y) = |x| - |y|$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.21 &amp; 2.22</summary>
+            <div class="exercise-spoiler-body">
+              <ul>
+                <li><strong>(a) $f(x, y) = |x| + |y|$:</strong> Titik $(0, 0)$ adalah titik singular karena $f_x(0,0)$ dan $f_y(0,0)$ tidak ada. Karena $|x| + |y| \ge 0 = f(0,0)$ untuk seluruh $(x, y) \in \mathbb{R}^2$, maka $f(0, 0) = 0$ adalah <strong>minimum mutlak</strong>.</li>
+                <li><strong>(b) $f(x, y) = |x| - |y|$:</strong> Di sekitar titik singular $(0, 0)$, sepanjang $y = 0$ berlaku $f(x, 0) = |x| \ge 0$, sedangkan sepanjang $x = 0$ berlaku $f(0, y) = -|y| \le 0$. Jadi $(0, 0)$ adalah <strong>titik pelana</strong>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <h3>Nilai Ekstrim Fungsi Tiga Peubah $w = F(x, y, z)$</h3>
+          <p>
+            Syarat perlu untuk fungsi $w = F(x, y, z)$ memiliki ekstrim di titik stasioner $(x_0, y_0, z_0)$ adalah $F_x = F_y = F_z = 0$. Syarat cukupnya menggunakan minor-minor utama matriks turunan kedua (matriks Hessian, di diktat disebut juga matriks Jacobian dari $\nabla F$) di titik kritis $(x_0, y_0, z_0)$:
+          </p>
+          $$D_1 = F_{xx}, \qquad D_2 = \begin{vmatrix} F_{xx} &amp; F_{xy} \\ F_{yx} &amp; F_{yy} \end{vmatrix}, \qquad D_3 = \begin{vmatrix} F_{xx} &amp; F_{xy} &amp; F_{xz} \\ F_{yx} &amp; F_{yy} &amp; F_{yz} \\ F_{zx} &amp; F_{zy} &amp; F_{zz} \end{vmatrix}.$$
+          <ul>
+            <li>Jika $D_1 &gt; 0$, $D_2 &gt; 0$, dan $D_3 &gt; 0$, maka $(x_0, y_0, z_0)$ adalah <strong>minimum lokal</strong>.</li>
+            <li>Jika $D_1 &lt; 0$, $D_2 &gt; 0$, dan $D_3 &lt; 0$, maka $(x_0, y_0, z_0)$ adalah <strong>maksimum lokal</strong>.</li>
+          </ul>
+
+          <p>
+            <strong>Contoh 2.23.</strong> Dapatkan semua nilai maksimum dan minimum dari $F(x, y, z) = x^2 + 3y^2 + 4z^2 - 2xy - 2yz + 2xz$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.23</summary>
+            <div class="exercise-spoiler-body">
+              <p>Turunan parsial pertamanya menghasilkan sistem linear homogen:</p>
+              $$\begin{cases}
+              F_x = 2x - 2y + 2z = 0 \\
+              F_y = -2x + 6y - 2z = 0 \\
+              F_z = 2x - 2y + 8z = 0
+              \end{cases}$$
+              <p>Matriks turunan kedua (Hessian) bersifat konstan:</p>
+              $$D_1 = 2 &gt; 0, \qquad D_2 = \begin{vmatrix} 2 &amp; -2 \\ -2 &amp; 6 \end{vmatrix} = 8 &gt; 0, \qquad D_3 = \begin{vmatrix} 2 &amp; -2 &amp; 2 \\ -2 &amp; 6 &amp; -2 \\ 2 &amp; -2 &amp; 8 \end{vmatrix} = 8(11 - 3 - 2) = 48 &gt; 0.$$
+              <p>Karena $D_3 \neq 0$, satu-satunya titik kritis adalah $(0, 0, 0)$. Karena $D_1 &gt; 0, D_2 &gt; 0, D_3 &gt; 0$, maka $(0, 0, 0)$ merupakan <strong>minimum</strong> dengan $F(0, 0, 0) = 0$.</p>
+            </div>
+          </details>
+
+          <h3>Nilai Ekstrim Terkendala dengan Metode Pengali Lagrange</h3>
+          <p>
+            Untuk memaksimumkan atau meminimumkan $z = f(x, y)$ dengan syarat tambahan (kendala) $g(x, y) = 0$, dibentuk <strong>Fungsi Lagrange</strong>:
+            $$F(x, y) = f(x, y) + \lambda g(x, y),$$
+            di mana $\lambda$ disebut <strong>pengali Lagrange</strong>. Titik kritis $(x_0, y_0)$ dicari dari sistem $F_x = 0$, $F_y = 0$, dan $g(x, y) = 0$. Jenis ekstrimnya dapat diuji lewat tanda diferensial kedua terbatas pada kendala $g_x\,dx + g_y\,dy = 0$:
+            $$d^2 F(x_0, y_0) = F_{xx}\,dx^2 + 2F_{xy}\,dx\,dy + F_{yy}\,dy^2 \quad \begin{cases} &lt; 0 \implies \text{maksimum}, \\ &gt; 0 \implies \text{minimum}. \end{cases}$$
+          </p>
+
+          <p>
+            <strong>Contoh 2.24.</strong> Tentukan nilai maksimum dan minimum dari $f(x, y) = 6 - 4x - 3y$ dengan kendala $x^2 + y^2 = 1$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.24</summary>
+            <div class="exercise-spoiler-body">
+              <p>Bentuk fungsi Lagrange $F(x, y) = 6 - 4x - 3y + \lambda(x^2 + y^2 - 1)$:</p>
+              $$F_x = -4 + 2\lambda x = 0 \implies x = \frac{2}{\lambda}, \qquad F_y = -3 + 2\lambda y = 0 \implies y = \frac{3}{2\lambda}.$$
+              <p>Substitusikan ke $x^2 + y^2 = 1$:</p>
+              $$\frac{4}{\lambda^2} + \frac{9}{4\lambda^2} = 1 \implies \frac{25}{4\lambda^2} = 1 \implies \lambda = \pm\frac{5}{2}.$$
+              <p>Diferensial keduanya adalah $d^2 F(x, y) = 2\lambda(dx^2 + dy^2)$:</p>
+              <ul>
+                <li>Untuk $\lambda = \frac{5}{2}$: titik kritis $(\frac{4}{5}, \frac{3}{5})$, $d^2 F &gt; 0 \implies$ <strong>minimum</strong> dengan $f\!\left(\frac{4}{5}, \frac{3}{5}\right) = 6 - \frac{16}{5} - \frac{9}{5} = 1$.</li>
+                <li>Untuk $\lambda = -\frac{5}{2}$: titik kritis $(-\frac{4}{5}, -\frac{3}{5})$, $d^2 F &lt; 0 \implies$ <strong>maksimum</strong> dengan $f\!\left(-\frac{4}{5}, -\frac{3}{5}\right) = 6 + \frac{16}{5} + \frac{9}{5} = 11$.</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 2.6 (Operator Gradien $\nabla$)</span>
+            <p>
+              Jika $f$ terdiferensialkan terhadap $x, y, z$, maka <strong>vektor gradien</strong> $\nabla f$ didefinisikan sebagai:
+              $$\nabla f(x, y, z) = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k}$$
+              (dan untuk dua peubah, $\nabla f(x, y) = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j}$).
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 2.25.</strong> Dapatkan vektor gradien fungsi $f(x, y) = \sin x + e^{xy}$ pada titik $(0, 1)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.25</summary>
+            <div class="exercise-spoiler-body">
+              $$\nabla f(x, y) = (\cos x + y e^{xy})\mathbf{i} + x e^{xy}\mathbf{j} \implies \nabla f(0, 1) = (1 + 1\cdot e^0)\mathbf{i} + 0\,\mathbf{j} = 2\mathbf{i}.$$
+            </div>
+          </details>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Metode Pengali Lagrange dengan Operator Gradien</span>
+            <p><strong>1. Satu Kendala</strong> ($g(x, y, z) = k$, dengan $\nabla g \neq \mathbf{0}$): Cari $(x, y, z, \lambda)$ yang memenuhi:</p>
+            $$\nabla f(x, y, z) = \lambda\,\nabla g(x, y, z), \qquad g(x, y, z) = k.$$
+            <p><strong>2. Dua Kendala</strong> ($g(x, y, z) = 0$ dan $h(x, y, z) = 0$): Cari $(x, y, z, \lambda, \mu)$ yang memenuhi:</p>
+            $$\nabla f(x, y, z) = \lambda\,\nabla g(x, y, z) + \mu\,\nabla h(x, y, z), \qquad g(x, y, z) = 0, \quad h(x, y, z) = 0.$$
+            <p>Nilai fungsi terbesar di antara titik-titik kritis pada daerah kendala kompak adalah maksimum dan yang terkecil adalah minimum.</p>
+          </div>
+
+          <p>
+            <strong>Contoh 2.26 (Luas Persegi Panjang Terbesar dengan Diagonal $2$).</strong>
+            Berapa luas daerah terbesar yang dapat dimiliki suatu persegi panjang jika panjang diagonalnya $2$?
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.26</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Misalkan panjang sisi-sisinya $x &gt; 0$ dan $y &gt; 0$. Kita memaksimumkan luas $f(x, y) = xy$ dengan kendala $g(x, y) = x^2 + y^2 - 4 = 0$. Dari $\nabla f = \lambda \nabla g$:
+                $$y = 2\lambda x, \qquad x = 2\lambda y, \qquad x^2 + y^2 = 4.$$
+                Kalikan persamaan pertama dengan $y$ dan kedua dengan $x$: $y^2 = 2\lambda xy = x^2$. Karena $x, y &gt; 0$, maka $2x^2 = 4 \implies x = y = \sqrt{2}$ (dengan $\lambda = \frac{1}{2}$). Jadi luas maksimumnya adalah $f(\sqrt{2}, \sqrt{2}) = 2$ satuan luas (persegi).
+              </p>
+            </div>
+          </details>
+
+          <figure class="math-figure">
+            <svg viewBox="0 0 640 220" role="img" aria-label="Gambar 2.4: Persegi panjang dengan diagonal 2 dan persinggungan kurva ketinggian xy = 2 dengan lingkaran kendala x^2 + y^2 = 4">
+              <!-- Panel kiri: Persegi panjang dalam lingkaran -->
+              <g transform="translate(20, 10)">
+                <text x="135" y="14" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--text-primary)">Persegi Panjang Diagonal = 2</text>
+                <line x1="25" y1="165" x2="245" y2="165" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <line x1="55" y1="190" x2="55" y2="30" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <rect x="55" y="65" width="125" height="100" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="2"/>
+                <line x1="55" y1="165" x2="180" y2="65" stroke="var(--thm-border)" stroke-width="2" stroke-dasharray="4 2"/>
+                <text x="120" y="108" font-size="10.5" font-weight="600" fill="var(--thm-title)" transform="rotate(-38 120 108)">√(x²+y²) = 2</text>
+                <circle cx="180" cy="65" r="3.5" fill="var(--accent-primary)"/>
+                <text x="186" y="63" font-size="10.5" fill="var(--text-primary)">(x, y)</text>
+                <text x="118" y="182" font-size="11" fill="var(--text-secondary)">x</text>
+                <text x="42" y="118" font-size="11" fill="var(--text-secondary)">y</text>
+              </g>
+
+              <line x1="320" y1="20" x2="320" y2="200" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="5 5"/>
+
+              <!-- Panel kanan: Persinggungan kurva kendala dan kontur -->
+              <g transform="translate(340, 10)">
+                <text x="140" y="14" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--text-primary)">Singgungan Kendala &amp; Kontur xy = K</text>
+                <line x1="35" y1="120" x2="245" y2="120" stroke="var(--text-secondary)" stroke-width="1.3"/>
+                <line x1="140" y1="195" x2="140" y2="30" stroke="var(--text-secondary)" stroke-width="1.3"/>
+                <!-- Lingkaran kendala r=2 (radius 58px) -->
+                <circle cx="140" cy="120" r="58" fill="none" stroke="var(--def-border)" stroke-width="2.2"/>
+                <!-- Hiperbola xy = 1 (di dalam) -->
+                <path d="M 149 40 Q 156 104 222 111" fill="none" stroke="var(--text-muted)" stroke-width="1.3" stroke-dasharray="3 2"/>
+                <!-- Hiperbola xy = 2 (menyinggung di (sqrt(2), sqrt(2)) -> (181, 79)) -->
+                <path d="M 157 38 Q 168 85 232 103" fill="none" stroke="var(--lem-border)" stroke-width="2.2"/>
+                <!-- Hiperbola xy = 3 (di luar) -->
+                <path d="M 168 38 Q 186 76 238 92" fill="none" stroke="var(--thm-border)" stroke-width="1.3" stroke-dasharray="3 2"/>
+                <circle cx="181" cy="79" r="4" fill="var(--lem-border)"/>
+                <text x="190" y="75" font-size="10" font-weight="700" fill="var(--lem-title)">x = y = √2 (K = 2)</text>
+                <text x="72" y="185" font-size="10" fill="var(--def-title)">x² + y² = 4</text>
+              </g>
+            </svg>
+            <figcaption>Gambar 2.4: Geometri Contoh 2.26 — nilai maksimum luas $xy = K$ tercapai saat kurva ketinggian menyinggung lingkaran kendala $x^2 + y^2 = 4$ di titik $( \sqrt{2}, \sqrt{2} )$.</figcaption>
+          </figure>
+
+          <p>
+            <strong>Contoh 2.27 (Ekstrim pada Elips).</strong>
+            Cari nilai maksimum dan minimum fungsi $f(x, y) = x^2 - y^2$ pada elips $\dfrac{x^2}{4} + y^2 = 1$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.27</summary>
+            <div class="exercise-spoiler-body">
+              <p>Dari $\nabla f = \lambda \nabla g$, diperoleh sistem:</p>
+              $$2x = \frac{1}{2}\lambda x, \qquad -2y = 2\lambda y, \qquad \frac{x^2}{4} + y^2 = 1.$$
+              <ul>
+                <li>Jika $x \neq 0$, maka $\lambda = 4 \implies -2y = 8y \implies y = 0$, sehingga titik kritisnya $(\pm 2, 0)$ dan $f(\pm 2, 0) = 4$.</li>
+                <li>Jika $y \neq 0$, maka $\lambda = -1 \implies 2x = -\frac{1}{2}x \implies x = 0$, sehingga titik kritisnya $(0, \pm 1)$ dan $f(0, \pm 1) = -1$.</li>
+              </ul>
+              <p>Karena elips adalah himpunan kompak, maka $f_{\max} = 4$ di $(\pm 2, 0)$ dan $f_{\min} = -1$ di $(0, \pm 1)$.</p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.28 (Fungsi Tiga Peubah Satu Kendala).</strong>
+            Tentukan nilai ekstrim $f(x, y, z) = 3x + 2y + z + 5$ dengan kendala $9x^2 + 4y^2 - z = 0$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.28</summary>
+            <div class="exercise-spoiler-body">
+              <p>Persamaan Lagrange $\nabla f = \lambda \nabla g$ memberikan:</p>
+              $$18\lambda x = 3, \qquad 8\lambda y = 2, \qquad -\lambda = 1, \qquad 9x^2 + 4y^2 - z = 0.$$
+              <p>
+                Dari $-\lambda = 1$ diperoleh $\lambda = -1$, lalu $x = -\frac{1}{6}$, $y = -\frac{1}{4}$, dan $z = 9(\frac{1}{36}) + 4(\frac{1}{16}) = \frac{1}{2}$. Nilai fungsinya di titik kritis adalah $f\!\left(-\frac{1}{6}, -\frac{1}{4}, \frac{1}{2}\right) = \frac{9}{2}$. Dengan membandingkan titik lain pada kendala, misalnya $f(0, 0, 0) = 5 &gt; \frac{9}{2}$, diperoleh <strong>nilai minimum</strong> sebesar $\frac{9}{2}$ (tidak ada maksimum karena $z \to +\infty$ membuat $f \to +\infty$).
+              </p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 2.29 (Optimasi dengan Dua Kendala).</strong>
+            Tentukan nilai maksimum dan minimum fungsi $f(x, y, z) = x + 2y + 3z$ pada elips perpotongan tabung $x^2 + y^2 = 2$ dan bidang $y + z = 1$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 2.29</summary>
+            <div class="exercise-spoiler-body">
+              <p>Dengan fungsi Lagrange $F(x, y, z) = x + 2y + 3z - \lambda(x^2 + y^2 - 2) - \mu(y + z - 1)$, kondisi $\nabla f = \lambda\nabla g + \mu\nabla h$ memberikan:</p>
+              $$1 = 2\lambda x, \qquad 2 = 2\lambda y + \mu, \qquad 3 = \mu, \qquad x^2 + y^2 = 2, \qquad y + z = 1.$$
+              <p>
+                Diperoleh $\mu = 3$, $x = \frac{1}{2\lambda}$, dan $y = -\frac{1}{2\lambda}$. Substitusi ke $x^2 + y^2 = 2$ memberi $\frac{2}{4\lambda^2} = 2 \implies \lambda = \pm\frac{1}{2}$.
+              </p>
+              <ul>
+                <li>Untuk $\lambda = \frac{1}{2}$: titik kritis $(1, -1, 2) \implies f(1, -1, 2) = 1 - 2 + 6 = 5$ (<strong>maksimum</strong>).</li>
+                <li>Untuk $\lambda = -\frac{1}{2}$: titik kritis $(-1, 1, 0) \implies f(-1, 1, 0) = -1 + 2 + 0 = 1$ (<strong>minimum</strong>).</li>
+              </ul>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.7: LATIHAN SOAL (1 - 50)
+             ================================================================ -->
+        <section id="latihan-soal" aria-labelledby="heading-2-7">
+          <h2 id="heading-2-7">2.7 Latihan Soal</h2>
+          <ol>
+            <li>
+              Dapatkan $z_x$, $z_y$, $z_{xx}$, $z_{xy}$, dan $z_{yy}$ dari:
+              <ol type="a">
+                <li>$z = \sin 3x \cos 4y$</li>
+                <li>$z = x^2 y - xy^2$</li>
+                <li>$z = 2x^2 - 5xy + y^2$</li>
+                <li>$z = x^2 - 3xy + \ln(x^2 + y^2)$</li>
+                <li>$z = \ln\sqrt{x^2 + y^2}$</li>
+              </ol>
+            </li>
+            <li>Jika $U(x, y, z) = (x^2 + y^2 + z^2)^{-1/2}$, dapatkan nilai dari $U_{xx} + U_{yy} + U_{zz}$.</li>
+            <li>
+              Tunjukkan jika:
+              <ol type="a">
+                <li>$z = \sqrt{x^2 + y^2}$, maka $xz_x + yz_y = z$.</li>
+                <li>$z = \ln\sqrt{x^2 + y^2}$, maka $xz_x + yz_y = 1$ (catatan: jika $z = \ln(x^2 + y^2)$, maka $xz_x + yz_y = 2$).</li>
+                <li>$z = \dfrac{xy}{x - y}$, maka $x^2 z_{xx} + 2xy z_{xy} + y^2 z_{yy} = 0$.</li>
+                <li>$v = (x^2 + y^2 + z^2)^{-1/2}$, maka $v_{xx} + v_{yy} + v_{zz} = 0$ bila $x^2 + y^2 + z^2 \neq 0$.</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan diferensial total $dz$ dan $d^2 z$ dari:
+              <ol type="a" class="problem-grid">
+                <li>$z = \dfrac{x}{y^2}$ pada $(1, 1)$</li>
+                <li>$U = \arctan\dfrac{y}{x}$</li>
+                <li>$v = e^{-x/y}$</li>
+                <li>$z = x^3 - 3xy + y^3$</li>
+                <li>$z = \sin^2 x + \sin^2 y$</li>
+                <li>$z = \ln(x^2 + y^2)$</li>
+                <li>$z = \ln\tan\dfrac{y}{x}$</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan nilai hampiran untuk:
+              <ol type="a">
+                <li>$(1{,}02)^3 + (0{,}97)^2$</li>
+                <li>$\sqrt{(4{,}05)^2 + (2{,}93)^2}$</li>
+                <li>Isi kerucut jika tingginya $30\text{ cm}$ bertambah sebesar $3\text{ mm}$ dan jari-jari lingkaran alasnya menyusut $1\text{ mm}$ dari $10\text{ cm}$.</li>
+                <li>Isi balok dengan ukuran panjang $14{,}03\text{ m}$, lebar $10{,}98\text{ m}$, dan tinggi $7{,}01\text{ m}$.</li>
+                <li>Ralat relatif maksimum pada $g$ jika $g$ dihitung dari formula $s = \frac{1}{2}gt^2$ bila ada kemungkinan ralat $1\%$ dalam pengukuran $s$ dan kemungkinan ralat $\frac{1}{4}\%$ dalam pengukuran $t$.</li>
+              </ol>
+            </li>
+            <li>
+              Jelaskan mengapa fungsi terdiferensial pada titik yang diberikan dan carilah linierisasi fungsi di titik tersebut:
+              <ol type="a" class="problem-grid">
+                <li>$f(x, y) = x\sqrt{y}$, di titik $(1, 4)$</li>
+                <li>$f(x, y) = y\ln x$, di titik $(2, 1)$</li>
+                <li>$f(x, y) = e^x \cos(xy)$, di titik $(0, 0)$</li>
+                <li>$f(x, y) = \sqrt{1 + x^2 y^2}$, di titik $(0, 2)$</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan $\dfrac{dz}{dt}$ jika:
+              <ol type="a">
+                <li>$z = x^2 y^3,\; x = 2t^3,\; y = 3t^2$</li>
+                <li>$z = x\cos y + y\sin x,\; x = \sin 2t,\; y = \cos 2t$</li>
+                <li>$z = \sqrt{x^2 + y^2},\; x = e^{2t},\; y = e^{-2t}$</li>
+                <li>$z = x e^{y/w},\; x = t^2,\; y = 1 - t,\; w = 1 + 2t$</li>
+                <li>$z = x\ln(x + 2w),\; x = \sin t,\; y = \cos t,\; w = t^2$</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan $\dfrac{\partial z}{\partial s}$ dan $\dfrac{\partial z}{\partial t}$ jika:
+              <ol type="a">
+                <li>$z = x^2 y^3,\; x = s + t,\; y = st$</li>
+                <li>$z = \dfrac{x}{y},\; x = se^t,\; y = 1 + se^{-t}$</li>
+                <li>$z = \arctan(2x + y),\; x = s^2 t,\; y = s\ln t$</li>
+                <li>$z = e^r \cos\theta,\; r = st^2,\; \theta = \sqrt{s^2 + t^2}$</li>
+                <li>$z = x\ln(x + 2w),\; x = \sin(st),\; w = t^2 + s$</li>
+              </ol>
+            </li>
+            <li>
+              Jika $U = x^3 y$ sedangkan $x$ dan $y$ fungsi dari $t$ yang diberikan oleh sistem:
+              $$\begin{aligned} x^5 + y &amp;= t \\ x^2 + y^3 &amp;= t^2 \end{aligned}$$
+              tentukanlah $\dfrac{dU}{dt}$.
+            </li>
+            <li>
+              Dapatkan turunan parsial yang ditunjuk:
+              <ol type="a">
+                <li>$w = x e^{y/z},\; x = t^2,\; y = 1 - t,\; z = 1 + 2t$, cari $\dfrac{dw}{dt}$ saat $t = 0$ (atau dengan parameter $s = 1, t = 0$).</li>
+                <li>$w = xy + yz + xz,\; x = st,\; y = e^{st},\; z = t^2$, cari $\dfrac{\partial w}{\partial s}$ dan $\dfrac{\partial w}{\partial t}$ pada $s = 0, t = 1$.</li>
+                <li>$u = \dfrac{x + y}{y + z},\; x = p + r + t,\; y = p - r + t,\; z = p + r - t$, cari $\dfrac{\partial u}{\partial p}$, $\dfrac{\partial u}{\partial r}$, dan $\dfrac{\partial u}{\partial t}$.</li>
+              </ol>
+            </li>
+            <li>
+              <ol type="a">
+                <li>Dapatkan $\dfrac{dy}{dx}$ dan $\dfrac{d^2 y}{dx^2}$ jika $x^2 - xy + y^3 = 8$.</li>
+                <li>Dapatkan $\dfrac{\partial z}{\partial x}$, $\dfrac{\partial^2 z}{\partial x^2}$, dan $\dfrac{\partial^2 z}{\partial x\,\partial y}$ jika $xyz = \cos(x + y + z)$.</li>
+                <li>Dapatkan $\dfrac{\partial z}{\partial x}$, $\dfrac{\partial^2 z}{\partial x^2}$, dan $\dfrac{\partial^2 z}{\partial x\,\partial y}$ jika $\ln(x + yz) = 1 - x y^2 z^3$.</li>
+              </ol>
+            </li>
+            <li>Jika $u = f(x - y, y - x)$, tunjukkan bahwa $u_x + u_y = 0$.</li>
+            <li>Jika $u = f(x, y)$ serta $x = r\cos\theta$ dan $y = r\sin\theta$, tunjukkan bahwa $(u_x)^2 + (u_y)^2 = (u_r)^2 + \dfrac{1}{r^2}(u_\theta)^2$.</li>
+            <li>
+              Dapatkan $u_x, u_y, v_x$, dan $v_y$ jika diberikan:
+              $$\begin{aligned} 2u - v + x^2 + xy &amp;= 0 \\ u + 2v + xy - y^2 &amp;= 0 \end{aligned}$$
+            </li>
+            <li>Dapatkan $\dfrac{du}{dx}$ jika $u = \sin(x^2 + y^2)$ dengan kendala $a^2 x^2 + b^2 y^2 = c^2$.</li>
+            <li>
+              Dapatkan persamaan garis singgung dan bidang normal pada kurva:
+              <ol type="a">
+                <li>$x = 2t,\; y = t^2,\; z = t^3$ di titik $t = 1$.</li>
+                <li>$x^2 + 2y^2 + 2z^2 = 5$ dan $3x - 2y - 2z = 0$ di titik $(1, 1, 1)$.</li>
+                <li>$9x^2 + 4y^2 - 36z = 0$ dan $3x + y + z - z^2 - 1 = 0$ di titik $(2, -3, 2)$.</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan persamaan bidang singgung dan garis normal pada permukaan bidang lengkung:
+              <ol type="a">
+                <li>$x^2 + y^2 + z^2 = 14$ di titik $(1, -2, 3)$.</li>
+                <li>$x^2 + 2z^2 = 3y^2$ di titik $(2, -2, -2)$.</li>
+              </ol>
+            </li>
+            <li>
+              Ekspansikan fungsi berikut menurut deret Taylor/Maclaurin pada titik yang diberikan:
+              <ol type="a">
+                <li>$f(x, y) = -x^2 + 2xy + 3y^2 - 6x - 2y - 4$ di titik $(-2, 1)$.</li>
+                <li>$f(x, y) = 2xy + x^2 + x^3$ di titik $(1, 2)$.</li>
+                <li>$f(x, y) = e^{x + y}\sin(x + y)$ di titik $(0, 0)$.</li>
+                <li>$f(x, y) = \sqrt{1 - x^2 - 3y^2}$ di titik $(0, 0)$ hingga suku berderajat $3$.</li>
+              </ol>
+            </li>
+            <li>
+              Kembangkan menurut deret Taylor:
+              <ol type="a">
+                <li>$f(x, y, z) = xz + y^2$ di sekitar titik $(1, -1, 2)$.</li>
+                <li>$f(x, y, z) = x^2 + y^2 + z^2 + 2xy - yz - 4x - 3y - z + 4$ di sekitar titik $(1, 1, 1)$.</li>
+              </ol>
+            </li>
+            <li>
+              Gunakan deret Taylor hingga suku berderajat dua saja untuk menaksir nilai:
+              <ol type="a">
+                <li>$\sqrt{1{,}03}\cdot \sqrt[3]{0{,}98}$</li>
+                <li>$(0{,}95)^{2{,}01}$</li>
+                <li>$(3{,}02)^3 \cdot (1{,}97)^2$</li>
+              </ol>
+            </li>
+            <li>
+              Jika $u$ adalah fungsi homogen derajat $n$ dalam $x$ dan $y$, tunjukkan bahwa:
+              <ol type="a">
+                <li>$x u_{xy} + y u_{yy} = (n - 1) u_y$</li>
+                <li>$x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = n(n - 1)u$</li>
+              </ol>
+            </li>
+            <li>Jika $u$ adalah fungsi homogen derajat $n$ dalam $x, y$, dan $z$, tunjukkan bahwa $x u_x + y u_y + z u_z = nu$.</li>
+            <li>
+              <ol type="a">
+                <li>Jika $u = \arcsin\!\left(\dfrac{x^2 + y^2}{x + y}\right)$, buktikan bahwa $x u_x + y u_y = \tan u$.</li>
+                <li>Jika $u = (x^2 + y^2)^{1/3}$, buktikan bahwa $x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = -\frac{2}{9} u$.</li>
+              </ol>
+            </li>
+            <li>
+              Tunjukkan bahwa panjang kurva ruang $x = f(t),\, y = g(t),\, z = h(t)$ dari $t = t_0$ sampai $t = t_1$ adalah:
+              $$S = \int_{t_0}^{t_1} \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2}\,dt.$$
+            </li>
+            <li>
+              Dapatkan semua titik kritis dan tentukan apakah masing-masing memberikan maksimum lokal, minimum lokal, atau titik pelana:
+              <ol type="a">
+                <li>$f(x, y) = (x - 1)^2 + (y - 3)^2$</li>
+                <li>$f(x, y) = 2x^2 + y^2 + 6xy + 10x - 6y + 5$</li>
+                <li>$F(x, y) = e^{-(x^2 + y^2 - 4y)} + (y - 2)^2$</li>
+                <li>$f(x, y) = xy + \dfrac{2}{x} + \dfrac{4}{y}$</li>
+                <li>$f(x, y) = \cos x + \cos y + \cos(x + y),\; 0 &lt; x &lt; \frac{\pi}{2},\; 0 &lt; y &lt; 2\pi$</li>
+                <li>$f(x, y) = x^2 + a^2 - 2ax\cos y,\; -\pi &lt; y &lt; \frac{\pi}{2}$</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan nilai ekstrim dari:
+              <ol type="a">
+                <li>$u = x^2 + y^2 + z^2 - xy + x - 2z$</li>
+                <li>$u = -2x^2 - y^2 - 3z^2 + 2xy - 2xz$</li>
+                <li>$u = 2x^2 + y^2 + 2z^2 + 2xy + 2yz + 2xz + x - 3z$</li>
+              </ol>
+            </li>
+            <li>
+              Tentukan apakah fungsi berikut memiliki maksimum lokal, minimum lokal, atau bukan keduanya di $O(0, 0, 0)$:
+              <ol type="a">
+                <li>$u = x^2 + y^2 + z^2 + xy + yz + xz$</li>
+                <li>$u = -x^2 - 2y^2 - z^2 + yz$</li>
+                <li>$u = x^2 - y^2 + 3z^2 + 12xy$</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan nilai ekstrim $z$ dari persamaan implisit:
+              <ol type="a">
+                <li>$x^2 + y^2 + z^2 - 2x + 4y - 6z - 11 = 0$</li>
+                <li>$x^3 - y^2 + z^2 - 3x + 4y + z - 8 = 0$</li>
+              </ol>
+            </li>
+            <li>Tentukan nilai maksimum $f(x, y) = xy$ dengan kendala $g(x, y) = 4x^2 + 9y^2 - 36 = 0$.</li>
+            <li>Tentukan nilai maksimum $f(x, y) = 4x^2 - 4xy + y^2$ dengan kendala $x^2 + y^2 = 4$.</li>
+            <li>Tentukan nilai minimum $f(x, y) = x^2 + 4xy + y^2$ dengan kendala $x - y - 6 = 0$.</li>
+            <li>Tentukan nilai minimum $f(x, y) = 4x - 2y + 30$ dengan kendala $xy + 3 = 0$ (untuk daerah $x, y$ yang relevan).</li>
+            <li>Tentukan jarak terpendek antara titik asal dan permukaan $x^2 y - z^2 - 9 = 0$.</li>
+            <li>Tentukan nilai minimum $f(x, y) = x^2 + y^2$ dengan kendala $xy - 3 = 0$.</li>
+            <li>Dapatkan jarak maksimum dan minimum dari titik $(0, 0)$ ke kurva $5x^2 + 5y^2 + 6xy = 8$.</li>
+            <li>Tentukan nilai maksimum dan minimum $f(x, y, z) = -x + 2y + 2z$ yang terletak pada elips perpotongan silinder $x^2 + y^2 = 2$ dengan bidang $y + 2z = 1$.</li>
+            <li>Tentukan nilai maksimum dan minimum $f(x, y, z) = xyz$ dengan kendala $x^2 + y^2 + z^2 = 9$.</li>
+            <li>Dapatkan titik pada permukaan $z = xy - 1$ yang terdekat dengan titik asal $O(0, 0, 0)$.</li>
+            <li>Dapatkan isi terbesar dari sebuah peti tanpa tutup jika luas permukaannya adalah $12\text{ m}^2$.</li>
+            <li>Sebuah kotak tanpa tutup harus mempunyai volume $32{.}000\text{ cm}^3$. Carilah dimensi yang meminimumkan penggunaan papan.</li>
+            <li>Carilah volume kotak persegi panjang terbesar di oktan pertama dengan tiga muka terletak pada bidang-bidang koordinat dan satu titik sudut pada bidang $x + 2y + 3z = 6$.</li>
+            <li>Dapatkan ukuran sebuah peti tanpa tutup agar isinya sebesar-besarnya jika luas permukaannya adalah $108\text{ m}^2$.</li>
+            <li>Dapatkan isi balok terbesar dengan sisi-sisi sejajar sumbu koordinat yang dapat dibuat di dalam elipsoida $x^2 + \dfrac{y^2}{9} + \dfrac{z^2}{4} = 1$.</li>
+            <li>
+              Tentukan ekstrim bersyarat dari fungsi berikut:
+              <ol type="a">
+                <li>$z = xy$ untuk $x + y = 1$.</li>
+                <li>$z = x^2 + y^2$ untuk $3x + 2y - 6 = 0$.</li>
+                <li>$u = x - 2y + 2z$ untuk $x^2 + y^2 + z^2 = 9$.</li>
+                <li>$u = xy^2 z^3$ untuk $x + y + z = 12$ ($x &gt; 0, y &gt; 0, z &gt; 0$).</li>
+                <li>$u = xyz$ untuk $x + y + z = 5$ dan $xy + yz + zx = 8$.</li>
+              </ol>
+            </li>
+            <li>Suatu talang terbuka berpenampang trapesium sama kaki dibuat dari selembar pelat logam selebar $12\text{ inci}$ dengan menekuk kedua sisinya. Tentukan sudut alas dan lebar sisi tegaknya agar kapasitas muat talang maksimum.</li>
+            <li>Tentukan isi terbesar dari sebuah peti jika luas permukaan tanpa tutup adalah $12\text{ m}^2$.</li>
+            <li>Tentukan isi terbesar dari sebuah peti jika luas permukaan dengan tutup adalah $16\text{ m}^2$.</li>
+            <li>Bahan untuk alas suatu kotak persegi panjang harganya tiap $\text{m}^2$ tiga kali lipat harga bahan untuk bidang sisi dan tutupnya. Carilah kapasitas maksimum kotak jika anggaran bahan adalah Rp $19{.}200{.}000{,}$– dan bahan alas berharga Rp $960{.}000{,}$– per $\text{m}^2$.</li>
+            <li>Dapatkan persamaan bidang datar melalui titik $(1, 1, 2)$ yang memotong oktan pertama sehingga membentuk limas dengan isi terkecil.</li>
+            <li>Dapatkan isi balok terbesar dengan sisi-sisi sejajar sumbu koordinat yang dapat dibuat di dalam elipsoida $x^2 + \dfrac{y^2}{9} + \dfrac{z^2}{4} = 1$.</li>
+          </ol>
+
+          <details class="exercise-spoiler">
+            <summary>Kunci Jawaban yang Tersedia pada Diktat</summary>
+            <div class="exercise-spoiler-body">
+              <ul>
+                <li><strong>Soal 15:</strong> $\dfrac{du}{dx} = \dfrac{2(b^2 - a^2)x\cos(x^2 + y^2)}{b^2}$.</li>
+                <li><strong>Soal 16b:</strong> Garis singgung $\dfrac{x - 1}{2} = \dfrac{y - 1}{7} = \dfrac{z - 1}{-8}$; bidang normal $2x + 7y - 8z - 1 = 0$.</li>
+                <li><strong>Soal 16c:</strong> Garis singgung $\dfrac{x - 2}{1} = \dfrac{z - 2}{1},\; y + 3 = 0$; bidang normal $x + z - 4 = 0$.</li>
+                <li><strong>Soal 20:</strong> (a) $1{,}0081$; (b) $0{,}902$.</li>
+                <li><strong>Soal 27:</strong> (a) minimum; (b) maksimum; (c) tidak ada (pelana).</li>
+                <li><strong>Soal 35:</strong> $d_{\max} = 4,\; d_{\min} = 1$.</li>
+                <li><strong>Soal 40:</strong> Untuk $V = 32{.}000\text{ cm}^3$, ukuran optimum $40\text{ cm} \times 40\text{ cm} \times 20\text{ cm}$ dengan luas papan minimum $4800\text{ cm}^2$ (catatan: kunci diktat $48\text{ m}^2$ berlaku bila volume targetnya $32\text{ m}^3$ dengan dimensi $4\text{ m} \times 4\text{ m} \times 2\text{ m}$).</li>
+                <li><strong>Soal 42:</strong> $p = l = 6\text{ m},\; t = 3\text{ m}$.</li>
+                <li><strong>Soal 43 &amp; 50:</strong> $V_{\max} = \dfrac{16}{3}\sqrt{3}$.</li>
+              </ul>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 2.8: TEST FORMATIF 2 (QUIS 2)
+             ================================================================ -->
+        <section id="test-formatif" aria-labelledby="heading-2-8">
+          <h2 id="heading-2-8">2.8 Test Formatif 2 (Quis 2)</h2>
+          <p>
+            Kerjakan soal-soal evaluasi berikut secara mandiri terlebih dahulu. Anda dinyatakan cukup menguasai Bab 2 apabila mampu menyelesaikan minimal 2 dari 3 soal dengan benar.
+          </p>
+
+          <div class="quiz-meta">
+            <div><strong>Mata Kuliah:</strong> Kalkulus Peubah Banyak (KPB)</div>
+            <div><strong>Dosen:</strong> Nur Asiyah</div>
+            <div><strong>Hari / Tanggal:</strong> Selasa, 3-11-2020</div>
+            <div><strong>Waktu:</strong> 60 menit</div>
+          </div>
+
+          <ol>
+            <li>Dapatkan nilai maksimum atau minimum dari fungsi $f(x, y) = y\sqrt{x} - y^2 - x + 6y$.</li>
+            <li>
+              Diketahui permukaan benda yang diberikan oleh fungsi:
+              $$f(x, y) = (x - 1)^2 - (y - 3)^2 + 2.$$
+              <ol type="a">
+                <li>Apa bentuk permukaan dari fungsi $f(x, y)$ tersebut? (gambarkan sketsanya)</li>
+                <li>Dilihat dari geometrinya, adakah nilai ekstrimnya (maksimum, minimum, atau sadel/pelana)?</li>
+                <li>Tunjukkan secara analitis nilai maksimum, minimum, atau titik pelananya jika ada.</li>
+              </ol>
+            </li>
+            <li>
+              Tentukan nilai maksimum dan minimum fungsi:
+              $$f(x, y) = x^2 + y^2, \qquad x \neq 0,\; y \neq 0$$
+              yang memenuhi kendala $3x^2 + 4xy + 6y^2 = 140$.
+            </li>
+          </ol>
+
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Lengkap Quis 2</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>1. Ekstrim dari $f(x, y) = y\sqrt{x} - y^2 - x + 6y$ ($x \ge 0$):</strong></p>
+              <p>Untuk titik dalam ($x &gt; 0$), hitung turunan parsial pertama:</p>
+              $$\begin{cases}
+              f_x = \dfrac{y}{2\sqrt{x}} - 1 = 0 \implies y = 2\sqrt{x} \\[6pt]
+              f_y = \sqrt{x} - 2y + 6 = 0
+              \end{cases}$$
+              <p>
+                Substitusi $y = 2\sqrt{x}$ ke persamaan kedua menghasilkan $\sqrt{x} - 4\sqrt{x} + 6 = 0 \implies 3\sqrt{x} = 6 \implies \sqrt{x} = 2$, sehingga diperoleh titik stasioner tunggal $(x_0, y_0) = (4, 4)$. Hitung turunan parsial kedua:
+              </p>
+              $$f_{xx} = -\frac{y}{4x^{3/2}}, \qquad f_{xy} = \frac{1}{2\sqrt{x}}, \qquad f_{yy} = -2.$$
+              <p>Evaluasi di $(4, 4)$:</p>
+              $$f_{xx}(4, 4) = -\frac{4}{4(8)} = -\frac{1}{8} &lt; 0, \qquad f_{xy}(4, 4) = \frac{1}{4}, \qquad f_{yy}(4, 4) = -2$$
+              $$\Delta = \left(-\frac{1}{8}\right)(-2) - \left(\frac{1}{4}\right)^2 = \frac{1}{4} - \frac{1}{16} = \frac{3}{16} &gt; 0.$$
+              <p>
+                Karena $\Delta &gt; 0$ dan $f_{xx}(4, 4) &lt; 0$, fungsi mencapai <strong>maksimum lokal</strong> di $(4, 4)$ dengan nilai:
+                $$f(4, 4) = 4(2) - 16 - 4 + 24 = 12.$$
+                (Pada batas domain $x = 0$, $f(0, y) = -y^2 + 6y = 9 - (y - 3)^2 \le 9 &lt; 12$, sehingga $12$ sekaligus merupakan maksimum mutlak.)
+              </p>
+
+              <p><strong>2. Analisis Permukaan $f(x, y) = (x - 1)^2 - (y - 3)^2 + 2$:</strong></p>
+              <ul>
+                <li><strong>(a) Bentuk Permukaan:</strong> Paraboloida hiperbolik (permukaan pelana) berpusat di $(1, 3, 2)$. Penampang $y = 3$ menghasilkan parabola $z = (x - 1)^2 + 2$ yang terbuka ke atas, sedangkan penampang $x = 1$ menghasilkan parabola $z = -(y - 3)^2 + 2$ yang terbuka ke bawah.</li>
+                <li><strong>(b) Pengamatan Geometri:</strong> Karena melengkung ke atas sepanjang arah $x$ dan ke bawah sepanjang arah $y$, permukaan ini <strong>tidak memiliki maksimum maupun minimum lokal</strong>, melainkan memiliki sebuah <strong>titik pelana (sadel)</strong> di $(1, 3, 2)$.</li>
+                <li><strong>(c) Analisis Turunan:</strong>
+                  $$f_x = 2(x - 1) = 0 \implies x = 1, \qquad f_y = -2(y - 3) = 0 \implies y = 3.$$
+                  Dengan $f_{xx} = 2,\, f_{xy} = 0,\, f_{yy} = -2$, diperoleh $\Delta = (2)(-2) - 0^2 = -4 &lt; 0$. Jadi terbukti titik $(1, 3)$ adalah <strong>titik pelana</strong> dengan nilai $f(1, 3) = 2$.
+                </li>
+              </ul>
+
+              <p><strong>3. Ekstrim Terkendala $f(x, y) = x^2 + y^2$ dengan $g(x, y) = 3x^2 + 4xy + 6y^2 - 140 = 0$:</strong></p>
+              <p>Terapkan metode pengali Lagrange $\nabla f = \lambda \nabla g$:</p>
+              $$\begin{cases}
+              2x = \lambda(6x + 4y) \implies x = \lambda(3x + 2y) \\
+              2y = \lambda(4x + 12y) \implies y = \lambda(2x + 6y)
+              \end{cases}$$
+              <p>Karena $x \neq 0$ dan $y \neq 0$ (dan $3x + 2y = 0 \implies x = 0$ tidak mungkin), samakan nilai $\lambda$:</p>
+              $$\frac{x}{3x + 2y} = \frac{y}{2x + 6y} \implies 2x^2 + 6xy = 3xy + 2y^2 \implies 2x^2 + 3xy - 2y^2 = 0 \implies (2x - y)(x + 2y) = 0.$$
+              <ul>
+                <li><strong>Kasus $y = 2x$:</strong> Substitusi ke kendala menghasilkan $3x^2 + 4x(2x) + 6(4x^2) = 35x^2 = 140 \implies x^2 = 4 \implies x = \pm 2,\, y = \pm 4$. Nilai fungsinya $f(\pm 2, \pm 4) = 4 + 16 = 20$.</li>
+                <li><strong>Kasus $x = -2y$:</strong> Substitusi ke kendala menghasilkan $3(4y^2) + 4(-2y)y + 6y^2 = 10y^2 = 140 \implies y^2 = 14 \implies y = \pm\sqrt{14},\, x = \mp 2\sqrt{14}$. Nilai fungsinya $f(\mp 2\sqrt{14}, \pm\sqrt{14}) = 56 + 14 = 70$.</li>
+              </ul>
+              <p>Karena elips $3x^2 + 4xy + 6y^2 = 140$ adalah kurva tertutup terbatas, diperoleh <strong>nilai minimum $f_{\min} = 20$</strong> di $(2, 4)$ dan $(-2, -4)$, serta <strong>nilai maksimum $f_{\max} = 70$</strong> di $(-2\sqrt{14}, \sqrt{14})$ dan $(2\sqrt{14}, -\sqrt{14})$.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- Navigasi Bawah Halaman -->
+        <nav class="chapter-pagination" aria-label="Navigasi Antar Bab">
+          <a href="bab-1-fungsi-dua-peubah-dan-limit.html" class="chapter-nav-link prev">
+            <span class="chapter-nav-label">← Bab Sebelumnya</span>
+            <span class="chapter-nav-title">Bab 01: Fungsi Dua Peubah &amp; Limit</span>
+          </a>
+
+          <a href="bab-3-integral-lipat-dan-aplikasinya.html" class="chapter-nav-link next">
+            <span class="chapter-nav-label">Bab Selanjutnya →</span>
+            <span class="chapter-nav-title">Bab 03: Integral Lipat &amp; Aplikasinya</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="id" data-sw-path="../../sw.js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bab 1: Fungsi Dua Peubah Bebas dan Limit Fungsi — Pengantar Kalkulus Peubah Banyak, Kurva Ketinggian, Peta Kontur, Limit, Kekontinuan, Latihan Soal, dan Test Formatif 1.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Bab 1: Fungsi Dua Peubah &amp; Limit — Multivariable Calculus | Math Notes</title>
+
+  <!-- PWA Manifest & Ikon -->
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+
+  <!-- Stylesheet & Core Script (di head untuk mencegah FOUC) -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/app.js"></script>
+
+  <!-- KaTeX v0.16.11 via CDN jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigasi Kiri -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi Bab dan Sub-bab">
+      <div class="sidebar-header">
+        <a href="../../index.html" class="brand-link">
+          <span class="brand-symbol" aria-hidden="true">∑</span>
+          <span>Math Notes</span>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" data-sidebar-close aria-label="Tutup menu navigasi">
+          ✕
+        </button>
+      </div>
+
+      <!-- 1. Navigasi Utama -->
+      <nav class="nav-section" aria-label="Navigasi Utama">
+        <div class="nav-section-title">Navigasi Utama</div>
+        <ul class="nav-list">
+          <li>
+            <a href="../../index.html" class="nav-link">
+              <span>🏠</span>
+              <span>Kembali ke Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-link">
+              <span>📚</span>
+              <span>Daftar Isi Multivariable Calculus</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 2. Daftar Bab -->
+      <nav class="nav-section" aria-label="Daftar Bab Multivariable Calculus">
+        <div class="nav-section-title">Daftar Bab</div>
+        <ul class="nav-list">
+          <li>
+            <a href="bab-1-fungsi-dua-peubah-dan-limit.html" class="nav-link active" aria-current="page">
+              <span>01.</span>
+              <span>Fungsi Dua Peubah &amp; Limit</span>
+            </a>
+          </li>
+          <li>
+            <a href="bab-2-turunan-parsial-dan-aplikasinya.html" class="nav-link">
+              <span>02.</span>
+              <span>Turunan Parsial &amp; Aplikasinya</span>
+            </a>
+          </li>
+          <li>
+            <a href="bab-3-integral-lipat-dan-aplikasinya.html" class="nav-link">
+              <span>03.</span>
+              <span>Integral Lipat &amp; Aplikasinya</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 3. Daftar Sub-Bab Halaman Aktif -->
+      <nav class="nav-section" aria-label="Pada Halaman Ini">
+        <div class="nav-section-title">Pada Halaman Ini</div>
+        <ul class="nav-list">
+          <li><a href="#pengantar" class="nav-link"><span>§1.1</span><span>Pengantar KPB</span></a></li>
+          <li><a href="#fungsi-dua-peubah" class="nav-link"><span>§1.2</span><span>Fungsi &amp; Peta Kontur</span></a></li>
+          <li><a href="#limit-dan-kekontinuan" class="nav-link"><span>§1.3</span><span>Limit &amp; Kekontinuan</span></a></li>
+          <li><a href="#latihan-soal" class="nav-link"><span>§1.4</span><span>Latihan Soal (1–25)</span></a></li>
+          <li><a href="#test-formatif" class="nav-link"><span>§1.5</span><span>Test Formatif 1</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        MAT • Multivariable Calculus<br>
+        Bab 1: Fungsi Dua Peubah &amp; Limit
+      </div>
+    </aside>
+
+    <!-- Overlay untuk Off-Canvas Drawer di Layar Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Area Konten Utama -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" data-sidebar-toggle aria-expanded="false" aria-controls="sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Dashboard</a>
+            <span>/</span>
+            <a href="index.html">Multivariable Calculus</a>
+            <span>/</span>
+            <strong>Bab 1: Fungsi Dua Peubah &amp; Limit</strong>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" data-theme-toggle aria-label="Ubah tema warna">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <main class="content-container">
+        <header class="page-header">
+          <span class="page-badge">MAT • Multivariable Calculus • Bab 01</span>
+          <h1>1. Fungsi Dua Peubah Bebas dan Limit Fungsi</h1>
+          <p class="page-subtitle">
+            Perluasan konsep fungsi, representasi geometri permukaan ruang tiga dimensi, kurva ketinggian (peta kontur), limit fungsi dua peubah, serta uji kekontinuan.
+          </p>
+        </header>
+
+        <div class="math-box note">
+          <span class="math-box-title">Kompetensi Dasar</span>
+          <p>
+            Mahasiswa memiliki kemampuan menjelaskan dan memberikan contoh tentang fungsi peubah banyak, menjelaskan konsep limit fungsi dan kekontinuan dua peubah, serta menggambar grafik permukaan benda beserta peta konturnya.
+          </p>
+        </div>
+
+        <!-- ================================================================
+             SUB-BAB 1.1: PENGANTAR KALKULUS PEUBAH BANYAK
+             ================================================================ -->
+        <section id="pengantar" aria-labelledby="heading-1-1">
+          <h2 id="heading-1-1">1.1 Pengantar Kalkulus Peubah Banyak</h2>
+          <p>
+            Kalkulus pada semester satu dan semester dua telah membahas fungsi satu variabel bebas. Namun di dunia nyata, besaran fisika maupun model matematika sering kali bergantung pada dua variabel bebas atau lebih, sehingga pada mata kuliah ini konsep fungsi diperluas ke fungsi beberapa variabel. Pembahasan diawali dengan fungsi bernilai real dua peubah atau lebih, limit, kekontinuan fungsi, lalu dilanjutkan pada bab berikutnya dengan turunan parsial dan aplikasinya, serta integral lipat beserta aplikasinya.
+          </p>
+          <p>
+            Materi Kalkulus Peubah Banyak (KPB) ini menjadi landasan penting bagi kajian lanjutan seperti integral garis, integral permukaan, serta aplikasinya pada sains dan teknologi melalui mata kuliah Analisa Vektor, Matematika Rekayasa, dan Masalah Nilai Batas. Salah satu capaian pembelajarannya adalah kemampuan mengidentifikasi permasalahan sederhana, membentuk model matematika, dan menyelesaikannya secara analitis maupun geometris.
+          </p>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.2: FUNGSI DUA PEUBAH ATAU LEBIH & KURVA KETINGGIAN
+             ================================================================ -->
+        <section id="fungsi-dua-peubah" aria-labelledby="heading-1-2">
+          <h2 id="heading-1-2">1.2 Fungsi Dua Peubah atau Lebih &amp; Peta Kontur</h2>
+          <p>
+            Fungsi dengan dua variabel bebas adalah aturan yang memadankan setiap pasangan terurut $(x, y)$ di dalam daerah asal pada $\mathbb{R}^2$ dengan tepat satu bilangan real unik $z$, yang dinyatakan oleh $z = f(x, y)$. Secara geometri, persamaan $z = f(x, y)$ menyatakan sebuah permukaan benda di ruang tiga dimensi $\mathbb{R}^3$, di mana ketinggian permukaan $z$ bergantung pada koordinat absis $x$ dan ordinat $y$.
+          </p>
+          <p>
+            Sementara itu, fungsi dengan tiga variabel bebas adalah pemetaan dari pasangan terurut $(x, y, z)$ dalam daerah asal pada $\mathbb{R}^3$ ke bilangan real unik $T$, yang ditulis $T = f(x, y, z)$. Sebagai contoh, suhu $T$ pada suatu posisi di atmosfer dapat bergantung pada lintang $x$, bujur $y$, dan ketinggian atau waktu $z$. Grafik fungsi tiga peubah bebas hidup di $\mathbb{R}^4$ sehingga sulit digambar langsung secara utuh, berbeda dengan fungsi dua peubah yang grafiknya berupa permukaan di $\mathbb{R}^3$.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.1 (Fungsi Dua Peubah Bernilai Real)</span>
+            <p>
+              Fungsi $f(x, y)$ bernilai real dari dua peubah real adalah aturan $f : D \subseteq \mathbb{R}^2 \to \mathbb{R}$ yang memadankan setiap pasangan terurut $(x, y)$ dalam daerah asal (<em>domain</em>) $D$ pada bidang dengan tepat satu nilai bilangan real $z = f(x, y)$. Himpunan seluruh nilai $f(x, y)$ untuk $(x, y) \in D$ disebut <strong>daerah hasil</strong> (<em>range</em>).
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.1 (Identifikasi Domain, Nilai Fungsi, dan Sketsa Permukaan).</strong>
+            Tentukan domain fungsi $f(x, y)$, hitung nilai fungsi di titik $(0, 0)$, $(1, 1)$, dan $(1, 2)$, serta sketsakan permukaan grafiknya jika:
+          </p>
+          <ol type="a">
+            <li>$f(x, y) = x^2 + y^2$</li>
+            <li>$z = x^2 - y^2$</li>
+          </ol>
+
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 1.1</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>a) Permukaan $f(x, y) = x^2 + y^2$ (Paraboloida Eliptik/Sirkular):</strong></p>
+              <p>
+                Karena $f(x, y) = x^2 + y^2$ merupakan fungsi polinomial dalam $x$ dan $y$, daerah asalnya adalah seluruh bidang real:
+                $$D = \{(x, y) \in \mathbb{R}^2 \mid x \in \mathbb{R},\; y \in \mathbb{R}\}$$
+                Nilai fungsi pada titik-titik uji adalah:
+                $$f(0, 0) = 0, \qquad f(1, 1) = 1^2 + 1^2 = 2, \qquad f(1, 2) = 1^2 + 2^2 = 5.$$
+              </p>
+              <ul>
+                <li><strong>Irisan dengan bidang $xoy$ ($z = 0$):</strong> $x^2 + y^2 = 0 \implies$ titik asal $(0, 0, 0)$. Untuk bidang sejajar $z = c &gt; 0$, irisannya berupa lingkaran berpusat di sumbu-$z$ dengan jari-jari $\sqrt{c}$ yang membesar seiring kenaikan $z$.</li>
+                <li><strong>Irisan dengan bidang $xoz$ ($y = 0$):</strong> $z = x^2$, parabola terbuka ke atas dengan puncak di $(0,0,0)$. Irisan sejajar ($y = k$) juga parabola terbuka ke atas dengan puncak $(0, k, k^2)$ semakin naik.</li>
+                <li><strong>Irisan dengan bidang $yoz$ ($x = 0$):</strong> $z = y^2$, parabola terbuka ke atas dengan puncak di $(0,0,0)$.</li>
+              </ul>
+              <p>Permukaan ini disebut <strong>Paraboloida</strong> (Gambar 1.1 kiri).</p>
+
+              <p><strong>b) Permukaan $z = x^2 - y^2$ (Paraboloida Hiperbolik / Pelana):</strong></p>
+              <p>
+                Fungsi ini juga polinomial sehingga domainnya $D = \{(x, y) \in \mathbb{R}^2 \mid x \in \mathbb{R},\; y \in \mathbb{R}\}$, dengan nilai fungsi:
+                $$f(0, 0) = 0, \qquad f(1, 1) = 1^2 - 1^2 = 0, \qquad f(1, 2) = 1^2 - 2^2 = -3.$$
+              </p>
+              <ul>
+                <li><strong>Irisan dengan bidang $xoy$ ($z = 0$):</strong> $x^2 - y^2 = 0 \iff y = \pm x$, berupa dua garis lurus saling tegak lurus di pusat koordinat.</li>
+                <li><strong>Irisan dengan bidang $xoz$ ($y = 0$):</strong> $z = x^2$, parabola terbuka ke atas dengan puncak di $(0,0,0)$.</li>
+                <li><strong>Irisan dengan bidang $yoz$ ($x = 0$):</strong> $z = -y^2$, parabola terbuka ke bawah dengan puncak di $(0,0,0)$.</li>
+                <li><strong>Irisan dengan bidang sejajar $xoy$ ($z = c \neq 0$):</strong> kurva hiperbola ($x^2 - y^2 = c$).</li>
+              </ul>
+              <p>Permukaan ini berbentuk pelana kuda dan disebut <strong>Paraboloida Hiperbolik / Hiperboloida pelana</strong> (Gambar 1.1 kanan).</p>
+            </div>
+          </details>
+
+          <figure class="math-figure">
+            <svg viewBox="0 0 640 250" role="img" aria-label="Gambar 1.1: Sketsa Paraboloida z = x^2 + y^2 dan Paraboloida Hiperbolik z = x^2 - y^2">
+              <!-- Panel Kiri: Paraboloida z = x^2 + y^2 -->
+              <g transform="translate(20, 10)">
+                <text x="140" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text-primary)">(a) Paraboloida: z = x² + y²</text>
+                <!-- Sumbu koordinat 3D -->
+                <line x1="140" y1="185" x2="140" y2="30" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <line x1="140" y1="185" x2="250" y2="185" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <line x1="140" y1="185" x2="72" y2="225" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <text x="147" y="36" font-size="11" fill="var(--text-secondary)">z</text>
+                <text x="255" y="189" font-size="11" fill="var(--text-secondary)">y</text>
+                <text x="60" y="232" font-size="11" fill="var(--text-secondary)">x</text>
+                <!-- Mangkuk paraboloida -->
+                <path d="M 80 72 Q 140 295 200 72" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="2.2"/>
+                <ellipse cx="140" cy="72" rx="60" ry="15" fill="var(--def-bg)" stroke="var(--accent-primary)" stroke-width="2"/>
+                <ellipse cx="140" cy="112" rx="46" ry="11" fill="none" stroke="var(--def-border)" stroke-width="1.2" stroke-dasharray="4 3"/>
+                <ellipse cx="140" cy="148" rx="30" ry="7" fill="none" stroke="var(--def-border)" stroke-width="1.2" stroke-dasharray="4 3"/>
+                <circle cx="140" cy="185" r="3" fill="var(--accent-primary)"/>
+                <text x="150" y="198" font-size="10.5" fill="var(--text-muted)">(0,0,0)</text>
+              </g>
+
+              <!-- Garis pemisah -->
+              <line x1="320" y1="20" x2="320" y2="235" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="5 5"/>
+
+              <!-- Panel Kanan: Pelana z = x^2 - y^2 -->
+              <g transform="translate(335, 10)">
+                <text x="145" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text-primary)">(b) Pelana: z = x² − y²</text>
+                <!-- Sumbu koordinat 3D -->
+                <line x1="145" y1="135" x2="145" y2="30" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <line x1="145" y1="135" x2="260" y2="135" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <line x1="145" y1="135" x2="72" y2="205" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                <text x="152" y="36" font-size="11" fill="var(--text-secondary)">z</text>
+                <text x="265" y="139" font-size="11" fill="var(--text-secondary)">y</text>
+                <text x="60" y="212" font-size="11" fill="var(--text-secondary)">x</text>
+                <!-- Permukaan pelana -->
+                <path d="M 85 95 Q 145 165 205 95 C 218 118 228 158 222 182 Q 145 110 68 182 C 62 158 72 118 85 95 Z" fill="var(--thm-bg)" stroke="var(--thm-border)" stroke-width="2"/>
+                <!-- Kurva penampang di x=0 (terbuka ke bawah) dan y=0 (terbuka ke atas) -->
+                <path d="M 78 165 Q 145 105 212 165" fill="none" stroke="var(--thm-border)" stroke-width="1.8" stroke-dasharray="4 3"/>
+                <path d="M 98 85 Q 145 185 192 85" fill="none" stroke="var(--accent-primary)" stroke-width="1.8"/>
+                <circle cx="145" cy="135" r="3.5" fill="var(--thm-border)"/>
+                <text x="153" y="150" font-size="10.5" fill="var(--text-muted)">Pelana (0,0,0)</text>
+              </g>
+            </svg>
+            <figcaption>Gambar 1.1: Sketsa permukaan paraboloida $z = x^2 + y^2$ (kiri) dan permukaan pelana $z = x^2 - y^2$ (kanan).</figcaption>
+          </figure>
+
+          <h3>Kurva Ketinggian dan Peta Kontur</h3>
+          <p>
+            Setiap bidang datar mendatar $z = c$ (konstan) memotong permukaan $z = f(x, y)$ sepanjang sebuah kurva ruang pada ketinggian $c$. Proyeksi kurva perpotongan tersebut ke bidang $xy$ disebut <strong>kurva ketinggian</strong> (<em>level curve</em>) dengan persamaan $f(x, y) = c$. Kumpulan beberapa kurva ketinggian untuk serangkaian nilai $c$ yang teratur pada bidang $xy$ membentuk <strong>peta kontur</strong> (<em>contour map</em>).
+          </p>
+          <p>
+            Sebagai ilustrasi pembacaan peta kontur topografi (Gambar 1.2 kanan), titik-titik yang berada pada lintasan terluar peta mempunyai ketinggian $5000\text{ ft}$, lintasan di sebelah dalamnya mempunyai ketinggian $6000\text{ ft}$, sedangkan lintasan terdalam mendekati puncak memiliki ketinggian $7000\text{ ft}$. Semakin rapat jarak antarkurva ketinggian pada peta kontur, semakin curam kemiringan permukaan di daerah tersebut.
+          </p>
+
+          <figure class="math-figure">
+            <svg viewBox="0 0 640 245" role="img" aria-label="Gambar 1.2: Ilustrasi bidang potong z = c menghasilkan kurva ketinggian dan peta kontur 5000 ft hingga 7000 ft">
+              <!-- Panel Kiri: Permukaan bukit dipotong bidang z = c -->
+              <g transform="translate(20, 12)">
+                <text x="145" y="14" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text-primary)">Irisan Bidang z = c pada Permukaan</text>
+                <line x1="65" y1="185" x2="65" y2="30" stroke="var(--text-secondary)" stroke-width="1.3"/>
+                <line x1="65" y1="185" x2="255" y2="185" stroke="var(--text-secondary)" stroke-width="1.3"/>
+                <line x1="65" y1="185" x2="25" y2="215" stroke="var(--text-secondary)" stroke-width="1.3"/>
+                <text x="72" y="36" font-size="11" fill="var(--text-secondary)">z</text>
+                <text x="260" y="189" font-size="11" fill="var(--text-secondary)">y</text>
+                <text x="15" y="220" font-size="11" fill="var(--text-secondary)">x</text>
+
+                <!-- Bukit -->
+                <path d="M 85 150 C 100 55, 190 45, 225 145" fill="var(--lem-bg)" stroke="var(--lem-border)" stroke-width="2"/>
+                <!-- Bidang z = c -->
+                <polygon points="75,112 210,112 240,86 105,86" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="1.2" stroke-dasharray="3 2"/>
+                <ellipse cx="155" cy="99" rx="46" ry="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"/>
+                <text x="235" y="96" font-size="10.5" fill="var(--accent-primary)">z = c</text>
+                <!-- Proyeksi ke bidang xy -->
+                <line x1="109" y1="99" x2="109" y2="195" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="3 3"/>
+                <line x1="201" y1="99" x2="201" y2="195" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="3 3"/>
+                <ellipse cx="155" cy="195" rx="46" ry="11" fill="none" stroke="var(--def-border)" stroke-width="2"/>
+                <text x="155" y="221" text-anchor="middle" font-size="11" fill="var(--def-title)">Kurva ketinggian: f(x, y) = c</text>
+              </g>
+
+              <line x1="320" y1="20" x2="320" y2="230" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="5 5"/>
+
+              <!-- Panel Kanan: Peta Kontur -->
+              <g transform="translate(340, 12)">
+                <text x="140" y="14" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text-primary)">Peta Kontur (5000–7000 ft)</text>
+                <rect x="30" y="28" width="220" height="185" rx="8" fill="none" stroke="var(--border-color)" stroke-width="1.2"/>
+                <!-- Kontur bersarang -->
+                <path d="M 60 120 C 55 62, 190 48, 224 105 C 242 155, 195 198, 120 192 C 74 188, 63 158, 60 120 Z" fill="none" stroke="var(--lem-border)" stroke-width="1.8"/>
+                <path d="M 88 118 C 86 80, 178 72, 198 110 C 210 144, 174 172, 125 168 C 96 165, 90 142, 88 118 Z" fill="none" stroke="var(--accent-primary)" stroke-width="1.8"/>
+                <path d="M 116 116 C 116 96, 165 92, 174 114 C 180 133, 158 148, 132 144 C 120 142, 116 130, 116 116 Z" fill="var(--accent-primary-soft)" stroke="var(--thm-border)" stroke-width="2"/>
+                <circle cx="145" cy="119" r="3" fill="var(--thm-border)"/>
+                <text x="195" y="185" font-size="10.5" fill="var(--lem-title)">5000 ft</text>
+                <text x="178" y="152" font-size="10.5" fill="var(--accent-primary)">6000 ft</text>
+                <text x="145" y="109" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--thm-title)">7000 ft</text>
+              </g>
+            </svg>
+            <figcaption>Gambar 1.2: Perpotongan permukaan oleh bidang $z = c$ menghasilkan kurva ketinggian $f(x, y) = c$ (kiri) dan kumpulan kurva ketinggian membentuk peta kontur (kanan).</figcaption>
+          </figure>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.3: LIMIT DAN KEKONTINUAN FUNGSI DUA PEUBAH
+             ================================================================ -->
+        <section id="limit-dan-kekontinuan" aria-labelledby="heading-1-3">
+          <h2 id="heading-1-3">1.3 Limit dan Kekontinuan Fungsi Dua Peubah</h2>
+          <p>
+            Pandang limit fungsi dua peubah:
+            $$\lim_{(x,y)\to(a,b)} f(x, y) = L.$$
+            Secara intuitif, pernyataan ini berarti nilai $f(x, y)$ dapat dibuat sedekat mungkin ke bilangan $L$ asalkan titik $(x, y)$ cukup dekat ke $(a, b)$ dari <em>semua arah yang mungkin</em>. Berbeda dengan fungsi satu peubah yang hanya memiliki dua arah pendekatan (kanan dan kiri), di bidang $\mathbb{R}^2$ terdapat tak berhingga banyaknya lintasan—baik garis lurus maupun kurva lengkung—menuju titik $(a, b)$.
+          </p>
+
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.2 (Limit Fungsi Dua Peubah Secara $\varepsilon$–$\delta$)</span>
+            <p>
+              Misalkan $f$ terdefinisi pada suatu cakram terbuka yang memuat titik $(a, b)$, kecuali mungkin di $(a, b)$ sendiri. Kita menulis:
+              $$\lim_{(x,y)\to(a,b)} f(x, y) = L$$
+              jika untuk setiap $\varepsilon &gt; 0$ terdapat $\delta &gt; 0$ sedemikian sehingga untuk setiap $(x, y) \in D$:
+              $$0 &lt; \|(x, y) - (a, b)\| = \sqrt{(x - a)^2 + (y - b)^2} &lt; \delta \implies |f(x, y) - L| &lt; \varepsilon.$$
+            </p>
+          </div>
+
+          <div class="math-box note">
+            <span class="math-box-title">Catatan Penting: Uji Lintasan vs Keberadaan Limit</span>
+            <p>
+              Apabila $\lim_{(x,y)\to(a,b)} f(x,y)$ menghasilkan nilai berbeda saat $(x,y)$ mendekati $(a,b)$ melalui dua lintasan yang berlainan (misalnya sumbu-$x$, sumbu-$y$, garis $y = mx$, atau kurva $y = x^2$), maka <strong>limit tidak ada</strong>.
+            </p>
+            <p>
+              Sebaliknya, memperoleh nilai yang sama di sepanjang beberapa garis lurus saja hanya merupakan <em>syarat perlu</em>, bukan bukti bahwa limit pasti ada—karena limit bisa saja berbeda sepanjang kurva non-linear. Untuk membuktikan suatu limit benar-benar ada dan bernilai $L$, gunakan hukum aljabar limit, teorema apit (<em>squeeze theorem</em>), transformasi koordinat kutub, atau definisi $\varepsilon$–$\delta$.
+            </p>
+          </div>
+
+          <div class="math-box theorem">
+            <span class="math-box-title">Teorema 1.1 (Sifat-Sifat Limit Fungsi Dua Peubah)</span>
+            <p>
+              Misalkan $\lim_{(x,y)\to(a,b)} F(x, y) = L_1$ dan $\lim_{(x,y)\to(a,b)} G(x, y) = L_2$. Maka berlaku:
+            </p>
+            <ol>
+              <li>$\lim\limits_{(x,y)\to(a,b)} \bigl[F(x, y) \pm G(x, y)\bigr] = L_1 \pm L_2$</li>
+              <li>$\lim\limits_{(x,y)\to(a,b)} \alpha F(x, y) = \alpha L_1$, dengan $\alpha \in \mathbb{R}$ suatu konstanta</li>
+              <li>$\lim\limits_{(x,y)\to(a,b)} \bigl[F(x, y) \cdot G(x, y)\bigr] = L_1 \cdot L_2$</li>
+              <li>$\lim\limits_{(x,y)\to(a,b)} \bigl[F(x, y)\bigr]^\alpha = (L_1)^\alpha$ (selama $L_1^\alpha$ terdefinisi pada bilangan real)</li>
+              <li>$\lim\limits_{(x,y)\to(a,b)} \dfrac{F(x, y)}{G(x, y)} = \dfrac{L_1}{L_2}$, asalkan $L_2 = \lim\limits_{(x,y)\to(a,b)} G(x, y) \neq 0$</li>
+            </ol>
+          </div>
+
+          <p>
+            <strong>Contoh 1.2 (Evaluasi Limit Fungsi Rasional Kontinu).</strong>
+            Hitunglah nilai limit $F(x, y) = \dfrac{y^4 + 3x^2y^2}{(x^2 + y^2)^2}$ di titik $(1, 1)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 1.2</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Karena fungsi pembilang dan penyebut merupakan polinomial dan nilai penyebut di titik $(1, 1)$ adalah $(1^2 + 1^2)^2 = 4 \neq 0$, nilai limitnya dapat dihitung dengan substitusi langsung:
+              </p>
+              $$\lim_{(x,y)\to(1,1)} \frac{y^4 + 3x^2y^2}{(x^2 + y^2)^2} = \frac{1^4 + 3(1)^2(1)^2}{(1^2 + 1^2)^2} = \frac{1 + 3}{4} = 1.$$
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.3 (Limit Tidak Ada via Dua Lintasan).</strong>
+            Perlihatkan bahwa fungsi $f$ yang didefinisikan oleh:
+            $$f(x, y) = \begin{cases} \dfrac{x^2 - y^2}{x^2 + y^2}, &amp; (x, y) \neq (0, 0) \\[6pt] 0, &amp; (x, y) = (0, 0) \end{cases}$$
+            tidak mempunyai limit di titik asal $(0, 0)$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 1.3</summary>
+            <div class="exercise-spoiler-body">
+              <p>Meskipun nilai fungsi di titik asal terdefinisi $f(0, 0) = 0$, kita periksa limitnya dari dua lintasan berbeda menuju $(0, 0)$:</p>
+              <ul>
+                <li>Melalui garis $y = 0$ ($x \neq 0$):
+                  $$\lim_{(x,0)\to(0,0)} f(x, 0) = \lim_{x\to 0} \frac{x^2 - 0}{x^2 + 0} = +1.$$
+                </li>
+                <li>Melalui garis $x = 0$ ($y \neq 0$):
+                  $$\lim_{(0,y)\to(0,0)} f(0, y) = \lim_{y\to 0} \frac{0 - y^2}{0 + y^2} = -1.$$
+                </li>
+              </ul>
+              <p>
+                Karena pendekatan melalui dua lintasan menuju $(0, 0)$ menghasilkan nilai berbeda ($+1 \neq -1$), maka $\lim_{(x,y)\to(0,0)} f(x, y)$ <strong>tidak ada</strong>.
+              </p>
+            </div>
+          </details>
+
+          <figure class="math-figure">
+            <svg viewBox="0 0 420 220" role="img" aria-label="Gambar 1.3: Uji lintasan menuju titik asal (0,0) pada bidang xy">
+              <!-- Sumbu -->
+              <line x1="40" y1="110" x2="380" y2="110" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <line x1="210" y1="200" x2="210" y2="20" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <text x="386" y="114" font-size="12" fill="var(--text-secondary)">x</text>
+              <text x="216" y="24" font-size="12" fill="var(--text-secondary)">y</text>
+
+              <!-- Garis y = mx -->
+              <line x1="75" y1="182" x2="345" y2="38" stroke="var(--thm-border)" stroke-width="1.8" stroke-dasharray="5 3"/>
+              <text x="305" y="45" font-size="11" fill="var(--thm-title)">y = mx → (1−m²)/(1+m²)</text>
+
+              <!-- Pendekatan sepanjang y = 0 -->
+              <line x1="295" y1="110" x2="225" y2="110" stroke="var(--accent-primary)" stroke-width="3"/>
+              <polygon points="220,110 230,105 230,115" fill="var(--accent-primary)"/>
+              <line x1="125" y1="110" x2="195" y2="110" stroke="var(--accent-primary)" stroke-width="3"/>
+              <polygon points="200,110 190,105 190,115" fill="var(--accent-primary)"/>
+              <text x="295" y="130" font-size="11" font-weight="600" fill="var(--accent-primary)">y = 0 ⇒ L = +1</text>
+
+              <!-- Pendekatan sepanjang x = 0 -->
+              <line x1="210" y1="35" x2="210" y2="95" stroke="var(--lem-border)" stroke-width="3"/>
+              <polygon points="210,100 205,90 215,90" fill="var(--lem-border)"/>
+              <line x1="210" y1="185" x2="210" y2="125" stroke="var(--lem-border)" stroke-width="3"/>
+              <polygon points="210,120 205,130 215,130" fill="var(--lem-border)"/>
+              <text x="95" y="48" font-size="11" font-weight="600" fill="var(--lem-title)">x = 0 ⇒ L = −1</text>
+
+              <!-- Titik asal -->
+              <circle cx="210" cy="110" r="5" fill="var(--bg-elevated)" stroke="var(--text-primary)" stroke-width="2"/>
+              <text x="220" y="128" font-size="10.5" fill="var(--text-muted)">(0, 0)</text>
+            </svg>
+            <figcaption>Gambar 1.3: Perbedaan nilai limit di sepanjang sumbu $x$ ($y = 0 \implies +1$) dan sumbu $y$ ($x = 0 \implies -1$) menunjukkan limit $f(x,y) = \frac{x^2-y^2}{x^2+y^2}$ di $(0,0)$ tidak ada.</figcaption>
+          </figure>
+
+          <h3>Kekontinuan Fungsi Dua Peubah</h3>
+          <div class="math-box definition">
+            <span class="math-box-title">Definisi 1.3 (Kekontinuan Fungsi Dua Peubah)</span>
+            <p>
+              Fungsi $f$ yang terdefinisi pada daerah $D \subseteq \mathbb{R}^2$ dikatakan <strong>kontinu di titik</strong> $(x_0, y_0) \in D$ jika dan hanya jika memenuhi tiga syarat berikut:
+            </p>
+            <ol>
+              <li>$f(x_0, y_0)$ ada (terdefinisi).</li>
+              <li>$\lim\limits_{(x,y)\to(x_0,y_0)} f(x, y)$ ada.</li>
+              <li>$\lim\limits_{(x,y)\to(x_0,y_0)} f(x, y) = f(x_0, y_0)$.</li>
+            </ol>
+            <p>
+              Jika salah satu syarat tidak terpenuhi, maka $f$ dikatakan <em>diskontinu</em> di $(x_0, y_0)$. Selanjutnya, fungsi $f$ dikatakan <strong>kontinu pada daerah $D$</strong> apabila $f$ kontinu di setiap titik $(x, y) \in D$.
+            </p>
+          </div>
+
+          <p>
+            <strong>Contoh 1.4 (Kekontinuan Fungsi Komposisi).</strong>
+            Perlihatkan bahwa $F(x, y) = \cos(x^3 - 4xy + y^2)$ kontinu di setiap titik pada bidang $\mathbb{R}^2$.
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 1.4</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Misalkan $f(x, y) = x^3 - 4xy + y^2$ dan $g(t) = \cos t$. Karena $f$ adalah fungsi polinomial dua peubah, $f$ kontinu di mana-mana pada $\mathbb{R}^2$. Demikian pula, $g(t) = \cos t$ kontinu untuk setiap bilangan real $t \in \mathbb{R}$. Karena komposisi dua fungsi kontinu juga kontinu, maka $F(x, y) = g(f(x, y)) = \cos(x^3 - 4xy + y^2)$ kontinu di setiap titik $(x, y) \in \mathbb{R}^2$.
+              </p>
+            </div>
+          </details>
+
+          <p>
+            <strong>Contoh 1.5 (Menentukan Daerah Kekontinuan Terbesar).</strong>
+            Tentukan himpunan terbesar di mana fungsi berikut kontinu:
+            $$F(x, y) = \begin{cases} \dfrac{x^2 - y^2}{2x^2 + y^2}, &amp; \text{jika } (x, y) \neq (0, 0) \\[6pt] 1, &amp; \text{jika } (x, y) = (0, 0) \end{cases}$$
+          </p>
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Contoh 1.5</summary>
+            <div class="exercise-spoiler-body">
+              <p>
+                Untuk $(x, y) \neq (0, 0)$, penyebut $2x^2 + y^2 &gt; 0$ sehingga fungsi rasional $F(x, y)$ kontinu di setiap titik $\mathbb{R}^2 \setminus \{(0, 0)\}$. Titik yang perlu diperiksa secara khusus adalah $(0, 0)$:
+              </p>
+              <ul>
+                <li><strong>Syarat 1:</strong> Terpenuhi karena $F(0, 0) = 1$ terdefinisi.</li>
+                <li><strong>Syarat 2:</strong> Periksa limit di $(0, 0)$ dari dua garis berbeda:
+                  $$\lim_{(x,0)\to(0,0)} F(x, 0) = \lim_{x\to 0} \frac{x^2 - 0}{2x^2 + 0} = \frac{1}{2}, \qquad \lim_{(0,y)\to(0,0)} F(0, y) = \lim_{y\to 0} \frac{0 - y^2}{0 + y^2} = -1.$$
+                  Karena hasilnya berbeda ($\frac{1}{2} \neq -1$), maka $\lim_{(x,y)\to(0,0)} F(x, y)$ tidak ada, sehingga Syarat 2 gagal.
+                </li>
+              </ul>
+              <p>
+                Dengan demikian $F$ diskontinu di $(0, 0)$, dan himpunan terbesar tempat $F$ kontinu adalah:
+                $$\{(x, y) \in \mathbb{R}^2 \mid (x, y) \neq (0, 0)\} = \mathbb{R}^2 \setminus \{(0, 0)\}.$$
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.4: LATIHAN SOAL
+             ================================================================ -->
+        <section id="latihan-soal" aria-labelledby="heading-1-4">
+          <h2 id="heading-1-4">1.4 Latihan Soal</h2>
+          <ol>
+            <li>
+              Misalkan $f(x, y) = x^2 y + \sqrt{y}$.
+              <ol type="a">
+                <li>Hitung $f(1, 1)$, $f(2, 1)$, $f(2, 0)$, $f\!\left(x, \frac{1}{x^4}\right)$, dan $f(a, a^3)$.</li>
+                <li>Carilah daerah asal $f$.</li>
+                <li>Carilah daerah nilai $f$.</li>
+              </ol>
+            </li>
+            <li>
+              Misalkan $f(x, y) = \ln(x + y - 1)$.
+              <ol type="a">
+                <li>Hitung $f(1, 1)$, $f(2, 1)$, $f(2, 0)$, $f\!\left(x, \frac{1}{x^4}\right)$, dan $f(a, a^3)$.</li>
+                <li>Carilah daerah asal $f$.</li>
+                <li>Carilah daerah nilai $f$.</li>
+              </ol>
+            </li>
+            <li>
+              Misalkan $g(x, y) = \sqrt{36 - 9x^2 - 4y^2}$.
+              <ol type="a">
+                <li>Hitung $g(1, 2)$, $g(2, 1)$, dan $g(2, 0)$.</li>
+                <li>Carilah daerah asal $g$.</li>
+                <li>Carilah daerah nilai $g$.</li>
+              </ol>
+            </li>
+            <li>
+              Misalkan $f(x, y, z) = x^2 \ln(x - y + z)$.
+              <ol type="a">
+                <li>Hitung $f(3, 6, 4)$.</li>
+                <li>Carilah daerah asal $f$.</li>
+                <li>Carilah daerah nilai $f$.</li>
+              </ol>
+            </li>
+            <li>
+              Carilah <strong>daerah asal</strong> dan sketsakan grafik daerah asal fungsi berikut:
+              <ol type="a">
+                <li>$f(x, y) = \sqrt{x + y}$</li>
+                <li>$f(x, y) = \sqrt{x} + \sqrt{y}$</li>
+                <li>$f(x, y) = \ln(9 - x^2 - 9y^2)$</li>
+                <li>$f(x, y) = \dfrac{x - 3y}{x + 3y}$</li>
+                <li>$f(x, y) = \dfrac{3x + 5y}{x^2 + y^2 - 4}$</li>
+                <li>$f(x, y) = \sqrt{y - x}\ln(y + x)$</li>
+              </ol>
+            </li>
+            <li>
+              Dapatkan domain dari:
+              <ol type="a">
+                <li>$f(x, y, z) = \sqrt{1 - x^2 - y^2 - z^2}$</li>
+                <li>$f(x, y, z) = \ln(16 - 4x^2 - 4y^2 - z^2)$</li>
+              </ol>
+            </li>
+            <li>
+              Diperlihatkan peta kontur untuk fungsi $f$ di bawah ini. Gunakan peta tersebut untuk menaksir nilai $f(-3, 3)$ dan $f(3, -2)$. Apa yang dapat disimpulkan tentang bentuk grafiknya?
+              <figure class="math-figure">
+                <svg viewBox="0 0 380 300" role="img" aria-label="Peta kontur soal 7 dengan garis kontur 30, 40, 50, 60, dan 70 pada bidang koordinat xy">
+                  <!-- Grid latar -->
+                  <g stroke="var(--border-subtle)" stroke-width="1">
+                    <line x1="30" y1="30" x2="350" y2="30"/><line x1="30" y1="60" x2="350" y2="60"/>
+                    <line x1="30" y1="90" x2="350" y2="90"/><line x1="30" y1="120" x2="350" y2="120"/>
+                    <line x1="30" y1="150" x2="350" y2="150"/><line x1="30" y1="180" x2="350" y2="180"/>
+                    <line x1="30" y1="210" x2="350" y2="210"/><line x1="30" y1="240" x2="350" y2="240"/>
+                    <line x1="30" y1="270" x2="350" y2="270"/>
+                    <line x1="70" y1="20" x2="70" y2="280"/><line x1="110" y1="20" x2="110" y2="280"/>
+                    <line x1="150" y1="20" x2="150" y2="280"/><line x1="190" y1="20" x2="190" y2="280"/>
+                    <line x1="230" y1="20" x2="230" y2="280"/><line x1="270" y1="20" x2="270" y2="280"/>
+                    <line x1="310" y1="20" x2="310" y2="280"/>
+                  </g>
+                  <!-- Sumbu -->
+                  <line x1="25" y1="180" x2="355" y2="180" stroke="var(--text-secondary)" stroke-width="1.6"/>
+                  <line x1="190" y1="280" x2="190" y2="18" stroke="var(--text-secondary)" stroke-width="1.6"/>
+                  <text x="360" y="184" font-size="11" fill="var(--text-secondary)">x</text>
+                  <text x="196" y="22" font-size="11" fill="var(--text-secondary)">y</text>
+                  <!-- Skala sumbu (1 satuan = 40px pada x, 30px pada y) -->
+                  <text x="70" y="194" text-anchor="middle" font-size="10" fill="var(--text-muted)">−3</text>
+                  <text x="110" y="194" text-anchor="middle" font-size="10" fill="var(--text-muted)">−2</text>
+                  <text x="150" y="194" text-anchor="middle" font-size="10" fill="var(--text-muted)">−1</text>
+                  <text x="230" y="194" text-anchor="middle" font-size="10" fill="var(--text-muted)">1</text>
+                  <text x="270" y="194" text-anchor="middle" font-size="10" fill="var(--text-muted)">2</text>
+                  <text x="310" y="194" text-anchor="middle" font-size="10" fill="var(--text-muted)">3</text>
+                  <text x="180" y="94" text-anchor="end" font-size="10" fill="var(--text-muted)">3</text>
+                  <text x="180" y="124" text-anchor="end" font-size="10" fill="var(--text-muted)">2</text>
+                  <text x="180" y="244" text-anchor="end" font-size="10" fill="var(--text-muted)">−2</text>
+
+                  <!-- Kurva kontur bersarang berpusat di sekitar (0,2) -> (190,120) -->
+                  <ellipse cx="190" cy="120" rx="145" ry="118" fill="none" stroke="var(--text-primary)" stroke-width="1.5"/>
+                  <ellipse cx="190" cy="120" rx="115" ry="92" fill="none" stroke="var(--def-border)" stroke-width="1.5"/>
+                  <ellipse cx="190" cy="120" rx="84" ry="66" fill="none" stroke="var(--lem-border)" stroke-width="1.5"/>
+                  <ellipse cx="190" cy="120" rx="54" ry="42" fill="none" stroke="var(--thm-border)" stroke-width="1.6"/>
+                  <ellipse cx="190" cy="120" rx="26" ry="20" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="1.8"/>
+
+                  <!-- Label kontur -->
+                  <text x="318" y="64" font-size="10.5" font-weight="600" fill="var(--text-primary)">30</text>
+                  <text x="292" y="75" font-size="10.5" font-weight="600" fill="var(--def-title)">40</text>
+                  <text x="262" y="88" font-size="10.5" font-weight="600" fill="var(--lem-title)">50</text>
+                  <text x="234" y="101" font-size="10.5" font-weight="600" fill="var(--thm-title)">60</text>
+                  <text x="190" y="124" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-primary)">70</text>
+
+                  <!-- Titik uji (-3,3) -> (70,90) dan (3,-2) -> (310,240) -->
+                  <circle cx="70" cy="90" r="3" fill="var(--spoiler-border)"/>
+                  <text x="48" y="84" font-size="9.5" fill="var(--spoiler-title)">(−3,3)</text>
+                  <circle cx="310" cy="240" r="3" fill="var(--spoiler-border)"/>
+                  <text x="316" y="246" font-size="9.5" fill="var(--spoiler-title)">(3,−2)</text>
+                </svg>
+                <figcaption>Peta kontur Soal 7 dengan label ketinggian $30, 40, 50, 60, 70$.</figcaption>
+              </figure>
+            </li>
+            <li>
+              Buatlah sketsa peta kontur dan grafik fungsi serta bandingkan keduanya:
+              <ol type="a">
+                <li>$f(x, y) = x^2 + 9y^2$</li>
+                <li>$f(x, y) = \sqrt{36 - 9x^2 - 4y^2}$</li>
+              </ol>
+            </li>
+            <li>
+              Diberikan permukaan bidang hiperboloida (pelana) berikut ini:
+              <figure class="math-figure">
+                <svg viewBox="0 0 380 220" role="img" aria-label="Sketsa permukaan paraboloida hiperbolik atau pelana untuk soal 9">
+                  <line x1="190" y1="195" x2="190" y2="25" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                  <line x1="50" y1="120" x2="335" y2="120" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                  <line x1="190" y1="120" x2="105" y2="195" stroke="var(--text-secondary)" stroke-width="1.4"/>
+                  <text x="196" y="30" font-size="11" fill="var(--text-secondary)">z</text>
+                  <text x="342" y="124" font-size="11" fill="var(--text-secondary)">y</text>
+                  <text x="93" y="202" font-size="11" fill="var(--text-secondary)">x</text>
+                  <path d="M 110 70 Q 190 165 270 70 C 288 100 302 150 292 178 Q 190 92 88 178 C 78 150 92 100 110 70 Z" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="2"/>
+                  <path d="M 102 155 Q 190 85 278 155" fill="none" stroke="var(--def-border)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <path d="M 130 62 Q 190 175 250 62" fill="none" stroke="var(--thm-border)" stroke-width="1.5"/>
+                </svg>
+                <figcaption>Permukaan pelana (paraboloida hiperbolik) pada Soal 9.</figcaption>
+              </figure>
+              <ol type="a">
+                <li>Dapatkan persamaan baku permukaan benda tersebut di atas.</li>
+                <li>Dapatkan sketsa peta kontur untuk ketinggian $z = 2, 3, \dots, 10$ satuan panjang.</li>
+              </ol>
+            </li>
+            <li>
+              Hitunglah masing-masing limit berikut ini:
+              <ol type="a">
+                <li>$\lim\limits_{(x,y)\to(\pi,4)} y^2 \sin\dfrac{x}{y}$</li>
+                <li>$\lim\limits_{(x,y)\to(1,0)} e^{-\frac{1}{x^2(x-1)^2}}$</li>
+                <li>$\lim\limits_{(x,y)\to(2,1)} \dfrac{\sin^{-1}(xy - 2)}{\tan^{-1}(3xy - 6)}$</li>
+              </ol>
+            </li>
+            <li>
+              Carilah nilai limit, jika memang ada, atau perlihatkan bahwa limit tidak ada:
+              <ol type="a">
+                <li>$\lim\limits_{(x,y)\to(5,-2)} (x^5 + 4x^3 - 5xy^2)$</li>
+                <li>$\lim\limits_{(x,y)\to(0,0)} \dfrac{x^2}{x^2 + y^2}$</li>
+                <li>$\lim\limits_{(x,y)\to(0,0)} \dfrac{8x^2y^2}{x^4 + y^4}$</li>
+                <li>$\lim\limits_{(x,y)\to(0,0)} \dfrac{xy}{\sqrt{x^2 + y^2}}$</li>
+                <li>$\lim\limits_{(x,y)\to(0,0)} \dfrac{(x + y)^2}{x^2 + y^2}$</li>
+                <li>$\lim\limits_{(x,y)\to(0,0)} \dfrac{x^3 + xy^2}{x^2 + y^2}$</li>
+                <li>$\lim\limits_{(x,y)\to(2,0)} \dfrac{xy - 2y}{x^2 + y^2 - 4x + 4}$</li>
+                <li>$\lim\limits_{(x,y,z)\to(3,0,1)} e^{-xy} \sin\!\left(\dfrac{\pi z}{2}\right)$</li>
+              </ol>
+            </li>
+            <li>
+              Selidiki kekontinuan fungsi:
+              $$f(x, y) = \begin{cases} \dfrac{x}{3x + 5y}, &amp; (x, y) \neq (0, 0) \\[6pt] 0, &amp; (x, y) = (0, 0) \end{cases}$$
+            </li>
+            <li>
+              Tentukan himpunan terbesar di mana fungsi berikut kontinu:
+              <ol type="a">
+                <li>$F(x, y) = \dfrac{1}{x^2 - y}$</li>
+                <li>$F(x, y) = \dfrac{x - y}{1 + x^2 + y^2}$</li>
+                <li>$F(x, y) = \begin{cases} \dfrac{x^2 y^3}{2x^2 + y^2}, &amp; \text{jika } (x, y) \neq (0, 0) \\[6pt] 1, &amp; \text{jika } (x, y) = (0, 0) \end{cases}$</li>
+                <li>$F(x, y) = \begin{cases} \dfrac{xy}{x^2 + xy + y^2}, &amp; \text{jika } (x, y) \neq (0, 0) \\[6pt] 0, &amp; \text{jika } (x, y) = (0, 0) \end{cases}$</li>
+              </ol>
+            </li>
+            <li>
+              Gambarkan permukaan bidang dalam ruang jika diberikan persamaan bidang berikut:
+              <ol type="a" class="problem-grid">
+                <li>$x + y = 2$</li>
+                <li>$2x + 3y + 4z = 12$</li>
+                <li>$y = \sqrt{x}$</li>
+                <li>$x^2 + y^2 = 4$</li>
+                <li>$y = 2x^2$</li>
+                <li>$x = 4y^2$</li>
+                <li>$z = 4 - y^2$</li>
+                <li>$z = x^2 + y^2$</li>
+                <li>$\dfrac{x}{2} + \dfrac{y}{3} + \dfrac{z}{4} = 1$</li>
+                <li>$z = \dfrac{x^2}{9} + \dfrac{y^2}{16}$</li>
+              </ol>
+            </li>
+            <li>
+              Gambarkanlah dan beri nama permukaan ruang tiga dimensi yang direpresentasikan oleh persamaan berikut:
+              <ol type="a" class="problem-grid">
+                <li>$x - y + 4z = 12$</li>
+                <li>$\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$</li>
+                <li>$\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1$</li>
+                <li>$z = b^2 x^2 + a^2 y^2$</li>
+                <li>$y = 4x^2$</li>
+                <li>$z = e^{-(x^2 + y^2)}$</li>
+              </ol>
+            </li>
+            <li>
+              Dalam ruang tiga dimensi, gambarkan bidang-bidang lengkung berikut:
+              <ol type="a" class="problem-grid">
+                <li>$2x + 3y + z = 12$</li>
+                <li>$z - \frac{1}{2}x = 12$</li>
+                <li>$4z^2 + y^2 = 9$</li>
+                <li>$z = e^{x^2 + y^2}$</li>
+                <li>$z = 12 - x^2$</li>
+                <li>$z = \sqrt{x^2 + y^2}$</li>
+              </ol>
+            </li>
+            <li>
+              Sketsakan grafik dari fungsi yang diberikan oleh persamaan berikut:
+              <ol type="a">
+                <li>$y = e^x$ sebagai sebuah kurva di $\mathbb{R}^2$.</li>
+                <li>$y = e^x$ sebagai sebuah bidang permukaan di $\mathbb{R}^3$.</li>
+                <li>Deskripsikan dan sketsakan permukaan $z = e^x$.</li>
+              </ol>
+            </li>
+            <li>
+              Sketsakan grafik fungsi yang diberikan oleh:
+              <ol type="a">
+                <li>$y = \ln x$ sebagai sebuah kurva di $\mathbb{R}^2$.</li>
+                <li>Deskripsikan dan sketsakan permukaan $y = \ln x$ sebagai sebuah bidang permukaan di $\mathbb{R}^3$.</li>
+              </ol>
+            </li>
+            <li>
+              Sketsakan grafik:
+              <ol type="a">
+                <li>$y = \ln(x - 2)$ sebagai sebuah kurva di $\mathbb{R}^2$.</li>
+                <li>Deskripsikan dan sketsakan permukaan $y = \ln(x - 2)$ sebagai sebuah bidang permukaan di $\mathbb{R}^3$.</li>
+              </ol>
+            </li>
+            <li>Sketsakan permukaan kerucut $x^2 + y^2 - 9z^2 = 0$ di atas bidang $z = 0$ dan di dalam tabung $x^2 + y^2 = 6y$.</li>
+            <li>Sketsakan daerah yang dibatasi oleh permukaan $z = \sqrt{x^2 + y^2}$ dan $x^2 + y^2 = 1$ untuk $1 \le z \le 2$.</li>
+            <li>
+              Sketsakan volume yang dibatasi oleh bidang-bidang berikut:
+              <ol type="a">
+                <li>$x^2 + z^2 = 9$, $z = 0$, $y = 0$, dan $y = x$ yang terletak di oktan pertama.</li>
+                <li>$z = e^{-(x^2 + y^2)} + 1$ dan $z = 1$.</li>
+                <li>$z = 1 + x^2 + y^2$, $x^2 + y^2 = 4$, dan bidang $xoy$.</li>
+                <li>$z^2 = 2ax$ dan $x^2 + y^2 = ax$.</li>
+                <li>$2z = x^2$ yang diiris oleh bidang-bidang $y = \frac{x}{2}$, $y = 2x$, dan $x = 2\sqrt{2}$.</li>
+                <li>Di oktan pertama, yang dibatasi oleh permukaan $x^2 + z^2 = 9$ dan bidang $y = -x^2 + 9$.</li>
+              </ol>
+            </li>
+            <li>
+              Reduksikan persamaan berikut ke salah satu bentuk baku, kelompokkan permukaannya, dan sketsakan:
+              <ol type="a" class="problem-grid">
+                <li>$z^2 = 3x^2 + 4y^2 - 12$</li>
+                <li>$x^2 + y^2 - 4z^2 + 4x - 6y - 8z = 13$</li>
+                <li>$4x^2 - 9y^2 + z^2 + 36 = 0$</li>
+                <li>$4x = y^2 - 2z^2$</li>
+                <li>$z = x^2 + y^2 + 1$</li>
+                <li>$x^2 - y^2 + 4y + z = 0$</li>
+                <li>$x^2 + 4y^2 + z^2 - 2x = 0$</li>
+                <li>$9x^2 + y^2 - z^2 - 2y + 2z = 0$</li>
+              </ol>
+            </li>
+            <li>Carilah persamaan untuk permukaan yang diperoleh dari pemutaran garis $x = 3y$ terhadap sumbu-$x$.</li>
+            <li>Gambarkan grafik permukaan $z = x^2 + y^2$ dan $z = -y^2 + 1$ pada satu sistem sumbu untuk daerah asal $|x| \le 2$, $|y| \le 2$. Amati kurva perpotongan kedua permukaan tersebut beserta proyeksinya pada bidang $xy$.</li>
+          </ol>
+
+          <details class="exercise-spoiler">
+            <summary>Petunjuk &amp; Kunci Ringkas Latihan Pilihan (Soal 10–13)</summary>
+            <div class="exercise-spoiler-body">
+              <ul>
+                <li><strong>Soal 10:</strong> (a) $16 \sin(\pi/4) = 8\sqrt{2}$; (b) $0$ (karena $-\frac{1}{x^2(x-1)^2} \to -\infty$ saat $x \to 1$, $x \neq 1$); (c) Substitusi $u = xy - 2 \to 0 \implies \lim_{u\to 0}\frac{\arcsin u}{\arctan(3u)} = \frac{1}{3}$.</li>
+                <li><strong>Soal 11:</strong> (a) $5^5 + 4(5^3) - 5(5)(-2)^2 = 3525$; (b) Tidak ada ($y=0 \to 1$, $x=0 \to 0$); (c) Tidak ada ($y=0 \to 0$, $y=x \to 4$); (d) $0$ (sebab $\left|\frac{xy}{\sqrt{x^2+y^2}}\right| \le \frac{1}{2}\sqrt{x^2+y^2} \to 0$); (e) Tidak ada ($y=0 \to 1$, $y=x \to 2$); (f) $\lim_{(x,y)\to(0,0)} \frac{x(x^2+y^2)}{x^2+y^2} = 0$; (g) Tidak ada (dengan $u = x-2$, sepanjang $y=0 \to 0$ dan $y=u \to 1/2$); (h) $e^0 \sin(\pi/2) = 1$.</li>
+                <li><strong>Soal 12:</strong> Diskontinu di seluruh garis $3x + 5y = 0$ (termasuk di $(0,0)$, karena sepanjang $y=0$ limitnya $1/3$ sedangkan sepanjang $x=0$ limitnya $0$). Kontinu pada $\{(x,y) \in \mathbb{R}^2 \mid 3x + 5y \neq 0\}$.</li>
+                <li><strong>Soal 13:</strong> (a) $\{(x,y) \in \mathbb{R}^2 \mid y \neq x^2\}$; (b) Seluruh $\mathbb{R}^2$ (penyebut $\ge 1 &gt; 0$); (c) $\mathbb{R}^2 \setminus \{(0,0)\}$ (limit di $(0,0)$ adalah $0$ karena $\left|\frac{x^2 y^3}{2x^2+y^2}\right| \le |y|^3 \to 0$, tidak sama dengan $F(0,0)=1$); (d) $\mathbb{R}^2 \setminus \{(0,0)\}$ (sepanjang $y=0$ limitnya $0$, sepanjang $y=x$ limitnya $1/3$).</li>
+              </ul>
+            </div>
+          </details>
+        </section>
+
+        <!-- ================================================================
+             SUB-BAB 1.5: TEST FORMATIF 1 (QUIS 1)
+             ================================================================ -->
+        <section id="test-formatif" aria-labelledby="heading-1-5">
+          <h2 id="heading-1-5">1.5 Test Formatif 1 (Quis 1)</h2>
+          <p>
+            Kerjakan soal-soal evaluasi mandiri berikut sebelum membuka kunci pembahasan di bawahnya. Jika Anda mampu menyelesaikan minimal 2 dari 3 soal dengan tepat, penguasaan Anda terhadap Bab 1 tergolong baik.
+          </p>
+
+          <div class="quiz-meta">
+            <div><strong>Mata Kuliah:</strong> Kalkulus Peubah Banyak (KPB)</div>
+            <div><strong>Evaluasi:</strong> Quis 1 (Test Formatif 1)</div>
+            <div><strong>Hari / Tanggal:</strong> Jumat, 16-10-2020</div>
+            <div><strong>Waktu:</strong> 60 menit</div>
+          </div>
+
+          <ol>
+            <li>Sketsakan permukaan paraboloida $z = 16 - x^2 - y^2$ di oktan pertama yang terletak di antara bidang $x = \sqrt{8}$ dan bidang $y = \sqrt{8}$.</li>
+            <li>Sketsakan ruang di oktan pertama yang dibatasi oleh permukaan silinder $x^2 + z^2 = 9$ dan bidang lengkung $y = -x^2 + 9$.</li>
+            <li>
+              Tentukan himpunan terbesar di mana fungsi berikut kontinu:
+              $$F(x, y) = \begin{cases} \dfrac{x^2 y}{x^4 + y^2}, &amp; \text{jika } (x, y) \neq (0, 0) \\[6pt] 1, &amp; \text{jika } (x, y) = (0, 0) \end{cases}$$
+            </li>
+          </ol>
+
+          <details class="exercise-spoiler">
+            <summary>Lihat Pembahasan Lengkap Quis 1</summary>
+            <div class="exercise-spoiler-body">
+              <p><strong>1. Sketsa Paraboloida $z = 16 - x^2 - y^2$ di Oktan Pertama ($0 \le x \le \sqrt{8}$, $0 \le y \le \sqrt{8}$):</strong></p>
+              <ul>
+                <li>Pada $z = 0$: lingkaran $x^2 + y^2 = 16$ berjari-jari $4$ di bidang $xy$.</li>
+                <li>Pada $y = 0$: parabola $z = 16 - x^2$ di bidang $xz$ terbuka ke bawah dengan puncak di $(0, 0, 16)$.</li>
+                <li>Pada $x = 0$: parabola $z = 16 - y^2$ di bidang $yz$ terbuka ke bawah dengan puncak di $(0, 0, 16)$.</li>
+                <li>Bidang $x = \sqrt{8}$ (sejajar bidang $yoz$) dan $y = \sqrt{8}$ (sejajar bidang $xoz$) memotong seperempat paraboloida oktan pertama sehingga bagian atas dibatasi pada $0 \le x \le \sqrt{8}$ dan $0 \le y \le \sqrt{8}$ (di pojok $(\sqrt{8}, \sqrt{8})$ ketinggiannya $z = 16 - 8 - 8 = 0$).</li>
+              </ul>
+
+              <figure class="math-figure">
+                <svg viewBox="0 0 400 250" role="img" aria-label="Gambar 1.4: Sketsa paraboloida z = 16 - x^2 - y^2 di oktan pertama antara x = akar 8 dan y = akar 8">
+                  <line x1="125" y1="185" x2="125" y2="20" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <line x1="125" y1="185" x2="340" y2="185" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <line x1="125" y1="185" x2="42" y2="238" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <text x="132" y="26" font-size="11" fill="var(--text-secondary)">z</text>
+                  <text x="346" y="189" font-size="11" fill="var(--text-secondary)">y</text>
+                  <text x="32" y="242" font-size="11" fill="var(--text-secondary)">x</text>
+
+                  <!-- Paraboloida di oktan I -->
+                  <path d="M 125 42 Q 250 72 285 185" fill="none" stroke="var(--border-color)" stroke-width="1.3" stroke-dasharray="4 3"/>
+                  <path d="M 125 42 Q 86 112 68 221" fill="none" stroke="var(--border-color)" stroke-width="1.3" stroke-dasharray="4 3"/>
+                  <path d="M 68 221 Q 195 235 285 185" fill="none" stroke="var(--border-color)" stroke-width="1.3" stroke-dasharray="4 3"/>
+
+                  <!-- Potongan oleh x = sqrt(8) dan y = sqrt(8) -->
+                  <path d="M 125 42 Q 195 62 238 148 L 195 212 Q 145 148 84 180 Z" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="2"/>
+                  <line x1="125" y1="185" x2="238" y2="185" stroke="var(--def-border)" stroke-width="1.5"/>
+                  <line x1="238" y1="185" x2="195" y2="212" stroke="var(--lem-border)" stroke-width="1.6" stroke-dasharray="3 2"/>
+                  <line x1="84" y1="212" x2="195" y2="212" stroke="var(--lem-border)" stroke-width="1.6" stroke-dasharray="3 2"/>
+
+                  <circle cx="125" cy="42" r="3" fill="var(--accent-primary)"/>
+                  <text x="132" y="42" font-size="10.5" fill="var(--text-primary)">(0,0,16)</text>
+                  <text x="238" y="198" font-size="10" fill="var(--def-title)">√8</text>
+                  <text x="285" y="198" font-size="10" fill="var(--text-muted)">4</text>
+                  <text x="68" y="213" font-size="10" fill="var(--def-title)">√8</text>
+                  <text x="53" y="229" font-size="10" fill="var(--text-muted)">4</text>
+                </svg>
+                <figcaption>Gambar 1.4: Sketsa paraboloida $z = 16 - x^2 - y^2$ di oktan pertama yang dibatasi $x = \sqrt{8}$ dan $y = \sqrt{8}$.</figcaption>
+              </figure>
+
+              <p><strong>2. Sketsa Ruang di Oktan Pertama ($x^2 + z^2 = 9$ dan $y = -x^2 + 9$):</strong></p>
+              <p>
+                Permukaan $x^2 + z^2 = 9$ adalah silinder lingkaran berjari-jari $3$ yang sejajar sumbu-$y$. Sedangkan $y = 9 - x^2$ adalah silinder parabolik sejajar sumbu-$z$ dengan puncak di $(0, 9, 0)$ di bidang $xy$ dan memotong sumbu-$x$ positif di $x = 3$.
+              </p>
+
+              <figure class="math-figure">
+                <svg viewBox="0 0 400 250" role="img" aria-label="Gambar 1.5: Sketsa ruang oktan pertama dibatasi silinder x^2 + z^2 = 9 dan y = 9 - x^2">
+                  <line x1="110" y1="190" x2="110" y2="25" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <line x1="110" y1="190" x2="345" y2="190" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <line x1="110" y1="190" x2="38" y2="238" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <text x="117" y="30" font-size="11" fill="var(--text-secondary)">z</text>
+                  <text x="351" y="194" font-size="11" fill="var(--text-secondary)">y</text>
+                  <text x="27" y="242" font-size="11" fill="var(--text-secondary)">x</text>
+
+                  <!-- Bidang belakang di xoz: seperempat lingkaran r=3 -->
+                  <path d="M 110 72 Q 62 120 62 222 L 110 190 Z" fill="var(--lem-bg)" stroke="var(--lem-border)" stroke-width="1.8"/>
+                  <!-- Volume utama menuju y = 9 - x^2 -->
+                  <path d="M 110 72 L 300 72 C 265 110 175 160 62 222 Q 62 120 110 72 Z" fill="var(--accent-primary-soft)" stroke="var(--accent-primary)" stroke-width="2"/>
+                  <!-- Kurva alas y = 9 - x^2 di bidang xy -->
+                  <path d="M 300 190 Q 225 225 62 222" fill="none" stroke="var(--thm-border)" stroke-width="2"/>
+                  <!-- Garis puncak atas (x=0, z=3) dari y=0 ke y=9 -->
+                  <line x1="300" y1="72" x2="300" y2="190" stroke="var(--thm-border)" stroke-width="1.6" stroke-dasharray="4 3"/>
+
+                  <text x="118" y="69" font-size="10.5" fill="var(--text-primary)">z = 3</text>
+                  <text x="300" y="205" text-anchor="middle" font-size="10.5" fill="var(--thm-title)">y = 9</text>
+                  <text x="48" y="218" font-size="10.5" fill="var(--lem-title)">x = 3</text>
+                </svg>
+                <figcaption>Gambar 1.5: Daerah volume di oktan pertama yang dibatasi oleh silinder $x^2 + z^2 = 9$ dan $y = 9 - x^2$.</figcaption>
+              </figure>
+
+              <p><strong>3. Kekontinuan Fungsi $F(x, y) = \dfrac{x^2 y}{x^4 + y^2}$ ($(x, y) \neq (0, 0)$), $F(0, 0) = 1$:</strong></p>
+              <p>
+                Untuk $(x, y) \neq (0, 0)$, penyebut $x^4 + y^2 &gt; 0$ sehingga $F$ kontinu di seluruh $\mathbb{R}^2 \setminus \{(0, 0)\}$. Sekarang uji di titik $(0, 0)$:
+              </p>
+              <ul>
+                <li><strong>Syarat 1:</strong> Terpenuhi karena $F(0, 0) = 1$.</li>
+                <li><strong>Syarat 2 (Uji Berbagai Lintasan):</strong>
+                  <ul>
+                    <li>Sepanjang sumbu $x = 0$ maupun $y = 0$, nilai $F$ identik nol sehingga limitnya $0$.</li>
+                    <li>Sepanjang sembarang garis lurus $y = mx$ ($x \neq 0$):
+                      $$\lim_{x\to 0} F(x, mx) = \lim_{x\to 0} \frac{x^2(mx)}{x^4 + m^2 x^2} = \lim_{x\to 0} \frac{mx}{x^2 + m^2} = 0.$$
+                    </li>
+                    <li><strong>Namun sepanjang kurva parabola $y = x^2$ ($x \neq 0$):</strong>
+                      $$\lim_{x\to 0} F(x, x^2) = \lim_{x\to 0} \frac{x^2(x^2)}{x^4 + (x^2)^2} = \lim_{x\to 0} \frac{x^4}{2x^4} = \frac{1}{2}.$$
+                    </li>
+                  </ul>
+                  Karena hasil di sepanjang garis lurus ($0$) berbeda dengan sepanjang parabola $y = x^2$ ($\frac{1}{2}$), maka $\lim_{(x,y)\to(0,0)} F(x, y)$ <strong>tidak ada</strong> (Syarat 2 tidak terpenuhi).
+                </li>
+              </ul>
+              <p>
+                <strong>Kesimpulan:</strong> $F(x, y)$ diskontinu di $(0, 0)$, sehingga himpunan terbesar tempat $F$ kontinu adalah $\{(x, y) \in \mathbb{R}^2 \mid (x, y) \neq (0, 0)\} = \mathbb{R}^2 \setminus \{(0, 0)\}$.
+              </p>
+
+              <div class="math-box note">
+                <span class="math-box-title">Catatan Koreksi Matematis</span>
+                <p>
+                  Pada draf diktat mentah, pengujian limit Quis 1 Soal 3 berhenti pada garis lurus $y = mx$ dan menyimpulkan bahwa limitnya ada bernilai $0$. Secara analitis, fungsi $\frac{x^2y}{x^4+y^2}$ merupakan contoh klasik di mana limit di sepanjang <em>semua garis lurus</em> sama dengan $0$, tetapi gagal di sepanjang lintasan parabola $y = x^2$ ($\to \frac{1}{2}$), sehingga limit di $(0,0)$ sebenarnya <strong>tidak ada</strong>. Kesimpulan akhir himpunan kekontinuannya tetap $\mathbb{R}^2 \setminus \{(0,0)\}$.
+                </p>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <!-- Navigasi Bawah Halaman -->
+        <nav class="chapter-pagination" aria-label="Navigasi Antar Bab">
+          <a href="index.html" class="chapter-nav-link prev">
+            <span class="chapter-nav-label">← Kembali ke Daftar Isi</span>
+            <span class="chapter-nav-title">Multivariable Calculus (Indeks)</span>
+          </a>
+
+          <a href="bab-2-turunan-parsial-dan-aplikasinya.html" class="chapter-nav-link next">
+            <span class="chapter-nav-label">Bab Selanjutnya →</span>
+            <span class="chapter-nav-title">Bab 02: Turunan Parsial &amp; Aplikasinya</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
