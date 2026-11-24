@@ -1,7 +1,7 @@
 {
   "name": "Math Notes — Catatan Kuliah S1 Matematika",
   "short_name": "Math Notes",
-  "description": "Catatan kuliah S1 Matematika (Analisis Real & Aljabar Linear) — Offline-First PWA.",
+  "description": "Catatan kuliah S1 Matematika (Linear Algebra, Multivariable Calculus, Systems Mathematics, Numerical Methods, Operations Research 1, dan Simulation Techniques) — Offline-First PWA.",
   "lang": "id",
   "start_url": "./index.html",
   "scope": "./",
